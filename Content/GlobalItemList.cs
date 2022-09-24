@@ -78,10 +78,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Marrow) 
             {
-                item.damage = 60;
+                item.damage = 70;
                 item.useTime = 17;
                 item.useAnimation = 17;
-                item.crit = 8;
+                item.crit = 7;
                 item.autoReuse = true;
             }
 
