@@ -54,8 +54,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.maxStack = 1;
 
             Item.autoReuse = true;
-            Item.useTime = 9;
-            Item.useAnimation = 9;
+            Item.useTime = 7;
+            Item.useAnimation = 7;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item1;
@@ -64,16 +64,17 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.buffTime = 200;
 
 
-            Item.damage = 320;
+            Item.damage = 360;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 8f;
+            Item.crit = 16;
 
             Item.rare = ItemRarityID.Red;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-8, 8), 35f), ProjectileID.Electrosphere, damage = 160, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-5, 5), 40f), ProjectileID.Electrosphere, damage = 190, knockBack = 6f, Main.myPlayer);
         }
 
 
