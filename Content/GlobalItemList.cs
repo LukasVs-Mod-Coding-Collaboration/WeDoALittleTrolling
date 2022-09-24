@@ -88,6 +88,18 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 50;
             }
+            if (item.type == ItemID.FlintlockPistol) 
+            {
+                item.damage = 15;
+            }
+            if (item.type == ItemID.FlareGun) 
+            {
+                item.damage = 8;
+            }
+            if (item.type == ItemID.ChristmasTreeSword) 
+            {
+                item.damage = 95;
+            }
 
         }
 
