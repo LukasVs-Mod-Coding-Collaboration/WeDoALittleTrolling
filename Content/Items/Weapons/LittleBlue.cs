@@ -89,14 +89,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
               .AddIngredient(ItemID.FragmentStardust, 15)
               .AddIngredient(ItemID.FragmentVortex, 5)
               .Register();
-
-
-
-
-
         }
-
-
-
     }
 }
