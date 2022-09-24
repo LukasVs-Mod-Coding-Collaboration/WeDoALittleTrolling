@@ -84,6 +84,10 @@ namespace WeDoALittleTrolling.Content.Items
                 item.crit = 7;
                 item.autoReuse = true;
             }
+            if (item.type == ItemID.IceBow) 
+            {
+                item.damage = 50;
+            }
 
         }
 
