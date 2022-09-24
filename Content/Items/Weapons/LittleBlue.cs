@@ -25,13 +25,16 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
+using System;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class LittleBlue : ModItem
     {
 
-    
+
+        Random rnd = new Random();
+
 
         public override void SetStaticDefaults()
         {
@@ -58,10 +61,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item1;
 
             Item.buffType = BuffID.Endurance;
-            Item.buffTime = 120;
+            Item.buffTime = 200;
 
 
-            Item.damage = 460;
+            Item.damage = 320;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 8f;
 
@@ -70,7 +73,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, Vector2.Zero, ProjectileID.Electrosphere, damage = 200, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-8, 8), 35f), ProjectileID.Electrosphere, damage = 160, knockBack = 6f, Main.myPlayer);
         }
 
 
