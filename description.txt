@@ -1,0 +1,7 @@
+Hey there! This mod is a project I will be working on In my free time! It's just me messing around, trying to get into coding.
+That's all, thanks for reading.
+
+-Little Blue actually works now, however it's still missing its projectiles
+-I've got 3 more swords planned, please stand by
+-Added edible bees (Hit eats them)
+-Star warth arrows (Soon (TM))
