@@ -134,6 +134,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 150;
             }
+            if (item.type == ItemID.WormScarf)
+            {
+                item.defense = 4;
+            }
 
 
         }
