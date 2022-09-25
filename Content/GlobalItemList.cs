@@ -92,9 +92,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 15;
             }
-            if (item.type == ItemID.FlareGun) 
+            if (item.type == ItemID.FlareGun)
             {
                 item.damage = 8;
+                item.crit = 4;
             }
             if (item.type == ItemID.ChristmasTreeSword)
             {
