@@ -96,10 +96,36 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 8;
             }
-            if (item.type == ItemID.ChristmasTreeSword) 
+            if (item.type == ItemID.ChristmasTreeSword)
             {
                 item.damage = 95;
             }
+            if (item.type == ItemID.ZapinatorOrange)
+            {
+                item.damage = 50;
+            }
+            if (item.type == ItemID.ZapinatorGray)
+            {
+                item.damage = 21;
+            }
+            if (item.type == ItemID.LastPrism)
+            {
+                item.mana = 8;
+            }
+            if (item.type == ItemID.ClingerStaff)
+            {
+                item.damage = 60;
+            }
+            if (item.type == ItemID.RazorbladeTyphoon)
+            {
+                item.useTime = 32;
+                item.useAnimation = 32;
+            }
+            if (item.type == ItemID.OpticStaff)
+            {
+                item.damage = 40;
+            }
+
 
         }
 
