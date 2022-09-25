@@ -132,7 +132,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.RainbowCrystalStaff)
             {
-                item.damage = 180;
+                item.damage = 150;
             }
 
 

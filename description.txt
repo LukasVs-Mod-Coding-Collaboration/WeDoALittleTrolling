@@ -1,13 +1,13 @@
 Hey there! This mod is a project my brother and I will be working on In our free time, or whenever we feel like it! It's just us messing around, changing stuff we dislike about the game and maybe adding something new.
 
 Also it's me trying to get into Coding.
--Lukas
-
-That's all, thanks for reading.
 
 -I've got 3 more swords planned, actually coming soon
 -Star warth arrows (Soon (TM))
 
+-Lukas
+
+That's all, thanks for reading.
 
 Oh boy, Here we go - Chaaaangelog!
 
@@ -33,6 +33,7 @@ Oh boy, Here we go - Chaaaangelog!
 >Buffed Clinger Staff
 >Nerfed Zapinators
 >Reduced Last Prism's Base Mana Cost
+>Increased Razorblade Typhoon's attackspeed
 
 -Buffed some Melee Weapons:
 >Christmas Tree Sword
@@ -42,7 +43,7 @@ Oh boy, Here we go - Chaaaangelog!
 >Bee Keeper (Reverted 1.4 nerf)
 >Beam Sword (Reverted 1.4 nerf)
 
-= We found the nerfs to most these swords to be unneeded and unfun.
+=> We found the nerfs to most these swords to be unneeded and unfun.
 
 -Reverted Nerfs of the Cactus Set
 >I won't go in detail but Cactus set is restored to its former Glory
