@@ -125,6 +125,14 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 40;
             }
+            if (item.type == ItemID.MoonlordTurretStaff)
+            {
+                item.damage = 100;
+            }
+            if (item.type == ItemID.RainbowCrystalStaff)
+            {
+                item.damage = 180;
+            }
 
 
         }
