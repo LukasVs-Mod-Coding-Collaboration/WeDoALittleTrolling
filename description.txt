@@ -1,7 +1,49 @@
-Hey there! This mod is a project I will be working on In my free time! It's just me messing around, trying to get into coding.
+Hey there! This mod is a project my brother and I will be working on In our free time, or whenever we feel like it! It's just us messing around, changing stuff we dislike about the game and maybe adding something new.
+
+Also it's me trying to get into Coding.
+-Lukas
+
 That's all, thanks for reading.
 
--Little Blue now functions as intended, Raining Electrospheres from the Sky when striking an oponent
 -I've got 3 more swords planned, actually coming soon
--Edible Bees are a thing (Hit I'm looking at you)
 -Star warth arrows (Soon (TM))
+
+
+Oh boy, Here we go - Chaaaangelog!
+
+-Little Blue now functions as intended, with proper DPS and bullet spraying
+-Buffed Christmas Tree Sword
+ 
+-Buffed 3 Summons:
+>Lunar Portal Staff
+>Rainbow Crystal Staff
+>Optical Staff
+
+-Buffed a Bunch Of Ranged Weapons
+>Flintlock Pistol is now worth it
+>Flare Gun now does Damage
+>Marrow (Massive Buffs)
+>Ice Bow
+>Phantasm (Reverted to 70 Damage)
+>Daedalus Stormbow (Trying to counter the 1.4 nerf)
+>The Bee's Knees  (Reverted 1.4 nerf)
+>Clockwork Assault Rifle (Reverted 1.4 nerf)
+
+-Changed some Magic Weapons:
+>Buffed Clinger Staff
+>Nerfed Zapinators
+>Reduced Last Prism's Base Mana Cost
+
+-Buffed some Melee Weapons:
+>Christmas Tree Sword
+>Fetid Baghnaks (Kind of reverting 1.4 nerf)
+>Enchanted Sword (Reverted 1.4 nerf)
+>Falcon Blade (Reverted 1.4 nerf)
+>Bee Keeper (Reverted 1.4 nerf)
+>Beam Sword (Reverted 1.4 nerf)
+
+= We found the nerfs to most these swords to be unneeded and unfun.
+
+-Reverted Nerfs of the Cactus Set
+>I won't go in detail but Cactus set is restored to its former Glory
+

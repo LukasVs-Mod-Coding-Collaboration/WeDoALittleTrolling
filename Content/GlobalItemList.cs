@@ -102,11 +102,11 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ZapinatorOrange)
             {
-                item.damage = 50;
+                item.damage = 80;
             }
             if (item.type == ItemID.ZapinatorGray)
             {
-                item.damage = 21;
+                item.damage = 36;
             }
             if (item.type == ItemID.LastPrism)
             {
