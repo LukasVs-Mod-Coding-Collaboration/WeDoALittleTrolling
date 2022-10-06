@@ -57,6 +57,7 @@ namespace WeDoALittleTrolling.Content.Accessories
               .AddIngredient(ItemID.Ectoplasm, 5)
               .AddIngredient(ItemID.Wire, 50)
               .AddIngredient(ItemID.CrossNecklace, 1)
+              .AddIngredient(ItemID.MartianConduitPlating, 5)
               .Register();
         }
     }
