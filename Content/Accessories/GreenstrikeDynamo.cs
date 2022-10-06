@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Accessories
             player.accRunSpeed += 0.4f;
             player.lifeRegen += 25;
             player.statDefense += 5;
-            player.immuneTime += 90;
+            player.longInvince = true;
             player.wingTime += 360f;
         }
 
