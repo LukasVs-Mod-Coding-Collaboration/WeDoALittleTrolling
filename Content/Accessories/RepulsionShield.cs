@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul-Powered Shield");
-            Tooltip.SetDefault("A shield forged from the souls of a powerful mechanical creature\nGrants knockback immunity\n7 Defense\nReduces 25% of damage taken\nGrants immunity to fire and frost effects of any kind\nAlso grants immunity to Ichor and Electrified,");
+            Tooltip.SetDefault("A shield forged from the souls of a powerful mechanical creature\nGrants knockback immunity\n7 Defense\nReduces 25% of damage taken\nGrants immunity to fire and frost effects of any kind\nAlso grants immunity to Ichor and Electrified");
         }
 
 
@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.endurance += 25;
+            player.endurance = 0.25f;
             player.statDefense += 7;
             player.noKnockback = true;
             player.lavaImmune = true;
