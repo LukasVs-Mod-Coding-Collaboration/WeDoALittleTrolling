@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.endurance = 0.25f;
+            player.endurance += 0.25f;
             player.statDefense += 7;
             player.noKnockback = true;
             player.lavaImmune = true;
