@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
 
 
-        Random rnd = new Random();
+        Random rnd = new Random(); //Introduce random Values
 
 
         public override void SetStaticDefaults()
@@ -65,7 +65,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
 
             Item.damage = 360;
-            Item.DamageType = DamageClass.Melee;
+            Item.DamageType = DamageClass.Melee; //Item damage type
             Item.knockBack = 8f;
             Item.crit = 16;
 
@@ -75,7 +75,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-5, 5), 40f), ProjectileID.Electrosphere, damage = 190, knockBack = 6f, Main.myPlayer);
-        }
+        } //Projectile spawn location calculator, summons projectiles on hit
 
 
         public override void AddRecipes()

@@ -11,4 +11,5 @@ That's all, thanks for reading.
 
 Changelog time Again!
 
--Another accessory was added.
+-And another one (Yet another accessory)
+-Did a bunch of commenting in the class files (Not relevant for players)

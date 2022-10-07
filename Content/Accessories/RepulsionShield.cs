@@ -29,22 +29,22 @@ namespace WeDoALittleTrolling.Content.Accessories
 
             Item.consumable = false;
 
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 50);
             Item.maxStack = 1;
 
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ItemRarityID.Expert; //Expert Mode Item
 
             Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.endurance += 0.25f;
+            player.endurance += 0.25f; //Damage Reduction
             player.statDefense += 7;
             player.noKnockback = true;
-            player.lavaImmune = true;
+            player.lavaImmune = true; //Immunity to Lava and Fire blocks
             player.fireWalk = true;
-            player.buffImmune[44] = true;
+            player.buffImmune[44] = true; //Debuff Immunities against fire & frost debuffs
             player.buffImmune[39] = true;
             player.buffImmune[24] = true;
             player.buffImmune[47] = true;

@@ -45,7 +45,7 @@ namespace WeDoALittleTrolling.Content.Items
             Item.width = 12;
             Item.height = 12;
 
-            Item.consumable = true;
+            Item.consumable = true; //Makes item Consumable
 
             Item.value = Item.buyPrice(silver: 10);
             Item.maxStack = 50;
@@ -56,8 +56,8 @@ namespace WeDoALittleTrolling.Content.Items
             Item.useStyle = ItemUseStyleID.EatFood;
             Item.UseSound = SoundID.Item2;
 
-            Item.buffType = BuffID.WellFed2;
-            Item.buffTime = 18000;
+            Item.buffType = BuffID.WellFed2; //Buff type on use
+            Item.buffTime = 18000; //60 value = 1 Second
 
             Item.rare = ItemRarityID.Blue;
         }

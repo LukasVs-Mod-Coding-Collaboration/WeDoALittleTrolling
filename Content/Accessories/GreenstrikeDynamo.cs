@@ -42,9 +42,9 @@ namespace WeDoALittleTrolling.Content.Accessories
             player.moveSpeed += 1.5f;
             player.noFallDmg = true;
             player.accRunSpeed += 0.4f;
-            player.lifeRegen += 25;
+            player.lifeRegen += 25; //HP Regen
             player.statDefense += 5;
-            player.longInvince = true;
+            player.longInvince = true; //Cross Necklace effect
             player.wingTime += 360f;
         }
 
