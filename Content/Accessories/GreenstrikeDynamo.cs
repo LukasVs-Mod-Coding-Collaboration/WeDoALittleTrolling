@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Greenstrike Dynamo");
-            Tooltip.SetDefault("Give yourself a boost with the power of Nostalgia\nIn memory of bad Piggies\nNegates fall damage and Increases movement speed\nGrants MASSIVE buffs to life regeneration\n+5 Defense and prolonged immmunity frames");
+            Tooltip.SetDefault("Give yourself a boost with the power of nostalgia\nIn memory of Bad Piggies\nNegates fall damage and increases movement speed\nGrants MASSIVE buffs to life regeneration\nIncreases attack speed by 25%\nProlongs immmunity frames");
         }
 
 
@@ -43,9 +43,9 @@ namespace WeDoALittleTrolling.Content.Accessories
             player.noFallDmg = true;
             player.accRunSpeed += 0.4f;
             player.lifeRegen += 25; //HP Regen
-            player.statDefense += 5;
+            player.GetAttackSpeed(DamageClass.Generic) += 0.25f;
             player.longInvince = true; //Cross Necklace effect
-            player.wingTime += 360f;
+            player.wingTimeMax += 360;
         }
 
         public override void AddRecipes()
@@ -53,8 +53,8 @@ namespace WeDoALittleTrolling.Content.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.LifeFruit, 5)
-              .AddIngredient(ItemID.ChlorophyteBar, 5)
-              .AddIngredient(ItemID.Ectoplasm, 5)
+              .AddIngredient(ItemID.SpectreBar, 10)
+              .AddIngredient(ItemID.ChlorophyteBar, 10)
               .AddIngredient(ItemID.Wire, 50)
               .AddIngredient(ItemID.CrossNecklace, 1)
               .AddIngredient(ItemID.MartianConduitPlating, 5)
