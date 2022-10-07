@@ -45,6 +45,7 @@ namespace WeDoALittleTrolling.Content.Accessories
             player.lavaImmune = true;
             player.fireWalk = true;
             player.buffImmune[44] = true;
+            player.buffImmune[39] = true;
             player.buffImmune[24] = true;
             player.buffImmune[47] = true;
             player.buffImmune[46] = true;
