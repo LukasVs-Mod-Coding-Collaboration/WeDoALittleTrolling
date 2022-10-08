@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Overdrive");
-            Tooltip.SetDefault("Can only be worn in the first acessory slot\nIncreases attack speed at the cost of damage\nIncreases ranged attack speed by 60%\nIncreases ranged armor penetration by 40\nDecreases ranged attack damage by 10%");
+            Tooltip.SetDefault("Can only be worn in the first acessory slot\nIncreases attack speed at the cost of damage\nIncreases ranged attack speed by 50%\nIncreases ranged armor penetration by 50\nDecreases ranged attack damage by 10%");
         }
 
 
@@ -39,8 +39,8 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetAttackSpeed(DamageClass.Ranged) += 0.60f;
-            player.GetArmorPenetration(DamageClass.Ranged) += 40.0f;
+            player.GetAttackSpeed(DamageClass.Ranged) += 0.50f;
+            player.GetArmorPenetration(DamageClass.Ranged) += 50.0f;
             player.GetDamage(DamageClass.Ranged) += -0.10f;
         }
 

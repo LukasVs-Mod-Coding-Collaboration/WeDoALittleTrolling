@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Overcharge");
-            Tooltip.SetDefault("Can only be worn in the first acessory slot\nIncreases damage at the cost of attack speed\nIncreases ranged attack damage by 40%\nIncreases ranged critical strike chance by 10%\nDecreases ranged attack speed by 20%");
+            Tooltip.SetDefault("Can only be worn in the first acessory slot\nIncreases damage at the cost of attack speed\nIncreases ranged attack damage by 50%\nIncreases ranged critical strike chance by 25%\nDecreases ranged attack speed by 30%");
         }
 
 
@@ -39,9 +39,9 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Ranged) += 0.40f;
-            player.GetCritChance(DamageClass.Ranged) += 10.0f;
-            player.GetAttackSpeed(DamageClass.Ranged) += -0.20f;
+            player.GetDamage(DamageClass.Ranged) += 0.50f;
+            player.GetCritChance(DamageClass.Ranged) += 25.0f;
+            player.GetAttackSpeed(DamageClass.Ranged) += -0.30f;
         }
 
         //Only allow equipping to first acessory slot
