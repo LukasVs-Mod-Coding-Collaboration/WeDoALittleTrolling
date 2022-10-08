@@ -11,7 +11,7 @@ using System;
 
 namespace WeDoALittleTrolling.Content.Accessories
 {
-    internal class RepulsionShield : ModItem
+    internal class SoulPoweredShield : ModItem
     {
 
 

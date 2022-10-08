@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mana extraction Catalyst");
-            Tooltip.SetDefault("The power of unlimited magic energy at the cost of some of your life force...\nYou no longer gain mana sickness, however,\nyour maximal Health points are reduced by 150\n20% Increased magic Damage");
+            Tooltip.SetDefault("The power of unlimited magic energy at the cost of some of your life force...\nYou no longer gain mana sickness, however,\nyour maximal Health points are reduced by 125\n20% Increased magic Damage");
         }
 
 
@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += -150; //Weird but working way to set Max down
+            player.statLifeMax2 += -125; //Weird but working way to set Max down
             player.buffImmune[94] = true; //Immunity to Mana Sickness
             player.GetDamage(DamageClass.Magic) += 0.2f; //Damage increase of 20%
 
