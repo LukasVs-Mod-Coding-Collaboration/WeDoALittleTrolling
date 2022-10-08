@@ -16,7 +16,19 @@ namespace WeDoALittleTrolling.Content.Items
     {
 
 
-
+        //Fix wrong Projectile IDs
+        public int FixProjectileID(int projectile_id, int ammo_id)
+        {
+            if (ammo_id == AmmoID.Rocket)
+            {
+                return projectile_id - 134; //ProjectileID - 134 = Rocket ProjectileID, THE WHAT TERRARIA DEVS
+            }
+            else
+            {
+                return projectile_id;
+            }
+        }
+        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Infinite Rocket I");
@@ -36,15 +48,7 @@ namespace WeDoALittleTrolling.Content.Items
             Item.DamageType = DamageClass.Ranged;
             Item.rare = ItemRarityID.Red;
             Item.ammo = AmmoID.Rocket;
-            int ProjID = ProjectileID.RocketI;
-            
-            //ProjectileID - 134 = Rocket Projectile ID, THE WHAT TERRARIA DEVS
-            if (Item.ammo == AmmoID.Rocket)
-            {
-                ProjID -= 134;
-            }
-            Item.shoot = ProjID;
-
+            Item.shoot = FixProjectileID(ProjectileID.RocketI, Item.ammo);
         }
 
         //Disable usage with Celebration MK 2 for now as it is bugged

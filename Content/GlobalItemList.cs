@@ -170,6 +170,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 1;
             }
+            if (item.type == ItemID.ElectrosphereLauncher)
+            {
+                item.autoReuse = true;
+            }
 
 
         }
