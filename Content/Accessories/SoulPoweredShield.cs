@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul-Powered Shield");
-            Tooltip.SetDefault("A shield forged from the souls of a powerful mechanical creature\nGrants knockback immunity\n7 Defense\nReduces 25% of damage taken\nGrants immunity to fire and frost effects of any kind\nAlso grants immunity to Ichor and Electrified");
+            Tooltip.SetDefault("A shield forged from the souls of a powerful mechanical creature\nBlocks usage of the Worm Scarf\nGrants knockback immunity\n7 Defense\nReduces 25% of damage taken\nGrants immunity to fire and frost effects of any kind\nAlso grants immunity to Ichor and Electrified");
         }
 
 
@@ -58,7 +58,10 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            if(equippedItem.type == ItemID.WormScarf || incomingItem.type == ItemID.WormScarf)
+            if
+            (
+                (equippedItem.type == ItemID.WormScarf || incomingItem.type == ItemID.WormScarf)
+            )
             {
                 return false;
             }
