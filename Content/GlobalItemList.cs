@@ -134,6 +134,42 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 150;
             }
+            if (item.type == ItemID.StardustHelmet)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.StardustBreastplate)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.StardustLeggings)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.NebulaHelmet)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.NebulaBreastplate)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.NebulaLeggings)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.TikiMask)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.TikiShirt)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.TikiPants)
+            {
+                item.defense += 1;
+            }
 
 
         }

@@ -56,6 +56,18 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         }
 
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+        {
+            if(equippedItem.type == ItemID.WormScarf || incomingItem.type == ItemID.WormScarf)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public override void AddRecipes()
         {
             CreateRecipe()
