@@ -34,10 +34,16 @@ namespace WeDoALittleTrolling.Content.Items
 
             Item.damage = 40;
             Item.DamageType = DamageClass.Ranged;
-
             Item.rare = ItemRarityID.Red;
-            Item.shoot = ProjectileID.RocketI - 134; //ProjectileID - 134 = Rocket Projectile ID, THE WHAT TERRARIA DEVS
             Item.ammo = AmmoID.Rocket;
+            int ProjID = ProjectileID.RocketI;
+            
+            //ProjectileID - 134 = Rocket Projectile ID, THE WHAT TERRARIA DEVS
+            if (Item.ammo == AmmoID.Rocket)
+            {
+                ProjID -= 134;
+            }
+            Item.shoot = ProjID;
 
         }
 
