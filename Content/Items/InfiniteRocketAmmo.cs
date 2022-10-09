@@ -32,7 +32,7 @@ namespace WeDoALittleTrolling.Content.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Infinite Rocket I");
-            Tooltip.SetDefault("It seems to multiply as you load it into your weapon...\nCan not be used with Celebration Mk2");
+            Tooltip.SetDefault("It seems to multiply as you load it into your weapon...");
         }
 
 
@@ -51,17 +51,14 @@ namespace WeDoALittleTrolling.Content.Items
             Item.shoot = FixProjectileID(ProjectileID.RocketI, Item.ammo);
         }
 
-        //Disable usage with Celebration MK 2 for now as it is bugged
-        public override bool? CanBeChosenAsAmmo(Item weapon, Player player)
+        //Celeb2 is stupid and only fires vanilla projectiles...
+        public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
             if(weapon.type == ItemID.Celeb2)
             {
-                return false;
+                type = ProjectileID.Celeb2Rocket;
             }
-            else
-            {
-                return base.CanBeChosenAsAmmo(weapon, player);
-            }
+            base.PickAmmo(weapon, player, ref type, ref speed, ref damage, ref knockback);
         }
 
         public override void AddRecipes()
