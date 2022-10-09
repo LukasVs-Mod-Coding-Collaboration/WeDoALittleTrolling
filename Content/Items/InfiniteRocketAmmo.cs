@@ -15,19 +15,7 @@ namespace WeDoALittleTrolling.Content.Items
     internal class InfiniteRocketAmmo : ModItem
     {
 
-
-        //Fix wrong Projectile IDs
-        public int FixProjectileID(int projectile_id, int ammo_id)
-        {
-            if (ammo_id == AmmoID.Rocket)
-            {
-                return projectile_id - 134; //ProjectileID - 134 = Rocket ProjectileID, THE WHAT TERRARIA DEVS
-            }
-            else
-            {
-                return projectile_id;
-            }
-        }
+        Random rnd = new Random();
         
         public override void SetStaticDefaults()
         {
@@ -49,10 +37,34 @@ namespace WeDoALittleTrolling.Content.Items
             Item.DamageType = DamageClass.Ranged;
             Item.rare = ItemRarityID.Red;
             Item.ammo = AmmoID.Rocket;
-            Item.shoot = FixProjectileID(ProjectileID.RocketI, Item.ammo);
+            Item.shoot = ProjectileID.RocketI;
         }
 
-        //Fix broken ammo conversions...
+        //Set allowed weapons
+        public override bool? CanBeChosenAsAmmo(Item weapon, Player player)
+        {
+            switch(weapon.type)
+            {
+                case ItemID.Celeb2:
+                    return true;
+                case ItemID.SnowmanCannon:
+                    return true;
+                case ItemID.FireworksLauncher:
+                    return true;
+                case ItemID.ElectrosphereLauncher:
+                    return true;
+                case ItemID.GrenadeLauncher:
+                    return true;
+                case ItemID.ProximityMineLauncher:
+                    return true;
+                case ItemID.RocketLauncher:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        
+        //Handle ammo conversions
         public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
             switch(weapon.type)
@@ -62,6 +74,38 @@ namespace WeDoALittleTrolling.Content.Items
                     break;
                 case ItemID.SnowmanCannon:
                     type = ProjectileID.RocketSnowmanI;
+                    break;
+                case ItemID.FireworksLauncher:
+                    switch(rnd.Next(0, 4))
+                    {
+                        case 0:
+                            type = ProjectileID.RocketFireworkBlue;
+                            break;
+                        case 1:
+                            type = ProjectileID.RocketFireworkGreen;
+                            break;
+                        case 2:
+                            type = ProjectileID.RocketFireworkRed;
+                            break;
+                        case 3:
+                            type = ProjectileID.RocketFireworkYellow;
+                            break;
+                        default:
+                            type = ProjectileID.RocketFireworkBlue;
+                            break;
+                    }
+                    break;
+                case ItemID.ElectrosphereLauncher:
+                    type = ProjectileID.ElectrosphereMissile;
+                    break;
+                case ItemID.GrenadeLauncher:
+                    type = ProjectileID.GrenadeI;
+                    break;
+                case ItemID.ProximityMineLauncher:
+                    type = ProjectileID.ProximityMineI;
+                    break;
+                case ItemID.RocketLauncher:
+                    type = ProjectileID.RocketI;
                     break;
                 default:
                     break;
