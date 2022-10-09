@@ -112,6 +112,7 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.LastPrism)
             {
                 item.mana = 8;
+                item.damage = 175;
             }
             if (item.type == ItemID.ClingerStaff)
             {
