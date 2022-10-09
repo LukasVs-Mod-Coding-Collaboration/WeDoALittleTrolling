@@ -52,12 +52,19 @@ namespace WeDoALittleTrolling.Content.Items
             Item.shoot = FixProjectileID(ProjectileID.RocketI, Item.ammo);
         }
 
-        //Celeb2 is stupid and only fires vanilla projectiles...
+        //Fix broken ammo conversions...
         public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
-            if(weapon.type == ItemID.Celeb2)
+            switch(weapon.type)
             {
-                type = ProjectileID.Celeb2Rocket;
+                case ItemID.Celeb2:
+                    type = ProjectileID.Celeb2Rocket;
+                    break;
+                case ItemID.SnowmanCannon:
+                    type = ProjectileID.RocketSnowmanI;
+                    break;
+                default:
+                    break;
             }
             base.PickAmmo(weapon, player, ref type, ref speed, ref damage, ref knockback);
         }
