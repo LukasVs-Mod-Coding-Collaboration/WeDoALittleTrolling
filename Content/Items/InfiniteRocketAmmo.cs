@@ -45,6 +45,7 @@ namespace WeDoALittleTrolling.Content.Items
             Item.maxStack = 1;
 
             Item.damage = 40;
+            Item.knockBack = 4;
             Item.DamageType = DamageClass.Ranged;
             Item.rare = ItemRarityID.Red;
             Item.ammo = AmmoID.Rocket;
