@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Overdrive");
-            Tooltip.SetDefault("Can only be worn in the first acessory slot\nIncreases attack speed at the cost of damage\nIncreases ranged attack speed by 50%\nIncreases ranged armor penetration by 50\nDecreases ranged attack damage by 10%");
+            Tooltip.SetDefault("Increases attack speed at the cost of damage\nIncreases ranged attack speed by 50%\nIncreases ranged armor penetration by 50\nDecreases ranged attack damage by 10%");
         }
 
 
@@ -44,17 +44,19 @@ namespace WeDoALittleTrolling.Content.Accessories
             player.GetDamage(DamageClass.Ranged) += -0.10f;
         }
 
-        //Only allow equipping to first acessory slot
-        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            //slot >= 13: Terraria 1.4.4+ and CalamityMod vanity slot compat
-            if(slot == 3 || slot >= 13)
+            if
+            (
+                equippedItem.type == ModContent.ItemType<ShroomiteOvercharge>() ||
+                incomingItem.type == ModContent.ItemType<ShroomiteOvercharge>()
+            )
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
             }
         }
 
