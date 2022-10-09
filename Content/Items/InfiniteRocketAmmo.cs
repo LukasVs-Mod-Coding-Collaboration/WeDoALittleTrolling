@@ -8,6 +8,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using System.Linq;
 
 
 namespace WeDoALittleTrolling.Content.Items
@@ -15,7 +16,17 @@ namespace WeDoALittleTrolling.Content.Items
     internal class InfiniteRocketAmmo : ModItem
     {
 
-        Random rnd = new Random();
+        Random FireworksColor = new Random();
+        int[] CompatibleWeaponIDs = 
+        {
+            ItemID.Celeb2,
+            ItemID.SnowmanCannon,
+            ItemID.FireworksLauncher,
+            ItemID.ElectrosphereLauncher,
+            ItemID.GrenadeLauncher,
+            ItemID.ProximityMineLauncher,
+            ItemID.RocketLauncher
+        };
         
         public override void SetStaticDefaults()
         {
@@ -43,24 +54,13 @@ namespace WeDoALittleTrolling.Content.Items
         //Set allowed weapons
         public override bool? CanBeChosenAsAmmo(Item weapon, Player player)
         {
-            switch(weapon.type)
+            if(CompatibleWeaponIDs.Contains(weapon.type))
             {
-                case ItemID.Celeb2:
-                    return true;
-                case ItemID.SnowmanCannon:
-                    return true;
-                case ItemID.FireworksLauncher:
-                    return true;
-                case ItemID.ElectrosphereLauncher:
-                    return true;
-                case ItemID.GrenadeLauncher:
-                    return true;
-                case ItemID.ProximityMineLauncher:
-                    return true;
-                case ItemID.RocketLauncher:
-                    return true;
-                default:
-                    return false;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         
@@ -76,7 +76,7 @@ namespace WeDoALittleTrolling.Content.Items
                     type = ProjectileID.RocketSnowmanI;
                     break;
                 case ItemID.FireworksLauncher:
-                    switch(rnd.Next(0, 4))
+                    switch(FireworksColor.Next(0, 4))
                     {
                         case 0:
                             type = ProjectileID.RocketFireworkBlue;
