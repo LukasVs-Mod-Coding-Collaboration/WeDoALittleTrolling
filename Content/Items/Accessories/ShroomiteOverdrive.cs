@@ -9,23 +9,23 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 
-namespace WeDoALittleTrolling.Content.Accessories
+namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-    internal class ShroomiteOvercharge : ModItem
+    internal class ShroomiteOverdrive : ModItem
     {
 
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shroomite Overcharge");
-            Tooltip.SetDefault("Increases damage at the cost of attack speed\nIncreases ranged attack damage by 50%\nIncreases ranged critical strike chance by 25%\nDecreases ranged attack speed by 30%");
+            DisplayName.SetDefault("Shroomite Overdrive");
+            Tooltip.SetDefault("Increases attack speed at the cost of damage\nIncreases ranged attack speed by 50%\nIncreases ranged armor penetration by 50\nDecreases ranged attack damage by 10%");
         }
 
 
         public override void SetDefaults()
         {
-            Item.width = 42;
-            Item.height = 58;
+            Item.width = 34;
+            Item.height = 42;
 
             Item.consumable = false;
 
@@ -39,17 +39,17 @@ namespace WeDoALittleTrolling.Content.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Ranged) += 0.50f;
-            player.GetCritChance(DamageClass.Ranged) += 25.0f;
-            player.GetAttackSpeed(DamageClass.Ranged) += -0.30f;
+            player.GetAttackSpeed(DamageClass.Ranged) += 0.50f;
+            player.GetArmorPenetration(DamageClass.Ranged) += 50.0f;
+            player.GetDamage(DamageClass.Ranged) += -0.10f;
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
             if
             (
-                equippedItem.type == ModContent.ItemType<ShroomiteOverdrive>() ||
-                incomingItem.type == ModContent.ItemType<ShroomiteOverdrive>()
+                equippedItem.type == ModContent.ItemType<ShroomiteOvercharge>() ||
+                incomingItem.type == ModContent.ItemType<ShroomiteOvercharge>()
             )
             {
                 return false;
@@ -65,7 +65,7 @@ namespace WeDoALittleTrolling.Content.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.ShroomiteBar, 12)
-              .AddIngredient(ItemID.RifleScope, 1)
+              .AddIngredient(ItemID.SWATHelmet, 1)
               .AddIngredient(ItemID.RangerEmblem, 1)
               .Register();
         }

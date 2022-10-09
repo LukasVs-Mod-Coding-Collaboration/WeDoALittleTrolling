@@ -9,7 +9,7 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 
-namespace WeDoALittleTrolling.Content.Accessories
+namespace WeDoALittleTrolling.Content.Items.Accessories
 {
     internal class ManaExtractionCatalyst : ModItem
     {
