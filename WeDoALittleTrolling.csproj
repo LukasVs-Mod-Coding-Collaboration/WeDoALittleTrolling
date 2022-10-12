@@ -15,7 +15,6 @@
     <Folder Include="Assets\Textures\" />
     <Folder Include="Assets\Sounds\" />
     <Folder Include="Common\" />
-    <Folder Include="Content\Projectiles\" />
     <Folder Include="Localisation\" />
   </ItemGroup>
 </Project>

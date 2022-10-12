@@ -8,6 +8,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using WeDoALittleTrolling.Content.Projectiles;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -40,22 +41,30 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.noMelee = true;
             Item.crit = -300;
 
-            Item.shoot = ProjectileID.BulletHighVelocity;
-            Item.shootSpeed = 20f;
+            Item.shoot = ProjectileID.Bullet; // ModContent.ProjectileType<Beamlaser1>();
+            Item.shootSpeed = 30f;
         }
 
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-36.5f, -5f);
         }
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+     
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Vector2 muzzleOffset = Vector2.Normalize(velocity) * 25f;
-            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
-            {
-                position += muzzleOffset;
-            }
+            new Vector2(position.X, position.Y - 120);
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
+        /*
 
+     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+     {
+         Vector2 muzzleOffset = Vector2.Normalize(velocity) * 50f;
+         if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+         {
+             position += muzzleOffset;
+         }
+     }
+     */
     }
 }
