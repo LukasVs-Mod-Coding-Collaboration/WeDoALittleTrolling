@@ -75,9 +75,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-3, 3), 40f), ProjectileID.Electrosphere, damage = 625, knockBack = 6f, Main.myPlayer);
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(-3, 3), 40f), ProjectileID.Electrosphere, damage = 625, knockBack = 6f, Main.myPlayer);
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 580), new Vector2(rnd.Next(-3, 3), 40f), ProjectileID.Electrosphere, damage = 625, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-6, -3), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(-3, 0), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 580), new Vector2(0, 30f), ProjectileID.Electrosphere, damage = 750, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(0, 3), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(3, 6), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
         } //Projectile spawn location calculator, summons projectiles on hit
 
 
