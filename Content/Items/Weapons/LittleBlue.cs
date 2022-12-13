@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Little Blue");
-            Tooltip.SetDefault("Look up to the sky and\nsee an Ocean of Stars\nL + Ratio + Build + Reload\nGrants Endurance with a");
+            Tooltip.SetDefault("Look up to the sky and\nsee an Ocean of Stars\nGrants Endurance with a");
         }
 
 
@@ -54,8 +54,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.maxStack = 1;
 
             Item.autoReuse = true;
-            Item.useTime = 7;
-            Item.useAnimation = 7;
+            Item.useTime = 12;
+            Item.useAnimation = 12;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item1;
@@ -64,17 +64,20 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.buffTime = 200;
 
 
-            Item.damage = 360;
+            Item.damage = 750;
             Item.DamageType = DamageClass.Melee; //Item damage type
             Item.knockBack = 8f;
             Item.crit = 16;
 
             Item.rare = ItemRarityID.Red;
+            Item.scale= 1.2f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-5, 5), 40f), ProjectileID.Electrosphere, damage = 190, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-3, 3), 40f), ProjectileID.Electrosphere, damage = 625, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(-3, 3), 40f), ProjectileID.Electrosphere, damage = 625, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 580), new Vector2(rnd.Next(-3, 3), 40f), ProjectileID.Electrosphere, damage = 625, knockBack = 6f, Main.myPlayer);
         } //Projectile spawn location calculator, summons projectiles on hit
 
 
