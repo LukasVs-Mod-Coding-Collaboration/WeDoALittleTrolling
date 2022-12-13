@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Overdrive");
-            Tooltip.SetDefault("Increases attack speed at the cost of damage\nIncreases ranged attack speed by 50%\nIncreases ranged armor penetration by 50\nDecreases ranged attack damage by 10%");
+            Tooltip.SetDefault("Increases attack speed at the cost of damage\nIncreases ranged attack speed by 50%\nIncreases ranged armor penetration by 50\nDecreases ranged attack damage by 15%");
         }
 
 
@@ -41,7 +41,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             player.GetAttackSpeed(DamageClass.Ranged) += 0.50f;
             player.GetArmorPenetration(DamageClass.Ranged) += 50.0f;
-            player.GetDamage(DamageClass.Ranged) += -0.10f;
+            player.GetDamage(DamageClass.Ranged) += -0.15f;
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
