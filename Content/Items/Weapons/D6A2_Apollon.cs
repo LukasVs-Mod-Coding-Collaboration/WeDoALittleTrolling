@@ -49,12 +49,21 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             return new Vector2(-36.5f, -5f);
         }
-     
+
+
+
+
+
+        //Dropped Code from Previous Versions of the Weapon that did not help my goal.
+
+        /*
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             new Vector2(position.X, position.Y - 120);
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
+        */
+
         /*
 
      public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
