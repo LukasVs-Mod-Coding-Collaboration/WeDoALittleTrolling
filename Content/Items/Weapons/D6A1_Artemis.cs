@@ -31,9 +31,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTime = 120;
             Item.useAnimation = 120;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.autoReuse = false;
-
-            Item.UseSound = SoundID.Item1;
+            Item.UseSound = SoundID.Item84;
 
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 1600;
