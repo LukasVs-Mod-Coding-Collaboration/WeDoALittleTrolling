@@ -16,7 +16,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 		public bool location_is_locked = false;
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("THERE IS NO WAR BEHIND THE FRUMAN WALLS!!!");
-			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9999; // The length of old position to be recorded
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 999; // The length of old position to be recorded
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
 		}
 
@@ -28,7 +28,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 			Projectile.hostile = false; // Can the projectile deal damage to the player?
 			Projectile.DamageType = DamageClass.Ranged; // Is the projectile shoot by a ranged weapon?
 			Projectile.penetrate = 999999999; // How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
-			Projectile.timeLeft = 3*60*(9+1); // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
+			Projectile.timeLeft = 999; // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
 			Projectile.alpha = 255; // The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in) Make sure to delete this if you aren't using an aiStyle that fades in. You'll wonder why your projectile is invisible.
 			Projectile.light = 1.0f; // How much light emit around the projectile
 			Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
@@ -65,9 +65,9 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 			   Math.Abs(this.Projectile.position.Y - original_location.Y) > 768  || //Configure max lengh of beam in y coords
 			   this.location_is_locked)
 			{
-				this.Projectile.position = original_location;
 				this.location_is_locked = true;
 				this.Projectile.damage = 0;
+				this.Projectile.position = original_location;
 				return false;
 			}
 			else
@@ -76,10 +76,12 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 			}
         }
 
+        /*
 		public override void Kill(int timeLeft) {
 			// This code and the similar code above in OnTileCollide spawn dust from the tiles collided with. SoundID.Item10 is the bounce sound you hear.
 			Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
 			SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 		}
+		*/
 	}
 }
