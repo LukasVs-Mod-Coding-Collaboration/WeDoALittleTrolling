@@ -12,12 +12,12 @@ using System;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
-    internal class D6A2_Apollon : ModItem
+    internal class D6A1_Artemis : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a Laser powerful enough to vaporise a spaceship");
-            DisplayName.SetDefault("D6A2 - Apollon");
+            Tooltip.SetDefault("Fires a Laser powerful enough to eliminate most enemies");
+            DisplayName.SetDefault("D6A1 - Artemis");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -36,11 +36,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item1;
 
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 16000;
+            Item.damage = 1600;
             Item.knockBack = 5f;
             Item.noMelee = true;
             Item.crit = 0;
-            Item.shoot = ModContent.ProjectileType<Beamlaser2>();
+            Item.shoot = ModContent.ProjectileType<Beamlaser1>();
             Item.shootSpeed = 8.0f;
             Item.autoReuse = true;
        

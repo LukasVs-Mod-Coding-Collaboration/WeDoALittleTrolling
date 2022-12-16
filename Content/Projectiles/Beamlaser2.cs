@@ -10,12 +10,12 @@ using Terraria.ModLoader;
 
 namespace  WeDoALittleTrolling.Content.Projectiles
 {
-	public class Beamlaser1 : ModProjectile
+	public class Beamlaser2 : ModProjectile
 	{
 		public Vector2 original_location;
 		public bool location_is_locked = false;
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Artemis Beam Laser");
+			DisplayName.SetDefault("Apollon Beam Laser");
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 999; // The length of old position to be recorded
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
 		}
@@ -34,7 +34,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 			Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
 			Projectile.tileCollide = false; // Can the projectile collide with tiles?
 			Projectile.extraUpdates = 9; // Set to above 0 if you want the projectile to update multiple time in a frame
-			Projectile.ArmorPenetration = 25;
+			Projectile.ArmorPenetration = 250;
 
 			AIType = ProjectileID.Bullet; // Act exactly like default Bullet
 		}
