@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using WeDoALittleTrolling.Content.Projectiles;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
@@ -39,24 +40,28 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.knockBack = 5f;
             Item.noMelee = true;
             Item.crit = -300;
+            Item.shoot = ModContent.ProjectileType<Beamlaser1>();
+            Item.shootSpeed = 8.0f;
+            Item.autoReuse = true;
        
 
         }
 
-
-
-        public override bool? UseItem(Player player)
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(player.position.X, player.position.Y), new Vector2(0, 1), ProjectileID.Typhoon, 250, 6f, Main.myPlayer);
-            return true;
+            Vector2 shootDirection = velocity;
+            shootDirection.Normalize();
+            float xOffset = shootDirection.X * 84.0f;
+            float yOffset = shootDirection.Y * 84.0f;
+            position = new Vector2(position.X + xOffset, position.Y + yOffset - 10.0f);
+            base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
-
+        
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-36.5f, -5f);
+            return new Vector2(-36.5f, -5.0f);
         }
-
 
     }
 }
