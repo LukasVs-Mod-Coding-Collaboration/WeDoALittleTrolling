@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace  WeDoALittleTrolling.Content.Projectiles
 {
-    public class Beamlaser2 : ModProjectile
+    public class Beamlaser2_AutoAim : ModProjectile
     {
         public Vector2 original_location;
         public bool location_is_locked = false;
@@ -57,6 +57,34 @@ namespace  WeDoALittleTrolling.Content.Projectiles
         public override void OnSpawn(IEntitySource source)
         {
             this.original_location = Projectile.position;
+            //Auto-target AI
+            Vector2 spawnCenter = Projectile.Center;
+            float lowest_distance = 9999;
+            for(int i = 0; i < 200; i++)
+            {
+                NPC target = Main.npc[i];
+                float shootToX = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
+                float shootToY = target.position.Y - spawnCenter.Y;
+                Vector2 shootTo = new Vector2(shootToX, shootToY);
+                float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+                if
+                (
+                    (
+                        Math.Abs(this.original_location.X - target.position.X) < 640 && //Configure max lengh of beam in x coords
+                        Math.Abs(this.original_location.Y - target.position.Y) < 640     //Configure max lengh of beam in y coords
+                    ) &&
+                    !target.friendly && 
+                    !target.CountsAsACritter && 
+                    target.active &&
+                    distance < lowest_distance
+                )
+                {
+                    Vector2 newVelocity = shootTo;
+                    newVelocity.Normalize();
+                    Projectile.velocity = newVelocity;
+                    lowest_distance = distance;
+                }
+            }
             base.OnSpawn(source);
         }
 

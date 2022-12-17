@@ -28,6 +28,20 @@ namespace WeDoALittleTrolling.Content.Items
         }
         */
 
+        
+        // Anti-Landmine-Mechanism: Uncoment when Mod runs on tModLoader 1.4.4
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if(item.type == ItemID.LandMine)
+            {
+                PlayerDeathReason reason = new PlayerDeathReason();
+                reason.SourceCustomReason = player.name + " tried to teamtroll and had it backfire.";
+                player.KillMe(reason, 99999999999999, 0, false);
+                return false;
+            }
+            return base.CanUseItem(item, player);
+        }
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.Phantasm) 

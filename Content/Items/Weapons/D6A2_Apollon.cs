@@ -14,9 +14,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class D6A2_Apollon : ModItem
     {
+        public bool autoAim = true;
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a Laser powerful enough to vaporise a spaceship");
+            Tooltip.SetDefault("Fires a Laser powerful enough to vaporise a spaceship\nRight-Click to toggle Auto-Aim");
             DisplayName.SetDefault("D6A2 - Apollon");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -45,6 +46,23 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         }
 
+        public override bool AltFunctionUse(Player player)
+        {
+            if(this.autoAim)
+            {
+                this.autoAim = false;
+                SoundEngine.PlaySound(SoundID.Item67, player.position);
+                player.chatOverhead.NewMessage("Auto-Aim: Disabled", 60);
+            }
+            else
+            {
+                this.autoAim = true;
+                SoundEngine.PlaySound(SoundID.Item67, player.position);
+                player.chatOverhead.NewMessage("Auto-Aim: Enabled", 60);
+            }
+            return false;
+        }
+        
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             Vector2 shootDirection = velocity;
@@ -52,6 +70,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             float xOffset = shootDirection.X * 84.0f;
             float yOffset = shootDirection.Y * 84.0f;
             position = new Vector2(position.X + xOffset, position.Y + yOffset - 10.0f);
+            if(this.autoAim)
+            {
+                type = ModContent.ProjectileType<Beamlaser2_AutoAim>();
+            }
+            else
+            {
+                type = ModContent.ProjectileType<Beamlaser2>();
+            }
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
         
