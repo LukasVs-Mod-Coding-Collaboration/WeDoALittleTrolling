@@ -13,6 +13,21 @@ namespace WeDoALittleTrolling.Content.Items
     internal class GlobalItemList : GlobalItem
     {
 
+        /*
+        // Anti-Poo-Block-Mechanism: Uncoment when Mod runs on tModLoader 1.4.4
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if(item.type == ItemID.Poo)
+            {
+                PlayerDeathReason reason = new PlayerDeathReason();
+                reason.SourceCustomReason = player.name + " tried to uglify the world.";
+                player.KillMe(reason, 99999999999999, 0, false);
+                return false;
+            }
+            return base.CanUseItem(item, player);
+        }
+        */
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.Phantasm) 
@@ -179,7 +194,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.autoReuse = true;
             }
-
+            
 
         }
 
