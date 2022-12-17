@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.noMelee = true;
             Item.crit = 0;
             Item.shoot = ModContent.ProjectileType<Beamlaser2>();
-            Item.shootSpeed = 8.0f;
+            Item.shootSpeed = 1.0f;
             Item.autoReuse = true;
        
 
