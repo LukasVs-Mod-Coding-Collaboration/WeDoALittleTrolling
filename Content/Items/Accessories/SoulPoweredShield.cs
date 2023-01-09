@@ -29,7 +29,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
             Item.consumable = false;
 
-            Item.value = Item.buyPrice(gold: 50);
+            Item.value = Item.buyPrice(gold: 25);
             Item.maxStack = 1;
 
             Item.rare = ItemRarityID.Expert; //Expert Mode Item
