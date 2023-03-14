@@ -67,16 +67,28 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                 float shootToY = target.position.Y - spawnCenter.Y;
                 Vector2 shootTo = new Vector2(shootToX, shootToY);
                 float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+                Vector2 originalVector = Projectile.velocity;
+                originalVector.Normalize();
+                float x = originalVector.X;
+                float y = originalVector.Y;
+                float a = Math.Abs(this.original_location.X - target.position.X);
+                float a_through_x = Math.Abs(a/x);
+                x = x*a_through_x;
+                y = y*a_through_x;
+                Vector2 KonePosition = original_location + new Vector2(x, y);
+                Vector2 LineToTarget = new Vector2(target.position.X - KonePosition.X, target.position.Y - KonePosition.Y);
+                float inaccuracy = (float)System.Math.Sqrt((double)(LineToTarget.X * LineToTarget.X + LineToTarget.Y * LineToTarget.Y));
                 if
                 (
                     (
-                        Math.Abs(this.original_location.X - target.position.X) < 640 && //Configure max lengh of beam in x coords
-                        Math.Abs(this.original_location.Y - target.position.Y) < 640     //Configure max lengh of beam in y coords
+                        Math.Abs(this.original_location.X - target.position.X) < 1280 && //Configure max lengh of beam in x coords
+                        Math.Abs(this.original_location.Y - target.position.Y) < 768     //Configure max lengh of beam in y coords
                     ) &&
                     !target.friendly && 
                     !target.CountsAsACritter && 
                     target.active &&
-                    distance < lowest_distance
+                    distance < lowest_distance &&
+                    inaccuracy < 160
                 )
                 {
                     Vector2 newVelocity = shootTo;
@@ -84,6 +96,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                     Projectile.velocity = newVelocity;
                     lowest_distance = distance;
                 }
+
             }
             base.OnSpawn(source);
         }
