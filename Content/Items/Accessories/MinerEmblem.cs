@@ -39,10 +39,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.noKnockback = true;
-            player.lavaImmune = true;
             player.fireWalk = true;
-            player.pickSpeed *= -0.75f; 
+            player.pickSpeed *= -0.35f; 
 
         }
 
