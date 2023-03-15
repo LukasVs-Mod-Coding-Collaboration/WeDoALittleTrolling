@@ -17,7 +17,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public bool autoAim = true;
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a Laser powerful enough to vaporise a spaceship\nRight-Click to toggle Auto-Aim");
+            Tooltip.SetDefault("Fires a Laser powerful enough to vaporise a spaceship\nRight-Click to toggle the Aim-Assist system");
             DisplayName.SetDefault("D6A2 - Apollon");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -52,13 +52,13 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 this.autoAim = false;
                 SoundEngine.PlaySound(SoundID.Item67, player.position);
-                player.chatOverhead.NewMessage("Auto-Aim: Disabled", 60);
+                player.chatOverhead.NewMessage("Aim-Assist: Disabled", 60);
             }
             else
             {
                 this.autoAim = true;
                 SoundEngine.PlaySound(SoundID.Item67, player.position);
-                player.chatOverhead.NewMessage("Auto-Aim: Enabled", 60);
+                player.chatOverhead.NewMessage("Aim-Assist: Enabled", 60);
             }
             return false;
         }

@@ -63,32 +63,47 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             for(int i = 0; i < 200; i++)
             {
                 NPC target = Main.npc[i];
-                float shootToX = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
-                float shootToY = target.position.Y - spawnCenter.Y;
-                Vector2 shootTo = new Vector2(shootToX, shootToY);
-                float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
-                Vector2 originalVector = Projectile.velocity;
+                float shootToX                  = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
+                float shootToY                  = target.position.Y - spawnCenter.Y;
+                Vector2 shootTo                 = new Vector2(shootToX, shootToY);
+                float distance                  = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+                Vector2 originalVector          = Projectile.velocity;
                 originalVector.Normalize();
-                float x = originalVector.X;
-                float y = originalVector.Y;
-                float a = Math.Abs(this.original_location.X - target.position.X);
-                float a_through_x = Math.Abs(a/x);
-                x = x*a_through_x;
-                y = y*a_through_x;
-                Vector2 KonePosition = original_location + new Vector2(x, y);
-                Vector2 LineToTarget = new Vector2(target.position.X - KonePosition.X, target.position.Y - KonePosition.Y);
-                float inaccuracy = (float)System.Math.Sqrt((double)(LineToTarget.X * LineToTarget.X + LineToTarget.Y * LineToTarget.Y));
+                float x                         = originalVector.X;
+                float y                         = originalVector.Y;
+                float a                         = Math.Abs(this.original_location.X - target.position.X);
+                float b                         = Math.Abs(this.original_location.Y - target.position.Y);
+                float a_through_x               = Math.Abs(a/x);
+                float b_through_y               = Math.Abs(b/y);
+                float x_y_inaccuracy            = x*a_through_x;
+                float y_y_inaccuracy            = y*a_through_x;
+                float x_x_inaccuracy            = x*b_through_y;
+                float y_x_inaccuracy            = y*b_through_y;
+                Vector2 KonePositionY           = original_location + new Vector2(x_y_inaccuracy, y_y_inaccuracy);
+                Vector2 KonePositionX           = original_location + new Vector2(x_x_inaccuracy, y_x_inaccuracy);
+                Vector2 LineToTargetY           = new Vector2(target.position.X - KonePositionY.X, target.position.Y - KonePositionY.Y);
+                Vector2 LineToTargetX           = new Vector2(target.position.X - KonePositionX.X, target.position.Y - KonePositionX.Y);
+                float y_inaccuracy              = (float)System.Math.Sqrt((double)(LineToTargetY.X * LineToTargetY.X + LineToTargetY.Y * LineToTargetY.Y));
+                float x_inaccuracy              = (float)System.Math.Sqrt((double)(LineToTargetX.X * LineToTargetX.X + LineToTargetX.Y * LineToTargetX.Y));
+                float inaccuracy_tolerance      = 160;
                 if
                 (
                     (
-                        Math.Abs(this.original_location.X - target.position.X) < 1280 && //Configure max lengh of beam in x coords
-                        Math.Abs(this.original_location.Y - target.position.Y) < 768     //Configure max lengh of beam in y coords
+                        Math.Abs(this.original_location.X - target.position.X) < 1280 && //Configure detect zone in x coords
+                        Math.Abs(this.original_location.Y - target.position.Y) < 768     //Configure detect zone in y coords
                     ) &&
+                    (
+                        Math.Abs(this.original_location.X - target.position.X) > inaccuracy_tolerance ||   //Configure non-detect zone in x coords
+                        Math.Abs(this.original_location.Y - target.position.Y) > inaccuracy_tolerance      //Configure non-detect zone in y coords
+                    )&&
                     !target.friendly && 
                     !target.CountsAsACritter && 
                     target.active &&
                     distance < lowest_distance &&
-                    inaccuracy < 160
+                    (
+                        y_inaccuracy < inaccuracy_tolerance ||
+                        x_inaccuracy < inaccuracy_tolerance
+                    )
                 )
                 {
                     Vector2 newVelocity = shootTo;
