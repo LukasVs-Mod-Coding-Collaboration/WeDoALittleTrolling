@@ -14,14 +14,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
     internal class GreenstrikeDynamo : ModItem
     {
 
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Greenstrike Dynamo");
-            Tooltip.SetDefault("Give yourself a boost with the power of nostalgia\nIn memory of Bad Piggies\nNegates fall damage and increases movement speed\nGrants MASSIVE buffs to life regeneration\nIncreases attack speed by 25%\nProlongs immmunity frames");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 60;

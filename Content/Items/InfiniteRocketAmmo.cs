@@ -27,13 +27,6 @@ namespace WeDoALittleTrolling.Content.Items
             ItemID.ProximityMineLauncher,
             ItemID.RocketLauncher
         };
-        
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Infinite Rocket I");
-            Tooltip.SetDefault("It seems to multiply as you load it into your weapon...");
-        }
-
 
         public override void SetDefaults()
         {

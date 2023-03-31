@@ -16,8 +16,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a Laser powerful enough to eliminate most enemies");
-            DisplayName.SetDefault("D6A1 - Artemis");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

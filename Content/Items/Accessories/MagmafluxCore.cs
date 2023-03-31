@@ -14,14 +14,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
     internal class MagmafluxCore : ModItem
     {
 
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Magmaflux Core");
-            Tooltip.SetDefault("Grants Immunity to Lava\nMelee attacks inflict \'On fire!\'\n3 Defense\nGrants a minor increase to\nlife regeneration");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 50;

@@ -14,14 +14,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
     internal class ShroomiteOvercharge : ModItem
     {
 
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Shroomite Overcharge");
-            Tooltip.SetDefault("Increases damage at the cost of attack speed\nIncreases ranged attack damage by 50%\nIncreases ranged critical strike chance by 25%\nDecreases ranged attack speed by 30%");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 42;

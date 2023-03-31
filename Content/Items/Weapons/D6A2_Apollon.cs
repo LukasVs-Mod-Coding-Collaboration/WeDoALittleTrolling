@@ -17,8 +17,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public bool autoAim = true;
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a Laser powerful enough to vaporise a spaceship\nRight-Click to toggle the Aim-Assist system");
-            DisplayName.SetDefault("D6A2 - Apollon");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

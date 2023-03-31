@@ -15,7 +15,6 @@ namespace  WeDoALittleTrolling.Content.Projectiles
         public Vector2 original_location;
         public bool location_is_locked = false;
         public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Apollon Beam Laser");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9999; // The length of old position to be recorded
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
         }

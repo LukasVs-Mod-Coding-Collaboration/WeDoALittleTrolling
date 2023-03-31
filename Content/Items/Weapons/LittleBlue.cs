@@ -35,14 +35,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         Random rnd = new Random(); //Introduce random Values
 
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Little Blue");
-            Tooltip.SetDefault("Look up to the sky and\nsee an Ocean of Stars\nGrants Endurance with a");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 38;
@@ -73,13 +65,16 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.scale= 1.2f;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            int damage = damageDone;
+            float knockBack = hit.Knockback;
             Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-6, -3), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
             Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(-3, 0), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
             Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 580), new Vector2(0, 30f), ProjectileID.Electrosphere, damage = 750, knockBack = 6f, Main.myPlayer);
             Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(0, 3), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
             Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(3, 6), 15f), ProjectileID.Typhoon, damage = 250, knockBack = 6f, Main.myPlayer);
+            base.OnHitNPC(player, target, hit, damageDone);    
         } //Projectile spawn location calculator, summons projectiles on hit
 
 

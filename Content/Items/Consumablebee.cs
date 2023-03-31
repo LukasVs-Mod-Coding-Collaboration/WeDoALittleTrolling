@@ -31,15 +31,6 @@ namespace WeDoALittleTrolling.Content.Items
     internal class Consumablebee : ModItem
     {
 
-    
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Edible Bee");
-            Tooltip.SetDefault("'However, I prefer my bees roasted.'");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 12;

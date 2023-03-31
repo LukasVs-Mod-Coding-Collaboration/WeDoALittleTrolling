@@ -14,13 +14,6 @@ namespace WeDoALittleTrolling.Content.Items.Tools
     internal class CrimsonSilversmelter : ModItem
     {
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Crimson Silversmelter");
-            Tooltip.SetDefault("Constantly heated by power of a fallen star,\nthe edge of the pickaxe blazes\nwith a layer of glowing hot magma.");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 56;

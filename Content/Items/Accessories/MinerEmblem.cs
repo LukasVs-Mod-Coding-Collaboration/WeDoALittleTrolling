@@ -14,14 +14,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
     internal class MinerEmblem : ModItem
     {
 
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Miner Emblem");
-            Tooltip.SetDefault("Moving around the Underground\ncan be tough sometimes.\nThis item makes it easier.\n \"Miner Inconvenience\"");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 38;

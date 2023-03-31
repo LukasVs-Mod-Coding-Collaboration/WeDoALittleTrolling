@@ -14,14 +14,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
     internal class ManaExtractionCatalyst : ModItem
     {
 
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Mana extraction Catalyst");
-            Tooltip.SetDefault("The power of unlimited magic energy at the cost of some of your life force...\nYou no longer gain mana sickness, however,\nyour maximal Health points are reduced by 125\n20% Increased magic Damage");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 54;

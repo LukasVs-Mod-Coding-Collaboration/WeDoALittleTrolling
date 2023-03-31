@@ -13,26 +13,18 @@ namespace WeDoALittleTrolling.Content.Items
     internal class GlobalItemList : GlobalItem
     {
 
-        /*
-        // Anti-Poo-Block-Mechanism: Uncoment when Mod runs on tModLoader 1.4.4
         public override bool CanUseItem(Item item, Player player)
         {
-            if(item.type == ItemID.Poo)
+            // Anti-Poo-Block-Mechanism
+            if(item.type == ItemID.PoopBlock)
             {
                 PlayerDeathReason reason = new PlayerDeathReason();
                 reason.SourceCustomReason = player.name + " tried to uglify the world.";
                 player.KillMe(reason, 99999999999999, 0, false);
                 return false;
             }
-            return base.CanUseItem(item, player);
-        }
-        */
-
-        
-        // Anti-Landmine-Mechanism: Uncoment when Mod runs on tModLoader 1.4.4
-        public override bool CanUseItem(Item item, Player player)
-        {
-            if(item.type == ItemID.LandMine)
+            // Anti-Landmine-Mechanism
+            else if(item.type == ItemID.LandMine)
             {
                 PlayerDeathReason reason = new PlayerDeathReason();
                 reason.SourceCustomReason = player.name + " tried to teamtroll and had it backfire.";

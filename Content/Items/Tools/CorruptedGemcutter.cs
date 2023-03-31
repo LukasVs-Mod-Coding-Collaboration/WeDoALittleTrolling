@@ -14,13 +14,6 @@ namespace WeDoALittleTrolling.Content.Items.Tools
     internal class CorruptedGemcutter : ModItem
     {
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Corrupted Gemcutter");
-            Tooltip.SetDefault("Using the power of a fallen star,\nthe edge of the pickaxe blazes\nwith a layer of writhing energy.");
-        }
-
-
         public override void SetDefaults()
         {
             Item.width = 56;
