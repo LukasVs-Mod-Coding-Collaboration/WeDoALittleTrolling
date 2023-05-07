@@ -2,14 +2,8 @@ Hey there! This mod is a project my brother and I will be working on In our free
 
 Also it's me trying to get into Coding.
 
--I've got 3 more swords planned (Maybe), actually coming soon (For real)
--Star warth arrows (Soon (TM))
-
--Lukas
-
 That's all, thanks for reading.
 
-Changelog time Again!
+Changelog time!
 
--And another one (Yet another accessory)
--Did a bunch of commenting in the class files (Not relevant for players)
+-Added the Colossal reforge I did, extremely funny it is
