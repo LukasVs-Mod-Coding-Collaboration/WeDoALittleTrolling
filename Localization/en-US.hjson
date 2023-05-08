@@ -152,5 +152,10 @@ Mods: {
 			Beamlaser2.DisplayName: Apollon Beam Laser
 			Beamlaser2_AutoAim.DisplayName: Apollon Beam Laser
 		}
+
+		Prefixes: {
+			Colossal.DisplayName: Colossal
+			Leeching.DisplayName: Leeching
+		}
 	}
 }

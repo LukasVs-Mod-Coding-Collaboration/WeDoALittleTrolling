@@ -16,10 +16,9 @@ namespace WeDoALittleTrolling.Content.Items
     {
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            int healingAmount = (int)Math.Round(damageDone * 0.05);
-
             if (item.prefix == ModContent.PrefixType<Leeching>())
             {
+                int healingAmount = (int)Math.Round(damageDone * 0.05);
                 player.Heal(healingAmount);
             }
 
