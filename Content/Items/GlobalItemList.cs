@@ -7,11 +7,37 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
+using WeDoALittleTrolling.Content.Prefixes;
+using System;
 
 namespace WeDoALittleTrolling.Content.Items
 {
     internal class GlobalItemList : GlobalItem
     {
+        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            int healingAmount = (int)Math.Round(damageDone * 0.05);
+
+            if (item.prefix == ModContent.PrefixType<Leeching>())
+            {
+                player.Heal(healingAmount);
+            }
+
+            base.OnHitNPC(item, player, target, hit, damageDone);
+        }
+        /*
+        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            int healingAmount = (int)Math.Round(damageDone * 0.05);
+            player.chatOverhead.NewMessage("healing amount: " + healingAmount, 60);
+            if(item.prefix == ModContent.PrefixType<Leeching>())
+            {
+                player.chatOverhead.NewMessage("Leeching Modifier Detected!", 60);
+            }
+            base.OnHitNPC(item, player, target, hit, damageDone);
+        }
+        */
+
 
         public override bool CanUseItem(Item item, Player player)
         {
