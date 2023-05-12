@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if(projectile.TryGetOwner(out Player player))
             {
                 Item item = player.HeldItem;
-                if(item.prefix == ModContent.PrefixType<Leeching>())
+                if(item.prefix == ModContent.PrefixType<Leeching>() && !target.isLikeATownNPC)
                 {
                   int healingAmount = (int)Math.Round(damageDone * 0.05);
                   player.Heal(healingAmount);
