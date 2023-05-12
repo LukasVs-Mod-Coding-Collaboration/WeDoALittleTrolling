@@ -13,7 +13,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Melee;
         public override float RollChance(Item item)
         {
-            return 1f;
+            return 0.5f;
         }
 
         public override bool CanRoll(Item item)
