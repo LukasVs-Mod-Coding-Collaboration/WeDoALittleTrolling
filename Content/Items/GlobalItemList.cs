@@ -49,9 +49,16 @@ namespace WeDoALittleTrolling.Content.Items
                 // Having Moon Bite means the effect still works, however,
                 // it will be 90% less effective
                 // 1 Base Heal is still guaranteed
-                if(player.HasBuff(BuffID.MoonLeech))
+                if(player.HasBuff(BuffID.MoonLeech) && item.prefix == ModContent.PrefixType<Leeching>())
                 {
                     healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
+                }
+                // Siphoning should always be
+                // 75% less effective than Leeching
+                // 1 Base Heal is still guaranteed
+                if(item.prefix == ModContent.PrefixType<Siphoning>())
+                {
+                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
                 }
                 if(item.prefix == ModContent.PrefixType<Leeching>())
                 {
@@ -59,11 +66,11 @@ namespace WeDoALittleTrolling.Content.Items
                 }
                 else if(item.prefix == ModContent.PrefixType<Siphoning>())
                 {
-                    if(player.statMana <= (player.statManaMax2 - player.statMana))
+                    if(player.statMana <= (player.statManaMax2 - healingAmount))
                     {
                         player.statMana += healingAmount;
-                        player.HealEffect(healingAmount, true);
                     }
+                    player.ManaEffect(healingAmount);
                 }
             }
 
