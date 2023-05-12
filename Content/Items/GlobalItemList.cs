@@ -225,7 +225,11 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.autoReuse = true;
             }
-            
+            if (item.type == ItemID.StarWrath)
+            {
+                item.damage = 250;
+            }
+
 
         }
 
