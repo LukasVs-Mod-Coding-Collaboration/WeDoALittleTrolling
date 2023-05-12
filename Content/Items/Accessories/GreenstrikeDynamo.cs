@@ -31,11 +31,11 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += 1.5f;
+            player.moveSpeed += 1.25f; // (originally 1.5)
             player.noFallDmg = true;
             player.accRunSpeed += 0.4f;
-            player.lifeRegen += 25; //HP Regen
-            player.GetAttackSpeed(DamageClass.Generic) += 0.25f;
+            player.lifeRegen += 20; //HP Regen (originally 25)
+            //player.GetAttackSpeed(DamageClass.Generic) += 0.25f;
             player.longInvince = true; //Cross Necklace effect
             player.wingTimeMax += 360;
         }
@@ -50,6 +50,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ItemID.Wire, 50)
               .AddIngredient(ItemID.CrossNecklace, 1)
               .AddIngredient(ItemID.MartianConduitPlating, 5)
+              .AddIngredient(ItemID.SporeSac, 1)
               .Register();
         }
     }
