@@ -20,7 +20,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Item item = player.HeldItem;
                 if
                 (
-                    item.prefix == ModContent.PrefixType<Leeching>() &&
+                    (
+                        item.prefix == ModContent.PrefixType<Leeching>() ||
+                        item.prefix == ModContent.PrefixType<Siphoning>()
+                    ) &&
                     !target.friendly && 
                     !target.CountsAsACritter && 
                     !target.isLikeATownNPC && 
@@ -31,10 +34,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     int healingAmount = 1 + (int)Math.Round(damageDone * 0.05);
                     if(hit.Crit)
                     {
-                        // Stop Sacling at ~480 Damage for Critical Hits
-                        if(healingAmount > 24)
+                        // Stop Sacling at ~320 Damage for Critical Hits
+                        if(healingAmount > 16)
                         {
-                            healingAmount = 24;
+                            healingAmount = 16;
                         }
                     }
                     else
@@ -52,7 +55,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     {
                         healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                     }
-                    player.Heal(healingAmount);
+                    if(item.prefix == ModContent.PrefixType<Leeching>())
+                    {
+                        player.Heal(healingAmount);
+                    }
+                    else if(item.prefix == ModContent.PrefixType<Siphoning>())
+                    {
+                        if(player.statMana <= (player.statManaMax2 - healingAmount))
+                        {
+                            player.statMana += healingAmount;
+                        }
+                        player.ManaEffect(healingAmount);
+                    }
                 }
             }
             base.OnHitNPC(projectile, target, hit, damageDone);

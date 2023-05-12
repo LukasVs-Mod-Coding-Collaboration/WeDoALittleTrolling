@@ -154,6 +154,9 @@ Mods: {
 		Prefixes: {
 			Colossal.DisplayName: Colossal
 			Leeching.DisplayName: Leeching
+			Siphoning.DisplayName: Siphoning
+			Berserk.DisplayName: Berserk
+			Lacerating.DisplayName: Lacerating
 		}
 	}
 }
