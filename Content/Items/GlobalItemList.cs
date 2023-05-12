@@ -43,12 +43,12 @@ namespace WeDoALittleTrolling.Content.Items
                         healingAmount = 8;
                     }
                 }
-                // Having Moon Bite means the effect still works, hoever,
-                // it will be 75% less effective
+                // Having Moon Bite means the effect still works, however,
+                // it will be 90% less effective
                 // 1 Base Heal is still guaranteed
                 if(player.HasBuff(BuffID.MoonLeech))
                 {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
+                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                 }
                 player.Heal(healingAmount);
             }
