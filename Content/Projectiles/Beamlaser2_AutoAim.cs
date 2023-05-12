@@ -97,6 +97,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                     )&&
                     !target.friendly && 
                     !target.CountsAsACritter && 
+                    !target.isLikeATownNPC && 
                     target.active &&
                     distance < lowest_distance &&
                     (
