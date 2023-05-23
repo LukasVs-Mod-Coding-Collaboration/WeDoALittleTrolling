@@ -31,7 +31,7 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     if(player.armor[i].type == ModContent.ItemType<SpookyEmblem>())
                     {
-                        i = 10; //Quit for loop immediately
+                        i = (offset + loopLimit); //Quit for loop immediately
                         Random random = new Random();
                         int isCriticalHit = random.Next(0, 4);
                         if(isCriticalHit == 0)
