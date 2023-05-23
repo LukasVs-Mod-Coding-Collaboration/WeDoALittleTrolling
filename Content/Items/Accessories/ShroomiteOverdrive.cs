@@ -31,9 +31,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetAttackSpeed(DamageClass.Ranged) += 0.50f;
-            player.GetArmorPenetration(DamageClass.Ranged) += 50.0f;
-            player.GetDamage(DamageClass.Ranged) += -0.15f;
+            player.GetAttackSpeed(DamageClass.Ranged) += 0.30f;
+            player.GetArmorPenetration(DamageClass.Ranged) += 30.0f;
+            player.GetDamage(DamageClass.Ranged) += -0.30f;
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)

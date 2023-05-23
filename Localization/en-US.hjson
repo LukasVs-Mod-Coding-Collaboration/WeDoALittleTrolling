@@ -59,9 +59,9 @@ Mods: {
 				Tooltip:
 					'''
 					Increases damage at the cost of attack speed
-					Increases ranged attack damage by 50%
-					Increases ranged critical strike chance by 25%
-					Decreases ranged attack speed by 30%
+					Increases ranged attack damage by 30%
+					Increases ranged critical strike chance by 15%
+					Decreases ranged attack speed by 15%
 					'''
 			}
 
@@ -70,9 +70,9 @@ Mods: {
 				Tooltip:
 					'''
 					Increases attack speed at the cost of damage
-					Increases ranged attack speed by 50%
-					Increases ranged armor penetration by 50
-					Decreases ranged attack damage by 15%
+					Increases ranged attack speed by 30%
+					Increases ranged armor penetration by 30
+					Decreases ranged attack damage by 30%
 					'''
 			}
 
