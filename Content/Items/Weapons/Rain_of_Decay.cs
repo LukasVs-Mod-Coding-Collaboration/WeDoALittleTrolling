@@ -24,7 +24,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             Item.width = 30;
             Item.height = 142;
-            Item.scale = 0.75f;
             Item.rare = ItemRarityID.Expert;
 
             Item.useTime = 25;
