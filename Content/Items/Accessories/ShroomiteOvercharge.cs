@@ -55,7 +55,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-              .AddTile(TileID.MythrilAnvil)
+              .AddTile(TileID.TinkerersWorkbench)
               .AddIngredient(ItemID.ShroomiteBar, 12)
               .AddIngredient(ItemID.RifleScope, 1)
               .AddIngredient(ItemID.RangerEmblem, 1)

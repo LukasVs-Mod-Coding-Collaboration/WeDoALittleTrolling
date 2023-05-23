@@ -8,11 +8,43 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Prefixes;
+using WeDoALittleTrolling.Content.Items;
+using WeDoALittleTrolling.Content.Items.Accessories;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
     internal class GlobalProjectiles : GlobalProjectile
     {
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if(projectile.TryGetOwner(out Player player) && !target.isLikeATownNPC)
+            {
+                if(modifiers.DamageType == DamageClass.Summon || modifiers.DamageType == DamageClass.SummonMeleeSpeed)
+                {
+                    int offset = 3;
+                    int loopLimit = 5;
+                    loopLimit += player.extraAccessorySlots;
+                    if(Main.masterMode)
+                    {
+                        loopLimit++;
+                    }
+                    for(int i = offset;i < (offset + loopLimit); i++) //Search through all accessory slots
+                    {
+                        if(player.armor[i].type == ModContent.ItemType<SpookyEmblem>())
+                        {
+                            i = 10; //Quit for loop immediately
+                            Random random = new Random();
+                            int isCriticalHit = random.Next(0, 4);
+                            if(isCriticalHit == 0)
+                            {
+                                modifiers.SetCrit();
+                            }
+                        }
+                    }
+                }
+            }
+            base.ModifyHitNPC(projectile, target, ref modifiers);
+        }
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if(projectile.TryGetOwner(out Player player))

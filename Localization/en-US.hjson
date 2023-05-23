@@ -76,6 +76,16 @@ Mods: {
 					'''
 			}
 
+			SpookyEmblem: {
+				DisplayName: Spooky Emblem
+				Tooltip:
+					'''
+					Grants 25% summon critical strike chance
+					Increases your max number of minions by 1
+					Increases your max number of sentries by 1
+					'''
+			}
+
 			SoulPoweredShield: {
 				DisplayName: Soul-Powered Shield
 				Tooltip:

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -8,12 +9,40 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using WeDoALittleTrolling.Content.Prefixes;
-using System;
+using WeDoALittleTrolling.Content.Items;
+using WeDoALittleTrolling.Content.Items.Accessories;
 
 namespace WeDoALittleTrolling.Content.Items
 {
     internal class GlobalItemList : GlobalItem
     {
+        public override void ModifyHitNPC(Item item, Player player, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if(modifiers.DamageType == DamageClass.Summon || modifiers.DamageType == DamageClass.SummonMeleeSpeed)
+            {
+                int offset = 3;
+                int loopLimit = 5;
+                loopLimit += player.extraAccessorySlots;
+                if(Main.masterMode)
+                {
+                    loopLimit++;
+                }
+                for(int i = offset;i < (offset + loopLimit); i++) //Search through all accessory slots
+                {
+                    if(player.armor[i].type == ModContent.ItemType<SpookyEmblem>())
+                    {
+                        i = 10; //Quit for loop immediately
+                        Random random = new Random();
+                        int isCriticalHit = random.Next(0, 4);
+                        if(isCriticalHit == 0)
+                        {
+                            modifiers.SetCrit();
+                        }
+                    }
+                }
+            }
+            base.ModifyHitNPC(item, player, target, ref modifiers);
+        }
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if
