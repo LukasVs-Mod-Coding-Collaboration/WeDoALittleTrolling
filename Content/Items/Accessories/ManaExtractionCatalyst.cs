@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             player.statLifeMax2 += -100; //Weird but working way to set Max down (originally 125)
             player.buffImmune[94] = true; //Immunity to Mana Sickness
-            player.GetDamage(DamageClass.Magic) += 0.1f; //Damage increase of 20% (now 10%)
+            //player.GetDamage(DamageClass.Magic) += 0.1f; //Damage increase of 20% (now 10%)
 
         }
 
