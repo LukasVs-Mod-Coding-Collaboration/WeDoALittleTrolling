@@ -32,11 +32,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item5;
 
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 10;
+            Item.damage = 60;
             Item.knockBack = 0.5f;
             Item.noMelee = true;
             Item.crit = 0;
-            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.shoot = ProjectileID.CursedArrow;
             Item.shootSpeed = 10.0f;
             Item.autoReuse = true;
 

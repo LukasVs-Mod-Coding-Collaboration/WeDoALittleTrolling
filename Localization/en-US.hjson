@@ -124,6 +124,11 @@ Mods: {
 					'''
 			}
 
+			Rain_of_Decay: {
+				DisplayName: Rain of Decay
+				Tooltip: The sky is only cursed flames to them
+			}
+
 			LittleBlue: {
 				DisplayName: Little Blue
 				Tooltip:
