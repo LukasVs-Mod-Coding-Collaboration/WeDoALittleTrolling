@@ -38,6 +38,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     {
                         if(player.armor[i].type == ModContent.ItemType<SpookyEmblem>())
                         {
+                            modifiers.ArmorPenetration += 25;
                             i = (offset + loopLimit); //Quit for loop immediately
                             Random random = new Random();
                             int isCriticalHit = random.Next(0, 4);

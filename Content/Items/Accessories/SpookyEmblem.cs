@@ -44,6 +44,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ItemID.NecromanticScroll, 1)
               .AddIngredient(ItemID.MonkBelt, 1)
               .AddIngredient(ItemID.EyeoftheGolem, 1)
+              .AddIngredient(ItemID.SharkToothNecklace, 5)
               .Register();
         }
     }

@@ -36,6 +36,7 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     if(player.armor[i].type == ModContent.ItemType<SpookyEmblem>())
                     {
+                        modifiers.ArmorPenetration += 25;
                         i = (offset + loopLimit); //Quit for loop immediately
                         Random random = new Random();
                         int isCriticalHit = random.Next(0, 4);
@@ -267,7 +268,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if(item.type == ItemID.ScytheWhip) //Dark Harvest
             {
-                item.damage = 160;
+                item.damage = 120;
                 item.useTime = 25;
                 item.useAnimation = 25;
             }

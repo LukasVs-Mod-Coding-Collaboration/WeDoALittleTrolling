@@ -81,6 +81,7 @@ Mods: {
 				Tooltip:
 					'''
 					Grants 25% summon critical strike chance
+					Grants 25 summon armor penetration
 					Increases your max number of minions by 1
 					Increases your max number of sentries by 1
 					'''
