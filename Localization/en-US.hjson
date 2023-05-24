@@ -136,7 +136,14 @@ Mods: {
 
 			Rain_of_Decay: {
 				DisplayName: Rain of Decay
-				Tooltip: The sky is only cursed flames to them
+				Tooltip:
+					'''
+					"The sky is only cursed flames to them."
+					Right-Click to switch between attack modes
+					Multishot mode fires 33% faster
+					Burst Fire mode ignores up to 24 enemy defense
+
+					'''
 			}
 
 			LittleBlue: {

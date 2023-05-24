@@ -14,7 +14,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class Rain_of_Decay : ModItem
     {
-        public bool autoAim = true;
+        
+        public int attackMode = 0;
+        public bool soundPlayedRecently = false;
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -29,7 +31,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item5;
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 36;
             Item.knockBack = 1.25f;
@@ -40,10 +41,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useAmmo = AmmoID.Arrow;
             Item.autoReuse = true;
 
-
         }
-
-
+        
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             if (type == ProjectileID.WoodenArrowFriendly)
@@ -51,17 +50,59 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 type = ProjectileID.CursedArrow;
             }
         }
-
-
+        
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float numberProjectiles = 4;
-            float rotation = MathHelper.ToRadians(5);
-            position += Vector2.Normalize(velocity) * 5f;
-            for (int i = 0; i < numberProjectiles; i++)
+            if(attackMode == 0)
             {
-                Vector2 burstArrowSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles)));
-                Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
+                float numberProjectiles = 4;
+                float rotation = MathHelper.ToRadians(5);
+                position += Vector2.Normalize(velocity) * 5f;
+                for (int i = 0; i < numberProjectiles; i++)
+                {
+                    Vector2 burstArrowSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles)));
+                    Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
+                    SoundEngine.PlaySound(SoundID.Item5, player.position);
+                }
+                return false;
+            }
+            else
+            {
+                Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                if (soundPlayedRecently == false)
+                {
+                    SoundEngine.PlaySound(SoundID.Item5, player.position);
+                    soundPlayedRecently = true;
+                }
+                else
+                {
+                    soundPlayedRecently = false;
+                }
+                return false;
+            }
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            if(attackMode == 0)
+            {
+                attackMode = 1;
+                soundPlayedRecently = false;
+                Item.useTime = 4;
+                Item.useAnimation = 16;
+                Item.reuseDelay = 16;
+                Item.ArmorPenetration = 24;
+                SoundEngine.PlaySound(SoundID.Item60, player.position);
+            }
+            else
+            {
+                attackMode = 0;
+                soundPlayedRecently = false;
+                Item.useTime = 20;
+                Item.useAnimation = 20;
+                Item.reuseDelay = 4;
+                Item.ArmorPenetration = 0;
+                SoundEngine.PlaySound(SoundID.Item74, player.position);
             }
             return false;
         }

@@ -165,7 +165,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.DaedalusStormbow) 
             {
-                item.damage = 48;
+                item.damage = 40;
             }
             if (item.type == ItemID.CactusBreastplate) 
             {
