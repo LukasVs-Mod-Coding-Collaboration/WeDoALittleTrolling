@@ -56,6 +56,12 @@ namespace WeDoALittleTrolling.Content.Items
                     item.prefix == ModContent.PrefixType<Leeching>() ||
                     item.prefix == ModContent.PrefixType<Siphoning>()
                 ) &&
+                (
+                    hit.DamageType == DamageClass.Melee ||
+                    hit.DamageType == DamageClass.MeleeNoSpeed ||
+                    hit.DamageType == DamageClass.SummonMeleeSpeed ||
+                    hit.DamageType == DamageClass.Magic
+                ) &&
                 !target.friendly && 
                 !target.CountsAsACritter && 
                 !target.isLikeATownNPC && 
@@ -266,6 +272,14 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.RainbowCrystalStaff)
             {
                 item.damage = 150;
+            }
+            if (item.type == ItemID.XenoStaff)
+            {
+                item.damage = 40;
+            }
+            if (item.type == ItemID.StardustCellStaff)
+            {
+                item.damage = 80;
             }
             if (item.type == ItemID.StardustHelmet)
             {
