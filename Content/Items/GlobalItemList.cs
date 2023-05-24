@@ -295,13 +295,77 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 1;
             }
-            if (item.type == ItemID.TikiShirt)
+            if (item.type == ItemID.SpookyHelmet)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.SpookyBreastplate)
+            {
+                item.defense += 4;
+            }
+            if (item.type == ItemID.SpookyLeggings)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.BeeHeadgear)
             {
                 item.defense += 1;
             }
-            if (item.type == ItemID.TikiPants)
+            if (item.type == ItemID.BeeBreastplate)
             {
                 item.defense += 1;
+            }
+            if (item.type == ItemID.BeeGreaves)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.FossilHelm)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.FossilShirt)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.FossilPants)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.ObsidianHelm)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.ObsidianChest)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.ObsidianPants)
+            {
+                item.defense += 1;
+            }
+            if (item.type == ItemID.SpiderMask)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.SpiderBreastplate)
+            {
+                item.defense += 2;
+            }
+            if (item.type == ItemID.SpiderGreaves)
+            {
+                item.defense += 2;
+            }
+            if (item.type == 3776) //Forbidden Mask
+            {
+                item.defense += 2;
+            }
+            if (item.type == 3777) //Forbidden Robes
+            {
+                item.defense += 2;
+            }
+            if (item.type == 3778) //Forbidden Treads
+            {
+                item.defense += 2;
             }
             if (item.type == ItemID.ElectrosphereLauncher)
             {

@@ -19,11 +19,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.TryGetOwner(out Player player) && !target.isLikeATownNPC)
             {
+                player.chatOverhead.NewMessage("Exec", 60);
                 if
                 (
                     modifiers.DamageType == DamageClass.Summon ||
                     modifiers.DamageType == DamageClass.SummonMeleeSpeed ||
-                    modifiers.DamageType == DamageClass.MagicSummonHybrid
+                    modifiers.DamageType == DamageClass.MagicSummonHybrid ||
+                    projectile.type == ProjectileID.SandnadoFriendly
                 )
                 {
                     int offset = 3;
