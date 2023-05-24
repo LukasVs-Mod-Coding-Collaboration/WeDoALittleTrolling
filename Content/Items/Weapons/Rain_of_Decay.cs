@@ -30,7 +30,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useAnimation = 25;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item5;
-
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 60;
             Item.knockBack = 0.5f;
@@ -39,7 +38,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.shoot = ProjectileID.CursedArrow;
             Item.shootSpeed = 10.0f;
             Item.autoReuse = true;
-
 
         }
 
