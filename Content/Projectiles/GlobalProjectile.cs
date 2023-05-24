@@ -62,6 +62,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         item.prefix == ModContent.PrefixType<Leeching>() ||
                         item.prefix == ModContent.PrefixType<Siphoning>()
                     ) &&
+                    (
+                        hit.DamageType == DamageClass.Melee ||
+                        hit.DamageType == DamageClass.MeleeNoSpeed ||
+                        hit.DamageType == DamageClass.SummonMeleeSpeed ||
+                        hit.DamageType == DamageClass.Magic
+                    ) &&
                     !target.friendly && 
                     !target.CountsAsACritter && 
                     !target.isLikeATownNPC && 
