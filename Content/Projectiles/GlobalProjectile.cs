@@ -19,7 +19,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.TryGetOwner(out Player player) && !target.isLikeATownNPC)
             {
-                if(modifiers.DamageType == DamageClass.Summon || modifiers.DamageType == DamageClass.SummonMeleeSpeed)
+                if
+                (
+                    modifiers.DamageType == DamageClass.Summon ||
+                    modifiers.DamageType == DamageClass.SummonMeleeSpeed ||
+                    modifiers.DamageType == DamageClass.MagicSummonHybrid
+                )
                 {
                     int offset = 3;
                     int loopLimit = 5;

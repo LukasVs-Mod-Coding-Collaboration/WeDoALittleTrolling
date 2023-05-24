@@ -18,7 +18,12 @@ namespace WeDoALittleTrolling.Content.Items
     {
         public override void ModifyHitNPC(Item item, Player player, NPC target, ref NPC.HitModifiers modifiers)
         {
-            if(modifiers.DamageType == DamageClass.Summon || modifiers.DamageType == DamageClass.SummonMeleeSpeed)
+            if
+            (
+                modifiers.DamageType == DamageClass.Summon ||
+                modifiers.DamageType == DamageClass.SummonMeleeSpeed ||
+                modifiers.DamageType == DamageClass.MagicSummonHybrid
+            )
             {
                 int offset = 3;
                 int loopLimit = 5;
