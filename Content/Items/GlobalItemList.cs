@@ -265,6 +265,12 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 40;
             }
+            if(item.type == ItemID.ScytheWhip) //Dark Harvest
+            {
+                item.damage = 160;
+                item.useTime = 25;
+                item.useAnimation = 25;
+            }
             if (item.type == ItemID.MoonlordTurretStaff)
             {
                 item.damage = 100;
@@ -279,7 +285,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StardustCellStaff)
             {
-                item.damage = 80;
+                item.damage = 70;
             }
             if (item.type == ItemID.StardustHelmet)
             {
