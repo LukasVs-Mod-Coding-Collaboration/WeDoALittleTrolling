@@ -19,7 +19,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.TryGetOwner(out Player player) && !target.isLikeATownNPC)
             {
-                player.chatOverhead.NewMessage("Exec", 60);
                 if
                 (
                     modifiers.DamageType == DamageClass.Summon ||
