@@ -335,7 +335,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 1;
             }
-            if (item.type == ItemID.ObsidianChest)
+            if (item.type == ItemID.ObsidianShirt)
             {
                 item.defense += 1;
             }
