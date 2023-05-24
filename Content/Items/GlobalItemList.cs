@@ -307,6 +307,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 2;
             }
+            if (item.type == ItemID.SpectreRobe)
+            {
+                item.defense += 2;
+            }
             if (item.type == ItemID.BeeHeadgear)
             {
                 item.defense += 1;
