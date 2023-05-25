@@ -231,10 +231,14 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.ZapinatorOrange)
             {
                 item.damage = 80;
+                item.useTime = 37;
+                item.useAnimation = 37;
             }
             if (item.type == ItemID.ZapinatorGray)
             {
                 item.damage = 36;
+                item.useTime = 37;
+                item.useAnimation = 37;
             }
             if (item.type == ItemID.LastPrism)
             {
