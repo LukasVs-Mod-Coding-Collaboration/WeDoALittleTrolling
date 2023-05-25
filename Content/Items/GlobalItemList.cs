@@ -210,10 +210,11 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Marrow) 
             {
-                item.damage = 80;
+                item.damage = 64;
                 item.useTime = 16;
                 item.useAnimation = 16;
                 item.crit = 8;
+                item.ArmorPenetration = 16;
             }
             if (item.type == ItemID.IceBow) 
             {
