@@ -210,10 +210,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Marrow) 
             {
-                item.damage = 70;
-                item.useTime = 17;
-                item.useAnimation = 17;
-                item.crit = 7;
+                item.damage = 80;
+                item.useTime = 16;
+                item.useAnimation = 16;
+                item.crit = 8;
             }
             if (item.type == ItemID.IceBow) 
             {

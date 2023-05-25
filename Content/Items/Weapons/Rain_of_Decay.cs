@@ -28,8 +28,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.height = 142;
             Item.rare = ItemRarityID.Expert;
 
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 24;
+            Item.useAnimation = 24;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 36;
@@ -102,8 +102,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 attackMode = 0;
                 soundPlayedRecently = false;
-                Item.useTime = 20;
-                Item.useAnimation = 20;
+                Item.useTime = 24;
+                Item.useAnimation = 24;
                 Item.reuseDelay = 0;
                 Item.ArmorPenetration = 0;
                 Item.knockBack = 1.25f;
@@ -118,9 +118,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             CreateRecipe()
               .AddTile(TileID.HeavyWorkBench)
+              .AddIngredient(ItemID.DaedalusStormbow)
+              .AddIngredient(ItemID.Marrow)
               .AddIngredient(ItemID.CursedFlame, 25)
               .AddIngredient(ItemID.AshWood, 20)
-              .AddIngredient(ItemID.IronBar, 15)
+              .AddRecipeGroup(RecipeGroupID.IronBar, 15)
               .AddIngredient(ItemID.SoulofNight, 10)
               .AddIngredient(ItemID.SoulofSight, 5)
               .AddIngredient(ItemID.JungleSpores, 5)
@@ -129,36 +131,17 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             CreateRecipe()
              .AddTile(TileID.HeavyWorkBench)
+             .AddIngredient(ItemID.DaedalusStormbow)
+             .AddIngredient(ItemID.Marrow)
              .AddIngredient(ItemID.Ichor, 25)
              .AddIngredient(ItemID.AshWood, 20)
-             .AddIngredient(ItemID.IronBar, 15)
+             .AddRecipeGroup(RecipeGroupID.IronBar, 15)
              .AddIngredient(ItemID.SoulofNight, 10)
              .AddIngredient(ItemID.SoulofSight, 5)
              .AddIngredient(ItemID.JungleSpores, 5)
              .AddIngredient(ItemID.WhiteString, 1)
              .Register();
 
-            CreateRecipe()
-              .AddTile(TileID.HeavyWorkBench)
-              .AddIngredient(ItemID.CursedFlame, 25)
-              .AddIngredient(ItemID.AshWood, 20)
-              .AddIngredient(ItemID.LeadBar, 15)
-              .AddIngredient(ItemID.SoulofNight, 10)
-              .AddIngredient(ItemID.SoulofSight, 5)
-              .AddIngredient(ItemID.JungleSpores, 5)
-              .AddIngredient(ItemID.WhiteString, 1)
-              .Register();
-
-            CreateRecipe()
-             .AddTile(TileID.HeavyWorkBench)
-             .AddIngredient(ItemID.Ichor, 25)
-             .AddIngredient(ItemID.AshWood, 20)
-             .AddIngredient(ItemID.LeadBar, 15)
-             .AddIngredient(ItemID.SoulofNight, 10)
-             .AddIngredient(ItemID.SoulofSight, 5)
-             .AddIngredient(ItemID.JungleSpores, 5)
-             .AddIngredient(ItemID.WhiteString, 1)
-             .Register();
         }
 
     }
