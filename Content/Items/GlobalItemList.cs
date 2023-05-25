@@ -170,11 +170,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.CactusBreastplate) 
             {
-                item.defense = 2;
+                item.defense += 2;
             }
             if (item.type == ItemID.CactusSword) 
             {
-                item.damage = 9;
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.knockBack = 5f;
@@ -192,14 +191,6 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 15;
                 item.useAnimation = 15;
             }
-            if (item.type == ItemID.BeeKeeper) 
-            {
-                item.damage = 26;
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.knockBack = 5.3f;
-                item.autoReuse = true;
-            }
             if (item.type == ItemID.BeamSword) 
             {
                 item.useTime = 15;
@@ -208,8 +199,6 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.BeesKnees) 
             {
                 item.damage = 26;
-                item.useTime = 23;
-                item.useAnimation = 23;
             }
             if (item.type == ItemID.ClockworkAssaultRifle) 
             {
@@ -221,7 +210,6 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 17;
                 item.useAnimation = 17;
                 item.crit = 7;
-                item.autoReuse = true;
             }
             if (item.type == ItemID.IceBow) 
             {
