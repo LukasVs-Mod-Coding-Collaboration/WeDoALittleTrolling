@@ -61,14 +61,16 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 burstArrowSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles)));
-                    Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
+                    int j = Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
+                    Main.projectile[j].extraUpdates = 0;
                     SoundEngine.PlaySound(SoundID.Item5, player.position);
                 }
                 return false;
             }
             else
             {
-                Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                int j = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                Main.projectile[j].extraUpdates = 1;
                 if (soundPlayedRecently == false)
                 {
                     SoundEngine.PlaySound(SoundID.Item5, player.position);
@@ -92,6 +94,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 Item.useAnimation = 16;
                 Item.reuseDelay = 16;
                 Item.ArmorPenetration = 24;
+                Item.knockBack = 10.0f;
                 Item.consumeAmmoOnLastShotOnly = true;
                 SoundEngine.PlaySound(SoundID.Item60, player.position);
             }
@@ -101,8 +104,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 soundPlayedRecently = false;
                 Item.useTime = 20;
                 Item.useAnimation = 20;
-                Item.reuseDelay = 4;
+                Item.reuseDelay = 0;
                 Item.ArmorPenetration = 0;
+                Item.knockBack = 1.25f;
                 Item.consumeAmmoOnLastShotOnly = false;
                 SoundEngine.PlaySound(SoundID.Item74, player.position);
             }
