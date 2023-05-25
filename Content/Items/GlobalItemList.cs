@@ -228,7 +228,6 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 95;
             }
-            /* Why is that buff/nerf implemented? Disabling for now...
             if (item.type == ItemID.ZapinatorOrange)
             {
                 item.damage = 80;
@@ -237,7 +236,6 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 36;
             }
-            */
             if (item.type == ItemID.LastPrism)
             {
                 item.mana = 8;
@@ -249,8 +247,9 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.RazorbladeTyphoon)
             {
                 item.damage = 60;
-                item.useTime = 20;
-                item.useAnimation = 40;
+                item.useTime = 14;
+                item.useAnimation = 28;
+                item.reuseDelay = 12;
                 item.consumeAmmoOnFirstShotOnly = true;
             }
             if (item.type == ItemID.OpticStaff)
@@ -380,15 +379,15 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 2;
             }
-            if (item.type == 3776) //Forbidden Mask
+            if (item.type == ItemID.AncientBattleArmorHat) //Forbidden Mask
             {
                 item.defense += 2;
             }
-            if (item.type == 3777) //Forbidden Robes
+            if (item.type == ItemID.AncientBattleArmorShirt) //Forbidden Robes
             {
                 item.defense += 2;
             }
-            if (item.type == 3778) //Forbidden Treads
+            if (item.type == ItemID.AncientBattleArmorPants) //Forbidden Treads
             {
                 item.defense += 2;
             }
