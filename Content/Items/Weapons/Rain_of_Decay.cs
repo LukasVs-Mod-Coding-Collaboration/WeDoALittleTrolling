@@ -92,6 +92,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 Item.useAnimation = 16;
                 Item.reuseDelay = 16;
                 Item.ArmorPenetration = 24;
+                Item.consumeAmmoOnLastShotOnly = true;
                 SoundEngine.PlaySound(SoundID.Item60, player.position);
             }
             else
@@ -102,6 +103,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 Item.useAnimation = 20;
                 Item.reuseDelay = 4;
                 Item.ArmorPenetration = 0;
+                Item.consumeAmmoOnLastShotOnly = false;
                 SoundEngine.PlaySound(SoundID.Item74, player.position);
             }
             return false;

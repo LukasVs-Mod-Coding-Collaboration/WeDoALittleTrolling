@@ -228,6 +228,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 95;
             }
+            /* Why is that buff/nerf implemented? Disabling for now...
             if (item.type == ItemID.ZapinatorOrange)
             {
                 item.damage = 80;
@@ -236,33 +237,35 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 36;
             }
+            */
             if (item.type == ItemID.LastPrism)
             {
                 item.mana = 8;
-                item.damage = 175;
             }
             if (item.type == ItemID.ClingerStaff)
             {
-                item.damage = 60;
+                item.damage = 50;
             }
             if (item.type == ItemID.RazorbladeTyphoon)
             {
-                item.useTime = 32;
-                item.useAnimation = 32;
+                item.damage = 60;
+                item.useTime = 20;
+                item.useAnimation = 40;
+                item.consumeAmmoOnFirstShotOnly = true;
             }
             if (item.type == ItemID.OpticStaff)
             {
-                item.damage = 40;
+                item.damage = 32;
             }
             if(item.type == ItemID.ScytheWhip) //Dark Harvest
             {
-                item.damage = 120;
+                item.damage = 125;
                 item.useTime = 25;
                 item.useAnimation = 25;
             }
-            if (item.type == ItemID.MoonlordTurretStaff)
+            if(item.type == ItemID.MaceWhip) //Morning Star
             {
-                item.damage = 100;
+                item.damage = 180;
             }
             if (item.type == ItemID.RainbowCrystalStaff)
             {
@@ -270,7 +273,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.XenoStaff)
             {
-                item.damage = 40;
+                item.damage = 44;
             }
             if (item.type == ItemID.StardustCellStaff)
             {
@@ -303,6 +306,15 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.TikiMask)
             {
                 item.defense += 1;
+                item.shopCustomPrice = 300000;
+            }
+            if (item.type == ItemID.TikiShirt)
+            {
+                item.shopCustomPrice = 300000;
+            }
+            if (item.type == ItemID.TikiPants)
+            {
+                item.shopCustomPrice = 300000;
             }
             if (item.type == ItemID.SpookyHelmet)
             {
@@ -390,7 +402,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StarWrath)
             {
-                item.damage = 250;
+                item.damage = 220;
             }
 
         }
