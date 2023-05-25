@@ -213,7 +213,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 64;
                 item.useTime = 16;
                 item.useAnimation = 16;
-                item.crit = 8;
+                item.crit = 12;
                 item.ArmorPenetration = 16;
             }
             if (item.type == ItemID.IceBow) 
