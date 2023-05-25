@@ -16,7 +16,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void SetDefaults()
         {
-            Item.width = 42;
+            Item.width = 46;
             Item.height = 58;
 
             Item.consumable = false;

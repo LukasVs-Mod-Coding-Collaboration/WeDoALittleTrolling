@@ -17,11 +17,13 @@ namespace WeDoALittleTrolling.Content.Recipes
     {
         public override void AddRecipes()
         {
+            /*
             Recipe WDALT_SharkToothNecklace = Recipe.Create(ItemID.SharkToothNecklace, 1);
             WDALT_SharkToothNecklace.AddTile(TileID.TinkerersWorkbench);
             WDALT_SharkToothNecklace.AddIngredient(ItemID.Shackle, 1);
             WDALT_SharkToothNecklace.AddRecipeGroup(RecipeGroupID.IronBar, 10);
             WDALT_SharkToothNecklace.Register();
+            */
         }
     }
 }

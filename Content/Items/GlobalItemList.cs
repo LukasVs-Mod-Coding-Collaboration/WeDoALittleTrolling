@@ -164,7 +164,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 7;
                 item.useAnimation = 7;
             }
-            if (item.type == ItemID.DaedalusStormbow) 
+            if (item.type == ItemID.ChlorophyteShotbow)
+            {
+                item.damage = 40;
+            }
+            if (item.type == ItemID.DD2PhoenixBow)
             {
                 item.damage = 40;
             }
