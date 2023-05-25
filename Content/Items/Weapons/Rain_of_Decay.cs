@@ -127,6 +127,27 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
               .AddIngredient(ItemID.WhiteString, 1)
               .Register();
 
+            CreateRecipe()
+             .AddTile(TileID.HeavyWorkBench)
+             .AddIngredient(ItemID.Ichor, 25)
+             .AddIngredient(ItemID.AshWood, 20)
+             .AddIngredient(ItemID.IronBar, 15)
+             .AddIngredient(ItemID.SoulofNight, 10)
+             .AddIngredient(ItemID.SoulofSight, 5)
+             .AddIngredient(ItemID.JungleSpores, 5)
+             .AddIngredient(ItemID.WhiteString, 1)
+             .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.HeavyWorkBench)
+              .AddIngredient(ItemID.CursedFlame, 25)
+              .AddIngredient(ItemID.AshWood, 20)
+              .AddIngredient(ItemID.IronBar, 15)
+              .AddIngredient(ItemID.SoulofNight, 10)
+              .AddIngredient(ItemID.SoulofSight, 5)
+              .AddIngredient(ItemID.JungleSpores, 5)
+              .AddIngredient(ItemID.WhiteString, 1)
+              .Register();
 
             CreateRecipe()
              .AddTile(TileID.HeavyWorkBench)
