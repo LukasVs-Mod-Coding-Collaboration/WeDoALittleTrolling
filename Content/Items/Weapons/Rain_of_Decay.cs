@@ -28,8 +28,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.height = 142;
             Item.rare = ItemRarityID.Expert;
 
-            Item.useTime = 24;
-            Item.useAnimation = 24;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 36;
@@ -92,7 +92,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 soundPlayedRecently = false;
                 Item.useTime = 4;
                 Item.useAnimation = 16;
-                Item.reuseDelay = 16;
+                Item.reuseDelay = 14;
                 Item.ArmorPenetration = 24;
                 Item.knockBack = 10.0f;
                 Item.consumeAmmoOnLastShotOnly = true;
@@ -102,8 +102,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 attackMode = 0;
                 soundPlayedRecently = false;
-                Item.useTime = 24;
-                Item.useAnimation = 24;
+                Item.useTime = 20;
+                Item.useAnimation = 20;
                 Item.reuseDelay = 0;
                 Item.ArmorPenetration = 0;
                 Item.knockBack = 1.25f;
