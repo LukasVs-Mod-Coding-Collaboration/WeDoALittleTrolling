@@ -401,6 +401,11 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 220;
             }
+            if (item.type == ItemID.DayBreak)
+            {
+                item.useTime = 12;
+                item.useAnimation = 12;
+            }
 
         }
 
