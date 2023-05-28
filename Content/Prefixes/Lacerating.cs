@@ -19,7 +19,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Melee;
         public override float RollChance(Item item)
         {
-            return 0.1f;
+            return 0.25f;
         }
 
         public override bool CanRoll(Item item)
@@ -29,9 +29,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            damageMult *= 1.15f;
+            damageMult *= 1.20f;
             scaleMult *= 0.8f;
-            useTimeMult *= 0.75f;
+            useTimeMult *= 0.65f;
             knockbackMult *= 0.0f;
         }
 
