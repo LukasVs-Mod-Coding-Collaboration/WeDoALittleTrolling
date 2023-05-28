@@ -186,6 +186,12 @@ Mods: {
 				AdditionalTooltip: +1.25% of damage recovered as mana
 			}
 
+			InfernoInfusion: {
+				DisplayName: Inferno infusing
+				AdditionalTooltip: +Inferno buff
+
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
