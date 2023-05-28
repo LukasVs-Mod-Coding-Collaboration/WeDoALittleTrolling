@@ -25,25 +25,14 @@ namespace WeDoALittleTrolling.Content.Items
                 modifiers.DamageType == DamageClass.MagicSummonHybrid
             )
             {
-                int offset = 3;
-                int loopLimit = 5;
-                loopLimit += player.extraAccessorySlots;
-                if(Main.masterMode)
+                if(WeDoALittleTrolling.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
                 {
-                    loopLimit++;
-                }
-                for(int i = offset;i < (offset + loopLimit); i++) //Search through all accessory slots
-                {
-                    if(player.armor[i].type == ModContent.ItemType<SpookyEmblem>())
+                    modifiers.ArmorPenetration += 25;
+                    Random random = new Random();
+                    int isCriticalHit = random.Next(0, 4);
+                    if(isCriticalHit == 0)
                     {
-                        modifiers.ArmorPenetration += 25;
-                        i = (offset + loopLimit); //Quit for loop immediately
-                        Random random = new Random();
-                        int isCriticalHit = random.Next(0, 4);
-                        if(isCriticalHit == 0)
-                        {
-                            modifiers.SetCrit();
-                        }
+                        modifiers.SetCrit();
                     }
                 }
             }

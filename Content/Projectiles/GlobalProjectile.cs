@@ -27,25 +27,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.type == ProjectileID.SandnadoFriendly
                 )
                 {
-                    int offset = 3;
-                    int loopLimit = 5;
-                    loopLimit += player.extraAccessorySlots;
-                    if(Main.masterMode)
+                    if(WeDoALittleTrolling.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
                     {
-                        loopLimit++;
-                    }
-                    for(int i = offset;i < (offset + loopLimit); i++) //Search through all accessory slots
-                    {
-                        if(player.armor[i].type == ModContent.ItemType<SpookyEmblem>())
+                        modifiers.ArmorPenetration += 25;
+                        Random random = new Random();
+                        int isCriticalHit = random.Next(0, 4);
+                        if(isCriticalHit == 0)
                         {
-                            modifiers.ArmorPenetration += 25;
-                            i = (offset + loopLimit); //Quit for loop immediately
-                            Random random = new Random();
-                            int isCriticalHit = random.Next(0, 4);
-                            if(isCriticalHit == 0)
-                            {
-                                modifiers.SetCrit();
-                            }
+                            modifiers.SetCrit();
                         }
                     }
                 }
@@ -56,12 +45,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.TryGetOwner(out Player player))
             {
-                Item item = player.HeldItem;
                 if
                 (
                     (
-                        item.prefix == ModContent.PrefixType<Leeching>() ||
-                        item.prefix == ModContent.PrefixType<Siphoning>()
+                        WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>()) ||
+                        WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>())
                     ) &&
                     (
                         hit.DamageType == DamageClass.Melee ||
@@ -96,22 +84,26 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     // Having Moon Bite means the effect still works, however,
                     // it will be 90% less effective
                     // 1 Base Heal is still guaranteed
-                    if(player.HasBuff(BuffID.MoonLeech) && item.prefix == ModContent.PrefixType<Leeching>())
+                    if
+                    (
+                        player.HasBuff(BuffID.MoonLeech) &&
+                        WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>())
+                    )
                     {
                         healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                     }
                     // Siphoning should always be
                     // 75% less effective than Leeching
                     // 1 Base Heal is still guaranteed
-                    if(item.prefix == ModContent.PrefixType<Siphoning>())
+                    if(WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>()))
                     {
                         healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
                     }
-                    if(item.prefix == ModContent.PrefixType<Leeching>())
+                    if(WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>()))
                     {
                         player.Heal(healingAmount);
                     }
-                    else if(item.prefix == ModContent.PrefixType<Siphoning>())
+                    else if(WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>()))
                     {
                         if(player.statMana <= (player.statManaMax2 - healingAmount))
                         {

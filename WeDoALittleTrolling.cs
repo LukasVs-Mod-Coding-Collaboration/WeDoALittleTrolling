@@ -16,6 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace WeDoALittleTrolling
@@ -23,6 +31,35 @@ namespace WeDoALittleTrolling
     public class WeDoALittleTrolling : Mod
     {
         public const string ASSET_PATH = "WeDoALittleTrolling/Assets/";
+
+        public static bool hasPlayerAcessoryEquipped(Player player, int itemID)
+        {
+            int offset = 3;
+            int loopLimit = 5;
+            loopLimit += player.extraAccessorySlots;
+            if(Main.masterMode)
+            {
+                loopLimit++;
+            }
+            for(int i = offset;i < (offset + loopLimit); i++) //Search through all accessory slots
+            {
+                if(player.armor[i].type == itemID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool isPlayerHoldingItemWithPrefix(Player player, int prefixID)
+        {
+            Item item = player.HeldItem;
+            if(item.prefix == prefixID)
+            {
+                return true;
+            }
+            return false;
+        }
 
     }
 }
