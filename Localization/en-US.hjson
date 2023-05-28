@@ -180,6 +180,9 @@ Mods: {
 			Siphoning.DisplayName: Siphoning
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
+			Boundless.DisplayName: Boundless
+			The.DisplayName: The
+			Titanic.DisplayName: Titanic
 		}
 	}
 }
