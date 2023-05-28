@@ -44,17 +44,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ItemID.LifeCrystal, 1)
               .AddIngredient(ItemID.BandofRegeneration, 1)
               .AddIngredient(ItemID.ObsidianSkinPotion, 1)
-              .AddIngredient(ItemID.LeadBar, 10)
-              .Register();
-
-            CreateRecipe()
-              .AddTile(TileID.Furnaces)
-              .AddIngredient(ItemID.Obsidian, 25)
-              .AddIngredient(ItemID.LavaBucket, 3)
-              .AddIngredient(ItemID.LifeCrystal, 1)
-              .AddIngredient(ItemID.BandofRegeneration, 1)
-              .AddIngredient(ItemID.ObsidianSkinPotion, 1)
-              .AddIngredient(ItemID.IronBar, 10)
+              .AddRecipeGroup(RecipeGroupID.IronBar, 15)
               .Register();
         }
     }

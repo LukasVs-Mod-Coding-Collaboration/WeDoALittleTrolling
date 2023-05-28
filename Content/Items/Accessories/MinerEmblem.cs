@@ -43,35 +43,17 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.Anvils)
               .AddIngredient(ItemID.GoldPickaxe, 1)
               .AddIngredient(ItemID.StoneBlock, 75)
-              .AddIngredient(ItemID.IronBar, 5)
+              .AddRecipeGroup(RecipeGroupID.IronBar, 15)
               .AddIngredient(ItemID.FallenStar, 3)
               .Register();
-
-
-            CreateRecipe()
-             .AddTile(TileID.Anvils)
-             .AddIngredient(ItemID.GoldPickaxe, 1)
-             .AddIngredient(ItemID.StoneBlock, 75)
-             .AddIngredient(ItemID.LeadBar, 5)
-             .AddIngredient(ItemID.FallenStar, 3)
-             .Register();
-
 
             CreateRecipe()
              .AddTile(TileID.Anvils)
              .AddIngredient(ItemID.PlatinumPickaxe, 1)
              .AddIngredient(ItemID.StoneBlock, 75)
-             .AddIngredient(ItemID.IronBar, 5)
+             .AddRecipeGroup(RecipeGroupID.IronBar, 15)
              .AddIngredient(ItemID.FallenStar, 3)
              .Register();
-
-            CreateRecipe()
-            .AddTile(TileID.Anvils)
-            .AddIngredient(ItemID.PlatinumPickaxe, 1)
-            .AddIngredient(ItemID.StoneBlock, 75)
-            .AddIngredient(ItemID.LeadBar, 5)
-            .AddIngredient(ItemID.FallenStar, 3)
-            .Register();
         }
     }
 }
