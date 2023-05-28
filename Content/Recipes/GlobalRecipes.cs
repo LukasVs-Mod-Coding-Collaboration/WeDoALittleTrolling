@@ -15,7 +15,7 @@ namespace WeDoALittleTrolling.Content.Recipes
 {
     internal class GlobalRecipes : ModSystem
     {
-        
+
         public override void AddRecipes()
         {
             /*
@@ -25,6 +25,11 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_SharkToothNecklace.AddRecipeGroup(RecipeGroupID.IronBar, 10);
             WDALT_SharkToothNecklace.Register();
             */
+
+            Recipe WDALT_HardySaddleToHeartCrystal = Recipe.Create(ItemID.LifeCrystal, 1);
+            WDALT_HardySaddleToHeartCrystal.AddIngredient(ItemID.HardySaddle, 1);
+            WDALT_HardySaddleToHeartCrystal.Register();
+            
         }
 
         public override void PostAddRecipes()
