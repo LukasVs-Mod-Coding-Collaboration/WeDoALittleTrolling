@@ -13,7 +13,7 @@ using System;
 namespace WeDoALittleTrolling.Content.Prefixes
 {
 
-    public class Boundless : ModPrefix
+    public class Supercritical : ModPrefix
     {
 
         public override PrefixCategory Category => PrefixCategory.Magic;
@@ -30,8 +30,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
             damageMult *= 0.45f;
-            useTimeMult *= 0.75f;
-            manaMult *= 0.0f;
+            useTimeMult *= 1.25f;
+            manaMult *= 2.0f;
         }
 
         public override void ModifyValue(ref float valueMult)

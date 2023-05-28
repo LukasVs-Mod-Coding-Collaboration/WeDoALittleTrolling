@@ -21,6 +21,20 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 if
                 (
+                    modifiers.DamageType == DamageClass.Magic
+                )
+                {
+                    if (WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Supercritical>()))
+                    {
+                        modifiers.CritDamage *= 2.0f;
+                    }
+                }
+
+
+
+
+                if
+                (
                     modifiers.DamageType == DamageClass.Summon ||
                     modifiers.DamageType == DamageClass.SummonMeleeSpeed ||
                     modifiers.DamageType == DamageClass.MagicSummonHybrid ||
