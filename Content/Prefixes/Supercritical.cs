@@ -49,7 +49,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixWeaponLeechingDescription", AdditionalTooltip.Value) {
+            yield return new TooltipLine(Mod, "PrefixWeaponSupercriticalDescription", AdditionalTooltip.Value) {
 				IsModifier = true,
 			};
         }
