@@ -175,15 +175,40 @@ Mods: {
 
 		Prefixes: {
 			Colossal.DisplayName: Colossal
-			Leeching.DisplayName: Leeching
-			Siphoning.DisplayName: Siphoning
+
+			Leeching: {
+				DisplayName: Leeching
+				AdditionalTooltip: +5% of damage recovered as health
+			}
+
+			Siphoning: {
+				DisplayName: Siphoning
+				AdditionalTooltip: +1.25% of damage recovered as mana
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
 			The.DisplayName: The
 			Titanic.DisplayName: Titanic
-			Supercritical.DisplayName: Supercritical
-			Indecisive.DisplayName: Indecisive
+
+			Supercritical: {
+				DisplayName: Supercritical
+				AdditionalTooltip: +100% critical strike damage
+			}
+
+			Indecisive: {
+				DisplayName: Indecisive
+				AdditionalTooltip:
+					'''
+					+1 defense
+					+1% damage
+					+1% critical strike chance
+					+1% movement speed
+					+1% attack speed
+					+10 mana
+					'''
+			}
 		}
 	}
 }

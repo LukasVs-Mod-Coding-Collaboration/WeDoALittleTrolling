@@ -29,10 +29,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         modifiers.CritDamage *= 2.0f;
                     }
                 }
-
-
-
-
                 if
                 (
                     modifiers.DamageType == DamageClass.Summon ||

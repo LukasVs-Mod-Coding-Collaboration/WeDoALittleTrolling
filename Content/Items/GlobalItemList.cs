@@ -20,6 +20,16 @@ namespace WeDoALittleTrolling.Content.Items
         {
             if
             (
+                modifiers.DamageType == DamageClass.Magic
+            )
+            {
+                if (item.prefix == ModContent.PrefixType<Supercritical>())
+                {
+                    modifiers.CritDamage *= 2.0f;
+                }
+            }
+            if
+            (
                 modifiers.DamageType == DamageClass.Summon ||
                 modifiers.DamageType == DamageClass.SummonMeleeSpeed ||
                 modifiers.DamageType == DamageClass.MagicSummonHybrid

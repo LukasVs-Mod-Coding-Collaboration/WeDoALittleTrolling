@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
+using Terraria.Localization;
 using Terraria;
 
 namespace WeDoALittleTrolling.Content.Prefixes
@@ -34,6 +35,19 @@ namespace WeDoALittleTrolling.Content.Prefixes
             player.GetDamage(DamageClass.Generic) += 0.01f;
             player.GetAttackSpeed(DamageClass.Generic) *= 1.01f;
             player.GetCritChance(DamageClass.Generic) += 1.0f;
+        }
+
+        public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            yield return new TooltipLine(Mod, "PrefixWeaponLeechingDescription", AdditionalTooltip.Value) {
+				IsModifier = true,
+			};
+        }
+
+        public override void SetStaticDefaults() {
+            _ = AdditionalTooltip;
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -9,6 +10,7 @@ using WeDoALittleTrolling.Content.Projectiles;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
@@ -41,6 +43,19 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void Apply(Item item)
         {
             //
+        }
+
+        public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            yield return new TooltipLine(Mod, "PrefixWeaponLeechingDescription", AdditionalTooltip.Value) {
+				IsModifier = true,
+			};
+        }
+
+        public override void SetStaticDefaults() {
+            _ = AdditionalTooltip;
         }
     }
 }

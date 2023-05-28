@@ -51,6 +51,26 @@ namespace WeDoALittleTrolling
             return false;
         }
 
+        public static int getAmountOfEquippedAccessoriesWithPrefixFromPlayer(Player player, int prefixID)
+        {
+            int equippedAmount = 0;
+            int offset = 3;
+            int loopLimit = 5;
+            loopLimit += player.extraAccessorySlots;
+            if(Main.masterMode)
+            {
+                loopLimit++;
+            }
+            for(int i = offset;i < (offset + loopLimit); i++) //Search through all accessory slots
+            {
+                if(player.armor[i].prefix == prefixID)
+                {
+                    equippedAmount++;
+                }
+            }
+            return equippedAmount;
+        }
+
         public static bool isPlayerHoldingItemWithPrefix(Player player, int prefixID)
         {
             Item item = player.HeldItem;
