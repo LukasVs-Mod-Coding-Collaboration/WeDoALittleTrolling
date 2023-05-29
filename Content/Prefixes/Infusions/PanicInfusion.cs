@@ -30,7 +30,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.AddBuff(63, 1, true, false);
+            player.AddBuff(BuffID.Panic, 1, true, false);
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

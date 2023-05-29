@@ -189,25 +189,21 @@ Mods: {
 			InfernoInfusion: {
 				DisplayName: Inferno infusing
 				AdditionalTooltip: +Inferno buff
-
 			}
 
 			PanicInfusion: {
 				DisplayName: Panic infusing
 				AdditionalTooltip: +Panic buff
-
 			}
 
 			LifeforceInfusion: {
 				DisplayName: Lifeforce infusing
 				AdditionalTooltip: +Lifeforce buff
-
 			}
 
 			StonedInfusion: {
 				DisplayName: Stoned infusing
 				AdditionalTooltip: +Stoned debuff
-
 			}
 
 			Berserk.DisplayName: Berserk
