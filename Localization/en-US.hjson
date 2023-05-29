@@ -231,6 +231,16 @@ Mods: {
 				AdditionalTooltip: +Invisibility buff
 			}
 
+			TipsyInfusion: {
+				DisplayName: Tipsy infusing
+				AdditionalTooltip: +Tipsy debuff
+			}
+
+			ConfusedInfusion: {
+				DisplayName: Confusion infusion
+				AdditionalTooltip: +Confused debuff
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
