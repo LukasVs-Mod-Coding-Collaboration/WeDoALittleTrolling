@@ -211,6 +211,26 @@ Mods: {
 				AdditionalTooltip: +Stoned debuff
 			}
 
+			ObsidianskinInfusion: {
+				DisplayName: Obsidian Skin infusing
+				AdditionalTooltip: +Obsidian Skin buff
+			}
+
+			GillsInfusion: {
+				DisplayName: Gills infusing
+				AdditionalTooltip: +Gills buff
+			}
+
+			SpelunkerInfusion: {
+				DisplayName: Spelunker infusing
+				AdditionalTooltip: +Spelunker buff
+			}
+
+			InvisibilityInfusion: {
+				DisplayName: Invisibility infusing
+				AdditionalTooltip: +Invisibility buff
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
