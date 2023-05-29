@@ -10,7 +10,7 @@ using Terraria.ID;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-    public class InfernoInfusion : ModPrefix
+    public class LifeforceInfusion : ModPrefix
     {
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
@@ -30,14 +30,14 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.AddBuff(116, 1, true, false);
+            player.AddBuff(113, 1, true, false);
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAcessoryInfernoInfusionDescription", AdditionalTooltip.Value) {
+            yield return new TooltipLine(Mod, "PrefixAcessoryLifeforceInfusionDescription", AdditionalTooltip.Value) {
 				IsModifier = true,
 			};
         }

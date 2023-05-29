@@ -192,6 +192,24 @@ Mods: {
 
 			}
 
+			PanicInfusion: {
+				DisplayName: Panic infusing
+				AdditionalTooltip: +Panic buff
+
+			}
+
+			LifeforceInfusion: {
+				DisplayName: Lifeforce infusing
+				AdditionalTooltip: +Lifeforce buff
+
+			}
+
+			StonedInfusion: {
+				DisplayName: Stoned infusing
+				AdditionalTooltip: +Stoned debuff
+
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
