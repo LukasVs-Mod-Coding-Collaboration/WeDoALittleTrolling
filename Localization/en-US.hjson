@@ -241,6 +241,21 @@ Mods: {
 				AdditionalTooltip: +Confused debuff
 			}
 
+			CrateInfusion: {
+				DisplayName: Crate infusing
+				AdditionalTooltip: +Crate buff
+			}
+
+			BattleInfusion: {
+				DisplayName: Battle infusing
+				AdditionalTooltip: +Battle buff
+			}
+
+			ConfettiInfusion: {
+				DisplayName: Confetti infusing
+				AdditionalTooltip: +Weapon imbued with Confetti
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
