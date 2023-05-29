@@ -416,6 +416,22 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 12;
                 item.useAnimation = 12;
             }
+            if (item.type == ItemID.IllegalGunParts)
+            {
+                item.shopCustomPrice = 80000;
+            }
+            if (item.type == ItemID.AntlionClaw) //Mandible Blade
+            {
+                item.damage = 20;
+            }
+            if (item.type == ItemID.ThunderSpear)
+            {
+                item.damage = 20;
+            }
+            if (item.type == ItemID.ThunderStaff)
+            {
+                item.damage = 24;
+            }
 
         }
 

@@ -15,10 +15,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     internal class GlobalProjectiles : GlobalProjectile
     {
+
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
+        {
+            //Nerf Ant Lion and Hornet Damage by 25%
+            if(projectile.type == ProjectileID.SandBallFalling || projectile.type == ProjectileID.Stinger)
+            {
+                modifiers.SourceDamage *= (float)0.75;
+            }
+            base.ModifyHitPlayer(projectile, target, ref modifiers);
+        }
+
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
         {
+            //Implement Spooky Emblem and Supercritical Prefix
             if(projectile.TryGetOwner(out Player player) && !target.isLikeATownNPC)
             {
+                //Supercritical Prefix
                 if
                 (
                     modifiers.DamageType == DamageClass.Magic
@@ -26,9 +39,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     if (WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Supercritical>()))
                     {
-                        modifiers.CritDamage *= 2.0f;
+                        modifiers.CritDamage *= (float)2.0;
                     }
                 }
+                //Spooky Emblem
                 if
                 (
                     modifiers.DamageType == DamageClass.Summon ||
@@ -51,6 +65,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             base.ModifyHitNPC(projectile, target, ref modifiers);
         }
+
+        //Implement Leeching and Siphoning Prefixes
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if(projectile.TryGetOwner(out Player player))
