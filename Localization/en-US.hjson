@@ -186,6 +186,11 @@ Mods: {
 				AdditionalTooltip: +1.25% of damage recovered as mana
 			}
 
+			Angering: {
+				DisplayName: Angering
+				AdditionalTooltip: Enemies are much more likely to target you
+			}
+
 			InfernoInfusion: {
 				DisplayName: Inferno infusing
 				AdditionalTooltip: +Inferno buff

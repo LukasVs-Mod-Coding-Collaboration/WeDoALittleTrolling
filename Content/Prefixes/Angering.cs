@@ -9,7 +9,7 @@ using Terraria;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-    public class Indecisive : ModPrefix
+    public class Angering : ModPrefix
     {
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
@@ -29,19 +29,14 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.statDefense += 1;
-            player.moveSpeed *= 1.01f;
-            player.statManaMax2 += 10;
-            player.GetDamage(DamageClass.Generic) += 0.01f;
-            player.GetAttackSpeed(DamageClass.Generic) *= 1.01f;
-            player.GetCritChance(DamageClass.Generic) += 1.0f;
+            player.aggro += 1000;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAccessoryIndecisiveDescription", AdditionalTooltip.Value) {
+            yield return new TooltipLine(Mod, "PrefixAccessoryAngeringDescription", AdditionalTooltip.Value) {
 				IsModifier = true,
 			};
         }
