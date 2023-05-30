@@ -79,10 +79,22 @@ Mods: {
 				DisplayName: Spooky Emblem
 				Tooltip:
 					'''
-					Grants 25% summon critical strike chance
-					Grants 25 summon armor penetration
 					Increases your max number of minions by 1
 					Increases your max number of sentries by 1
+					Grants 25% summon critical strike chance
+					Grants 25 summon armor penetration
+					'''
+			}
+
+			SpookyShield: {
+				DisplayName: Spooky Shield
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Increases your max number of sentries by 1
+					Reduces damage taken by 25%
+					Allows the ability to dash
+					Enemies are less likely to target you
 					'''
 			}
 

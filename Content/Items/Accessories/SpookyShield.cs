@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -11,14 +11,14 @@ using System;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-    internal class SpookyEmblem : ModItem
+
+    [AutoloadEquip(EquipType.Shield)]
+    public class SpookyShield : ModItem
     {
-
-
         public override void SetDefaults()
         {
             Item.width = 32;
-            Item.height = 32;
+            Item.height = 36;
 
             Item.consumable = false;
 
@@ -28,10 +28,14 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.rare = ItemRarityID.Yellow;
 
             Item.accessory = true;
+            Item.defense = 5;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.dashType = 1;
+            player.endurance += (float)0.25;
+            player.aggro -= 400;
             player.maxMinions += 1;
             player.maxTurrets += 1;
         }
@@ -40,8 +44,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if
             (
-                equippedItem.type == ModContent.ItemType<SpookyShield>() ||
-                incomingItem.type == ModContent.ItemType<SpookyShield>()
+                equippedItem.type == ItemID.WormScarf ||
+                incomingItem.type == ItemID.WormScarf ||
+                equippedItem.type == ModContent.ItemType<SoulPoweredShield>() ||
+                incomingItem.type == ModContent.ItemType<SoulPoweredShield>() ||
+                equippedItem.type == ModContent.ItemType<SpookyEmblem>() ||
+                incomingItem.type == ModContent.ItemType<SpookyEmblem>()
             )
             {
                 return false;
@@ -58,9 +66,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.TinkerersWorkbench)
               .AddIngredient(ItemID.SpookyWood, 250)
               .AddIngredient(ItemID.NecromanticScroll, 1)
-              .AddIngredient(ItemID.MonkBelt, 1)
-              .AddIngredient(ItemID.EyeoftheGolem, 1)
-              .AddIngredient(ItemID.SharkToothNecklace, 1)
+              .AddIngredient(ItemID.HuntressBuckler, 1)
+              .AddIngredient(ItemID.SunStone, 1)
+              .AddIngredient(ItemID.Tabi, 1)
               .Register();
         }
     }

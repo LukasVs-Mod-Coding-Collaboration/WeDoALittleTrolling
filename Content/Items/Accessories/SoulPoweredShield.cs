@@ -59,7 +59,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
             else
             {
-                return true;
+                return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem,player);
             }
         }
 
