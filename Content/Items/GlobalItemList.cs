@@ -39,8 +39,7 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     modifiers.ArmorPenetration += 25;
                     Random random = new Random();
-                    int isCriticalHit = random.Next(0, 4);
-                    if(isCriticalHit == 0)
+                    if(random.Next(0, 4) == 0) //1 in 4 Chance
                     {
                         modifiers.SetCrit();
                     }

@@ -18,10 +18,22 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
-            //Nerf Ant Lion and Hornet Damage by 25%
-            if(projectile.type == ProjectileID.SandBallFalling || projectile.type == ProjectileID.Stinger)
+            int[] NerfGroup25Percent =
+            {
+                ProjectileID.SandBallFalling,
+                ProjectileID.Stinger
+            };
+            int[] NerfGroup45Percent =
+            {
+                ProjectileID.UnholyTridentHostile
+            };
+            if(NerfGroup25Percent.Contains(projectile.type))
             {
                 modifiers.SourceDamage *= (float)0.75;
+            }
+            if(NerfGroup45Percent.Contains(projectile.type))
+            {
+                modifiers.SourceDamage *= (float)0.55;
             }
             base.ModifyHitPlayer(projectile, target, ref modifiers);
         }
@@ -55,8 +67,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     {
                         modifiers.ArmorPenetration += 25;
                         Random random = new Random();
-                        int isCriticalHit = random.Next(0, 4);
-                        if(isCriticalHit == 0)
+                        if(random.Next(0, 4) == 0) //1 in 4 Chance
                         {
                             modifiers.SetCrit();
                         }
