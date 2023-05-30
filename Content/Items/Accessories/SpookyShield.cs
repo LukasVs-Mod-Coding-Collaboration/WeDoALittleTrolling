@@ -28,13 +28,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.rare = ItemRarityID.Yellow;
 
             Item.accessory = true;
-            Item.defense = 5;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.dashType = 1;
-            player.endurance += (float)0.25;
+            player.statDefense += (2 * (int)Math.Round(player.slotsMinions));
             player.aggro -= 400;
             player.maxMinions += 1;
             player.maxTurrets += 1;
@@ -44,10 +43,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if
             (
-                equippedItem.type == ItemID.WormScarf ||
-                incomingItem.type == ItemID.WormScarf ||
-                equippedItem.type == ModContent.ItemType<SoulPoweredShield>() ||
-                incomingItem.type == ModContent.ItemType<SoulPoweredShield>() ||
                 equippedItem.type == ModContent.ItemType<SpookyEmblem>() ||
                 incomingItem.type == ModContent.ItemType<SpookyEmblem>()
             )

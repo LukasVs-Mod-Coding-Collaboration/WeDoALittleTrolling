@@ -79,10 +79,10 @@ Mods: {
 				DisplayName: Spooky Emblem
 				Tooltip:
 					'''
+					Grants 32% summon critical strike chance
+					Grants 2 summon armor penetration per active minion
 					Increases your max number of minions by 1
 					Increases your max number of sentries by 1
-					Grants 25% summon critical strike chance
-					Grants 25 summon armor penetration
 					'''
 			}
 
@@ -90,10 +90,10 @@ Mods: {
 				DisplayName: Spooky Shield
 				Tooltip:
 					'''
+					Allows the ability to dash
+					Grants 2 defense per active minion
 					Increases your max number of minions by 1
 					Increases your max number of sentries by 1
-					Reduces damage taken by 25%
-					Allows the ability to dash
 					Enemies are less likely to target you
 					'''
 			}
