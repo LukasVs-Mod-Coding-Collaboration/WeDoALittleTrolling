@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.dashType = 1;
-            player.statDefense += (2 * (int)Math.Round(player.slotsMinions));
+            player.statDefense += (3 * (int)Math.Round(player.slotsMinions));
             player.aggro -= 400;
             player.maxMinions += 1;
             player.maxTurrets += 1;
