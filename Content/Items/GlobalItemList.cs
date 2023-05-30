@@ -37,9 +37,9 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 if(WeDoALittleTrolling.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
                 {
-                    modifiers.ArmorPenetration += (3 * (int)Math.Round(player.slotsMinions));
+                    modifiers.ArmorPenetration += (3 * player.maxMinions);
                     Random random = new Random();
-                    if(random.Next(0, 100) < (3 * (int)Math.Round(player.slotsMinions))) //(3 x <Player Minion Count>)% Chance
+                    if(random.Next(0, 100) < (3 * player.maxMinions)) //(3 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }

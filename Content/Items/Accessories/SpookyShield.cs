@@ -33,10 +33,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.dashType = 1;
-            player.statDefense += (3 * (int)Math.Round(player.slotsMinions));
             player.aggro -= 400;
             player.maxMinions += 1;
-            player.maxTurrets += 1;
+            player.statDefense += (3 * player.maxMinions);
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
@@ -61,7 +60,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.TinkerersWorkbench)
               .AddIngredient(ItemID.SpookyWood, 250)
               .AddIngredient(ItemID.NecromanticScroll, 1)
-              .AddIngredient(ItemID.HuntressBuckler, 1)
               .AddIngredient(ItemID.SunStone, 1)
               .AddIngredient(ItemID.Tabi, 1)
               .Register();
