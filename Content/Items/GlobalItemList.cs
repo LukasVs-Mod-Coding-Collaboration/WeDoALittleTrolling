@@ -285,27 +285,15 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 70;
             }
-            if (item.type == ItemID.StardustHelmet)
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.StardustBreastplate)
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.StardustLeggings)
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.NebulaHelmet)
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.NebulaBreastplate)
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.NebulaLeggings)
+            if
+            (
+                item.type == ItemID.StardustHelmet ||
+                item.type == ItemID.StardustBreastplate ||
+                item.type == ItemID.StardustLeggings ||
+                item.type == ItemID.NebulaHelmet ||
+                item.type == ItemID.NebulaBreastplate ||
+                item.type == ItemID.NebulaLeggings
+            )
             {
                 item.defense += 2;
             }
@@ -314,15 +302,19 @@ namespace WeDoALittleTrolling.Content.Items
                 item.defense += 1;
                 item.shopCustomPrice = 300000;
             }
-            if (item.type == ItemID.TikiShirt)
+            if
+            (
+                item.type == ItemID.TikiShirt ||
+                item.type == ItemID.TikiPants
+            )
             {
                 item.shopCustomPrice = 300000;
             }
-            if (item.type == ItemID.TikiPants)
-            {
-                item.shopCustomPrice = 300000;
-            }
-            if (item.type == ItemID.SpookyHelmet)
+            if
+            (
+                item.type == ItemID.SpookyHelmet ||
+                item.type == ItemID.SpookyLeggings
+            )
             {
                 item.defense += 2;
             }
@@ -330,79 +322,45 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 4;
             }
-            if (item.type == ItemID.SpookyLeggings)
-            {
-                item.defense += 2;
-            }
             if (item.type == ItemID.SpectreRobe)
             {
                 item.defense += 2;
             }
-            if (item.type == ItemID.BeeHeadgear)
+            
+            // Buff all pre-hardmode summon armors
+
+            if
+            (
+                item.type == ItemID.BeeHeadgear ||
+                item.type == ItemID.BeeBreastplate ||
+                item.type == ItemID.BeeGreaves ||
+                item.type == ItemID.FossilHelm ||
+                item.type == ItemID.FossilShirt ||
+                item.type == ItemID.FossilPants ||
+                item.type == ItemID.ObsidianHelm ||
+                item.type == ItemID.ObsidianShirt ||
+                item.type == ItemID.ObsidianPants
+            )
             {
                 item.defense += 1;
             }
-            if (item.type == ItemID.BeeBreastplate)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.BeeGreaves)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.FossilHelm)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.FossilShirt)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.FossilPants)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.ObsidianHelm)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.ObsidianShirt)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.ObsidianPants)
-            {
-                item.defense += 1;
-            }
-            if (item.type == ItemID.SpiderMask)
+            if
+            (
+                item.type == ItemID.SpiderMask ||
+                item.type == ItemID.SpiderBreastplate ||
+                item.type == ItemID.SpiderGreaves ||
+                item.type == ItemID.AncientBattleArmorHat || //Forbidden Mask
+                item.type == ItemID.AncientBattleArmorShirt || //Forbidden Robes
+                item.type == ItemID.AncientBattleArmorPants //Forbidden Treads
+            )
             {
                 item.defense += 2;
             }
-            if (item.type == ItemID.SpiderBreastplate)
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.SpiderGreaves)
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.AncientBattleArmorHat) //Forbidden Mask
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.AncientBattleArmorShirt) //Forbidden Robes
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.AncientBattleArmorPants) //Forbidden Treads
-            {
-                item.defense += 2;
-            }
-            if (item.type == ItemID.ElectrosphereLauncher)
-            {
-                item.autoReuse = true;
-            }
-            if (item.type == ItemID.SniperRifle)
+            if
+            (
+                item.type == ItemID.ElectrosphereLauncher ||
+                item.type == ItemID.SniperRifle
+            )
             {
                 item.autoReuse = true;
             }
@@ -431,13 +389,33 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 24;
             }
-            if (item.type == ItemID.JackOLanternMask)
+            if
+            (
+                item.type == ItemID.JackOLanternMask ||
+                item.type == ItemID.SWATHelmet
+            )
             {
                 item.material = true;
             }
-            if (item.type == ItemID.SWATHelmet)
+            if (item.type == ItemID.Smolstar) //Blade Staff
             {
-                item.material = true;
+                item.damage = 8;
+            }
+
+            // Buff all pre-hardmode summons
+
+            if
+            (
+                item.type == ItemID.AbigailsFlower ||
+                item.type == ItemID.BabyBirdStaff || //Finch Staff
+                item.type == ItemID.FlinxStaff ||
+                item.type == ItemID.SlimeStaff ||
+                item.type == ItemID.VampireFrogStaff ||
+                item.type == ItemID.HornetStaff ||
+                item.type == ItemID.ImpStaff
+            )
+            {
+                item.damage += 2;
             }
 
         }
