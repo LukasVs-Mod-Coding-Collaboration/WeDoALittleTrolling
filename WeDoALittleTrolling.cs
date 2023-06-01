@@ -51,7 +51,7 @@ namespace WeDoALittleTrolling
             return false;
         }
 
-        public static int getAmountOfEquippedAccessoriesWithPrefixFromPlayer(Player player, int prefixID)
+        public static int getAmountOfEquippedAccessoriesWithPrefixFromPlayer(Player player, int prefixID) //Fancy name much smart, haha :P
         {
             int equippedAmount = 0;
             int offset = 3;
@@ -69,6 +69,36 @@ namespace WeDoALittleTrolling
                 }
             }
             return equippedAmount;
+        }
+
+        public static bool hasPlayerHelmetEquipped(Player player, int itemID)
+        {
+            int offset = 0;
+            if(player.armor[offset].type == itemID)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool hasPlayerChestplateEquipped(Player player, int itemID)
+        {
+            int offset = 1;
+            if(player.armor[offset].type == itemID)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool hasPlayerLeggingsEquipped(Player player, int itemID)
+        {
+            int offset = 2;
+            if(player.armor[offset].type == itemID)
+            {
+                return true;
+            }
+            return false;
         }
 
         public static bool isPlayerHoldingItemWithPrefix(Player player, int prefixID)
