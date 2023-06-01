@@ -431,6 +431,14 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 24;
             }
+            if (item.type == ItemID.JackOLanternMask)
+            {
+                item.material = true;
+            }
+            if (item.type == ItemID.SWATHelmet)
+            {
+                item.material = true;
+            }
 
         }
 
