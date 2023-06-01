@@ -281,9 +281,13 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 44;
             }
+            if (item.type == ItemID.StardustDragonStaff)
+            {
+                item.damage = 50;
+            }
             if (item.type == ItemID.StardustCellStaff)
             {
-                item.damage = 70;
+                item.damage = 75;
             }
             if
             (
