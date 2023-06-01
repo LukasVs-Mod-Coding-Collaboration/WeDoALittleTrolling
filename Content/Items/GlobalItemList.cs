@@ -289,6 +289,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 75;
             }
+            if (item.type == ItemID.EmpressBlade) //Terraprisma
+            {
+                item.damage = 100;
+            }
             if
             (
                 item.type == ItemID.StardustHelmet ||
