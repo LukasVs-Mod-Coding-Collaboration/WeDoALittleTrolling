@@ -412,7 +412,9 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 item.type == ItemID.JackOLanternMask ||
-                item.type == ItemID.SWATHelmet
+                item.type == ItemID.SWATHelmet ||
+                item.type == ItemID.RainbowCrystalStaff ||
+                item.type == ItemID.RainbowWhip
             )
             {
                 item.material = true;
