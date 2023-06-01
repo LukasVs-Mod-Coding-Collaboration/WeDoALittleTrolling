@@ -35,7 +35,7 @@ namespace WeDoALittleTrolling.Content.Items
                 modifiers.DamageType == DamageClass.MagicSummonHybrid
             )
             {
-                if(WeDoALittleTrolling.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
+                if(WDALTUtil.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
                 {
                     modifiers.ArmorPenetration += (3 * player.maxMinions);
                     Random random = new Random();

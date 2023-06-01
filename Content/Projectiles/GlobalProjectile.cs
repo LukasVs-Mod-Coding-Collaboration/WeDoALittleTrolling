@@ -49,7 +49,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     modifiers.DamageType == DamageClass.Magic
                 )
                 {
-                    if (WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Supercritical>()))
+                    if (WDALTUtil.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Supercritical>()))
                     {
                         modifiers.CritDamage *= (float)2.0;
                     }
@@ -63,7 +63,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.type == ProjectileID.SandnadoFriendly
                 )
                 {
-                    if(WeDoALittleTrolling.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
+                    if(WDALTUtil.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
                     {
                         modifiers.ArmorPenetration += (3 * player.maxMinions);
                         Random random = new Random();
@@ -85,8 +85,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if
                 (
                     (
-                        WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>()) ||
-                        WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>())
+                        WDALTUtil.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>()) ||
+                        WDALTUtil.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>())
                     ) &&
                     (
                         hit.DamageType == DamageClass.Melee ||
@@ -124,7 +124,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     if
                     (
                         player.HasBuff(BuffID.MoonLeech) &&
-                        WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>())
+                        WDALTUtil.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>())
                     )
                     {
                         healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
@@ -132,15 +132,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     // Siphoning should always be
                     // 75% less effective than Leeching
                     // 1 Base Heal is still guaranteed
-                    if(WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>()))
+                    if(WDALTUtil.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>()))
                     {
                         healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
                     }
-                    if(WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>()))
+                    if(WDALTUtil.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Leeching>()))
                     {
                         player.Heal(healingAmount);
                     }
-                    else if(WeDoALittleTrolling.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>()))
+                    else if(WDALTUtil.isPlayerHoldingItemWithPrefix(player, ModContent.PrefixType<Siphoning>()))
                     {
                         if(player.statMana <= (player.statManaMax2 - healingAmount))
                         {
