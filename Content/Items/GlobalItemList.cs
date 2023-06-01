@@ -147,6 +147,18 @@ namespace WeDoALittleTrolling.Content.Items
                 player.KillMe(reason, 99999999999999, 0, false);
                 return false;
             }
+            // Anti-Zapinator-Mechanism
+            else if
+            (
+                item.type == ItemID.ZapinatorOrange ||
+                item.type == ItemID.ZapinatorGray
+            )
+            {
+                PlayerDeathReason reason = new PlayerDeathReason();
+                reason.SourceCustomReason = player.name + " tried to use a bugged item.";
+                player.KillMe(reason, 99999999999999, 0, false);
+                return false;
+            }
             return base.CanUseItem(item, player);
         }
 
@@ -233,13 +245,13 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ZapinatorOrange)
             {
-                item.damage = 80;
+                item.damage = 0;
                 item.useTime = 37;
                 item.useAnimation = 37;
             }
             if (item.type == ItemID.ZapinatorGray)
             {
-                item.damage = 36;
+                item.damage = 0;
                 item.useTime = 37;
                 item.useAnimation = 37;
             }

@@ -18,13 +18,11 @@ namespace WeDoALittleTrolling.Content.Recipes
 
         public override void AddRecipes()
         {
-            /*
-            Recipe WDALT_SharkToothNecklace = Recipe.Create(ItemID.SharkToothNecklace, 1);
-            WDALT_SharkToothNecklace.AddTile(TileID.TinkerersWorkbench);
-            WDALT_SharkToothNecklace.AddIngredient(ItemID.Shackle, 1);
-            WDALT_SharkToothNecklace.AddRecipeGroup(RecipeGroupID.IronBar, 10);
-            WDALT_SharkToothNecklace.Register();
-            */
+            Recipe WDALT_Terraprisma = Recipe.Create(ItemID.EmpressBlade, 1);
+            WDALT_Terraprisma.AddTile(TileID.LunarCraftingStation);
+            WDALT_Terraprisma.AddIngredient(ItemID.RainbowWhip, 1);
+            WDALT_Terraprisma.AddIngredient(ItemID.RainbowCrystalStaff, 1);
+            WDALT_Terraprisma.Register();
 
             Recipe WDALT_HardySaddleToHeartCrystal = Recipe.Create(ItemID.LifeCrystal, 1);
             WDALT_HardySaddleToHeartCrystal.AddIngredient(ItemID.HardySaddle, 1);
