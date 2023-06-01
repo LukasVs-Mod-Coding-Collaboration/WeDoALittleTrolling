@@ -266,6 +266,16 @@ Mods: {
 				AdditionalTooltip: +Weapon imbued with Confetti
 			}
 
+			FishingInfusion: {
+				DisplayName: Fishing infusing
+				AdditionalTooltip: +Fishing buff
+			}
+
+			SonarInfusion: {
+				DisplayName: Sonar infusing
+				AdditionalTooltip: +Sonar buff
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
