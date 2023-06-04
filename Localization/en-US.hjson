@@ -25,10 +25,10 @@ Mods: {
 				DisplayName: Magmaflux Core
 				Tooltip:
 					'''
-					Grants Immunity to Lava
-					Melee attacks inflict 'On fire!'
-					Grants a minor increase to
-					life regeneration
+					Makes the player immune to lava, Hellstone and Meteorite
+					Melee attacks inflict fire damage
+					Slowly regenerates life	
+					"It emits a pleasant warmth."
 					'''
 			}
 
