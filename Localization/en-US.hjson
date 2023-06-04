@@ -38,7 +38,8 @@ Mods: {
 					'''
 					The power of unlimited magic energy at the cost of some of your life force...
 					You no longer gain mana sickness, however,
-					your maximal Health points are reduced by 100
+					your maximal Health points are reduced by 75
+					+5% Magic damage
 					'''
 			}
 
