@@ -28,8 +28,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
             Item.useAnimation = 24; // The length of the item's use animation in ticks (60 ticks == 1 second.)
             Item.useTime = 24; // The length of the item's use time in ticks (60 ticks == 1 second.)
-            Item.reuseDelay = 8;
-            Item.UseSound = SoundID.Item71; // The sound that this item plays when used.
+            Item.UseSound = SoundID.Item45; // The sound that this item plays when used.
             Item.autoReuse = true; // Allows the player to hold click to automatically use the item again. Most spears don't autoReuse, but it's possible when used in conjunction with CanUseItem()
 
             // Weapon Properties
