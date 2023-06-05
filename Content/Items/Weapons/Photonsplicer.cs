@@ -40,7 +40,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.noMelee = true; // Allows the item's animation to do damage. This is important because the spear is actually a projectile instead of an item. This prevents the melee hitbox of this item.
 
             // Projectile Properties
-            Item.shootSpeed = 3.7f; // The speed of the projectile measured in pixels per frame.
             Item.shootSpeed = (float)3.7; // The speed of the projectile measured in pixels per frame.
             Item.shoot = ModContent.ProjectileType<PhotonsplicerProjectile>(); // The projectile that is fired from this weapon
         }
