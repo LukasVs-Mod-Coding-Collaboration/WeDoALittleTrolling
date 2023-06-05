@@ -38,7 +38,8 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             AIType = ProjectileID.Bullet; // Act exactly like default Bullet
         }
 
-        public override bool PreDraw(ref Color lightColor) {
+        public override bool PreDraw(ref Color lightColor)
+        {
             Main.instance.LoadProjectile(Projectile.type);
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 

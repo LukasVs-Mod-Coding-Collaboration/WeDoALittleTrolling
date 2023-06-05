@@ -186,12 +186,18 @@ Mods: {
 				DisplayName: Infinite Rocket I
 				Tooltip: It seems to multiply as you load it into your weapon...
 			}
+
+			Photonsplicer: {
+				DisplayName: Photonsplicer
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
 			Beamlaser1.DisplayName: Artemis Beam Laser
 			Beamlaser2.DisplayName: Apollon Beam Laser
 			Beamlaser2_AutoAim.DisplayName: Apollon Beam Laser
+			PhotonsplicerProjectile.DisplayName: Photonsplicer Projectile
 		}
 
 		Prefixes: {
