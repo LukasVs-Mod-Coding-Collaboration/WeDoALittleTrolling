@@ -8,158 +8,47 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
+using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
+using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Items
 {
     internal class GlobalItemList : GlobalItem
     {
-        public override void ModifyHitNPC(Item item, Player player, NPC target, ref NPC.HitModifiers modifiers)
+
+        //Revert damage reduction from Spectre Hood
+        public override void UpdateEquip(Item item, Player player)
         {
             if
             (
-                modifiers.DamageType == DamageClass.Magic
+                item.type == ItemID.SpectreHood &&
+                player.GetModPlayer<WDALTPlayerUtil>().hasPlayerChestplateEquipped(ItemID.SpectreRobe) &&
+                player.GetModPlayer<WDALTPlayerUtil>().hasPlayerLeggingsEquipped(ItemID.SpectrePants)
             )
             {
-                if (item.prefix == ModContent.PrefixType<Supercritical>())
-                {
-                    modifiers.CritDamage *= 2.0f;
-                }
+                player.GetDamage(DamageClass.Magic) += (float)0.4;
             }
-            if
-            (
-                modifiers.DamageType == DamageClass.Summon ||
-                modifiers.DamageType == DamageClass.SummonMeleeSpeed ||
-                modifiers.DamageType == DamageClass.MagicSummonHybrid
-            )
-            {
-                if(WDALTUtil.hasPlayerAcessoryEquipped(player, ModContent.ItemType<SpookyEmblem>()))
-                {
-                    modifiers.ArmorPenetration += (3 * player.maxMinions);
-                    Random random = new Random();
-                    if(random.Next(0, 100) < (3 * player.maxMinions)) //(3 x <Player Minion Slots>)% Chance
-                    {
-                        modifiers.SetCrit();
-                    }
-                }
-            }
-            base.ModifyHitNPC(item, player, target, ref modifiers);
+            base.UpdateEquip(item, player);
         }
-        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
+
+        //Adjust Tooltips accordingly
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if
             (
-                (
-                    item.prefix == ModContent.PrefixType<Leeching>() ||
-                    item.prefix == ModContent.PrefixType<Siphoning>()
-                ) &&
-                (
-                    hit.DamageType == DamageClass.Melee ||
-                    hit.DamageType == DamageClass.MeleeNoSpeed ||
-                    hit.DamageType == DamageClass.SummonMeleeSpeed ||
-                    hit.DamageType == DamageClass.Magic
-                ) &&
-                !target.friendly && 
-                !target.CountsAsACritter && 
-                !target.isLikeATownNPC && 
-                target.type != NPCID.TargetDummy
+                item.type == ItemID.SpectreHood ||
+                item.type == ItemID.SpectreRobe ||
+                item.type == ItemID.SpectrePants
             )
             {
-                // 1 Base Heal + 5% of damage done
-                int healingAmount = 1 + (int)Math.Round(damageDone * 0.05);
-                if(hit.Crit)
-                {
-                    // Stop Sacling at ~320 Damage for Critical Hits
-                    if(healingAmount > 16)
-                    {
-                        healingAmount = 16;
-                    }
-                }
-                else
-                {
-                    // Stop Sacling at ~160 Damage for Normal Hits
-                    if(healingAmount > 8)
-                    {
-                        healingAmount = 8;
-                    }
-                }
-                // Having Moon Bite means the effect still works, however,
-                // it will be 90% less effective
-                // 1 Base Heal is still guaranteed
-                if(player.HasBuff(BuffID.MoonLeech) && item.prefix == ModContent.PrefixType<Leeching>())
-                {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
-                }
-                // Siphoning should always be
-                // 75% less effective than Leeching
-                // 1 Base Heal is still guaranteed
-                if(item.prefix == ModContent.PrefixType<Siphoning>())
-                {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
-                }
-                if(item.prefix == ModContent.PrefixType<Leeching>())
-                {
-                    player.Heal(healingAmount);
-                }
-                else if(item.prefix == ModContent.PrefixType<Siphoning>())
-                {
-                    if(player.statMana <= (player.statManaMax2 - healingAmount))
-                    {
-                        player.statMana += healingAmount;
-                    }
-                    player.ManaEffect(healingAmount);
-                }
+                //Just override this line for all Languages, we only support english anyway
+                List<TooltipLine> setBonusLine = tooltips.FindAll(t => (t.Name == "SetBonus") && (t.Mod == "Terraria") && t.Text.Contains("40"));
+                setBonusLine.ForEach(t => t.Text = "Set bonus: Generates 20% of magic damage as healing force\nMagic damage done to enemies heals the player with lowest health");
             }
-
-            base.OnHitNPC(item, player, target, hit, damageDone);
-        }
-        /*
-        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            int healingAmount = (int)Math.Round(damageDone * 0.05);
-            player.chatOverhead.NewMessage("healing amount: " + healingAmount, 60);
-            if(item.prefix == ModContent.PrefixType<Leeching>())
-            {
-                player.chatOverhead.NewMessage("Leeching Modifier Detected!", 60);
-            }
-            base.OnHitNPC(item, player, target, hit, damageDone);
-        }
-        */
-
-
-        public override bool CanUseItem(Item item, Player player)
-        {
-            // Anti-Poo-Block-Mechanism
-            if(item.type == ItemID.PoopBlock)
-            {
-                PlayerDeathReason reason = new PlayerDeathReason();
-                reason.SourceCustomReason = player.name + " tried to uglify the world.";
-                player.KillMe(reason, 99999999999999, 0, false);
-                return false;
-            }
-            // Anti-Landmine-Mechanism
-            else if(item.type == ItemID.LandMine)
-            {
-                PlayerDeathReason reason = new PlayerDeathReason();
-                reason.SourceCustomReason = player.name + " tried to teamtroll and had it backfire.";
-                player.KillMe(reason, 99999999999999, 0, false);
-                return false;
-            }
-            // Anti-Zapinator-Mechanism
-            else if
-            (
-                item.type == ItemID.ZapinatorOrange ||
-                item.type == ItemID.ZapinatorGray
-            )
-            {
-                PlayerDeathReason reason = new PlayerDeathReason();
-                reason.SourceCustomReason = player.name + " tried to use a bugged item.";
-                player.KillMe(reason, 99999999999999, 0, false);
-                return false;
-            }
-            return base.CanUseItem(item, player);
+            base.ModifyTooltips(item, tooltips);
         }
 
         public override void SetDefaults(Item item)
