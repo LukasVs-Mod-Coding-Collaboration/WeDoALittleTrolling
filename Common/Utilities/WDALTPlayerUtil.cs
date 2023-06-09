@@ -107,7 +107,8 @@ namespace WeDoALittleTrolling.Common.Utilities
             (
                 (
                     item.prefix == ModContent.PrefixType<Leeching>() ||
-                    item.prefix == ModContent.PrefixType<Siphoning>()
+                    item.prefix == ModContent.PrefixType<Siphoning>() ||
+                    item.type   == ItemID.ChlorophytePartisan
                 ) &&
                 (
                     hit.DamageType == DamageClass.Melee ||
@@ -147,14 +148,12 @@ namespace WeDoALittleTrolling.Common.Utilities
                 {
                     healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                 }
-                // Siphoning should always be
-                // 75% less effective than Leeching
-                // 1 Base Heal is still guaranteed
-                if(item.prefix == ModContent.PrefixType<Siphoning>())
+                // Chlorophyte Partisan go BRRRR!!!
+                if(item.type == ItemID.ChlorophytePartisan && item.prefix == ModContent.PrefixType<Leeching>())
                 {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
+                    healingAmount *= 2;
                 }
-                if(item.prefix == ModContent.PrefixType<Leeching>())
+                if(item.prefix == ModContent.PrefixType<Leeching>() || item.type == ItemID.ChlorophytePartisan)
                 {
                     double timeSinceLastHeal = Math.Abs(Main.time - lastLeechingHealTime); // Use ABS to avoid negative time
                     if(timeSinceLastHeal >= player.itemAnimationMax) // Only heal player once every item use
@@ -165,16 +164,11 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 else if(item.prefix == ModContent.PrefixType<Siphoning>())
                 {
-                    double timeSinceLastHeal = Math.Abs(Main.time - lastLeechingHealTime); // Use ABS to avoid negative time
-                    if(timeSinceLastHeal >= player.itemAnimationMax) // Only give mana to player once every item use
+                    if(player.statMana <= (player.statManaMax2 - healingAmount))
                     {
-                        if(player.statMana <= (player.statManaMax2 - healingAmount))
-                        {
-                            player.statMana += healingAmount;
-                        }
-                        player.ManaEffect(healingAmount);
-                        lastLeechingHealTime = Main.time;
+                        player.statMana += healingAmount;
                     }
+                    player.ManaEffect(healingAmount);
                 }
             }
             base.OnHitNPC(target, hit, damageDone);

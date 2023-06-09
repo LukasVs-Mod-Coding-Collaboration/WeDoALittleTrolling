@@ -31,6 +31,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.GetDamage(DamageClass.Magic) += (float)0.4;
             }
+            if(item.type == ItemID.SpectreHood)
+            {
+                player.statManaMax2 += 60;
+            }
             base.UpdateEquip(item, player);
         }
 
@@ -47,6 +51,16 @@ namespace WeDoALittleTrolling.Content.Items
                 //Just override this line for all Languages, we only support english anyway
                 List<TooltipLine> setBonusLine = tooltips.FindAll(t => (t.Name == "SetBonus") && (t.Mod == "Terraria") && t.Text.Contains("40"));
                 setBonusLine.ForEach(t => t.Text = "Set bonus: Generates 20% of magic damage as healing force\nMagic damage done to enemies heals the player with lowest health");
+            }
+            if(item.type == ItemID.SpectreHood)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixAccMaxMana", "Increases maximum mana by 60");
+                tooltips.Add(extraManaLine);
+            }
+            if(item.type == ItemID.ChlorophytePartisan)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixWeaponLeechingDescription", "Recoveres 5% of damage as health");
+                tooltips.Add(extraManaLine);
             }
             base.ModifyTooltips(item, tooltips);
         }
@@ -311,6 +325,10 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.Smolstar) //Blade Staff
             {
                 item.damage = 8;
+            }
+            if (item.type == ItemID.ChlorophytePartisan)
+            {
+                item.damage = 60;
             }
 
             // Buff all pre-hardmode summons

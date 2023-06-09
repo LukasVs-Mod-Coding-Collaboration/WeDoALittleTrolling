@@ -21,7 +21,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Magic;
         public override float RollChance(Item item)
         {
-            return 1.0f;
+            return 0.5f;
         }
 
         public override bool CanRoll(Item item)

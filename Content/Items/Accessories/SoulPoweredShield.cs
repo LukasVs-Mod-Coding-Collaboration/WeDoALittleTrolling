@@ -31,7 +31,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.endurance += 0.20f; //Damage Reduction (originally 0.25)
+            player.endurance += 0.25f; //Damage Reduction (originally 0.25)
             player.statDefense += 5; // (originally 7)
             player.noKnockback = true;
             player.lavaImmune = true; //Immunity to Lava and Fire blocks

@@ -55,9 +55,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         }
 
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
+        /*
         public override void AddRecipes() {
             CreateRecipe()
                 .Register();
         }
+        */
     }
 }
