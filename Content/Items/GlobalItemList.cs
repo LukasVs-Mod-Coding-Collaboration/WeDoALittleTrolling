@@ -348,6 +348,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage += 2;
             }
 
+            if (item.type == ItemID.ReaverShark)
+            {
+                item.pick = 100;
+            }
+
         }
 
     }

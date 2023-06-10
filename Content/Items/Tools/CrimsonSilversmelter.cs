@@ -29,7 +29,7 @@ namespace WeDoALittleTrolling.Content.Items.Tools
             Item.useTurn = true;
             Item.UseSound = SoundID.Item1;
 
-            Item.pick = 65;
+            Item.pick = 55;
 
             Item.damage = 25;
             Item.DamageType = DamageClass.Melee;

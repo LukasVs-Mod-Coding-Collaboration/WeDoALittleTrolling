@@ -562,6 +562,18 @@ namespace WeDoALittleTrolling.Content.Recipes
                 {
                     recipe.AddIngredient(ItemID.ChlorophyteBar, 15);
                 }
+
+                //Progression Changes
+                if(recipe.TryGetResult(ItemID.NightmarePickaxe, out Item NightmarePickaxe))
+                {
+                    recipe.AddIngredient(ItemID.FossilOre, 6);
+                    recipe.AddIngredient(ItemID.FlinxFur, 6);
+                }
+                if(recipe.TryGetResult(ItemID.DeathbringerPickaxe, out Item DeathbringerPickaxe))
+                {
+                    recipe.AddIngredient(ItemID.FossilOre, 6);
+                    recipe.AddIngredient(ItemID.FlinxFur, 6);
+                }
             }
         }
     }
