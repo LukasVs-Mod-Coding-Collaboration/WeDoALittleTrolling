@@ -37,19 +37,25 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override bool CanUseItem(Item item)
         {
             // Anti-Poo-Block-Mechanism
-            if(item.type == ItemID.PoopBlock)
+            if
+            (
+                item.type == ItemID.PoopBlock ||
+                item.type == ItemID.PoopWall
+            )
             {
-                PlayerDeathReason reason = new PlayerDeathReason();
-                reason.SourceCustomReason = player.name + " tried to uglify the world.";
-                player.KillMe(reason, 99999999999999, 0, false);
+                //PlayerDeathReason reason = new PlayerDeathReason();
+                //reason.SourceCustomReason = player.name + " tried to uglify the world.";
+                //player.KillMe(reason, 99999999999999, 0, false);
+                player.chatOverhead.NewMessage(player.name + " tried to uglify the world.", 180);
                 return false;
             }
             // Anti-Landmine-Mechanism
             else if(item.type == ItemID.LandMine)
             {
-                PlayerDeathReason reason = new PlayerDeathReason();
-                reason.SourceCustomReason = player.name + " tried to teamtroll and had it backfire.";
-                player.KillMe(reason, 99999999999999, 0, false);
+                //PlayerDeathReason reason = new PlayerDeathReason();
+                //reason.SourceCustomReason = player.name + " tried to teamtroll and had it backfire.";
+                //player.KillMe(reason, 99999999999999, 0, false);
+                player.chatOverhead.NewMessage(player.name + " tried to teamtroll and had it backfire.", 180);
                 return false;
             }
             // Anti-Zapinator-Mechanism
@@ -59,9 +65,10 @@ namespace WeDoALittleTrolling.Common.Utilities
                 item.type == ItemID.ZapinatorGray
             )
             {
-                PlayerDeathReason reason = new PlayerDeathReason();
-                reason.SourceCustomReason = player.name + " tried to use a bugged item.";
-                player.KillMe(reason, 99999999999999, 0, false);
+                //PlayerDeathReason reason = new PlayerDeathReason();
+                //reason.SourceCustomReason = player.name + " tried to use a bugged item.";
+                //player.KillMe(reason, 99999999999999, 0, false);
+                player.chatOverhead.NewMessage(player.name + " tried to use a bugged item.", 180);
                 return false;
             }
             return base.CanUseItem(item);

@@ -62,6 +62,16 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixWeaponLeechingDescription", "Recoveres 5% of damage as health");
                 tooltips.Add(extraManaLine);
             }
+            if(item.type == ItemID.Moondial)
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "Allows time to fast forward to dusk");
+            }
+            if(item.type == ItemID.Sundial)
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "Allows time to fast forward to dawn");
+            }
             base.ModifyTooltips(item, tooltips);
         }
 

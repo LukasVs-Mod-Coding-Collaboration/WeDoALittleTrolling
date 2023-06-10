@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -69,6 +70,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 NPCID.AngryTrapper,
                 NPCID.Moth
             };
+            int[] InflictPoisonDebuff1In1Group =
+            {
+                NPCID.Snatcher,
+                NPCID.ManEater
+            };
             int[] InflictBleedingDebuff1In1Group =
             {
                 NPCID.Shark,
@@ -89,6 +95,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                     target.AddBuff(BuffID.Venom, 240, false); //4s, X2 in Expert, X2.5 in Master
                 }
             }
+            if(InflictPoisonDebuff1In1Group.Contains(npc.type))
+            {
+                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                {
+                    target.AddBuff(BuffID.Poisoned, 240, false); //4s, X2 in Expert, X2.5 in Master
+                }
+            }
             if(InflictBleedingDebuff1In1Group.Contains(npc.type))
             {
                 if(random.Next(0, 1) == 0) //1 in 1 Chance
@@ -104,6 +117,40 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
             }
             base.OnHitPlayer(npc, target, hurtInfo);
+        }
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if(npc.type == NPCID.IceElemental)
+            {
+                foreach(IItemDropRule rule in npcLoot.Get())
+                {
+                    if(rule is CommonDrop drop)
+                    {
+                        if(drop.itemId == ItemID.IceSickle)
+                        {
+                            drop.chanceNumerator = 1; // 1 in
+                            drop.chanceDenominator = 10; // 10 chance
+                        }
+                        if(drop.itemId == ItemID.FrostStaff)
+                        {
+                            drop.chanceNumerator = 1; // 1 in
+                            drop.chanceDenominator = 10; // 10 chance
+                        }
+                    }
+                }
+            }
+            if(npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 1; // 1 in
+                int chanceDenominator = 3; // 3 chance
+                int itemID = ModContent.ItemType<Consumablebee>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            base.ModifyNPCLoot(npc, npcLoot);
         }
     }
 }
