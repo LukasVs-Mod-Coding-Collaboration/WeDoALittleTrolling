@@ -44,17 +44,19 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.DemonAltar)
               .AddIngredient(ItemID.DemoniteBar, 5)
-              .AddIngredient(ItemID.ShadowScale, 1)
+              .AddIngredient(ItemID.SoulofFright, 1)
               .AddIngredient(ItemID.HellstoneBar, 3)
               .AddIngredient(ItemID.VilePowder, 3)
+              .AddIngredient(ItemID.AshBlock, 3)
               .Register();
 
             CreateRecipe()
               .AddTile(TileID.DemonAltar)
               .AddIngredient(ItemID.CrimtaneBar, 5)
-              .AddIngredient(ItemID.TissueSample, 1)
+              .AddIngredient(ItemID.SoulofFright, 1)
               .AddIngredient(ItemID.HellstoneBar, 3)
               .AddIngredient(ItemID.VilePowder, 3)
+              .AddIngredient(ItemID.AshBlock, 3)
               .Register();
         }
     }
