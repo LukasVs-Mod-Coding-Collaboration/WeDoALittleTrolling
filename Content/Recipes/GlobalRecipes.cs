@@ -548,6 +548,20 @@ namespace WeDoALittleTrolling.Content.Recipes
                     }
                     ChlorophyteBullet.stack = 150;
                 }
+
+                //Spooky Armor
+                if(recipe.TryGetResult(ItemID.SpookyHelmet, out Item SpookyHelmet))
+                {
+                    recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
+                }
+                if(recipe.TryGetResult(ItemID.SpookyBreastplate, out Item SpookyBreastplate))
+                {
+                    recipe.AddIngredient(ItemID.ChlorophyteBar, 18);
+                }
+                if(recipe.TryGetResult(ItemID.SpookyLeggings, out Item SpookyLeggings))
+                {
+                    recipe.AddIngredient(ItemID.ChlorophyteBar, 15);
+                }
             }
         }
     }
