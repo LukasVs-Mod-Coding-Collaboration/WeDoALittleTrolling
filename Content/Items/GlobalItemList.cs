@@ -262,7 +262,8 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.FossilPants ||
                 item.type == ItemID.ObsidianHelm ||
                 item.type == ItemID.ObsidianShirt ||
-                item.type == ItemID.ObsidianPants
+                item.type == ItemID.ObsidianPants ||
+                item.type == ItemID.FlinxFurCoat
             )
             {
                 item.defense += 1;

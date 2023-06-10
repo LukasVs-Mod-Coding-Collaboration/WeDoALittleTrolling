@@ -42,6 +42,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                 NPCID.GiantTortoise,
                 NPCID.IceTortoise
             };
+            int[] KnockbackResistanceGroup =
+            {
+                NPCID.AngryTrapper
+            };
             if(NerfGroup25Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * (float)0.75);
@@ -49,6 +53,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(NerfGroup35Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * (float)0.65);
+            }
+            if(KnockbackResistanceGroup.Contains(npc.type))
+            {
+                npc.knockBackResist = 0f;
             }
             base.SetDefaults(npc);
         }
