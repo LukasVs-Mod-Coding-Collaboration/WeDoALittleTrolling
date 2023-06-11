@@ -17,11 +17,18 @@ namespace WeDoALittleTrolling.Common.Utilities
     {
         public double lastLeechingHealTime;
         public Player player;
+        public Item heldItem;
 
+        public override void PreUpdate()
+        {
+            heldItem = this.Player.HeldItem;
+            base.PreUpdate();
+        }
         public override void Initialize()
         {
             lastLeechingHealTime = 0;
             player = this.Player;
+            heldItem = this.Player.HeldItem;
         }
 
         public override void UpdateDead()
@@ -76,13 +83,12 @@ namespace WeDoALittleTrolling.Common.Utilities
         
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            Item item = player.HeldItem;
             if
             (
                 modifiers.DamageType == DamageClass.Magic
             )
             {
-                if (item.prefix == ModContent.PrefixType<Supercritical>())
+                if (heldItem.prefix == ModContent.PrefixType<Supercritical>())
                 {
                     modifiers.CritDamage *= 2.0f;
                 }
@@ -109,13 +115,12 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Item item = player.HeldItem;
             if
             (
                 (
-                    item.prefix == ModContent.PrefixType<Leeching>() ||
-                    item.prefix == ModContent.PrefixType<Siphoning>() ||
-                    item.type   == ItemID.ChlorophytePartisan
+                    heldItem.prefix == ModContent.PrefixType<Leeching>() ||
+                    heldItem.prefix == ModContent.PrefixType<Siphoning>() ||
+                    heldItem.type   == ItemID.ChlorophytePartisan
                 ) &&
                 (
                     hit.DamageType == DamageClass.Melee ||
@@ -151,16 +156,16 @@ namespace WeDoALittleTrolling.Common.Utilities
                 // Having Moon Bite means the effect still works, however,
                 // it will be 90% less effective
                 // 1 Base Heal is still guaranteed
-                if(player.HasBuff(BuffID.MoonLeech) && item.prefix == ModContent.PrefixType<Leeching>())
+                if(player.HasBuff(BuffID.MoonLeech) && heldItem.prefix == ModContent.PrefixType<Leeching>())
                 {
                     healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                 }
                 // Chlorophyte Partisan go BRRRR!!!
-                if(item.type == ItemID.ChlorophytePartisan && item.prefix == ModContent.PrefixType<Leeching>())
+                if(heldItem.type == ItemID.ChlorophytePartisan && heldItem.prefix == ModContent.PrefixType<Leeching>())
                 {
                     healingAmount *= 2;
                 }
-                if(item.prefix == ModContent.PrefixType<Leeching>() || item.type == ItemID.ChlorophytePartisan)
+                if(heldItem.prefix == ModContent.PrefixType<Leeching>() || heldItem.type == ItemID.ChlorophytePartisan)
                 {
                     double timeSinceLastHeal = Math.Abs(Main.time - lastLeechingHealTime); // Use ABS to avoid negative time
                     if(timeSinceLastHeal >= player.itemAnimationMax) // Only heal player once every item use
@@ -169,7 +174,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                         lastLeechingHealTime = Main.time;
                     }
                 }
-                else if(item.prefix == ModContent.PrefixType<Siphoning>())
+                else if(heldItem.prefix == ModContent.PrefixType<Siphoning>())
                 {
                     if(player.statMana <= (player.statManaMax2 - healingAmount))
                     {
@@ -252,8 +257,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public bool isPlayerHoldingItemWithPrefix(int prefixID)
         {
-            Item item = player.HeldItem;
-            if(item.prefix == prefixID)
+            if(heldItem.prefix == prefixID)
             {
                 return true;
             }
