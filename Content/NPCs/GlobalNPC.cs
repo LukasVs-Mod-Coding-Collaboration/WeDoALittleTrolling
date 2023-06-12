@@ -16,10 +16,6 @@ namespace WeDoALittleTrolling.Content.NPCs
 {
     internal class GlobalNPCs : GlobalNPC
     {
-        public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
-        {
-            base.ModifyHitPlayer(npc, target, ref modifiers);
-        }
 
         public override void SetDefaults(NPC npc)
         {
@@ -49,11 +45,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             };
             if(NerfGroup25Percent.Contains(npc.type))
             {
-                npc.damage = (int)Math.Round(npc.damage * (float)0.75);
+                npc.damage = (int)Math.Round(npc.damage * 0.75);
             }
             if(NerfGroup35Percent.Contains(npc.type))
             {
-                npc.damage = (int)Math.Round(npc.damage * (float)0.65);
+                npc.damage = (int)Math.Round(npc.damage * 0.65);
             }
             if(KnockbackResistanceGroup.Contains(npc.type))
             {

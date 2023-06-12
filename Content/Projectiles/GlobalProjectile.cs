@@ -16,7 +16,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     internal class GlobalProjectiles : GlobalProjectile
     {
-
+        
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
             int[] NerfGroup25Percent =
@@ -24,7 +24,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 ProjectileID.SandBallFalling,
                 ProjectileID.Stinger
             };
-            int[] NerfGroup45Percent =
+            int[] NerfGroup50Percent =
             {
                 ProjectileID.UnholyTridentHostile
             };
@@ -32,20 +32,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 modifiers.SourceDamage *= (float)0.75;
             }
-            if(NerfGroup45Percent.Contains(projectile.type))
+            if(NerfGroup50Percent.Contains(projectile.type))
             {
-                modifiers.SourceDamage *= (float)0.55;
+                modifiers.SourceDamage *= (float)0.5;
             }
             base.ModifyHitPlayer(projectile, target, ref modifiers);
-        }
-
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
-        {
-            if(projectile.type == ProjectileID.SporeCloud)
-            {
-                target.AddBuff(BuffID.Poisoned, 240, false); //4s, X2 in Expert, X2.5 in Master
-            }
-            base.ModifyHitNPC(projectile, target, ref modifiers);
         }
     }
 }

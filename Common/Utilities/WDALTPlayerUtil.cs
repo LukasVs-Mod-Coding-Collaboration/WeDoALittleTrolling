@@ -113,6 +113,15 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.ModifyHitNPC(target, ref modifiers);
         }
 
+        public override void ModifyHitNPCWithProj(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if(projectile.type == ProjectileID.SporeCloud)
+            {
+                target.AddBuff(BuffID.Poisoned, 240, false); //4s, X2 in Expert, X2.5 in Master
+            }
+            base.ModifyHitNPCWithProj(projectile, target, ref modifiers);
+        }
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if
