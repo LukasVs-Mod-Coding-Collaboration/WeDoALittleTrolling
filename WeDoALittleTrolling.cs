@@ -1,6 +1,6 @@
 /*
     WeDoALittleTrolling is a Terraria Mod made with tModLoader.
-    Copyright (C) 2022 LukasV-Coding
+    Copyright (C) 2022-2023 LukasV-Coding
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
