@@ -19,6 +19,46 @@ namespace WeDoALittleTrolling.Content.Items
     internal class GlobalItemList : GlobalItem
     {
 
+        public override bool CanUseItem(Item item, Player player)
+        {
+            // Anti-Poo-Block-Mechanism
+            if
+            (
+                item.type == ItemID.PoopBlock ||
+                item.type == ItemID.PoopWall
+            )
+            {
+                //PlayerDeathReason reason = new PlayerDeathReason();
+                //reason.SourceCustomReason = player.name + " tried to uglify the world.";
+                //player.KillMe(reason, 99999999999999, 0, false);
+                player.chatOverhead.NewMessage(player.name + " tried to uglify the world.", 180);
+                return false;
+            }
+            // Anti-Landmine-Mechanism
+            else if(item.type == ItemID.LandMine)
+            {
+                //PlayerDeathReason reason = new PlayerDeathReason();
+                //reason.SourceCustomReason = player.name + " tried to teamtroll and had it backfire.";
+                //player.KillMe(reason, 99999999999999, 0, false);
+                player.chatOverhead.NewMessage(player.name + " tried to teamtroll and had it backfire.", 180);
+                return false;
+            }
+            // Anti-Zapinator-Mechanism
+            else if
+            (
+                item.type == ItemID.ZapinatorOrange ||
+                item.type == ItemID.ZapinatorGray
+            )
+            {
+                //PlayerDeathReason reason = new PlayerDeathReason();
+                //reason.SourceCustomReason = player.name + " tried to use a bugged item.";
+                //player.KillMe(reason, 99999999999999, 0, false);
+                player.chatOverhead.NewMessage(player.name + " tried to use a bugged item.", 180);
+                return false;
+            }
+            return base.CanUseItem(item, player);
+        }
+        
         //Revert damage reduction from Spectre Hood
         public override void UpdateEquip(Item item, Player player)
         {

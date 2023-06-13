@@ -38,5 +38,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             base.ModifyHitPlayer(projectile, target, ref modifiers);
         }
+
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if(projectile.type == ProjectileID.SporeCloud)
+            {
+                target.AddBuff(BuffID.Poisoned, 240, false); //4s, X2 in Expert, X2.5 in Master
+            }
+            base.ModifyHitNPC(projectile, target, ref modifiers);
+        }
     }
 }
