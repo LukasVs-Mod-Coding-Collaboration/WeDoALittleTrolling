@@ -23,6 +23,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
@@ -46,32 +47,18 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.PoopWall
             )
             {
-                //PlayerDeathReason reason = new PlayerDeathReason();
-                //reason.SourceCustomReason = player.name + " tried to uglify the world.";
-                //player.KillMe(reason, 99999999999999, 0, false);
                 player.chatOverhead.NewMessage(player.name + " tried to uglify the world.", 180);
                 return false;
             }
-            // Anti-Landmine-Mechanism
-            else if(item.type == ItemID.LandMine)
-            {
-                //PlayerDeathReason reason = new PlayerDeathReason();
-                //reason.SourceCustomReason = player.name + " tried to teamtroll and had it backfire.";
-                //player.KillMe(reason, 99999999999999, 0, false);
-                player.chatOverhead.NewMessage(player.name + " tried to teamtroll and had it backfire.", 180);
-                return false;
-            }
-            // Anti-Zapinator-Mechanism
             else if
             (
+                item.type == ItemID.LandMine ||
                 item.type == ItemID.ZapinatorOrange ||
-                item.type == ItemID.ZapinatorGray
+                item.type == ItemID.ZapinatorGray ||
+                item.type == ItemID.RodOfHarmony
             )
             {
-                //PlayerDeathReason reason = new PlayerDeathReason();
-                //reason.SourceCustomReason = player.name + " tried to use a bugged item.";
-                //player.KillMe(reason, 99999999999999, 0, false);
-                player.chatOverhead.NewMessage(player.name + " tried to use a bugged item.", 180);
+                player.chatOverhead.NewMessage("You may not use this item.", 180);
                 return false;
             }
             return base.CanUseItem(item, player);

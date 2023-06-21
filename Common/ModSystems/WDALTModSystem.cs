@@ -22,20 +22,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.Localization;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
+using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
 
-namespace WeDoALittleTrolling.Content.Recipes
+namespace WeDoALittleTrolling.Content.ModSystems
 {
-    internal class GlobalRecipes : ModSystem
+    internal class WDALTModSystem : ModSystem
     {
-
+        
         public override void AddRecipes()
         {
+            Condition ShimmerCondition = new Condition("Shimmer", GetFalse);
+            
             Recipe WDALT_Terraprisma = Recipe.Create(ItemID.EmpressBlade, 1);
             WDALT_Terraprisma.AddTile(TileID.LunarCraftingStation);
             WDALT_Terraprisma.AddIngredient(ItemID.RainbowWhip, 1);
@@ -45,7 +50,16 @@ namespace WeDoALittleTrolling.Content.Recipes
             Recipe WDALT_HardySaddleToHeartCrystal = Recipe.Create(ItemID.LifeCrystal, 1);
             WDALT_HardySaddleToHeartCrystal.AddIngredient(ItemID.HardySaddle, 1);
             WDALT_HardySaddleToHeartCrystal.Register();
-            
+
+            Recipe WDALT_ShimmerBackRodOfDiscord = Recipe.Create(ItemID.RodOfHarmony, 1);
+            WDALT_ShimmerBackRodOfDiscord.AddCondition(ShimmerCondition);
+            WDALT_ShimmerBackRodOfDiscord.AddIngredient(ItemID.RodofDiscord, 1);
+            WDALT_ShimmerBackRodOfDiscord.Register();
+        }
+
+        public bool GetFalse()
+        {
+            return false;
         }
 
         public override void PostAddRecipes()
@@ -591,6 +605,16 @@ namespace WeDoALittleTrolling.Content.Recipes
                 {
                     recipe.AddIngredient(ItemID.FossilOre, 6);
                     recipe.AddIngredient(ItemID.FlinxFur, 6);
+                }
+                if(recipe.TryGetResult(ItemID.MythrilAnvil, out Item MythrilAnvil))
+                {
+                    recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
+                    recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                }
+                if(recipe.TryGetResult(ItemID.OrichalcumAnvil, out Item OrichalcumAnvil))
+                {
+                    recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
+                    recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
                 }
             }
         }

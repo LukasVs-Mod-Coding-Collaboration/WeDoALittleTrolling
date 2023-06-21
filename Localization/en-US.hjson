@@ -191,6 +191,16 @@ Mods: {
 				DisplayName: Photonsplicer
 				Tooltip: ""
 			}
+
+			DustyFossil: {
+				DisplayName: Dusty Fossil
+				Tooltip: ""
+			}
+
+			IcyFossil: {
+				DisplayName: Icy Fossil
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {

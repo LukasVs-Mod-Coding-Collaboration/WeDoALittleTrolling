@@ -28,6 +28,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
+using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
 
 namespace WeDoALittleTrolling.Content.NPCs
@@ -132,35 +133,172 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             base.OnHitPlayer(npc, target, hurtInfo);
         }
-
+        
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if(npc.type == NPCID.IceElemental)
+            //Modify Rod of Discord drop chance. Are you kidding me, Re-Logic???!!!
+            if(npc.type == NPCID.ChaosElemental)
             {
                 foreach(IItemDropRule rule in npcLoot.Get())
                 {
-                    if(rule is CommonDrop drop)
+                    if(rule is LeadingConditionRule leadingConditionRule)
                     {
-                        if(drop.itemId == ItemID.IceSickle)
+                        foreach(IItemDropRuleChainAttempt chainedRuleAttempt in leadingConditionRule.ChainedRules)
                         {
-                            drop.chanceNumerator = 1; // 1 in
-                            drop.chanceDenominator = 10; // 10 chance
-                        }
-                        if(drop.itemId == ItemID.FrostStaff)
-                        {
-                            drop.chanceNumerator = 1; // 1 in
-                            drop.chanceDenominator = 10; // 10 chance
+                            IItemDropRule chainedRule = chainedRuleAttempt.RuleToChain;
+                            if(chainedRule is CommonDrop drop)
+                            {
+                                if(drop.itemId == ItemID.RodofDiscord)
+                                {
+                                    drop.chanceNumerator   = 1; // 1% chance
+                                    drop.chanceDenominator = 100;
+                                }
+                            }
+                            if(chainedRule is DropBasedOnExpertMode expertDropRule)
+                            {
+                                if(expertDropRule.ruleForNormalMode is CommonDrop normalDrop)
+                                {
+                                    if(normalDrop.itemId == ItemID.RodofDiscord)
+                                    {
+                                        normalDrop.chanceNumerator   = 1; // 1% chance
+                                        normalDrop.chanceDenominator = 100;
+                                    }
+                                }
+                                if(expertDropRule.ruleForExpertMode is CommonDrop expertDrop)
+                                {
+                                    if(expertDrop.itemId == ItemID.RodofDiscord)
+                                    {
+                                        expertDrop.chanceNumerator   = 1; // 1% chance
+                                        expertDrop.chanceDenominator = 100;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
-            if(npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
+            if
+            (
+                npc.type == NPCID.Bee ||
+                npc.type == NPCID.BeeSmall
+            )
             {
                 int dropAmountMin = 1;
                 int dropAmountMax = 1;
                 int chanceNumerator = 1; // 1 in
                 int chanceDenominator = 3; // 3 chance
                 int itemID = ModContent.ItemType<Consumablebee>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+
+            //Icy fossil drops
+
+            if
+            (
+                npc.type == NPCID.PigronCorruption ||
+                npc.type == NPCID.PigronCrimson ||
+                npc.type == NPCID.PigronHallow
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 20; // 20% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<IcyFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.ArmoredViking ||
+                npc.type == NPCID.IceTortoise ||
+                npc.type == NPCID.IceElemental ||
+                npc.type == NPCID.IcyMerman
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 10; // 10% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<IcyFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.IceMimic ||
+                npc.type == NPCID.IceGolem
+            )
+            {
+                npcLoot.RemoveWhere
+                (
+                    rule =>
+                    rule is ItemDropWithConditionRule drop &&
+                    drop.itemId == ItemID.FrostCore
+                );
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 40; // 40% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<IcyFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+
+            //Dusty fossil drops
+
+            if
+            (
+                npc.type == NPCID.DesertGhoul ||
+                npc.type == NPCID.DesertGhoulCorruption ||
+                npc.type == NPCID.DesertGhoulCrimson ||
+                npc.type == NPCID.DesertGhoulHallow
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 20; // 20% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<DustyFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.DesertBeast || //Basilisk
+                npc.type == NPCID.DesertScorpionWalk || //Sand Poacher
+                npc.type == NPCID.DesertScorpionWall || //Sand Poacher
+                npc.type == NPCID.DesertLamiaDark ||
+                npc.type == NPCID.DesertLamiaLight ||
+                npc.type == NPCID.DuneSplicerHead
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 10; // 10% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<DustyFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.DesertDjinn || //Desert Spirit
+                npc.type == NPCID.SandElemental
+            )
+            {
+                npcLoot.RemoveWhere
+                (
+                    rule =>
+                    rule is ItemDropWithConditionRule drop &&
+                    drop.itemId == ItemID.FrostCore
+                );
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 40; // 40% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<DustyFossil>();
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                 npcLoot.Add(drop);
             }
