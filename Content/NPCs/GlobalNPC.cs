@@ -139,10 +139,20 @@ namespace WeDoALittleTrolling.Content.NPCs
             //Modify Rod of Discord drop chance. Are you kidding me, Re-Logic???!!!
             if(npc.type == NPCID.ChaosElemental)
             {
+                if(npcLoot.Get() == null) //Check for any null references before the foreach loop
+                {
+                    base.ModifyNPCLoot(npc, npcLoot);
+                    return;
+                }
                 foreach(IItemDropRule rule in npcLoot.Get())
                 {
                     if(rule is LeadingConditionRule leadingConditionRule)
                     {
+                        if(leadingConditionRule.ChainedRules == null) //Check for any null references before the foreach loop
+                        {
+                            base.ModifyNPCLoot(npc, npcLoot);
+                            return;
+                        }
                         foreach(IItemDropRuleChainAttempt chainedRuleAttempt in leadingConditionRule.ChainedRules)
                         {
                             IItemDropRule chainedRule = chainedRuleAttempt.RuleToChain;
@@ -231,12 +241,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.IceGolem
             )
             {
-                npcLoot.RemoveWhere
-                (
-                    rule =>
-                    rule is ItemDropWithConditionRule drop &&
-                    drop.itemId == ItemID.FrostCore
-                );
                 int dropAmountMin = 1;
                 int dropAmountMax = 1;
                 int chanceNumerator = 40; // 40% chance
@@ -288,12 +292,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.SandElemental
             )
             {
-                npcLoot.RemoveWhere
-                (
-                    rule =>
-                    rule is ItemDropWithConditionRule drop &&
-                    drop.itemId == ItemID.FrostCore
-                );
                 int dropAmountMin = 1;
                 int dropAmountMax = 1;
                 int chanceNumerator = 40; // 40% chance
