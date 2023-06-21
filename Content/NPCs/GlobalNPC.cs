@@ -137,55 +137,53 @@ namespace WeDoALittleTrolling.Content.NPCs
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             //Modify Rod of Discord drop chance. Are you kidding me, Re-Logic???!!!
-            if(npc.type == NPCID.ChaosElemental)
+            if (npc.type == NPCID.ChaosElemental)
             {
-                if(npcLoot.Get() == null) //Check for any null references before the foreach loop
+                try
                 {
-                    base.ModifyNPCLoot(npc, npcLoot);
-                    return;
-                }
-                foreach(IItemDropRule rule in npcLoot.Get())
-                {
-                    if(rule is LeadingConditionRule leadingConditionRule)
+                    foreach (IItemDropRule rule in npcLoot.Get())
                     {
-                        if(leadingConditionRule.ChainedRules == null) //Check for any null references before the foreach loop
+                        if (rule is LeadingConditionRule leadingConditionRule)
                         {
-                            base.ModifyNPCLoot(npc, npcLoot);
-                            return;
-                        }
-                        foreach(IItemDropRuleChainAttempt chainedRuleAttempt in leadingConditionRule.ChainedRules)
-                        {
-                            IItemDropRule chainedRule = chainedRuleAttempt.RuleToChain;
-                            if(chainedRule is CommonDrop drop)
+                            try
                             {
-                                if(drop.itemId == ItemID.RodofDiscord)
+                                foreach (IItemDropRuleChainAttempt chainedRuleAttempt in leadingConditionRule.ChainedRules)
                                 {
-                                    drop.chanceNumerator   = 1; // 1% chance
-                                    drop.chanceDenominator = 100;
-                                }
-                            }
-                            if(chainedRule is DropBasedOnExpertMode expertDropRule)
-                            {
-                                if(expertDropRule.ruleForNormalMode is CommonDrop normalDrop)
-                                {
-                                    if(normalDrop.itemId == ItemID.RodofDiscord)
+                                    IItemDropRule chainedRule = chainedRuleAttempt.RuleToChain;
+                                    if (chainedRule is CommonDrop drop)
                                     {
-                                        normalDrop.chanceNumerator   = 1; // 1% chance
-                                        normalDrop.chanceDenominator = 100;
+                                        if (drop.itemId == ItemID.RodofDiscord)
+                                        {
+                                            drop.chanceNumerator = 1; // 1% chance
+                                            drop.chanceDenominator = 100;
+                                        }
+                                    }
+                                    if (chainedRule is DropBasedOnExpertMode expertDropRule)
+                                    {
+                                        if (expertDropRule.ruleForNormalMode is CommonDrop normalDrop)
+                                        {
+                                            if (normalDrop.itemId == ItemID.RodofDiscord)
+                                            {
+                                                normalDrop.chanceNumerator = 1; // 1% chance
+                                                normalDrop.chanceDenominator = 100;
+                                            }
+                                        }
+                                        if (expertDropRule.ruleForExpertMode is CommonDrop expertDrop)
+                                        {
+                                            if (expertDrop.itemId == ItemID.RodofDiscord)
+                                            {
+                                                expertDrop.chanceNumerator = 1; // 1% chance
+                                                expertDrop.chanceDenominator = 100;
+                                            }
+                                        }
                                     }
                                 }
-                                if(expertDropRule.ruleForExpertMode is CommonDrop expertDrop)
-                                {
-                                    if(expertDrop.itemId == ItemID.RodofDiscord)
-                                    {
-                                        expertDrop.chanceNumerator   = 1; // 1% chance
-                                        expertDrop.chanceDenominator = 100;
-                                    }
-                                }
                             }
+                            catch{}
                         }
                     }
                 }
+                catch{}
             }
             if
             (
