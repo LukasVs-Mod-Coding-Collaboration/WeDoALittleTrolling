@@ -136,7 +136,6 @@ namespace WeDoALittleTrolling.Content.NPCs
         
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            //Modify Rod of Discord drop chance. Are you kidding me, Re-Logic???!!!
             if (npc.type == NPCID.ChaosElemental)
             {
                 int chanceNumerator = 1; // 1% chance
@@ -259,6 +258,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.ModifyNPCLoot(npc, npcLoot);
         }
 
+        //Modify Rod of Discord drop chance. Are you kidding me, Re-Logic???!!!
+        
         public void TryModifyRodOfDiscordDropChance(NPCLoot npcLoot, int newChanceNumerator, int newChanceDenominator)
         {
             try
