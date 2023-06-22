@@ -16,7 +16,11 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -26,6 +30,18 @@ namespace WeDoALittleTrolling.Content.Tiles
     {
         public override void RightClick(int i, int j, int type)
         {
+            float windSpeedPerMph = ((1.0f)/(50.0f));
+            float windSign = 1.0f;
+            if(Main.windSpeedTarget >= 0)
+            {
+                windSign = 1;
+            }
+            else
+            {
+                windSign = -1;
+            }
+            
+            //Actual Functions
             if(type == TileID.Moondial)
             {
                 Main.moondialCooldown = 0;
@@ -33,6 +49,72 @@ namespace WeDoALittleTrolling.Content.Tiles
             else if(type == TileID.Sundial)
             {
                 Main.sundialCooldown = 0;
+            }
+            else if(type == TileID.WeatherVane)
+            {
+                if(Main.IsItRaining)
+                {
+                    if(Main.maxRaining < 0.2f)
+                    {
+                        Main.maxRaining = 0.4f;
+                        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                    }
+                    else if(Main.maxRaining < 0.6f)
+                    {
+                        Main.maxRaining = 0.8f;
+                        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                    }
+                    else
+                    {
+                        Main.StopRain();
+                        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                    }
+                }
+                else
+                {
+                    Main.StartRain();
+                    Main.maxRaining = 0.1f;
+                    SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                }
+            }
+            else if(type == TileID.DjinnLamp)
+            {
+                if(Sandstorm.Happening)
+                {
+                    Sandstorm.StopSandstorm();
+                    SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
+                }
+                else
+                {
+                    Sandstorm.StartSandstorm();
+                    if(Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 30.0f)
+                    {
+                        if(Main.windSpeedTarget > 0)
+                        {
+                            Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
+                            
+                        } 
+                        else
+                        {
+                            Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
+                        }
+                    }
+                    SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
+                    
+                }
+            }
+            else if(type == TileID.SkyMill)
+            {
+                if(Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 39.0f)
+                {
+                    Main.windSpeedTarget += windSign * windSpeedPerMph * 10.0f;
+                    SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                }
+                else if(Math.Abs(Main.windSpeedTarget) >= windSpeedPerMph * 39.0f)
+                {
+                    Main.windSpeedTarget = (-windSign) * windSpeedPerMph * 5.0f;
+                    SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                }
             }
             base.RightClick(i, j, type);
         }
