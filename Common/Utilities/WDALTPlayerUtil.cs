@@ -74,7 +74,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void UpdateEquips()
         {
-            player.buffImmune[BuffID.Chilled] = true; //Immunity to Mana Sickness
+            player.arcticDivingGear = true;
             base.UpdateEquips();
         }
 
