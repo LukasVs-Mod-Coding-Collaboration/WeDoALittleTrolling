@@ -36,7 +36,36 @@ namespace WeDoALittleTrolling.Common.Utilities
         public double lastLeechingHealTime;
         public Player player;
         public Item heldItem;
+        public bool recentlyPassedIceBoomerangSoundDelay;
+        public const int extraUpdatesIceBoomerang = 1;
 
+        public int getExtraUpdates(int projectileID)
+        {
+            if(projectileID == ProjectileID.IceBoomerang)
+            {
+                return extraUpdatesIceBoomerang;
+            }
+            return 0;
+        }
+
+        public bool hasRecentlyPassedSoundDelay(int projectileID)
+        {
+            if(projectileID == ProjectileID.IceBoomerang)
+            {
+                if(!recentlyPassedIceBoomerangSoundDelay)
+                {
+                    recentlyPassedIceBoomerangSoundDelay = true;
+                    return false;
+                }
+                if(recentlyPassedIceBoomerangSoundDelay)
+                {
+                    recentlyPassedIceBoomerangSoundDelay = false;
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         public override void PreUpdate()
         {
             heldItem = this.Player.HeldItem;
@@ -54,6 +83,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             lastLeechingHealTime = 0;
             player = this.Player;
             heldItem = this.Player.HeldItem;
+            recentlyPassedIceBoomerangSoundDelay = false;
         }
 
         public override void UpdateDead()
@@ -64,6 +94,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         private void ResetVariables()
         {
             lastLeechingHealTime = 0;
+            recentlyPassedIceBoomerangSoundDelay = false;
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)

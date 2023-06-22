@@ -165,7 +165,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BeamSword) 
             {
-                item.useTime = 15;
+                item.useTime = 30;
                 item.useAnimation = 15;
             }
             if (item.type == ItemID.BeesKnees) 
@@ -183,10 +183,6 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 16;
                 item.crit = 12;
                 item.ArmorPenetration = 16;
-            }
-            if (item.type == ItemID.IceBow) 
-            {
-                item.damage = 50;
             }
             if (item.type == ItemID.FlintlockPistol) 
             {
@@ -386,6 +382,31 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 60;
             }
+            if (item.type == ItemID.Trimarang)
+            {
+                item.damage = 28;
+                item.useTime = 15;
+                item.useAnimation = 15;
+            }
+            if (item.type == ItemID.Flamarang)
+            {
+                item.damage = 64;
+                item.useTime = 30;
+                item.useAnimation = 30;
+            }
+            if (item.type == ItemID.DeathSickle)
+            {
+                item.damage = 65;
+            }
+            if (item.type == ItemID.TrueNightsEdge)
+            {
+                item.damage = 80;
+            }
+            if (item.type == ItemID.FlowerofFire) 
+            {
+                item.mana = 8;
+                item.autoReuse = true;
+            }
 
             // Buff all pre-hardmode summons
 
@@ -406,6 +427,61 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.ReaverShark)
             {
                 item.pick = 100;
+            }
+
+            // Buff Ice-Biome related stuff
+            // Pre-Hardmode
+            if (item.type == ItemID.IceSickle)
+            {
+                item.damage = 55;
+                item.autoReuse = true;
+            }
+            if (item.type == ItemID.FrostStaff)
+            {
+                item.damage = 55;
+                item.autoReuse = true;
+                item.mana = 8;
+            }
+            if (item.type == ItemID.IceBoomerang)
+            {
+                item.damage = 24;
+                item.autoReuse = true;
+                item.useTime = 15;
+                item.useAnimation = 15;
+            }
+            if (item.type == ItemID.IceBlade)
+            {
+                item.damage = 20;
+                item.autoReuse = true;
+                item.useTime = 18;
+                item.useAnimation = 18;
+            }
+            if (item.type == ItemID.SnowballCannon)
+            {
+                item.damage = 15;
+                item.autoReuse = true;
+                item.useTime = 15;
+                item.useAnimation = 15;
+            }
+            //Hardmode
+            if (item.type == ItemID.Frostbrand)
+            {
+                item.damage = 50;
+                item.useTime = 22;
+                item.useAnimation = 22;
+            }
+            if (item.type == ItemID.IceBow) 
+            {
+                item.damage = 50;
+            }
+            if (item.type == ItemID.FlowerofFrost) 
+            {
+                item.mana = 8;
+                item.autoReuse = true;
+            }
+            if (item.type == ItemID.StaffoftheFrostHydra) 
+            {
+                item.damage = 150;
             }
 
         }
