@@ -13,20 +13,23 @@ namespace WeDoALittleTrolling.Content.Buffs
 {
     public class SearingInferno : ModBuff
     {
-        public static void NPCEffects(NPC npc)
-        {            
-            Color color = new Color(0, 255, 165, 0);
-            npc.color = color;
-        }
-        public static void NPCEffectsEnd(NPC npc, int buffType)
+
+        public override void SetStaticDefaults()
         {
-            npc.color = default(Color);
+            Main.debuff[Type] = true;
+            BuffID.Sets.LongerExpertDebuff[Type] = true;
         }
 
-        public override void Update(NPC npc,ref int buffIndex)
+
+        public static void NPCEffects(NPC npc)
         {
             npc.damage = (int)(npc.damage * 0.75f);
+            
         }
 
+        public static void NPCEffectsEnd(NPC npc, int buffType)
+        {
+            npc.color = default(Color); 
+        }       
     }
 }

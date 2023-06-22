@@ -96,11 +96,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             base.ModifyDamageHitbox(ref hitbox);
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, false);
-            base.OnHitNPC(target, hit, damageDone);
-        }
+        //public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        //{
+        //    target.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
+        //    base.OnHitNPC(target, hit, damageDone);
+        //}
 
     }
 }
