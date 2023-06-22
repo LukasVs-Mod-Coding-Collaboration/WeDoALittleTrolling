@@ -23,6 +23,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Content.Buffs;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -93,6 +94,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             pOffset.Y = - (int)Math.Round(vOffset.Y);
             hitbox.Offset(pOffset);
             base.ModifyDamageHitbox(ref hitbox);
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, false);
+            base.OnHitNPC(target, hit, damageDone);
         }
 
     }
