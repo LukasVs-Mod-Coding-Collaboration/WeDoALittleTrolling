@@ -55,6 +55,11 @@ namespace WeDoALittleTrolling.Content.ModSystems
             WDALT_ShimmerBackRodOfDiscord.AddCondition(ShimmerCondition);
             WDALT_ShimmerBackRodOfDiscord.AddIngredient(ItemID.RodofDiscord, 1);
             WDALT_ShimmerBackRodOfDiscord.Register();
+
+            Recipe WDALT_MoneyTrough = Recipe.Create(ItemID.MoneyTrough, 1);
+            WDALT_MoneyTrough.AddIngredient(ItemID.PiggyBank, 1);
+            WDALT_MoneyTrough.AddTile(TileID.Anvils);
+            WDALT_MoneyTrough.Register();
         }
 
         public bool GetFalse()
@@ -615,6 +620,36 @@ namespace WeDoALittleTrolling.Content.ModSystems
                 {
                     recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                     recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                }
+
+                //Gem Hooks now require one Geode
+                if(recipe.TryGetResult(ItemID.AmethystHook, out Item AmethystHook))
+                {
+                    recipe.AddIngredient(ItemID.Geode, 1);
+                }
+                if(recipe.TryGetResult(ItemID.DiamondHook, out Item DiamondHook))
+                {
+                    recipe.AddIngredient(ItemID.Geode, 1);
+                }
+                if(recipe.TryGetResult(ItemID.TopazHook, out Item TopazHook))
+                {
+                    recipe.AddIngredient(ItemID.Geode, 1);
+                }
+                if(recipe.TryGetResult(ItemID.RubyHook, out Item RubyHook))
+                {
+                    recipe.AddIngredient(ItemID.Geode, 1);
+                }
+                if(recipe.TryGetResult(ItemID.EmeraldHook, out Item EmeraldHook))
+                {
+                    recipe.AddIngredient(ItemID.Geode, 1);
+                }
+                if(recipe.TryGetResult(ItemID.Sapphire, out Item SapphireHook))
+                {
+                    recipe.AddIngredient(ItemID.Geode, 1);
+                }
+                if(recipe.TryGetResult(ItemID.AmberHook, out Item AmberHook))
+                {
+                    recipe.AddIngredient(ItemID.Geode, 1);
                 }
             }
         }

@@ -42,6 +42,13 @@ namespace WeDoALittleTrolling.Common.Utilities
             heldItem = this.Player.HeldItem;
             base.PreUpdate();
         }
+
+        public override void UpdateEquips()
+        {
+            player.buffImmune[BuffID.Chilled] = true; //Immunity to Mana Sickness
+            base.UpdateEquips();
+        }
+
         public override void Initialize()
         {
             lastLeechingHealTime = 0;
@@ -58,7 +65,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             lastLeechingHealTime = 0;
         }
-        
+
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if
