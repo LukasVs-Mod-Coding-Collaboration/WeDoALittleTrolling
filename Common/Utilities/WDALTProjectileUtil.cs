@@ -66,37 +66,40 @@ namespace WeDoALittleTrolling.Common.Utilities
                 parentEntity = null;
                 parentEntityExists = false;
             }
-            if(parentEntity is NPC parentEntity_npc)
+            if(TryGetParentEntity(out Entity entity))
             {
-                parentNPC = parentEntity_npc;
-                parentNPCExists = true;
-            }
-            else
-            {
-                parentNPC = null;
-                parentNPCExists = false;
-            }
-            if(parentEntity is Player parentEntity_player)
-            {
-                parentPlayer = parentEntity_player;
-                parentPlayerExists = true;
-                if(parentEntity_player.HeldItem != null)
+                if(entity is NPC parentEntity_npc)
                 {
-                    parentItemExists = true;
-                    parentItem = parentEntity_player.HeldItem;
+                    parentNPC = parentEntity_npc;
+                    parentNPCExists = true;
                 }
                 else
                 {
+                    parentNPC = null;
+                    parentNPCExists = false;
+                }
+                if(parentEntity is Player parentEntity_player)
+                {
+                    parentPlayer = parentEntity_player;
+                    parentPlayerExists = true;
+                    if (parentEntity_player.HeldItem != null)
+                    {
+                        parentItemExists = true;
+                        parentItem = parentEntity_player.HeldItem;
+                    }
+                    else
+                    {
+                        parentItem = null;
+                        parentItemExists = false;
+                    }
+                }
+                else
+                {
+                    parentPlayer = null;
+                    parentPlayerExists = false;
                     parentItem = null;
                     parentItemExists = false;
                 }
-            }
-            else
-            {
-                parentPlayer = null;
-                parentPlayerExists = false;
-                parentItem = null;
-                parentItemExists = false;
             }
             base.OnSpawn(projectile, source);
         }
