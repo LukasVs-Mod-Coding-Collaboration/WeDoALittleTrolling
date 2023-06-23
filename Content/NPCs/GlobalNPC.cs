@@ -30,6 +30,7 @@ using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
+using WeDoALittleTrolling.Content.Items.Armor;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
@@ -104,11 +105,13 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.knockBackResist = 0f;
             }
-            if(npc.boss)
-            {
-                npc.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
-            }
             base.SetDefaults(npc);
+        }
+
+        public override void UpdateLifeRegen(NPC npc, ref int damage)
+        {
+            npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+            base.UpdateLifeRegen(npc, ref damage);
         }
 
         public override void ResetEffects(NPC npc)
@@ -150,7 +153,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
-                modifiers.SourceDamage *= SearingInferno.damageNerfMultiplier;
+                modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
             }
             base.ModifyHitPlayer(npc, target, ref modifiers);
         }
@@ -159,7 +162,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
-                modifiers.SourceDamage *= SearingInferno.damageNerfMultiplier;
+                modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
             }
             if(GlobalNPCs.NerfGroup25Percent.Contains(npc.type))
             {
@@ -178,12 +181,30 @@ namespace WeDoALittleTrolling.Content.NPCs
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             ApplyDebuffsToPlayerBasedOnNPC(npc, target);
+            if
+            (
+                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ModContent.ItemType<SearingHelmet>()) &&
+                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ModContent.ItemType<SearingBreastplate>()) &&
+                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ModContent.ItemType<SearingLeggings>())
+            )
+            {
+                npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
+            }
             base.OnHitPlayer(npc, target, hurtInfo);
         }
 
         public static void OnHitPlayerWithProjectile(Projectile projectile, NPC npc, Player target, Player.HurtInfo info)
         {
             ApplyDebuffsToPlayerBasedOnNPC(npc, target);
+            if
+            (
+                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ModContent.ItemType<SearingHelmet>()) &&
+                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ModContent.ItemType<SearingBreastplate>()) &&
+                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ModContent.ItemType<SearingLeggings>())
+            )
+            {
+                npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
+            }
         }
 
         public static void ApplyDebuffsToPlayerBasedOnNPC(NPC npc, Player target)

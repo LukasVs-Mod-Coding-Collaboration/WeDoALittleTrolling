@@ -41,6 +41,12 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.PreUpdate();
         }
 
+        public override void PostUpdate()
+        {
+            GlobalItemList.ModifySetBonus(player);
+            base.PostUpdate();
+        }
+
         public override void UpdateEquips()
         {
             player.arcticDivingGear = true;

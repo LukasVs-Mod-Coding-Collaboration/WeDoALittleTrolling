@@ -201,6 +201,21 @@ Mods: {
 				DisplayName: Icy Fossil
 				Tooltip: ""
 			}
+
+			SearingBreastplate: {
+				DisplayName: Searing Breastplate
+				Tooltip: ""
+			}
+
+			SearingHelmet: {
+				DisplayName: Searing Helmet
+				Tooltip: ""
+			}
+
+			SearingLeggings: {
+				DisplayName: Searing Leggings
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -331,7 +346,7 @@ Mods: {
 		Buffs: {
 			SearingInferno: {
 				DisplayName: Searing Inferno
-				Description: Enemy damage is decreased
+				Description: Deal 25% reduced damage and slowly loose life
 			}
 		}
 	}

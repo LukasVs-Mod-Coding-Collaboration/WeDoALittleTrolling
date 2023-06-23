@@ -83,21 +83,23 @@ namespace WeDoALittleTrolling.Content.Items
             }
             base.UpdateEquip(item, player);
         }
-
-        //Adjust Tooltips accordingly
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        
+        public static void ModifySetBonus(Player player)
         {
             if
             (
-                item.type == ItemID.SpectreHood ||
-                item.type == ItemID.SpectreRobe ||
-                item.type == ItemID.SpectrePants
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.SpectreHood) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.SpectreRobe) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.SpectrePants)
             )
             {
-                //Just override this line for all Languages, we only support english anyway
-                List<TooltipLine> setBonusLine = tooltips.FindAll(t => (t.Name == "SetBonus") && (t.Mod == "Terraria") && t.Text.Contains("40"));
-                setBonusLine.ForEach(t => t.Text = "Set bonus: Generates 20% of magic damage as healing force\nMagic damage done to enemies heals the player with lowest health");
+                player.setBonus = "Generates 20% of magic damage as healing force\nMagic damage done to enemies heals the player with lowest health";
             }
+        }
+        
+        //Adjust Tooltips accordingly
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
             if(item.type == ItemID.SpectreHood)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixAccMaxMana", "Increases maximum mana by 60");
