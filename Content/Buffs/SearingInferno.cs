@@ -29,7 +29,7 @@ namespace WeDoALittleTrolling.Content.Buffs
 			{
 				npc.lifeRegen = 0;
 			}
-            int dotDPS = 25;
+            int dotDPS = 15;
             npc.lifeRegenExpectedLossPerSecond = 5;
 			npc.lifeRegen -= (dotDPS*2);
             base.Update(npc, ref buffIndex);

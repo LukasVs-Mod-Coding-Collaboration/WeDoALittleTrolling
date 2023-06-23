@@ -40,7 +40,7 @@ namespace WeDoALittleTrolling.Content.NPCs
     internal class GlobalNPCs : GlobalNPC
     {
         public override bool InstancePerEntity => false;
-        public static int[] NerfGroup25Percent =
+        public static readonly int[] NerfGroup25Percent =
         {
             NPCID.Derpling,
             NPCID.Antlion,
@@ -55,35 +55,35 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.LittleMossHornet,
             NPCID.TinyMossHornet
         };
-        public static int[] NerfGroup35Percent =
+        public static readonly int[] NerfGroup35Percent =
         {
             NPCID.GiantTortoise,
             NPCID.IceTortoise
         };
-        public static int[] NerfGroup50Percent =
+        public static readonly int[] NerfGroup50Percent =
         {
             NPCID.RedDevil
         };
-        public static int[] KnockbackResistanceGroup =
+        public static readonly int[] KnockbackResistanceGroup =
         {
             NPCID.AngryTrapper
         };
-        public static int[] InflictVenomDebuff1In1Group =
+        public static readonly int[] InflictVenomDebuff1In1Group =
         {
             NPCID.AngryTrapper,
             NPCID.Moth
         };
-        public static int[] InflictPoisonDebuff1In1Group =
+        public static readonly int[] InflictPoisonDebuff1In1Group =
         {
             NPCID.Snatcher,
             NPCID.ManEater
         };
-        public static int[] InflictBleedingDebuff1In1Group =
+        public static readonly int[] InflictBleedingDebuff1In1Group =
         {
             NPCID.Shark,
             NPCID.SandShark
         };
-        public static int[] InflictBleedingDebuff1In8Group =
+        public static readonly int[] InflictBleedingDebuff1In8Group =
         {
             NPCID.Herpling,
             NPCID.Wolf,
