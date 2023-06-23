@@ -71,8 +71,8 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 item.type == ItemID.SpectreHood &&
-                player.GetModPlayer<WDALTPlayerUtil>().hasPlayerChestplateEquipped(ItemID.SpectreRobe) &&
-                player.GetModPlayer<WDALTPlayerUtil>().hasPlayerLeggingsEquipped(ItemID.SpectrePants)
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.SpectreRobe) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.SpectrePants)
             )
             {
                 player.GetDamage(DamageClass.Magic) += (float)0.4;

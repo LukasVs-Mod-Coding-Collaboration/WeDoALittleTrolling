@@ -82,7 +82,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 modifiers.DamageType == DamageClass.MagicSummonHybrid
             )
             {
-                if(hasPlayerAcessoryEquipped(ModContent.ItemType<SpookyEmblem>()))
+                if(HasPlayerAcessoryEquipped(ModContent.ItemType<SpookyEmblem>()))
                 {
                     modifiers.ArmorPenetration += (3 * player.maxMinions);
                     Random random = new Random();
@@ -168,7 +168,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.OnHitNPC(target, hit, damageDone);
         }
 
-        public bool hasPlayerAcessoryEquipped(int itemID)
+        public bool HasPlayerAcessoryEquipped(int itemID)
         {
             int offset = 3;
             int loopLimit = 5;
@@ -187,7 +187,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             return false;
         }
 
-        public int getAmountOfEquippedAccessoriesWithPrefixFromPlayer(int prefixID) //Fancy name much smart, haha :P
+        public int GetAmountOfEquippedAccessoriesWithPrefixFromPlayer(int prefixID) //Fancy name much smart, haha :P
         {
             int equippedAmount = 0;
             int offset = 3;
@@ -207,7 +207,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             return equippedAmount;
         }
 
-        public bool hasPlayerHelmetEquipped(int itemID)
+        public bool HasPlayerHelmetEquipped(int itemID)
         {
             int offset = 0;
             if(player.armor[offset].type == itemID)
@@ -217,7 +217,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             return false;
         }
 
-        public bool hasPlayerChestplateEquipped(int itemID)
+        public bool HasPlayerChestplateEquipped(int itemID)
         {
             int offset = 1;
             if(player.armor[offset].type == itemID)
@@ -227,7 +227,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             return false;
         }
 
-        public bool hasPlayerLeggingsEquipped(int itemID)
+        public bool HasPlayerLeggingsEquipped(int itemID)
         {
             int offset = 2;
             if(player.armor[offset].type == itemID)

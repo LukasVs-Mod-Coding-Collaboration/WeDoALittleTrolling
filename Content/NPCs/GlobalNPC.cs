@@ -26,6 +26,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
@@ -103,6 +104,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.knockBackResist = 0f;
             }
+            if(npc.boss)
+            {
+                npc.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
+            }
             base.SetDefaults(npc);
         }
 
@@ -150,7 +155,38 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.ModifyHitPlayer(npc, target, ref modifiers);
         }
 
+        public static void ModifyHitPlayerWithProjectile(Projectile projectile, NPC npc, Player target, ref Player.HurtModifiers modifiers)
+        {
+            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                modifiers.SourceDamage *= SearingInferno.damageNerfMultiplier;
+            }
+            if(GlobalNPCs.NerfGroup25Percent.Contains(npc.type))
+            {
+                modifiers.SourceDamage *= (float)0.75;
+            }
+            if(GlobalNPCs.NerfGroup35Percent.Contains(npc.type))
+            {
+                modifiers.SourceDamage *= (float)0.65;
+            }
+            if(GlobalNPCs.NerfGroup50Percent.Contains(npc.type))
+            {
+                modifiers.SourceDamage *= (float)0.5;
+            }
+        }
+
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
+        {
+            ApplyDebuffsToPlayerBasedOnNPC(npc, target);
+            base.OnHitPlayer(npc, target, hurtInfo);
+        }
+
+        public static void OnHitPlayerWithProjectile(Projectile projectile, NPC npc, Player target, Player.HurtInfo info)
+        {
+            ApplyDebuffsToPlayerBasedOnNPC(npc, target);
+        }
+
+        public static void ApplyDebuffsToPlayerBasedOnNPC(NPC npc, Player target)
         {
             Random random = new Random();
             if(InflictVenomDebuff1In1Group.Contains(npc.type))
@@ -181,7 +217,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                     target.AddBuff(BuffID.Bleeding, 480, false); //8s, X2 in Expert, X2.5 in Master
                 }
             }
-            base.OnHitPlayer(npc, target, hurtInfo);
         }
         
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
