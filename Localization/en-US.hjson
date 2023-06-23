@@ -327,5 +327,12 @@ Mods: {
 					'''
 			}
 		}
+
+		Buffs: {
+			SearingInferno: {
+				DisplayName: Searing Inferno
+				Description: Enemy damage is decreased
+			}
+		}
 	}
 }

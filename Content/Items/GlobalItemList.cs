@@ -37,6 +37,7 @@ namespace WeDoALittleTrolling.Content.Items
 {
     internal class GlobalItemList : GlobalItem
     {
+        public override bool InstancePerEntity => false;
 
         public override bool CanUseItem(Item item, Player player)
         {
@@ -116,6 +117,21 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "Allows time to fast forward to dawn");
+            }
+            if(item.type == ItemID.WeatherVane)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows rain to start, intesify and stop");
+                tooltips.Add(extraManaLine);
+            }
+            if(item.type == ItemID.SkyMill)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows wind to start, intesify, change direction and stop");
+                tooltips.Add(extraManaLine);
+            }
+            if(item.type == ItemID.DjinnLamp)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows sandstorms to start and stop");
+                tooltips.Add(extraManaLine);
             }
             base.ModifyTooltips(item, tooltips);
         }

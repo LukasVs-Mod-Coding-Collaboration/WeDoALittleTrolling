@@ -35,40 +35,9 @@ namespace WeDoALittleTrolling.Common.Utilities
     {
         public double lastLeechingHealTime;
         public Player player;
-        public Item heldItem;
-        public bool recentlyPassedIceBoomerangSoundDelay;
-        public const int extraUpdatesIceBoomerang = 1;
-
-        public int getExtraUpdates(int projectileID)
-        {
-            if(projectileID == ProjectileID.IceBoomerang)
-            {
-                return extraUpdatesIceBoomerang;
-            }
-            return 0;
-        }
-
-        public bool hasRecentlyPassedSoundDelay(int projectileID)
-        {
-            if(projectileID == ProjectileID.IceBoomerang)
-            {
-                if(!recentlyPassedIceBoomerangSoundDelay)
-                {
-                    recentlyPassedIceBoomerangSoundDelay = true;
-                    return false;
-                }
-                if(recentlyPassedIceBoomerangSoundDelay)
-                {
-                    recentlyPassedIceBoomerangSoundDelay = false;
-                    return true;
-                }
-            }
-            return false;
-        }
         
         public override void PreUpdate()
         {
-            heldItem = this.Player.HeldItem;
             base.PreUpdate();
         }
 
@@ -82,8 +51,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             lastLeechingHealTime = 0;
             player = this.Player;
-            heldItem = this.Player.HeldItem;
-            recentlyPassedIceBoomerangSoundDelay = false;
         }
 
         public override void UpdateDead()
@@ -94,7 +61,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         private void ResetVariables()
         {
             lastLeechingHealTime = 0;
-            recentlyPassedIceBoomerangSoundDelay = false;
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -104,7 +70,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 modifiers.DamageType == DamageClass.Magic
             )
             {
-                if (heldItem.prefix == ModContent.PrefixType<Supercritical>())
+                if (player.HeldItem.prefix == ModContent.PrefixType<Supercritical>())
                 {
                     modifiers.CritDamage *= 2.0f;
                 }
@@ -134,9 +100,9 @@ namespace WeDoALittleTrolling.Common.Utilities
             if
             (
                 (
-                    heldItem.prefix == ModContent.PrefixType<Leeching>() ||
-                    heldItem.prefix == ModContent.PrefixType<Siphoning>() ||
-                    heldItem.type   == ItemID.ChlorophytePartisan
+                    player.HeldItem.prefix == ModContent.PrefixType<Leeching>() ||
+                    player.HeldItem.prefix == ModContent.PrefixType<Siphoning>() ||
+                    player.HeldItem.type   == ItemID.ChlorophytePartisan
                 ) &&
                 (
                     hit.DamageType == DamageClass.Melee ||
@@ -172,16 +138,16 @@ namespace WeDoALittleTrolling.Common.Utilities
                 // Having Moon Bite means the effect still works, however,
                 // it will be 90% less effective
                 // 1 Base Heal is still guaranteed
-                if(player.HasBuff(BuffID.MoonLeech) && heldItem.prefix == ModContent.PrefixType<Leeching>())
+                if(player.HasBuff(BuffID.MoonLeech) && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
                 {
                     healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                 }
                 // Chlorophyte Partisan go BRRRR!!!
-                if(heldItem.type == ItemID.ChlorophytePartisan && heldItem.prefix == ModContent.PrefixType<Leeching>())
+                if(player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
                 {
                     healingAmount *= 2;
                 }
-                if(heldItem.prefix == ModContent.PrefixType<Leeching>() || heldItem.type == ItemID.ChlorophytePartisan)
+                if(player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
                     double timeSinceLastHeal = Math.Abs(Main.time - lastLeechingHealTime); // Use ABS to avoid negative time
                     if(timeSinceLastHeal >= player.itemAnimationMax) // Only heal player once every item use
@@ -190,7 +156,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                         lastLeechingHealTime = Main.time;
                     }
                 }
-                else if(heldItem.prefix == ModContent.PrefixType<Siphoning>())
+                else if(player.HeldItem.prefix == ModContent.PrefixType<Siphoning>())
                 {
                     if(player.statMana <= (player.statManaMax2 - healingAmount))
                     {
@@ -265,15 +231,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             int offset = 2;
             if(player.armor[offset].type == itemID)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool isPlayerHoldingItemWithPrefix(int prefixID)
-        {
-            if(heldItem.prefix == prefixID)
             {
                 return true;
             }

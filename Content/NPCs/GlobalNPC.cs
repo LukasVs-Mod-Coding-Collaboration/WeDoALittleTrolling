@@ -26,42 +26,71 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
+using Microsoft.Xna.Framework;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
     internal class GlobalNPCs : GlobalNPC
     {
+        public override bool InstancePerEntity => false;
+        public static int[] NerfGroup25Percent =
+        {
+            NPCID.Derpling,
+            NPCID.Antlion,
+            NPCID.WalkingAntlion,
+            NPCID.GiantWalkingAntlion,
+            NPCID.TombCrawlerHead,
+            NPCID.JungleCreeper,
+            NPCID.JungleCreeperWall,
+            NPCID.GiantMossHornet,
+            NPCID.BigMossHornet,
+            NPCID.MossHornet,
+            NPCID.LittleMossHornet,
+            NPCID.TinyMossHornet
+        };
+        public static int[] NerfGroup35Percent =
+        {
+            NPCID.GiantTortoise,
+            NPCID.IceTortoise
+        };
+        public static int[] NerfGroup50Percent =
+        {
+            NPCID.RedDevil
+        };
+        public static int[] KnockbackResistanceGroup =
+        {
+            NPCID.AngryTrapper
+        };
+        public static int[] InflictVenomDebuff1In1Group =
+        {
+            NPCID.AngryTrapper,
+            NPCID.Moth
+        };
+        public static int[] InflictPoisonDebuff1In1Group =
+        {
+            NPCID.Snatcher,
+            NPCID.ManEater
+        };
+        public static int[] InflictBleedingDebuff1In1Group =
+        {
+            NPCID.Shark,
+            NPCID.SandShark
+        };
+        public static int[] InflictBleedingDebuff1In8Group =
+        {
+            NPCID.Herpling,
+            NPCID.Wolf,
+            NPCID.PirateCorsair,
+            NPCID.PirateGhost
+        };
 
         public override void SetDefaults(NPC npc)
         {
-            int[] NerfGroup25Percent =
-            {
-                NPCID.Derpling,
-                NPCID.Antlion,
-                NPCID.WalkingAntlion,
-                NPCID.GiantWalkingAntlion,
-                NPCID.TombCrawlerHead,
-                NPCID.JungleCreeper,
-                NPCID.JungleCreeperWall,
-                NPCID.GiantMossHornet,
-                NPCID.BigMossHornet,
-                NPCID.MossHornet,
-                NPCID.LittleMossHornet,
-                NPCID.TinyMossHornet
-            };
-            int[] NerfGroup35Percent =
-            {
-                NPCID.GiantTortoise,
-                NPCID.IceTortoise
-            };
-            int[] KnockbackResistanceGroup =
-            {
-                NPCID.AngryTrapper
-            };
             if(NerfGroup25Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * 0.75);
@@ -77,32 +106,53 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.SetDefaults(npc);
         }
 
+        public override void ResetEffects(NPC npc)
+        {
+            base.ResetEffects(npc);
+        }
+
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                drawColor.R = 255;
+                drawColor.G = 191;
+                drawColor.B = 0;
+                Random rnd = new Random();
+                int xOffset = rnd.Next(-(npc.width/2), (npc.width/2));
+                int yOffset = rnd.Next(-(npc.height/2), (npc.height/2));
+                Vector2 dustPosition = npc.Center;
+                dustPosition.X += xOffset;
+                dustPosition.Y += yOffset;
+                int dustType = rnd.Next(0, 5);
+                switch(dustType)
+                {
+                    case 0:
+                        Dust.NewDust(dustPosition, 10, 10, DustID.SolarFlare);
+                        break;
+                    case 1:
+                        Dust.NewDust(dustPosition, 10, 10, DustID.Ash);
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+            base.DrawEffects(npc, ref drawColor);
+        }
+        
+        public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
+        {
+            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                modifiers.SourceDamage *= SearingInferno.damageNerfMultiplier;
+            }
+            base.ModifyHitPlayer(npc, target, ref modifiers);
+        }
+
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             Random random = new Random();
-            int[] InflictVenomDebuff1In1Group =
-            {
-                NPCID.AngryTrapper,
-                NPCID.Moth
-            };
-            int[] InflictPoisonDebuff1In1Group =
-            {
-                NPCID.Snatcher,
-                NPCID.ManEater
-            };
-            int[] InflictBleedingDebuff1In1Group =
-            {
-                NPCID.Shark,
-                NPCID.SandShark
-            };
-            int[] InflictBleedingDebuff1In8Group =
-            {
-                NPCID.Herpling,
-                NPCID.Wolf,
-                NPCID.PirateCorsair,
-                NPCID.PirateGhost
-            };
-
             if(InflictVenomDebuff1In1Group.Contains(npc.type))
             {
                 if(random.Next(0, 1) == 0) //1 in 1 Chance
@@ -260,7 +310,7 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         //Modify Rod of Discord drop chance. Are you kidding me, Re-Logic???!!!
         
-        public void TryModifyRodOfDiscordDropChance(NPCLoot npcLoot, int newChanceNumerator, int newChanceDenominator)
+        public static void TryModifyRodOfDiscordDropChance(NPCLoot npcLoot, int newChanceNumerator, int newChanceDenominator)
         {
             try
             {

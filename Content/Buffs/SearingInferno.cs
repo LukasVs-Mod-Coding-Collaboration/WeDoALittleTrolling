@@ -7,6 +7,7 @@ using Terraria.Localization;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using WeDoALittleTrolling.Content.NPCs;
 
 
 namespace WeDoALittleTrolling.Content.Buffs
@@ -14,22 +15,24 @@ namespace WeDoALittleTrolling.Content.Buffs
     public class SearingInferno : ModBuff
     {
 
+        public static float damageNerfMultiplier = 0.5f;
+
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
             BuffID.Sets.LongerExpertDebuff[Type] = true;
         }
 
-
-        public static void NPCEffects(NPC npc)
+        public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.damage = (int)(npc.damage * 0.75f);
-            
+            if (npc.lifeRegen > 0)
+			{
+				npc.lifeRegen = 0;
+			}
+            int dotDPS = 25;
+            npc.lifeRegenExpectedLossPerSecond = 5;
+			npc.lifeRegen -= (dotDPS*2);
+            base.Update(npc, ref buffIndex);
         }
-
-        public static void NPCEffectsEnd(NPC npc, int buffType)
-        {
-            npc.color = default(Color); 
-        }       
     }
 }
