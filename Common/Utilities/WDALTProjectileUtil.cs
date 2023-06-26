@@ -50,60 +50,90 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool parentNPCExists;
         public Player parentPlayer;
         public bool parentPlayerExists;
-        public Item parentItem;
-        public bool parentItemExists;
+        public Item parentHeldItem;
+        public bool parentHeldItemExists;
+        public int ammoItemId;
+        public bool ammoItemIdExists;
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
             spawnSource = source;
-            if(source is EntitySource_Parent parentSource)
+            if(source is EntitySource_ItemUse_WithAmmo itemSourceWithAmmo)
             {
-                parentEntity = parentSource.Entity;
+                parentEntity = itemSourceWithAmmo.Entity;
                 parentEntityExists = true;
+                parentPlayer = itemSourceWithAmmo.Player;
+                parentPlayerExists = true;
+                parentHeldItem = itemSourceWithAmmo.Item;
+                parentHeldItemExists = true;
+                ammoItemId = itemSourceWithAmmo.AmmoItemIdUsed;
+                ammoItemIdExists = true;
             }
             else
             {
-                parentEntity = null;
-                parentEntityExists = false;
-            }
-            if(TryGetParentEntity(out Entity entity))
-            {
-                if(entity is NPC parentEntity_npc)
+                ammoItemId = 0;
+                ammoItemIdExists = false;
+                if (source is EntitySource_Parent parentSource)
                 {
-                    parentNPC = parentEntity_npc;
-                    parentNPCExists = true;
+                    parentEntity = parentSource.Entity;
+                    parentEntityExists = true;
                 }
                 else
                 {
-                    parentNPC = null;
-                    parentNPCExists = false;
+                    parentEntity = null;
+                    parentEntityExists = false;
                 }
-                if(parentEntity is Player parentEntity_player)
+                if (TryGetParentEntity(out Entity entity))
                 {
-                    parentPlayer = parentEntity_player;
-                    parentPlayerExists = true;
-                    if (parentEntity_player.HeldItem != null)
-                    {
-                        parentItemExists = true;
-                        parentItem = parentEntity_player.HeldItem;
-                    }
-                    else
-                    {
-                        parentItem = null;
-                        parentItemExists = false;
-                    }
-                }
-                else
-                {
-                    parentPlayer = null;
-                    parentPlayerExists = false;
-                    parentItem = null;
-                    parentItemExists = false;
+                    ProcessParentSource(entity);
                 }
             }
             base.OnSpawn(projectile, source);
         }
         
+        public void ProcessParentSource(Entity entity)
+        {
+            if (entity is NPC parentEntity_npc)
+            {
+                parentNPC = parentEntity_npc;
+                parentNPCExists = true;
+            }
+            else
+            {
+                parentNPC = null;
+                parentNPCExists = false;
+            }
+            if (entity is Player parentEntity_player)
+            {
+                parentPlayer = parentEntity_player;
+                parentPlayerExists = true;
+                if (parentEntity_player.HeldItem != null)
+                {
+                    parentHeldItemExists = true;
+                    parentHeldItem = parentEntity_player.HeldItem;
+                }
+                else
+                {
+                    parentHeldItem = null;
+                    parentHeldItemExists = false;
+                }
+            }
+            else
+            {
+                parentPlayer = null;
+                parentPlayerExists = false;
+                parentHeldItem = null;
+                parentHeldItemExists = false;
+            }
+            if (entity is Projectile parentEntity_projectile)
+            {
+                if(parentEntity_projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentEntity(out Entity newEntity))
+                {
+                    ProcessParentSource(newEntity);
+                }
+            }
+        }
+
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if(TryGetParentNPC(out NPC npc))
@@ -170,10 +200,20 @@ namespace WeDoALittleTrolling.Common.Utilities
             return false;
         }
 
-        public bool TryGetParentItem(out Item item)
+        public bool TryGetParentHeldItem(out Item item)
         {
-            item = parentItem;
-            if(parentItemExists)
+            item = parentHeldItem;
+            if(parentHeldItemExists)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool TryGetAmmoItemID(out int itemID)
+        {
+            itemID = ammoItemId;
+            if(ammoItemIdExists)
             {
                 return true;
             }
