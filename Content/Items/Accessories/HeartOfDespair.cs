@@ -53,8 +53,11 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-           heartOfDespairDamageBonus = (player.statLifeMax - player.statLife) / 4;
-           player.GetDamage(DamageClass.Magic) += (0.01f + 0.01f * (int)heartOfDespairDamageBonus);
+            heartOfDespairDamageBonus = (player.statLifeMax - player.statLife) / 4;
+            if(heartOfDespairDamageBonus >= 0)
+            {
+                player.GetDamage(DamageClass.Magic) += (0.01f + 0.01f * (int)heartOfDespairDamageBonus);
+            }
         }
 
         public override void AddRecipes()

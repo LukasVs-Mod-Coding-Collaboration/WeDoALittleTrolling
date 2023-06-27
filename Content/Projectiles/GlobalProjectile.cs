@@ -75,6 +75,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.localAI[1] = 0f;
                 projectile.Center = projectile.GetGlobalProjectile<WDALTProjectileUtil>().spawnCenter + projectile.velocity * projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
             }
+            if (projectile.type == ProjectileID.SolarWhipSword)
+            {
+                if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
+                {
+                    if (item.prefix == ModContent.PrefixType<Colossal>())
+                    {
+                        projectile.ai[0] -= 0.5f;
+                    }
+                }
+            }
             base.PostAI(projectile);
         }
 
@@ -97,6 +107,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     if (Colossal.SpeedupProjectileIDs.Contains(projectile.type))
                     {
                         projectile.velocity *= 2;
+                    }
+                    if (projectile.type == ProjectileID.SolarWhipSword)
+                    {
+                        projectile.extraUpdates += 1;
                     }
                 }
             }
@@ -146,6 +160,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         int scalingFactor = 2;
                         int horizonalIncrease = (int)Math.Round((hitbox.Width * scalingFactor) / (2 * Math.Sqrt(2)));
                         int verticalIncrease = (int)Math.Round((hitbox.Height * scalingFactor) / (2 * Math.Sqrt(2)));
+                        if(projectile.type == ProjectileID.Terragrim || projectile.type == ProjectileID.Arkhalis)
+                        {
+                            horizonalIncrease = (int)Math.Round(horizonalIncrease / Math.Sqrt(2));
+                            verticalIncrease = (int)Math.Round(verticalIncrease / Math.Sqrt(2));
+                        }
                         hitbox.Inflate(horizonalIncrease, verticalIncrease);
                     }
                     else if(Colossal.ShortswordCompatibleProjectileIDs.Contains(projectile.type))

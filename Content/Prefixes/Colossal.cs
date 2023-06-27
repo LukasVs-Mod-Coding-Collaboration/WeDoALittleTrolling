@@ -24,6 +24,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Content.Items.Weapons;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
@@ -113,7 +114,36 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ItemID.ChainGuillotines,
             ItemID.TrueExcalibur,
             ItemID.TrueNightsEdge,
-            ItemID.TerraBlade
+            ItemID.TerraBlade,
+            ItemID.TaxCollectorsStickOfDoom,
+            ItemID.SlapHand,
+            ItemID.DD2SquireDemonSword,
+            ItemID.BreakerBlade,
+            ItemID.Cutlass,
+            ItemID.FetidBaghnakhs,
+            ItemID.HamBat,
+            ItemID.Excalibur,
+            ItemID.WaffleIron,
+            ItemID.PsychoKnife,
+            ItemID.Keybrand,
+            ItemID.TheHorsemansBlade,
+            ItemID.ChristmasTreeSword,
+            ItemID.Seedler,
+            ItemID.InfluxWaver,
+            ItemID.Meowmere,
+            ItemID.DD2SquireBetsySword,
+            ItemID.StarWrath,
+            ItemID.PiercingStarlight,
+            ItemID.DayBreak,
+            ItemID.SolarEruption,
+            ItemID.Zenith,
+            ItemID.FlyingKnife,
+            ItemID.PossessedHatchet,
+            ItemID.PaladinsHammer,
+            ItemID.Terragrim,
+            ItemID.Arkhalis,
+            ItemID.VampireKnives,
+            ItemID.ScourgeoftheCorruptor
         };
         public static readonly int[] CompatibleProjectileIDs =
         {
@@ -129,8 +159,30 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ProjectileID.Muramasa,
             ProjectileID.Starfury,
             ProjectileID.Bee,
-            ProjectileID.Volcano,
-            ProjectileID.BladeOfGrass
+            ProjectileID.BladeOfGrass,
+            ProjectileID.Waffle,
+            ProjectileID.FlamingJack,
+            ProjectileID.OrnamentFriendly,
+            ProjectileID.OrnamentStar,
+            ProjectileID.SeedlerNut,
+            ProjectileID.SeedlerThorn,
+            ProjectileID.InfluxWaver,
+            ProjectileID.Meowmere,
+            ProjectileID.DD2SquireSonicBoom,
+            ProjectileID.StarWrath,
+            ProjectileID.PiercingStarlight,
+            ProjectileID.Daybreak,
+            ProjectileID.SolarWhipSword,
+            ProjectileID.FinalFractal,
+            ProjectileID.FlyingKnife,
+            ProjectileID.PossessedHatchet,
+            ProjectileID.PaladinsHammerFriendly,
+            ProjectileID.Terragrim,
+            ProjectileID.Arkhalis,
+            ProjectileID.VampireKnife,
+            ProjectileID.VampireHeal,
+            ProjectileID.EatersBite,
+            ProjectileID.TinyEater
         };
         public static readonly int[] ShortswordCompatibleProjectileIDs =
         {
@@ -151,13 +203,30 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ProjectileID.IceSickle,
             ProjectileID.DeathSickle,
             ProjectileID.ChlorophyteOrb,
-            ProjectileID.TrueNightsEdge
+            ProjectileID.TrueNightsEdge,
+            ProjectileID.Waffle,
+            ProjectileID.OrnamentFriendly,
+            ProjectileID.OrnamentStar,
+            ProjectileID.SeedlerNut,
+            ProjectileID.SeedlerThorn,
+            ProjectileID.InfluxWaver,
+            ProjectileID.Meowmere,
+            ProjectileID.DD2SquireSonicBoom,
+            ProjectileID.StarWrath,
+            ProjectileID.Starfury,
+            ProjectileID.Daybreak,
+            ProjectileID.PossessedHatchet,
+            ProjectileID.PaladinsHammerFriendly,
+            ProjectileID.VampireKnife,
+            ProjectileID.VampireHeal,
+            ProjectileID.EatersBite,
+            ProjectileID.TinyEater
         };
 
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
         public override float RollChance(Item item)
         {
-            return 1f;
+            return 1.0f;
         }
 
         public override bool CanRoll(Item item)

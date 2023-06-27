@@ -385,6 +385,10 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 12;
                 item.useAnimation = 12;
             }
+            if (item.type == ItemID.SolarEruption)
+            {
+                item.damage = 125;
+            }
             if (item.type == ItemID.IllegalGunParts)
             {
                 item.shopCustomPrice = 80000;
