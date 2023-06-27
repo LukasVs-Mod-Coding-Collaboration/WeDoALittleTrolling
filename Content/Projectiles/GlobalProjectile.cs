@@ -67,12 +67,24 @@ namespace WeDoALittleTrolling.Content.Projectiles
             return base.PreAI(projectile);
         }
 
+        public override void PostAI(Projectile projectile)
+        {
+            if (projectile.type == ProjectileID.TrueNightsEdge)
+            {
+                projectile.localAI[0] = 32f;
+                projectile.localAI[1] = 0f;
+                projectile.Center = projectile.GetGlobalProjectile<WDALTProjectileUtil>().spawnCenter + projectile.velocity * projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
+            }
+            base.PostAI(projectile);
+        }
+
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
             if (projectile.type == ProjectileID.TrueNightsEdge)
             {
                 projectile.damage *= 2;
-                projectile.penetrate = 1;
+                projectile.tileCollide = true;
+                projectile.light = 0.5f;
             }
             if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
             {
@@ -81,10 +93,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     if (Colossal.CompatibleProjectileIDs.Contains(projectile.type) || Colossal.ShortswordCompatibleProjectileIDs.Contains(projectile.type))
                     {
                         projectile.scale *= 2;
-                        if (Colossal.SpeedupProjectileIDs.Contains(projectile.type))
-                        {
-                            projectile.velocity *= 2;
-                        }
+                    }
+                    if (Colossal.SpeedupProjectileIDs.Contains(projectile.type))
+                    {
+                        projectile.velocity *= 2;
                     }
                 }
             }
@@ -95,10 +107,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
-                for(int i = 0;i < 300*3;i++)
+                for(int i = 0;i < 320;i++)
                 {
                     Random rnd = new Random();
-                    int rMax = projectile.width*3;
+                    int rMax = (int)Math.Round(projectile.width*3*projectile.scale);
                     double r = rMax * Math.Sqrt(rnd.NextDouble());
                     double angle = rnd.NextDouble() * 2 * Math.PI;
                     int xOffset = (int)Math.Round(r * Math.Cos(angle));
@@ -110,15 +122,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     switch (dustType)
                     {
                         case 0:
-                            Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Terra);
+                            Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Terra, null, 0, default, projectile.scale);
                             newDust.noGravity = true;
-                            newDust.noLightEmittence = true;
                             break;
                         default:
                             break;
                     }
                 }
-                
+                SoundEngine.PlaySound(SoundID.Item10, projectile.Center);
             }
             return base.PreKill(projectile, timeLeft);
         }
@@ -166,6 +177,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (projectile.type == ProjectileID.TrueExcalibur)
             {
                 target.AddBuff(BuffID.Ichor, 240, false); //4s, X2 in Expert, X2.5 in Master
+            }
+            if (projectile.type == ProjectileID.NightsEdge)
+            {
+                target.AddBuff(BuffID.ShadowFlame, 240, false); //4s, X2 in Expert, X2.5 in Master
+            }
+            if (projectile.type == ProjectileID.TrueNightsEdge)
+            {
+                target.AddBuff(BuffID.CursedInferno, 240, false); //4s, X2 in Expert, X2.5 in Master
             }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }

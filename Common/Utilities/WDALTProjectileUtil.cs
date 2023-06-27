@@ -54,9 +54,15 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool parentHeldItemExists;
         public int ammoItemId;
         public bool ammoItemIdExists;
+        public Vector2 spawnPosition;
+        public Vector2 spawnCenter;
+        public int ticksAlive;
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            spawnCenter = projectile.Center;
+            spawnPosition = projectile.position;
+            ticksAlive = 0;
             spawnSource = source;
             if(source is EntitySource_ItemUse_WithAmmo itemSourceWithAmmo)
             {
@@ -90,6 +96,13 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             base.OnSpawn(projectile, source);
         }
+
+        public override bool ShouldUpdatePosition(Projectile projectile)
+        {
+            ticksAlive += 1;
+            return base.ShouldUpdatePosition(projectile);
+        }
+
         
         public void ProcessParentSource(Entity entity)
         {

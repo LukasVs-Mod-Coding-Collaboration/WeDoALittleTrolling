@@ -132,7 +132,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 Vector2 dustPosition = npc.Center;
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
-                int dustType = rnd.Next(0, 5);
+                int dustType = rnd.Next(0, 2);
                 switch(dustType)
                 {
                     case 0:

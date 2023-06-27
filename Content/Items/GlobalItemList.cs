@@ -363,10 +363,22 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TrueExcalibur)
             {
-                item.damage = 120;
+                item.damage = 125;
                 item.useTime = 16;
                 item.useAnimation = 16;
                 item.knockBack = 14;
+            }
+            if (item.type == ItemID.TrueNightsEdge)
+            {
+                item.damage = 75;
+                item.useTime = 32;
+                item.useAnimation = 32;
+            }
+            if (item.type == ItemID.TerraBlade)
+            {
+                item.damage = 100;
+                item.useTime = 16;
+                item.useAnimation = 16;
             }
             if (item.type == ItemID.DayBreak)
             {
@@ -432,13 +444,6 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.DeathSickle)
             {
                 item.damage = 65;
-            }
-            if (item.type == ItemID.TrueNightsEdge)
-            {
-                item.damage = 105;
-                item.useTime = 24;
-                item.useAnimation = 24;
-                item.shootSpeed = 56f;
             }
             if (item.type == ItemID.FlowerofFire) 
             {

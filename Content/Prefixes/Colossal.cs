@@ -110,7 +110,10 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ItemID.IceSickle,
             ItemID.DeathSickle,
             ItemID.ChlorophyteClaymore,
-            ItemID.ChainGuillotines
+            ItemID.ChainGuillotines,
+            ItemID.TrueExcalibur,
+            ItemID.TrueNightsEdge,
+            ItemID.TerraBlade
         };
         public static readonly int[] CompatibleProjectileIDs =
         {
@@ -147,7 +150,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ProjectileID.SwordBeam,
             ProjectileID.IceSickle,
             ProjectileID.DeathSickle,
-            ProjectileID.ChlorophyteOrb
+            ProjectileID.ChlorophyteOrb,
+            ProjectileID.TrueNightsEdge
         };
 
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
