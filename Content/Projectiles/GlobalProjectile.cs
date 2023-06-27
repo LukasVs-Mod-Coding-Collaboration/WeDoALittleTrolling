@@ -163,6 +163,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 target.AddBuff(BuffID.Frostburn, 240, false); //4s, X2 in Expert, X2.5 in Master
             }
+            if (projectile.type == ProjectileID.TrueExcalibur)
+            {
+                target.AddBuff(BuffID.Ichor, 240, false); //4s, X2 in Expert, X2.5 in Master
+            }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
 

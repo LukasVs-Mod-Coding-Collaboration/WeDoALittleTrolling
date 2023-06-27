@@ -361,6 +361,13 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 220;
             }
+            if (item.type == ItemID.TrueExcalibur)
+            {
+                item.damage = 120;
+                item.useTime = 16;
+                item.useAnimation = 16;
+                item.knockBack = 14;
+            }
             if (item.type == ItemID.DayBreak)
             {
                 item.useTime = 12;
