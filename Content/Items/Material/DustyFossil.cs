@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Items.Material
             Item.consumable = false;
             Item.noUseGraphic = true;
 
-            Item.value = Item.buyPrice(copper: 10);
+            Item.value = Item.sellPrice(copper: 0);
             Item.maxStack = Item.CommonMaxStack;
 
             Item.rare = ItemRarityID.Blue;

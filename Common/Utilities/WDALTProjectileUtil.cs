@@ -42,6 +42,10 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override bool InstancePerEntity => true;
 
         public readonly int extraUpdatesIceBoomerang = 1;
+        //If you have perfect code this shouldn't be necessary, however, errare humanum est.
+        //I just don't want another catastrophic crash bug like on 2023/06/28!
+        public readonly int maxSourceDetectionRecursions = 8;
+        public int currentSourceDetectionRecursion = 0;
         public bool recentlyPassedIceBoomerangSoundDelay = false;
         public IEntitySource spawnSource;
         public Entity parentEntity;
@@ -91,6 +95,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 if (TryGetParentEntity(out Entity entity))
                 {
+                    currentSourceDetectionRecursion = 0;
                     ProcessParentSource(entity);
                 }
             }
@@ -142,7 +147,14 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 if(parentEntity_projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentEntity(out Entity newEntity))
                 {
-                    ProcessParentSource(newEntity);
+                    if(newEntity != entity)
+                    {
+                        currentSourceDetectionRecursion++;
+                        if(currentSourceDetectionRecursion <= maxSourceDetectionRecursions)
+                        {
+                            ProcessParentSource(newEntity);
+                        }
+                    }
                 }
             }
         }
@@ -186,7 +198,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentEntity(out Entity entity)
         {
             entity = parentEntity;
-            if(parentEntityExists)
+            if(parentEntityExists && parentEntity.active)
             {
                 return true;
             }
@@ -196,7 +208,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentNPC(out NPC npc)
         {
             npc = parentNPC;
-            if(parentNPCExists)
+            if(parentNPCExists && parentNPC.active)
             {
                 return true;
             }
@@ -206,7 +218,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentPlayer(out Player player)
         {
             player = parentPlayer;
-            if(parentPlayerExists)
+            if(parentPlayerExists && parentPlayer.active)
             {
                 return true;
             }
@@ -216,7 +228,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentHeldItem(out Item item)
         {
             item = parentHeldItem;
-            if(parentHeldItemExists)
+            if(parentHeldItemExists && parentHeldItem.active)
             {
                 return true;
             }

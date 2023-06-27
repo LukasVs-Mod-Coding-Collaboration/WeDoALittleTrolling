@@ -60,6 +60,15 @@ namespace WeDoALittleTrolling.Content.ModSystems
             WDALT_MoneyTrough.AddIngredient(ItemID.PiggyBank, 1);
             WDALT_MoneyTrough.AddTile(TileID.Anvils);
             WDALT_MoneyTrough.Register();
+
+            Recipe WDALT_MythrilAnvil_Duplicate = Recipe.Create(ItemID.MythrilAnvil, 1);
+            WDALT_MythrilAnvil_Duplicate.AddIngredient(ItemID.MythrilBar, 10);
+            WDALT_MythrilAnvil_Duplicate.AddTile(TileID.MythrilAnvil);
+            WDALT_MythrilAnvil_Duplicate.Register();
+            Recipe WDALT_OrichalcumAnvil_Duplicate = Recipe.Create(ItemID.OrichalcumAnvil, 1);
+            WDALT_OrichalcumAnvil_Duplicate.AddIngredient(ItemID.OrichalcumBar, 12);
+            WDALT_OrichalcumAnvil_Duplicate.AddTile(TileID.MythrilAnvil);
+            WDALT_OrichalcumAnvil_Duplicate.Register();
         }
 
         public bool GetFalse()
@@ -613,13 +622,19 @@ namespace WeDoALittleTrolling.Content.ModSystems
                 }
                 if(recipe.TryGetResult(ItemID.MythrilAnvil, out Item MythrilAnvil))
                 {
-                    recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
-                    recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                    if(!recipe.HasTile(TileID.MythrilAnvil))
+                    {
+                        recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
+                        recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                    }
                 }
                 if(recipe.TryGetResult(ItemID.OrichalcumAnvil, out Item OrichalcumAnvil))
                 {
-                    recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
-                    recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                    if(!recipe.HasTile(TileID.MythrilAnvil))
+                    {
+                        recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
+                        recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                    }
                 }
 
                 //Gem Hooks now require one Geode
