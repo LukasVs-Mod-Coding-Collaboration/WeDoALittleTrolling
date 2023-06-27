@@ -428,7 +428,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TrueNightsEdge)
             {
-                item.damage = 95;
+                item.damage = 105;
+                item.useTime = 24;
+                item.useAnimation = 24;
+                item.shootSpeed = 56f;
             }
             if (item.type == ItemID.FlowerofFire) 
             {

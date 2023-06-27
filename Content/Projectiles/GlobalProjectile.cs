@@ -69,6 +69,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            if (projectile.type == ProjectileID.TrueNightsEdge)
+            {
+                projectile.damage *= 2;
+                projectile.penetrate = 1;
+            }
             if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
             {
                 if (item.prefix == ModContent.PrefixType<Colossal>())
@@ -84,6 +89,38 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
             }
             base.OnSpawn(projectile, source);
+        }
+
+        public override bool PreKill(Projectile projectile, int timeLeft)
+        {
+            if(projectile.type == ProjectileID.TrueNightsEdge)
+            {
+                for(int i = 0;i < 300*3;i++)
+                {
+                    Random rnd = new Random();
+                    int rMax = projectile.width*3;
+                    double r = rMax * Math.Sqrt(rnd.NextDouble());
+                    double angle = rnd.NextDouble() * 2 * Math.PI;
+                    int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                    int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                    Vector2 dustPosition = projectile.Center;
+                    dustPosition.X += xOffset;
+                    dustPosition.Y += yOffset;
+                    int dustType = rnd.Next(0, 1);
+                    switch (dustType)
+                    {
+                        case 0:
+                            Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Terra);
+                            newDust.noGravity = true;
+                            newDust.noLightEmittence = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
+            }
+            return base.PreKill(projectile, timeLeft);
         }
 
         public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)

@@ -136,10 +136,12 @@ namespace WeDoALittleTrolling.Content.NPCs
                 switch(dustType)
                 {
                     case 0:
-                        Dust.NewDust(dustPosition, 10, 10, DustID.SolarFlare);
+                        Dust newDust1 = Dust.NewDustPerfect(dustPosition, DustID.SolarFlare);
+                        newDust1.noGravity = true;
                         break;
                     case 1:
-                        Dust.NewDust(dustPosition, 10, 10, DustID.Ash);
+                        Dust newDust2 = Dust.NewDustPerfect(dustPosition, DustID.Ash);
+                        newDust2.noGravity = true;
                         break;
                     default:
                         break;
