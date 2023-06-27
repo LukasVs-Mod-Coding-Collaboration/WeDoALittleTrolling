@@ -27,46 +27,166 @@ using WeDoALittleTrolling.Content.Projectiles;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using System.Linq;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
 
     public class Colossal : ModPrefix
     {
+        public static readonly int[] CompatibleItemIDs =
+        {
+            //Ore/Wood Swords
+            ItemID.WoodenSword,
+            ItemID.BorealWoodSword,
+            ItemID.PalmWoodSword,
+            ItemID.EbonwoodSword,
+            ItemID.ShadewoodSword,
+            ItemID.AshWoodSword,
+            ItemID.PearlwoodSword,
+            ItemID.RichMahoganySword,
+            ItemID.CactusSword,
+            ItemID.CopperShortsword,
+            ItemID.TinShortsword,
+            ItemID.IronShortsword,
+            ItemID.LeadShortsword,
+            ItemID.SilverShortsword,
+            ItemID.TungstenShortsword,
+            ItemID.GoldShortsword,
+            ItemID.PlatinumShortsword,
+            ItemID.CopperBroadsword,
+            ItemID.TinBroadsword,
+            ItemID.IronBroadsword,
+            ItemID.LeadBroadsword,
+            ItemID.SilverBroadsword,
+            ItemID.TungstenBroadsword,
+            ItemID.GoldBroadsword,
+            ItemID.PlatinumBroadsword,
+            ItemID.CobaltSword,
+            ItemID.PalladiumSword,
+            ItemID.MythrilSword,
+            ItemID.OrichalcumSword,
+            ItemID.AdamantiteSword,
+            ItemID.TitaniumSword,
+            //Unique Weapons
+            ItemID.ZombieArm,
+            ItemID.BladedGlove,
+            ItemID.Flymeal,
+            ItemID.AntlionClaw, //Mandible Blade
+            ItemID.StylistKilLaKillScissorsIWish, //Stylish Scissors
+            ItemID.Gladius,
+            ItemID.BoneSword,
+            ItemID.BatBat,
+            ItemID.TentacleSpike,
+            ItemID.Katana,
+            ItemID.LightsBane,
+            ItemID.BloodButcherer,
+            ItemID.Muramasa,
+            ItemID.Starfury,
+            ItemID.DyeTradersScimitar, //Exotic Scimitar
+            ItemID.BluePhaseblade,
+            ItemID.RedPhaseblade,
+            ItemID.GreenPhaseblade,
+            ItemID.PurplePhaseblade,
+            ItemID.WhitePhaseblade,
+            ItemID.YellowPhaseblade,
+            ItemID.OrangePhaseblade,
+            ItemID.BluePhasesaber,
+            ItemID.RedPhasesaber,
+            ItemID.GreenPhasesaber,
+            ItemID.PurplePhasesaber,
+            ItemID.WhitePhasesaber,
+            ItemID.YellowPhasesaber,
+            ItemID.OrangePhasesaber,
+            ItemID.CandyCaneSword,
+            ItemID.PurpleClubberfish,
+            ItemID.BeeKeeper,
+            ItemID.FalconBlade,
+            ItemID.BladeofGrass,
+            ItemID.FieryGreatsword,
+            ItemID.NightsEdge,
+            ItemID.EnchantedSword,
+            ItemID.BeamSword,
+            ItemID.IceSickle,
+            ItemID.DeathSickle,
+            ItemID.ChlorophyteClaymore,
+            ItemID.ChainGuillotines
+        };
+        public static readonly int[] CompatibleProjectileIDs =
+        {
+            ProjectileID.EnchantedBeam,
+            ProjectileID.SwordBeam,
+            ProjectileID.ChlorophyteOrb,
+            ProjectileID.IceSickle,
+            ProjectileID.DeathSickle,
+            ProjectileID.ChainGuillotine,
+            ProjectileID.TentacleSpike,
+            ProjectileID.LightsBane,
+            ProjectileID.BloodButcherer,
+            ProjectileID.Muramasa,
+            ProjectileID.Starfury,
+            ProjectileID.Bee,
+            ProjectileID.Volcano,
+            ProjectileID.BladeOfGrass
+        };
+        public static readonly int[] ShortswordCompatibleProjectileIDs =
+        {
+            ProjectileID.CopperShortswordStab,
+            ProjectileID.TinShortswordStab,
+            ProjectileID.IronShortswordStab,
+            ProjectileID.LeadShortswordStab,
+            ProjectileID.SilverShortswordStab,
+            ProjectileID.TungstenShortswordStab,
+            ProjectileID.GoldShortswordStab,
+            ProjectileID.PlatinumShortswordStab,
+            ProjectileID.GladiusStab,
+        };
+        public static readonly int[] SpeedupProjectileIDs =
+        {
+            ProjectileID.EnchantedBeam,
+            ProjectileID.SwordBeam,
+            ProjectileID.IceSickle,
+            ProjectileID.DeathSickle,
+            ProjectileID.ChlorophyteOrb
+        };
 
-        //public virtual float Power => 1f;
-        // Change your category this way, defaults to PrefixCategory.Custom. Affects which items can get this prefix.
-        public override PrefixCategory Category => PrefixCategory.Melee;
+        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
         public override float RollChance(Item item)
         {
             return 1f;
         }
 
-        // Determines if it can roll at all.
         public override bool CanRoll(Item item)
         {
-            return true;
+            if(item.DamageType != DamageClass.Melee && item.DamageType != DamageClass.MeleeNoSpeed)
+            {
+                return false;
+            }
+            if(CompatibleItemIDs.Contains(item.type))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        // Use this function to modify these stats for items which have this prefix:
-        // Damage Multiplier, Knockback Multiplier, Use Time Multiplier, Scale Multiplier (Size), Shoot Speed Multiplier, Mana Multiplier (Mana cost), Crit Bonus.
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            scaleMult *= 2.0f; // Add + x * Power to allow for other mods to change effectiveness of modifier
+            scaleMult *= 2.0f;
             useTimeMult *= 1.3f;
             knockbackMult *= 1.25f;
         }
 
-        // Modify the cost of items with this modifier with this function.
         public override void ModifyValue(ref float valueMult)
         {
             valueMult *= 1f + 0.05f;
         }
 
-        // This is used to modify most other stats of items which have this modifier.
         public override void Apply(Item item)
         {
-            //
+            
         }
     }
 }

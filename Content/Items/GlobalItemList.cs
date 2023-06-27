@@ -382,6 +382,11 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 24;
             }
+            if (item.type == ItemID.Starfury)
+            {
+                item.useTime = 20;
+                item.useAnimation = 20;
+            }
             if
             (
                 item.type == ItemID.JackOLanternMask ||
@@ -399,6 +404,11 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.ChlorophytePartisan)
             {
                 item.damage = 60;
+            }
+            if (item.type == ItemID.ChlorophyteClaymore)
+            {
+                item.useTime = 52;
+                item.useAnimation = 26;
             }
             if (item.type == ItemID.Trimarang)
             {
@@ -418,7 +428,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TrueNightsEdge)
             {
-                item.damage = 80;
+                item.damage = 95;
             }
             if (item.type == ItemID.FlowerofFire) 
             {

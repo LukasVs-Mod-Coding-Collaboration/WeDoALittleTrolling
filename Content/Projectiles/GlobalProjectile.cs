@@ -69,20 +69,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if
-            (
-                projectile.type == ProjectileID.EnchantedBeam ||
-                projectile.type == ProjectileID.SwordBeam ||
-                projectile.type == ProjectileID.IceSickle ||
-                projectile.type == ProjectileID.DeathSickle
-            )
+            if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
             {
-                if(projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
+                if (item.prefix == ModContent.PrefixType<Colossal>())
                 {
-                    if(player.HeldItem.prefix == ModContent.PrefixType<Colossal>())
+                    if (Colossal.CompatibleProjectileIDs.Contains(projectile.type) || Colossal.ShortswordCompatibleProjectileIDs.Contains(projectile.type))
                     {
                         projectile.scale *= 2;
-                        projectile.velocity *= 2;
+                        if (Colossal.SpeedupProjectileIDs.Contains(projectile.type))
+                        {
+                            projectile.velocity *= 2;
+                        }
                     }
                 }
             }
@@ -91,21 +88,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
         {
-            if
-            (
-                projectile.type == ProjectileID.EnchantedBeam ||
-                projectile.type == ProjectileID.SwordBeam ||
-                projectile.type == ProjectileID.IceSickle ||
-                projectile.type == ProjectileID.DeathSickle
-            )
+
+            if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
             {
-                if(projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
+                if (item.prefix == ModContent.PrefixType<Colossal>())
                 {
-                    if(player.HeldItem.prefix == ModContent.PrefixType<Colossal>())
+                    if (Colossal.CompatibleProjectileIDs.Contains(projectile.type))
                     {
                         int scalingFactor = 2;
-                        int horizonalIncrease  = (hitbox.Width * scalingFactor) / (2*2);
-                        int verticalIncrease = (hitbox.Height * scalingFactor) / (2*2);
+                        int horizonalIncrease = (int)Math.Round((hitbox.Width * scalingFactor) / (2 * Math.Sqrt(2)));
+                        int verticalIncrease = (int)Math.Round((hitbox.Height * scalingFactor) / (2 * Math.Sqrt(2)));
+                        hitbox.Inflate(horizonalIncrease, verticalIncrease);
+                    }
+                    else if(Colossal.ShortswordCompatibleProjectileIDs.Contains(projectile.type))
+                    {
+                        int scalingFactor = 2;
+                        int horizonalIncrease  = (int)Math.Round((hitbox.Width * scalingFactor) / (Math.Sqrt(2)));
+                        int verticalIncrease = (int)Math.Round((hitbox.Height * scalingFactor) / (Math.Sqrt(2)));
                         hitbox.Inflate(horizonalIncrease, verticalIncrease);
                     }
                 }
