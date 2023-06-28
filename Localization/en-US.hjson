@@ -216,6 +216,11 @@ Mods: {
 				DisplayName: Searing Leggings
 				Tooltip: ""
 			}
+
+			HellishFossil: {
+				DisplayName: Hellish Fossil
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
