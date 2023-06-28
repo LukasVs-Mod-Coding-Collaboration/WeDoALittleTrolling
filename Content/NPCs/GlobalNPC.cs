@@ -378,6 +378,48 @@ namespace WeDoALittleTrolling.Content.NPCs
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                 npcLoot.Add(drop);
             }
+
+            //Hellish fossil drops
+
+            if
+            (
+                npc.type == NPCID.RedDevil
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 20; // 20% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<HellishFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.Lavabat
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 10; // 10% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<HellishFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.DemonTaxCollector
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 40; // 40% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<HellishFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
             base.ModifyNPCLoot(npc, npcLoot);
         }
 

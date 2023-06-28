@@ -53,6 +53,18 @@ namespace WeDoALittleTrolling.Common.Utilities
             player.arcticDivingGear = true;
             base.UpdateEquips();
         }
+        public override void UpdateLifeRegen()
+        {
+            if(player.HasItem(ModContent.ItemType<HolyCharm>()))
+            {
+                player.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
+            }
+            else
+            {
+                player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+            }
+            base.UpdateLifeRegen();
+        }
 
         public override void Initialize()
         {

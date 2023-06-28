@@ -25,24 +25,34 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
+using WeDoALittleTrolling.Content.Items.Material;
 
-namespace WeDoALittleTrolling.Content.Items.Material
+namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-    internal class HellishFossil : ModItem
+    internal class HolyCharm : ModItem
     {
         public override void SetDefaults()
         {
-            Item.width = 18;
-            Item.height = 16;
+            Item.width = 34;
+            Item.height = 34;
 
-            Item.material = true;
             Item.consumable = false;
             Item.noUseGraphic = true;
 
-            Item.value = Item.sellPrice(copper: 0);
-            Item.maxStack = Item.CommonMaxStack;
+            Item.value = Item.sellPrice(gold: 5);
+            Item.maxStack = 1;
 
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ItemRarityID.Yellow;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.HallowedBar, 15)
+              .AddIngredient(ModContent.ItemType<HellishFossil>(), 15)
+              .AddIngredient(ItemID.HolyWater, 30)
+              .Register();
         }
     }
 }

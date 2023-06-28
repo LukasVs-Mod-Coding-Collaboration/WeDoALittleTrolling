@@ -221,6 +221,17 @@ Mods: {
 				DisplayName: Hellish Fossil
 				Tooltip: ""
 			}
+
+			HolyCharm: {
+				DisplayName: Holy Charm
+				Tooltip:
+					'''
+					Keep this item in your inventory to
+					become immune to Searing Inferno
+					"This charm looks like it might be
+					able to prevent searing pain."
+					'''
+			}
 		}
 
 		Projectiles: {

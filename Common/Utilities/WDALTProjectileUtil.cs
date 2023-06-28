@@ -198,7 +198,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentEntity(out Entity entity)
         {
             entity = parentEntity;
-            if(parentEntityExists && parentEntity.active)
+            if(parentEntityExists)
             {
                 return true;
             }
@@ -208,7 +208,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentNPC(out NPC npc)
         {
             npc = parentNPC;
-            if(parentNPCExists && parentNPC.active)
+            if(parentNPCExists)
             {
                 return true;
             }
@@ -218,7 +218,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentPlayer(out Player player)
         {
             player = parentPlayer;
-            if(parentPlayerExists && parentPlayer.active)
+            if(parentPlayerExists)
             {
                 return true;
             }
@@ -228,7 +228,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool TryGetParentHeldItem(out Item item)
         {
             item = parentHeldItem;
-            if(parentHeldItemExists && parentHeldItem.active)
+            if(parentHeldItemExists)
             {
                 return true;
             }
