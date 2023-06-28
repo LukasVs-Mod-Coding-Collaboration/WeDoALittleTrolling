@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.consumable = false;
             Item.noUseGraphic = true;
 
-            Item.value = Item.sellPrice(gold: 5);
+            Item.value = Item.sellPrice(gold: 8);
             Item.maxStack = 1;
 
             Item.rare = ItemRarityID.Yellow;
