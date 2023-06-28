@@ -351,7 +351,7 @@ Mods: {
 		Buffs: {
 			SearingInferno: {
 				DisplayName: Searing Inferno
-				Description: Deal 25% reduced damage and slowly loose life
+				Description: Deal 25% reduced damage and rapidly loose life
 			}
 		}
 	}

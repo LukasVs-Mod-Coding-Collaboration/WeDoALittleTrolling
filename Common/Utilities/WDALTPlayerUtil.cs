@@ -27,6 +27,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
+using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Items.Accessories;
 
 namespace WeDoALittleTrolling.Common.Utilities
@@ -71,6 +72,10 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
+            if(target.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
+            }
             if
             (
                 modifiers.DamageType == DamageClass.Magic

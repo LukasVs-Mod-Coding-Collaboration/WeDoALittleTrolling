@@ -90,6 +90,14 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.PirateCorsair,
             NPCID.PirateGhost
         };
+        public static readonly int[] InflictSearingInferno1In1Group =
+        {
+            NPCID.Golem,
+            NPCID.GolemHead,
+            NPCID.GolemFistLeft,
+            NPCID.GolemFistRight,
+            NPCID.GolemHeadFree
+        };
 
         public override void SetDefaults(NPC npc)
         {
@@ -238,6 +246,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(random.Next(0, 8) == 0) //1 in 8 Chance
                 {
                     target.AddBuff(BuffID.Bleeding, 480, false); //8s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictSearingInferno1In1Group.Contains(npc.type))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, false); //4s, X2 in Expert, X2.5 in Master
                 }
             }
         }

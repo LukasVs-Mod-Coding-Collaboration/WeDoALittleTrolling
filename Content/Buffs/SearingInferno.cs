@@ -26,13 +26,24 @@ namespace WeDoALittleTrolling.Content.Buffs
         public override void Update(NPC npc, ref int buffIndex)
         {
             if (npc.lifeRegen > 0)
-			{
-				npc.lifeRegen = 0;
-			}
+            {
+                npc.lifeRegen = 0;
+            }
             int dotDPS = 15;
             npc.lifeRegenExpectedLossPerSecond = 5;
-			npc.lifeRegen -= (dotDPS*2);
+            npc.lifeRegen -= (dotDPS*2);
             base.Update(npc, ref buffIndex);
+        }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
+            if (player.lifeRegen > 0)
+            {
+                player.lifeRegen = 0;
+            }
+            int dotDPS = 15;
+            player.lifeRegen -= (dotDPS*2);
+            base.Update(player, ref buffIndex);
         }
     }
 }
