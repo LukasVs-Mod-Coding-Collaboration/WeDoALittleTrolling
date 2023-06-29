@@ -52,7 +52,10 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.moveSpeed += 1.25f; // (originally 1.5)
             player.noFallDmg = true;
             player.accRunSpeed += 0.4f;
-            player.lifeRegen += 20; //HP Regen (originally 25)
+            if(player.lifeRegen >= 0)
+            {
+                player.lifeRegen += 20; //HP Regen (originally 25)
+            }
             //player.GetAttackSpeed(DamageClass.Generic) += 0.25f;
             player.longInvince = true; //Cross Necklace effect
             player.wingTimeMax += 360;
@@ -63,8 +66,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.LifeFruit, 5)
-              .AddIngredient(ItemID.SpectreBar, 10)
-              .AddIngredient(ItemID.ChlorophyteBar, 10)
+              .AddIngredient(ItemID.LunarBar, 10)
               .AddIngredient(ItemID.Wire, 50)
               .AddIngredient(ItemID.CrossNecklace, 1)
               .AddIngredient(ItemID.MartianConduitPlating, 5)

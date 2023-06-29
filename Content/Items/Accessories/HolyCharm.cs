@@ -49,9 +49,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.HallowedBar, 15)
-              .AddIngredient(ModContent.ItemType<HellishFossil>(), 15)
-              .AddIngredient(ItemID.HolyWater, 30)
+              .AddIngredient(ItemID.HallowedBar, 10)
+              .AddIngredient(ModContent.ItemType<HellishFossil>(), 10)
+              .AddIngredient(ItemID.HolyWater, 10)
               .Register();
         }
     }
