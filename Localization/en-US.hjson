@@ -229,7 +229,7 @@ Mods: {
 					Keep this item in your inventory to
 					become immune to Searing Inferno
 					"This charm looks like it might be
-					able to prevent searing pain."
+					 able to to extinguish the Golem's fire."
 					'''
 			}
 		}
@@ -365,7 +365,8 @@ Mods: {
 				Description:
 					'''
 					Damage reduced by 25% and losing life
-					"If only there was a charm that prevents searing pain..."
+					"If only there was a way to suppress this...
+					 Maybe I should check the Underworld."
 					'''
 			}
 		}
