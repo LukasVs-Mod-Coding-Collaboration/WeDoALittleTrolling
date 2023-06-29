@@ -362,7 +362,11 @@ Mods: {
 		Buffs: {
 			SearingInferno: {
 				DisplayName: Searing Inferno
-				Description: Deal 25% reduced damage and rapidly loose life
+				Description:
+					'''
+					Deal 25% reduced damage and rapidly loose life
+					"If only there was a charm that prevents searing pain..."
+					'''
 			}
 		}
 	}
