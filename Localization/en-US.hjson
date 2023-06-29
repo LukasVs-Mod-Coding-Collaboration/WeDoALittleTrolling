@@ -364,7 +364,7 @@ Mods: {
 				DisplayName: Searing Inferno
 				Description:
 					'''
-					Deal 25% reduced damage and rapidly loose life
+					Damage reduced by 25% and losing life
 					"If only there was a charm that prevents searing pain..."
 					'''
 			}
