@@ -96,7 +96,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.GolemHead,
             NPCID.GolemFistLeft,
             NPCID.GolemFistRight,
-            NPCID.GolemHeadFree
+            NPCID.GolemHeadFree,
+            NPCID.Lihzahrd,
+            NPCID.LihzahrdCrawler,
+            NPCID.FlyingSnake
         };
 
         public override void SetDefaults(NPC npc)
