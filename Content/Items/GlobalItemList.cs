@@ -531,6 +531,27 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 150;
             }
 
+            // Make boss summoning items non-consumable
+
+            if
+            (
+                item.type == ItemID.SlimeCrown ||
+                item.type == ItemID.SuspiciousLookingEye ||
+                item.type == ItemID.WormFood ||
+                item.type == ItemID.BloodySpine ||
+                item.type == ItemID.Abeemination ||
+                item.type == ItemID.DeerThing ||
+                item.type == ItemID.MechanicalWorm ||
+                item.type == ItemID.MechanicalEye ||
+                item.type == ItemID.MechanicalSkull ||
+                item.type == ItemID.MechdusaSummon ||
+                item.type == ItemID.CelestialSigil
+            )
+            {
+                item.consumable = false;
+                item.maxStack = 1;
+            }
+
         }
 
     }
