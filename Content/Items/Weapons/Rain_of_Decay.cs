@@ -24,6 +24,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Common.Utilities;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
@@ -81,6 +82,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     Vector2 burstArrowSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles)));
                     int j = Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
                     Main.projectile[j].extraUpdates = 0;
+                    Main.projectile[j].GetGlobalProjectile<WDALTProjectileUtil>().speedyRainOfDecayArrow = false;
+                    if(Main.netMode == 1)
+                    {
+                        ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
+                        soundPlayRainOfDecayPacket.Write("soundPlayRainOfDecay");
+                        soundPlayRainOfDecayPacket.WriteVector2(player.position);
+                        soundPlayRainOfDecayPacket.Send();
+                    }
                     SoundEngine.PlaySound(SoundID.Item5, player.position);
                 }
                 return false;
@@ -89,8 +98,16 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 int j = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
                 Main.projectile[j].extraUpdates = 1;
+                Main.projectile[j].GetGlobalProjectile<WDALTProjectileUtil>().speedyRainOfDecayArrow = true;
                 if (soundPlayedRecently == false)
                 {
+                    if(Main.netMode == 1)
+                    {
+                        ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
+                        soundPlayRainOfDecayPacket.Write("soundPlayRainOfDecay");
+                        soundPlayRainOfDecayPacket.WriteVector2(player.position);
+                        soundPlayRainOfDecayPacket.Send();
+                    }
                     SoundEngine.PlaySound(SoundID.Item5, player.position);
                     soundPlayedRecently = true;
                 }

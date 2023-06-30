@@ -44,16 +44,36 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void HandlePacket(BinaryReader reader, int whoAmI, Mod mod)
         {
             string type = reader.ReadString();
-            float value = reader.ReadSingle();
+            float value = 0f;
+            Vector2 RODCsoundPos = new Vector2(0f, 0f);
+            if(type == "updateWindSpeedTarget")
+            {
+                value = reader.ReadSingle();
+            }
+            if(type == "soundBroadcastRainOfDecay" || type == "soundPlayRainOfDecay")
+            {
+                RODCsoundPos = reader.ReadVector2();
+            }
             if(Main.netMode == 1)
             {
-                if(type == "updateWindSpeedTarget")
+                if (type == "updateWindSpeedTarget")
                 {
                     Main.windSpeedTarget = value;
+                }
+                if (type == "soundBroadcastRainOfDecay")
+                {
+                    SoundEngine.PlaySound(SoundID.Item5, RODCsoundPos);
                 }
             }
             if(Main.netMode == 2)
             {
+                if (type == "soundPlayRainOfDecay")
+                {
+                    ModPacket soundBroadcastRainOfDecayPacket = mod.GetPacket();
+                    soundBroadcastRainOfDecayPacket.Write("soundBroadcastRainOfDecay");
+                    soundBroadcastRainOfDecayPacket.WriteVector2(RODCsoundPos);
+                    soundBroadcastRainOfDecayPacket.Send();
+                }
                 if(type == "moondial")
                 {
                     Main.moondialCooldown = 0;

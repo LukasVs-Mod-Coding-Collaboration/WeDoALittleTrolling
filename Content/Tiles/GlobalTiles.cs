@@ -32,24 +32,28 @@ namespace WeDoALittleTrolling.Content.Tiles
         {
             if(type == TileID.Moondial)
             {
-                Main.moondialCooldown = 0;
+                if (Main.netMode == 0)
+                {
+                    Main.moondialCooldown = 0;
+                }
                 if (Main.netMode == 1)
                 {
                     ModPacket moondialPacket = Mod.GetPacket();
                     moondialPacket.Write("moondial");
-                    moondialPacket.Write(0f);
                     moondialPacket.Send();
                 }
                 
             }
             else if(type == TileID.Sundial)
             {
-                Main.sundialCooldown = 0;
+                if (Main.netMode == 0)
+                {
+                    Main.sundialCooldown = 0;
+                }
                 if (Main.netMode == 1)
                 {
                     ModPacket sundialPacket = Mod.GetPacket();
                     sundialPacket.Write("sundial");
-                    sundialPacket.Write(0f);
                     sundialPacket.Send();
                 }
             }
@@ -86,7 +90,6 @@ namespace WeDoALittleTrolling.Content.Tiles
                 {
                     ModPacket weatherVanePacket = Mod.GetPacket();
                     weatherVanePacket.Write("weatherVane");
-                    weatherVanePacket.Write(0f);
                     weatherVanePacket.Send();
                     SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                 }
@@ -132,7 +135,6 @@ namespace WeDoALittleTrolling.Content.Tiles
                 {
                     ModPacket djinnLampPacket = Mod.GetPacket();
                     djinnLampPacket.Write("djinnLamp");
-                    djinnLampPacket.Write(0f);
                     djinnLampPacket.Send();
                     SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
                 }
@@ -166,7 +168,6 @@ namespace WeDoALittleTrolling.Content.Tiles
                 {
                     ModPacket skyMillPacket = Mod.GetPacket();
                     skyMillPacket.Write("skyMill");
-                    skyMillPacket.Write(0f);
                     skyMillPacket.Send();
                     SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                 }
