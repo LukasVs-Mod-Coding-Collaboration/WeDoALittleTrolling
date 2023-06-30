@@ -31,6 +31,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Material;
@@ -43,46 +44,46 @@ namespace WeDoALittleTrolling.Common.ModSystems
         
         public static void HandlePacket(BinaryReader reader, int whoAmI, Mod mod)
         {
-            string type = reader.ReadString();
+            short type = reader.ReadInt16();
             float value = 0f;
             Vector2 RODCsoundPos = new Vector2(0f, 0f);
-            if(type == "updateWindSpeedTarget")
+            if(type == WDALTPacketTypeID.updateWindSpeedTarget)
             {
                 value = reader.ReadSingle();
             }
-            if(type == "soundBroadcastRainOfDecay" || type == "soundPlayRainOfDecay")
+            if(type == WDALTPacketTypeID.soundBroadcastRainOfDecay || type == WDALTPacketTypeID.soundPlayRainOfDecay)
             {
                 RODCsoundPos = reader.ReadVector2();
             }
             if(Main.netMode == 1)
             {
-                if (type == "updateWindSpeedTarget")
+                if (type == WDALTPacketTypeID.updateWindSpeedTarget)
                 {
                     Main.windSpeedTarget = value;
                 }
-                if (type == "soundBroadcastRainOfDecay")
+                if (type == WDALTPacketTypeID.soundBroadcastRainOfDecay)
                 {
                     SoundEngine.PlaySound(SoundID.Item5, RODCsoundPos);
                 }
             }
             if(Main.netMode == 2)
             {
-                if (type == "soundPlayRainOfDecay")
+                if (type == WDALTPacketTypeID.soundPlayRainOfDecay)
                 {
                     ModPacket soundBroadcastRainOfDecayPacket = mod.GetPacket();
-                    soundBroadcastRainOfDecayPacket.Write("soundBroadcastRainOfDecay");
+                    soundBroadcastRainOfDecayPacket.Write(WDALTPacketTypeID.soundBroadcastRainOfDecay);
                     soundBroadcastRainOfDecayPacket.WriteVector2(RODCsoundPos);
                     soundBroadcastRainOfDecayPacket.Send();
                 }
-                if(type == "moondial")
+                if(type == WDALTPacketTypeID.moondial)
                 {
                     Main.moondialCooldown = 0;
                 }
-                if(type == "sundial")
+                if(type == WDALTPacketTypeID.sundial)
                 {
                     Main.sundialCooldown = 0;
                 }
-                if(type == "weatherVane")
+                if(type == WDALTPacketTypeID.weatherVane)
                 {
                     if (Main.IsItRaining)
                     {
@@ -105,7 +106,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         Main.maxRaining = 0.1f;
                     }
                 }
-                if(type == "djinnLamp")
+                if(type == WDALTPacketTypeID.djinnLamp)
                 {
                     float windSpeedPerMph = ((1.0f)/(50.0f));
                     float windSign = 1.0f;
@@ -138,11 +139,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         }
                     }
                     ModPacket updateWindSpeedTargetPacket = mod.GetPacket();
-                    updateWindSpeedTargetPacket.Write("updateWindSpeedTarget");
+                    updateWindSpeedTargetPacket.Write(WDALTPacketTypeID.updateWindSpeedTarget);
                     updateWindSpeedTargetPacket.Write((float)Main.windSpeedTarget);
                     updateWindSpeedTargetPacket.Send();
                 }
-                if(type == "skyMill")
+                if(type == WDALTPacketTypeID.skyMill)
                 {
                     float windSpeedPerMph = ((1.0f)/(50.0f));
                     float windSign = 1.0f;
@@ -163,7 +164,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         Main.windSpeedTarget = (-windSign) * windSpeedPerMph * 5.0f;
                     }
                     ModPacket updateWindSpeedTargetPacket = mod.GetPacket();
-                    updateWindSpeedTargetPacket.Write("updateWindSpeedTarget");
+                    updateWindSpeedTargetPacket.Write(WDALTPacketTypeID.updateWindSpeedTarget);
                     updateWindSpeedTargetPacket.Write((float)Main.windSpeedTarget);
                     updateWindSpeedTargetPacket.Send();
                 }

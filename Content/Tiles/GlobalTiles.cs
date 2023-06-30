@@ -23,6 +23,7 @@ using Terraria.Audio;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.ModSystems;
 
 namespace WeDoALittleTrolling.Content.Tiles
 {
@@ -39,7 +40,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                 if (Main.netMode == 1)
                 {
                     ModPacket moondialPacket = Mod.GetPacket();
-                    moondialPacket.Write("moondial");
+                    moondialPacket.Write(WDALTPacketTypeID.moondial);
                     moondialPacket.Send();
                 }
                 
@@ -53,7 +54,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                 if (Main.netMode == 1)
                 {
                     ModPacket sundialPacket = Mod.GetPacket();
-                    sundialPacket.Write("sundial");
+                    sundialPacket.Write(WDALTPacketTypeID.sundial);
                     sundialPacket.Send();
                 }
             }
@@ -89,7 +90,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                 else if(Main.netMode == 1)
                 {
                     ModPacket weatherVanePacket = Mod.GetPacket();
-                    weatherVanePacket.Write("weatherVane");
+                    weatherVanePacket.Write(WDALTPacketTypeID.weatherVane);
                     weatherVanePacket.Send();
                     SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                 }
@@ -134,7 +135,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                 else if(Main.netMode == 1)
                 {
                     ModPacket djinnLampPacket = Mod.GetPacket();
-                    djinnLampPacket.Write("djinnLamp");
+                    djinnLampPacket.Write(WDALTPacketTypeID.djinnLamp);
                     djinnLampPacket.Send();
                     SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
                 }
@@ -167,7 +168,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                 else if(Main.netMode == 1)
                 {
                     ModPacket skyMillPacket = Mod.GetPacket();
-                    skyMillPacket.Write("skyMill");
+                    skyMillPacket.Write(WDALTPacketTypeID.skyMill);
                     skyMillPacket.Send();
                     SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                 }

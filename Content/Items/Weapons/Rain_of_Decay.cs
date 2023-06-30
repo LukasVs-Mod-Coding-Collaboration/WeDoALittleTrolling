@@ -25,6 +25,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModSystems;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
@@ -86,7 +87,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     if(Main.netMode == 1)
                     {
                         ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
-                        soundPlayRainOfDecayPacket.Write("soundPlayRainOfDecay");
+                        soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
                         soundPlayRainOfDecayPacket.WriteVector2(player.position);
                         soundPlayRainOfDecayPacket.Send();
                     }
@@ -107,7 +108,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     if(Main.netMode == 1)
                     {
                         ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
-                        soundPlayRainOfDecayPacket.Write("soundPlayRainOfDecay");
+                        soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
                         soundPlayRainOfDecayPacket.WriteVector2(player.position);
                         soundPlayRainOfDecayPacket.Send();
                     }
