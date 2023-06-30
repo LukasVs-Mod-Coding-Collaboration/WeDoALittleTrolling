@@ -34,6 +34,8 @@ using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Weapons;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
+using Terraria.ModLoader.IO;
+using System.IO;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -58,15 +60,15 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool parentHeldItemExists;
         public int ammoItemId;
         public bool ammoItemIdExists;
-        public Vector2 spawnPosition;
         public Vector2 spawnCenter;
         public int ticksAlive;
+        public bool colossalSolarWhip = false;
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
             spawnCenter = projectile.Center;
-            spawnPosition = projectile.position;
             ticksAlive = 0;
+            projectile.netUpdate = true;
             spawnSource = source;
             if(source is EntitySource_ItemUse_WithAmmo itemSourceWithAmmo)
             {
@@ -100,6 +102,38 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
             }
             base.OnSpawn(projectile, source);
+        }
+
+        public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(projectile.scale);
+            if(projectile.type == ProjectileID.TrueNightsEdge)
+            {
+                binaryWriter.WriteVector2(spawnCenter);
+            }
+            if(projectile.type == ProjectileID.SolarWhipSword)
+            {
+                binaryWriter.Write(colossalSolarWhip);
+            }
+        }
+
+        public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+        {
+            projectile.scale = binaryReader.ReadSingle();
+            if(projectile.type == ProjectileID.TrueNightsEdge)
+            {
+                spawnCenter = binaryReader.ReadVector2();
+                projectile.tileCollide = true;
+                projectile.light = 0.5f;
+            }
+            if(projectile.type == ProjectileID.SolarWhipSword)
+            {
+                colossalSolarWhip = binaryReader.ReadBoolean();
+                if(colossalSolarWhip)
+                {
+                    projectile.extraUpdates = 1;
+                }
+            }
         }
 
         public override bool ShouldUpdatePosition(Projectile projectile)

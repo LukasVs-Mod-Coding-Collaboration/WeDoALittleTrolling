@@ -30,89 +30,144 @@ namespace WeDoALittleTrolling.Content.Tiles
     {
         public override void RightClick(int i, int j, int type)
         {
-            float windSpeedPerMph = ((1.0f)/(50.0f));
-            float windSign = 1.0f;
-            if(Main.windSpeedTarget >= 0)
-            {
-                windSign = 1;
-            }
-            else
-            {
-                windSign = -1;
-            }
-            
-            //Actual Functions
             if(type == TileID.Moondial)
             {
                 Main.moondialCooldown = 0;
+                if (Main.netMode == 1)
+                {
+                    ModPacket moondialPacket = Mod.GetPacket();
+                    moondialPacket.Write("moondial");
+                    moondialPacket.Write(0f);
+                    moondialPacket.Send();
+                }
+                
             }
             else if(type == TileID.Sundial)
             {
                 Main.sundialCooldown = 0;
+                if (Main.netMode == 1)
+                {
+                    ModPacket sundialPacket = Mod.GetPacket();
+                    sundialPacket.Write("sundial");
+                    sundialPacket.Write(0f);
+                    sundialPacket.Send();
+                }
             }
             else if(type == TileID.WeatherVane)
             {
-                if(Main.IsItRaining)
+                if (Main.netMode == 0)
                 {
-                    if(Main.maxRaining < 0.2f)
+                    if (Main.IsItRaining)
                     {
-                        Main.maxRaining = 0.4f;
-                        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
-                    }
-                    else if(Main.maxRaining < 0.6f)
-                    {
-                        Main.maxRaining = 0.8f;
-                        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                        if (Main.maxRaining < 0.2f)
+                        {
+                            Main.maxRaining = 0.4f;
+                            SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                        }
+                        else if (Main.maxRaining < 0.6f)
+                        {
+                            Main.maxRaining = 0.8f;
+                            SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                        }
+                        else
+                        {
+                            Main.StopRain();
+                            SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                        }
                     }
                     else
                     {
-                        Main.StopRain();
+                        Main.StartRain();
+                        Main.maxRaining = 0.1f;
                         SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                     }
                 }
-                else
+                else if(Main.netMode == 1)
                 {
-                    Main.StartRain();
-                    Main.maxRaining = 0.1f;
+                    ModPacket weatherVanePacket = Mod.GetPacket();
+                    weatherVanePacket.Write("weatherVane");
+                    weatherVanePacket.Write(0f);
+                    weatherVanePacket.Send();
                     SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                 }
             }
             else if(type == TileID.DjinnLamp)
             {
-                if(Sandstorm.Happening)
+                if (Main.netMode == 0)
                 {
-                    Sandstorm.StopSandstorm();
-                    SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
-                }
-                else
-                {
-                    Sandstorm.StartSandstorm();
-                    if(Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 30.0f)
+                    float windSpeedPerMph = ((1.0f)/(50.0f));
+                    float windSign = 1.0f;
+                    if (Main.windSpeedTarget >= 0)
                     {
-                        if(Main.windSpeedTarget > 0)
-                        {
-                            Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
-                            
-                        } 
-                        else
-                        {
-                            Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
-                        }
+                        windSign = 1;
                     }
+                    else
+                    {
+                        windSign = -1;
+                    }
+                    if (Sandstorm.Happening)
+                    {
+                        Sandstorm.StopSandstorm();
+                        SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
+                    }
+                    else
+                    {
+                        Sandstorm.StartSandstorm();
+                        if (Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 30.0f)
+                        {
+                            if (Main.windSpeedTarget > 0)
+                            {
+                                Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
+
+                            }
+                            else
+                            {
+                                Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
+                            }
+                        }
+                        SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
+                    }
+                }
+                else if(Main.netMode == 1)
+                {
+                    ModPacket djinnLampPacket = Mod.GetPacket();
+                    djinnLampPacket.Write("djinnLamp");
+                    djinnLampPacket.Write(0f);
+                    djinnLampPacket.Send();
                     SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
-                    
                 }
             }
             else if(type == TileID.SkyMill)
             {
-                if(Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 39.0f)
+                if (Main.netMode == 0)
                 {
-                    Main.windSpeedTarget += windSign * windSpeedPerMph * 10.0f;
-                    SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                    float windSpeedPerMph = ((1.0f)/(50.0f));
+                    float windSign = 1.0f;
+                    if (Main.windSpeedTarget >= 0)
+                    {
+                        windSign = 1;
+                    }
+                    else
+                    {
+                        windSign = -1;
+                    }
+                    if (Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 39.0f)
+                    {
+                        Main.windSpeedTarget += windSign * windSpeedPerMph * 10.0f;
+                        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                    }
+                    else if (Math.Abs(Main.windSpeedTarget) >= windSpeedPerMph * 39.0f)
+                    {
+                        Main.windSpeedTarget = (-windSign) * windSpeedPerMph * 5.0f;
+                        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
+                    }
                 }
-                else if(Math.Abs(Main.windSpeedTarget) >= windSpeedPerMph * 39.0f)
+                else if(Main.netMode == 1)
                 {
-                    Main.windSpeedTarget = (-windSign) * windSpeedPerMph * 5.0f;
+                    ModPacket skyMillPacket = Mod.GetPacket();
+                    skyMillPacket.Write("skyMill");
+                    skyMillPacket.Write(0f);
+                    skyMillPacket.Send();
                     SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                 }
             }

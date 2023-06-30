@@ -77,12 +77,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if (projectile.type == ProjectileID.SolarWhipSword)
             {
+                bool success = false;
                 if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
                 {
                     if (item.prefix == ModContent.PrefixType<Colossal>())
                     {
                         projectile.ai[0] -= 0.5f;
+                        success = true;
                     }
+                }
+                if(!success && projectile.GetGlobalProjectile<WDALTProjectileUtil>().colossalSolarWhip)
+                {
+                    projectile.ai[0] -= 0.5f;
                 }
             }
             base.PostAI(projectile);
@@ -95,6 +101,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.damage *= 2;
                 projectile.tileCollide = true;
                 projectile.light = 0.5f;
+                projectile.netUpdate = true;
             }
             if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
             {
@@ -110,8 +117,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                     if (projectile.type == ProjectileID.SolarWhipSword)
                     {
-                        projectile.extraUpdates += 1;
+                        projectile.extraUpdates = 1;
+                        projectile.GetGlobalProjectile<WDALTProjectileUtil>().colossalSolarWhip = true;
                     }
+                    projectile.netUpdate = true;
                 }
             }
             base.OnSpawn(projectile, source);

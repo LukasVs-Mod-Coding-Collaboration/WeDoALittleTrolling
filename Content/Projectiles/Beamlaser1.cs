@@ -19,6 +19,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -74,7 +75,18 @@ namespace  WeDoALittleTrolling.Content.Projectiles
         public override void OnSpawn(IEntitySource source)
         {
             this.original_location = Projectile.position;
+            Projectile.netUpdate = true;
             base.OnSpawn(source);
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.WriteVector2(this.original_location);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            this.original_location = reader.ReadVector2();
         }
 
         public override bool ShouldUpdatePosition()

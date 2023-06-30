@@ -17,25 +17,138 @@
 */
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent.Events;
 using Terraria.Localization;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
 
-namespace WeDoALittleTrolling.Content.ModSystems
+namespace WeDoALittleTrolling.Common.ModSystems
 {
     internal class WDALTModSystem : ModSystem
     {
+        
+        public static void HandlePacket(BinaryReader reader, int whoAmI, Mod mod)
+        {
+            string type = reader.ReadString();
+            float value = reader.ReadSingle();
+            if(Main.netMode == 1)
+            {
+                if(type == "updateWindSpeedTarget")
+                {
+                    Main.windSpeedTarget = value;
+                }
+            }
+            if(Main.netMode == 2)
+            {
+                if(type == "moondial")
+                {
+                    Main.moondialCooldown = 0;
+                }
+                if(type == "sundial")
+                {
+                    Main.sundialCooldown = 0;
+                }
+                if(type == "weatherVane")
+                {
+                    if (Main.IsItRaining)
+                    {
+                        if (Main.maxRaining < 0.2f)
+                        {
+                            Main.maxRaining = 0.4f;
+                        }
+                        else if (Main.maxRaining < 0.6f)
+                        {
+                            Main.maxRaining = 0.8f;
+                        }
+                        else
+                        {
+                            Main.StopRain();
+                        }
+                    }
+                    else
+                    {
+                        Main.StartRain();
+                        Main.maxRaining = 0.1f;
+                    }
+                }
+                if(type == "djinnLamp")
+                {
+                    float windSpeedPerMph = ((1.0f)/(50.0f));
+                    float windSign = 1.0f;
+                    if (Main.windSpeedTarget >= 0)
+                    {
+                        windSign = 1;
+                    }
+                    else
+                    {
+                        windSign = -1;
+                    }
+                    if (Sandstorm.Happening)
+                    {
+                        Sandstorm.StopSandstorm();
+                    }
+                    else
+                    {
+                        Sandstorm.StartSandstorm();
+                        if (Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 30.0f)
+                        {
+                            if (Main.windSpeedTarget > 0)
+                            {
+                                Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
+
+                            }
+                            else
+                            {
+                                Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
+                            }
+                        }
+                    }
+                    ModPacket updateWindSpeedTargetPacket = mod.GetPacket();
+                    updateWindSpeedTargetPacket.Write("updateWindSpeedTarget");
+                    updateWindSpeedTargetPacket.Write((float)Main.windSpeedTarget);
+                    updateWindSpeedTargetPacket.Send();
+                }
+                if(type == "skyMill")
+                {
+                    float windSpeedPerMph = ((1.0f)/(50.0f));
+                    float windSign = 1.0f;
+                    if (Main.windSpeedTarget >= 0)
+                    {
+                        windSign = 1;
+                    }
+                    else
+                    {
+                        windSign = -1;
+                    }
+                    if (Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 39.0f)
+                    {
+                        Main.windSpeedTarget += windSign * windSpeedPerMph * 10.0f;
+                    }
+                    else if (Math.Abs(Main.windSpeedTarget) >= windSpeedPerMph * 39.0f)
+                    {
+                        Main.windSpeedTarget = (-windSign) * windSpeedPerMph * 5.0f;
+                    }
+                    ModPacket updateWindSpeedTargetPacket = mod.GetPacket();
+                    updateWindSpeedTargetPacket.Write("updateWindSpeedTarget");
+                    updateWindSpeedTargetPacket.Write((float)Main.windSpeedTarget);
+                    updateWindSpeedTargetPacket.Send();
+                }
+            }
+        }
         
         public override void AddRecipes()
         {
@@ -71,7 +184,7 @@ namespace WeDoALittleTrolling.Content.ModSystems
             WDALT_OrichalcumAnvil_Duplicate.Register();
         }
 
-        public bool GetFalse()
+        public static bool GetFalse()
         {
             return false;
         }
