@@ -90,7 +90,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                         soundPlayRainOfDecayPacket.WriteVector2(player.position);
                         soundPlayRainOfDecayPacket.Send();
                     }
-                    SoundEngine.PlaySound(SoundID.Item5, player.position);
+                    else if(Main.netMode == 0)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item5, player.position);
+                    }
                 }
                 return false;
             }
@@ -108,7 +111,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                         soundPlayRainOfDecayPacket.WriteVector2(player.position);
                         soundPlayRainOfDecayPacket.Send();
                     }
-                    SoundEngine.PlaySound(SoundID.Item5, player.position);
+                    else if(Main.netMode == 0)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item5, player.position);
+                    }
                     soundPlayedRecently = true;
                 }
                 else
