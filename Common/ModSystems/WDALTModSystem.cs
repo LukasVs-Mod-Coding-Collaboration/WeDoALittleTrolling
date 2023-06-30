@@ -791,7 +791,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     recipe.AddIngredient(ItemID.Geode, 1);
                 }
-                if(recipe.TryGetResult(ItemID.Sapphire, out Item SapphireHook))
+                if(recipe.TryGetResult(ItemID.SapphireHook, out Item SapphireHook))
                 {
                     recipe.AddIngredient(ItemID.Geode, 1);
                 }
