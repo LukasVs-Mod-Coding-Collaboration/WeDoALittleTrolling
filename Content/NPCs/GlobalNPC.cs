@@ -112,9 +112,18 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.damage = (int)Math.Round(npc.damage * 0.65);
             }
+            if(NerfGroup50Percent.Contains(npc.type))
+            {
+                npc.damage = (int)Math.Round(npc.damage * 0.5);
+            }
             if(KnockbackResistanceGroup.Contains(npc.type))
             {
                 npc.knockBackResist = 0f;
+            }
+            if(npc.type == NPCID.EyeofCthulhu)
+            {
+                npc.lifeMax *= 4;
+                npc.damage *= (int)Math.Round(npc.damage * 1.5);
             }
             base.SetDefaults(npc);
         }
