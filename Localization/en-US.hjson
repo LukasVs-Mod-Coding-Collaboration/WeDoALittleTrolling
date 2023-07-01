@@ -334,6 +334,21 @@ Mods: {
 				AdditionalTooltip: +Sonar buff
 			}
 
+			BuilderInfusion: {
+				DisplayName: Builder infusing
+				AdditionalTooltip: +Builder buff
+			}
+
+			MiningInfusion: {
+				DisplayName: Mining infusing
+				AdditionalTooltip: +Mining buff
+			}
+
+			FeatherfallInfusion: {
+				DisplayName: Featherfall infusing
+				AdditionalTooltip: +Featherfall buff
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
