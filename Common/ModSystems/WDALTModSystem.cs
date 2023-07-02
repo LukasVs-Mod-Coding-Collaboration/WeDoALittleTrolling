@@ -55,7 +55,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 RODCsoundPos = reader.ReadVector2();
             }
-            if(Main.netMode == 1)
+            if(Main.netMode == NetmodeID.MultiplayerClient)
             {
                 if (type == WDALTPacketTypeID.updateWindSpeedTarget)
                 {
@@ -66,7 +66,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     SoundEngine.PlaySound(SoundID.Item5, RODCsoundPos);
                 }
             }
-            if(Main.netMode == 2)
+            if(Main.netMode == NetmodeID.Server)
             {
                 if (type == WDALTPacketTypeID.soundPlayRainOfDecay)
                 {

@@ -84,14 +84,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     int j = Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
                     Main.projectile[j].extraUpdates = 0;
                     Main.projectile[j].GetGlobalProjectile<WDALTProjectileUtil>().speedyRainOfDecayArrow = false;
-                    if(Main.netMode == 1)
+                    if(Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
                         soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
                         soundPlayRainOfDecayPacket.WriteVector2(player.position);
                         soundPlayRainOfDecayPacket.Send();
                     }
-                    else if(Main.netMode == 0)
+                    else if(Main.netMode == NetmodeID.SinglePlayer)
                     {
                         SoundEngine.PlaySound(SoundID.Item5, player.position);
                     }
@@ -105,14 +105,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 Main.projectile[j].GetGlobalProjectile<WDALTProjectileUtil>().speedyRainOfDecayArrow = true;
                 if (soundPlayedRecently == false)
                 {
-                    if(Main.netMode == 1)
+                    if(Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
                         soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
                         soundPlayRainOfDecayPacket.WriteVector2(player.position);
                         soundPlayRainOfDecayPacket.Send();
                     }
-                    else if(Main.netMode == 0)
+                    else if(Main.netMode == NetmodeID.SinglePlayer)
                     {
                         SoundEngine.PlaySound(SoundID.Item5, player.position);
                     }

@@ -39,6 +39,26 @@ namespace WeDoALittleTrolling.Content.Items
     {
         public override bool InstancePerEntity => false;
 
+        
+        //Globally apply melee speed bonus to itemTimeMax as well, not just itemAnimationMax
+        public override float UseTimeMultiplier(Item item, Player player)
+        {
+            float multiplier = base.UseTimeMultiplier(item, player);
+            if(item.DamageType == DamageClass.Melee)
+            {
+                float speedValue = player.GetAttackSpeed(DamageClass.Melee);
+                if (speedValue > 3f)
+                {
+                    speedValue = 3f;
+                }
+                if (speedValue != 0f)
+                {
+                    multiplier = 1f / speedValue;
+                }
+            }
+            return multiplier;
+        }
+        
         public override bool CanUseItem(Item item, Player player)
         {
             // Anti-Poo-Block-Mechanism

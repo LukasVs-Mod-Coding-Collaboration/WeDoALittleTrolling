@@ -33,11 +33,11 @@ namespace WeDoALittleTrolling.Content.Tiles
         {
             if(type == TileID.Moondial)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     Main.moondialCooldown = 0;
                 }
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket moondialPacket = Mod.GetPacket();
                     moondialPacket.Write(WDALTPacketTypeID.moondial);
@@ -47,11 +47,11 @@ namespace WeDoALittleTrolling.Content.Tiles
             }
             else if(type == TileID.Sundial)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     Main.sundialCooldown = 0;
                 }
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket sundialPacket = Mod.GetPacket();
                     sundialPacket.Write(WDALTPacketTypeID.sundial);
@@ -60,7 +60,7 @@ namespace WeDoALittleTrolling.Content.Tiles
             }
             else if(type == TileID.WeatherVane)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     if (Main.IsItRaining)
                     {
@@ -87,7 +87,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                         SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                     }
                 }
-                else if(Main.netMode == 1)
+                else if(Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket weatherVanePacket = Mod.GetPacket();
                     weatherVanePacket.Write(WDALTPacketTypeID.weatherVane);
@@ -97,7 +97,7 @@ namespace WeDoALittleTrolling.Content.Tiles
             }
             else if(type == TileID.DjinnLamp)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     float windSpeedPerMph = ((1.0f)/(50.0f));
                     float windSign = 1.0f;
@@ -132,7 +132,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                         SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
                     }
                 }
-                else if(Main.netMode == 1)
+                else if(Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket djinnLampPacket = Mod.GetPacket();
                     djinnLampPacket.Write(WDALTPacketTypeID.djinnLamp);
@@ -142,7 +142,7 @@ namespace WeDoALittleTrolling.Content.Tiles
             }
             else if(type == TileID.SkyMill)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     float windSpeedPerMph = ((1.0f)/(50.0f));
                     float windSign = 1.0f;
@@ -165,7 +165,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                         SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                     }
                 }
-                else if(Main.netMode == 1)
+                else if(Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket skyMillPacket = Mod.GetPacket();
                     skyMillPacket.Write(WDALTPacketTypeID.skyMill);

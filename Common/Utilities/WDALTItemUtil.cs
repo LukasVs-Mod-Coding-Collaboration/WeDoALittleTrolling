@@ -38,6 +38,6 @@ namespace WeDoALittleTrolling.Common.Utilities
     internal class WDALTItemUtil : GlobalItem
     {
         public override bool InstancePerEntity => true;
-        
+
     }
 }
