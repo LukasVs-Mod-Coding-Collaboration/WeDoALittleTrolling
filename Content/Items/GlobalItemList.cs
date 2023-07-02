@@ -46,7 +46,7 @@ namespace WeDoALittleTrolling.Content.Items
             float multiplier = base.UseTimeMultiplier(item, player);
             if(item.DamageType == DamageClass.Melee)
             {
-                float speedValue = player.GetAttackSpeed(DamageClass.Melee);
+                float speedValue = player.GetTotalAttackSpeed(DamageClass.Melee);
                 if (speedValue > 3f)
                 {
                     speedValue = 3f;
@@ -54,6 +54,8 @@ namespace WeDoALittleTrolling.Content.Items
                 if (speedValue != 0f)
                 {
                     multiplier = 1f / speedValue;
+                    float multiplierPerUseTime = 1f / (float)item.useTime;
+                    multiplier = multiplier - multiplierPerUseTime; //Decrease itemTimeMax by one more
                 }
             }
             return multiplier;
