@@ -38,6 +38,24 @@ namespace WeDoALittleTrolling.Common.Utilities
     internal class WDALTItemUtil : GlobalItem
     {
         public override bool InstancePerEntity => true;
+        
+        public bool attackSpeedRoundingErrorProtection = false;
 
+        //Globally prevent player.itemTimeMax from being one too high due to rounding errors.
+        public override float UseTimeMultiplier(Item item, Player player)
+        {
+            float multiplier = base.UseTimeMultiplier(item, player);
+            if(attackSpeedRoundingErrorProtection)
+            {
+                DamageClass type = item.DamageType;
+                float speedValue = player.GetTotalAttackSpeed(type);
+                if (speedValue != 0f)
+                {
+                    float multiplierPerUseTime = multiplier * speedValue / (float)item.useTime;
+                    multiplier = multiplier - multiplierPerUseTime; //Decrease itemTimeMax by one more
+                }
+            }
+            return multiplier;
+        }
     }
 }

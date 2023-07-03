@@ -38,30 +38,10 @@ namespace WeDoALittleTrolling.Content.Items
     internal class GlobalItemList : GlobalItem
     {
         public override bool InstancePerEntity => false;
-
-        //Globally prevent player.itemTimeMax from being one too high due to rounding errors.
-        public override float UseTimeMultiplier(Item item, Player player)
-        {
-            float multiplier = base.UseTimeMultiplier(item, player);
-            DamageClass type = item.DamageType;
-            float speedValue = player.GetTotalAttackSpeed(type);
-            if (speedValue != 0f && player.itemTimeMax != 0)
-            {
-                float multiplierPerUseTime = multiplier / (float)player.itemTimeMax;
-                multiplier = multiplier - multiplierPerUseTime; //Decrease itemTimeMax by one more
-            }
-            return multiplier;
-        }
         
         public override bool CanUseItem(Item item, Player player)
         {
             // Anti-Poo-Block-Mechanism
-            /*
-            if(item.type == ItemID.IceBlade || item.type == ItemID.ChlorophyteClaymore)
-            {
-                player.chatOverhead.NewMessage("itemTimeMax: "+player.itemTimeMax+", itemAnimationMax: "+player.itemAnimationMax, 180);
-            }
-            */
             if
             (
                 item.type == ItemID.PoopBlock ||
@@ -73,14 +53,31 @@ namespace WeDoALittleTrolling.Content.Items
             }
             else if
             (
-                item.type == ItemID.LandMine ||
-                item.type == ItemID.ZapinatorOrange ||
-                item.type == ItemID.ZapinatorGray ||
-                item.type == ItemID.RodOfHarmony
+                item.type == ItemID.LandMine
             )
             {
                 player.chatOverhead.NewMessage("You may not use this item.", 180);
                 return false;
+            }
+            else if
+            (
+                item.type == ItemID.RodOfHarmony
+            )
+            {
+                if(player.HasBuff(BuffID.ChaosState))
+                {
+                    if((player.statLife - (int)Math.Round((float)player.statLifeMax2/(float)7)) >= 0)
+                    {
+                        player.statLife -= (int)Math.Round((float)player.statLifeMax2/(float)7);
+                    }
+                    else
+                    {
+                        PlayerDeathReason reason = new PlayerDeathReason();
+                        reason.SourceCustomReason = player.name+" didn't materialize";
+                        player.KillMe(reason, 9999999999.0, 0, false);
+                    }
+                }
+                player.AddBuff(BuffID.ChaosState, 180);
             }
             return base.CanUseItem(item, player);
         }
@@ -160,11 +157,6 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void SetDefaults(Item item)
         {
-            if(item.attackSpeedOnlyAffectsWeaponAnimation)
-            {
-                //Globally disable this flag, it conflicts with WDALT.
-                item.attackSpeedOnlyAffectsWeaponAnimation = false;
-            }
             if (item.type == ItemID.Phantasm) 
             {
                 item.damage = 70;
@@ -174,6 +166,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 70;
                 item.useTime = 7;
                 item.useAnimation = 7;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
@@ -191,6 +184,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.useTime = 25;
                 item.useAnimation = 25;
+                item.shootsEveryUse = true;
                 item.knockBack = 5f;
             }
             if (item.type == ItemID.EnchantedSword) 
@@ -198,6 +192,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 24;
                 item.useTime = 18;
                 item.useAnimation = 18;
+                item.shootsEveryUse = true;
                 item.knockBack = 5.25f;
             }
             if (item.type == ItemID.FalconBlade) 
@@ -205,11 +200,14 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 30;
                 item.useTime = 15;
                 item.useAnimation = 15;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.BeamSword) 
             {
                 item.useTime = 30;
                 item.useAnimation = 15;
+                item.attackSpeedOnlyAffectsWeaponAnimation = false;
+                item.GetGlobalItem<WDALTItemUtil>().attackSpeedRoundingErrorProtection = true;
             }
             if (item.type == ItemID.BeesKnees) 
             {
@@ -224,6 +222,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 64;
                 item.useTime = 16;
                 item.useAnimation = 16;
+                item.shootsEveryUse = true;
                 item.crit = 12;
                 item.ArmorPenetration = 16;
             }
@@ -242,15 +241,13 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ZapinatorOrange)
             {
-                item.damage = 0;
-                item.useTime = 37;
-                item.useAnimation = 37;
+                item.buffType = BuffID.Electrified;
+                item.buffTime = 240;
             }
             if (item.type == ItemID.ZapinatorGray)
             {
-                item.damage = 0;
-                item.useTime = 37;
-                item.useAnimation = 37;
+                item.buffType = BuffID.Electrified;
+                item.buffTime = 240;
             }
             if (item.type == ItemID.LastPrism)
             {
@@ -262,11 +259,11 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.RazorbladeTyphoon)
             {
+                item.useTime = 20;
+                item.useAnimation = 20;
+                item.shootsEveryUse = true;
+                item.mana = 10;
                 item.damage = 60;
-                item.useTime = 14;
-                item.useAnimation = 28;
-                item.reuseDelay = 12;
-                item.consumeAmmoOnFirstShotOnly = true;
             }
             if (item.type == ItemID.OpticStaff)
             {
@@ -277,6 +274,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 125;
                 item.useTime = 25;
                 item.useAnimation = 25;
+                item.shootsEveryUse = true;
             }
             if(item.type == ItemID.MaceWhip) //Morning Star
             {
@@ -391,6 +389,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 125;
                 item.useTime = 16;
                 item.useAnimation = 16;
+                item.shootsEveryUse = true;
                 item.knockBack = 14;
             }
             if (item.type == ItemID.TrueNightsEdge)
@@ -398,17 +397,20 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 75;
                 item.useTime = 32;
                 item.useAnimation = 32;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.TerraBlade)
             {
                 item.damage = 100;
                 item.useTime = 16;
                 item.useAnimation = 16;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.DayBreak)
             {
                 item.useTime = 12;
                 item.useAnimation = 12;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.SolarEruption)
             {
@@ -434,6 +436,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.useTime = 20;
                 item.useAnimation = 20;
+                item.shootsEveryUse = true;
             }
             if
             (
@@ -457,18 +460,22 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.useTime = 52;
                 item.useAnimation = 26;
+                item.attackSpeedOnlyAffectsWeaponAnimation = false;
+                item.GetGlobalItem<WDALTItemUtil>().attackSpeedRoundingErrorProtection = true;
             }
             if (item.type == ItemID.Trimarang)
             {
                 item.damage = 28;
                 item.useTime = 15;
                 item.useAnimation = 15;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Flamarang)
             {
                 item.damage = 64;
                 item.useTime = 30;
                 item.useAnimation = 30;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.DeathSickle)
             {
@@ -520,6 +527,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.autoReuse = true;
                 item.useTime = 15;
                 item.useAnimation = 15;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.IceBlade)
             {
@@ -527,6 +535,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.autoReuse = true;
                 item.useTime = 18;
                 item.useAnimation = 18;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.SnowballCannon)
             {
@@ -534,6 +543,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.autoReuse = true;
                 item.useTime = 15;
                 item.useAnimation = 15;
+                item.shootsEveryUse = true;
             }
             //Hardmode
             if (item.type == ItemID.Frostbrand)
@@ -541,6 +551,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 50;
                 item.useTime = 22;
                 item.useAnimation = 22;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.IceBow) 
             {
