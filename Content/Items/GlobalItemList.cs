@@ -45,10 +45,6 @@ namespace WeDoALittleTrolling.Content.Items
             float multiplier = base.UseTimeMultiplier(item, player);
             DamageClass type = item.DamageType;
             float speedValue = player.GetTotalAttackSpeed(type);
-            if (speedValue > 3f)
-            {
-                speedValue = 3f;
-            }
             if (speedValue != 0f && player.itemTimeMax != 0)
             {
                 float multiplierPerUseTime = 1f / (float)player.itemTimeMax;
