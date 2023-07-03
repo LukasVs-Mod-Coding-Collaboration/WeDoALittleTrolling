@@ -39,24 +39,20 @@ namespace WeDoALittleTrolling.Content.Items
     {
         public override bool InstancePerEntity => false;
 
-        
-        //Globally apply melee speed bonus to itemTimeMax as well, not just itemAnimationMax
+        //Globally prevent player.itemTimeMax from being one too high due to rounding errors.
         public override float UseTimeMultiplier(Item item, Player player)
         {
             float multiplier = base.UseTimeMultiplier(item, player);
-            if(item.DamageType == DamageClass.Melee)
+            DamageClass type = item.DamageType;
+            float speedValue = player.GetTotalAttackSpeed(type);
+            if (speedValue > 3f)
             {
-                float speedValue = player.GetTotalAttackSpeed(DamageClass.Melee);
-                if (speedValue > 3f)
-                {
-                    speedValue = 3f;
-                }
-                if (speedValue != 0f)
-                {
-                    multiplier = 1f / speedValue;
-                    float multiplierPerUseTime = 1f / (float)item.useTime;
-                    multiplier = multiplier - multiplierPerUseTime; //Decrease itemTimeMax by one more
-                }
+                speedValue = 3f;
+            }
+            if (speedValue != 0f && player.itemTimeMax != 0)
+            {
+                float multiplierPerUseTime = 1f / (float)player.itemTimeMax;
+                multiplier = multiplier - multiplierPerUseTime; //Decrease itemTimeMax by one more
             }
             return multiplier;
         }
@@ -64,6 +60,10 @@ namespace WeDoALittleTrolling.Content.Items
         public override bool CanUseItem(Item item, Player player)
         {
             // Anti-Poo-Block-Mechanism
+            if(item.type == ItemID.IceBlade || item.type == ItemID.ChlorophyteClaymore)
+            {
+                player.chatOverhead.NewMessage("itemTimeMax: "+player.itemTimeMax+", itemAnimationMax: "+player.itemAnimationMax, 180);
+            }
             if
             (
                 item.type == ItemID.PoopBlock ||
@@ -162,6 +162,11 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void SetDefaults(Item item)
         {
+            if(item.attackSpeedOnlyAffectsWeaponAnimation)
+            {
+                //Globally disable this flag, it conflicts with WDALT.
+                item.attackSpeedOnlyAffectsWeaponAnimation = false;
+            }
             if (item.type == ItemID.Phantasm) 
             {
                 item.damage = 70;
