@@ -28,7 +28,7 @@ using Terraria.ID;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-    public class MininglInfusion : ModPrefix
+    public class MiningInfusion : ModPrefix
     {
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
