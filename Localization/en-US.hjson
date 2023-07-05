@@ -372,11 +372,6 @@ Mods: {
 					+10 mana
 					'''
 			}
-
-			MininglInfusion: {
-				AdditionalTooltip: Mods.WeDoALittleTrolling.Prefixes.MininglInfusion.AdditionalTooltip
-				DisplayName: Miningl Infusion
-			}
 		}
 
 		Buffs: {
