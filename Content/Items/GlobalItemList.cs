@@ -269,17 +269,6 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 32;
             }
-            if(item.type == ItemID.ScytheWhip) //Dark Harvest
-            {
-                item.damage = 125;
-                item.useTime = 25;
-                item.useAnimation = 25;
-                item.shootsEveryUse = true;
-            }
-            if(item.type == ItemID.MaceWhip) //Morning Star
-            {
-                item.damage = 180;
-            }
             if (item.type == ItemID.RainbowCrystalStaff)
             {
                 item.damage = 150;
@@ -360,6 +349,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 1;
             }
+
             if
             (
                 item.type == ItemID.SpiderMask ||
@@ -372,6 +362,47 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 2;
             }
+
+
+            // Buff pre-hardmode whips
+
+            if
+            (
+                item.type == ItemID.BlandWhip || //Leather Whip
+                item.type == ItemID.ThornWhip || //Snapthorn
+                item.type == ItemID.BoneWhip //Spinal Tap
+            )
+            {
+                item.damage += 5;
+            }
+
+            // Buff hardmode whips
+
+            if
+            (
+                item.type == ItemID.FireWhip || //Firecracker
+                item.type == ItemID.CoolWhip ||
+                item.type == ItemID.SwordWhip //Durendal
+            )
+            {
+                item.damage += 10;
+            }
+            if(item.type == ItemID.ScytheWhip) //Dark Harvest
+            {
+                item.damage += 25;
+                item.useTime = 25;
+                item.useAnimation = 25;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.MaceWhip) //Morning Star
+            {
+                item.damage += 15;
+            }
+            if(item.type == ItemID.RainbowWhip) //Kaleidoscope
+            {
+                item.damage += 20;
+            }
+
             if
             (
                 item.type == ItemID.ElectrosphereLauncher ||
@@ -434,6 +465,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Starfury)
             {
+                item.damage = 18;
                 item.useTime = 20;
                 item.useAnimation = 20;
                 item.shootsEveryUse = true;
@@ -531,10 +563,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.IceBlade)
             {
-                item.damage = 20;
+                item.damage = 18;
                 item.autoReuse = true;
-                item.useTime = 18;
-                item.useAnimation = 18;
+                item.useTime = 20;
+                item.useAnimation = 20;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.SnowballCannon)
