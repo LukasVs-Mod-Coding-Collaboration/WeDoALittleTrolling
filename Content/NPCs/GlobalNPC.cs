@@ -49,16 +49,18 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.TombCrawlerHead,
             NPCID.JungleCreeper,
             NPCID.JungleCreeperWall,
+            NPCID.BlackRecluse,
+            NPCID.BlackRecluseWall
+        };
+        public static readonly int[] NerfGroup35Percent =
+        {
+            NPCID.GiantTortoise,
+            NPCID.IceTortoise,
             NPCID.GiantMossHornet,
             NPCID.BigMossHornet,
             NPCID.MossHornet,
             NPCID.LittleMossHornet,
             NPCID.TinyMossHornet
-        };
-        public static readonly int[] NerfGroup35Percent =
-        {
-            NPCID.GiantTortoise,
-            NPCID.IceTortoise
         };
         public static readonly int[] NerfGroup50Percent =
         {
