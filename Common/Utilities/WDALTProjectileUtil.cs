@@ -63,8 +63,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         public Vector2 spawnCenter;
         public int ticksAlive;
         public bool colossalSolarWhip = false;
-        public bool speedyRainOfDecayArrow = false;
-        public bool hasSentSpeedyRainOfDecayArrow = false;
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
@@ -109,11 +107,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             binaryWriter.Write(projectile.scale);
-            binaryWriter.Write(speedyRainOfDecayArrow);
-            if(speedyRainOfDecayArrow)
-            {
-                hasSentSpeedyRainOfDecayArrow = true;
-            }
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
                 binaryWriter.WriteVector2(spawnCenter);
@@ -127,11 +120,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
             projectile.scale = binaryReader.ReadSingle();
-            speedyRainOfDecayArrow = binaryReader.ReadBoolean();
-            if(speedyRainOfDecayArrow)
-            {
-                projectile.extraUpdates = 1;
-            }
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
                 spawnCenter = binaryReader.ReadVector2();
@@ -151,10 +139,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override bool ShouldUpdatePosition(Projectile projectile)
         {
             ticksAlive += 1;
-            if(speedyRainOfDecayArrow && !hasSentSpeedyRainOfDecayArrow)
-            {
-                projectile.netUpdate = true;
-            }
             return base.ShouldUpdatePosition(projectile);
         }
 

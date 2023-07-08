@@ -36,7 +36,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         
         public int attackMode = 0;
-        public bool soundPlayedRecently = false;
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -47,11 +46,13 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.width = 30;
             Item.height = 142;
             Item.rare = ItemRarityID.Expert;
+            Item.value = Item.sellPrice(gold: 16);
 
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.DamageType = DamageClass.Ranged;
+            Item.ArmorPenetration = 36;
             Item.damage = 36;
             Item.knockBack = 1.25f;
             Item.noMelee = true;
@@ -70,10 +71,60 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 type = ProjectileID.CursedArrow;
             }
         }
+
+        public override float UseSpeedMultiplier(Player player)
+        {
+            if(attackMode == 1)
+            {
+                return 2f;
+            }
+            return base.UseSpeedMultiplier(player);
+        }
+
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            if(attackMode == 1)
+            {
+                Random rnd = new Random();
+                if (rnd.Next(0, 2) == 0)
+                {
+                    return false;
+                }
+            }
+            return base.CanConsumeAmmo(ammo, player);
+        }
+
+        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
+        {
+            if(attackMode == 1)
+            {
+                knockback *= 5f;
+            }
+            base.ModifyWeaponKnockback(player, ref knockback);
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            if(attackMode == 1)
+            {
+                damage *= 1.5f;
+            }
+            base.ModifyWeaponDamage(player, ref damage);
+        }
+
+        public override void ModifyWeaponCrit(Player player, ref float crit)
+        {
+            if(attackMode == 1)
+            {
+                crit *= 1.25f;
+            }
+            base.ModifyWeaponCrit(player, ref crit);
+        }
+
         
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if(attackMode == 0)
+            if(attackMode != 1)
             {
                 float numberProjectiles = 4;
                 float rotation = MathHelper.ToRadians(5);
@@ -81,46 +132,34 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 burstArrowSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles)));
-                    int j = Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
-                    Main.projectile[j].extraUpdates = 0;
-                    Main.projectile[j].GetGlobalProjectile<WDALTProjectileUtil>().speedyRainOfDecayArrow = false;
-                    if(Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
-                        soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
-                        soundPlayRainOfDecayPacket.WriteVector2(player.position);
-                        soundPlayRainOfDecayPacket.Send();
-                    }
-                    else if(Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        SoundEngine.PlaySound(SoundID.Item5, player.position);
-                    }
+                    Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
+                }
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
+                    soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
+                    soundPlayRainOfDecayPacket.WriteVector2(player.position);
+                    soundPlayRainOfDecayPacket.Send();
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    SoundEngine.PlaySound(SoundID.Item5, player.position);
                 }
                 return false;
             }
             else
             {
-                int j = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-                Main.projectile[j].extraUpdates = 1;
-                Main.projectile[j].GetGlobalProjectile<WDALTProjectileUtil>().speedyRainOfDecayArrow = true;
-                if (soundPlayedRecently == false)
+                Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    if(Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
-                        soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
-                        soundPlayRainOfDecayPacket.WriteVector2(player.position);
-                        soundPlayRainOfDecayPacket.Send();
-                    }
-                    else if(Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        SoundEngine.PlaySound(SoundID.Item5, player.position);
-                    }
-                    soundPlayedRecently = true;
+                    ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
+                    soundPlayRainOfDecayPacket.Write(WDALTPacketTypeID.soundPlayRainOfDecay);
+                    soundPlayRainOfDecayPacket.WriteVector2(player.position);
+                    soundPlayRainOfDecayPacket.Send();
                 }
-                else
+                else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    soundPlayedRecently = false;
+                    SoundEngine.PlaySound(SoundID.Item5, player.position);
                 }
                 return false;
             }
@@ -131,25 +170,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             if(attackMode == 0)
             {
                 attackMode = 1;
-                soundPlayedRecently = false;
-                Item.useTime = 4;
-                Item.useAnimation = 16;
-                Item.reuseDelay = 14;
-                Item.ArmorPenetration = 24;
-                Item.knockBack = 10.0f;
-                Item.consumeAmmoOnLastShotOnly = true;
                 SoundEngine.PlaySound(SoundID.Item60, player.position);
             }
             else
             {
                 attackMode = 0;
-                soundPlayedRecently = false;
-                Item.useTime = 20;
-                Item.useAnimation = 20;
-                Item.reuseDelay = 0;
-                Item.ArmorPenetration = 0;
-                Item.knockBack = 1.25f;
-                Item.consumeAmmoOnLastShotOnly = false;
                 SoundEngine.PlaySound(SoundID.Item74, player.position);
             }
             return false;

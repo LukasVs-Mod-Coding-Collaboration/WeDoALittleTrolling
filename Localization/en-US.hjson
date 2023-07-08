@@ -159,11 +159,16 @@ Mods: {
 				DisplayName: Rain of Decay
 				Tooltip:
 					'''
+					Ignores 36 points of enemy Defense
 					"The sky is only cursed flames to them."
 					Right-Click to switch between attack modes
-					Multishot mode fires 33% faster
-					Burst Fire mode ignores up to 24 enemy defense
-
+					Multishot mode fires 4 arrows at once
+					Rapidfire mode fires 1 arrow and:
+					- fires 100% faster
+					- deals 50% more damage
+					- has 25% higher critical strike chance
+					- inflicts 500% more knockback
+					- has a 50% chance to save ammo
 					'''
 			}
 

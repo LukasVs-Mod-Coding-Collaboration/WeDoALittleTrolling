@@ -127,6 +127,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.lifeMax *= 3;
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
+            if(npc.type == NPCID.Plantera)
+            {
+                npc.lifeMax *= 2;
+            }
             base.SetDefaults(npc);
         }
 
