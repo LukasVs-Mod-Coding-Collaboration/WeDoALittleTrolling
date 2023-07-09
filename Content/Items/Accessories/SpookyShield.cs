@@ -78,7 +78,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.TinkerersWorkbench)
               .AddIngredient(ItemID.SpookyWood, 250)
               .AddIngredient(ItemID.NecromanticScroll, 1)
-              .AddIngredient(ItemID.JackOLanternMask, 1)
               .AddIngredient(ItemID.Tabi, 1)
               .Register();
         }
