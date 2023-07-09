@@ -40,6 +40,24 @@ namespace WeDoALittleTrolling.Content.Projectiles
     internal class GlobalProjectiles : GlobalProjectile
     {
         public override bool InstancePerEntity => false;
+
+        public static readonly int[] InflictVenomDebuff1In1Group =
+        {
+        };
+        public static readonly int[] InflictPoisonDebuff1In1Group =
+        {
+        };
+        public static readonly int[] InflictBleedingDebuff1In1Group =
+        {
+        };
+        public static readonly int[] InflictBleedingDebuff1In8Group =
+        {
+        };
+        public static readonly int[] InflictSearingInferno1In1Group =
+        {
+            ProjectileID.Fireball,
+            ProjectileID.EyeBeam
+        };
         
         public override void SetDefaults(Projectile projectile)
         {
@@ -192,29 +210,70 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.type == ProjectileID.SporeCloud)
             {
-                target.AddBuff(BuffID.Poisoned, 240, false); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.Poisoned, 240, false);
             }
             if(projectile.type == ProjectileID.DeathSickle)
             {
-                target.AddBuff(BuffID.ShadowFlame, 240, false); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.ShadowFlame, 240, false);
             }
             if(projectile.type == ProjectileID.IceSickle)
             {
-                target.AddBuff(BuffID.Frostburn, 240, false); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.Frostburn, 240, false);
             }
             if (projectile.type == ProjectileID.TrueExcalibur)
             {
-                target.AddBuff(BuffID.Ichor, 240, false); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.Ichor, 240, false);
             }
             if (projectile.type == ProjectileID.NightsEdge)
             {
-                target.AddBuff(BuffID.ShadowFlame, 240, false); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.ShadowFlame, 240, false);
             }
             if (projectile.type == ProjectileID.TrueNightsEdge)
             {
-                target.AddBuff(BuffID.CursedInferno, 240, false); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.CursedInferno, 240, false);
             }
             base.OnHitNPC(projectile, target, hit, damageDone);
+        }
+
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
+        {
+            Random random = new Random();
+            if(InflictVenomDebuff1In1Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                {
+                    target.AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictPoisonDebuff1In1Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                {
+                    target.AddBuff(BuffID.Poisoned, 240, true); //4s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictBleedingDebuff1In1Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                {
+                    target.AddBuff(BuffID.Bleeding, 960, true); //16s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictBleedingDebuff1In8Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 8) == 0) //1 in 8 Chance
+                {
+                    target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictSearingInferno1In1Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
+                }
+            }
+            base.OnHitPlayer(projectile, target, info);
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)

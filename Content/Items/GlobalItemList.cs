@@ -77,7 +77,7 @@ namespace WeDoALittleTrolling.Content.Items
                         player.KillMe(reason, 9999999999.0, 0, false);
                     }
                 }
-                player.AddBuff(BuffID.ChaosState, 180);
+                player.AddBuff(BuffID.ChaosState, 180, true);
             }
             return base.CanUseItem(item, player);
         }

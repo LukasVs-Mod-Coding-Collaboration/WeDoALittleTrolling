@@ -134,6 +134,30 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.SetDefaults(npc);
         }
 
+        public static void SetProjectileDefaults(NPC npc, Projectile projectile)
+        {
+            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * (1.0f - SearingInferno.damageNerfMultiplier));
+                projectile.netUpdate = true;
+            }
+            if(NerfGroup25Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.75);
+                projectile.netUpdate = true;
+            }
+            if(NerfGroup35Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.65);
+                projectile.netUpdate = true;
+            }
+            if(NerfGroup50Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.5);
+                projectile.netUpdate = true;
+            }
+        }
+
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
@@ -176,54 +200,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             base.DrawEffects(npc, ref drawColor);
         }
-        
-        public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
-        {
-            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
-            {
-                modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
-            }
-            base.ModifyHitPlayer(npc, target, ref modifiers);
-        }
-
-        public static void ModifyHitPlayerWithProjectile(Projectile projectile, NPC npc, Player target, ref Player.HurtModifiers modifiers)
-        {
-            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
-            {
-                modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
-            }
-            if(GlobalNPCs.NerfGroup25Percent.Contains(npc.type))
-            {
-                modifiers.SourceDamage *= (float)0.75;
-            }
-            if(GlobalNPCs.NerfGroup35Percent.Contains(npc.type))
-            {
-                modifiers.SourceDamage *= (float)0.65;
-            }
-            if(GlobalNPCs.NerfGroup50Percent.Contains(npc.type))
-            {
-                modifiers.SourceDamage *= (float)0.5;
-            }
-        }
 
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
-            ApplyDebuffsToPlayerBasedOnNPC(npc, target);
-            if
-            (
-                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ModContent.ItemType<SearingHelmet>()) &&
-                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ModContent.ItemType<SearingBreastplate>()) &&
-                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ModContent.ItemType<SearingLeggings>())
-            )
-            {
-                npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
-            }
-            base.OnHitPlayer(npc, target, hurtInfo);
-        }
-
-        public static void OnHitPlayerWithProjectile(Projectile projectile, NPC npc, Player target, Player.HurtInfo info)
-        {
-            ApplyDebuffsToPlayerBasedOnNPC(npc, target);
+            ApplyDebuffsToPlayerBasedOnNPC(npc.type, target);
             if
             (
                 target.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ModContent.ItemType<SearingHelmet>()) &&
@@ -235,42 +215,42 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
         }
 
-        public static void ApplyDebuffsToPlayerBasedOnNPC(NPC npc, Player target)
+        public static void ApplyDebuffsToPlayerBasedOnNPC(int npcType, Player target)
         {
             Random random = new Random();
-            if(InflictVenomDebuff1In1Group.Contains(npc.type))
+            if(InflictVenomDebuff1In1Group.Contains(npcType))
             {
                 if(random.Next(0, 1) == 0) //1 in 1 Chance
                 {
-                    target.AddBuff(BuffID.Venom, 240, false); //4s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictPoisonDebuff1In1Group.Contains(npc.type))
+            if(InflictPoisonDebuff1In1Group.Contains(npcType))
             {
                 if(random.Next(0, 1) == 0) //1 in 1 Chance
                 {
-                    target.AddBuff(BuffID.Poisoned, 240, false); //4s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Poisoned, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictBleedingDebuff1In1Group.Contains(npc.type))
+            if(InflictBleedingDebuff1In1Group.Contains(npcType))
             {
                 if(random.Next(0, 1) == 0) //1 in 1 Chance
                 {
-                    target.AddBuff(BuffID.Bleeding, 960, false); //16s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Bleeding, 960, true); //16s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictBleedingDebuff1In8Group.Contains(npc.type))
+            if(InflictBleedingDebuff1In8Group.Contains(npcType))
             {
                 if(random.Next(0, 8) == 0) //1 in 8 Chance
                 {
-                    target.AddBuff(BuffID.Bleeding, 480, false); //8s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictSearingInferno1In1Group.Contains(npc.type))
+            if(InflictSearingInferno1In1Group.Contains(npcType))
             {
                 if(random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, false); //4s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
         }

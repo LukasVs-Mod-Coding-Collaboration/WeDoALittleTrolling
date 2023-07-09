@@ -66,6 +66,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            //SPAWN SOURCE IS CLIENT SIDE ONLY!!!!!!
             spawnCenter = projectile.Center;
             ticksAlive = 0;
             projectile.netUpdate = true;
@@ -101,12 +102,17 @@ namespace WeDoALittleTrolling.Common.Utilities
                     ProcessParentSource(entity);
                 }
             }
+            if(TryGetParentNPC(out NPC npc))
+            {
+                GlobalNPCs.SetProjectileDefaults(npc, projectile);
+            }
             base.OnSpawn(projectile, source);
         }
 
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             binaryWriter.Write(projectile.scale);
+            binaryWriter.Write(projectile.damage);
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
                 binaryWriter.WriteVector2(spawnCenter);
@@ -120,6 +126,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
             projectile.scale = binaryReader.ReadSingle();
+            projectile.damage = binaryReader.ReadInt32();
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
                 spawnCenter = binaryReader.ReadVector2();
@@ -145,6 +152,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         
         public void ProcessParentSource(Entity entity)
         {
+            //SPAWN SOURCE IS CLIENT SIDE ONLY!!!!!!
             if (entity is NPC parentEntity_npc)
             {
                 parentNPC = parentEntity_npc;
@@ -191,24 +199,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                     }
                 }
             }
-        }
-
-        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
-        {
-            if(TryGetParentNPC(out NPC npc))
-            {
-                GlobalNPCs.OnHitPlayerWithProjectile(projectile, npc, target, info);
-            }
-            base.OnHitPlayer(projectile, target, info);
-        }
-        
-        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
-        {
-            if(TryGetParentNPC(out NPC npc))
-            {
-                GlobalNPCs.ModifyHitPlayerWithProjectile(projectile, npc, target, ref modifiers);
-            }
-            base.ModifyHitPlayer(projectile, target, ref modifiers);
         }
 
         public bool HasRecentlyPassedSoundDelay(int projectileID)
