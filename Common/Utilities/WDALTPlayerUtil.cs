@@ -19,6 +19,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -93,12 +94,21 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             if
             (
-                modifiers.DamageType == DamageClass.Magic
+                modifiers.DamageType == DamageClass.Magic ||
+                modifiers.DamageType == DamageClass.MagicSummonHybrid ||
+                modifiers.DamageType == DamageClass.Ranged
             )
             {
                 if (player.HeldItem.prefix == ModContent.PrefixType<Supercritical>())
                 {
-                    modifiers.CritDamage *= 2.0f;
+                    if(Supercritical.BuffGroup.Contains(player.HeldItem.type))
+                    {
+                        modifiers.CritDamage += 5.0f;
+                    }
+                    else
+                    {
+                        modifiers.CritDamage += 2.0f;
+                    }
                 }
             }
             if

@@ -61,7 +61,7 @@ Mods: {
 					Increases damage at the cost of attack speed
 					Increases ranged attack damage by 30%
 					Increases ranged critical strike chance by 15%
-					Decreases ranged attack speed by 15%
+					Decreases ranged attack speed by 7.5%
 					'''
 			}
 
@@ -72,7 +72,7 @@ Mods: {
 					Increases attack speed at the cost of damage
 					Increases ranged attack speed by 30%
 					Increases ranged armor penetration by 15
-					Decreases ranged attack damage by 15%
+					Decreases ranged attack damage by 7.5%
 					'''
 			}
 
@@ -83,6 +83,7 @@ Mods: {
 					Grants 2% summon critical strike chance per minion slot
 					Grants 2 summon armor penetration per minion slot
 					Increases your max number of minions by 1
+					Enemies are far less likely to target you
 					'''
 			}
 
@@ -94,7 +95,7 @@ Mods: {
 					Reduces damage taken by 2% per minion slot
 					2 defense per minion slot
 					Increases your max number of minions by 1
-					Enemies are less likely to target you
+					Enemies are far more likely to target you
 					'''
 			}
 
@@ -363,7 +364,7 @@ Mods: {
 
 			Supercritical: {
 				DisplayName: Supercritical
-				AdditionalTooltip: +100% critical strike damage
+				AdditionalTooltip: % critical strike damage
 			}
 
 			Indecisive: {

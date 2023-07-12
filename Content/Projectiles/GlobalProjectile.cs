@@ -65,6 +65,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.extraUpdates = projectile.GetGlobalProjectile<WDALTProjectileUtil>().extraUpdatesIceBoomerang;
             }
+            if
+            (
+                projectile.type == ProjectileID.BallofFire ||
+                projectile.type == ProjectileID.BallofFrost ||
+                projectile.type == ProjectileID.BookOfSkullsSkull ||
+                projectile.type == ProjectileID.DemonScythe ||
+                projectile.type == ProjectileID.UnholyTridentFriendly
+            )
+            {
+                projectile.penetrate = -1;
+            }
             base.SetDefaults(projectile);
         }
         

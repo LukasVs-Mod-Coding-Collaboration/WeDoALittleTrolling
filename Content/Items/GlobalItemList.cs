@@ -518,6 +518,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.mana = 8;
                 item.autoReuse = true;
             }
+            if (item.type == ItemID.UnholyTrident) 
+            {
+                item.mana = 12;
+                item.autoReuse = true;
+            }
 
             // Buff all pre-hardmode summons
 

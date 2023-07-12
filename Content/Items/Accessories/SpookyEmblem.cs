@@ -59,6 +59,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions += 1;
+            player.aggro -= 800;
             base.UpdateAccessory(player, hideVisual);
         }
 

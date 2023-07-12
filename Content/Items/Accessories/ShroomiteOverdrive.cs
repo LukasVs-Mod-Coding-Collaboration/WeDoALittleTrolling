@@ -51,7 +51,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             player.GetAttackSpeed(DamageClass.Ranged) += (float)0.30;
             player.GetArmorPenetration(DamageClass.Ranged) += (float)15.0;
-            player.GetDamage(DamageClass.Ranged) *= (float)0.85;
+            player.GetDamage(DamageClass.Ranged) *= (float)0.925;
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
