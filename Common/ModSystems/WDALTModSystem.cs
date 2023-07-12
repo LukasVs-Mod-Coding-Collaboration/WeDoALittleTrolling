@@ -203,6 +203,27 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALT_OrichalcumAnvil_Duplicate.AddIngredient(ItemID.OrichalcumBar, 12);
             WDALT_OrichalcumAnvil_Duplicate.AddTile(TileID.MythrilAnvil);
             WDALT_OrichalcumAnvil_Duplicate.Register();
+
+            Recipe WDALT_Soulconvert_V1 = Recipe.Create(ItemID.SoulofFright, 3);
+            WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofFright, 1);
+            WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofMight, 1);
+            WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofSight, 1);
+            List<Item> shimmerResult_WDALT_Soulconvert_V1 = new List<Item>();
+            Item shimmerResultItem_WDALT_Soulconvert_V1 = new Item();
+            shimmerResultItem_WDALT_Soulconvert_V1.type = ItemID.SoulofFright;
+            shimmerResultItem_WDALT_Soulconvert_V1.stack = 3;
+            shimmerResult_WDALT_Soulconvert_V1.Add(shimmerResultItem_WDALT_Soulconvert_V1);
+            WDALT_Soulconvert_V1.customShimmerResults = shimmerResult_WDALT_Soulconvert_V1;
+            WDALT_Soulconvert_V1.AddTile(TileID.MythrilAnvil);
+            WDALT_Soulconvert_V1.Register();
+            Recipe WDALT_Soulconvert_V2 = Recipe.Create(ItemID.SoulofLight, 1);
+            WDALT_Soulconvert_V2.AddIngredient(ItemID.SoulofNight, 1);
+            WDALT_Soulconvert_V2.AddCondition(ShimmerCondition);
+            WDALT_Soulconvert_V2.Register();
+            Recipe WDALT_Soulconvert_V3 = Recipe.Create(ItemID.SoulofNight, 1);
+            WDALT_Soulconvert_V3.AddIngredient(ItemID.SoulofLight, 1);
+            WDALT_Soulconvert_V3.AddCondition(ShimmerCondition);
+            WDALT_Soulconvert_V3.Register();
         }
 
         public static bool GetFalse()
@@ -760,6 +781,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                        List<Item> shimmerResult_WDALT_MythrilAnvil = new List<Item>();
+                        Item shimmerResultItem_WDALT_MythrilAnvil = new Item();
+                        shimmerResultItem_WDALT_MythrilAnvil.type = ItemID.MythrilBar;
+                        shimmerResultItem_WDALT_MythrilAnvil.stack = 10;
+                        shimmerResult_WDALT_MythrilAnvil.Add(shimmerResultItem_WDALT_MythrilAnvil);
+                        recipe.customShimmerResults = shimmerResult_WDALT_MythrilAnvil;
                     }
                 }
                 if(recipe.TryGetResult(ItemID.OrichalcumAnvil, out Item OrichalcumAnvil))
@@ -768,6 +795,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
+                        List<Item> shimmerResult_WDALT_OrichalcumAnvil = new List<Item>();
+                        Item shimmerResultItem_WDALT_OrichalcumAnvil = new Item();
+                        shimmerResultItem_WDALT_OrichalcumAnvil.type = ItemID.OrichalcumBar;
+                        shimmerResultItem_WDALT_OrichalcumAnvil.stack = 12;
+                        shimmerResult_WDALT_OrichalcumAnvil.Add(shimmerResultItem_WDALT_OrichalcumAnvil);
+                        recipe.customShimmerResults = shimmerResult_WDALT_OrichalcumAnvil;
                     }
                 }
 

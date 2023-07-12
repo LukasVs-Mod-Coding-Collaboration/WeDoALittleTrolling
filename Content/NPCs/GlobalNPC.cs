@@ -68,7 +68,8 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] KnockbackResistanceGroup =
         {
-            NPCID.AngryTrapper
+            NPCID.AngryTrapper,
+            NPCID.BrainofCthulhu
         };
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
@@ -103,6 +104,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.LihzahrdCrawler,
             NPCID.FlyingSnake
         };
+        public static readonly int[] InflictBrokenArmor1In1Group =
+        {
+            NPCID.PrimeSaw,
+            NPCID.PrimeVice
+        };
 
         public override void SetDefaults(NPC npc)
         {
@@ -122,14 +128,89 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.knockBackResist = 0f;
             }
+
+            //Boss buffs
+
             if(npc.type == NPCID.EyeofCthulhu)
             {
                 npc.lifeMax *= 3;
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
+            if(npc.type == NPCID.KingSlime)
+            {
+                npc.lifeMax *= 3;
+                npc.damage = (int)Math.Round(npc.damage * 1.5);
+            }
+            if(npc.type == NPCID.BrainofCthulhu)
+            {
+                npc.lifeMax *= 2;
+            }
+            if(npc.type == NPCID.QueenBee)
+            {
+                npc.lifeMax *= 2;
+            }
+            if
+            (
+                npc.type == NPCID.WallofFlesh ||
+                npc.type == NPCID.WallofFleshEye ||
+                npc.type == NPCID.TheHungry ||
+                npc.type == NPCID.TheHungryII
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
             if(npc.type == NPCID.Plantera)
             {
                 npc.lifeMax *= 2;
+            }
+            if
+            (
+                npc.type == NPCID.Golem ||
+                npc.type == NPCID.GolemHead ||
+                npc.type == NPCID.GolemFistLeft ||
+                npc.type == NPCID.GolemFistRight ||
+                npc.type == NPCID.GolemHeadFree
+            )
+            {
+                npc.lifeMax *= 2;
+            }
+            if(npc.type == NPCID.HallowBoss)
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
+            if(npc.type == NPCID.DukeFishron)
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
+            if(npc.type == NPCID.CultistBoss)
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
+            if
+            (
+                npc.type == NPCID.MoonLordCore ||
+                npc.type == NPCID.MoonLordHead ||
+                npc.type == NPCID.MoonLordHand ||
+                npc.type == NPCID.MoonLordFreeEye ||
+                npc.type == NPCID.MoonLordLeechBlob
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
+            if(npc.type == NPCID.Deerclops)
+            {
+                npc.damage = (int)Math.Round(npc.damage * 0.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.5);
+            }
+            if
+            (
+                npc.type == NPCID.SkeletronPrime ||
+                npc.type == NPCID.PrimeCannon ||
+                npc.type == NPCID.PrimeLaser
+            )
+            {
+                npc.lifeMax *= 2;
+                npc.defense *= 2;
             }
             base.SetDefaults(npc);
         }
@@ -152,6 +233,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 projectile.netUpdate = true;
             }
             if(NerfGroup50Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.5);
+                projectile.netUpdate = true;
+            }
+            if(npc.type == NPCID.Deerclops)
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 0.5);
                 projectile.netUpdate = true;
@@ -213,6 +299,13 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
             }
+            if (npc.type == NPCID.Deerclops)
+            {
+                target.ClearBuff(BuffID.Frozen);
+                target.ClearBuff(BuffID.Slow);
+                target.buffImmune[BuffID.Frozen] = true;
+                target.buffImmune[BuffID.Slow] = true;
+            }
         }
 
         public static void ApplyDebuffsToPlayerBasedOnNPC(int npcType, Player target)
@@ -251,6 +344,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictBrokenArmor1In1Group.Contains(npcType))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(BuffID.BrokenArmor, 7200, true); //2m, X2 in Expert, X2.5 in Master
                 }
             }
         }

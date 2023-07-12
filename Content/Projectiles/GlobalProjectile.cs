@@ -273,6 +273,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
+            if
+            (
+                projectile.type == ProjectileID.DeerclopsIceSpike ||
+                projectile.type == ProjectileID.DeerclopsRangedProjectile ||
+                projectile.type == ProjectileID.InsanityShadowHostile
+            )
+            {
+                target.ClearBuff(BuffID.Frozen);
+                target.ClearBuff(BuffID.Slow);
+                target.buffImmune[BuffID.Frozen] = true;
+                target.buffImmune[BuffID.Slow] = true;
+            }
             base.OnHitPlayer(projectile, target, info);
         }
 
