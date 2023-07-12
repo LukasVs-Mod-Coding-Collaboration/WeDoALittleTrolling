@@ -91,7 +91,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.localAI[0] = 32f;
                 projectile.localAI[1] = 0f;
-                projectile.Center = projectile.GetGlobalProjectile<WDALTProjectileUtil>().spawnCenter + projectile.velocity * projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
+                projectile.Center = projectile.GetGlobalProjectile<WDALTProjectileUtil>().spawnCenter + (projectile.velocity * projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive);
             }
             if (projectile.type == ProjectileID.SolarWhipSword)
             {

@@ -35,6 +35,7 @@ namespace WeDoALittleTrolling.Common.Utilities
     public class WDALTPlayerUtil : ModPlayer
     {
         public double lastLeechingHealTime;
+        public int spookyBonus;
         public Player player;
         
         public override void PreUpdate()
@@ -51,6 +52,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void UpdateEquips()
         {
             player.arcticDivingGear = true;
+            spookyBonus = player.maxMinions * 2;
             base.UpdateEquips();
         }
         public override void UpdateLifeRegen()
@@ -80,6 +82,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         private void ResetVariables()
         {
             lastLeechingHealTime = 0;
+            spookyBonus = 0;
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -107,9 +110,9 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 if(HasPlayerAcessoryEquipped(ModContent.ItemType<SpookyEmblem>()))
                 {
-                    modifiers.ArmorPenetration += (3 * player.maxMinions);
+                    modifiers.ArmorPenetration += spookyBonus;
                     Random random = new Random();
-                    if(random.Next(0, 100) < (3 * player.maxMinions)) //(3 x <Player Minion Slots>)% Chance
+                    if(random.Next(0, 100) < spookyBonus) //(3 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }

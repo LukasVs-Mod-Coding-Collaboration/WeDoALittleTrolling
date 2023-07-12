@@ -176,15 +176,15 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.HallowBoss)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if(npc.type == NPCID.DukeFishron)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
             }
             if(npc.type == NPCID.CultistBoss)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.0);
+                npc.lifeMax *= 2;
             }
             if
             (

@@ -60,8 +60,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
             yield return new TooltipLine(Mod, "PrefixAccessoryIndecisiveDescription", AdditionalTooltip.Value) {
-				IsModifier = true,
-			};
+                IsModifier = true,
+            };
         }
 
         public override void SetStaticDefaults() {

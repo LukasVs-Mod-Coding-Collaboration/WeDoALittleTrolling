@@ -25,14 +25,15 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
+using WeDoALittleTrolling.Common.Utilities;
 using System;
+using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
     internal class SpookyEmblem : ModItem
     {
-
-
         public override void SetDefaults()
         {
             Item.width = 32;
@@ -48,9 +49,17 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.accessory = true;
         }
 
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            TooltipLine extraManaLine = new TooltipLine(Mod, "SpookyBonus", "Current bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus+"(%)");
+            tooltips.Add(extraManaLine);
+            base.ModifyTooltips(tooltips);
+        }
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions += 1;
+            base.UpdateAccessory(player, hideVisual);
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
