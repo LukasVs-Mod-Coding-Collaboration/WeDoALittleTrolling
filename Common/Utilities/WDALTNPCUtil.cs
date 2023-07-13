@@ -33,6 +33,8 @@ using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
+using Terraria.ModLoader.IO;
+using System.IO;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -40,9 +42,23 @@ namespace WeDoALittleTrolling.Common.Utilities
     {
         public override bool InstancePerEntity => true;
 
+        public int VileSpitTimeLeft;
+
         public override void ResetEffects(NPC npc)
         {
             base.ResetEffects(npc);
+        }
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(VileSpitTimeLeft);
+            base.SendExtraAI(npc, bitWriter, binaryWriter);
+        }
+
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
+        {
+            VileSpitTimeLeft = binaryReader.ReadInt32();
+            base.ReceiveExtraAI(npc, bitReader, binaryReader);
         }
     }
 }

@@ -212,7 +212,80 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.lifeMax *= 2;
                 npc.defense *= 2;
             }
+            if
+            (
+                npc.type == NPCID.EaterofWorldsHead ||
+                npc.type == NPCID.EaterofWorldsBody ||
+                npc.type == NPCID.EaterofWorldsTail
+            )
+            {
+                npc.lifeMax *= 2;
+                npc.defense *= 2;
+            }
+            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            {
+                npc.dontTakeDamage = true;
+            }
             base.SetDefaults(npc);
+        }
+
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            {
+                npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft = 300;
+                npc.netUpdate = true;
+            }
+            base.OnSpawn(npc, source);
+        }
+
+        public override bool? CanCollideWithPlayerMeleeAttack(NPC npc, Player player, Item item, Rectangle meleeAttackHitbox)
+        {
+            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            {
+                return false;
+            }
+            return base.CanCollideWithPlayerMeleeAttack(npc, player, item, meleeAttackHitbox);
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            {
+                if(npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft <= 0)
+                {
+                    npc.active = false;
+                }
+                if(Collision.SolidCollision(npc.position, npc.width+(int)npc.velocity.Length()+1, npc.height+(int)npc.velocity.Length()+1) && npc.velocity.Length() > 0f)
+                {
+                    npc.position += npc.velocity;
+                    return false;
+                }
+            }
+            return base.PreAI(npc);
+        }
+
+        public override void AI(NPC npc)
+        {
+            if
+            (
+                npc.type == NPCID.EaterofWorldsHead ||
+                npc.type == NPCID.EaterofWorldsBody ||
+                npc.type == NPCID.EaterofWorldsTail
+            )
+            {
+                Random rnd = new Random();
+                if(rnd.Next(300) == 0 && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    npc.TargetClosest();
+                    if(!Collision.CanHitLine(npc.Center, 1, 1, Main.player[npc.target].Center, 1, 1))
+                    {
+                        NPC.NewNPC(new EntitySource_Parent(npc), (int)(npc.position.X + (float)(npc.width / 2) + npc.velocity.X), (int)(npc.position.Y + (float)(npc.height / 2) + npc.velocity.Y), NPCID.VileSpitEaterOfWorlds, 0, 0f, 1f);
+                    }
+                }
+            }
+            npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft--;
+            base.AI(npc);
         }
 
         public static void SetProjectileDefaults(NPC npc, Projectile projectile)
