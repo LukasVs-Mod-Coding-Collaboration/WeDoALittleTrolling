@@ -67,11 +67,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if
             (
-                projectile.type == ProjectileID.BallofFire ||
-                projectile.type == ProjectileID.BallofFrost ||
-                projectile.type == ProjectileID.BookOfSkullsSkull ||
-                projectile.type == ProjectileID.DemonScythe ||
-                projectile.type == ProjectileID.UnholyTridentFriendly
+                projectile.type == ProjectileID.BookOfSkullsSkull
             )
             {
                 projectile.penetrate = -1;
