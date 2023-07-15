@@ -144,7 +144,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                     hit.DamageType == DamageClass.Melee ||
                     hit.DamageType == DamageClass.MeleeNoSpeed ||
                     hit.DamageType == DamageClass.SummonMeleeSpeed ||
-                    hit.DamageType == DamageClass.Magic
+                    hit.DamageType == DamageClass.Magic ||
+                    hit.DamageType == DamageClass.MagicSummonHybrid
                 ) &&
                 !target.friendly && 
                 !target.CountsAsACritter && 

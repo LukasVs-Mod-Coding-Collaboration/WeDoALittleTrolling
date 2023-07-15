@@ -37,6 +37,14 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override bool CanRoll(Item item)
         {
+            if
+            (
+                item.DamageType == DamageClass.Summon ||
+                item.DamageType == DamageClass.SummonMeleeSpeed
+            )
+            {
+                return false;
+            }
             return true;
         }
 
