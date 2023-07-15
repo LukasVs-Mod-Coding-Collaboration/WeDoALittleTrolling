@@ -281,7 +281,7 @@ Mods: {
 				AdditionalTooltip:
 					'''
 					Increases your max number of sentries by 1,
-					but reduces your summon damage by 4%.
+					but reduces your summon damage by 4%
 					'''
 			}
 

@@ -32,7 +32,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.5f;
+            return 0.75f;
         }
 
         public override bool CanRoll(Item item)
