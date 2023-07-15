@@ -52,8 +52,10 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine extraManaLine = new TooltipLine(Mod, "SpookyBonus", "Current bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus+"(%)");
-            tooltips.Add(extraManaLine);
+            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current reduced damage taken bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus+"%");
+            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", "Current defense bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus);
+            tooltips.Add(spookyBonus0);
+            tooltips.Add(spookyBonus1);
             base.ModifyTooltips(tooltips);
         }
         
@@ -63,7 +65,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.aggro += 800;
             player.maxMinions += 1;
             player.statDefense += player.GetModPlayer<WDALTPlayerUtil>().spookyBonus;
-            player.endurance += (float)player.GetModPlayer<WDALTPlayerUtil>().spookyBonus * 0.01f;
+            player.endurance += ((float)player.GetModPlayer<WDALTPlayerUtil>().spookyBonus) * 0.01f;
             base.UpdateAccessory(player, hideVisual);
         }
 

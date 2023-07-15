@@ -37,6 +37,7 @@ namespace WeDoALittleTrolling.Common.Utilities
     {
         public double lastLeechingHealTime;
         public int spookyBonus;
+        public int spookyBonusScalingWithDifficulty;
         public Player player;
         
         public override void PreUpdate()
@@ -54,6 +55,18 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             player.arcticDivingGear = true;
             spookyBonus = player.maxMinions * 2;
+            if(Main.masterMode)
+            {
+                spookyBonusScalingWithDifficulty = (spookyBonus * 2);
+            }
+            else if(Main.expertMode)
+            {
+                spookyBonusScalingWithDifficulty = (int)Math.Round((double)spookyBonus * 1.5);
+            }
+            else
+            {
+                spookyBonusScalingWithDifficulty = spookyBonus;
+            }
             base.UpdateEquips();
         }
         public override void UpdateLifeRegen()
@@ -71,8 +84,10 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void Initialize()
         {
-            lastLeechingHealTime = 0;
             player = this.Player;
+            lastLeechingHealTime = 0;
+            spookyBonus = 0;
+            spookyBonusScalingWithDifficulty = 0;
         }
 
         public override void UpdateDead()
@@ -84,6 +99,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             lastLeechingHealTime = 0;
             spookyBonus = 0;
+            spookyBonusScalingWithDifficulty = 0;
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -120,9 +136,9 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 if(HasPlayerAcessoryEquipped(ModContent.ItemType<SpookyEmblem>()))
                 {
-                    modifiers.ArmorPenetration += spookyBonus;
+                    modifiers.ArmorPenetration += spookyBonusScalingWithDifficulty;
                     Random random = new Random();
-                    if(random.Next(0, 100) < spookyBonus) //(3 x <Player Minion Slots>)% Chance
+                    if(random.Next(0, 100) < spookyBonus) //(2 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }

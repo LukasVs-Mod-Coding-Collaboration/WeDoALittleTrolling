@@ -51,13 +51,25 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine extraManaLine = new TooltipLine(Mod, "SpookyBonus", "Current bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus+"(%)");
-            tooltips.Add(extraManaLine);
+            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current critical strike chance bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus+"%");
+            string spookyBonus1Text = "Current armor penetration bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonusScalingWithDifficulty;
+            if(Main.masterMode)
+            {
+                spookyBonus1Text = spookyBonus1Text+" (Master Mode: x2.0)";
+            }
+            else if(Main.expertMode)
+            {
+                spookyBonus1Text = spookyBonus1Text+" (Expert Mode: x1.5)";
+            }
+            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", spookyBonus1Text);
+            tooltips.Add(spookyBonus0);
+            tooltips.Add(spookyBonus1);
             base.ModifyTooltips(tooltips);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.blackBelt = true;
             player.maxMinions += 1;
             player.aggro -= 800;
             base.UpdateAccessory(player, hideVisual);
@@ -85,7 +97,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.TinkerersWorkbench)
               .AddIngredient(ItemID.SpookyWood, 250)
               .AddIngredient(ItemID.NecromanticScroll, 1)
-              .AddIngredient(ItemID.SharkToothNecklace, 1)
+              .AddIngredient(ItemID.BlackBelt, 1)
               .Register();
         }
     }

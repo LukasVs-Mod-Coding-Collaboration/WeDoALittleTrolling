@@ -80,6 +80,7 @@ Mods: {
 				DisplayName: Spooky Emblem
 				Tooltip:
 					'''
+					Gives a chance to dodge attacks
 					Grants 2% summon critical strike chance per minion slot
 					Grants 2 summon armor penetration per minion slot
 					Increases your max number of minions by 1
