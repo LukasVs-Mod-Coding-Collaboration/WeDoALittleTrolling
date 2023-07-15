@@ -72,6 +72,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.blackBelt = true;
             player.maxMinions += 1;
             player.aggro -= 800;
+            player.GetModPlayer<WDALTPlayerUtil>().spookyEmblem = true;
             base.UpdateAccessory(player, hideVisual);
         }
 

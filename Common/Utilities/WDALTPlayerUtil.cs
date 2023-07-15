@@ -38,11 +38,44 @@ namespace WeDoALittleTrolling.Common.Utilities
         public double lastLeechingHealTime;
         public int spookyBonus;
         public int spookyBonusScalingWithDifficulty;
+        public int dodgeChancePercent;
+        public int dodgeImmuneTime;
+        public bool spookyEmblem;
         public Player player;
+        public Random random = new Random();
         
-        public override void PreUpdate()
+        public override void Initialize()
         {
-            base.PreUpdate();
+            player = this.Player;
+            lastLeechingHealTime = 0;
+            spookyBonus = 0;
+            spookyBonusScalingWithDifficulty = 0;
+            dodgeChancePercent = 0;
+            dodgeImmuneTime = 0;
+            spookyEmblem = false;
+        }
+
+        public override void UpdateDead()
+        {
+            ResetVariables();
+        }
+
+        private void ResetVariables()
+        {
+            lastLeechingHealTime = 0;
+            spookyBonus = 0;
+            spookyBonusScalingWithDifficulty = 0;
+            dodgeChancePercent = 0;
+            dodgeImmuneTime = 0;
+            spookyEmblem = false;
+        }
+
+        public override void ResetEffects()
+        {
+            dodgeChancePercent = 0;
+            dodgeImmuneTime = 0;
+            spookyEmblem = false;
+            base.ResetEffects();
         }
 
         public override void PostUpdate()
@@ -69,6 +102,18 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             base.UpdateEquips();
         }
+
+        public override bool FreeDodge(Player.HurtInfo info)
+        {
+            if(random.Next(0, 100) < dodgeChancePercent && dodgeChancePercent > 0)
+            {
+                player.AddImmuneTime(info.CooldownCounter, dodgeImmuneTime);
+                player.immune = true;
+                return true;
+            }
+            return base.FreeDodge(info);
+        }
+
         public override void UpdateLifeRegen()
         {
             if(player.HasItem(ModContent.ItemType<HolyCharm>()))
@@ -80,26 +125,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
             base.UpdateLifeRegen();
-        }
-
-        public override void Initialize()
-        {
-            player = this.Player;
-            lastLeechingHealTime = 0;
-            spookyBonus = 0;
-            spookyBonusScalingWithDifficulty = 0;
-        }
-
-        public override void UpdateDead()
-        {
-            ResetVariables();
-        }
-
-        private void ResetVariables()
-        {
-            lastLeechingHealTime = 0;
-            spookyBonus = 0;
-            spookyBonusScalingWithDifficulty = 0;
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -134,10 +159,9 @@ namespace WeDoALittleTrolling.Common.Utilities
                 modifiers.DamageType == DamageClass.MagicSummonHybrid
             )
             {
-                if(HasPlayerAcessoryEquipped(ModContent.ItemType<SpookyEmblem>()))
+                if(spookyEmblem)
                 {
                     modifiers.ArmorPenetration += spookyBonusScalingWithDifficulty;
-                    Random random = new Random();
                     if(random.Next(0, 100) < spookyBonus) //(2 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
