@@ -266,6 +266,25 @@ Mods: {
 				AdditionalTooltip: Enemies are much more likely to target you
 			}
 
+			Rejuvenating: {
+				DisplayName: Rejuvenating
+				AdditionalTooltip: Your health regenerates slightly faster
+			}
+
+			Vital: {
+				DisplayName: Vital
+				AdditionalTooltip: Increases maximum life by 20
+			}
+
+			Watchful: {
+				DisplayName: Watchful
+				AdditionalTooltip:
+					'''
+					Increases your max number of sentries by 1,
+					but reduces your summon damage by 4%.
+					'''
+			}
+
 			InfernoInfusion: {
 				DisplayName: Inferno infusing
 				AdditionalTooltip: +Inferno buff

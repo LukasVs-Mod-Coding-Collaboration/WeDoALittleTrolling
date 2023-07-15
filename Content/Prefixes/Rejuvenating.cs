@@ -16,28 +16,23 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using WeDoALittleTrolling.Content.Projectiles;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria.ModLoader;
+using Terraria.Localization;
+using Terraria;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-
-    public class Lacerating : ModPrefix
+    public class Rejuvenating : ModPrefix
     {
-
-        public override PrefixCategory Category => PrefixCategory.Melee;
+        public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.25f;
+            return 0.5f;
         }
 
         public override bool CanRoll(Item item)
@@ -45,22 +40,31 @@ namespace WeDoALittleTrolling.Content.Prefixes
             return true;
         }
 
-        public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
-        {
-            damageMult *= 1.15f;
-            scaleMult *= 0.8f;
-            useTimeMult *= 0.7f;
-            knockbackMult *= 0.0f;
-        }
-
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult *= 2.0f;
+            valueMult *= 2f;
         }
 
-        public override void Apply(Item item)
+        public override void ApplyAccessoryEffects(Player player)
         {
-            //
+            player.lifeRegen += 2;
         }
+
+        public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            yield return new TooltipLine(Mod, "PrefixAccessoryRejuvenatingDescription", AdditionalTooltip.Value)
+            {
+                IsModifier = true,
+            };
+        }
+
+        public override void SetStaticDefaults()
+        {
+            _ = AdditionalTooltip;
+        }
+
     }
+
 }
