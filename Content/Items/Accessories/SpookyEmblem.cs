@@ -51,17 +51,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current critical strike chance bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus+"%");
-            string spookyBonus1Text = "Current armor penetration bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonusScalingWithDifficulty;
-            if(Main.masterMode)
-            {
-                spookyBonus1Text = spookyBonus1Text+" (Master Mode: x2.0)";
-            }
-            else if(Main.expertMode)
-            {
-                spookyBonus1Text = spookyBonus1Text+" (Expert Mode: x1.5)";
-            }
-            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", spookyBonus1Text);
+            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current critical strike chance bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus3X+"%");
+            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", "Current armor penetration bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus3X);
             tooltips.Add(spookyBonus0);
             tooltips.Add(spookyBonus1);
             base.ModifyTooltips(tooltips);
@@ -71,7 +62,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             player.blackBelt = true;
             player.maxMinions += 1;
-            player.aggro -= 800;
+            player.aggro -= 400;
             player.GetModPlayer<WDALTPlayerUtil>().spookyEmblem = true;
             base.UpdateAccessory(player, hideVisual);
         }

@@ -81,10 +81,10 @@ Mods: {
 				Tooltip:
 					'''
 					Gives a chance to dodge attacks
-					Grants 2% summon critical strike chance per minion slot
-					Grants 2 summon armor penetration per minion slot
+					Grants 3% summon critical strike chance per minion slot
+					Grants 3 summon armor penetration per minion slot
 					Increases your max number of minions by 1
-					Enemies are far less likely to target you
+					Enemies are less likely to target you
 					'''
 			}
 
@@ -96,7 +96,7 @@ Mods: {
 					Reduces damage taken by 2% per minion slot
 					2 defense per minion slot
 					Increases your max number of minions by 1
-					Enemies are far more likely to target you
+					Enemies are more likely to target you
 					'''
 			}
 

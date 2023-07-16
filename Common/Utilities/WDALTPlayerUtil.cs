@@ -36,8 +36,8 @@ namespace WeDoALittleTrolling.Common.Utilities
     public class WDALTPlayerUtil : ModPlayer
     {
         public double lastLeechingHealTime;
-        public int spookyBonus;
-        public int spookyBonusScalingWithDifficulty;
+        public int spookyBonus2X;
+        public int spookyBonus3X;
         public int dodgeChancePercent;
         public int dodgeImmuneTime;
         public bool spookyEmblem;
@@ -48,8 +48,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             player = this.Player;
             lastLeechingHealTime = 0;
-            spookyBonus = 0;
-            spookyBonusScalingWithDifficulty = 0;
+            spookyBonus2X = 0;
+            spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
             spookyEmblem = false;
@@ -63,8 +63,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         private void ResetVariables()
         {
             lastLeechingHealTime = 0;
-            spookyBonus = 0;
-            spookyBonusScalingWithDifficulty = 0;
+            spookyBonus2X = 0;
+            spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
             spookyEmblem = false;
@@ -87,19 +87,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void UpdateEquips()
         {
             player.arcticDivingGear = true;
-            spookyBonus = player.maxMinions * 2;
-            if(Main.masterMode)
-            {
-                spookyBonusScalingWithDifficulty = (spookyBonus * 2);
-            }
-            else if(Main.expertMode)
-            {
-                spookyBonusScalingWithDifficulty = (int)Math.Round((double)spookyBonus * 1.5);
-            }
-            else
-            {
-                spookyBonusScalingWithDifficulty = spookyBonus;
-            }
+            spookyBonus2X = player.maxMinions * 2;
+            spookyBonus3X = player.maxMinions * 3;
             base.UpdateEquips();
         }
 
@@ -161,8 +150,8 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 if(spookyEmblem)
                 {
-                    modifiers.ArmorPenetration += spookyBonusScalingWithDifficulty;
-                    if(random.Next(0, 100) < spookyBonus) //(2 x <Player Minion Slots>)% Chance
+                    modifiers.ArmorPenetration += spookyBonus3X;
+                    if(random.Next(0, 100) < spookyBonus3X) //(3 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }

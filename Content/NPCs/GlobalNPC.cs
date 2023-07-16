@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -84,7 +85,8 @@ namespace WeDoALittleTrolling.Content.NPCs
         public static readonly int[] InflictBleedingDebuff1In1Group =
         {
             NPCID.Shark,
-            NPCID.SandShark
+            NPCID.SandShark,
+            NPCID.PrimeSaw
         };
         public static readonly int[] InflictBleedingDebuff1In8Group =
         {
@@ -106,8 +108,11 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] InflictBrokenArmor1In1Group =
         {
-            NPCID.PrimeSaw,
-            NPCID.PrimeVice
+            NPCID.PrimeSaw
+        };
+        public static readonly int[] InflictSlowness1In1Group =
+        {
+            NPCID.PrimeSaw
         };
 
         public override void SetDefaults(NPC npc)
@@ -210,7 +215,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax *= 2;
-                npc.defense *= 2;
             }
             if
             (
@@ -220,11 +224,19 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax *= 2;
-                npc.defense *= 2;
             }
             if(npc.type == NPCID.VileSpitEaterOfWorlds)
             {
                 npc.dontTakeDamage = true;
+            }
+            if
+            (
+                npc.type == NPCID.TheDestroyer ||
+                npc.type == NPCID.TheDestroyerBody ||
+                npc.type == NPCID.TheDestroyerTail
+            )
+            {
+                npc.lifeMax *= 2;
             }
             base.SetDefaults(npc);
         }
@@ -275,6 +287,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 Random rnd = new Random();
+                //Replicate vanilla behavior as good as possible.
                 if(rnd.Next(300) == 0 && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
@@ -285,6 +298,30 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
             }
             npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft--;
+            if(npc.type == NPCID.TheDestroyerBody)
+            {
+                Random rnd = new Random();
+                //Replicate vanilla behavior as good as possible.
+                if(rnd.Next(900) == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    npc.TargetClosest();
+                    if(!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
+                    {
+                        Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));
+						float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)rnd.Next(-20, 21) - posWithOffset.X;
+						float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)rnd.Next(-20, 21) - posWithOffset.Y;
+						float randomMultiplierLengh = 8f / (new Vector2(randomMultiplierX, randomMultiplierY).Length());
+						randomMultiplierX = (randomMultiplierX*randomMultiplierLengh) + ((float)rnd.Next(-20, 21) * 0.05f);
+						randomMultiplierY = (randomMultiplierY*randomMultiplierLengh) + ((float)rnd.Next(-20, 21) * 0.05f);
+						int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
+						posWithOffset.X += randomMultiplierX * 5f;
+						posWithOffset.Y += randomMultiplierY * 5f;
+						int i = Projectile.NewProjectile(npc.GetSource_FromThis(), posWithOffset.X, posWithOffset.Y, randomMultiplierX, randomMultiplierY, ProjectileID.DeathLaser, damage, 0f, Main.myPlayer);
+						Main.projectile[i].timeLeft = 300;
+						npc.netUpdate = true;
+                    }
+                }
+            }
             base.AI(npc);
         }
 
@@ -379,6 +416,16 @@ namespace WeDoALittleTrolling.Content.NPCs
                 target.buffImmune[BuffID.Frozen] = true;
                 target.buffImmune[BuffID.Slow] = true;
             }
+            if (npc.type == NPCID.PrimeVice)
+            {
+                Item itemToDrop = target.HeldItem;
+                target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
+                SoundEngine.PlaySound(SoundID.Item71, target.position);
+            }
+            if (npc.type == NPCID.PrimeSaw)
+            {
+                SoundEngine.PlaySound(SoundID.Item22, target.position);
+            }
         }
 
         public static void ApplyDebuffsToPlayerBasedOnNPC(int npcType, Player target)
@@ -423,7 +470,14 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 if(random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(BuffID.BrokenArmor, 7200, true); //2m, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.BrokenArmor, 960, true); //16s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictSlowness1In1Group.Contains(npcType))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(BuffID.Slow, 960, true); //16s, X2 in Expert, X2.5 in Master
                 }
             }
         }
