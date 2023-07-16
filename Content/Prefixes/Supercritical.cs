@@ -42,6 +42,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             ItemID.SkyFracture,
             ItemID.InfernoFork,
+            ItemID.LastPrism,
             ItemID.SniperRifle,
             ItemID.Marrow,
             ModContent.ItemType<Rain_of_Decay>(),

@@ -43,7 +43,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult *= 2f;
+            valueMult *= 1.4f;
         }
 
         public override void ApplyAccessoryEffects(Player player)
