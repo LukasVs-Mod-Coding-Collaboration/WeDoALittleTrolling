@@ -112,6 +112,22 @@ Mods: {
 					Grants immunity to fire and frost effects of any kind
 					Also grants immunity to Ichor and Electrified
 					'''
+
+			}
+
+			CrimsonAssassinGear: {
+				DisplayName: Crimson Assassin's Evasion Gear
+				Tooltip:
+					'''
+					Blocks usage of:
+					Brain of Confusion
+					Master Ninja Gear
+					Cross Necklace
+					Panic Necklace
+					But combines their effects.
+					10% increased critical strike
+					Flight duration is increased
+					'''
 			}
 
 			HeartOfDespair: {
