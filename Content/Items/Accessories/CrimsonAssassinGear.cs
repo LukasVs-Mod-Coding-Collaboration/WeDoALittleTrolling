@@ -81,15 +81,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if
             (
-                (equippedItem.type == ItemID.WormScarf || incomingItem.type == ItemID.WormScarf
-                || equippedItem.type == ItemID.MasterNinjaGear || incomingItem.type == ItemID.MasterNinjaGear
-                || equippedItem.type == ItemID.PanicNecklace || incomingItem.type == ItemID.PanicNecklace
-                || equippedItem.type == ItemID.CrossNecklace || incomingItem.type == ItemID.CrossNecklace
-                || equippedItem.type == ItemID.BrainOfConfusion || incomingItem.type == ItemID.BrainOfConfusion
-                || equippedItem.type == ItemID.ShoeSpikes || incomingItem.type == ItemID.ShoeSpikes
-                || equippedItem.type == ItemID.ClimbingClaws || incomingItem.type == ItemID.ClimbingClaws
-                )
-
+                equippedItem.type == ItemID.MasterNinjaGear || incomingItem.type == ItemID.MasterNinjaGear ||
+                equippedItem.type == ItemID.PanicNecklace || incomingItem.type == ItemID.PanicNecklace ||
+                equippedItem.type == ItemID.CrossNecklace || incomingItem.type == ItemID.CrossNecklace ||
+                equippedItem.type == ItemID.BrainOfConfusion || incomingItem.type == ItemID.BrainOfConfusion ||
+                equippedItem.type == ItemID.ShoeSpikes || incomingItem.type == ItemID.ShoeSpikes ||
+                equippedItem.type == ItemID.ClimbingClaws || incomingItem.type == ItemID.ClimbingClaws
             )
             {
                 return false;
