@@ -302,6 +302,16 @@ Mods: {
 					'''
 			}
 
+			Lunatic: {
+				DisplayName: Lunatic's
+				AdditionalTooltip:
+					'''
+					Damages the player above 250 Health
+					Increases player damage by 1% for every 25 health lost
+					Currently unobtainable
+					'''
+			}
+
 			InfernoInfusion: {
 				DisplayName: Inferno infusing
 				AdditionalTooltip: +Inferno buff

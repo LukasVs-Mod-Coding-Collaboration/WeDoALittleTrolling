@@ -24,20 +24,22 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria;
+using Terraria.ID;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-    public class Rejuvenating : ModPrefix
+    public class Lunatic : ModPrefix
     {
+        float madnessDamageBonus;
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.1f;
+            return 1.0f;
         }
 
         public override bool CanRoll(Item item)
         {
-            return true;
+            return false;
         }
 
         public override void ModifyValue(ref float valueMult)
@@ -47,24 +49,29 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.lifeRegen += 2;
+            madnessDamageBonus = (player.statLifeMax2 - player.statLife) / 25;
+            if (madnessDamageBonus >= 0)
+            {
+                player.GetDamage(DamageClass.Generic) += (0.01f * (int)madnessDamageBonus);
+            }
+            if (player.statLife > 250)
+            {
+                player.AddBuff(BuffID.Electrified, 1, true, false);
+            }
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAccessoryRejuvenatingDescription", AdditionalTooltip.Value)
-            {
+            yield return new TooltipLine(Mod, "PrefixAccessoryLunaticDescription", AdditionalTooltip.Value) {
                 IsModifier = true,
             };
         }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             _ = AdditionalTooltip;
         }
-
     }
 
 }
