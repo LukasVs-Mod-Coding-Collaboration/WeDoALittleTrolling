@@ -26,7 +26,7 @@ using Terraria.Localization;
 using Terraria;
 using Terraria.ID;
 
-namespace WeDoALittleTrolling.Content.Prefixes
+namespace WeDoALittleTrolling.Content.Experimental
 {
     public class Lunatic : ModPrefix
     {
