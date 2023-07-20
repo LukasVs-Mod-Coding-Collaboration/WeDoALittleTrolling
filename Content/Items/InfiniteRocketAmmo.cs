@@ -34,8 +34,8 @@ namespace WeDoALittleTrolling.Content.Items
     internal class InfiniteRocketAmmo : ModItem
     {
 
-        Random FireworksColor = new Random();
-        int[] CompatibleWeaponIDs = 
+        public static Random FireworksColor = new Random();
+        public static readonly int[] CompatibleWeaponIDs = 
         {
             ItemID.Celeb2,
             ItemID.SnowmanCannon,

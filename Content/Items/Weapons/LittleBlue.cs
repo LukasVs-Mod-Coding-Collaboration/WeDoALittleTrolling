@@ -31,9 +31,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class LittleBlue : ModItem
     {
-
-
-        Random rnd = new Random(); //Introduce random Values
+        public static Random rnd = new Random(); //Introduce random Values
 
         public override void SetDefaults()
         {

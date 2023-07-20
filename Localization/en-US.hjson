@@ -310,6 +310,12 @@ Mods: {
 					'''
 			}
 
+			Focusing: {
+				DisplayName: Focusing
+				AdditionalTooltip: -4% ranged damage
+				AdditionalTooltip2: +8% ranged critical strike chance
+			}
+
 			Lunatic: {
 				DisplayName: Lunatic's
 				AdditionalTooltip:
