@@ -114,6 +114,10 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             NPCID.PrimeSaw
         };
+        public static readonly int[] InflictCursed1In1Group =
+        {
+            NPCID.PrimeVice
+        };
 
         public override void SetDefaults(NPC npc)
         {
@@ -146,6 +150,14 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.lifeMax *= 3;
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
+            if
+            (
+                npc.type == NPCID.SkeletronHead ||
+                npc.type == NPCID.SkeletronHand
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
             if(npc.type == NPCID.BrainofCthulhu)
             {
                 npc.lifeMax *= 2;
@@ -166,7 +178,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.Plantera)
             {
-                npc.lifeMax *= 2;
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
             if
             (
@@ -177,7 +189,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.GolemHeadFree
             )
             {
-                npc.lifeMax *= 2;
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
             if(npc.type == NPCID.HallowBoss)
             {
@@ -218,6 +230,21 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if
             (
+                npc.type == NPCID.Retinazer ||
+                npc.type == NPCID.Spazmatism
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
+            if
+            (
+                npc.type == NPCID.QueenSlimeBoss
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
+            if
+            (
                 npc.type == NPCID.EaterofWorldsHead ||
                 npc.type == NPCID.EaterofWorldsBody ||
                 npc.type == NPCID.EaterofWorldsTail
@@ -237,6 +264,83 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax *= 2;
+            }
+            if
+            (
+                npc.type == NPCID.DD2DarkMageT1 ||
+                npc.type == NPCID.DD2DarkMageT3
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
+            }
+            if
+            (
+                npc.type == NPCID.DD2OgreT2 ||
+                npc.type == NPCID.DD2OgreT3
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
+            if
+            (
+                npc.type == NPCID.DD2Betsy
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
+            if
+            (
+                npc.type == NPCID.PirateShip ||
+                npc.type == NPCID.PirateShipCannon
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+            }
+            if
+            (
+                npc.type == NPCID.MourningWood
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
+            if
+            (
+                npc.type == NPCID.Pumpking ||
+                npc.type == NPCID.PumpkingBlade
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
+            if
+            (
+                npc.type == NPCID.Everscream
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
+            if
+            (
+                npc.type == NPCID.SantaNK1
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.75);
+            }
+            if
+            (
+                npc.type == NPCID.IceQueen
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+            }
+            if
+            (
+                npc.type == NPCID.MartianSaucer ||
+                npc.type == NPCID.MartianSaucerCannon ||
+                npc.type == NPCID.MartianSaucerCore ||
+                npc.type == NPCID.MartianSaucerTurret
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
             base.SetDefaults(npc);
         }
@@ -308,17 +412,17 @@ namespace WeDoALittleTrolling.Content.NPCs
                     if(!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                     {
                         Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));
-						float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)rnd.Next(-20, 21) - posWithOffset.X;
-						float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)rnd.Next(-20, 21) - posWithOffset.Y;
-						float randomMultiplierLengh = 8f / (new Vector2(randomMultiplierX, randomMultiplierY).Length());
-						randomMultiplierX = (randomMultiplierX*randomMultiplierLengh) + ((float)rnd.Next(-20, 21) * 0.05f);
-						randomMultiplierY = (randomMultiplierY*randomMultiplierLengh) + ((float)rnd.Next(-20, 21) * 0.05f);
-						int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
-						posWithOffset.X += randomMultiplierX * 5f;
-						posWithOffset.Y += randomMultiplierY * 5f;
-						int i = Projectile.NewProjectile(npc.GetSource_FromThis(), posWithOffset.X, posWithOffset.Y, randomMultiplierX, randomMultiplierY, ProjectileID.DeathLaser, damage, 0f, Main.myPlayer);
-						Main.projectile[i].timeLeft = 300;
-						npc.netUpdate = true;
+                        float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)rnd.Next(-16, 17) - posWithOffset.X;
+                        float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)rnd.Next(-16, 17) - posWithOffset.Y;
+                        float randomMultiplierLengh = 8f / (new Vector2(randomMultiplierX, randomMultiplierY).Length());
+                        randomMultiplierX = (randomMultiplierX*randomMultiplierLengh) + ((float)rnd.Next(-16, 17) * 0.04f);
+                        randomMultiplierY = (randomMultiplierY*randomMultiplierLengh) + ((float)rnd.Next(-16, 17) * 0.04f);
+                        posWithOffset.X += randomMultiplierX * 4f;
+                        posWithOffset.Y += randomMultiplierY * 4f;
+                        int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
+                        int i = Projectile.NewProjectile(npc.GetSource_FromThis(), posWithOffset.X, posWithOffset.Y, randomMultiplierX, randomMultiplierY, ProjectileID.DeathLaser, damage, 0f, Main.myPlayer);
+                        Main.projectile[i].timeLeft = 450;
+                        npc.netUpdate = true;
                     }
                 }
             }
@@ -478,6 +582,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(BuffID.Slow, 960, true); //16s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictCursed1In1Group.Contains(npcType))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(BuffID.Cursed, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
         }
