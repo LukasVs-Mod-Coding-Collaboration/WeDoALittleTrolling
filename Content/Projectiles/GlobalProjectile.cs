@@ -58,7 +58,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.Fireball,
             ProjectileID.EyeBeam
         };
-        public static readonly int[] InflictDevastated1In1Group =
+        public static readonly int[] InflictWreckedResistance1In1Group =
         {
             ProjectileID.SeedPlantera,
             ProjectileID.PoisonSeedPlantera,
@@ -327,11 +327,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictDevastated1In1Group.Contains(projectile.type))
+            if(InflictWreckedResistance1In1Group.Contains(projectile.type))
             {
                 if(random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if

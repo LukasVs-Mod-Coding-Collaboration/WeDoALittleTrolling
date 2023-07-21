@@ -40,7 +40,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int spookyBonus3X;
         public int dodgeChancePercent;
         public int dodgeImmuneTime;
-        public int devastatedStack;
+        public int wreckedResistanceStack;
         public bool spookyEmblem;
         public Player player;
         public Random random = new Random();
@@ -53,7 +53,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
-            devastatedStack = 0;
+            wreckedResistanceStack = 0;
             spookyEmblem = false;
         }
 
@@ -69,7 +69,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
-            devastatedStack = 0;
+            wreckedResistanceStack = 0;
             spookyEmblem = false;
         }
 
@@ -97,14 +97,14 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void PostUpdateEquips()
         {
-            if(player.HasBuff(ModContent.BuffType<Devastated>()))
+            if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
             {
-                float modifier = (float)(9 - (devastatedStack)) * 0.1f;
+                float modifier = (float)(9 - (wreckedResistanceStack)) * 0.1f;
                 player.endurance *= modifier;
             }
             else
             {
-                devastatedStack = 0;
+                wreckedResistanceStack = 0;
             }
             base.PostUpdateEquips();
         }
@@ -130,7 +130,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
-            player.buffImmune[ModContent.BuffType<Devastated>()] = false;
+            player.buffImmune[ModContent.BuffType<WreckedResistance>()] = false;
             base.UpdateLifeRegen();
         }
 

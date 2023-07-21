@@ -13,7 +13,7 @@ using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Content.Buffs
 {
-    public class Devastated : ModBuff
+    public class WreckedResistance : ModBuff
     {
         public override void SetStaticDefaults()
         {
@@ -24,15 +24,15 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            tip = tip+" "+(10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().devastatedStack * 10))+"%";
+            tip = tip+" "+(10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack * 10))+"%";
             base.ModifyBuffText(ref buffName, ref tip, ref rare);
         }
         
         public override bool ReApply(Player player, int time, int buffIndex)
         {
-            if(player.GetModPlayer<WDALTPlayerUtil>().devastatedStack < 9)
+            if(player.GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack < 9)
             {
-                player.GetModPlayer<WDALTPlayerUtil>().devastatedStack += 1;
+                player.GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack += 1;
             }
             return base.ReApply(player, time, buffIndex);
         }

@@ -442,9 +442,9 @@ Mods: {
 		}
 
 		Buffs: {
-			Devastated: {
-				DisplayName: Devastated
-				Description: Reduced damage taken is reduced by
+			WreckedResistance: {
+				DisplayName: Wrecked Resistance
+				Description: Damage reduction is decreased by
 			}
 
 			SearingInferno: {
