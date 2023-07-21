@@ -41,6 +41,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int dodgeChancePercent;
         public int dodgeImmuneTime;
         public int wreckedResistanceStack;
+        public int devastatedStack;
         public bool spookyEmblem;
         public Player player;
         public Random random = new Random();
@@ -54,6 +55,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
             wreckedResistanceStack = 0;
+            devastatedStack = 0;
             spookyEmblem = false;
         }
 
@@ -70,6 +72,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
             wreckedResistanceStack = 0;
+            devastatedStack = 0;
             spookyEmblem = false;
         }
 
@@ -99,14 +102,34 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
             {
-                float modifier = (float)(9 - (wreckedResistanceStack)) * 0.1f;
-                player.endurance *= modifier;
+                float modifierWR = (float)(9 - (wreckedResistanceStack)) * 0.1f;
+                player.endurance *= modifierWR;
             }
             else
             {
                 wreckedResistanceStack = 0;
             }
+            if(player.HasBuff(ModContent.BuffType<Devastated>()))
+            {
+                float modifierD = (float)(97 - (devastatedStack*3)) * 0.01f;
+                player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
+                player.blackBelt = false;
+                player.brainOfConfusionItem = null;
+                player.shadowDodgeTimer = 1800;
+                player.ClearBuff(BuffID.ShadowDodge);
+                dodgeChancePercent = 0;
+                dodgeImmuneTime = 0;
+            }
+            else
+            {
+                devastatedStack = 0;
+            }
             base.PostUpdateEquips();
+        }
+
+        public override void PostUpdateBuffs()
+        {
+            base.PostUpdateBuffs();
         }
 
         public override bool FreeDodge(Player.HurtInfo info)

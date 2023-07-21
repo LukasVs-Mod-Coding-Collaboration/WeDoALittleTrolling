@@ -120,15 +120,15 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] InflictWreckedResistance1In1Group =
         {
-            NPCID.SkeletronHead,
-            NPCID.SkeletronPrime,
-            NPCID.TheDestroyer,
+            NPCID.SkeletronHand,
+            NPCID.QueenSlimeBoss,
             NPCID.DukeFishron,
             NPCID.Plantera,
             NPCID.PlanterasHook,
             NPCID.PlanterasTentacle,
             NPCID.Spore,
             NPCID.HallowBoss,
+            NPCID.CultistBoss,
             NPCID.DD2OgreT2,
             NPCID.DD2OgreT3,
             NPCID.DD2Betsy,
@@ -142,6 +142,19 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.MartianSaucerCannon,
             NPCID.MartianSaucerCore,
             NPCID.MartianSaucerTurret
+        };
+        public static readonly int[] InflictDevastated1In1Group =
+        {
+            NPCID.CultistDragonHead,
+            NPCID.CultistDragonBody1,
+            NPCID.CultistDragonBody2,
+            NPCID.CultistDragonBody3,
+            NPCID.CultistDragonBody4,
+            NPCID.CultistDragonTail,
+            NPCID.AncientCultistSquidhead,
+            NPCID.AncientLight,
+            NPCID.AncientDoom,
+            NPCID.TheDestroyer
         };
 
         public override void SetDefaults(NPC npc)
@@ -621,6 +634,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictDevastated1In1Group.Contains(npcType))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
         }

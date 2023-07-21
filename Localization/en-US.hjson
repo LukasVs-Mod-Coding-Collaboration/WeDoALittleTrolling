@@ -440,6 +440,15 @@ Mods: {
 		}
 
 		Buffs: {
+			Devastated: {
+				DisplayName: Devastated
+				Description:
+					'''
+					decreased max life
+					Cannot dodge attacks
+					'''
+			}
+
 			WreckedResistance: {
 				DisplayName: Wrecked Resistance
 				Description: Damage reduction is decreased by

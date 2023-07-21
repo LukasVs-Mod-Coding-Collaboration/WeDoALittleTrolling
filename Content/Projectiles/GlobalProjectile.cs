@@ -62,18 +62,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             ProjectileID.SeedPlantera,
             ProjectileID.PoisonSeedPlantera,
-            ProjectileID.ThornBall,
             ProjectileID.DeathLaser,
             ProjectileID.HallowBossDeathAurora,
             ProjectileID.HallowBossLastingRainbow,
             ProjectileID.HallowBossRainbowStreak,
             ProjectileID.FairyQueenHymn,
             ProjectileID.FairyQueenLance,
-            ProjectileID.FairyQueenSunDance,
             ProjectileID.MoonBoulder,
             ProjectileID.MoonLeech,
             ProjectileID.PhantasmalBolt,
-            ProjectileID.PhantasmalDeathray,
             ProjectileID.PhantasmalEye,
             ProjectileID.PhantasmalSphere,
             ProjectileID.CultistBossIceMist,
@@ -99,10 +96,22 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.PineNeedleHostile,
             ProjectileID.OrnamentHostile,
             ProjectileID.OrnamentHostileShrapnel,
-            ProjectileID.SaucerDeathray,
             ProjectileID.SaucerMissile,
             ProjectileID.SaucerLaser,
             ProjectileID.SaucerScrap
+        };
+        public static readonly int[] InflictDevastated1In1Group =
+        {
+            ProjectileID.UnholyTridentHostile,
+            ProjectileID.AncientDoomProjectile,
+            ProjectileID.PhantasmalDeathray,
+            ProjectileID.SaucerDeathray,
+            ProjectileID.FairyQueenSunDance,
+            ProjectileID.Sharknado,
+            ProjectileID.Cthulunado,
+            ProjectileID.BombSkeletronPrime,
+            ProjectileID.ThornBall,
+            ProjectileID.EyeFire
         };
         
         public override void SetDefaults(Projectile projectile)
@@ -332,6 +341,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictDevastated1In1Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if
