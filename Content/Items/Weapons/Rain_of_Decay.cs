@@ -46,7 +46,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.width = 30;
             Item.height = 142;
             Item.rare = ItemRarityID.Expert;
-            Item.value = Item.sellPrice(gold: 16);
+            Item.value = Item.sellPrice(gold: 8);
 
             Item.useTime = 20;
             Item.useAnimation = 20;
