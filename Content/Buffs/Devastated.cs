@@ -15,19 +15,25 @@ namespace WeDoALittleTrolling.Content.Buffs
 {
     public class Devastated : ModBuff
     {
-
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
             BuffID.Sets.LongerExpertDebuff[Type] = true;
         }
 
-        public override void Update(Player player, ref int buffIndex)
+        public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            float value = 0f;
-            value = player.GetModPlayer<WDALTPlayerUtil>().finalEndurance * 0.5f;
-            player.endurance -= value;
-            player.GetModPlayer<WDALTPlayerUtil>().finalEnduranceIncrease -= value;
+            tip = tip+" "+(5+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().devastatedStack * 5))+"%";
+            base.ModifyBuffText(ref buffName, ref tip, ref rare);
+        }
+        
+        public override bool ReApply(Player player, int time, int buffIndex)
+        {
+            if(player.GetModPlayer<WDALTPlayerUtil>().devastatedStack < 19)
+            {
+                player.GetModPlayer<WDALTPlayerUtil>().devastatedStack += 1;
+            }
+            return base.ReApply(player, time, buffIndex);
         }
     }
 }

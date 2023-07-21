@@ -444,7 +444,7 @@ Mods: {
 		Buffs: {
 			Devastated: {
 				DisplayName: Devastated
-				Description: Reduced damage taken is cut in half
+				Description: Reduced damage taken is reduced by
 			}
 
 			SearingInferno: {

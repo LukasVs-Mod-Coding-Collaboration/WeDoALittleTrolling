@@ -40,8 +40,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int spookyBonus3X;
         public int dodgeChancePercent;
         public int dodgeImmuneTime;
-        public float finalEndurance;
-        public float finalEnduranceIncrease;
+        public int devastatedStack;
         public bool spookyEmblem;
         public Player player;
         public Random random = new Random();
@@ -54,8 +53,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
-            finalEndurance = 0f;
-            finalEnduranceIncrease = 0f;
+            devastatedStack = 0;
             spookyEmblem = false;
         }
 
@@ -71,8 +69,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
-            finalEndurance = 0f;
-            finalEnduranceIncrease = 0f;
+            devastatedStack = 0;
             spookyEmblem = false;
         }
 
@@ -80,14 +77,12 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
-            finalEnduranceIncrease = 0f;
             spookyEmblem = false;
             base.ResetEffects();
         }
         
         public override void PostUpdate()
         {
-            finalEndurance = player.endurance - finalEnduranceIncrease;
             GlobalItemList.ModifySetBonus(player);
             base.PostUpdate();
         }
@@ -98,6 +93,20 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus2X = player.maxMinions * 2;
             spookyBonus3X = player.maxMinions * 3;
             base.UpdateEquips();
+        }
+
+        public override void PostUpdateEquips()
+        {
+            if(player.HasBuff(ModContent.BuffType<Devastated>()))
+            {
+                float modifier = 0.95f - ((float)devastatedStack * 0.05f);
+                player.endurance *= modifier;
+            }
+            else
+            {
+                devastatedStack = 0;
+            }
+            base.PostUpdateEquips();
         }
 
         public override bool FreeDodge(Player.HurtInfo info)
