@@ -115,8 +115,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                 player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
                 player.blackBelt = false;
                 player.brainOfConfusionItem = null;
-                player.shadowDodgeTimer = 1800;
-                player.ClearBuff(BuffID.ShadowDodge);
                 dodgeChancePercent = 0;
                 dodgeImmuneTime = 0;
             }

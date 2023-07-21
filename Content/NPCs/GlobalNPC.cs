@@ -141,7 +141,14 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.MartianSaucer,
             NPCID.MartianSaucerCannon,
             NPCID.MartianSaucerCore,
-            NPCID.MartianSaucerTurret
+            NPCID.MartianSaucerTurret,
+            NPCID.Mimic,
+            NPCID.IceMimic,
+            NPCID.PresentMimic,
+            NPCID.BigMimicCorruption,
+            NPCID.BigMimicCrimson,
+            NPCID.BigMimicHallow,
+            NPCID.BigMimicJungle
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
