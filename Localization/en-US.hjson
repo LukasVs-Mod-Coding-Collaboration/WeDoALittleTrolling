@@ -107,8 +107,8 @@ Mods: {
 					A shield forged from the souls of a powerful mechanical creature
 					Blocks usage of the Worm Scarf
 					Grants knockback immunity
-					5 Defense
-					Reduces 25% of damage taken
+					6 Defense
+					Reduces 30% of damage taken
 					Grants immunity to fire and frost effects of any kind
 					Also grants immunity to Ichor and Electrified
 					'''
@@ -124,8 +124,6 @@ Mods: {
 					Cross Necklace
 					Panic Necklace
 					But combines their effects.
-					10% increased critical strike
-					Flight duration is increased
 					'''
 			}
 

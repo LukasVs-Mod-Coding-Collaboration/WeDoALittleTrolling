@@ -52,11 +52,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetCritChance(DamageClass.Generic) += 10.0f;
             player.noFallDmg = true;
             player.dashType = 1;
             player.longInvince = true;
-            player.wingTimeMax += 240;
             player.panic = true;
             player.spikedBoots = 2;
             player.blackBelt = true;
@@ -68,7 +66,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.SoulofFright, 5)
-              .AddIngredient(ItemID.SoulofFlight, 5)
               .AddIngredient(ItemID.CrimtaneBar, 5)
               .AddIngredient(ItemID.MasterNinjaGear, 1)
               .AddIngredient(ItemID.BrainOfConfusion, 1)
