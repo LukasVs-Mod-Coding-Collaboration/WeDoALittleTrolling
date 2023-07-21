@@ -99,7 +99,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             if(player.HasBuff(ModContent.BuffType<Devastated>()))
             {
-                float modifier = (float)(90 - (devastatedStack * 10)) * 0.01f;
+                float modifier = (float)(9 - (devastatedStack)) * 0.1f;
                 player.endurance *= modifier;
             }
             else

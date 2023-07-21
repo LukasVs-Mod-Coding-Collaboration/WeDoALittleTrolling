@@ -19,6 +19,7 @@ namespace WeDoALittleTrolling.Content.Buffs
         {
             Main.debuff[Type] = true;
             BuffID.Sets.LongerExpertDebuff[Type] = true;
+            BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
