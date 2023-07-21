@@ -154,7 +154,13 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.AncientCultistSquidhead,
             NPCID.AncientLight,
             NPCID.AncientDoom,
-            NPCID.TheDestroyer
+            NPCID.TheDestroyer,
+            NPCID.WyvernHead,
+            NPCID.WyvernLegs,
+            NPCID.WyvernBody,
+            NPCID.WyvernBody2,
+            NPCID.WyvernBody3,
+            NPCID.WyvernTail
         };
 
         public override void SetDefaults(NPC npc)
