@@ -40,6 +40,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int spookyBonus3X;
         public int dodgeChancePercent;
         public int dodgeImmuneTime;
+        public float finalEndurance;
+        public float finalEnduranceIncrease;
         public bool spookyEmblem;
         public Player player;
         public Random random = new Random();
@@ -47,11 +49,13 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void Initialize()
         {
             player = this.Player;
-            lastLeechingHealTime = 0;
+            lastLeechingHealTime = 0.0;
             spookyBonus2X = 0;
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
+            finalEndurance = 0f;
+            finalEnduranceIncrease = 0f;
             spookyEmblem = false;
         }
 
@@ -62,11 +66,13 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         private void ResetVariables()
         {
-            lastLeechingHealTime = 0;
+            lastLeechingHealTime = 0.0;
             spookyBonus2X = 0;
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
+            finalEndurance = 0f;
+            finalEnduranceIncrease = 0f;
             spookyEmblem = false;
         }
 
@@ -74,12 +80,14 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             dodgeChancePercent = 0;
             dodgeImmuneTime = 0;
+            finalEnduranceIncrease = 0f;
             spookyEmblem = false;
             base.ResetEffects();
         }
-
+        
         public override void PostUpdate()
         {
+            finalEndurance = player.endurance - finalEnduranceIncrease;
             GlobalItemList.ModifySetBonus(player);
             base.PostUpdate();
         }
@@ -113,6 +121,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
+            player.buffImmune[ModContent.BuffType<Devastated>()] = false;
             base.UpdateLifeRegen();
         }
 

@@ -118,6 +118,31 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             NPCID.PrimeVice
         };
+        public static readonly int[] InflictDevastated1In1Group =
+        {
+            NPCID.SkeletronHead,
+            NPCID.SkeletronPrime,
+            NPCID.TheDestroyer,
+            NPCID.DukeFishron,
+            NPCID.Plantera,
+            NPCID.PlanterasHook,
+            NPCID.PlanterasTentacle,
+            NPCID.Spore,
+            NPCID.HallowBoss,
+            NPCID.DD2OgreT2,
+            NPCID.DD2OgreT3,
+            NPCID.DD2Betsy,
+            NPCID.MourningWood,
+            NPCID.Pumpking,
+            NPCID.PumpkingBlade,
+            NPCID.Everscream,
+            NPCID.SantaNK1,
+            NPCID.IceQueen,
+            NPCID.MartianSaucer,
+            NPCID.MartianSaucerCannon,
+            NPCID.MartianSaucerCore,
+            NPCID.MartianSaucerTurret
+        };
 
         public override void SetDefaults(NPC npc)
         {
@@ -589,6 +614,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(BuffID.Cursed, 240, true); //4s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictDevastated1In1Group.Contains(npcType))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
         }

@@ -58,6 +58,52 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.Fireball,
             ProjectileID.EyeBeam
         };
+        public static readonly int[] InflictDevastated1In1Group =
+        {
+            ProjectileID.SeedPlantera,
+            ProjectileID.PoisonSeedPlantera,
+            ProjectileID.ThornBall,
+            ProjectileID.DeathLaser,
+            ProjectileID.HallowBossDeathAurora,
+            ProjectileID.HallowBossLastingRainbow,
+            ProjectileID.HallowBossRainbowStreak,
+            ProjectileID.FairyQueenHymn,
+            ProjectileID.FairyQueenLance,
+            ProjectileID.FairyQueenSunDance,
+            ProjectileID.MoonBoulder,
+            ProjectileID.MoonLeech,
+            ProjectileID.PhantasmalBolt,
+            ProjectileID.PhantasmalDeathray,
+            ProjectileID.PhantasmalEye,
+            ProjectileID.PhantasmalSphere,
+            ProjectileID.CultistBossIceMist,
+            ProjectileID.CultistBossLightningOrb,
+            ProjectileID.CultistBossLightningOrbArc,
+            ProjectileID.CultistBossFireBall,
+            ProjectileID.CultistBossFireBallClone,
+            ProjectileID.DD2OgreStomp,
+            ProjectileID.DD2OgreSpit,
+            ProjectileID.DD2OgreSmash,
+            ProjectileID.DD2BetsyFireball,
+            ProjectileID.DD2BetsyFlameBreath,
+            ProjectileID.FlamingWood,
+            ProjectileID.GreekFire1,
+            ProjectileID.GreekFire2,
+            ProjectileID.GreekFire3,
+            ProjectileID.FlamingScythe,
+            ProjectileID.FrostWave,
+            ProjectileID.FrostShard,
+            ProjectileID.Missile,
+            ProjectileID.Present,
+            ProjectileID.Spike,
+            ProjectileID.PineNeedleHostile,
+            ProjectileID.OrnamentHostile,
+            ProjectileID.OrnamentHostileShrapnel,
+            ProjectileID.SaucerDeathray,
+            ProjectileID.SaucerMissile,
+            ProjectileID.SaucerLaser,
+            ProjectileID.SaucerScrap
+        };
         
         public override void SetDefaults(Projectile projectile)
         {
@@ -279,6 +325,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictDevastated1In1Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if
