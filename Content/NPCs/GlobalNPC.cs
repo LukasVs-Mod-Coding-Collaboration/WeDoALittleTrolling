@@ -457,7 +457,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 Random rnd = new Random();
                 //Replicate vanilla behavior as good as possible.
-                if(rnd.Next(900) == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                if(rnd.Next(1200) == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
                     if(!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
@@ -472,7 +472,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         posWithOffset.Y += randomMultiplierY * 4f;
                         int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
                         int i = Projectile.NewProjectile(npc.GetSource_FromThis(), posWithOffset.X, posWithOffset.Y, randomMultiplierX, randomMultiplierY, ProjectileID.DeathLaser, damage, 0f, Main.myPlayer);
-                        Main.projectile[i].timeLeft = 450;
+                        Main.projectile[i].timeLeft = 300;
                         npc.netUpdate = true;
                     }
                 }
