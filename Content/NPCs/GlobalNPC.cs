@@ -314,7 +314,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.TheDestroyerTail
             )
             {
-                npc.lifeMax *= 2;
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
             }
             if
             (
