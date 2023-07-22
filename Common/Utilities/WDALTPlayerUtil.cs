@@ -255,7 +255,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 if(player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
                     double timeSinceLastHeal = Math.Abs(Main.time - lastLeechingHealTime); // Use ABS to avoid negative time
-                    if(timeSinceLastHeal >= player.itemAnimationMax) // Only heal player once every item use
+                    if(timeSinceLastHeal >= ((float)player.itemAnimationMax/3.0f)) // Only heal player 3 times every item use
                     {
                         player.Heal(healingAmount);
                         lastLeechingHealTime = Main.time;

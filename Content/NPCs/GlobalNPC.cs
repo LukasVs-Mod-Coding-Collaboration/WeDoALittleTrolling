@@ -277,7 +277,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.PrimeLaser
             )
             {
-                npc.lifeMax *= 2;
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if
             (
@@ -314,7 +314,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.TheDestroyerTail
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
             }
             if
             (
@@ -457,7 +457,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 Random rnd = new Random();
                 //Replicate vanilla behavior as good as possible.
-                if(rnd.Next(1200) == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                if(rnd.Next(900) == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
                     if(!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
