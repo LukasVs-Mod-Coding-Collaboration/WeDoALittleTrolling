@@ -224,7 +224,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
                 item.crit = 12;
-                item.ArmorPenetration = 16;
+                item.ArmorPenetration = 32;
             }
             if (item.type == ItemID.FlintlockPistol) 
             {
