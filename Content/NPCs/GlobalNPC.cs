@@ -657,7 +657,27 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
             }
         }
-        
+
+        public override void ModifyGlobalLoot(GlobalLoot globalLoot)
+        {
+            foreach(IItemDropRule rule in globalLoot.Get())
+            {
+                if(rule is ItemDropWithConditionRule conditionRule)
+                {
+                    if(conditionRule.condition is Conditions.SoulOfLight)
+                    {
+                        conditionRule.chanceNumerator = 2;
+                        conditionRule.chanceDenominator = 5;
+                    }
+                    if(conditionRule.condition is Conditions.SoulOfNight)
+                    {
+                        conditionRule.chanceNumerator = 2;
+                        conditionRule.chanceDenominator = 5;
+                    }
+                }
+            }
+        }
+
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCID.ChaosElemental)
