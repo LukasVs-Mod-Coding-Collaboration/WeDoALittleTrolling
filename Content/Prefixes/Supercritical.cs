@@ -92,7 +92,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             int critDamageBonus = 100;
             if(BuffGroup.Contains(item.type))
             {
-                critDamageBonus = 250;
+                critDamageBonus = 150;
             }
             yield return new TooltipLine(Mod, "PrefixWeaponSupercriticalDescription", "+"+critDamageBonus+AdditionalTooltip.Value) {
                 IsModifier = true,

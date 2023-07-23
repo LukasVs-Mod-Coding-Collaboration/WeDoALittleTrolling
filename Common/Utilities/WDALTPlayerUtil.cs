@@ -172,7 +172,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 {
                     if(Supercritical.BuffGroup.Contains(player.HeldItem.type))
                     {
-                        modifiers.CritDamage += 5.0f;
+                        modifiers.CritDamage += 3.0f;
                     }
                     else
                     {
