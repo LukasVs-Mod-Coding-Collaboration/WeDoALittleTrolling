@@ -55,7 +55,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult *= 2.0f;
+            valueMult *= 1.6f;
         }
 
         public override void Apply(Item item)
