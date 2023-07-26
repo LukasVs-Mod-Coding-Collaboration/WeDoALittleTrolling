@@ -191,7 +191,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALT_ShimmerBackRodOfDiscord.Register();
 
             Recipe WDALT_MoneyTrough = Recipe.Create(ItemID.MoneyTrough, 1);
-            WDALT_MoneyTrough.AddIngredient(ItemID.PiggyBank, 1);
+            WDALT_MoneyTrough.AddIngredient(ItemID.PiggyBank, 3);
             WDALT_MoneyTrough.AddTile(TileID.Anvils);
             WDALT_MoneyTrough.Register();
 
