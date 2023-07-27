@@ -225,11 +225,15 @@ namespace WeDoALittleTrolling.Content.Items
                 ItemID.LavaCrate,
                 ItemID.LavaCrateHard,
                 ItemID.OceanCrate,
-                ItemID.OceanCrateHard,
+                ItemID.OceanCrateHard
             };
             if(biomeCrateTypes.Contains(item.type))
             {
                 Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 12);
+            }
+            if(item.type == ItemID.JungleFishingCrateHard && NPC.downedMechBossAny)
+            {
+                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeFruit, 1);
             }
         }
 
