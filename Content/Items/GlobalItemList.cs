@@ -17,6 +17,7 @@
 */
 
 using System;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -38,6 +39,8 @@ namespace WeDoALittleTrolling.Content.Items
     internal class GlobalItemList : GlobalItem
     {
         public override bool InstancePerEntity => false;
+
+        public static Random random = new Random();
         
         public override bool CanUseItem(Item item, Player player)
         {
@@ -153,6 +156,81 @@ namespace WeDoALittleTrolling.Content.Items
                 tooltips.Add(extraManaLine);
             }
             base.ModifyTooltips(item, tooltips);
+        }
+
+        public override void RightClick(Item item, Player player)
+        {
+            if
+            (
+                item.type == ItemID.IronCrate ||
+                item.type == ItemID.GoldenCrate ||
+                item.type == ItemID.IronCrateHard ||
+                item.type == ItemID.GoldenCrateHard
+            )
+            {
+                if
+                (
+                    (random.Next(0, 5) == 0)  ||
+                    (
+                        item.type == ItemID.GoldenCrate ||
+                        item.type == ItemID.GoldenCrateHard
+                    )
+                )
+                {
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial);
+                }
+                if
+                (
+                    (random.Next(0, 3) == 0)  ||
+                    (
+                        item.type == ItemID.GoldenCrate ||
+                        item.type == ItemID.GoldenCrateHard
+                    )
+                )
+                {
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeCrystal);
+                }
+            }
+            if
+            (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
+            {
+                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 5);
+            }
+            if(item.type == ItemID.IronCrate || item.type == ItemID.IronCrateHard)
+            {
+                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 10);
+            }
+            if(item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
+            {
+                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 20);
+            }
+            int[] biomeCrateTypes =
+            {
+                ItemID.JungleFishingCrate,
+                ItemID.JungleFishingCrateHard,
+                ItemID.FloatingIslandFishingCrate,
+                ItemID.FloatingIslandFishingCrateHard,
+                ItemID.CorruptFishingCrate,
+                ItemID.CorruptFishingCrateHard,
+                ItemID.CrimsonFishingCrate,
+                ItemID.CrimsonFishingCrateHard,
+                ItemID.HallowedFishingCrate,
+                ItemID.HallowedFishingCrateHard,
+                ItemID.DungeonFishingCrate,
+                ItemID.DungeonFishingCrateHard,
+                ItemID.FrozenCrate,
+                ItemID.FrozenCrateHard,
+                ItemID.OasisCrate,
+                ItemID.OasisCrateHard,
+                ItemID.LavaCrate,
+                ItemID.LavaCrateHard,
+                ItemID.OceanCrate,
+                ItemID.OceanCrateHard,
+            };
+            if(biomeCrateTypes.Contains(item.type))
+            {
+                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 12);
+            }
         }
 
         public override void SetDefaults(Item item)

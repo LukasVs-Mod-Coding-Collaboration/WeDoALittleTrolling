@@ -41,6 +41,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
     {
         public override bool InstancePerEntity => false;
 
+        public static Random random = new Random();
+
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
         };
@@ -213,16 +215,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 for(int i = 0;i < 320;i++)
                 {
-                    Random rnd = new Random();
                     int rMax = (int)Math.Round(projectile.width*3*projectile.scale);
-                    double r = rMax * Math.Sqrt(rnd.NextDouble());
-                    double angle = rnd.NextDouble() * 2 * Math.PI;
+                    double r = rMax * Math.Sqrt(random.NextDouble());
+                    double angle = random.NextDouble() * 2 * Math.PI;
                     int xOffset = (int)Math.Round(r * Math.Cos(angle));
                     int yOffset = (int)Math.Round(r * Math.Sin(angle));
                     Vector2 dustPosition = projectile.Center;
                     dustPosition.X += xOffset;
                     dustPosition.Y += yOffset;
-                    int dustType = rnd.Next(0, 1);
+                    int dustType = random.Next(0, 1);
                     switch (dustType)
                     {
                         case 0:
@@ -300,7 +301,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
-            Random random = new Random();
             if(InflictVenomDebuff1In1Group.Contains(projectile.type))
             {
                 if(random.Next(0, 1) == 0) //1 in 1 Chance
@@ -369,8 +369,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.type == ProjectileID.FrostBlastFriendly)
             {
-                Random rnd = new Random();
-                if(rnd.Next(0, 100) < 50)
+                if(random.Next(0, 100) < 50)
                 {
                     modifiers.SetCrit();
                 }
