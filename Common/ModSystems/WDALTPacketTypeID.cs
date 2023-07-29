@@ -30,5 +30,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public const short updateWindSpeedTarget     = 5;
         public const short soundPlayRainOfDecay      = 6;
         public const short soundBroadcastRainOfDecay = 7;
+        public const short spawnCrateItem            = 8;
     }
 }

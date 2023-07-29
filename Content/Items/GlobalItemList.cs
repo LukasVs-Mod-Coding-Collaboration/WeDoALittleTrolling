@@ -29,6 +29,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
@@ -84,6 +85,16 @@ namespace WeDoALittleTrolling.Content.Items
             }
             return base.CanUseItem(item, player);
         }
+
+        public override bool ConsumeItem(Item item, Player player)
+        {
+            if(item.type == ItemID.WormholePotion)
+            {
+                return false;
+            }
+            return base.ConsumeItem(item, player);
+        }
+
         
         //Revert damage reduction from Spectre Hood
         public override void UpdateEquip(Item item, Player player)
@@ -177,7 +188,21 @@ namespace WeDoALittleTrolling.Content.Items
                     )
                 )
                 {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                        spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                        spawnCrateItemPacket.Write((short)ItemID.Sundial);
+                        spawnCrateItemPacket.Write((int)player.width);
+                        spawnCrateItemPacket.Write((int)player.height);
+                        spawnCrateItemPacket.Write((int)1); //Drop amount
+                        spawnCrateItemPacket.WriteVector2(player.position);
+                        spawnCrateItemPacket.Send();
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial, 1);
+                    }
                 }
                 if
                 (
@@ -188,21 +213,77 @@ namespace WeDoALittleTrolling.Content.Items
                     )
                 )
                 {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeCrystal);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                        spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                        spawnCrateItemPacket.Write((short)ItemID.LifeCrystal);
+                        spawnCrateItemPacket.Write((int)player.width);
+                        spawnCrateItemPacket.Write((int)player.height);
+                        spawnCrateItemPacket.Write((int)1); //Drop amount
+                        spawnCrateItemPacket.WriteVector2(player.position);
+                        spawnCrateItemPacket.Send();
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeCrystal, 1);
+                    }
                 }
             }
             if
             (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
             {
-                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 5);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
+                    spawnCrateItemPacket.Write((int)player.width);
+                    spawnCrateItemPacket.Write((int)player.height);
+                    spawnCrateItemPacket.Write((int)5); //Drop amount
+                    spawnCrateItemPacket.WriteVector2(player.position);
+                    spawnCrateItemPacket.Send();
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 5);
+                }
             }
             if(item.type == ItemID.IronCrate || item.type == ItemID.IronCrateHard)
             {
-                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 10);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
+                    spawnCrateItemPacket.Write((int)player.width);
+                    spawnCrateItemPacket.Write((int)player.height);
+                    spawnCrateItemPacket.Write((int)10); //Drop amount
+                    spawnCrateItemPacket.WriteVector2(player.position);
+                    spawnCrateItemPacket.Send();
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 10);
+                }
             }
             if(item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
             {
-                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 20);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
+                    spawnCrateItemPacket.Write((int)player.width);
+                    spawnCrateItemPacket.Write((int)player.height);
+                    spawnCrateItemPacket.Write((int)20); //Drop amount
+                    spawnCrateItemPacket.WriteVector2(player.position);
+                    spawnCrateItemPacket.Send();
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 20);
+                }
             }
             int[] biomeCrateTypes =
             {
@@ -229,11 +310,39 @@ namespace WeDoALittleTrolling.Content.Items
             };
             if(biomeCrateTypes.Contains(item.type))
             {
-                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 12);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
+                    spawnCrateItemPacket.Write((int)player.width);
+                    spawnCrateItemPacket.Write((int)player.height);
+                    spawnCrateItemPacket.Write((int)12); //Drop amount
+                    spawnCrateItemPacket.WriteVector2(player.position);
+                    spawnCrateItemPacket.Send();
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 12);
+                }
             }
             if(item.type == ItemID.JungleFishingCrateHard && NPC.downedMechBossAny)
             {
-                Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeFruit, 1);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                    spawnCrateItemPacket.Write((short)ItemID.LifeFruit);
+                    spawnCrateItemPacket.Write((int)player.width);
+                    spawnCrateItemPacket.Write((int)player.height);
+                    spawnCrateItemPacket.Write((int)1); //Drop amount
+                    spawnCrateItemPacket.WriteVector2(player.position);
+                    spawnCrateItemPacket.Send();
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeFruit, 1);
+                }
             }
         }
 
@@ -706,8 +815,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.consumable = false;
                 item.maxStack = 1;
             }
-
+            if(item.type == ItemID.WormholePotion)
+            {
+                item.consumable = false;
+                item.maxStack = 1;
+            }
         }
-
     }
 }

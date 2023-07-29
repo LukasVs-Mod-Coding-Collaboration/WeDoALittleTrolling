@@ -48,6 +48,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
             short type = reader.ReadInt16();
             float value = 0f;
             Vector2 RODCsoundPos = new Vector2(0f, 0f);
+            short itemType = 0;
+            int playerWidth = 0;
+            int playerHeight = 0;
+            int dropAmount = 0;
+            Vector2 itemSpawnPos = new Vector2(0f, 0f);
             if(type == WDALTPacketTypeID.updateWindSpeedTarget)
             {
                 value = reader.ReadSingle();
@@ -55,6 +60,14 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(type == WDALTPacketTypeID.soundBroadcastRainOfDecay || type == WDALTPacketTypeID.soundPlayRainOfDecay)
             {
                 RODCsoundPos = reader.ReadVector2();
+            }
+            if(type == WDALTPacketTypeID.spawnCrateItem)
+            {
+                itemType = reader.ReadInt16();
+                playerWidth = reader.ReadInt32();
+                playerHeight = reader.ReadInt32();
+                dropAmount = reader.ReadInt32();
+                itemSpawnPos = reader.ReadVector2();
             }
             if(Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -69,6 +82,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(Main.netMode == NetmodeID.Server)
             {
+                if(type == WDALTPacketTypeID.spawnCrateItem)
+                {
+                    Item.NewItem(new EntitySource_SpawnNPC(), (int)itemSpawnPos.X, (int)itemSpawnPos.Y, playerWidth, playerHeight, itemType, dropAmount);
+                }
                 if (type == WDALTPacketTypeID.soundPlayRainOfDecay)
                 {
                     ModPacket soundBroadcastRainOfDecayPacket = mod.GetPacket();
