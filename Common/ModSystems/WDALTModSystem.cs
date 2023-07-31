@@ -95,11 +95,17 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 if(type == WDALTPacketTypeID.moondial)
                 {
-                    Main.moondialCooldown = 0;
+                    if(Main.moondialCooldown > 2)
+                    {
+                        Main.moondialCooldown = 2;
+                    }
                 }
                 if(type == WDALTPacketTypeID.sundial)
                 {
-                    Main.sundialCooldown = 0;
+                    if(Main.sundialCooldown > 2)
+                    {
+                        Main.sundialCooldown = 2;
+                    }
                 }
                 if(type == WDALTPacketTypeID.weatherVane)
                 {

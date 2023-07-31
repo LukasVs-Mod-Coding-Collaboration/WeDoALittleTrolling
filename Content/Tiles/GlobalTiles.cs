@@ -35,7 +35,10 @@ namespace WeDoALittleTrolling.Content.Tiles
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.moondialCooldown = 0;
+                    if(Main.moondialCooldown > 2)
+                    {
+                        Main.moondialCooldown = 2;
+                    }
                 }
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -49,7 +52,10 @@ namespace WeDoALittleTrolling.Content.Tiles
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.sundialCooldown = 0;
+                    if(Main.sundialCooldown > 2)
+                    {
+                        Main.sundialCooldown = 2;
+                    }
                 }
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
