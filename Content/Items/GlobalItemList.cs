@@ -42,6 +42,29 @@ namespace WeDoALittleTrolling.Content.Items
         public override bool InstancePerEntity => false;
 
         public static Random random = new Random();
+        public static readonly int[] biomeCrateTypes =
+        {
+            ItemID.JungleFishingCrate,
+            ItemID.JungleFishingCrateHard,
+            ItemID.FloatingIslandFishingCrate,
+            ItemID.FloatingIslandFishingCrateHard,
+            ItemID.CorruptFishingCrate,
+            ItemID.CorruptFishingCrateHard,
+            ItemID.CrimsonFishingCrate,
+            ItemID.CrimsonFishingCrateHard,
+            ItemID.HallowedFishingCrate,
+            ItemID.HallowedFishingCrateHard,
+            ItemID.DungeonFishingCrate,
+            ItemID.DungeonFishingCrateHard,
+            ItemID.FrozenCrate,
+            ItemID.FrozenCrateHard,
+            ItemID.OasisCrate,
+            ItemID.OasisCrateHard,
+            ItemID.LavaCrate,
+            ItemID.LavaCrateHard,
+            ItemID.OceanCrate,
+            ItemID.OceanCrateHard
+        };
         
         public override bool CanUseItem(Item item, Player player)
         {
@@ -174,19 +197,10 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 item.type == ItemID.IronCrate ||
-                item.type == ItemID.GoldenCrate ||
-                item.type == ItemID.IronCrateHard ||
-                item.type == ItemID.GoldenCrateHard
+                item.type == ItemID.IronCrateHard
             )
             {
-                if
-                (
-                    (random.Next(0, 5) == 0)  ||
-                    (
-                        item.type == ItemID.GoldenCrate ||
-                        item.type == ItemID.GoldenCrateHard
-                    )
-                )
+                if(random.Next(0, 8) == 0)
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -204,14 +218,7 @@ namespace WeDoALittleTrolling.Content.Items
                         Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial, 1);
                     }
                 }
-                if
-                (
-                    (random.Next(0, 3) == 0)  ||
-                    (
-                        item.type == ItemID.GoldenCrate ||
-                        item.type == ItemID.GoldenCrateHard
-                    )
-                )
+                if(random.Next(0, 8) == 0)
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -231,99 +238,130 @@ namespace WeDoALittleTrolling.Content.Items
                 }
             }
             if
-            (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
+            (
+                item.type == ItemID.GoldenCrate ||
+                item.type == ItemID.GoldenCrateHard
+            )
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient)
+                if(random.Next(0, 4) == 0)
                 {
-                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
-                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
-                    spawnCrateItemPacket.Write((int)player.width);
-                    spawnCrateItemPacket.Write((int)player.height);
-                    spawnCrateItemPacket.Write((int)5); //Drop amount
-                    spawnCrateItemPacket.WriteVector2(player.position);
-                    spawnCrateItemPacket.Send();
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                        spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                        spawnCrateItemPacket.Write((short)ItemID.Sundial);
+                        spawnCrateItemPacket.Write((int)player.width);
+                        spawnCrateItemPacket.Write((int)player.height);
+                        spawnCrateItemPacket.Write((int)1); //Drop amount
+                        spawnCrateItemPacket.WriteVector2(player.position);
+                        spawnCrateItemPacket.Send();
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial, 1);
+                    }
                 }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
+                if
+                (random.Next(0, 3) == 0)
                 {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 5);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                        spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                        spawnCrateItemPacket.Write((short)ItemID.LifeCrystal);
+                        spawnCrateItemPacket.Write((int)player.width);
+                        spawnCrateItemPacket.Write((int)player.height);
+                        spawnCrateItemPacket.Write((int)1); //Drop amount
+                        spawnCrateItemPacket.WriteVector2(player.position);
+                        spawnCrateItemPacket.Send();
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeCrystal, 1);
+                    }
                 }
             }
-            if(item.type == ItemID.IronCrate || item.type == ItemID.IronCrateHard)
+            if
+            (
+                item.type == ItemID.OceanCrate ||
+                item.type == ItemID.OceanCrateHard
+            )
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient)
+                if(random.Next(0, 5) == 0)
                 {
-                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
-                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
-                    spawnCrateItemPacket.Write((int)player.width);
-                    spawnCrateItemPacket.Write((int)player.height);
-                    spawnCrateItemPacket.Write((int)10); //Drop amount
-                    spawnCrateItemPacket.WriteVector2(player.position);
-                    spawnCrateItemPacket.Send();
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 10);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                        spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                        spawnCrateItemPacket.Write((short)ItemID.WaterWalkingBoots);
+                        spawnCrateItemPacket.Write((int)player.width);
+                        spawnCrateItemPacket.Write((int)player.height);
+                        spawnCrateItemPacket.Write((int)1); //Drop amount
+                        spawnCrateItemPacket.WriteVector2(player.position);
+                        spawnCrateItemPacket.Send();
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.WaterWalkingBoots, 1);
+                    }
                 }
             }
-            if(item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
+            int amountGold = 0;
+            short goldItemID = ItemID.GoldCoin;
+            if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
-                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
-                    spawnCrateItemPacket.Write((int)player.width);
-                    spawnCrateItemPacket.Write((int)player.height);
-                    spawnCrateItemPacket.Write((int)20); //Drop amount
-                    spawnCrateItemPacket.WriteVector2(player.position);
-                    spawnCrateItemPacket.Send();
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 20);
-                }
+                amountGold = 5;
             }
-            int[] biomeCrateTypes =
+            if (item.type == ItemID.IronCrate || item.type == ItemID.IronCrateHard)
             {
-                ItemID.JungleFishingCrate,
-                ItemID.JungleFishingCrateHard,
-                ItemID.FloatingIslandFishingCrate,
-                ItemID.FloatingIslandFishingCrateHard,
-                ItemID.CorruptFishingCrate,
-                ItemID.CorruptFishingCrateHard,
-                ItemID.CrimsonFishingCrate,
-                ItemID.CrimsonFishingCrateHard,
-                ItemID.HallowedFishingCrate,
-                ItemID.HallowedFishingCrateHard,
-                ItemID.DungeonFishingCrate,
-                ItemID.DungeonFishingCrateHard,
-                ItemID.FrozenCrate,
-                ItemID.FrozenCrateHard,
-                ItemID.OasisCrate,
-                ItemID.OasisCrateHard,
-                ItemID.LavaCrate,
-                ItemID.LavaCrateHard,
-                ItemID.OceanCrate,
-                ItemID.OceanCrateHard
-            };
-            if(biomeCrateTypes.Contains(item.type))
+                amountGold = 10;
+            }
+            if (biomeCrateTypes.Contains(item.type))
+            {
+                amountGold = 12;
+            }
+            if (item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
+            {
+                amountGold = 20;
+            }
+            if (Main.hardMode)
+            {
+                amountGold *= 2;
+            }
+            if (NPC.downedPlantBoss)
+            {
+                amountGold *= 2;
+            }
+            if (item.type == ItemID.OceanCrateHard && NPC.downedFishron && player.anglerQuestsFinished >= 50)
+            {
+                amountGold = 4;
+                goldItemID = ItemID.PlatinumCoin;
+            }
+            if
+            (
+                item.type == ItemID.WoodenCrate ||
+                item.type == ItemID.WoodenCrateHard ||
+                item.type == ItemID.IronCrate ||
+                item.type == ItemID.IronCrateHard ||
+                item.type == ItemID.GoldenCrate ||
+                item.type == ItemID.GoldenCrateHard ||
+                biomeCrateTypes.Contains(item.type)
+            )
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket spawnCrateItemPacket = Mod.GetPacket();
                     spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                    spawnCrateItemPacket.Write((short)ItemID.GoldCoin);
+                    spawnCrateItemPacket.Write((short)goldItemID);
                     spawnCrateItemPacket.Write((int)player.width);
                     spawnCrateItemPacket.Write((int)player.height);
-                    spawnCrateItemPacket.Write((int)12); //Drop amount
+                    spawnCrateItemPacket.Write((int)amountGold); //Drop amount
                     spawnCrateItemPacket.WriteVector2(player.position);
                     spawnCrateItemPacket.Send();
                 }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, 12);
+                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, goldItemID, amountGold);
                 }
             }
             if(item.type == ItemID.JungleFishingCrateHard && NPC.downedMechBossAny)

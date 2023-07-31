@@ -38,6 +38,10 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override bool CanRoll(Item item)
         {
+            if(Main.player[Main.myPlayer].anglerQuestsFinished < 10)
+            {
+                return false;
+            }
             return true;
         }
 
