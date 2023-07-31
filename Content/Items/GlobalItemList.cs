@@ -176,18 +176,43 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if(item.type == ItemID.WeatherVane)
             {
-                TooltipLine extraManaLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows rain to start, intesify and stop");
-                tooltips.Add(extraManaLine);
+                TooltipLine tileFunctionLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows rain to start, intesify and stop");
+                tooltips.Add(tileFunctionLine);
             }
             if(item.type == ItemID.SkyMill)
             {
-                TooltipLine extraManaLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows wind to start, intesify, change direction and stop");
-                tooltips.Add(extraManaLine);
+                TooltipLine tileFunctionLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows wind to start, intesify, change direction and stop");
+                tooltips.Add(tileFunctionLine);
             }
             if(item.type == ItemID.DjinnLamp)
             {
-                TooltipLine extraManaLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows sandstorms to start and stop");
-                tooltips.Add(extraManaLine);
+                TooltipLine tileFunctionLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows sandstorms to start and stop");
+                tooltips.Add(tileFunctionLine);
+            }
+            if (item.type == ItemID.StaffoftheFrostHydra) 
+            {
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
+                tooltips.Add(extraCritChanceLine);
+            }
+            if (item.type == ItemID.QueenSpiderStaff)
+            {
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
+                tooltips.Add(extraCritChanceLine);
+            }
+            if (item.type == ItemID.HoundiusShootius)
+            {
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
+                tooltips.Add(extraCritChanceLine);
+            }
+            if (item.type == ItemID.RainbowCrystalStaff)
+            {
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
+                tooltips.Add(extraCritChanceLine);
+            }
+            if (item.type == ItemID.MoonlordTurretStaff)
+            {
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
+                tooltips.Add(extraCritChanceLine);
             }
             base.ModifyTooltips(item, tooltips);
         }
@@ -497,10 +522,6 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.OpticStaff)
             {
                 item.damage = 32;
-            }
-            if (item.type == ItemID.RainbowCrystalStaff)
-            {
-                item.damage = 150;
             }
             if (item.type == ItemID.XenoStaff)
             {
@@ -830,7 +851,23 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StaffoftheFrostHydra) 
             {
+                item.damage = 125;
+            }
+            if (item.type == ItemID.QueenSpiderStaff)
+            {
+                item.damage = 50;
+            }
+            if (item.type == ItemID.HoundiusShootius)
+            {
+                item.damage = 50;
+            }
+            if (item.type == ItemID.RainbowCrystalStaff)
+            {
                 item.damage = 150;
+            }
+            if (item.type == ItemID.MoonlordTurretStaff)
+            {
+                item.damage = 125;
             }
 
             // Make boss summoning items non-consumable

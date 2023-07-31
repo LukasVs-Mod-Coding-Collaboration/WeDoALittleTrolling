@@ -33,15 +33,15 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.2f;
+            if(!NPC.downedBoss3)
+            {
+                return 0f;
+            }
+            return 0.1f;
         }
 
         public override bool CanRoll(Item item)
         {
-            if(!NPC.downedBoss3)
-            {
-                return false;
-            }
             return true;
         }
 

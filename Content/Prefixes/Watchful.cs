@@ -32,7 +32,11 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.1f;
+            if(!NPC.downedMechBoss2)
+            {
+                return 0f;
+            }
+            return 0.25f;
         }
 
         public override bool CanRoll(Item item)
@@ -48,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.maxTurrets += 1;
-            player.GetDamage(DamageClass.Summon) *= 0.96f;
+            player.GetDamage(DamageClass.Summon) *= 0.92f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

@@ -126,9 +126,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.penetrate = -1;
             }
-            if(projectile.type == ProjectileID.DeathLaser || projectile.type == ProjectileID.PinkLaser)
+            if(projectile.type == ProjectileID.DeathLaser || projectile.type == ProjectileID.PinkLaser || projectile.type == ProjectileID.FrostBlastFriendly)
             {
                 projectile.tileCollide = false;
+            }
+            if(projectile.type == ProjectileID.FrostBlastFriendly)
+            {
+                projectile.usesLocalNPCImmunity = true;
             }
             base.SetDefaults(projectile);
         }
@@ -148,6 +152,47 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
             }
             return base.PreAI(projectile);
+        }
+
+        public override void AI(Projectile projectile)
+        {
+            if(projectile.type == ProjectileID.FrostBlastFriendly)
+            {
+                float lowest_distance = 999; //Homing detection range
+                NPC target = null;
+                for(int i = 0; i < 200; i++)
+                {
+                    NPC currentTarget = Main.npc[i];
+                    if
+                    (
+                        !currentTarget.dontTakeDamage &&
+                        currentTarget.active &&
+                        !currentTarget.friendly && 
+                        !currentTarget.CountsAsACritter && 
+                        !currentTarget.isLikeATownNPC && 
+                        currentTarget.type != NPCID.TargetDummy
+                    )
+                    {
+                        Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
+                        if (vectorToTarget.Length() < lowest_distance)
+                        {
+                            lowest_distance = vectorToTarget.Length();
+                            target = currentTarget;
+                        }
+                    }
+                }
+                if(target != null)
+                {
+                    Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
+                    vectorToTarget.Normalize();
+                    float originalLength = projectile.velocity.Length();
+                    projectile.velocity = projectile.velocity + (vectorToTarget * 3.5f);
+                    Vector2 normalizedVeloctiy = projectile.velocity;
+                    normalizedVeloctiy.Normalize();
+                    projectile.velocity = normalizedVeloctiy * originalLength;
+                }
+            }
+            base.AI(projectile);
         }
 
         public override void PostAI(Projectile projectile)
@@ -367,7 +412,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
         {
-            if(projectile.type == ProjectileID.FrostBlastFriendly)
+            if
+            (
+                projectile.type == ProjectileID.FrostBlastFriendly ||
+                projectile.type == ProjectileID.BabySpider ||
+                projectile.type == ProjectileID.SpiderEgg ||
+                projectile.type == ProjectileID.HoundiusShootiusFireball ||
+                projectile.type == ProjectileID.MoonlordTurretLaser ||
+                projectile.type == ProjectileID.RainbowCrystalExplosion
+            )
             {
                 if(random.Next(0, 100) < 50)
                 {

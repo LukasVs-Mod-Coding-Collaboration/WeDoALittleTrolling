@@ -116,9 +116,10 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                         Math.Abs(this.original_location.X - target.position.X) > inaccuracy_tolerance ||   //Configure non-detect zone in x coords
                         Math.Abs(this.original_location.Y - target.position.Y) > inaccuracy_tolerance      //Configure non-detect zone in y coords
                     )&&
-                    !target.friendly && 
-                    !target.CountsAsACritter && 
-                    !target.isLikeATownNPC && 
+                    !target.friendly &&
+                    !target.CountsAsACritter &&
+                    !target.isLikeATownNPC &&
+                    !target.dontTakeDamage &&
                     target.active &&
                     distance < lowest_distance &&
                     (

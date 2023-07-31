@@ -33,15 +33,15 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.2f;
+            if(Main.player[Main.myPlayer].anglerQuestsFinished < 10)
+            {
+                return 0f;
+            }
+            return 0.1f;
         }
 
         public override bool CanRoll(Item item)
         {
-            if(Main.player[Main.myPlayer].anglerQuestsFinished < 10)
-            {
-                return false;
-            }
             return true;
         }
 
