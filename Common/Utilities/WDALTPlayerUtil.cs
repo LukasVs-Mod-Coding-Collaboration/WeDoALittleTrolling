@@ -241,11 +241,11 @@ namespace WeDoALittleTrolling.Common.Utilities
                     }
                 }
                 // Having Moon Bite means the effect still works, however,
-                // it will be 90% less effective
+                // it will be 75% less effective
                 // 1 Base Heal is still guaranteed
-                if(player.HasBuff(BuffID.MoonLeech) && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
+                if(player.HasBuff(BuffID.MoonLeech) && (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan))
                 {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
+                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
                 }
                 // Chlorophyte Partisan go BRRRR!!!
                 if(player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())

@@ -197,7 +197,10 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.SkyFracture ||
                 item.type == ItemID.MeteorStaff ||
                 item.type == ItemID.InfernoFork ||
-                item.type == ItemID.BlizzardStaff
+                item.type == ItemID.BlizzardStaff ||
+                item.type == ItemID.FrostStaff ||
+                item.type == ItemID.UnholyTrident ||
+                item.type == ItemID.BookStaff
             )
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ProjectileHomingDescription", "Projectiles move towards the closest target");
@@ -213,6 +216,14 @@ namespace WeDoALittleTrolling.Content.Items
             ) 
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectiles have a 30% chance to land a critical strike");
+                tooltips.Add(extraCritChanceLine);
+            }
+            if
+            (
+                item.type == ItemID.RazorbladeTyphoon
+            )
+            {
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraArmorPenetrationDescription", "Ignores 20 points of enemy Defense");
                 tooltips.Add(extraCritChanceLine);
             }
             base.ModifyTooltips(item, tooltips);
@@ -415,6 +426,12 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.Phantasm) 
             {
                 item.damage = 70;
+                item.crit = 3;
+            }
+            if (item.type == ItemID.VortexBeater) 
+            {
+                item.damage = 70;
+                item.crit = 3;
             }
             if (item.type == ItemID.FetidBaghnakhs) 
             {
@@ -517,8 +534,8 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 20;
                 item.useAnimation = 20;
                 item.shootsEveryUse = true;
+                item.ArmorPenetration = 20;
                 item.mana = 10;
-                item.damage = 60;
             }
             if (item.type == ItemID.OpticStaff)
             {
@@ -526,7 +543,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.XenoStaff)
             {
-                item.damage = 44;
+                item.damage = 48;
             }
             if (item.type == ItemID.StardustDragonStaff)
             {
@@ -771,8 +788,24 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.UnholyTrident) 
             {
+                item.damage = 75;
                 item.mana = 12;
                 item.autoReuse = true;
+            }
+            if (item.type == ItemID.BlizzardStaff)
+            {
+                item.damage = 65;
+                item.UseSound = SoundID.Item9;
+            }
+            if (item.type == ItemID.NebulaBlaze)
+            {
+                item.damage = 160;
+                item.mana = 8;
+            }
+            if (item.type == ItemID.NebulaArcanum)
+            {
+                item.damage = 80;
+                item.mana = 20;
             }
 
             // Buff all pre-hardmode summons
@@ -879,12 +912,19 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 50;
                 item.crit = 6;
             }
-            if
-            (
-                item.type == ItemID.SkyFracture
-            )
+            if (item.type == ItemID.SkyFracture)
             {
-                item.damage = 48;
+                item.damage = 45;
+                item.crit = 26;
+            }
+            if (item.type == ItemID.MeteorStaff)
+            {
+                item.damage = 60;
+            }
+            if (item.type == ItemID.BookStaff)
+            {
+                item.damage = 45;
+                item.mana = 12;
             }
 
             // Make boss summoning items non-consumable

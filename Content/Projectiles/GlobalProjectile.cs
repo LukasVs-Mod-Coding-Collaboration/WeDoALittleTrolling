@@ -134,7 +134,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.PoisonFang ||
                 projectile.type == ProjectileID.VenomFang ||
                 projectile.type == ProjectileID.SkyFracture ||
-                projectile.type == ProjectileID.InfernoFriendlyBolt
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
+                projectile.type == ProjectileID.FrostBoltStaff ||
+                projectile.type == ProjectileID.UnholyTridentFriendly ||
+                projectile.type == ProjectileID.BookStaffShot
             )
             {
                 projectile.tileCollide = false;
@@ -149,7 +152,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.Meteor2 ||
                 projectile.type == ProjectileID.Meteor3 ||
                 projectile.type == ProjectileID.Blizzard ||
-                projectile.type == ProjectileID.InfernoFriendlyBolt
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
+                projectile.type == ProjectileID.FrostBoltStaff ||
+                projectile.type == ProjectileID.UnholyTridentFriendly ||
+                projectile.type == ProjectileID.BookStaffShot
             )
             {
                 projectile.usesLocalNPCImmunity = true;
@@ -194,7 +200,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.Meteor2 ||
                 projectile.type == ProjectileID.Meteor3 ||
                 projectile.type == ProjectileID.Blizzard ||
-                projectile.type == ProjectileID.InfernoFriendlyBolt
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
+                projectile.type == ProjectileID.FrostBoltStaff ||
+                projectile.type == ProjectileID.UnholyTridentFriendly ||
+                projectile.type == ProjectileID.BookStaffShot
             )
             {
                 float lowest_distance = 0f; //Homing detection range
@@ -227,6 +236,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     case ProjectileID.InfernoFriendlyBolt:
                         lowest_distance = 240f;
                         correction_factor = 2.0f;
+                        break;
+                    case ProjectileID.FrostBoltStaff:
+                        lowest_distance = 320f;
+                        correction_factor = 4.0f;
+                        break;
+                    case ProjectileID.UnholyTridentFriendly:
+                        lowest_distance = 320f;
+                        correction_factor = 3.25f;
+                        break;
+                    case ProjectileID.BookStaffShot:
+                        lowest_distance = 320f;
+                        correction_factor = 1.375f;
                         break;
                     default:
                         break;
