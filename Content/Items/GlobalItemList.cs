@@ -197,9 +197,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.SkyFracture ||
                 item.type == ItemID.MeteorStaff ||
                 item.type == ItemID.InfernoFork ||
-                item.type == ItemID.BlizzardStaff ||
-                item.type == ItemID.Razorpine ||
-                item.type == ItemID.ApprenticeStaffT3
+                item.type == ItemID.BlizzardStaff
             )
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ProjectileHomingDescription", "Projectiles move towards the closest target");

@@ -134,9 +134,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.PoisonFang ||
                 projectile.type == ProjectileID.VenomFang ||
                 projectile.type == ProjectileID.SkyFracture ||
-                projectile.type == ProjectileID.InfernoFriendlyBolt ||
-                projectile.type == ProjectileID.PineNeedleFriendly ||
-                projectile.type == ProjectileID.ApprenticeStaffT3Shot
+                projectile.type == ProjectileID.InfernoFriendlyBolt
             )
             {
                 projectile.tileCollide = false;
@@ -151,9 +149,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.Meteor2 ||
                 projectile.type == ProjectileID.Meteor3 ||
                 projectile.type == ProjectileID.Blizzard ||
-                projectile.type == ProjectileID.InfernoFriendlyBolt ||
-                projectile.type == ProjectileID.PineNeedleFriendly ||
-                projectile.type == ProjectileID.ApprenticeStaffT3Shot
+                projectile.type == ProjectileID.InfernoFriendlyBolt
             )
             {
                 projectile.usesLocalNPCImmunity = true;
@@ -198,9 +194,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.Meteor2 ||
                 projectile.type == ProjectileID.Meteor3 ||
                 projectile.type == ProjectileID.Blizzard ||
-                projectile.type == ProjectileID.InfernoFriendlyBolt ||
-                projectile.type == ProjectileID.PineNeedleFriendly ||
-                projectile.type == ProjectileID.ApprenticeStaffT3Shot
+                projectile.type == ProjectileID.InfernoFriendlyBolt
             )
             {
                 float lowest_distance = 999; //Homing detection range
