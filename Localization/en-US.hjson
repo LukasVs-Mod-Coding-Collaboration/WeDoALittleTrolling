@@ -93,8 +93,8 @@ Mods: {
 				Tooltip:
 					'''
 					Allows the ability to dash
-					Reduces damage taken by 2% per minion slot
-					2 defense per minion slot
+					Reduces damage taken by 3% per minion slot
+					3 defense per minion slot
 					Increases your max number of minions by 1
 					Enemies are more likely to target you
 					'''

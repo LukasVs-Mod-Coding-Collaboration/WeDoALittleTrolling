@@ -189,29 +189,32 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine tileFunctionLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows sandstorms to start and stop");
                 tooltips.Add(tileFunctionLine);
             }
-            if (item.type == ItemID.StaffoftheFrostHydra) 
+            if
+            (
+                item.type == ItemID.StaffoftheFrostHydra ||
+                item.type == ItemID.PoisonStaff ||
+                item.type == ItemID.VenomStaff ||
+                item.type == ItemID.SkyFracture ||
+                item.type == ItemID.MeteorStaff ||
+                item.type == ItemID.InfernoFork ||
+                item.type == ItemID.BlizzardStaff ||
+                item.type == ItemID.Razorpine ||
+                item.type == ItemID.ApprenticeStaffT3
+            )
             {
-                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ProjectileHomingDescription", "Projectiles move towards the closest target");
                 tooltips.Add(extraCritChanceLine);
             }
-            if (item.type == ItemID.QueenSpiderStaff)
+            if
+            (
+                item.type == ItemID.StaffoftheFrostHydra ||
+                item.type == ItemID.QueenSpiderStaff ||
+                item.type == ItemID.HoundiusShootius ||
+                item.type == ItemID.RainbowCrystalStaff ||
+                item.type == ItemID.MoonlordTurretStaff
+            ) 
             {
-                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
-                tooltips.Add(extraCritChanceLine);
-            }
-            if (item.type == ItemID.HoundiusShootius)
-            {
-                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
-                tooltips.Add(extraCritChanceLine);
-            }
-            if (item.type == ItemID.RainbowCrystalStaff)
-            {
-                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
-                tooltips.Add(extraCritChanceLine);
-            }
-            if (item.type == ItemID.MoonlordTurretStaff)
-            {
-                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectile has a 50% chance to land a critical strike");
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectiles have a 30% chance to land a critical strike");
                 tooltips.Add(extraCritChanceLine);
             }
             base.ModifyTooltips(item, tooltips);
@@ -851,23 +854,39 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StaffoftheFrostHydra) 
             {
-                item.damage = 125;
+                item.damage = 80;
             }
             if (item.type == ItemID.QueenSpiderStaff)
             {
-                item.damage = 50;
+                item.damage = 60;
             }
             if (item.type == ItemID.HoundiusShootius)
             {
-                item.damage = 50;
+                item.damage = 40;
             }
             if (item.type == ItemID.RainbowCrystalStaff)
             {
-                item.damage = 150;
+                item.damage = 140;
             }
             if (item.type == ItemID.MoonlordTurretStaff)
             {
-                item.damage = 125;
+                item.damage = 120;
+            }
+            if
+            (
+                item.type == ItemID.PoisonStaff ||
+                item.type == ItemID.VenomStaff
+            )
+            {
+                item.damage = 50;
+                item.crit = 6;
+            }
+            if
+            (
+                item.type == ItemID.SkyFracture
+            )
+            {
+                item.damage = 48;
             }
 
             // Make boss summoning items non-consumable

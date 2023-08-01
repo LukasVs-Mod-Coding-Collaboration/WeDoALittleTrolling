@@ -126,13 +126,45 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.penetrate = -1;
             }
-            if(projectile.type == ProjectileID.DeathLaser || projectile.type == ProjectileID.PinkLaser || projectile.type == ProjectileID.FrostBlastFriendly)
+            if
+            (
+                projectile.type == ProjectileID.DeathLaser ||
+                projectile.type == ProjectileID.PinkLaser ||
+                projectile.type == ProjectileID.FrostBlastFriendly ||
+                projectile.type == ProjectileID.PoisonFang ||
+                projectile.type == ProjectileID.VenomFang ||
+                projectile.type == ProjectileID.SkyFracture ||
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
+                projectile.type == ProjectileID.PineNeedleFriendly ||
+                projectile.type == ProjectileID.ApprenticeStaffT3Shot
+            )
             {
                 projectile.tileCollide = false;
             }
-            if(projectile.type == ProjectileID.FrostBlastFriendly)
+            if
+            (
+                projectile.type == ProjectileID.FrostBlastFriendly ||
+                projectile.type == ProjectileID.PoisonFang ||
+                projectile.type == ProjectileID.VenomFang ||
+                projectile.type == ProjectileID.SkyFracture ||
+                projectile.type == ProjectileID.Meteor1 ||
+                projectile.type == ProjectileID.Meteor2 ||
+                projectile.type == ProjectileID.Meteor3 ||
+                projectile.type == ProjectileID.Blizzard ||
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
+                projectile.type == ProjectileID.PineNeedleFriendly ||
+                projectile.type == ProjectileID.ApprenticeStaffT3Shot
+            )
             {
                 projectile.usesLocalNPCImmunity = true;
+            }
+            if
+            (
+                projectile.type == ProjectileID.PoisonFang ||
+                projectile.type == ProjectileID.VenomFang
+            )
+            {
+                projectile.timeLeft = 80;
             }
             base.SetDefaults(projectile);
         }
@@ -156,7 +188,20 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI(Projectile projectile)
         {
-            if(projectile.type == ProjectileID.FrostBlastFriendly)
+            if
+            (
+                projectile.type == ProjectileID.FrostBlastFriendly ||
+                projectile.type == ProjectileID.PoisonFang ||
+                projectile.type == ProjectileID.VenomFang ||
+                projectile.type == ProjectileID.SkyFracture ||
+                projectile.type == ProjectileID.Meteor1 ||
+                projectile.type == ProjectileID.Meteor2 ||
+                projectile.type == ProjectileID.Meteor3 ||
+                projectile.type == ProjectileID.Blizzard ||
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
+                projectile.type == ProjectileID.PineNeedleFriendly ||
+                projectile.type == ProjectileID.ApprenticeStaffT3Shot
+            )
             {
                 float lowest_distance = 999; //Homing detection range
                 NPC target = null;
@@ -422,7 +467,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.RainbowCrystalExplosion
             )
             {
-                if(random.Next(0, 100) < 50)
+                if(random.Next(0, 100) < 30)
                 {
                     modifiers.SetCrit();
                 }
