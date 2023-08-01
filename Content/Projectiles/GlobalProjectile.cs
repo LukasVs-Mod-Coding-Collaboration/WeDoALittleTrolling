@@ -197,7 +197,40 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.InfernoFriendlyBolt
             )
             {
-                float lowest_distance = 999; //Homing detection range
+                float lowest_distance = 0f; //Homing detection range
+                float correction_factor = 0f;
+                switch(projectile.type)
+                {
+                    case ProjectileID.FrostBlastFriendly:
+                        lowest_distance = 1024f;
+                        correction_factor = 0.875f;
+                        break;
+                    case ProjectileID.PoisonFang:
+                    case ProjectileID.VenomFang:
+                        lowest_distance = 320f;
+                        correction_factor = 3.5f;
+                        break;
+                    case ProjectileID.SkyFracture:
+                        lowest_distance = 320f;
+                        correction_factor = 3.5f;
+                        break;
+                    case ProjectileID.Meteor1:
+                    case ProjectileID.Meteor2:
+                    case ProjectileID.Meteor3:
+                        lowest_distance = 512f;
+                        correction_factor = 0.84f;
+                        break;
+                    case ProjectileID.Blizzard:
+                        lowest_distance = 512f;
+                        correction_factor = 1.25f;
+                        break;
+                    case ProjectileID.InfernoFriendlyBolt:
+                        lowest_distance = 240f;
+                        correction_factor = 2.0f;
+                        break;
+                    default:
+                        break;
+                }
                 NPC target = null;
                 for(int i = 0; i < 200; i++)
                 {
@@ -225,7 +258,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
                     vectorToTarget.Normalize();
                     float originalLength = projectile.velocity.Length();
-                    projectile.velocity = projectile.velocity + (vectorToTarget * 3.5f);
+                    projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
                     Vector2 normalizedVeloctiy = projectile.velocity;
                     normalizedVeloctiy.Normalize();
                     projectile.velocity = normalizedVeloctiy * originalLength;

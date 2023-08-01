@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.maxTurrets += 1;
-            player.GetDamage(DamageClass.Summon) *= 0.92f;
+            player.GetDamage(DamageClass.Summon) *= 0.94f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
