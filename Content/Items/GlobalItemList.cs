@@ -149,6 +149,48 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.setBonus = "Generates 20% of magic damage as healing force\nMagic damage done to enemies heals the player with lowest health";
             }
+            if
+            (
+                (
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedHelmet) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedHeadgear) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedMask) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedHood) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedHelmet) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedHeadgear) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedMask) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedHood)
+                ) &&
+                (
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.HallowedPlateMail) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.AncientHallowedPlateMail)
+                ) &&
+                (
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.HallowedGreaves) ||
+                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.AncientHallowedGreaves)
+                )
+            )
+            {
+                player.setBonus += "\nThis works even when the Devastated debuff is active";
+            }
+            if
+            (
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.BeetleHelmet) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.BeetleShell) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.BeetleLeggings)
+            )
+            {
+                player.setBonus += "\nThis is not affected by the Wrecked Resistance debuff";
+            }
+            if
+            (
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.SolarFlareHelmet) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.SolarFlareBreastplate) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.SolarFlareLeggings)
+            )
+            {
+                player.setBonus += "\nThis is not affected by the Wrecked Resistance debuff";
+            }
         }
         
         //Adjust Tooltips accordingly

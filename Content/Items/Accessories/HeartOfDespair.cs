@@ -27,6 +27,7 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using System.Collections.Generic;
+using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -56,6 +57,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             TooltipLine despairBonus0 = new TooltipLine(Mod, "DespairBonus0", "Current damage bonus: "+(1 + ((Main.player[Main.myPlayer].statLifeMax - Main.player[Main.myPlayer].statLife) / 4))+"%");
             tooltips.Add(despairBonus0);
+            TooltipLine incompatible0 = new TooltipLine(Mod, "Incompatible0", "Cannot be equipped when the\nSorcerous Mirror is equipped");
+            tooltips.Add(incompatible0);
             base.ModifyTooltips(tooltips);
         }
 
@@ -66,6 +69,16 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             {
                 player.GetDamage(DamageClass.Magic) += (0.01f + 0.01f * (int)heartOfDespairDamageBonus);
             }
+            player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair = true;
+        }
+
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if(player.GetModPlayer<WDALTPlayerUtil>().sorcerousMirror)
+            {
+                return false;
+            }
+            return base.CanEquipAccessory(player, slot, modded);
         }
 
         public override void AddRecipes()

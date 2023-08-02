@@ -63,6 +63,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
             TooltipLine dodgeBonus0 = new TooltipLine(Mod, "DodgeBonus0", "Dodge chance active: "+bonus);
             tooltips.Add(dodgeBonus0);
+            TooltipLine incompatible0 = new TooltipLine(Mod, "Incompatible0", "Cannot be equipped when the\nHeart of Despair is equipped");
+            tooltips.Add(incompatible0);
             base.ModifyTooltips(tooltips);
         }
 
@@ -88,12 +90,21 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
         }
 
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if(player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair)
+            {
+                return false;
+            }
+            return base.CanEquipAccessory(player, slot, modded);
+        }
+
         public override void AddRecipes()
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.LifeCrystal, 5)
-              .AddIngredient(ItemID.SoulofFright, 5)
+              .AddIngredient(ItemID.SoulofMight, 5)
               .AddIngredient(ItemID.SoulofLight, 10)
               .AddIngredient(ItemID.Obsidian, 15)
               .AddIngredient(ItemID.HallowedBar, 3)

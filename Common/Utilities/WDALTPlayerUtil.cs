@@ -43,6 +43,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int devastatedStack;
         public bool spookyEmblem;
         public bool sorcerousMirror;
+        public bool heartOfDespair;
         public Player player;
         public Random random = new Random();
         
@@ -57,6 +58,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             devastatedStack = 0;
             spookyEmblem = false;
             sorcerousMirror = false;
+            heartOfDespair = false;
         }
 
         public override void UpdateDead()
@@ -74,6 +76,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             devastatedStack = 0;
             spookyEmblem = false;
             sorcerousMirror = false;
+            heartOfDespair = false;
         }
 
         public override void ResetEffects()
@@ -81,6 +84,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             dodgeChancePercent = 0;
             spookyEmblem = false;
             sorcerousMirror = false;
+            heartOfDespair = false;
             base.ResetEffects();
         }
         
@@ -126,6 +130,13 @@ namespace WeDoALittleTrolling.Common.Utilities
                 player.aggro -= 400;
                 player.statDefense += 12;
                 player.lifeRegen += 6;
+                player.GetCritChance(DamageClass.Generic) -= 12f;
+                player.GetDamage(DamageClass.Summon) *= 0.88f;
+                player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 10, true);
+            }
+            else
+            {
+                player.ClearBuff(ModContent.BuffType<SorcerousMirrorBuff>());
             }
             base.PostUpdateEquips();
         }
