@@ -747,6 +747,13 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
             }
+            if (item.type == ItemID.PossessedHatchet)
+            {
+                item.damage = 100;
+                item.useTime = 10;
+                item.useAnimation = 10;
+                item.shootsEveryUse = true;
+            }
             if (item.type == ItemID.DayBreak)
             {
                 item.useTime = 12;
