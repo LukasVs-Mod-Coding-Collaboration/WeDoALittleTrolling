@@ -93,7 +93,7 @@ Mods: {
 				Tooltip:
 					'''
 					Allows the ability to dash
-					Reduces damage taken by 3% per minion slot
+					Increases defense effectiveness by 3% per minion slot
 					3 defense per minion slot
 					Increases your max number of minions by 1
 					Enemies are more likely to target you
@@ -118,12 +118,11 @@ Mods: {
 				DisplayName: Crimson Assassin's Evasion Gear
 				Tooltip:
 					'''
-					Blocks usage of:
+					Combines the effects of:
 					Brain of Confusion
 					Master Ninja Gear
 					Cross Necklace
 					Panic Necklace
-					But combines their effects.
 					'''
 			}
 
@@ -260,6 +259,18 @@ Mods: {
 					become immune to Searing Inferno
 					"This charm looks like it might be
 					 able to to extinguish the Golem's fire."
+					'''
+			}
+
+			SorcerousMirror: {
+				DisplayName: Sorcerous Mirror
+				Tooltip:
+					'''
+					Grants the following when holding a magic weapon:
+					12 defense
+					Gives a 1 in 3 chance to dodge attacks
+					Regenerates 3 life per second
+					Enemies are less likely to target you
 					'''
 			}
 		}

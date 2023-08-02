@@ -39,10 +39,10 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int spookyBonus2X;
         public int spookyBonus3X;
         public int dodgeChancePercent;
-        public int dodgeImmuneTime;
         public int wreckedResistanceStack;
         public int devastatedStack;
         public bool spookyEmblem;
+        public bool sorcerousMirror;
         public Player player;
         public Random random = new Random();
         
@@ -53,10 +53,10 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus2X = 0;
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
-            dodgeImmuneTime = 0;
             wreckedResistanceStack = 0;
             devastatedStack = 0;
             spookyEmblem = false;
+            sorcerousMirror = false;
         }
 
         public override void UpdateDead()
@@ -70,17 +70,17 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus2X = 0;
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
-            dodgeImmuneTime = 0;
             wreckedResistanceStack = 0;
             devastatedStack = 0;
             spookyEmblem = false;
+            sorcerousMirror = false;
         }
 
         public override void ResetEffects()
         {
             dodgeChancePercent = 0;
-            dodgeImmuneTime = 0;
             spookyEmblem = false;
+            sorcerousMirror = false;
             base.ResetEffects();
         }
         
@@ -93,13 +93,13 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void UpdateEquips()
         {
             player.arcticDivingGear = true;
-            spookyBonus2X = player.maxMinions * 2;
-            spookyBonus3X = player.maxMinions * 3;
             base.UpdateEquips();
         }
 
         public override void PostUpdateEquips()
         {
+            spookyBonus2X = player.maxMinions * 2;
+            spookyBonus3X = player.maxMinions * 3;
             if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
             {
                 float modifierWR = (float)(9 - (wreckedResistanceStack)) * 0.1f;
@@ -116,11 +116,16 @@ namespace WeDoALittleTrolling.Common.Utilities
                 player.blackBelt = false;
                 player.brainOfConfusionItem = null;
                 dodgeChancePercent = 0;
-                dodgeImmuneTime = 0;
             }
             else
             {
                 devastatedStack = 0;
+            }
+            if(sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
+            {
+                player.aggro -= 400;
+                player.statDefense += 12;
+                player.lifeRegen += 6;
             }
             base.PostUpdateEquips();
         }
@@ -132,10 +137,14 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override bool FreeDodge(Player.HurtInfo info)
         {
+            if(random.Next(0, 3) == 0 && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 3 chance
+            {
+                player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
+                return true;
+            }
             if(random.Next(0, 100) < dodgeChancePercent && dodgeChancePercent > 0)
             {
-                player.AddImmuneTime(info.CooldownCounter, dodgeImmuneTime);
-                player.immune = true;
+                player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;
             }
             return base.FreeDodge(info);

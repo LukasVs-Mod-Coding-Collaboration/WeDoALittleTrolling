@@ -26,6 +26,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -49,6 +50,13 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.rare = ItemRarityID.Yellow;
 
             Item.accessory = true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            TooltipLine despairBonus0 = new TooltipLine(Mod, "DespairBonus0", "Current damage bonus: "+(1 + ((Main.player[Main.myPlayer].statLifeMax - Main.player[Main.myPlayer].statLife) / 4))+"%");
+            tooltips.Add(despairBonus0);
+            base.ModifyTooltips(tooltips);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

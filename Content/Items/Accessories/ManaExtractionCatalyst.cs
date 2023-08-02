@@ -55,6 +55,22 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         }
 
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+        {
+            if
+            (
+                equippedItem.type == ModContent.ItemType<SorcerousMirror>() ||
+                incomingItem.type == ModContent.ItemType<SorcerousMirror>()
+            )
+            {
+                return false;
+            }
+            else
+            {
+                return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem,player);
+            }
+        }
+
         public override void AddRecipes()
         {
             CreateRecipe() //Recipe

@@ -1,4 +1,4 @@
-/*
+﻿/*
     WeDoALittleTrolling is a Terraria Mod made with tModLoader.
     Copyright (C) 2022-2023 LukasV-Coding
 
@@ -26,46 +26,49 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Content.Buffs;
 using System;
 using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-
-    [AutoloadEquip(EquipType.Shield)]
-    public class SpookyShield : ModItem
+    internal class SorcerousMirror : ModItem
     {
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 36;
+            Item.width = 34;
+            Item.height = 34;
 
             Item.consumable = false;
 
-            Item.value = Item.buyPrice(gold: 8);
+            Item.value = Item.buyPrice(gold: 5);
             Item.maxStack = 1;
 
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.LightPurple;
 
             Item.accessory = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current defense effectiveness bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus3X+"%");
-            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", "Current defense bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus3X);
-            tooltips.Add(spookyBonus0);
-            tooltips.Add(spookyBonus1);
+            string bonus = "No";
+            if(Main.player[Main.myPlayer].HeldItem.DamageType == DamageClass.Magic)
+            {
+                bonus = "Yes";
+            }
+            if(Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Devastated>()))
+            {
+                bonus = "No, you are devastated!";
+            }
+            TooltipLine dodgeBonus0 = new TooltipLine(Mod, "DodgeBonus0", "Dodge chance active: "+bonus);
+            tooltips.Add(dodgeBonus0);
             base.ModifyTooltips(tooltips);
         }
-        
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.dashType = 1;
-            player.aggro += 400;
-            player.maxMinions += 1;
-            player.statDefense += player.GetModPlayer<WDALTPlayerUtil>().spookyBonus3X;
-            player.DefenseEffectiveness *= (1f + (((float)player.GetModPlayer<WDALTPlayerUtil>().spookyBonus3X) * 0.01f));
+            player.GetModPlayer<WDALTPlayerUtil>().sorcerousMirror = true;
             base.UpdateAccessory(player, hideVisual);
         }
 
@@ -73,8 +76,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if
             (
-                equippedItem.type == ModContent.ItemType<SpookyEmblem>() ||
-                incomingItem.type == ModContent.ItemType<SpookyEmblem>()
+                equippedItem.type == ModContent.ItemType<ManaExtractionCatalyst>() ||
+                incomingItem.type == ModContent.ItemType<ManaExtractionCatalyst>()
             )
             {
                 return false;
@@ -88,10 +91,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-              .AddTile(TileID.TinkerersWorkbench)
-              .AddIngredient(ItemID.SpookyWood, 250)
-              .AddIngredient(ItemID.NecromanticScroll, 1)
-              .AddIngredient(ItemID.Tabi, 1)
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.LifeCrystal, 5)
+              .AddIngredient(ItemID.SoulofFright, 5)
+              .AddIngredient(ItemID.SoulofLight, 10)
+              .AddIngredient(ItemID.Obsidian, 15)
+              .AddIngredient(ItemID.HallowedBar, 3)
               .Register();
         }
     }
