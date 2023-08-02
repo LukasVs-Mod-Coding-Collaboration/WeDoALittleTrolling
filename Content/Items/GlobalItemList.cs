@@ -843,7 +843,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BlizzardStaff)
             {
-                item.damage = 65;
                 item.UseSound = SoundID.Item9;
             }
             if (item.type == ItemID.NebulaBlaze)
