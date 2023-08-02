@@ -324,6 +324,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.light = 0.5f;
                 projectile.netUpdate = true;
             }
+            if (projectile.type == ProjectileID.TerraBlade2Shot)
+            {
+                projectile.damage *= 2;
+                projectile.netUpdate = true;
+            }
             if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
             {
                 if (item.prefix == ModContent.PrefixType<Colossal>())
