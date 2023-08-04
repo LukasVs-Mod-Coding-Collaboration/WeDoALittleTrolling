@@ -36,6 +36,7 @@ using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.Utilities;
+using WeDoALittleTrolling.Common.ModSystems;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -174,6 +175,11 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void SetDefaults(NPC npc)
         {
+            if(WDALTModSystem.isCalamityModPresent)
+            {
+                base.SetDefaults(npc);
+                return;
+            }
             if(NerfGroup25Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * 0.75);
@@ -528,6 +534,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 projectile.damage = (int)Math.Round(projectile.damage * (1.0f - SearingInferno.damageNerfMultiplier));
                 projectile.netUpdate = true;
+            }
+            if(WDALTModSystem.isCalamityModPresent)
+            {
+                return;
             }
             if(NerfGroup25Percent.Contains(npc.type))
             {

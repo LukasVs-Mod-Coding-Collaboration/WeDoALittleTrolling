@@ -42,6 +42,23 @@ namespace WeDoALittleTrolling.Common.ModSystems
 {
     internal class WDALTModSystem : ModSystem
     {
+
+        public static bool isCalamityModPresent = false;
+        public static bool isThoriumModPresent = false;
+        
+        public override void OnModLoad()
+        {
+            if(ModLoader.HasMod("CalamityMod"))
+            {
+                isCalamityModPresent = true;
+            }
+            if(ModLoader.HasMod("ThoriumMod"))
+            {
+                isThoriumModPresent = true;
+            }
+            base.OnModLoad();
+        }
+
         
         public static void HandlePacket(BinaryReader reader, int whoAmI, Mod mod)
         {
