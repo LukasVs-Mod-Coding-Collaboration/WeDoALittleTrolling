@@ -43,8 +43,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override bool InstancePerEntity => true;
 
         public int VileSpitTimeLeft;
-        public int ticksAlive = 0;
-        public int lastActionTick = 0;
+        public long ticksAlive = 0;
+        public long lastActionTick = 0;
 
         public override void ResetEffects(NPC npc)
         {

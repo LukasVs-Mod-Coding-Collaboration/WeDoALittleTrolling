@@ -252,11 +252,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.HallowBoss)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
             }
             if(npc.type == NPCID.DukeFishron)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if(npc.type == NPCID.CultistBoss)
             {
@@ -271,7 +271,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.MoonLordLeechBlob
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
             }
             if
             (
@@ -288,7 +288,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Spazmatism
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if
             (
@@ -480,7 +480,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.Plantera)
             {
-                int timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
+                long timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
                 int shotDelay = 120;
                 float dmg1 = 32f;
                 float dmg2 = 24f;

@@ -31,12 +31,13 @@ using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Items.Accessories;
+using SteelSeries.GameSense;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
     public class WDALTPlayerUtil : ModPlayer
     {
-        public double lastLeechingHealTime;
+        public long lastLeechingHealTick;
         public int spookyBonus2X;
         public int spookyBonus3X;
         public int dodgeChancePercent;
@@ -46,12 +47,13 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool sorcerousMirror;
         public bool heartOfDespair;
         public Player player;
-        public UnifiedRandom random = new UnifiedRandom();
+        public long currentTick;
+        public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
         {
             player = this.Player;
-            lastLeechingHealTime = 0.0;
+            lastLeechingHealTick = 0;
             spookyBonus2X = 0;
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
@@ -60,6 +62,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
+            currentTick = 0;
         }
 
         public override void UpdateDead()
@@ -69,7 +72,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         private void ResetVariables()
         {
-            lastLeechingHealTime = 0.0;
+            lastLeechingHealTick = 0;
             spookyBonus2X = 0;
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
@@ -78,6 +81,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
+            currentTick = 0;
         }
 
         public override void ResetEffects()
@@ -92,6 +96,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void PostUpdate()
         {
             GlobalItemList.ModifySetBonus(player);
+            currentTick++;
             base.PostUpdate();
         }
 
@@ -275,11 +280,11 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 if(player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
-                    double timeSinceLastHeal = ((double)Math.Abs(Main.time - lastLeechingHealTime) / (double)Main.dayRate); // Use ABS to avoid negative time
-                    if(timeSinceLastHeal >= ((double)player.itemAnimationMax/2.0)) // Only heal player 2 times every item use
+                    long ticksSinceLastHeal = (currentTick - lastLeechingHealTick);
+                    if(ticksSinceLastHeal >= ((double)player.itemAnimationMax/2.0)) // Only heal player 2 times every item use
                     {
                         player.Heal(healingAmount);
-                        lastLeechingHealTime = Main.time;
+                        lastLeechingHealTick = currentTick;
                     }
                 }
                 else if(player.HeldItem.prefix == ModContent.PrefixType<Siphoning>())

@@ -62,7 +62,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int ammoItemId;
         public bool ammoItemIdExists;
         public Vector2 spawnCenter;
-        public int ticksAlive;
+        public long ticksAlive;
         public bool colossalSolarWhip = false;
         public bool speedyPlanteraPoisonSeed = false;
         public bool speedyPlanteraPoisonSeedHasUpdated = false;

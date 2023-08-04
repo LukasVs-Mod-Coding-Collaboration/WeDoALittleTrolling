@@ -724,7 +724,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StarWrath)
             {
-                item.damage = 220;
+                item.damage = 110;
             }
             if (item.type == ItemID.TrueExcalibur)
             {
@@ -748,12 +748,24 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
             }
+            if (item.type == ItemID.InfluxWaver)
+            {
+                item.shootsEveryUse = true;
+            }
             if (item.type == ItemID.PossessedHatchet)
             {
-                item.damage = 100;
-                item.useTime = 10;
-                item.useAnimation = 10;
+                item.damage = 110;
+                item.useTime = 11;
+                item.useAnimation = 11;
                 item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.PaladinsHammer)
+            {
+                item.damage = 120;
+                item.useTime = 12;
+                item.useAnimation = 12;
+                item.shootsEveryUse = true;
+                item.shootSpeed = 32f;
             }
             if (item.type == ItemID.DayBreak)
             {

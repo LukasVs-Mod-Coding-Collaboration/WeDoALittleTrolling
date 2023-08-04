@@ -119,6 +119,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
         
         public override void SetDefaults(Projectile projectile)
         {
+            if(projectile.type == ProjectileID.InfluxWaver)
+            {
+                projectile.extraUpdates = 1;
+            }
             if(projectile.type == ProjectileID.IceBoomerang)
             {
                 projectile.extraUpdates = projectile.GetGlobalProjectile<WDALTProjectileUtil>().extraUpdatesIceBoomerang;
@@ -368,7 +372,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.light = 0.5f;
                 projectile.netUpdate = true;
             }
-            if (projectile.type == ProjectileID.TerraBlade2Shot)
+            if (projectile.type == ProjectileID.TerraBlade2Shot || projectile.type == ProjectileID.StarWrath)
             {
                 projectile.damage *= 2;
                 projectile.netUpdate = true;
