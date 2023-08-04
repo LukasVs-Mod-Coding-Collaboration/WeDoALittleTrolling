@@ -49,9 +49,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += -75; //Weird but working way to set Max down (originally 125)
+            player.statLifeMax2 += -100; //Weird but working way to set Max down (originally 125)
             player.buffImmune[BuffID.ManaSickness] = true; //Immunity to Mana Sickness
-            player.GetDamage(DamageClass.Magic) += 0.12f; //player.GetDamage(DamageClass.Magic) += 0.1f; //Damage increase of 20% (now 10%)
 
         }
 

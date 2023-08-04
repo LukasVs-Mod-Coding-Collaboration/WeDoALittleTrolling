@@ -35,12 +35,14 @@ using WeDoALittleTrolling.Content.Items.Armor;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
+using Terraria.Utilities;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
     internal class GlobalNPCs : GlobalNPC
     {
         public override bool InstancePerEntity => false;
+        public static UnifiedRandom random = new UnifiedRandom();
         public static readonly int[] NerfGroup25Percent =
         {
             NPCID.Derpling,
@@ -227,7 +229,13 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
             }
-            if(npc.type == NPCID.Plantera)
+            if
+            (
+                npc.type == NPCID.Plantera ||
+                npc.type == NPCID.PlanterasHook ||
+                npc.type == NPCID.PlanterasTentacle ||
+                npc.type == NPCID.Spore
+            )
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
@@ -248,7 +256,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.DukeFishron)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
             }
             if(npc.type == NPCID.CultistBoss)
             {
@@ -264,11 +272,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
-            }
-            if(npc.type == NPCID.Deerclops)
-            {
-                npc.damage = (int)Math.Round(npc.damage * 0.5);
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.5);
             }
             if
             (
@@ -374,7 +377,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.SantaNK1
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.75);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
             }
             if
             (
@@ -441,9 +444,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.EaterofWorldsTail
             )
             {
-                Random rnd = new Random();
                 //Replicate vanilla behavior as good as possible.
-                if(rnd.Next(300) == 0 && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient)
+                if(random.NextBool(300) && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
                     if(!Collision.CanHitLine(npc.Center, 1, 1, Main.player[npc.target].Center, 1, 1))
@@ -455,25 +457,65 @@ namespace WeDoALittleTrolling.Content.NPCs
             npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft--;
             if(npc.type == NPCID.TheDestroyerBody)
             {
-                Random rnd = new Random();
                 //Replicate vanilla behavior as good as possible.
-                if(rnd.Next(900) == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                if(random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
                     if(!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                     {
                         Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));
-                        float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)rnd.Next(-16, 17) - posWithOffset.X;
-                        float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)rnd.Next(-16, 17) - posWithOffset.Y;
+                        float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.X;
+                        float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.Y;
                         float randomMultiplierLengh = 8f / (new Vector2(randomMultiplierX, randomMultiplierY).Length());
-                        randomMultiplierX = (randomMultiplierX*randomMultiplierLengh) + ((float)rnd.Next(-16, 17) * 0.04f);
-                        randomMultiplierY = (randomMultiplierY*randomMultiplierLengh) + ((float)rnd.Next(-16, 17) * 0.04f);
+                        randomMultiplierX = (randomMultiplierX*randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
+                        randomMultiplierY = (randomMultiplierY*randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
                         posWithOffset.X += randomMultiplierX * 4f;
                         posWithOffset.Y += randomMultiplierY * 4f;
                         int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
                         int i = Projectile.NewProjectile(npc.GetSource_FromThis(), posWithOffset.X, posWithOffset.Y, randomMultiplierX, randomMultiplierY, ProjectileID.DeathLaser, damage, 0f, Main.myPlayer);
                         Main.projectile[i].timeLeft = 300;
                         npc.netUpdate = true;
+                    }
+                }
+            }
+            if(npc.type == NPCID.Plantera)
+            {
+                int timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
+                int shotDelay = 120;
+                float dmg1 = 32f;
+                float dmg2 = 24f;
+                if(npc.life < (npc.lifeMax / 4))
+                {
+                    shotDelay = 90;
+                }
+                if (!Main.player[npc.target].ZoneJungle || (double)Main.player[npc.target].position.Y < Main.worldSurface * 16.0 || Main.player[npc.target].position.Y > (double)(Main.UnderworldLayer * 16.0))
+                {
+                    dmg1 *= 2;
+                    dmg2 *= 2;
+                    shotDelay = 30;
+                }
+                if(timeSinceLastShot >= shotDelay && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient && (npc.life < (npc.lifeMax / 2)))
+                {
+                    npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick = npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive;
+                    npc.TargetClosest();
+                    if(Main.player[npc.target].active && !Main.player[npc.target].dead)
+                    {
+                        int damage = npc.GetAttackDamage_ForProjectiles(dmg1, dmg2);
+                        int amount = random.Next(4, 7);
+                        float sprayIntensity = 16.0f; //Max Spraying in Tiles
+                        for (int j = 0; j < amount; j++)
+                        {
+                            float randomModifierX = (random.NextFloat() - 0.5f);
+                            float randomModifierY = (random.NextFloat() - 0.5f);
+                            randomModifierX *= (sprayIntensity * 16.0f);
+                            randomModifierY *= (sprayIntensity * 16.0f);
+                            Vector2 vectorToTarget = new Vector2((Main.player[npc.target].Center.X + randomModifierX) - npc.Center.X, (Main.player[npc.target].Center.Y + randomModifierY) - npc.Center.Y);
+                            vectorToTarget.Normalize();
+                            int i = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y, vectorToTarget.X, vectorToTarget.Y, ProjectileID.PoisonSeedPlantera, damage, 0f, Main.myPlayer);
+                            Main.projectile[i].timeLeft = 300;
+                            Main.projectile[i].extraUpdates = 1;
+                            Main.projectile[i].GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed = true;
+                        }
                     }
                 }
             }
@@ -502,11 +544,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 projectile.damage = (int)Math.Round(projectile.damage * 0.5);
                 projectile.netUpdate = true;
             }
-            if(npc.type == NPCID.Deerclops)
-            {
-                projectile.damage = (int)Math.Round(projectile.damage * 0.5);
-                projectile.netUpdate = true;
-            }
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -527,13 +564,12 @@ namespace WeDoALittleTrolling.Content.NPCs
                 drawColor.R = 255;
                 drawColor.G = 191;
                 drawColor.B = 0;
-                Random rnd = new Random();
-                int xOffset = rnd.Next(-(npc.width/2), (npc.width/2));
-                int yOffset = rnd.Next(-(npc.height/2), (npc.height/2));
+                int xOffset = random.Next(-(npc.width/2), (npc.width/2));
+                int yOffset = random.Next(-(npc.height/2), (npc.height/2));
                 Vector2 dustPosition = npc.Center;
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
-                int dustType = rnd.Next(0, 2);
+                int dustType = random.Next(0, 2);
                 switch(dustType)
                 {
                     case 0:
@@ -585,7 +621,6 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static void ApplyDebuffsToPlayerBasedOnNPC(int npcType, Player target)
         {
-            Random random = new Random();
             if(InflictVenomDebuff1In1Group.Contains(npcType))
             {
                 if(random.Next(0, 1) == 0) //1 in 1 Chance

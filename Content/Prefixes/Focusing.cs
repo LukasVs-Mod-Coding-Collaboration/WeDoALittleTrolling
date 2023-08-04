@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.5f;
+            return 0.75f;
         }
 
         public override bool CanRoll(Item item)
@@ -64,7 +64,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) *= 0.96f;
+            player.GetDamage(DamageClass.Ranged) *= 0.98f;
             player.GetCritChance(DamageClass.Ranged) += 8;
         }
 

@@ -43,6 +43,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override bool InstancePerEntity => true;
 
         public int VileSpitTimeLeft;
+        public int ticksAlive = 0;
+        public int lastActionTick = 0;
 
         public override void ResetEffects(NPC npc)
         {
@@ -59,6 +61,12 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             VileSpitTimeLeft = binaryReader.ReadInt32();
             base.ReceiveExtraAI(npc, bitReader, binaryReader);
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            ticksAlive++;
+            base.PostAI(npc);
         }
     }
 }

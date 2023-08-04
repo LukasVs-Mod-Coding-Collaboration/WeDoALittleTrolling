@@ -21,6 +21,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 using Terraria;
+using Terraria.Utilities;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -45,7 +46,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool sorcerousMirror;
         public bool heartOfDespair;
         public Player player;
-        public Random random = new Random();
+        public UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
         {
@@ -106,7 +107,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = player.maxMinions * 3;
             if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
             {
-                float modifierWR = (float)(9 - (wreckedResistanceStack)) * 0.1f;
+                float modifierWR = (float)(95 - (wreckedResistanceStack * 5)) * 0.01f;
                 player.endurance *= modifierWR;
             }
             else
@@ -274,8 +275,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 if(player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
-                    double timeSinceLastHeal = Math.Abs(Main.time - lastLeechingHealTime); // Use ABS to avoid negative time
-                    if(timeSinceLastHeal >= ((float)player.itemAnimationMax/3.0f)) // Only heal player 3 times every item use
+                    double timeSinceLastHeal = ((double)Math.Abs(Main.time - lastLeechingHealTime) / (double)Main.dayRate); // Use ABS to avoid negative time
+                    if(timeSinceLastHeal >= ((double)player.itemAnimationMax/2.0)) // Only heal player 2 times every item use
                     {
                         player.Heal(healingAmount);
                         lastLeechingHealTime = Main.time;

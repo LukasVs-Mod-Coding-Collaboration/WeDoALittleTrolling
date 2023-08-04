@@ -21,6 +21,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
+using Terraria.Utilities;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
@@ -36,6 +37,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         
         public int attackMode = 0;
+        public static UnifiedRandom rnd = new UnifiedRandom();
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -85,7 +87,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             if(attackMode == 1)
             {
-                Random rnd = new Random();
                 if (rnd.Next(0, 2) == 0)
                 {
                     return false;

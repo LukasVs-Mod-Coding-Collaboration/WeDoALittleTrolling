@@ -36,6 +36,7 @@ using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 using System.IO;
+using Microsoft.CodeAnalysis;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -63,6 +64,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public Vector2 spawnCenter;
         public int ticksAlive;
         public bool colossalSolarWhip = false;
+        public bool speedyPlanteraPoisonSeed = false;
+        public bool speedyPlanteraPoisonSeedHasUpdated = false;
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
@@ -121,6 +124,14 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 binaryWriter.Write(colossalSolarWhip);
             }
+            if(projectile.type == ProjectileID.PoisonSeedPlantera)
+            {
+                binaryWriter.Write(speedyPlanteraPoisonSeed);
+                if(speedyPlanteraPoisonSeed)
+                {
+                    speedyPlanteraPoisonSeedHasUpdated = true;
+                }
+            }
         }
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
@@ -141,11 +152,25 @@ namespace WeDoALittleTrolling.Common.Utilities
                     projectile.extraUpdates = 1;
                 }
             }
+            if(projectile.type == ProjectileID.PoisonSeedPlantera)
+            {
+                speedyPlanteraPoisonSeed = binaryReader.ReadBoolean();
+                if(speedyPlanteraPoisonSeed)
+                {
+                    projectile.extraUpdates = 1;
+                    projectile.timeLeft = 300;
+                    SoundEngine.PlaySound(SoundID.Item17, projectile.position);
+                }
+            }
         }
 
         public override bool ShouldUpdatePosition(Projectile projectile)
         {
             ticksAlive += 1;
+            if(projectile.type == ProjectileID.PoisonSeedPlantera && speedyPlanteraPoisonSeed && !speedyPlanteraPoisonSeedHasUpdated)
+            {
+                projectile.netUpdate = true;
+            }
             return base.ShouldUpdatePosition(projectile);
         }
 

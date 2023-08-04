@@ -27,14 +27,14 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using System.Linq;
-
+using Terraria.Utilities;
 
 namespace WeDoALittleTrolling.Content.Items
 {
     internal class InfiniteRocketAmmo : ModItem
     {
 
-        public static Random FireworksColor = new Random();
+        public static UnifiedRandom FireworksColor = new UnifiedRandom();
         public static readonly int[] CompatibleWeaponIDs = 
         {
             ItemID.Celeb2,

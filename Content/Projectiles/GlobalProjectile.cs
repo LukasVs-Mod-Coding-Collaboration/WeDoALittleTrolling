@@ -34,6 +34,7 @@ using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Weapons;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
+using Terraria.Utilities;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -41,7 +42,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
     {
         public override bool InstancePerEntity => false;
 
-        public static Random random = new Random();
+        public static UnifiedRandom random = new UnifiedRandom();
 
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
@@ -285,6 +286,44 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.velocity = normalizedVeloctiy * originalLength;
                 }
             }
+            else if
+            (
+                (
+                    projectile.type == ProjectileID.SeedPlantera ||
+                    projectile.type == ProjectileID.PoisonSeedPlantera
+                ) &&
+                (
+                    !projectile.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed
+                )
+            )
+            {
+                float lowest_distance = 1024f;
+                float correction_factor = 0.24f;
+                Player target = null;
+                for(int i = 0; i < Main.player.Length; i++)
+                {
+                    Player currentTarget = Main.player[i];
+                    if(currentTarget.active)
+                    {
+                        Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
+                        if (vectorToTarget.Length() < lowest_distance)
+                        {
+                            lowest_distance = vectorToTarget.Length();
+                            target = currentTarget;
+                        }
+                    }
+                }
+                if(target != null)
+                {
+                    Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
+                    vectorToTarget.Normalize();
+                    float originalLength = projectile.velocity.Length();
+                    projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
+                    Vector2 normalizedVeloctiy = projectile.velocity;
+                    normalizedVeloctiy.Normalize();
+                    projectile.velocity = normalizedVeloctiy * originalLength;
+                }
+            }
             base.AI(projectile);
         }
 
@@ -317,6 +356,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            if (projectile.type == ProjectileID.DeerclopsRangedProjectile)
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.75);
+                projectile.netUpdate = true;
+            }
             if (projectile.type == ProjectileID.TrueNightsEdge)
             {
                 projectile.damage *= 2;

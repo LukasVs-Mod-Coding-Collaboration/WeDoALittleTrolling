@@ -34,6 +34,7 @@ using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using System.Collections.Generic;
+using Terraria.Utilities;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -41,7 +42,7 @@ namespace WeDoALittleTrolling.Content.Items
     {
         public override bool InstancePerEntity => false;
 
-        public static Random random = new Random();
+        public static UnifiedRandom random = new UnifiedRandom();
         public static readonly int[] biomeCrateTypes =
         {
             ItemID.JungleFishingCrate,

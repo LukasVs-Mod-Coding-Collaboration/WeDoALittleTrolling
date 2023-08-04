@@ -24,7 +24,7 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            tip = tip+" "+(10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack * 10))+"%";
+            tip = tip+" "+(5+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack * 5))+"%";
             base.ModifyBuffText(ref buffName, ref tip, ref rare);
         }
         

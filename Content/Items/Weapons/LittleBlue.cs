@@ -17,6 +17,7 @@
 */
 
 using Terraria;
+using Terraria.Utilities;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -31,7 +32,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class LittleBlue : ModItem
     {
-        public static Random rnd = new Random(); //Introduce random Values
+        public static UnifiedRandom rnd = new UnifiedRandom(); //Introduce random Values
 
         public override void SetDefaults()
         {
