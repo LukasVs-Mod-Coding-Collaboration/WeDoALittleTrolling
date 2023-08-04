@@ -27,6 +27,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Prefixes;
@@ -531,14 +532,32 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 if(random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    int buffTime = 3600;
+                    if (WDALTModSystem.isCalamityModPresent && Main.masterMode)
+                    {
+                        buffTime = 9000;
+                    }
+                    else if (WDALTModSystem.isCalamityModPresent && Main.expertMode)
+                    {
+                        buffTime = 7200;
+                    }
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), buffTime, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if(InflictDevastated1In1Group.Contains(projectile.type))
             {
                 if(random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    int buffTime = 3600;
+                    if (WDALTModSystem.isCalamityModPresent && Main.masterMode)
+                    {
+                        buffTime = 9000;
+                    }
+                    else if (WDALTModSystem.isCalamityModPresent && Main.expertMode)
+                    {
+                        buffTime = 7200;
+                    }
+                    target.AddBuff(ModContent.BuffType<Devastated>(), buffTime, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if
