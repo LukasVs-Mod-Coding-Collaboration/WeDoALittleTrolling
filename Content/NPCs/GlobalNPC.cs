@@ -629,16 +629,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.boss && !InflictWreckedResistance1In1Group.Contains(npc.type) && (WDALTModSystem.isCalamityModPresent || WDALTModSystem.isThoriumModPresent))
             {
-                int buffTime = 3600;
-                if(WDALTModSystem.isCalamityModPresent && Main.masterMode)
-                {
-                    buffTime = 9000;
-                }
-                else if(WDALTModSystem.isCalamityModPresent && Main.expertMode)
-                {
-                    buffTime = 7200;
-                }
-                target.AddBuff(ModContent.BuffType<WreckedResistance>(), buffTime, true); //1m, X2 in Expert, X2.5 in Master
+                target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
             }
         }
 
@@ -704,32 +695,14 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 if(random.Next(0, 1) == 0)
                 {
-                    int buffTime = 3600;
-                    if (WDALTModSystem.isCalamityModPresent && Main.masterMode)
-                    {
-                        buffTime = 9000;
-                    }
-                    else if (WDALTModSystem.isCalamityModPresent && Main.expertMode)
-                    {
-                        buffTime = 7200;
-                    }
-                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), buffTime, true); //1m, X2 in Expert, X2.5 in Master
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if(InflictDevastated1In1Group.Contains(npcType))
             {
                 if(random.Next(0, 1) == 0)
                 {
-                    int buffTime = 3600;
-                    if (WDALTModSystem.isCalamityModPresent && Main.masterMode)
-                    {
-                        buffTime = 9000;
-                    }
-                    else if (WDALTModSystem.isCalamityModPresent && Main.expertMode)
-                    {
-                        buffTime = 7200;
-                    }
-                    target.AddBuff(ModContent.BuffType<Devastated>(), buffTime, true); //1m, X2 in Expert, X2.5 in Master
+                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
         }
