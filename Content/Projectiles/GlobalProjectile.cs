@@ -488,6 +488,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 target.AddBuff(BuffID.CursedInferno, 240, false);
             }
+            if(projectile.type == ProjectileID.HellfireArrow)
+            {
+                target.AddBuff(BuffID.OnFire3, 240, false);
+            }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
 

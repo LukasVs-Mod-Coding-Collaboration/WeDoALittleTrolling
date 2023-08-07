@@ -204,7 +204,22 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if(item.type == ItemID.ChlorophytePartisan)
             {
-                TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixWeaponLeechingDescription", "Recoveres 5% of damage as health");
+                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recoveres 5% of damage as health");
+                tooltips.Add(extraManaLine);
+            }
+            if(item.type == ItemID.ChlorophyteShotbow)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into chlorophyte arrows");
+                tooltips.Add(extraManaLine);
+            }
+            if(item.type == ItemID.MoltenFury)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into hellfire arrows");
+                tooltips.Add(extraManaLine);
+            }
+            if(item.type == ItemID.DaedalusStormbow)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into holy arrows");
                 tooltips.Add(extraManaLine);
             }
             if(item.type == ItemID.Moondial)
@@ -464,6 +479,32 @@ namespace WeDoALittleTrolling.Content.Items
             }
         }
 
+        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            if(item.type == ItemID.MoltenFury)
+            {
+                if(type == ProjectileID.FireArrow)
+                {
+                    type = ProjectileID.HellfireArrow;
+                }
+            }
+            if(item.type == ItemID.ChlorophyteShotbow)
+            {
+                if(type == ProjectileID.WoodenArrowFriendly)
+                {
+                    type = ProjectileID.ChlorophyteArrow;
+                }
+            }
+            if(item.type == ItemID.DaedalusStormbow)
+            {
+                if(type == ProjectileID.WoodenArrowFriendly)
+                {
+                    type = ProjectileID.HolyArrow;
+                }
+            }
+            base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
+        }
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.Phantasm) 
@@ -485,10 +526,20 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
-                if(item.damage <= 40)
+                if(item.damage <= 44)
                 {
-                    item.damage = 40;
+                    item.damage = 44;
                 }
+                item.useTime = 18;
+                item.useAnimation = 18;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.Megashark)
+            {
+                item.damage = 30;
+                item.useTime = 6;
+                item.useAnimation = 6;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.DD2PhoenixBow)
             {
@@ -530,13 +581,9 @@ namespace WeDoALittleTrolling.Content.Items
                 item.attackSpeedOnlyAffectsWeaponAnimation = false;
                 item.GetGlobalItem<WDALTItemUtil>().attackSpeedRoundingErrorProtection = true;
             }
-            if (item.type == ItemID.BeesKnees) 
-            {
-                item.damage = 26;
-            }
             if (item.type == ItemID.ClockworkAssaultRifle) 
             {
-                item.damage = 19;
+                item.damage = 24;
             }
             if (item.type == ItemID.Marrow) 
             {
@@ -597,6 +644,13 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.XenoStaff)
             {
                 item.damage = 48;
+            }
+            if (item.type == ItemID.Xenopopper)
+            {
+                item.damage = 48;
+                item.useTime = 20;
+                item.useAnimation = 20;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.StardustDragonStaff)
             {
@@ -726,8 +780,7 @@ namespace WeDoALittleTrolling.Content.Items
 
             if
             (
-                item.type == ItemID.ElectrosphereLauncher ||
-                item.type == ItemID.SniperRifle
+                item.type == ItemID.ElectrosphereLauncher
             )
             {
                 item.autoReuse = true;
@@ -735,6 +788,13 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.StarWrath)
             {
                 item.damage = 110;
+            }
+            if (item.type == ItemID.Seedler)
+            {
+                item.damage = 80;
+                item.useTime = 24;
+                item.useAnimation = 24;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.TrueExcalibur)
             {
@@ -1041,6 +1101,45 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 45;
                 item.mana = 12;
             }
+            if(item.type == ItemID.Uzi)
+            {
+                item.damage = 36;
+                item.useTime = 8;
+                item.useAnimation = 8;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.VenusMagnum)
+            {
+                item.damage = 56;
+                item.useTime = 8;
+                item.useAnimation = 8;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.TacticalShotgun)
+            {
+                item.damage = 36;
+                item.useTime = 32;
+                item.useAnimation = 32;
+                item.autoReuse = true;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.SniperRifle)
+            {
+                item.damage = 240;
+                item.crit = 28;
+                item.useTime = 32;
+                item.useAnimation = 32;
+                item.autoReuse = true;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.Tsunami)
+            {
+                item.damage = 60;
+                item.crit = 2;
+                item.useTime = 20;
+                item.useAnimation = 20;
+                item.shootsEveryUse = true;
+            }
 
             // Make boss summoning items non-consumable
 
@@ -1066,6 +1165,38 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.consumable = false;
                 item.maxStack = 1;
+            }
+
+            //Pre-Hardmode Ranger Rebalance
+            
+            if(item.type == ItemID.BeesKnees)
+            {
+                item.damage = 24;
+                item.useTime = 22;
+                item.useAnimation = 22;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.DemonBow)
+            {
+                item.damage = 16;
+                item.useTime = 24;
+                item.useAnimation = 24;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.HellwingBow)
+            {
+                item.damage = 24;
+                item.useTime = 12;
+                item.useAnimation = 12;
+                item.shootsEveryUse = true;
+            }
+            if(item.type == ItemID.MoltenFury)
+            {
+                item.damage = 32;
+                item.shootSpeed = 12f;
+                item.useTime = 20;
+                item.useAnimation = 20;
+                item.shootsEveryUse = true;
             }
         }
     }
