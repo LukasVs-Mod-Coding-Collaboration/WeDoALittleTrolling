@@ -24,7 +24,7 @@ using WeDoALittleTrolling.Content.Items.Accessories;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
-    public static class WDALTConditionFunctions
+    internal static class WDALTConditionFunctions
     {
         public static bool GetFalse()
         {

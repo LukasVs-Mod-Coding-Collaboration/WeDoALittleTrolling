@@ -27,12 +27,12 @@ using Terraria;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-    public class Vital : ModPrefix
+    public class Conjuring : ModPrefix
     {
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            if(!NPC.downedMechBoss3)
+            if(!NPC.downedMechBoss1)
             {
                 return 0f;
             }
@@ -51,15 +51,15 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.statLifeMax2 += 20;
-            player.lifeRegen += 2;
+            player.maxMinions += 1;
+            player.GetDamage(DamageClass.Summon) -= 0.04f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAccessoryVitalDescription", AdditionalTooltip.Value)
+            yield return new TooltipLine(Mod, "PrefixAccessoryWatchfulDescription", AdditionalTooltip.Value)
             {
                 IsModifier = true,
             };
@@ -69,6 +69,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             _ = AdditionalTooltip;
         }
+
     }
 
 }

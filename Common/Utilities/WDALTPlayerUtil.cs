@@ -35,7 +35,7 @@ using SteelSeries.GameSense;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
-    public class WDALTPlayerUtil : ModPlayer
+    internal class WDALTPlayerUtil : ModPlayer
     {
         public long lastLeechingHealTick;
         public int spookyBonus2X;

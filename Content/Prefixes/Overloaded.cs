@@ -27,21 +27,32 @@ using Terraria;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-    public class Vital : ModPrefix
+    public class Overloaded : ModPrefix
     {
-        public override PrefixCategory Category => PrefixCategory.Accessory;
+        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
         public override float RollChance(Item item)
         {
-            if(!NPC.downedMechBoss3)
-            {
-                return 0f;
-            }
-            return 0.50f;
+            return 1.0f;
         }
 
         public override bool CanRoll(Item item)
         {
-            return true;
+            if
+            (
+                item.DamageType == DamageClass.Summon
+            )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
+        {
+            damageMult *= 1.30f;
         }
 
         public override void ModifyValue(ref float valueMult)
@@ -49,26 +60,6 @@ namespace WeDoALittleTrolling.Content.Prefixes
             valueMult *= 1.4f;
         }
 
-        public override void ApplyAccessoryEffects(Player player)
-        {
-            player.statLifeMax2 += 20;
-            player.lifeRegen += 2;
-        }
-
-        public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
-
-        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
-        {
-            yield return new TooltipLine(Mod, "PrefixAccessoryVitalDescription", AdditionalTooltip.Value)
-            {
-                IsModifier = true,
-            };
-        }
-
-        public override void SetStaticDefaults()
-        {
-            _ = AdditionalTooltip;
-        }
     }
 
 }

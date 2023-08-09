@@ -302,14 +302,27 @@ Mods: {
 				AdditionalTooltip: Enemies are much more likely to target you
 			}
 
-			Rejuvenating: {
-				DisplayName: Rejuvenating
-				AdditionalTooltip: Your health regenerates slightly faster
-			}
-
+			# Rejuvenating: {
+			# DisplayName: Rejuvenating
+			# AdditionalTooltip: Your health regenerates slightly faster
+			# }
+			
 			Vital: {
 				DisplayName: Vital
-				AdditionalTooltip: Increases maximum life by 20
+				AdditionalTooltip:
+					'''
+					Increases maximum life by 20
+					Your health regenerates slightly faster
+					'''
+			}
+
+			Conjuring: {
+				DisplayName: Conjuring
+				AdditionalTooltip:
+					'''
+					Increases your max number of minions by 1,
+					but reduces your summon damage by 4%
+					'''
 			}
 
 			Watchful: {
@@ -317,7 +330,7 @@ Mods: {
 				AdditionalTooltip:
 					'''
 					Increases your max number of sentries by 1,
-					but reduces your summon damage by 6%
+					but reduces your summon damage by 4%
 					'''
 			}
 
@@ -450,6 +463,8 @@ Mods: {
 					+10 mana
 					'''
 			}
+
+			Overloaded.DisplayName: Overloaded
 		}
 
 		Buffs: {

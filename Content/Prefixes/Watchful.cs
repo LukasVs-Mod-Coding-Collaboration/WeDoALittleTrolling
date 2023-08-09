@@ -36,7 +36,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             {
                 return 0f;
             }
-            return 0.25f;
+            return 0.50f;
         }
 
         public override bool CanRoll(Item item)
@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.maxTurrets += 1;
-            player.GetDamage(DamageClass.Summon) *= 0.94f;
+            player.GetDamage(DamageClass.Summon) -= 0.04f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

@@ -20,7 +20,7 @@ using System;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
-    public static class WDALTPacketTypeID
+    internal static class WDALTPacketTypeID
     {
         public const short moondial                  = 0;
         public const short sundial                   = 1;

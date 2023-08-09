@@ -25,10 +25,11 @@ namespace WeDoALittleTrolling
     public class WeDoALittleTrolling : Mod
     {
         public const string ASSET_PATH = "WeDoALittleTrolling/Assets/";
+        internal static WDALTNetworkingSystem networkingSystem = new WDALTNetworkingSystem();
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            WDALTModSystem.HandlePacket(reader, whoAmI, this);
+            networkingSystem.HandlePacket(reader, whoAmI, this);
             base.HandlePacket(reader, whoAmI);
         }
 
