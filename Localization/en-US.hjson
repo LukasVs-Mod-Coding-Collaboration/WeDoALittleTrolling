@@ -275,6 +275,15 @@ Mods: {
 					Incompatible with the Mana Extraction Catalyst
 					'''
 			}
+
+			PhantomStaff: {
+				DisplayName: Luminite Phantom Staff
+				Tooltip:
+					'''
+					Summons a Luminite Phantom to fight for you
+					Ignores a substantial amount of enemy defense
+					'''
+			}
 		}
 
 		Projectiles: {
@@ -282,6 +291,7 @@ Mods: {
 			Beamlaser2.DisplayName: Apollon Beam Laser
 			Beamlaser2_AutoAim.DisplayName: Apollon Beam Laser
 			PhotonsplicerProjectile.DisplayName: Photonsplicer Projectile
+			PhantomStaffProjectile.DisplayName: Luminite Phantom
 		}
 
 		Prefixes: {
@@ -512,6 +522,11 @@ Mods: {
 					12% decreased critical strike chance
 					Enemies are less likely to target you
 					'''
+			}
+
+			PhantomStaffBuff: {
+				DisplayName: Luminite Phantom
+				Description: The Luminite Phantom will fight for you
 			}
 		}
 	}
