@@ -57,11 +57,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.minionSlots = 1f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.ArmorPenetration = 64;
+            Projectile.ArmorPenetration = 60;
             Projectile.timeLeft = 10;
             Projectile.netImportant = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 16;
+            Projectile.localNPCHitCooldown = 24;
             Projectile.light = 0.8f;
         }
 
