@@ -63,6 +63,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool ammoItemIdExists;
         public Vector2 spawnCenter;
         public long ticksAlive;
+        public long lastActionTick;
         public bool colossalSolarWhip = false;
         public bool speedyPlanteraPoisonSeed = false;
         public bool speedyPlanteraPoisonSeedHasUpdated = false;
@@ -72,6 +73,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             //SPAWN SOURCE IS CLIENT SIDE ONLY!!!!!!
             spawnCenter = projectile.Center;
             ticksAlive = 0;
+            lastActionTick = 0;
             projectile.netUpdate = true;
             spawnSource = source;
             if(source is EntitySource_ItemUse_WithAmmo itemSourceWithAmmo)
