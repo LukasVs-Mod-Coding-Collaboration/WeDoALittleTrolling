@@ -61,7 +61,17 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.crit = 16;
 
             Item.rare = ItemRarityID.Red;
-            Item.scale= 1.0f;
+            Item.scale = 1.0f;
+        }
+
+        public override bool AltFunctionUse(Player player) // Woohoo invincibility charge!
+        {
+            player.SetImmuneTimeForAllTypes(player.longInvince ? 60 : 60);
+            Vector2 chargeDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
+            chargeDirection.Normalize();
+            chargeDirection *= 24f;
+            player.velocity = chargeDirection;
+            return false;
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
@@ -82,8 +92,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             CreateRecipe()
               .AddTile(TileID.LunarCraftingStation)
               .AddIngredient(ItemID.CobaltSword, 1)
+              .AddIngredient(ItemID.MythrilSword,1)
               .AddIngredient(ItemID.Diamond, 10)
               .AddIngredient(ItemID.Sapphire, 10)
+              .AddIngredient(ItemID.Emerald, 10)
               .AddIngredient(ItemID.LunarBar, 5)
               .AddIngredient(ItemID.FragmentStardust, 15)
               .AddIngredient(ItemID.FragmentVortex, 5)
