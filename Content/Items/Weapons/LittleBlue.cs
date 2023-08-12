@@ -27,12 +27,15 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using Microsoft.CodeAnalysis;
+using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class LittleBlue : ModItem
     {
         public static UnifiedRandom rnd = new UnifiedRandom(); //Introduce random Values
+        public long lastDashTick;
 
         public override void SetDefaults()
         {
@@ -66,11 +69,33 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool AltFunctionUse(Player player) // Woohoo invincibility charge!
         {
-            player.SetImmuneTimeForAllTypes(player.longInvince ? 60 : 60);
-            Vector2 chargeDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
-            chargeDirection.Normalize();
-            chargeDirection *= 24f;
-            player.velocity = chargeDirection;
+            if((player.GetModPlayer<WDALTPlayerUtil>().currentTick - lastDashTick) > 120)
+            {
+                player.SetImmuneTimeForAllTypes(player.longInvince ? 90 : 60);
+                Vector2 chargeDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
+                chargeDirection.Normalize();
+                chargeDirection *= 24f;
+                player.velocity = chargeDirection;
+                player.GetModPlayer<WDALTPlayerUtil>().chargeAccelerationTicks += 20;
+                for (int i = 0; i < 60; i++)
+                {
+                    int rMax = (int)player.width;
+                    double r = rMax * Math.Sqrt(rnd.NextDouble());
+                    double angle = rnd.NextDouble() * 2 * Math.PI;
+                    int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                    int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                    Vector2 dustPosition = player.Center;
+                    dustPosition.X += xOffset;
+                    dustPosition.Y += yOffset;
+                    Vector2 dustVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
+                    dustVelocity.Normalize();
+                    dustVelocity *= 8f;
+                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Electric, dustVelocity, 0, default);
+                    newDust.noGravity = true;
+                }
+                SoundEngine.PlaySound(SoundID.Item117, player.Center);
+                lastDashTick = player.GetModPlayer<WDALTPlayerUtil>().currentTick;
+            }
             return false;
         }
 

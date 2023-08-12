@@ -54,7 +54,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.accRunSpeed += 0.4f;
             if(player.lifeRegen >= 0)
             {
-                player.lifeRegen += 40; //HP Regen (originally 25)
+                player.lifeRegen += 25; //HP Regen (originally 25)
             }
             //player.GetAttackSpeed(DamageClass.Generic) += 0.25f;
             player.longInvince = true; //Cross Necklace effect

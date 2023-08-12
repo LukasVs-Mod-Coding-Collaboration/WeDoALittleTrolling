@@ -48,6 +48,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool heartOfDespair;
         public Player player;
         public long currentTick;
+        public int chargeAccelerationTicks;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -63,6 +64,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             sorcerousMirror = false;
             heartOfDespair = false;
             currentTick = 0;
+            chargeAccelerationTicks = 0;
         }
 
         public override void UpdateDead()
@@ -82,6 +84,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             sorcerousMirror = false;
             heartOfDespair = false;
             currentTick = 0;
+            chargeAccelerationTicks = 0;
         }
 
         public override void ResetEffects()
@@ -165,6 +168,15 @@ namespace WeDoALittleTrolling.Common.Utilities
                 return true;
             }
             return base.FreeDodge(info);
+        }
+
+        public override void PreUpdate()
+        {
+            if (chargeAccelerationTicks > 0)
+            {
+                player.maxFallSpeed *= 2.5f;
+                chargeAccelerationTicks--;
+            }
         }
 
         public override void UpdateLifeRegen()
