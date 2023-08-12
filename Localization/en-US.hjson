@@ -290,9 +290,9 @@ Mods: {
 			Beamlaser1.DisplayName: Artemis Beam Laser
 			Beamlaser2.DisplayName: Apollon Beam Laser
 			Beamlaser2_AutoAim.DisplayName: Apollon Beam Laser
-			PhotonsplicerProjectile.DisplayName: Photonsplicer Projectile
+			PhotonsplicerProjectile.DisplayName: Photonsplicer
 			PhantomStaffProjectile.DisplayName: Luminite Phantom
-			PhantomStaffProjectileBullet.DisplayName: Phantom Staff Projectile Bullet
+			PhantomStaffProjectileBullet.DisplayName: Luminite Phantom Laser
 		}
 
 		Prefixes: {

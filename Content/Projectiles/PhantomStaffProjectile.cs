@@ -39,6 +39,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float idleIdleness = 32f;
         public const float attackIdleness = 2f;
         public const float idleDistance = 64f;
+        public long lastActionTick;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void SetStaticDefaults()
@@ -176,7 +177,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 if
                 (
-                    ((Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - Projectile.GetGlobalProjectile<WDALTProjectileUtil>().lastActionTick) > Projectile.localNPCHitCooldown) &&
+                    ((Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) > Projectile.localNPCHitCooldown) &&
                     (distanceToTarget > detectionRangeOffset * 2)
                 )
                 {
@@ -215,7 +216,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         );
                     }
                     SoundEngine.PlaySound(SoundID.NPCHit44, Projectile.Center);
-                    Projectile.GetGlobalProjectile<WDALTProjectileUtil>().lastActionTick = Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
+                    lastActionTick = Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
                 }
             }
             else
