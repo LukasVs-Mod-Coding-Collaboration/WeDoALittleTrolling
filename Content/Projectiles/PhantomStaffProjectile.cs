@@ -31,10 +31,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float overlapCorrectionFactor = 0.02f;
         public const float detectionRange = 1024f;
         public const float detectionRangeOffset = 48f;
-        public const float moveSpeed = 16f;
-        public const float idleIdleness = 32f;
-        public const float attackIdleness = 4f;
-        public const float idleDistance = 32f;
+        public const float moveSpeed = 32f;
+        public const float idleIdleness = 64f;
+        public const float attackIdleness = 8f;
+        public const float idleDistance = 64f;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void SetStaticDefaults()
@@ -47,8 +47,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 48;
-            Projectile.height = 48;
+            Projectile.width = 50;
+            Projectile.height = 70;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.minion = true;
