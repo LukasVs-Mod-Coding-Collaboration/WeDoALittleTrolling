@@ -36,8 +36,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 38;
-            Item.height = 40;
+            Item.width = 54;
+            Item.height = 60;
 
             Item.consumable = false;
 
@@ -61,7 +61,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.crit = 16;
 
             Item.rare = ItemRarityID.Red;
-            Item.scale= 1.2f;
+            Item.scale= 1.0f;
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
