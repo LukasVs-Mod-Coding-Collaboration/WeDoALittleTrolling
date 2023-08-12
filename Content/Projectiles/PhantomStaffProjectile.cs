@@ -23,17 +23,21 @@ using Terraria.Utilities;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Buffs;
+using Terraria.Audio;
+using WeDoALittleTrolling.Common.Utilities;
+using Terraria.DataStructures;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class PhantomStaffProjectile : ModProjectile
     {
-        public const float overlapCorrectionFactor = 0.02f;
+        public const float idleOverlapCorrectionFactor = 0.04f;
+        public const float attackOverlapCorrectionFactor = 0.02f;
         public const float detectionRange = 1024f;
-        public const float detectionRangeOffset = 48f;
-        public const float moveSpeed = 32f;
-        public const float idleIdleness = 64f;
-        public const float attackIdleness = 8f;
+        public const float detectionRangeOffset = 70f;
+        public const float moveSpeed = 16f;
+        public const float idleIdleness = 32f;
+        public const float attackIdleness = 2f;
         public const float idleDistance = 64f;
         public static UnifiedRandom random = new UnifiedRandom();
         
@@ -61,7 +65,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.timeLeft = 10;
             Projectile.netImportant = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 24;
+            Projectile.localNPCHitCooldown = 20;
             Projectile.light = 0.8f;
         }
 
@@ -88,7 +92,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.timeLeft = 10;
             }
             Vector2 idlePos = owner.Center;
-            idlePos.Y -= 128f;
+            idlePos.Y -= (Projectile.height * 4f);
             Vector2 vectorToIdlePos = idlePos - Projectile.Center;
             float distanceToIdlePos = vectorToIdlePos.Length();
             if (Main.myPlayer == owner.whoAmI && distanceToIdlePos > (detectionRange * 2f))
@@ -96,35 +100,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.position = idlePos;
                 Projectile.velocity *= 0.16f;
                 Projectile.netUpdate = true;
-            }
-            for (int i = 0; i < Main.projectile.Length; i++)
-            {
-                Projectile otherMinion = Main.projectile[i];
-                if
-                (
-                    (i != Projectile.whoAmI) &&
-                    (otherMinion.active) &&
-                    (otherMinion.owner == Projectile.owner) &&
-                    ((Math.Abs(Projectile.position.X - otherMinion.position.X) + Math.Abs(Projectile.position.Y - otherMinion.position.Y)) < Projectile.width)
-                )
-                {
-                    if (Projectile.position.X < otherMinion.position.X)
-                    {
-                        Projectile.velocity.X -= overlapCorrectionFactor;
-                    }
-                    else
-                    {
-                        Projectile.velocity.X += overlapCorrectionFactor;
-                    }
-                    if (Projectile.position.Y < otherMinion.position.Y)
-                    {
-                        Projectile.velocity.Y -= overlapCorrectionFactor;
-                    }
-                    else
-                    {
-                        Projectile.velocity.Y += overlapCorrectionFactor;
-                    }
-                }
             }
             float distanceToTarget = detectionRange;
             bool targetDetected = false;
@@ -156,6 +131,40 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                 }
             }
+            float cFactor = attackOverlapCorrectionFactor;
+            if(!targetDetected)
+            {
+                cFactor = idleOverlapCorrectionFactor;
+            }
+            for (int i = 0; i < Main.projectile.Length; i++)
+            {
+                Projectile otherMinion = Main.projectile[i];
+                if
+                (
+                    (i != Projectile.whoAmI) &&
+                    (otherMinion.active) &&
+                    (otherMinion.owner == Projectile.owner) &&
+                    ((Math.Abs(Projectile.position.X - otherMinion.position.X) + Math.Abs(Projectile.position.Y - otherMinion.position.Y)) < (Projectile.width))
+                )
+                {
+                    if (Projectile.position.X < otherMinion.position.X)
+                    {
+                        Projectile.velocity.X -= cFactor;
+                    }
+                    else
+                    {
+                        Projectile.velocity.X += cFactor;
+                    }
+                    if (Projectile.position.Y < otherMinion.position.Y)
+                    {
+                        Projectile.velocity.Y -= cFactor;
+                    }
+                    else
+                    {
+                        Projectile.velocity.Y += cFactor;
+                    }
+                }
+            }
             if(targetDetected)
             {
                 if(distanceToTarget > detectionRangeOffset)
@@ -164,7 +173,49 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     moveVector.Normalize();
                     moveVector *= moveSpeed;
                     Projectile.velocity = (((Projectile.velocity * (attackIdleness - 1f)) + moveVector) / attackIdleness);
-
+                }
+                if
+                (
+                    ((Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - Projectile.GetGlobalProjectile<WDALTProjectileUtil>().lastActionTick) > Projectile.localNPCHitCooldown) &&
+                    (distanceToTarget > detectionRangeOffset * 2)
+                )
+                {
+                    if(Projectile.owner == Main.myPlayer)
+                    {
+                        Vector2 offset1 = new Vector2(-8.5f, -12.5f);
+                        Vector2 offset2 = new Vector2(8.5f, -12.5f);
+                        Vector2 pos1 = Projectile.Center + offset1;
+                        Vector2 pos2 = Projectile.Center + offset2;
+                        Vector2 shootVector1 = (targetCenter - pos1);
+                        Vector2 shootVector2 = (targetCenter - pos2);
+                        int dmg = (int)Math.Round(Projectile.damage * 0.5); //We shoot 2 projectiles so only 0.5x damage per projectile.
+                        shootVector1.Normalize();
+                        shootVector1 *= (moveSpeed * 2);
+                        shootVector2.Normalize();
+                        shootVector2 *= (moveSpeed * 2);
+                        Projectile.NewProjectile
+                        (
+                            Projectile.GetSource_FromAI(),
+                            pos1,
+                            shootVector1,
+                            ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
+                            dmg,
+                            Projectile.knockBack,
+                            Projectile.owner
+                        );
+                        Projectile.NewProjectile
+                        (
+                            Projectile.GetSource_FromAI(),
+                            pos2,
+                            shootVector2,
+                            ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
+                            dmg,
+                            Projectile.knockBack,
+                            Projectile.owner
+                        );
+                    }
+                    SoundEngine.PlaySound(SoundID.NPCHit44, Projectile.Center);
+                    Projectile.GetGlobalProjectile<WDALTProjectileUtil>().lastActionTick = Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
                 }
             }
             else
@@ -187,7 +238,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void PostDraw(Color lightColor)
         {
-            int rMax = (int)Math.Round(Projectile.width*Projectile.scale);
+            int rMax = (int)Projectile.width;
             double r = rMax * Math.Sqrt(random.NextDouble());
             double angle = random.NextDouble() * 2 * Math.PI;
             int xOffset = (int)Math.Round(r * Math.Cos(angle));
@@ -195,11 +246,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Vector2 dustPosition = Projectile.Center;
             dustPosition.X += xOffset;
             dustPosition.Y += yOffset;
-            int dustType = random.Next(0, 8);
+            int dustType = random.Next(0, 16);
             switch (dustType)
             {
                 case 0:
-                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default, Projectile.scale);
+                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default);
                     newDust.noGravity = true;
                     break;
                 default:

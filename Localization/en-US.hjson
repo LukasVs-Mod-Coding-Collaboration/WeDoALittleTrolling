@@ -292,6 +292,7 @@ Mods: {
 			Beamlaser2_AutoAim.DisplayName: Apollon Beam Laser
 			PhotonsplicerProjectile.DisplayName: Photonsplicer Projectile
 			PhantomStaffProjectile.DisplayName: Luminite Phantom
+			PhantomStaffProjectileBullet.DisplayName: Phantom Staff Projectile Bullet
 		}
 
 		Prefixes: {
