@@ -180,7 +180,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 if
                 (
-                    (Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) > Projectile.localNPCHitCooldown) &&
+                    (Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) >= Projectile.localNPCHitCooldown) &&
                     (distanceToTarget > detectionRangeOffset * 2)
                 )
                 {
