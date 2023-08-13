@@ -69,7 +69,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool AltFunctionUse(Player player) // Woohoo invincibility charge!
         {
-            if((player.GetModPlayer<WDALTPlayerUtil>().currentTick - lastDashTick) > 120)
+            if(Math.Abs(player.GetModPlayer<WDALTPlayerUtil>().currentTick - lastDashTick) > 120)
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 90 : 60);
                 Vector2 chargeDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
