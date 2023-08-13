@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.consumable = false;
 
-            Item.value = Item.buyPrice(platinum: 1);
+            Item.value = Item.sellPrice(platinum: 1);
             Item.maxStack = 1;
 
             Item.autoReuse = true;
@@ -103,11 +103,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             int damage = damageDone;
             float knockBack = hit.Knockback;
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-6, -3), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, Main.myPlayer);
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(-3, 0), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, Main.myPlayer);
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 580), new Vector2(0, 30f), ProjectileID.Electrosphere, damage = 1875, knockBack = 6f, Main.myPlayer);
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(0, 3), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, Main.myPlayer);
-            Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(3, 6), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, Main.myPlayer);
+            Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-6, -3), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
+            Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(-3, 0), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
+            Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 580), new Vector2(0, 30f), ProjectileID.Electrosphere, damage = 1875, knockBack = 6f, player.whoAmI);
+            Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(0, 3), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
+            Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(3, 6), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
             base.OnHitNPC(player, target, hit, damageDone);    
         } //Projectile spawn location calculator, summons projectiles on hit
 

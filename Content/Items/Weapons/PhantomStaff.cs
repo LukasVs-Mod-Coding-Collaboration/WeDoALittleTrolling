@@ -47,7 +47,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.consumable = false;
 
-            Item.value = Item.buyPrice(platinum: 1);
+            Item.value = Item.sellPrice(platinum: 1);
             Item.maxStack = 1;
 
             Item.autoReuse = true;
@@ -78,7 +78,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             player.AddBuff(Item.buffType, 10);
-            Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
+            Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
             projectile.originalDamage = Item.damage;
             return false;
         }

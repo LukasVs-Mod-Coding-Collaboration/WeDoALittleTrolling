@@ -220,7 +220,7 @@ Mods: {
 
 			Photonsplicer: {
 				DisplayName: Photonsplicer
-				Tooltip: ""
+				Tooltip: Legacy Item
 			}
 
 			DustyFossil: {

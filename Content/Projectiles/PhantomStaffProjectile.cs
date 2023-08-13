@@ -82,21 +82,21 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            Player owner = Main.player[Projectile.owner];
-            if(!owner.active || owner.dead)
+            Player ownerPlayer = Main.player[Projectile.owner];
+            if(!ownerPlayer.active || ownerPlayer.dead)
             {
-                owner.ClearBuff(ModContent.BuffType<PhantomStaffBuff>());
+                ownerPlayer.ClearBuff(ModContent.BuffType<PhantomStaffBuff>());
                 return;
             }
-            if(owner.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
+            if(ownerPlayer.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
             {
                 Projectile.timeLeft = 10;
             }
-            Vector2 idlePos = owner.Center;
+            Vector2 idlePos = ownerPlayer.Center;
             idlePos.Y -= (Projectile.height * 4f);
             Vector2 vectorToIdlePos = idlePos - Projectile.Center;
             float distanceToIdlePos = vectorToIdlePos.Length();
-            if (Main.myPlayer == owner.whoAmI && distanceToIdlePos > (detectionRange * 2f))
+            if (Projectile.owner == Main.myPlayer && distanceToIdlePos > (detectionRange * 2f))
             {
                 Projectile.position = idlePos;
                 Projectile.velocity *= 0.16f;
@@ -106,9 +106,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             bool targetDetected = false;
             Vector2 targetCenter = Projectile.Center;
             Vector2 targetVelocity = Vector2.Zero;
-            if(owner.HasMinionAttackTargetNPC)
+            if(ownerPlayer.HasMinionAttackTargetNPC)
             {
-                NPC target = Main.npc[owner.MinionAttackTargetNPC];
+                NPC target = Main.npc[ownerPlayer.MinionAttackTargetNPC];
                 if(Vector2.Distance(target.Center, Projectile.Center) < (detectionRange * 2f))
                 {
                     distanceToTarget = Vector2.Distance(target.Center, Projectile.Center);
@@ -187,7 +187,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     if(Projectile.owner == Main.myPlayer)
                     {
                         Vector2 offset1 = new Vector2(-8.5f, -12.5f);
-                        Vector2 offset2 = new Vector2(8.5f, -12.5f);
+                        Vector2 offset2 = new Vector2(9.5f, -12.5f);
                         Vector2 pos1 = Projectile.Center + offset1;
                         Vector2 pos2 = Projectile.Center + offset2;
                         Vector2 predictVelocity = targetVelocity * (distanceToTarget / (moveSpeed * 2f)); //Roughly Predict where the target is going to be when the Laser reaches it
@@ -198,7 +198,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         shootVector1 *= (moveSpeed * 2f);
                         shootVector2.Normalize();
                         shootVector2 *= (moveSpeed * 2f);
-                        Projectile.NewProjectile
+                        Projectile.NewProjectileDirect
                         (
                             Projectile.GetSource_FromAI(),
                             pos1,
@@ -208,7 +208,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                             Projectile.knockBack,
                             Projectile.owner
                         );
-                        Projectile.NewProjectile
+                        Projectile.NewProjectileDirect
                         (
                             Projectile.GetSource_FromAI(),
                             pos2,

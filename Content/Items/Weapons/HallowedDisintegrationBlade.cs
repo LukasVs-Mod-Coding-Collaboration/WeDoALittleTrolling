@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.consumable = false;
 
-            Item.value = Item.buyPrice(platinum: 1);
+            Item.value = Item.sellPrice(gold: 8);
             Item.maxStack = 1;
 
             Item.autoReuse = true;
@@ -59,7 +59,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.knockBack = 5f;
             Item.scale = 1.5f;
 
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.LightPurple;
         }
 
         public override bool AltFunctionUse(Player player) // Woohoo invincibility charge!
@@ -89,7 +89,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 projVelocity.Normalize();
                 projVelocity *= 6f;
                 int dmg = (int)Math.Round(Item.damage * 0.5);
-                Projectile newProjectile = Projectile.NewProjectileDirect(player.GetSource_OnHit(target), projPosition, projVelocity, ProjectileID.CrystalStorm, dmg, Item.knockBack, Main.myPlayer);
+                Projectile.NewProjectileDirect(player.GetSource_OnHit(target), projPosition, projVelocity, ProjectileID.CrystalStorm, dmg, Item.knockBack, player.whoAmI);
             }
             base.OnHitNPC(player, target, hit, damageDone);    
         }

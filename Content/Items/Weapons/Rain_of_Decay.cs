@@ -133,7 +133,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 burstArrowSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles)));
-                    Projectile.NewProjectile(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
+                    Projectile.NewProjectileDirect(source, position, burstArrowSpeed, type, damage, knockback, player.whoAmI);
                 }
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -150,7 +150,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             }
             else
             {
-                Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket soundPlayRainOfDecayPacket = Mod.GetPacket();
