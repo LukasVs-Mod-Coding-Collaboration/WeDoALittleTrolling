@@ -143,7 +143,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ItemID.Terragrim,
             ItemID.Arkhalis,
             ItemID.VampireKnives,
-            ItemID.ScourgeoftheCorruptor
+            ItemID.ScourgeoftheCorruptor,
+            ModContent.ItemType<HallowedDisintegrationBlade>(),
+            ModContent.ItemType<LittleBlue>()
         };
         public static readonly int[] CompatibleProjectileIDs =
         {
@@ -182,7 +184,10 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ProjectileID.VampireKnife,
             ProjectileID.VampireHeal,
             ProjectileID.EatersBite,
-            ProjectileID.TinyEater
+            ProjectileID.TinyEater,
+            ProjectileID.CrystalStorm,
+            ProjectileID.Typhoon,
+            ProjectileID.Electrosphere
         };
         public static readonly int[] ShortswordCompatibleProjectileIDs =
         {
@@ -220,7 +225,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ProjectileID.VampireKnife,
             ProjectileID.VampireHeal,
             ProjectileID.EatersBite,
-            ProjectileID.TinyEater
+            ProjectileID.TinyEater,
+            ProjectileID.CrystalStorm
         };
 
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;

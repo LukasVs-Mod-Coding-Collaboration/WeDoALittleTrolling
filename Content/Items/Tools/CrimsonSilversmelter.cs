@@ -56,6 +56,7 @@ namespace WeDoALittleTrolling.Content.Items.Tools
 
             Item.rare = ItemRarityID.Yellow;
         }
+        /*
         public override void AddRecipes()
         {
             CreateRecipe()
@@ -74,5 +75,6 @@ namespace WeDoALittleTrolling.Content.Items.Tools
              .AddIngredient(ItemID.Ruby, 5)
              .Register();
         }
+        */
     }
 }

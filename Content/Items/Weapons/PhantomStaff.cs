@@ -66,7 +66,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;
 
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ItemRarityID.Red;
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

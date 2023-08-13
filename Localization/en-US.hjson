@@ -143,6 +143,7 @@ Mods: {
 					Using the power of a fallen star,
 					the edge of the pickaxe blazes
 					with a layer of writhing energy.
+					Legacy Item
 					'''
 			}
 
@@ -153,6 +154,7 @@ Mods: {
 					Constantly heated by power of a fallen star,
 					the edge of the pickaxe blazes
 					with a layer of glowing hot magma.
+					Legacy Item
 					'''
 			}
 
@@ -233,17 +235,17 @@ Mods: {
 
 			SearingBreastplate: {
 				DisplayName: Searing Breastplate
-				Tooltip: ""
+				Tooltip: Unfinished Item
 			}
 
 			SearingHelmet: {
 				DisplayName: Searing Helmet
-				Tooltip: ""
+				Tooltip: Unfinished Item
 			}
 
 			SearingLeggings: {
 				DisplayName: Searing Leggings
-				Tooltip: ""
+				Tooltip: Unfinished Item
 			}
 
 			HellishFossil: {
@@ -283,6 +285,11 @@ Mods: {
 					Summons a Luminite Phantom to fight for you
 					Ignores a substantial amount of enemy defense
 					'''
+			}
+
+			HallowedDisintegrationBlade: {
+				DisplayName: Hallowed Disintegration Blade
+				Tooltip: ""
 			}
 		}
 

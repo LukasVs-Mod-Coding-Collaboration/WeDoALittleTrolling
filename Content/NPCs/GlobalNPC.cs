@@ -581,10 +581,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                             randomModifierY *= (sprayIntensity * 16.0f);
                             Vector2 vectorToTarget = new Vector2((Main.player[npc.target].Center.X + randomModifierX) - npc.Center.X, (Main.player[npc.target].Center.Y + randomModifierY) - npc.Center.Y);
                             vectorToTarget.Normalize();
-                            int i = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y, vectorToTarget.X, vectorToTarget.Y, ProjectileID.PoisonSeedPlantera, damage, 0f, Main.myPlayer);
-                            Main.projectile[i].timeLeft = 300;
-                            Main.projectile[i].extraUpdates = 1;
-                            Main.projectile[i].GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed = true;
+                            Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromThis(), npc.Center, vectorToTarget, ProjectileID.PoisonSeedPlantera, damage, 0f, Main.myPlayer);
+                            proj.timeLeft = 300;
+                            proj.extraUpdates = 1;
+                            proj.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed = true;
                         }
                     }
                 }
