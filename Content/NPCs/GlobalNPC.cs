@@ -773,6 +773,18 @@ namespace WeDoALittleTrolling.Content.NPCs
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.WDALTModContentIDIntegrity)
+            {
+                //Buff Thorium Bosses Accordingly
+                if(WDALTModSystem.WDALTModContentIDInstance.InflictWreckedResistance1in1Group_ThoriumBoss.Contains(npcType))
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+                if(WDALTModSystem.WDALTModContentIDInstance.InflictDevastated1in1Group_ThoriumBoss.Contains(npcType))
+                {
+                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)

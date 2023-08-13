@@ -292,7 +292,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 if(player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
-                    long ticksSinceLastHeal = (currentTick - lastLeechingHealTick);
+                    long ticksSinceLastHeal = Math.Abs(currentTick - lastLeechingHealTick);
                     if(ticksSinceLastHeal >= ((double)player.itemAnimationMax/2.0)) // Only heal player 2 times every item use
                     {
                         player.Heal(healingAmount);

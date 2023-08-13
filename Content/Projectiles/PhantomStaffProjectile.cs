@@ -105,6 +105,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             float distanceToTarget = detectionRange;
             bool targetDetected = false;
             Vector2 targetCenter = Projectile.Center;
+            Vector2 targetVelocity = Vector2.Zero;
             if(owner.HasMinionAttackTargetNPC)
             {
                 NPC target = Main.npc[owner.MinionAttackTargetNPC];
@@ -112,6 +113,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     distanceToTarget = Vector2.Distance(target.Center, Projectile.Center);
                     targetCenter = target.Center;
+                    targetVelocity = target.velocity;
                     targetDetected = true;
                 }
             }
@@ -127,6 +129,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         {
                             distanceToTarget = currentDistance;
                             targetCenter = target.Center;
+                            targetVelocity = target.velocity;
                             targetDetected = true;
                         }
                     }
@@ -187,13 +190,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         Vector2 offset2 = new Vector2(8.5f, -12.5f);
                         Vector2 pos1 = Projectile.Center + offset1;
                         Vector2 pos2 = Projectile.Center + offset2;
-                        Vector2 shootVector1 = (targetCenter - pos1);
-                        Vector2 shootVector2 = (targetCenter - pos2);
+                        Vector2 predictVelocity = targetVelocity * (distanceToTarget / (moveSpeed * 2f)); //Roughly Predict where the target is going to be when the Laser reaches it
+                        Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
+                        Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
                         int dmg = (int)Math.Round(Projectile.damage * 0.5); //We shoot 2 projectiles so only 0.5x damage per projectile.
                         shootVector1.Normalize();
-                        shootVector1 *= (moveSpeed * 2);
+                        shootVector1 *= (moveSpeed * 2f);
                         shootVector2.Normalize();
-                        shootVector2 *= (moveSpeed * 2);
+                        shootVector2 *= (moveSpeed * 2f);
                         Projectile.NewProjectile
                         (
                             Projectile.GetSource_FromAI(),

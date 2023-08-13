@@ -43,6 +43,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public int ThoriumBoss_OLD;
         public int ThoriumBoss_SFF;
         public int ThoriumBoss_DE;
+        public int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(10+1)];
+        public int[] InflictDevastated1in1Group_ThoriumBoss = new int[(1+1)];
 
         public bool SetContentIDs()
         {
@@ -204,6 +206,19 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(integrity)
             {
+                InflictWreckedResistance1in1Group_ThoriumBoss[0] = ThoriumBoss_BS_V1;
+                InflictWreckedResistance1in1Group_ThoriumBoss[1] = ThoriumBoss_BS_V2;
+                InflictWreckedResistance1in1Group_ThoriumBoss[2] = ThoriumBoss_FB_V1;
+                InflictWreckedResistance1in1Group_ThoriumBoss[3] = ThoriumBoss_FB_V2;
+                InflictWreckedResistance1in1Group_ThoriumBoss[4] = ThoriumBoss_LI_V1;
+                InflictWreckedResistance1in1Group_ThoriumBoss[5] = ThoriumBoss_FO_V1;
+                InflictWreckedResistance1in1Group_ThoriumBoss[6] = ThoriumBoss_FO_V2;
+                InflictWreckedResistance1in1Group_ThoriumBoss[7] = ThoriumBoss_FO_V3;
+                InflictWreckedResistance1in1Group_ThoriumBoss[8] = ThoriumBoss_AET;
+                InflictWreckedResistance1in1Group_ThoriumBoss[9] = ThoriumBoss_SFF;
+                InflictWreckedResistance1in1Group_ThoriumBoss[10] = ThoriumBoss_DE;
+                InflictDevastated1in1Group_ThoriumBoss[0] = ThoriumBoss_OLD;
+                InflictDevastated1in1Group_ThoriumBoss[1] = ThoriumBoss_LI_V2;
                 return true;
             }
             else
