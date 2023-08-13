@@ -16,5 +16,6 @@
     <Folder Include="Assets\Sounds\" />
     <Folder Include="Common\" />
     <Folder Include="Localisation\" />
+    <Folder Include="OriginalArtwork\" />
   </ItemGroup>
 </Project>
