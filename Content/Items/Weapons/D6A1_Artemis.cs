@@ -24,6 +24,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Common.ModSystems;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
@@ -75,6 +76,19 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-36.5f, -5.0f);
+        }
+
+        public override void AddRecipes()
+        {
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                CreateRecipe()
+                    .AddTile(TileID.LunarCraftingStation)
+                    .AddIngredient(ItemID.Celeb2, 1)
+                    .AddIngredient(ItemID.LunarBar, 10)
+                    .AddIngredient(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_Fragment_STS), 10)
+                    .Register();
+            }
         }
 
     }

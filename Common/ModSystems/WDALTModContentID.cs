@@ -22,203 +22,148 @@ using Terraria.ModLoader;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
-    internal class WDALTModContentID
+    internal static class WDALTModContentID
     {
-        public int ThoriumBoss_GTB;
-        public int ThoriumBoss_QJ;
-        public int ThoriumBoss_VC;
-        public int ThoriumBoss_GES;
-        public int ThoriumBoss_BC;
-        public int ThoriumBoss_SCS;
-        public int ThoriumBoss_BS_V1;
-        public int ThoriumBoss_BS_V2;
-        public int ThoriumBoss_FB_V1;
-        public int ThoriumBoss_FB_V2;
-        public int ThoriumBoss_LI_V1;
-        public int ThoriumBoss_LI_V2;
-        public int ThoriumBoss_FO_V1;
-        public int ThoriumBoss_FO_V2;
-        public int ThoriumBoss_FO_V3;
-        public int ThoriumBoss_AET;
-        public int ThoriumBoss_OLD;
-        public int ThoriumBoss_SFF;
-        public int ThoriumBoss_DE;
-        public int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(10+1)];
-        public int[] InflictDevastated1in1Group_ThoriumBoss = new int[(1+1)];
+        public const int ThoriumBoss_GTB = 0;
+        public const int ThoriumBoss_QJ = 1;
+        public const int ThoriumBoss_VC = 2;
+        public const int ThoriumBoss_GES = 3;
+        public const int ThoriumBoss_BC = 4;
+        public const int ThoriumBoss_SCS = 5;
+        public const int ThoriumBoss_BS_V1 = 6;
+        public const int ThoriumBoss_BS_V2 = 7;
+        public const int ThoriumBoss_FB_V1 = 8;
+        public const int ThoriumBoss_FB_V2 = 9;
+        public const int ThoriumBoss_LI_V1 = 10;
+        public const int ThoriumBoss_LI_V2 = 11;
+        public const int ThoriumBoss_FO_V1 = 12;
+        public const int ThoriumBoss_FO_V2 = 13;
+        public const int ThoriumBoss_FO_V3 = 14;
+        public const int ThoriumBoss_AET = 15;
+        public const int ThoriumBoss_OLD = 16;
+        public const int ThoriumBoss_SFF = 17;
+        public const int ThoriumBoss_DE = 18;
+        private static readonly string[] ThoriumBossRegisterStrings =
+        {
+            "TheGrandThunderBird",
+            "QueenJellyfish",
+            "Viscount",
+            "GraniteEnergyStorm",
+            "BuriedChampion",
+            "StarScouter",
+            "BoreanStrider",
+            "BoreanStriderPopped",
+            "FallenBeholder",
+            "FallenBeholder2",
+            "Lich",
+            "LichHeadless",
+            "ForgottenOne",
+            "ForgottenOneCracked",
+            "ForgottenOneReleased",
+            "Aquaius",
+            "Omnicide",
+            "SlagFury",
+            "DreamEater"
+        };
+        private static int[] ThoriumBossNPCID = new int[ThoriumBossRegisterStrings.Length];
+        public const int ThoriumItem_Essence_AET = 0;
+        public const int ThoriumItem_Essence_OLD = 1;
+        public const int ThoriumItem_Essence_SFF = 2;
+        public const int ThoriumItem_Fragment_WD = 3;
+        public const int ThoriumItem_Fragment_C = 4;
+        public const int ThoriumItem_Fragment_STS = 5;
+        private static readonly string[] ThoriumItemRegisterStrings =
+        {
+            "OceanEssence",
+            "DeathEssence",
+            "InfernoEssence",
+            "WhiteDwarfFragment",
+            "CelestialFragment",
+            "ShootingStarFragment"
+        };
+        private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
+        private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(10+1)];
+        private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(1+1)];
 
-        public bool SetContentIDs()
+        public static int GetThoriumBossNPCID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = ThoriumBossNPCID[modContentID];
+            }
+            catch
+            {
+                System.Console.WriteLine("WDALT: ERROR: GetThoriumBossNPCID() was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+        public static int GetThoriumItemID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = ThoriumItemItemID[modContentID];
+            }
+            catch
+            {
+                System.Console.WriteLine("WDALT: ERROR: GetThoriumItemID was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+
+        public static int[] GetThoriumBossInflictWreckedResistance1in1Group()
+        {
+            return InflictWreckedResistance1in1Group_ThoriumBoss;
+        }
+        public static int[] GetThoriumBossInflictDevastated1in1Group()
+        {
+            return InflictDevastated1in1Group_ThoriumBoss;
+        }
+        
+        public static bool SetContentIDs()
         {
             bool integrity = true;
             if(WDALTModSystem.TryGetThoriumMod(out Mod thoriumMod))
             {
-                if(thoriumMod.TryFind("TheGrandThunderBird", out ModNPC GTB))
+                for(int i = 0; i < ThoriumBossRegisterStrings.Length; i++)
                 {
-                    ThoriumBoss_GTB = GTB.Type;
+                    if(thoriumMod.TryFind(ThoriumBossRegisterStrings[i], out ModNPC bossNPC))
+                    {
+                        ThoriumBossNPCID[i] = bossNPC.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
                 }
-                else
+                for(int i = 0; i < ThoriumItemRegisterStrings.Length; i++)
                 {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("QueenJellyfish", out ModNPC QJ))
-                {
-                    ThoriumBoss_QJ = QJ.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("Viscount", out ModNPC VC))
-                {
-                    ThoriumBoss_VC = VC.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("GraniteEnergyStorm", out ModNPC GES))
-                {
-                    ThoriumBoss_GES = GES.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("BuriedChampion", out ModNPC BC))
-                {
-                    ThoriumBoss_BC = BC.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("StarScouter", out ModNPC SCS))
-                {
-                    ThoriumBoss_SCS = SCS.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("BoreanStrider", out ModNPC BS_V1))
-                {
-                    ThoriumBoss_BS_V1 = BS_V1.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("BoreanStriderPopped", out ModNPC BS_V2))
-                {
-                    ThoriumBoss_BS_V2 = BS_V2.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("FallenBeholder", out ModNPC FB_V1))
-                {
-                    ThoriumBoss_FB_V1 = FB_V1.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("FallenBeholder2", out ModNPC FB_V2))
-                {
-                    ThoriumBoss_FB_V2 = FB_V2.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("Lich", out ModNPC LI_V1))
-                {
-                    ThoriumBoss_LI_V1 = LI_V1.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("LichHeadless", out ModNPC LI_V2))
-                {
-                    ThoriumBoss_LI_V2 = LI_V2.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("ForgottenOne", out ModNPC FO_V1))
-                {
-                    ThoriumBoss_FO_V1 = FO_V1.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("ForgottenOneCracked", out ModNPC FO_V2))
-                {
-                    ThoriumBoss_FO_V2 = FO_V2.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("ForgottenOneReleased", out ModNPC FO_V3))
-                {
-                    ThoriumBoss_FO_V3 = FO_V3.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("Aquaius", out ModNPC AET))
-                {
-                    ThoriumBoss_AET = AET.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("Omnicide", out ModNPC OLD))
-                {
-                    ThoriumBoss_OLD = OLD.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("SlagFury", out ModNPC SFF))
-                {
-                    ThoriumBoss_SFF = SFF.Type;
-                }
-                else
-                {
-                    integrity = false;
-                }
-                if(thoriumMod.TryFind("DreamEater", out ModNPC DE))
-                {
-                    ThoriumBoss_DE = DE.Type;
-                }
-                else
-                {
-                    integrity = false;
+                    if(thoriumMod.TryFind(ThoriumItemRegisterStrings[i], out ModItem item))
+                    {
+                        ThoriumItemItemID[i] = item.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
                 }
             }
             if(integrity)
             {
-                InflictWreckedResistance1in1Group_ThoriumBoss[0] = ThoriumBoss_BS_V1;
-                InflictWreckedResistance1in1Group_ThoriumBoss[1] = ThoriumBoss_BS_V2;
-                InflictWreckedResistance1in1Group_ThoriumBoss[2] = ThoriumBoss_FB_V1;
-                InflictWreckedResistance1in1Group_ThoriumBoss[3] = ThoriumBoss_FB_V2;
-                InflictWreckedResistance1in1Group_ThoriumBoss[4] = ThoriumBoss_LI_V1;
-                InflictWreckedResistance1in1Group_ThoriumBoss[5] = ThoriumBoss_FO_V1;
-                InflictWreckedResistance1in1Group_ThoriumBoss[6] = ThoriumBoss_FO_V2;
-                InflictWreckedResistance1in1Group_ThoriumBoss[7] = ThoriumBoss_FO_V3;
-                InflictWreckedResistance1in1Group_ThoriumBoss[8] = ThoriumBoss_AET;
-                InflictWreckedResistance1in1Group_ThoriumBoss[9] = ThoriumBoss_SFF;
-                InflictWreckedResistance1in1Group_ThoriumBoss[10] = ThoriumBoss_DE;
-                InflictDevastated1in1Group_ThoriumBoss[0] = ThoriumBoss_OLD;
-                InflictDevastated1in1Group_ThoriumBoss[1] = ThoriumBoss_LI_V2;
+                InflictWreckedResistance1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_BS_V1);
+                InflictWreckedResistance1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_BS_V2);
+                InflictWreckedResistance1in1Group_ThoriumBoss[2] = GetThoriumBossNPCID(ThoriumBoss_FB_V1);
+                InflictWreckedResistance1in1Group_ThoriumBoss[3] = GetThoriumBossNPCID(ThoriumBoss_FB_V2);
+                InflictWreckedResistance1in1Group_ThoriumBoss[4] = GetThoriumBossNPCID(ThoriumBoss_LI_V1);
+                InflictWreckedResistance1in1Group_ThoriumBoss[5] = GetThoriumBossNPCID(ThoriumBoss_FO_V1);
+                InflictWreckedResistance1in1Group_ThoriumBoss[6] = GetThoriumBossNPCID(ThoriumBoss_FO_V2);
+                InflictWreckedResistance1in1Group_ThoriumBoss[7] = GetThoriumBossNPCID(ThoriumBoss_FO_V3);
+                InflictWreckedResistance1in1Group_ThoriumBoss[8] = GetThoriumBossNPCID(ThoriumBoss_AET);
+                InflictWreckedResistance1in1Group_ThoriumBoss[9] = GetThoriumBossNPCID(ThoriumBoss_SFF);
+                InflictWreckedResistance1in1Group_ThoriumBoss[10] = GetThoriumBossNPCID(ThoriumBoss_DE);
+                InflictDevastated1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_OLD);
+                InflictDevastated1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_LI_V2);
                 return true;
             }
             else

@@ -30,8 +30,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static bool isThoriumModPresent = false;
         public const string calamityModName = "CalamityMod";
         public const string thoriumModName = "ThoriumMod";
-        public static WDALTModContentID WDALTModContentIDInstance = new WDALTModContentID();
-        public static bool WDALTModContentIDIntegrity;
+        public static bool MCIDIntegrity;
         
         public override void OnModLoad()
         {
@@ -43,7 +42,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 isThoriumModPresent = true;
             }
-            WDALTModContentIDIntegrity = WDALTModContentIDInstance.SetContentIDs();
+            MCIDIntegrity = WDALTModContentID.SetContentIDs();
             base.OnModLoad();
         }
 

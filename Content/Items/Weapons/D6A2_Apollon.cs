@@ -27,6 +27,7 @@ using WeDoALittleTrolling.Content.Projectiles;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using WeDoALittleTrolling.Common.ModSystems;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -101,6 +102,26 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-36.5f, -5.0f);
+        }
+
+        public override void AddRecipes()
+        {
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                CreateRecipe()
+                    .AddTile(TileID.LunarCraftingStation)
+                    .AddIngredient(ModContent.ItemType<D6A1_Artemis>(), 1)
+                    .AddIngredient(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_Essence_SFF), 3)
+                    .AddIngredient(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_Essence_OLD), 3)
+                    .AddIngredient(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_Essence_AET), 3)
+                    .AddIngredient(ItemID.LunarBar, 20)
+                    .AddIngredient(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_Fragment_WD), 20)
+                    .AddIngredient(ItemID.FragmentStardust, 26)
+                    .AddIngredient(ItemID.FragmentVortex, 26)
+                    .AddIngredient(ItemID.FragmentNebula, 26)
+                    .AddIngredient(ItemID.FragmentSolar, 26)
+                    .Register();
+            }
         }
 
     }
