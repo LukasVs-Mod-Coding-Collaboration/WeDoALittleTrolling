@@ -84,6 +84,12 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_Soulconvert_V3.AddIngredient(ItemID.SoulofLight, 1);
             WDALT_Soulconvert_V3.AddCondition(ShimmerCondition);
             WDALT_Soulconvert_V3.Register();
+
+            Recipe WDALT_AvengerEmblem = Recipe.Create(ItemID.AvengerEmblem, 1);
+            WDALT_AvengerEmblem.AddTile(TileID.MythrilAnvil);
+            WDALT_AvengerEmblem.AddIngredient(ItemID.HallowedBar, 12);
+            WDALT_AvengerEmblem.AddIngredient(ItemID.SoulofNight, 12);
+            WDALT_AvengerEmblem.Register();
         }
 
         public static void AddComplexCraftingTreeItemDuplicationRecipes()
@@ -772,7 +778,8 @@ namespace WeDoALittleTrolling.Content.Recipes
                     }
                 }
 
-                //Gem Hooks now require one Geode
+                //Gem Hooks now require one Geode (disabled)
+                /*
                 if(recipe.TryGetResult(ItemID.AmethystHook, out Item AmethystHook))
                 {
                     recipe.AddIngredient(ItemID.Geode, 1);
@@ -801,6 +808,7 @@ namespace WeDoALittleTrolling.Content.Recipes
                 {
                     recipe.AddIngredient(ItemID.Geode, 1);
                 }
+                */
             }
         }
     }

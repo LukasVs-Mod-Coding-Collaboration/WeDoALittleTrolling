@@ -138,6 +138,36 @@ namespace WeDoALittleTrolling.Content.Items
             }
             base.UpdateEquip(item, player);
         }
+
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            if(item.type == ItemID.AvengerEmblem)
+            {
+                player.GetAttackSpeed(DamageClass.Generic) += 0.12f;
+            }
+            if(item.type == ItemID.PutridScent)
+            {
+                player.GetAttackSpeed(DamageClass.Generic) += 0.05f;
+            }
+            if(item.type == ItemID.DestroyerEmblem)
+            {
+                player.GetAttackSpeed(DamageClass.Generic) += 0.12f;
+                player.GetDamage(DamageClass.Generic) += 0.02f;
+                player.GetCritChance(DamageClass.Generic) += 2f;
+            }
+            if(item.type == ItemID.SniperScope)
+            {
+                player.GetAttackSpeed(DamageClass.Ranged) += 0.12f;
+                player.GetDamage(DamageClass.Ranged) += 0.02f;
+            }
+            if(item.type == ItemID.ReconScope)
+            {
+                player.GetAttackSpeed(DamageClass.Ranged) += 0.17f;
+                player.GetDamage(DamageClass.Ranged) += 0.07f;
+                player.GetCritChance(DamageClass.Ranged) += 5f;
+            }
+            base.UpdateAccessory(item, player, hideVisual);
+        }
         
         public static void ModifySetBonus(Player player)
         {
@@ -283,6 +313,48 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraArmorPenetrationDescription", "Ignores 20 points of enemy Defense");
                 tooltips.Add(extraCritChanceLine);
+            }
+            if
+            (
+                item.type == ItemID.AvengerEmblem
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "12% increased damage\n12% increased attack speed");
+            }
+            if
+            (
+                item.type == ItemID.PutridScent
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "5% increased damage, attack speed and\ncritical strike chance");
+            }
+            if
+            (
+                item.type == ItemID.DestroyerEmblem
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "12% increased damage\n12% increased attack speed");
+                List<TooltipLine> infoLine2 = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
+                infoLine2.ForEach(t => t.Text = "10% increased critical strike chance");
+            }
+            if
+            (
+                item.type == ItemID.SniperScope
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "12% increased ranged damage and attack speed\n10% increased ranged critical strike chance");
+            }
+            if
+            (
+                item.type == ItemID.ReconScope
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "17% increased ranged damage and attack speed\n15% increased ranged critical strike chance");
             }
             base.ModifyTooltips(item, tooltips);
         }

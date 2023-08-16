@@ -93,7 +93,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.timeLeft = 10;
             }
             Vector2 idlePos = ownerPlayer.Center;
-            idlePos.Y -= (Projectile.height * 4f);
+            idlePos.Y -= (Projectile.height * 3f);
             Vector2 vectorToIdlePos = idlePos - Projectile.Center;
             float distanceToIdlePos = vectorToIdlePos.Length();
             if (Projectile.owner == Main.myPlayer && distanceToIdlePos > (detectionRange * 2f))
