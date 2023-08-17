@@ -24,13 +24,13 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            tip = (3+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().devastatedStack * 3))+"% "+tip;
+            tip = (10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().devastatedStack * 10))+"% "+tip;
             base.ModifyBuffText(ref buffName, ref tip, ref rare);
         }
         
         public override bool ReApply(Player player, int time, int buffIndex)
         {
-            if(player.GetModPlayer<WDALTPlayerUtil>().devastatedStack < 9)
+            if(player.GetModPlayer<WDALTPlayerUtil>().devastatedStack < 2)
             {
                 player.GetModPlayer<WDALTPlayerUtil>().devastatedStack += 1;
             }

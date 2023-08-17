@@ -500,27 +500,24 @@ Mods: {
 				DisplayName: Devastated
 				Description:
 					'''
-					Decreased max life
+					decreased max life
 					Cannot dodge attacks
 					'''
 			}
 
 			WreckedResistance: {
 				DisplayName: Wrecked Resistance
-				Description:
-					'''
-					Debuff immunity is disabled
-					Damage reduction is decreased by
-					'''
+				Description: Damage reduction is decreased by
 			}
 
 			SearingInferno: {
 				DisplayName: Searing Inferno
 				Description:
 					'''
-					Damage reduced by 35% and losing life
+					Damage reduced by 30% and losing life
 					"If only there was a way to suppress this...
-					 Pherhaps I should check special Moon events,
+					 Pherhaps I should check the seasonal Moons,
+					 the Solar Eclipse, the Pirate Invasion,
 					 the Underworld and the Glowing Mushroom Biome."
 					'''
 			}

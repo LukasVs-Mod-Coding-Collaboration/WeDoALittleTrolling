@@ -15,7 +15,7 @@ namespace WeDoALittleTrolling.Content.Buffs
     public class SearingInferno : ModBuff
     {
 
-        public static float damageNerfMultiplier = 0.35f;
+        public static float damageNerfMultiplier = 0.30f;
 
         public override void SetStaticDefaults()
         {

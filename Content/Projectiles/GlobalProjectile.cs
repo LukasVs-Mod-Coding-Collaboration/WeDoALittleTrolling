@@ -105,7 +105,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.SaucerScrap,
             ProjectileID.MartianWalkerLaser,
             ProjectileID.RayGunnerLaser,
-            ProjectileID.BrainScramblerBolt
+            ProjectileID.BrainScramblerBolt,
+            ProjectileID.MartianTurretBolt,
+            ProjectileID.FrostBeam,
+            ProjectileID.SandnadoHostile,
+            ProjectileID.SandnadoHostileMark
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -118,7 +122,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.Cthulunado,
             ProjectileID.BombSkeletronPrime,
             ProjectileID.ThornBall,
-            ProjectileID.EyeFire
+            ProjectileID.EyeFire,
+            ProjectileID.HappyBomb
         };
         
         public override void SetDefaults(Projectile projectile)

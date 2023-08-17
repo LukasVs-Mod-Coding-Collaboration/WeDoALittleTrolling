@@ -159,7 +159,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.BigMimicCrimson,
             NPCID.BigMimicHallow,
             NPCID.BigMimicJungle,
-            NPCID.Mothron
+            NPCID.Mothron,
+            NPCID.BloodNautilus,
+            NPCID.GoblinShark,
+            NPCID.IceGolem,
+            NPCID.SandElemental
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -178,7 +182,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.WyvernBody,
             NPCID.WyvernBody2,
             NPCID.WyvernBody3,
-            NPCID.WyvernTail
+            NPCID.WyvernTail,
+            NPCID.Clown
         };
 
         public override void SetDefaults(NPC npc)
@@ -882,7 +887,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(npcType == NPCID.PossessedArmor)
             {
                 target.AddBuff(BuffID.Blackout, 900, true); //15s, X2 in Expert, X2.5 in Master
-                target.AddBuff(ModContent.BuffType<WreckedResistance>(), 900, true); //15s, X2 in Expert, X2.5 in Master
             }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {

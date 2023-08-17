@@ -124,7 +124,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             if(player.HasBuff(ModContent.BuffType<Devastated>()))
             {
-                float modifierD = (float)(97 - (devastatedStack*3)) * 0.01f;
+                float modifierD = (float)(90 - (devastatedStack*10)) * 0.01f;
                 player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
                 player.blackBelt = false;
                 player.brainOfConfusionItem = null;
@@ -215,14 +215,8 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
-            if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
-            {
-                for(int i = 0; i < player.buffImmune.Length; i++)
-                {
-                    player.buffImmune[i] = false;
-                }
-            }
             player.buffImmune[ModContent.BuffType<WreckedResistance>()] = false;
+            player.buffImmune[ModContent.BuffType<Devastated>()] = false;
             base.UpdateLifeRegen();
         }
 
