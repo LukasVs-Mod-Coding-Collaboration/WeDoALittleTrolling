@@ -161,6 +161,9 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.BigMimicJungle,
             NPCID.Mothron,
             NPCID.BloodNautilus,
+            NPCID.BloodEelHead,
+            NPCID.BloodEelBody,
+            NPCID.BloodEelTail,
             NPCID.GoblinShark,
             NPCID.IceGolem,
             NPCID.SandElemental
