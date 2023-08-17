@@ -295,7 +295,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             (
                 (
                     projectile.type == ProjectileID.SeedPlantera ||
-                    projectile.type == ProjectileID.PoisonSeedPlantera
+                    projectile.type == ProjectileID.PoisonSeedPlantera ||
+                    projectile.type == ProjectileID.EyeBeam ||
+                    projectile.type == ProjectileID.Fireball
                 ) &&
                 (
                     !projectile.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed
