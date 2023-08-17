@@ -70,6 +70,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] NerfGroup50Percent =
         {
+            NPCID.Wraith
         };
         public static readonly int[] KnockbackResistanceGroup =
         {
@@ -185,18 +186,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 base.SetDefaults(npc);
                 return;
             }
-            if(NerfGroup25Percent.Contains(npc.type))
-            {
-                npc.damage = (int)Math.Round(npc.damage * 0.75);
-            }
-            if(NerfGroup35Percent.Contains(npc.type))
-            {
-                npc.damage = (int)Math.Round(npc.damage * 0.65);
-            }
-            if(NerfGroup50Percent.Contains(npc.type))
-            {
-                npc.damage = (int)Math.Round(npc.damage * 0.5);
-            }
             if(KnockbackResistanceGroup.Contains(npc.type))
             {
                 npc.knockBackResist = 0f;
@@ -226,21 +215,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.lifeMax *= 3;
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
-            }
-            if
-            (
-                npc.type == NPCID.Wraith //Supposed to deal x0.5 damage, but due to bugs we have to correct HP and damage here
-            )
-            {
-                if(Main.remixWorld)
-                {
-                    npc.damage = (int)Math.Round(npc.damage * 0.5);
-                }
-                else
-                {
-                    npc.damage = (int)Math.Round(npc.damage * 0.57);
-                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.91);
-                }
             }
 
             //Boss buffs
@@ -522,7 +496,59 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft = 300;
                 npc.netUpdate = true;
             }
+            //Decreasing damage during SetDefaults() is unsafe, do it in OnSpawn() instead.
+            if(NerfGroup25Percent.Contains(npc.type))
+            {
+                npc.damage = (int)Math.Round(npc.damage * 0.75);
+                npc.netUpdate = true;
+            }
+            if(NerfGroup35Percent.Contains(npc.type))
+            {
+                npc.damage = (int)Math.Round(npc.damage * 0.65);
+                npc.netUpdate = true;
+            }
+            if(NerfGroup50Percent.Contains(npc.type))
+            {
+                npc.damage = (int)Math.Round(npc.damage * 0.5);
+                npc.netUpdate = true;
+            }
             base.OnSpawn(npc, source);
+        }
+
+        public static void OnSpawnProjectile(NPC npc, Projectile projectile)
+        {
+            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * (1.0f - SearingInferno.damageNerfMultiplier));
+                projectile.netUpdate = true;
+            }
+            if(WDALTModSystem.isCalamityModPresent)
+            {
+                return;
+            }
+            if(NerfGroup25Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.75);
+                projectile.netUpdate = true;
+            }
+            if(NerfGroup35Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.65);
+                projectile.netUpdate = true;
+            }
+            if(NerfGroup50Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.5);
+                projectile.netUpdate = true;
+            }
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                //Buff Thorium Bosses Accordingly
+                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS))
+                {
+                    projectile.damage = (int)Math.Round(projectile.damage * 1.5);
+                }
+            }
         }
 
         public override bool? CanCollideWithPlayerMeleeAttack(NPC npc, Player player, Item item, Rectangle meleeAttackHitbox)
@@ -645,42 +671,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
             }
             base.AI(npc);
-        }
-
-        public static void SetProjectileDefaults(NPC npc, Projectile projectile)
-        {
-            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
-            {
-                projectile.damage = (int)Math.Round(projectile.damage * (1.0f - SearingInferno.damageNerfMultiplier));
-                projectile.netUpdate = true;
-            }
-            if(WDALTModSystem.isCalamityModPresent)
-            {
-                return;
-            }
-            if(NerfGroup25Percent.Contains(npc.type))
-            {
-                projectile.damage = (int)Math.Round(projectile.damage * 0.75);
-                projectile.netUpdate = true;
-            }
-            if(NerfGroup35Percent.Contains(npc.type))
-            {
-                projectile.damage = (int)Math.Round(projectile.damage * 0.65);
-                projectile.netUpdate = true;
-            }
-            if(NerfGroup50Percent.Contains(npc.type))
-            {
-                projectile.damage = (int)Math.Round(projectile.damage * 0.5);
-                projectile.netUpdate = true;
-            }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
-            {
-                //Buff Thorium Bosses Accordingly
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS))
-                {
-                    projectile.damage = (int)Math.Round(projectile.damage * 1.5);
-                }
-            }
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)

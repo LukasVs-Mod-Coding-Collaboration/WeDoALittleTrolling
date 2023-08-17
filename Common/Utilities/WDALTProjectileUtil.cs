@@ -107,7 +107,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             if(TryGetParentNPC(out NPC npc))
             {
-                GlobalNPCs.SetProjectileDefaults(npc, projectile);
+                GlobalNPCs.OnSpawnProjectile(npc, projectile);
             }
             base.OnSpawn(projectile, source);
         }

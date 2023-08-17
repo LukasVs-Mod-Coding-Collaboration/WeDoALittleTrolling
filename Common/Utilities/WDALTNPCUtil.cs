@@ -53,12 +53,14 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            binaryWriter.Write(VileSpitTimeLeft);
+            binaryWriter.Write((int)npc.damage);
+            binaryWriter.Write((int)VileSpitTimeLeft);
             base.SendExtraAI(npc, bitWriter, binaryWriter);
         }
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
+            npc.damage = binaryReader.ReadInt32();
             VileSpitTimeLeft = binaryReader.ReadInt32();
             base.ReceiveExtraAI(npc, bitReader, binaryReader);
         }
