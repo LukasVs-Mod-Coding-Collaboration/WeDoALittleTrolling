@@ -115,7 +115,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = player.maxMinions * 3;
             if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
             {
-                float modifierWR = (float)(95 - (wreckedResistanceStack * 5)) * 0.01f;
+                float modifierWR = (float)(94 - (wreckedResistanceStack * 6)) * 0.01f;
                 player.endurance *= modifierWR;
             }
             else
@@ -214,6 +214,13 @@ namespace WeDoALittleTrolling.Common.Utilities
             else
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+            }
+            if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
+            {
+                for(int i = 0; i < player.buffImmune.Length; i++)
+                {
+                    player.buffImmune[i] = false;
+                }
             }
             player.buffImmune[ModContent.BuffType<WreckedResistance>()] = false;
             base.UpdateLifeRegen();

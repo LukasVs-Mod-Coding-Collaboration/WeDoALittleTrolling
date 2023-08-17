@@ -55,6 +55,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ModContent.ItemType<MushroomFossil>(), 12)
               .AddIngredient(ItemID.SpookyWood, 24)
               .AddIngredient(ModContent.ItemType<FrostCrystal>(), 24)
+              .AddIngredient(ItemID.BrokenHeroSword, 1)
+              .AddIngredient(ItemID.GoldRing, 1)
               .Register();
         }
     }

@@ -158,7 +158,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.BigMimicCorruption,
             NPCID.BigMimicCrimson,
             NPCID.BigMimicHallow,
-            NPCID.BigMimicJungle
+            NPCID.BigMimicJungle,
+            NPCID.Mothron
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -215,6 +216,29 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax *= 3;
+            }
+            if
+            (
+                npc.type == NPCID.Eyezor ||
+                npc.type == NPCID.Frankenstein ||
+                npc.type == NPCID.SwampThing ||
+                npc.type == NPCID.VampireBat ||
+                npc.type == NPCID.Vampire ||
+                npc.type == NPCID.CreatureFromTheDeep ||
+                npc.type == NPCID.Fritz ||
+                npc.type == NPCID.ThePossessed ||
+                npc.type == NPCID.Reaper ||
+                npc.type == NPCID.Mothron ||
+                npc.type == NPCID.MothronEgg ||
+                npc.type == NPCID.MothronSpawn ||
+                npc.type == NPCID.Butcher ||
+                npc.type == NPCID.DeadlySphere ||
+                npc.type == NPCID.DrManFly ||
+                npc.type == NPCID.Nailhead ||
+                npc.type == NPCID.Psycho
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
 
             //Boss buffs
@@ -278,7 +302,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.HallowBoss)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
             if(npc.type == NPCID.DukeFishron)
             {
@@ -286,7 +310,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.CultistBoss)
             {
-                npc.lifeMax *= 2;
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
             if
             (
@@ -417,10 +441,22 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.MartianSaucer ||
                 npc.type == NPCID.MartianSaucerCannon ||
                 npc.type == NPCID.MartianSaucerCore ||
-                npc.type == NPCID.MartianSaucerTurret
+                npc.type == NPCID.MartianSaucerTurret ||
+                npc.type == NPCID.Scutlix ||
+                npc.type == NPCID.ScutlixRider ||
+                npc.type == NPCID.MartianWalker ||
+                npc.type == NPCID.MartianDrone ||
+                npc.type == NPCID.MartianTurret ||
+                npc.type == NPCID.GigaZapper ||
+                npc.type == NPCID.MartianEngineer ||
+                npc.type == NPCID.MartianOfficer ||
+                npc.type == NPCID.ForceBubble ||
+                npc.type == NPCID.RayGunner ||
+                npc.type == NPCID.GrayGrunt ||
+                npc.type == NPCID.BrainScrambler
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+                npc.lifeMax *= 3;
             }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {

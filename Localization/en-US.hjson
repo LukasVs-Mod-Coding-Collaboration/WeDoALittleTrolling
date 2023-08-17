@@ -500,14 +500,18 @@ Mods: {
 				DisplayName: Devastated
 				Description:
 					'''
-					decreased max life
+					Decreased max life
 					Cannot dodge attacks
 					'''
 			}
 
 			WreckedResistance: {
 				DisplayName: Wrecked Resistance
-				Description: Damage reduction is decreased by
+				Description:
+					'''
+					Debuff immunity is disabled
+					Damage reduction is decreased by
+					'''
 			}
 
 			SearingInferno: {

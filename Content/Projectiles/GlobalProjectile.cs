@@ -102,7 +102,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.OrnamentHostileShrapnel,
             ProjectileID.SaucerMissile,
             ProjectileID.SaucerLaser,
-            ProjectileID.SaucerScrap
+            ProjectileID.SaucerScrap,
+            ProjectileID.MartianWalkerLaser,
+            ProjectileID.RayGunnerLaser,
+            ProjectileID.BrainScramblerBolt
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -296,15 +299,41 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 (
                     projectile.type == ProjectileID.SeedPlantera ||
                     projectile.type == ProjectileID.PoisonSeedPlantera ||
-                    projectile.type == ProjectileID.Fireball
+                    projectile.type == ProjectileID.Fireball ||
+                    projectile.type == ProjectileID.MartianTurretBolt ||
+                    projectile.type == ProjectileID.BrainScramblerBolt ||
+                    projectile.type == ProjectileID.RayGunnerLaser
                 ) &&
                 (
                     !projectile.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed
                 )
             )
             {
-                float lowest_distance = 1024f;
-                float correction_factor = 0.24f;
+                float lowest_distance = 0f;
+                float correction_factor = 0f;
+                switch(projectile.type)
+                {
+                    case ProjectileID.SeedPlantera:
+                    case ProjectileID.PoisonSeedPlantera:
+                        lowest_distance = 1024f;
+                        correction_factor = 0.24f;
+                        break;
+                    case ProjectileID.Fireball:
+                        lowest_distance = 1024f;
+                        correction_factor = 0.16f;
+                        break;
+                    case ProjectileID.MartianTurretBolt:
+                    case ProjectileID.BrainScramblerBolt:
+                        lowest_distance = 512f;
+                        correction_factor = 0.64f;
+                        break;
+                    case ProjectileID.RayGunnerLaser:
+                        lowest_distance = 512f;
+                        correction_factor = 0.16f;
+                        break;
+                    default:
+                        break;
+                }
                 Player target = null;
                 for(int i = 0; i < Main.player.Length; i++)
                 {
