@@ -232,8 +232,15 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Wraith //Supposed to deal x0.5 damage, but due to bugs we have to correct HP and damage here
             )
             {
-                npc.damage = (int)Math.Round(npc.damage * 0.57);
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.91);
+                if(Main.remixWorld)
+                {
+                    npc.damage = (int)Math.Round(npc.damage * 0.5);
+                }
+                else
+                {
+                    npc.damage = (int)Math.Round(npc.damage * 0.57);
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.91);
+                }
             }
 
             //Boss buffs
