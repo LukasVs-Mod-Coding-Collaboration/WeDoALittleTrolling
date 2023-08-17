@@ -54,7 +54,9 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.JungleCreeper,
             NPCID.JungleCreeperWall,
             NPCID.BlackRecluse,
-            NPCID.BlackRecluseWall
+            NPCID.BlackRecluseWall,
+            NPCID.IchorSticker,
+            NPCID.RedDevil
         };
         public static readonly int[] NerfGroup35Percent =
         {
@@ -68,12 +70,15 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] NerfGroup50Percent =
         {
-            NPCID.RedDevil
         };
         public static readonly int[] KnockbackResistanceGroup =
         {
             NPCID.AngryTrapper,
-            NPCID.BrainofCthulhu
+            NPCID.Lihzahrd,
+            NPCID.LihzahrdCrawler,
+            NPCID.FlyingSnake,
+            NPCID.BrainofCthulhu,
+            NPCID.PossessedArmor
         };
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
@@ -195,6 +200,40 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(KnockbackResistanceGroup.Contains(npc.type))
             {
                 npc.knockBackResist = 0f;
+            }
+            if
+            (
+                npc.type == NPCID.Lihzahrd ||
+                npc.type == NPCID.LihzahrdCrawler ||
+                npc.type == NPCID.FlyingSnake
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+            }
+            if
+            (
+                npc.type == NPCID.Snatcher ||
+                npc.type == NPCID.ManEater ||
+                npc.type == NPCID.AngryTrapper
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
+            if
+            (
+                npc.type == NPCID.PossessedArmor
+            )
+            {
+                npc.lifeMax *= 3;
+                npc.damage = (int)Math.Round(npc.damage * 1.5);
+            }
+            if
+            (
+                npc.type == NPCID.Wraith //Supposed to deal x0.5 damage, but due to bugs we have to correct HP and damage here
+            )
+            {
+                npc.damage = (int)Math.Round(npc.damage * 0.57);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 0.91);
             }
 
             //Boss buffs
@@ -488,6 +527,15 @@ namespace WeDoALittleTrolling.Content.NPCs
             return base.CanCollideWithPlayerMeleeAttack(npc, player, item, meleeAttackHitbox);
         }
 
+        public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if(npc.type == NPCID.PossessedArmor) //Possessed Armor has 50% DR%
+            {
+                modifiers.SourceDamage *= 0.5f;
+            }
+            base.ModifyIncomingHit(npc, ref modifiers);
+        }
+
         public override bool PreAI(NPC npc)
         {
             if(npc.type == NPCID.VileSpitEaterOfWorlds)
@@ -695,6 +743,28 @@ namespace WeDoALittleTrolling.Content.NPCs
                 target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
                 SoundEngine.PlaySound(SoundID.Item71, target.position);
             }
+            if (npc.type == NPCID.PossessedArmor)
+            {
+                int j = -1;
+                if(!target.armor[0].IsAir)
+                {
+                    j = 0;
+                }
+                else if(!target.armor[1].IsAir)
+                {
+                    j = 1;
+                }
+                else if(!target.armor[2].IsAir)
+                {
+                    j = 2;
+                }
+                if(j >= 0)
+                {
+                    Item itemToDrop = target.armor[j];
+                    target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
+                    SoundEngine.PlaySound(SoundID.Item71, target.position);
+                }
+            }
             if (npc.type == NPCID.PrimeSaw)
             {
                 SoundEngine.PlaySound(SoundID.Item22, target.position);
@@ -772,6 +842,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
+            }
+            if(npcType == NPCID.PossessedArmor)
+            {
+                target.AddBuff(BuffID.Blackout, 900, true); //15s, X2 in Expert, X2.5 in Master
+                target.AddBuff(ModContent.BuffType<Devastated>(), 900, true); //15s, X2 in Expert, X2.5 in Master
             }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {

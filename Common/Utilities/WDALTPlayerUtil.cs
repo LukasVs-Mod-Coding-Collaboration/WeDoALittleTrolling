@@ -179,6 +179,32 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
         }
 
+        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        {
+            bool shortRespawn = true;
+            for(int i = 0;i < Main.npc.Length; i++)
+            {
+                if
+                (
+                    Main.npc[i].active &&
+                    (
+                        Main.npc[i].boss ||
+                        Main.npc[i].type == NPCID.EaterofWorldsHead ||
+                        Main.npc[i].type == NPCID.EaterofWorldsBody ||
+                        Main.npc[i].type == NPCID.EaterofWorldsTail
+                    )
+                )
+                {
+                    shortRespawn = false;
+                }
+            }
+            if(shortRespawn)
+            {
+                player.respawnTimer = 180;
+            }
+            base.Kill(damage, hitDirection, pvp, damageSource);
+        }
+
         public override void UpdateLifeRegen()
         {
             if(player.HasItem(ModContent.ItemType<HolyCharm>()))
@@ -195,7 +221,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if(target.HasBuff(ModContent.BuffType<SearingInferno>()))
+            if(player.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
                 modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
             }
