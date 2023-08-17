@@ -70,7 +70,8 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] NerfGroup50Percent =
         {
-            NPCID.Wraith
+            NPCID.Wraith,
+            NPCID.PossessedArmor
         };
         public static readonly int[] KnockbackResistanceGroup =
         {
@@ -214,7 +215,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax *= 3;
-                npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
 
             //Boss buffs
@@ -736,30 +736,33 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.PrimeVice)
             {
-                Item itemToDrop = target.HeldItem;
-                target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
-                SoundEngine.PlaySound(SoundID.Item71, target.position);
-            }
-            if (npc.type == NPCID.PossessedArmor)
-            {
-                int j = -1;
-                if(!target.armor[0].IsAir)
+                if(!target.HeldItem.IsAir)
                 {
-                    j = 0;
-                }
-                else if(!target.armor[1].IsAir)
-                {
-                    j = 1;
-                }
-                else if(!target.armor[2].IsAir)
-                {
-                    j = 2;
-                }
-                if(j >= 0)
-                {
-                    Item itemToDrop = target.armor[j];
+                    Item itemToDrop = target.HeldItem;
                     target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
                     SoundEngine.PlaySound(SoundID.Item71, target.position);
+                }
+                else
+                {
+                int j = -1;
+                    if (!target.armor[0].IsAir)
+                    {
+                        j = 0;
+                    }
+                    else if (!target.armor[1].IsAir)
+                    {
+                        j = 1;
+                    }
+                    else if (!target.armor[2].IsAir)
+                    {
+                        j = 2;
+                    }
+                    if (j >= 0)
+                    {
+                        Item itemToDrop = target.armor[j];
+                        target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
+                        SoundEngine.PlaySound(SoundID.Item71, target.position);
+                    }
                 }
             }
             if (npc.type == NPCID.PrimeSaw)
@@ -843,7 +846,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(npcType == NPCID.PossessedArmor)
             {
                 target.AddBuff(BuffID.Blackout, 900, true); //15s, X2 in Expert, X2.5 in Master
-                target.AddBuff(ModContent.BuffType<Devastated>(), 900, true); //15s, X2 in Expert, X2.5 in Master
+                target.AddBuff(ModContent.BuffType<WreckedResistance>(), 900, true); //15s, X2 in Expert, X2.5 in Master
             }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
