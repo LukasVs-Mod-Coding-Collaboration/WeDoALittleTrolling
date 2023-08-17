@@ -933,11 +933,12 @@ namespace WeDoALittleTrolling.Content.NPCs
 
             if
             (
-                npc.type == NPCID.RedDevil
+                npc.type == NPCID.RedDevil ||
+                npc.type == NPCID.DemonTaxCollector
             )
             {
                 int dropAmountMin = 1;
-                int dropAmountMax = 1;
+                int dropAmountMax = 3;
                 int chanceNumerator = 35; // 35% chance
                 int chanceDenominator = 100;
                 int itemID = ModContent.ItemType<HellishFossil>();
@@ -950,23 +951,91 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 int dropAmountMin = 1;
-                int dropAmountMax = 1;
+                int dropAmountMax = 2;
                 int chanceNumerator = 25; // 25% chance
                 int chanceDenominator = 100;
                 int itemID = ModContent.ItemType<HellishFossil>();
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                 npcLoot.Add(drop);
             }
+
+            //Mushroom fossil drops
+
             if
             (
-                npc.type == NPCID.DemonTaxCollector
+                npc.type == NPCID.FungoFish
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 2;
+                int chanceNumerator = 25; // 25% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<MushroomFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.GiantFungiBulb
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 3;
+                int chanceNumerator = 35; // 35% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<MushroomFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.FungiSpore
             )
             {
                 int dropAmountMin = 1;
                 int dropAmountMax = 1;
-                int chanceNumerator = 45; // 45% chance
+                int chanceNumerator = 5; // 5% chance
                 int chanceDenominator = 100;
-                int itemID = ModContent.ItemType<HellishFossil>();
+                int itemID = ModContent.ItemType<MushroomFossil>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+
+            //Frost Crystal drops
+
+            if
+            (
+                npc.type == NPCID.PresentMimic ||
+                npc.type == NPCID.Nutcracker ||
+                npc.type == NPCID.NutcrackerSpinning ||
+                npc.type == NPCID.Yeti ||
+                npc.type == NPCID.ElfCopter ||
+                npc.type == NPCID.Krampus
+            )
+            {
+                int dropAmountMin = 2;
+                int dropAmountMax = 4;
+                int chanceNumerator = 20; // 20% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<FrostCrystal>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.Flocko||
+                npc.type == NPCID.GingerbreadMan ||
+                npc.type == NPCID.ZombieElf ||
+                npc.type == NPCID.ZombieElfBeard ||
+                npc.type == NPCID.ZombieElfGirl ||
+                npc.type == NPCID.ElfArcher
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 4;
+                int chanceNumerator = 10; // 10% chance
+                int chanceDenominator = 100;
+                int itemID = ModContent.ItemType<FrostCrystal>();
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                 npcLoot.Add(drop);
             }

@@ -28,7 +28,7 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace WeDoALittleTrolling.Content.Items.Material
 {
-    internal class HellishFossil : ModItem
+    internal class FrostCrystal : ModItem
     {
         public override void SetDefaults()
         {
@@ -39,10 +39,10 @@ namespace WeDoALittleTrolling.Content.Items.Material
             Item.consumable = false;
             Item.noUseGraphic = true;
 
-            Item.value = Item.sellPrice(copper: 0);
+            Item.value = Item.sellPrice(gold: 1);
             Item.maxStack = Item.CommonMaxStack;
 
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Lime;
         }
     }
 }

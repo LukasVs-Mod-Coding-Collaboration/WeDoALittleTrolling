@@ -63,8 +63,10 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
             TooltipLine dodgeBonus0 = new TooltipLine(Mod, "DodgeBonus0", "Dodge chance active: "+bonus);
             tooltips.Add(dodgeBonus0);
+            /*
             TooltipLine incompatible0 = new TooltipLine(Mod, "Incompatible0", "Cannot be equipped when the\nHeart of Despair is equipped");
             tooltips.Add(incompatible0);
+            */
             base.ModifyTooltips(tooltips);
         }
 
@@ -90,6 +92,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
         }
 
+        /*
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
             if(player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair)
@@ -98,6 +101,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
             return base.CanEquipAccessory(player, slot, modded);
         }
+        */
 
         public override void AddRecipes()
         {

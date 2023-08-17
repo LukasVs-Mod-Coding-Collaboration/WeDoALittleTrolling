@@ -57,8 +57,10 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             TooltipLine despairBonus0 = new TooltipLine(Mod, "DespairBonus0", "Current damage bonus: "+(1 + ((Main.player[Main.myPlayer].statLifeMax - Main.player[Main.myPlayer].statLife) / 4))+"%");
             tooltips.Add(despairBonus0);
+            /*
             TooltipLine incompatible0 = new TooltipLine(Mod, "Incompatible0", "Cannot be equipped when the\nSorcerous Mirror is equipped");
             tooltips.Add(incompatible0);
+            */
             base.ModifyTooltips(tooltips);
         }
 
@@ -72,6 +74,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair = true;
         }
 
+        /*
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
             if(player.GetModPlayer<WDALTPlayerUtil>().sorcerousMirror)
@@ -80,6 +83,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
             return base.CanEquipAccessory(player, slot, modded);
         }
+        */
 
         public override void AddRecipes()
         {

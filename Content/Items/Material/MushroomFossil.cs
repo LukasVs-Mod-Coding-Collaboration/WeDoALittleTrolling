@@ -28,7 +28,7 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace WeDoALittleTrolling.Content.Items.Material
 {
-    internal class HellishFossil : ModItem
+    internal class MushroomFossil : ModItem
     {
         public override void SetDefaults()
         {
@@ -42,7 +42,7 @@ namespace WeDoALittleTrolling.Content.Items.Material
             Item.value = Item.sellPrice(copper: 0);
             Item.maxStack = Item.CommonMaxStack;
 
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Blue;
         }
     }
 }
