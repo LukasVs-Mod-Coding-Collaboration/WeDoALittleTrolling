@@ -527,7 +527,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
                 )
                 {
-                    npc.lifeMax *= 5;
+                    npc.lifeMax *= 3;
                 }
             }
             base.SetDefaults(npc);

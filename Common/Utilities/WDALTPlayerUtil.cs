@@ -137,10 +137,10 @@ namespace WeDoALittleTrolling.Common.Utilities
             if(sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
             {
                 player.aggro -= 400;
-                player.statDefense += 12;
+                player.statDefense += 6;
                 player.lifeRegen += 6;
-                player.GetCritChance(DamageClass.Generic) -= 12f;
-                player.GetDamage(DamageClass.Summon) *= 0.88f;
+                player.GetCritChance(DamageClass.Generic) -= 6f;
+                player.GetDamage(DamageClass.Summon) *= 0.94f;
                 player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 10, true);
             }
             else

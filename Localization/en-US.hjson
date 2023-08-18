@@ -71,7 +71,7 @@ Mods: {
 					'''
 					Increases attack speed at the cost of damage
 					Increases ranged attack speed by 30%
-					Increases ranged armor penetration by 15
+					Increases ranged armor penetration by 30
 					Decreases ranged attack damage by 7.5%
 					'''
 			}
@@ -93,7 +93,7 @@ Mods: {
 				Tooltip:
 					'''
 					Allows the ability to dash
-					Increases defense effectiveness by 3% per minion slot
+					Reduces damage taken by 3% per minion slot
 					3 defense per minion slot
 					Increases your max number of minions by 1
 					Enemies are more likely to target you
@@ -104,13 +104,13 @@ Mods: {
 				DisplayName: Soul-Powered Shield
 				Tooltip:
 					'''
-					A shield forged from the souls of a powerful mechanical creature
+					A shield forged from the souls of powerful mechanical creatures
 					Blocks usage of the Worm Scarf
 					Grants knockback immunity
 					6 Defense
 					Reduces 30% of damage taken
 					Grants immunity to fire and frost effects of any kind
-					Also grants immunity to Ichor and Electrified
+					Also grants immunity to Blackout, Ichor and Electrified
 					'''
 			}
 
@@ -271,8 +271,8 @@ Mods: {
 					Grants the following when holding a magic weapon:
 					Gives a 1 in 3 chance to dodge attacks
 					Regenerates 3 life per second
-					12 defense
-					12% decreased critical strike chance
+					6 defense
+					6% decreased critical strike chance
 					Enemies are less likely to target you
 					Incompatible with the Mana Extraction Catalyst
 					'''
@@ -538,8 +538,8 @@ Mods: {
 					'''
 					You will dodge 1 in 3 attacks
 					Provides 3 life regeneration per second
-					Increase defense by 12
-					12% decreased critical strike chance
+					Increase defense by 6
+					6% decreased critical strike chance
 					Enemies are less likely to target you
 					'''
 			}

@@ -50,7 +50,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetAttackSpeed(DamageClass.Ranged) += (float)0.30;
-            player.GetArmorPenetration(DamageClass.Ranged) += (float)15.0;
+            player.GetArmorPenetration(DamageClass.Ranged) += (float)30.0;
             player.GetDamage(DamageClass.Ranged) *= (float)0.925;
         }
 

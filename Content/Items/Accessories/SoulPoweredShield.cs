@@ -54,15 +54,17 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.noKnockback = true;
             player.lavaImmune = true; //Immunity to Lava and Fire blocks
             player.fireWalk = true;
-            player.buffImmune[44] = true; //Debuff Immunities against fire & frost debuffs
-            player.buffImmune[39] = true;
-            player.buffImmune[24] = true;
-            player.buffImmune[47] = true;
-            player.buffImmune[46] = true;
-            player.buffImmune[67] = true;
-            player.buffImmune[69] = true;
-            player.buffImmune[144] = true;
-            player.buffImmune[153] = true;
+            player.buffImmune[BuffID.Frostburn] = true; //Debuff Immunities against fire & frost debuffs
+            player.buffImmune[BuffID.CursedInferno] = true;
+            player.buffImmune[BuffID.OnFire] = true;
+            player.buffImmune[BuffID.OnFire3] = true;
+            player.buffImmune[BuffID.Frozen] = true;
+            player.buffImmune[BuffID.Chilled] = true;
+            player.buffImmune[BuffID.Burning] = true;
+            player.buffImmune[BuffID.Ichor] = true;
+            player.buffImmune[BuffID.Electrified] = true;
+            player.buffImmune[BuffID.ShadowFlame] = true;
+            player.buffImmune[BuffID.Blackout] = true;
 
         }
 
@@ -86,7 +88,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.WormScarf, 1)
+              .AddIngredient(ItemID.SoulofSight, 5)
               .AddIngredient(ItemID.SoulofMight, 5)
+              .AddIngredient(ItemID.SoulofFright, 5)
               .AddIngredient(ItemID.HallowedBar, 10)
               .AddIngredient(ItemID.CobaltShield, 1)
               .AddIngredient(ItemID.Lens, 1)
