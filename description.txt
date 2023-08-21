@@ -1,9 +1,24 @@
-Hey there! This mod is a project my brother and I will be working on In our free time, or whenever we feel like it! It's just us messing around, changing stuff we dislike about the game and maybe adding something new.
+This mod is a project my brother and I are working on whenever we feel like it.
 
-Also it's me trying to get into Coding.
+It mostly changes things we dislike about the game and and adds a few new features, small changes were made to most bosses as well.
 
-That's all, thanks for reading.
+Please keep in mind that this mod was made just for fun and isn't meant to be too serious.
 
-Changelog time!
 
--Added the Colossal reforge I did, extremely funny it is
+
+List of additions and changes:
+-Four new weapons (Two melee weapons, one ranged weapon, one summon weapon)
+-Searing armor, a classless tank set
+-A lot of reforges, some better, some worse
+-Some new accessories (usually focused on one class)
+-Tons of stat balance changes to both bosses and items
+-Changes to some of the bosses (Example: The destroyer's projectiles ignore walls)
+-Mechanics to slow down game progression with the intent of prolonging Hardmode
+-Buffs to fishing to make the mechanic genuinely useful
+-Debuffs inflicted by powerful enemies and bosses to prevent cheesing
+
+
+
+We are also testing compatibility and boss rebalancing for the Thorium Mod at the moment.
+
+

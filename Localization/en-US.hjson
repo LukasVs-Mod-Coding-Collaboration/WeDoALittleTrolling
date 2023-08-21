@@ -13,11 +13,11 @@ Mods: {
 				DisplayName: Greenstrike Dynamo
 				Tooltip:
 					'''
-					Give yourself a boost with the power of nostalgia
 					In memory of Bad Piggies
-					Negates fall damage and increases movement speed
+					Negates fall damage and increases running speed
 					Grants MASSIVE buffs to life regeneration
 					Prolongs immmunity frames
+					Increases attack speed by 25%
 					'''
 			}
 
@@ -25,7 +25,7 @@ Mods: {
 				DisplayName: Magmaflux Core
 				Tooltip:
 					'''
-					Makes the player immune to lava, Hellstone and Meteorite
+					Makes the player immune to fire blocks
 					Melee attacks inflict fire damage
 					Slowly regenerates life
 					"It emits a pleasant warmth."
@@ -48,8 +48,8 @@ Mods: {
 				Tooltip:
 					'''
 					Moving around the Underground
-					can be tough sometimes.
-					This item makes it easier.
+					can be slow sometimes.
+					This accessory makes it faster.
 					"Miner Inconvenience"
 					'''
 			}
@@ -177,7 +177,7 @@ Mods: {
 				Tooltip:
 					'''
 					A test item made to test basic vector mechanics and potentially all sorts of projectile AI
-					The real beginning to the Experimental part of the mod
+					Experimental Item
 					'''
 			}
 
@@ -202,9 +202,12 @@ Mods: {
 				DisplayName: Little Blue
 				Tooltip:
 					'''
-					Look up to the sky and
-					see an Ocean of Stars
-					Grants Endurance with a
+					"Look up to the sky and
+					 see an Ocean of Stars"
+					Right click to dash in the direction
+					you are pointing, becoming invulnerable
+					for a short time. Cooldown: 2 Seconds
+					Grants Endurance when swung
 					'''
 			}
 
@@ -294,7 +297,11 @@ Mods: {
 
 			HallowedDisintegrationBlade: {
 				DisplayName: Hallowed Disintegration Blade
-				Tooltip: ""
+				Tooltip:
+					'''
+					Sometimes grants invulnerability for a
+					short time when striking an enemy
+					'''
 			}
 
 			FrostCrystal: {
