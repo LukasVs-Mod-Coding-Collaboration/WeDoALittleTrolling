@@ -33,7 +33,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
         protected virtual float HoldoutRangeMin => (SpearLengh/2 - (float)64.0) + (float)32.0;
         protected virtual float HoldoutRangeMax => (SpearLengh/2 + (float)64.0) + (float)32.0;
 
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Projectile.CloneDefaults(ProjectileID.Spear);
             Projectile.width = 48;
             Projectile.height = 48;
@@ -41,7 +42,30 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.scale = (float)1.0;
         }
 
-        public override bool PreAI() {
+        public override bool PreAI()
+        {
+            AI_004_PhotonSplicer();
+            return false;
+        }
+
+        public override void ModifyDamageHitbox(ref Rectangle hitbox)
+        {
+            Vector2 vOffset = Projectile.velocity * 16;
+            Point pOffset = new Point();
+            pOffset.X = - (int)Math.Round(vOffset.X);
+            pOffset.Y = - (int)Math.Round(vOffset.Y);
+            hitbox.Offset(pOffset);
+            base.ModifyDamageHitbox(ref hitbox);
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
+            base.OnHitNPC(target, hit, damageDone);
+        }
+
+        private void AI_004_PhotonSplicer()
+        {
             Player player = Main.player[Projectile.owner];
             int duration = player.itemAnimationMax;
 
@@ -82,24 +106,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 Projectile.rotation += MathHelper.ToRadians((float)135.0);
             }
-
-            return false;
-        }
-
-        public override void ModifyDamageHitbox(ref Rectangle hitbox)
-        {
-            Vector2 vOffset = Projectile.velocity * 16;
-            Point pOffset = new Point();
-            pOffset.X = - (int)Math.Round(vOffset.X);
-            pOffset.Y = - (int)Math.Round(vOffset.Y);
-            hitbox.Offset(pOffset);
-            base.ModifyDamageHitbox(ref hitbox);
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            target.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
-            base.OnHitNPC(target, hit, damageDone);
         }
     }
 }

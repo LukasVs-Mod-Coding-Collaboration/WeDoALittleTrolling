@@ -783,6 +783,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
             }
+            if (npc.type == NPCID.Gnome)
+            {
+                target.AddBuff(ModContent.BuffType<Gnomed>(), 7200, true); //2m, X2 in Expert, X2.5 in Master
+            }
             if (npc.type == NPCID.Deerclops)
             {
                 target.ClearBuff(BuffID.Frozen);

@@ -82,6 +82,41 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
+            AI_003_Luminite_Phantom();
+        }
+
+        public override void PostDraw(Color lightColor)
+        {
+            int rMax = (int)Projectile.width;
+            double r = rMax * Math.Sqrt(random.NextDouble());
+            double angle = random.NextDouble() * 2 * Math.PI;
+            int xOffset = (int)Math.Round(r * Math.Cos(angle));
+            int yOffset = (int)Math.Round(r * Math.Sin(angle));
+            Vector2 dustPosition = Projectile.Center;
+            dustPosition.X += xOffset;
+            dustPosition.Y += yOffset;
+            int dustType = random.Next(0, 16);
+            switch (dustType)
+            {
+                case 0:
+                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default);
+                    newDust.noGravity = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /*
+            Credits to Riptide/RiptideDev/RiptideStudio for immensely
+            helping us design the AI_003_Luminite_Phantom() function.
+            RiptideDev on YouTube: https://www.youtube.com/@riptidedev3471
+            Riptide on YouTube: https://www.youtube.com/@RiptideDev
+            RiptideStudio on Github: https://github.com/RiptideStudio
+            RiptideMod on Github: https://github.com/RiptideStudio/RiptideMod
+        */
+        private void AI_003_Luminite_Phantom()
+        {
             Player ownerPlayer = Main.player[Projectile.owner];
             if(!ownerPlayer.active || ownerPlayer.dead)
             {
@@ -238,28 +273,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.velocity.Y = 1f;
                 Projectile.velocity.Normalize();
                 Projectile.velocity *= moveSpeed;
-            }
-        }
-
-        public override void PostDraw(Color lightColor)
-        {
-            int rMax = (int)Projectile.width;
-            double r = rMax * Math.Sqrt(random.NextDouble());
-            double angle = random.NextDouble() * 2 * Math.PI;
-            int xOffset = (int)Math.Round(r * Math.Cos(angle));
-            int yOffset = (int)Math.Round(r * Math.Sin(angle));
-            Vector2 dustPosition = Projectile.Center;
-            dustPosition.X += xOffset;
-            dustPosition.Y += yOffset;
-            int dustType = random.Next(0, 16);
-            switch (dustType)
-            {
-                case 0:
-                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default);
-                    newDust.noGravity = true;
-                    break;
-                default:
-                    break;
             }
         }
     }

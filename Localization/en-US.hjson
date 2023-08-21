@@ -560,6 +560,22 @@ Mods: {
 				DisplayName: Luminite Phantom
 				Description: The Luminite Phantom will fight for you
 			}
+
+			Gnomed: {
+				DisplayName: Gnomed
+				Description:
+					'''
+					You are feeling very unlucky
+					"I'm gnot a gnelf.
+					 I'm gnot a gnoblin.
+					 I'm a GNOME!
+					 And you've been GNOMED!"
+					"If you don't happen to have
+					 a Pocket Mirror, Reflective Shades,
+					 an Ankh Charm or an Ankh Shield equipped,
+					 you should probably avoid sunlight..."
+					'''
+			}
 		}
 	}
 }

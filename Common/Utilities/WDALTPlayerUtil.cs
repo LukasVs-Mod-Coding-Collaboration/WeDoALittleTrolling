@@ -48,6 +48,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool heartOfDespair;
         public bool searingSetBonus;
         public int searingSetBonusValue;
+        public bool gnomedStonedDebuff;
         public Player player;
         public long currentTick;
         public int chargeAccelerationTicks;
@@ -67,6 +68,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             heartOfDespair = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
+            gnomedStonedDebuff = false;
             currentTick = 0;
             chargeAccelerationTicks = 0;
         }
@@ -88,6 +90,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             heartOfDespair = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
+            gnomedStonedDebuff = false;
             chargeAccelerationTicks = 0;
         }
 
@@ -98,6 +101,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             sorcerousMirror = false;
             heartOfDespair = false;
             searingSetBonus = false;
+            gnomedStonedDebuff = false;
             base.ResetEffects();
         }
         
@@ -106,6 +110,15 @@ namespace WeDoALittleTrolling.Common.Utilities
             GlobalItemList.ModifySetBonus(player);
             currentTick++;
             base.PostUpdate();
+        }
+
+        public override void ModifyLuck(ref float luck)
+        {
+            if(player.HasBuff<Gnomed>())
+            {
+                luck -= 1f;
+            }
+            base.ModifyLuck(ref luck);
         }
 
         public override void UpdateEquips()
@@ -158,6 +171,35 @@ namespace WeDoALittleTrolling.Common.Utilities
                 float modifierSAR = 1f + searingSetBonusValue * 0.01f;
                 player.DefenseEffectiveness *= modifierSAR;
                 player.GetDamage(DamageClass.Generic) *= modifierSAR;
+            }
+            if(gnomedStonedDebuff)
+            {
+                if((Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient) && player.whoAmI == Main.myPlayer)
+                {
+                    Main.buffNoTimeDisplay[BuffID.Stoned] = true;
+                }
+                if(!player.buffImmune[BuffID.Stoned])
+                {
+                    if(player.HasBuff(BuffID.Stoned))
+                    {
+                        int stonedIndex = player.FindBuffIndex(BuffID.Stoned);
+                        if(stonedIndex > -1 && stonedIndex < player.buffTime.Length)
+                        {
+                            player.buffTime[stonedIndex] = 10;
+                        }
+                    }
+                    else
+                    {
+                        player.AddBuff(BuffID.Stoned, 10, true);
+                    }
+                }
+            }
+            else
+            {
+                if((Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient) && player.whoAmI == Main.myPlayer)
+                {
+                    Main.buffNoTimeDisplay[BuffID.Stoned] = false;
+                }
             }
             base.PostUpdateEquips();
         }

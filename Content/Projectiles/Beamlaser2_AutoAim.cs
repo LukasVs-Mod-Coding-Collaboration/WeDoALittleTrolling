@@ -78,6 +78,39 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             this.original_location = Projectile.position;
             Projectile.netUpdate = true;
             //Auto-target AI
+            AI_002_ApollonAimAssist();
+            base.OnSpawn(source);
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.WriteVector2(this.original_location);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            this.original_location = reader.ReadVector2();
+        }
+
+        public override bool ShouldUpdatePosition()
+        {
+            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > 1280 || //Configure max lengh of beam in x coords
+               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > 768  || //Configure max lengh of beam in y coords
+               this.location_is_locked)
+            {
+                this.location_is_locked = true;
+                this.Projectile.damage = 0;
+                this.Projectile.position = this.original_location;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void AI_002_ApollonAimAssist()
+        {
             Vector2 spawnCenter = Projectile.Center;
             float lowest_distance = 9999;
             for(int i = 0; i < 200; i++)
@@ -133,44 +166,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                     Projectile.velocity = newVelocity;
                     lowest_distance = distance;
                 }
-
-            }
-            base.OnSpawn(source);
-        }
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.WriteVector2(this.original_location);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            this.original_location = reader.ReadVector2();
-        }
-
-        public override bool ShouldUpdatePosition()
-        {
-            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > 1280 || //Configure max lengh of beam in x coords
-               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > 768  || //Configure max lengh of beam in y coords
-               this.location_is_locked)
-            {
-                this.location_is_locked = true;
-                this.Projectile.damage = 0;
-                this.Projectile.position = this.original_location;
-                return false;
-            }
-            else
-            {
-                return true;
             }
         }
-
-        /*
-        public override void Kill(int timeLeft) {
-            // This code and the similar code above in OnTileCollide spawn dust from the tiles collided with. SoundID.Item10 is the bounce sound you hear.
-            Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-        }
-        */
     }
 }
