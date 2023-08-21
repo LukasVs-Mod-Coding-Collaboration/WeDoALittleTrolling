@@ -24,6 +24,7 @@ using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Common.Utilities;
+using System.Linq;
 
 namespace WeDoALittleTrolling.Content.Recipes
 {
@@ -68,12 +69,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofFright, 1);
             WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofMight, 1);
             WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofSight, 1);
-            List<Item> shimmerResult_WDALT_Soulconvert_V1 = new List<Item>();
-            Item shimmerResultItem_WDALT_Soulconvert_V1 = new Item();
-            shimmerResultItem_WDALT_Soulconvert_V1.type = ItemID.SoulofFright;
-            shimmerResultItem_WDALT_Soulconvert_V1.stack = 3;
-            shimmerResult_WDALT_Soulconvert_V1.Add(shimmerResultItem_WDALT_Soulconvert_V1);
-            WDALT_Soulconvert_V1.customShimmerResults = shimmerResult_WDALT_Soulconvert_V1;
+            WDALT_Soulconvert_V1.AddCustomShimmerResult(ItemID.SoulofFright, 3);
             WDALT_Soulconvert_V1.AddTile(TileID.MythrilAnvil);
             WDALT_Soulconvert_V1.Register();
             Recipe WDALT_Soulconvert_V2 = Recipe.Create(ItemID.SoulofLight, 1);
@@ -94,18 +90,12 @@ namespace WeDoALittleTrolling.Content.Recipes
 
         public static void AddComplexCraftingTreeItemDuplicationRecipes()
         {
-            List<Item> shimmerResult_WDALT_AnkhShieldLike = new List<Item>();
-            Item shimmerResultItem_WDALT_AnkhShieldLike = new Item();
-            shimmerResultItem_WDALT_AnkhShieldLike.type = ItemID.PlatinumCoin;
-            shimmerResultItem_WDALT_AnkhShieldLike.stack = 1;
-            shimmerResult_WDALT_AnkhShieldLike.Add(shimmerResultItem_WDALT_AnkhShieldLike);
-            
             Condition AnkhShieldCondition = new Condition("Ankh Shield in Inventory", WDALTConditionFunctions.HasAnkhShieldInInventory);
             Recipe WDALT_AnkhShield = Recipe.Create(ItemID.AnkhShield, 1);
             WDALT_AnkhShield.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_AnkhShield.AddTile(TileID.TinkerersWorkbench);
             WDALT_AnkhShield.AddCondition(AnkhShieldCondition);
-            WDALT_AnkhShield.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_AnkhShield.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_AnkhShield.Register();
 
             Condition CellPhoneCondition = new Condition("Cell Phone in Inventory", WDALTConditionFunctions.HasCellPhoneInInventory);
@@ -113,7 +103,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_CellPhone.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_CellPhone.AddTile(TileID.TinkerersWorkbench);
             WDALT_CellPhone.AddCondition(CellPhoneCondition);
-            WDALT_CellPhone.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_CellPhone.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_CellPhone.Register();
 
             Condition TerrasparkBootsCondition = new Condition("Terraspark Boots in Inventory", WDALTConditionFunctions.HasTerrasparkBootsInInventory);
@@ -121,7 +111,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_TerrasparkBoots.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_TerrasparkBoots.AddTile(TileID.TinkerersWorkbench);
             WDALT_TerrasparkBoots.AddCondition(TerrasparkBootsCondition);
-            WDALT_TerrasparkBoots.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_TerrasparkBoots.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_TerrasparkBoots.Register();
 
             Condition ArcticDivingGearCondition = new Condition("Arctic Diving Gear in Inventory", WDALTConditionFunctions.HasArcticDivingGearInInventory);
@@ -129,7 +119,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_ArcticDivingGear.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_ArcticDivingGear.AddTile(TileID.TinkerersWorkbench);
             WDALT_ArcticDivingGear.AddCondition(ArcticDivingGearCondition);
-            WDALT_ArcticDivingGear.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_ArcticDivingGear.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_ArcticDivingGear.Register();
 
             Condition CelestialCuffsCondition = new Condition("Celestial Cuffs in Inventory", WDALTConditionFunctions.HasCelestialCuffsInInventory);
@@ -137,7 +127,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_CelestialCuffs.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_CelestialCuffs.AddTile(TileID.TinkerersWorkbench);
             WDALT_CelestialCuffs.AddCondition(CelestialCuffsCondition);
-            WDALT_CelestialCuffs.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_CelestialCuffs.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_CelestialCuffs.Register();
 
             Condition CelestialEmblemCondition = new Condition("Celestial Emblem in Inventory", WDALTConditionFunctions.HasCelestialEmblemInInventory);
@@ -145,7 +135,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_CelestialEmblem.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_CelestialEmblem.AddTile(TileID.TinkerersWorkbench);
             WDALT_CelestialEmblem.AddCondition(CelestialEmblemCondition);
-            WDALT_CelestialEmblem.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_CelestialEmblem.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_CelestialEmblem.Register();
 
             Condition CelestialShellCondition = new Condition("Celestial Shell in Inventory", WDALTConditionFunctions.HasCelestialShellInInventory);
@@ -153,7 +143,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_CelestialShell.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_CelestialShell.AddTile(TileID.TinkerersWorkbench);
             WDALT_CelestialShell.AddCondition(CelestialShellCondition);
-            WDALT_CelestialShell.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_CelestialShell.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_CelestialShell.Register();
 
             Condition FireGauntletCondition = new Condition("Fire Gauntlet in Inventory", WDALTConditionFunctions.HasFireGauntletInInventory);
@@ -161,7 +151,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_FireGauntlet.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_FireGauntlet.AddTile(TileID.TinkerersWorkbench);
             WDALT_FireGauntlet.AddCondition(FireGauntletCondition);
-            WDALT_FireGauntlet.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_FireGauntlet.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_FireGauntlet.Register();
 
             Condition FrogGearCondition = new Condition("Frog Gear in Inventory", WDALTConditionFunctions.HasFrogGearInInventory);
@@ -169,7 +159,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_FrogGear.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_FrogGear.AddTile(TileID.TinkerersWorkbench);
             WDALT_FrogGear.AddCondition(FrogGearCondition);
-            WDALT_FrogGear.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_FrogGear.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_FrogGear.Register();
 
             Condition LavaproofTackleBagCondition = new Condition("Lavaproof Tackle Bag in Inventory", WDALTConditionFunctions.HasLavaproofTackleBagInInventory);
@@ -177,7 +167,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_LavaproofTackleBag.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_LavaproofTackleBag.AddTile(TileID.TinkerersWorkbench);
             WDALT_LavaproofTackleBag.AddCondition(LavaproofTackleBagCondition);
-            WDALT_LavaproofTackleBag.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_LavaproofTackleBag.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_LavaproofTackleBag.Register();
 
             Condition MasterNinjaGearCondition = new Condition("Master Ninja Gear in Inventory", WDALTConditionFunctions.HasMasterNinjaGearInInventory);
@@ -185,7 +175,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_MasterNinjaGear.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_MasterNinjaGear.AddTile(TileID.TinkerersWorkbench);
             WDALT_MasterNinjaGear.AddCondition(MasterNinjaGearCondition);
-            WDALT_MasterNinjaGear.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_MasterNinjaGear.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_MasterNinjaGear.Register();
 
             Condition SniperScopeCondition = new Condition("Sniper Scope in Inventory", WDALTConditionFunctions.HasSniperScopeInInventory);
@@ -193,7 +183,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_SniperScope.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_SniperScope.AddTile(TileID.TinkerersWorkbench);
             WDALT_SniperScope.AddCondition(SniperScopeCondition);
-            WDALT_SniperScope.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_SniperScope.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_SniperScope.Register();
 
             Condition HolyCharmCondition = new Condition("Holy Charm in Inventory", WDALTConditionFunctions.HasHolyCharmInInventory);
@@ -201,7 +191,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_HolyCharm.AddIngredient(ItemID.PlatinumCoin, 1);
             WDALT_HolyCharm.AddTile(TileID.MythrilAnvil);
             WDALT_HolyCharm.AddCondition(HolyCharmCondition);
-            WDALT_HolyCharm.customShimmerResults = shimmerResult_WDALT_AnkhShieldLike;
+            WDALT_HolyCharm.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_HolyCharm.Register();
         }
 
@@ -755,12 +745,7 @@ namespace WeDoALittleTrolling.Content.Recipes
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
-                        List<Item> shimmerResult_WDALT_MythrilAnvil = new List<Item>();
-                        Item shimmerResultItem_WDALT_MythrilAnvil = new Item();
-                        shimmerResultItem_WDALT_MythrilAnvil.type = ItemID.MythrilBar;
-                        shimmerResultItem_WDALT_MythrilAnvil.stack = 10;
-                        shimmerResult_WDALT_MythrilAnvil.Add(shimmerResultItem_WDALT_MythrilAnvil);
-                        recipe.customShimmerResults = shimmerResult_WDALT_MythrilAnvil;
+                        recipe.AddCustomShimmerResult(ItemID.MythrilBar, 10);
                     }
                 }
                 if(recipe.TryGetResult(ItemID.OrichalcumAnvil, out Item OrichalcumAnvil))
@@ -769,12 +754,7 @@ namespace WeDoALittleTrolling.Content.Recipes
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
-                        List<Item> shimmerResult_WDALT_OrichalcumAnvil = new List<Item>();
-                        Item shimmerResultItem_WDALT_OrichalcumAnvil = new Item();
-                        shimmerResultItem_WDALT_OrichalcumAnvil.type = ItemID.OrichalcumBar;
-                        shimmerResultItem_WDALT_OrichalcumAnvil.stack = 12;
-                        shimmerResult_WDALT_OrichalcumAnvil.Add(shimmerResultItem_WDALT_OrichalcumAnvil);
-                        recipe.customShimmerResults = shimmerResult_WDALT_OrichalcumAnvil;
+                        recipe.AddCustomShimmerResult(ItemID.OrichalcumBar, 12);
                     }
                 }
 

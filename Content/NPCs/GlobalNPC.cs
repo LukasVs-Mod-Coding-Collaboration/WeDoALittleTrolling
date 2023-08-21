@@ -759,15 +759,27 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.DrawEffects(npc, ref drawColor);
         }
 
+        public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
+        {
+            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
+            }
+            base.ModifyHitPlayer(npc, target, ref modifiers);
+        }
+
+        public static void OnHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile)
+        {
+            if(target.GetModPlayer<WDALTPlayerUtil>().searingSetBonus)
+            {
+                npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
+            }
+        }
+
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             ApplyDebuffsToPlayerBasedOnNPC(npc.type, target);
-            if
-            (
-                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ModContent.ItemType<SearingHelmet>()) &&
-                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ModContent.ItemType<SearingBreastplate>()) &&
-                target.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ModContent.ItemType<SearingLeggings>())
-            )
+            if(target.GetModPlayer<WDALTPlayerUtil>().searingSetBonus)
             {
                 npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
             }

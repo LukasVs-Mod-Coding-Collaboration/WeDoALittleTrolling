@@ -35,6 +35,9 @@ using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using System.Collections.Generic;
 using Terraria.Utilities;
+using System.ComponentModel;
+using Microsoft.Xna.Framework.Graphics;
+using System.Text.Encodings.Web;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -551,6 +554,78 @@ namespace WeDoALittleTrolling.Content.Items
             }
         }
 
+        /*
+            You MUST NOT override an item's name while it's being
+            rendered as an entity in a world!
+            Doing so anyways will result in CATASTROPHIC multiplayer bugs
+            such as random items being renamed to your custom name
+            despite not even having the correct item id!
+            Due to this, we need override item names when the player
+            picks up an item and/or the item is
+            rendered in a player's inventory.
+            TL;DR:
+            Calling Item.SetNameOverride() inside SetDefaults()
+            and/or PreDrawInWorld() is STRICTLY PROHIBITED!
+            Use OnPickup() and/or PreDrawInInventory() instead.
+        */
+
+        public override bool OnPickup(Item item, Player player)
+        {
+            if
+            (
+                (
+                    Main.netMode == NetmodeID.SinglePlayer ||
+                    Main.netMode == NetmodeID.MultiplayerClient
+                ) &&
+                player.whoAmI == Main.myPlayer
+            )
+            {
+                AdjustItemName(item);
+            }
+            return base.OnPickup(item, player);
+        }
+
+        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if
+            (
+                Main.netMode == NetmodeID.SinglePlayer ||
+                Main.netMode == NetmodeID.MultiplayerClient
+            )
+            {
+                AdjustItemName(item);
+            }
+            return base.PreDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+        }
+
+        /*
+            Calling @function AdjustItemName() from SetDefaults() and/or PreDrawInWorld() is STRICTLY PROHIBITED!
+        */
+        public static void AdjustItemName(Item item)
+        {
+            if
+            (
+                item.type == ItemID.AncientBattleArmorHat//Forbidden Mask
+            )
+            {
+                item.SetNameOverride("Ancient Battle Mask");
+            }
+            if
+            (
+                item.type == ItemID.AncientBattleArmorShirt
+            )
+            {
+                item.SetNameOverride("Ancient Battle Robes");
+            }
+            if
+            (
+                item.type == ItemID.AncientBattleArmorPants //Forbidden Treads
+            )
+            {
+                item.SetNameOverride("Ancient Battle Treads");
+            }
+        }
+
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             if(item.type == ItemID.MoltenFury)
@@ -809,7 +884,6 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 2;
             }
-
 
             // Buff pre-hardmode whips
 

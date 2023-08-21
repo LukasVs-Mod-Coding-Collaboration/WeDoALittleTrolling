@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Content.Items.Material;
 
 namespace WeDoALittleTrolling.Content.Items.Armor
 {
@@ -12,9 +13,9 @@ namespace WeDoALittleTrolling.Content.Items.Armor
         {
             Item.width = 32;
             Item.height = 24;
-            Item.value = Item.sellPrice(gold: 3);
-            Item.rare = ItemRarityID.LightRed;
-            Item.defense = 16;
+            Item.value = Item.sellPrice(gold: 4);
+            Item.rare = ItemRarityID.Yellow;
+            Item.defense = 20;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -24,15 +25,17 @@ namespace WeDoALittleTrolling.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            int enduranceBonus = 0;
-            enduranceBonus += (1 * player.GetModPlayer<WDALTPlayerUtil>().GetAmountOfEquippedAccessoriesWithPrefixFromPlayer(PrefixID.Hard));
-            enduranceBonus += (2 * player.GetModPlayer<WDALTPlayerUtil>().GetAmountOfEquippedAccessoriesWithPrefixFromPlayer(PrefixID.Guarding));
-            enduranceBonus += (3 * player.GetModPlayer<WDALTPlayerUtil>().GetAmountOfEquippedAccessoriesWithPrefixFromPlayer(PrefixID.Armored));
-            enduranceBonus += (4 * player.GetModPlayer<WDALTPlayerUtil>().GetAmountOfEquippedAccessoriesWithPrefixFromPlayer(PrefixID.Warding));
-            float enduranceBonusFloat = (float)enduranceBonus * 0.01f;
-            player.endurance += enduranceBonusFloat;
-            player.GetDamage(DamageClass.Generic) += enduranceBonusFloat;
-            player.setBonus = "Attackers deal 25% reduced damage and slowly loose life\nReduces damage taken by 1% per defense from accessory reforges\nIncreases damage dealt by 1% per defense from accessory reforges\nCurrent bonus: "+enduranceBonus+"%";
+            player.GetModPlayer<WDALTPlayerUtil>().searingSetBonus = true;
+            player.setBonus = "Attackers deal 30% reduced damage and loose life\nGrants immunity to Searing Inferno\nIncreases defense effectiveness and attack damage\nby 1% for every 4 defense you have\nCurrent bonus: "+player.GetModPlayer<WDALTPlayerUtil>().searingSetBonusValue+"%";
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.TurtleHelmet, 1)
+              .AddIngredient(ModContent.ItemType<HellishFossil>(), 8)
+              .Register();
         }
     }
 }

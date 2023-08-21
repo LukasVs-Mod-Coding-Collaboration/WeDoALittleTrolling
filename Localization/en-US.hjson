@@ -235,17 +235,17 @@ Mods: {
 
 			SearingBreastplate: {
 				DisplayName: Searing Breastplate
-				Tooltip: Unfinished Item
+				Tooltip: ""
 			}
 
 			SearingHelmet: {
 				DisplayName: Searing Helmet
-				Tooltip: Unfinished Item
+				Tooltip: ""
 			}
 
 			SearingLeggings: {
 				DisplayName: Searing Leggings
-				Tooltip: Unfinished Item
+				Tooltip: ""
 			}
 
 			HellishFossil: {

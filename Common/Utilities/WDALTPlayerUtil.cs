@@ -46,6 +46,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool spookyEmblem;
         public bool sorcerousMirror;
         public bool heartOfDespair;
+        public bool searingSetBonus;
+        public int searingSetBonusValue;
         public Player player;
         public long currentTick;
         public int chargeAccelerationTicks;
@@ -63,6 +65,8 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
+            searingSetBonus = false;
+            searingSetBonusValue = 0;
             currentTick = 0;
             chargeAccelerationTicks = 0;
         }
@@ -74,7 +78,6 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         private void ResetVariables()
         {
-            lastLeechingHealTick = 0;
             spookyBonus2X = 0;
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
@@ -83,7 +86,8 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
-            currentTick = 0;
+            searingSetBonus = false;
+            searingSetBonusValue = 0;
             chargeAccelerationTicks = 0;
         }
 
@@ -93,6 +97,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
+            searingSetBonus = false;
             base.ResetEffects();
         }
         
@@ -146,6 +151,13 @@ namespace WeDoALittleTrolling.Common.Utilities
             else
             {
                 player.ClearBuff(ModContent.BuffType<SorcerousMirrorBuff>());
+            }
+            if(searingSetBonus)
+            {
+                searingSetBonusValue = ((int)player.statDefense)/(int)4;
+                float modifierSAR = 1f + searingSetBonusValue * 0.01f;
+                player.DefenseEffectiveness *= modifierSAR;
+                player.GetDamage(DamageClass.Generic) *= modifierSAR;
             }
             base.PostUpdateEquips();
         }
@@ -207,7 +219,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void UpdateLifeRegen()
         {
-            if(player.HasItem(ModContent.ItemType<HolyCharm>()))
+            if(player.HasItem(ModContent.ItemType<HolyCharm>()) || searingSetBonus)
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
             }

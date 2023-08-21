@@ -37,6 +37,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 using System.IO;
 using Microsoft.CodeAnalysis;
+using System.Security.Policy;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -57,10 +58,14 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool parentNPCExists;
         public Player parentPlayer;
         public bool parentPlayerExists;
+        /*
+            @var parentHeldItem is client side only
+        */
         public Item parentHeldItem;
+        /*
+            @var parentHeldItemExists is client side only
+        */
         public bool parentHeldItemExists;
-        public int ammoItemId;
-        public bool ammoItemIdExists;
         public Vector2 spawnCenter;
         public long ticksAlive;
         public bool colossalSolarWhip = false;
@@ -74,41 +79,26 @@ namespace WeDoALittleTrolling.Common.Utilities
             ticksAlive = 0;
             projectile.netUpdate = true;
             spawnSource = source;
-            if(source is EntitySource_ItemUse_WithAmmo itemSourceWithAmmo)
+            if(source is EntitySource_Parent parentSource)
             {
-                parentEntity = itemSourceWithAmmo.Entity;
+                parentEntity = parentSource.Entity;
                 parentEntityExists = true;
-                parentPlayer = itemSourceWithAmmo.Player;
-                parentPlayerExists = true;
-                parentHeldItem = itemSourceWithAmmo.Item;
-                parentHeldItemExists = true;
-                ammoItemId = itemSourceWithAmmo.AmmoItemIdUsed;
-                ammoItemIdExists = true;
             }
             else
             {
-                ammoItemId = 0;
-                ammoItemIdExists = false;
-                if (source is EntitySource_Parent parentSource)
-                {
-                    parentEntity = parentSource.Entity;
-                    parentEntityExists = true;
-                }
-                else
-                {
-                    parentEntity = null;
-                    parentEntityExists = false;
-                }
-                if (TryGetParentEntity(out Entity entity))
-                {
-                    currentSourceDetectionRecursion = 0;
-                    ProcessParentSource(entity);
-                }
+                parentEntity = null;
+                parentEntityExists = false;
             }
-            if(TryGetParentNPC(out NPC npc))
+            if(TryGetParentEntity(out Entity entity))
+            {
+                currentSourceDetectionRecursion = 0;
+                ProcessParentSource(entity);
+            }
+            if(TryGetParentNPC(out NPC npc) && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 GlobalNPCs.OnSpawnProjectile(npc, projectile);
             }
+            projectile.netUpdate = true;
             base.OnSpawn(projectile, source);
         }
 
@@ -116,6 +106,26 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             binaryWriter.Write(projectile.scale);
             binaryWriter.Write(projectile.damage);
+            if(parentNPCExists)
+            {
+                binaryWriter.Write(parentNPCExists);
+                binaryWriter.Write(parentNPC.whoAmI);
+            }
+            else
+            {
+                binaryWriter.Write(parentNPCExists);
+                binaryWriter.Write((int)-1);
+            }
+            if(parentPlayerExists)
+            {
+                binaryWriter.Write(parentPlayerExists);
+                binaryWriter.Write(parentPlayer.whoAmI);
+            }
+            else
+            {
+                binaryWriter.Write(parentPlayerExists);
+                binaryWriter.Write((int)-1);
+            }
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
                 binaryWriter.WriteVector2(spawnCenter);
@@ -138,6 +148,26 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             projectile.scale = binaryReader.ReadSingle();
             projectile.damage = binaryReader.ReadInt32();
+            parentNPCExists = binaryReader.ReadBoolean();
+            int parentNPCIndex = binaryReader.ReadInt32();
+            if(parentNPCIndex > -1 && parentNPCIndex < Main.npc.Length)
+            {
+                parentNPC = Main.npc[parentNPCIndex];
+            }
+            else
+            {
+                parentNPC = null;
+            }
+            parentPlayerExists = binaryReader.ReadBoolean();
+            int parentPlayerIndex = binaryReader.ReadInt32();
+            if(parentPlayerIndex > -1 && parentPlayerIndex < Main.player.Length)
+            {
+                parentPlayer = Main.player[parentPlayerIndex];
+            }
+            else
+            {
+                parentPlayer = null;
+            }
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
                 spawnCenter = binaryReader.ReadVector2();
@@ -162,6 +192,15 @@ namespace WeDoALittleTrolling.Common.Utilities
                     SoundEngine.PlaySound(SoundID.Item17, projectile.position);
                 }
             }
+        }
+
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
+        {
+            if(TryGetParentNPC(out NPC npc) && npc.active)
+            {
+                GlobalNPCs.OnHitPlayerWithProjectile(npc, target, projectile);
+            }
+            base.OnHitPlayer(projectile, target, info);
         }
 
         public override bool ShouldUpdatePosition(Projectile projectile)
@@ -278,16 +317,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             item = parentHeldItem;
             if(parentHeldItemExists)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool TryGetAmmoItemID(out int itemID)
-        {
-            itemID = ammoItemId;
-            if(ammoItemIdExists)
             {
                 return true;
             }

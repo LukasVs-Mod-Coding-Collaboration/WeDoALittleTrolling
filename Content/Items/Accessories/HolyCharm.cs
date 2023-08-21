@@ -26,6 +26,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using WeDoALittleTrolling.Content.Items.Material;
+using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -57,6 +58,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ModContent.ItemType<FrostCrystal>(), 24)
               .AddIngredient(ItemID.BrokenHeroSword, 1)
               .AddIngredient(ItemID.GoldRing, 1)
+              .AddCustomShimmerResult(ItemID.PlatinumCoin, 1)
               .Register();
         }
     }
