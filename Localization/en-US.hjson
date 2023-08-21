@@ -233,6 +233,11 @@ Mods: {
 				Tooltip: ""
 			}
 
+			SearingPlate: {
+				DisplayName: Searing Plate
+				Tooltip: A heavy plate used for making armor
+			}
+
 			SearingBreastplate: {
 				DisplayName: Searing Breastplate
 				Tooltip: ""

@@ -26,7 +26,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.GetModPlayer<WDALTPlayerUtil>().searingSetBonus = true;
-            player.setBonus = "Attackers deal 30% reduced damage and loose life\nGrants immunity to Searing Inferno\nIncreases defense effectiveness and attack damage\nby 1% for every 4 defense you have\nCurrent bonus: "+player.GetModPlayer<WDALTPlayerUtil>().searingSetBonusValue+"%";
+            player.setBonus = "Attackers deal 30% reduced damage and lose life\nGrants immunity to Searing Inferno\nIncreases defense effectiveness and attack damage\nby 1% for every 4 defense you have\nCurrent bonus: "+player.GetModPlayer<WDALTPlayerUtil>().searingSetBonusValue+"%";
         }
 
         public override void AddRecipes()
@@ -34,7 +34,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.TurtleHelmet, 1)
-              .AddIngredient(ModContent.ItemType<HellishFossil>(), 8)
+              .AddIngredient(ModContent.ItemType<SearingPlate>(), 2)
               .Register();
         }
     }

@@ -26,8 +26,8 @@ namespace WeDoALittleTrolling.Content.Items.Armor
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.TurtleHelmet, 1)
-              .AddIngredient(ModContent.ItemType<HellishFossil>(), 12)
+              .AddIngredient(ItemID.TurtleLeggings, 1)
+              .AddIngredient(ModContent.ItemType<SearingPlate>(), 3)
               .Register();
         }
     }
