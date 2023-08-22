@@ -26,6 +26,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.Prefixes;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using WeDoALittleTrolling.Common.Utilities;
@@ -37,7 +38,6 @@ using System.Collections.Generic;
 using Terraria.Utilities;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
-using System.Text.Encodings.Web;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -652,6 +652,11 @@ namespace WeDoALittleTrolling.Content.Items
             base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
 
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.GunsBows[ItemID.FlareGun] = true;
+        }
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.Phantasm) 
@@ -750,8 +755,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.FlareGun)
             {
-                item.damage = 8;
+                item.damage = 12;
                 item.crit = 4;
+                item.knockBack = 2f;
+                item.DamageType = DamageClass.Ranged;
             }
             if (item.type == ItemID.ChristmasTreeSword)
             {

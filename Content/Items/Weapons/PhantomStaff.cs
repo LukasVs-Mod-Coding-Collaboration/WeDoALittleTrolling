@@ -39,7 +39,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
         }
 
-        
         public override void SetDefaults()
         {
             Item.width = 36;
