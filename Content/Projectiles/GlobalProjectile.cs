@@ -267,13 +267,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         break;
                 }
                 NPC target = null;
-                for(int i = 0; i < 200; i++)
+                for(int i = 0; i < Main.npc.Length; i++)
                 {
                     NPC currentTarget = Main.npc[i];
                     if
                     (
                         !currentTarget.dontTakeDamage &&
                         currentTarget.active &&
+                        currentTarget.CanBeChasedBy() &&
                         !currentTarget.friendly && 
                         !currentTarget.CountsAsACritter && 
                         !currentTarget.isLikeATownNPC && 

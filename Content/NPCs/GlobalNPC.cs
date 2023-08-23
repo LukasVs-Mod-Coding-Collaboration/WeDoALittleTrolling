@@ -621,9 +621,16 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     npc.active = false;
                 }
-                if(Collision.SolidCollision(npc.position, npc.width+(int)npc.velocity.Length()+1, npc.height+(int)npc.velocity.Length()+1) && npc.velocity.Length() > 0f)
+                if(Collision.SolidCollision(npc.position, npc.width+(int)npc.velocity.Length()+2, npc.height+(int)npc.velocity.Length()+2) && npc.velocity.Length() > 0f)
                 {
-                    npc.position += npc.velocity;
+                    npc.ai[0] += 1f;
+                    if(npc.ai[0] > 3f)
+                    {
+                        npc.ai[0] = 3f;
+                    }
+                    npc.position += npc.netOffset;
+                    npc.rotation += 0.4f * (float)npc.direction;
+                    npc.position -= npc.netOffset;
                     return false;
                 }
             }

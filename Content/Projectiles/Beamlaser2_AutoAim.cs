@@ -32,6 +32,8 @@ namespace  WeDoALittleTrolling.Content.Projectiles
     public class Beamlaser2_AutoAim : ModProjectile
     {
         public Vector2 original_location;
+        public long currentTick = 0;
+        public long location_is_locked_tick = 9999;
         public bool location_is_locked = false;
         public override void SetStaticDefaults() {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9999; // The length of old position to be recorded
@@ -45,7 +47,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Projectile.friendly = true; // Can the projectile deal damage to enemies?
             Projectile.hostile = false; // Can the projectile deal damage to the player?
             Projectile.DamageType = DamageClass.Ranged; // Is the projectile shoot by a ranged weapon?
-            Projectile.penetrate = 999999999; // How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
+            Projectile.penetrate = -1; // How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
             Projectile.timeLeft = 99*(99+1); // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
             Projectile.alpha = 255; // The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in) Make sure to delete this if you aren't using an aiStyle that fades in. You'll wonder why your projectile is invisible.
             Projectile.light = 1.0f; // How much light emit around the projectile
@@ -64,10 +66,17 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 
             // Redraw the projectile with the color not influenced by light
             Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            for (int k = 0; k < Projectile.oldPos.Length; k++) {
-                Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-                Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+            Vector2 drawPosOrig = (this.original_location - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+            Color colorOrig = Projectile.GetAlpha(lightColor);
+            Main.EntitySpriteDraw(texture, drawPosOrig, null, colorOrig, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                if(k <= location_is_locked_tick && ((k % 4) == 0)) //efficiency: Only paint projectile for every fourth cahched position
+                {
+                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                    Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+                }
             }
 
             return true;
@@ -94,11 +103,13 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 
         public override bool ShouldUpdatePosition()
         {
+            this.currentTick++;
             if(Math.Abs(this.Projectile.position.X - this.original_location.X) > 1280 || //Configure max lengh of beam in x coords
                Math.Abs(this.Projectile.position.Y - this.original_location.Y) > 768  || //Configure max lengh of beam in y coords
                this.location_is_locked)
             {
                 this.location_is_locked = true;
+                this.location_is_locked_tick = this.currentTick;
                 this.Projectile.damage = 0;
                 this.Projectile.position = this.original_location;
                 return false;
@@ -113,7 +124,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
         {
             Vector2 spawnCenter = Projectile.Center;
             float lowest_distance = 9999;
-            for(int i = 0; i < 200; i++)
+            for(int i = 0; i < Main.npc.Length; i++)
             {
                 NPC target = Main.npc[i];
                 float shootToX                  = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
@@ -154,6 +165,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                     !target.isLikeATownNPC &&
                     !target.dontTakeDamage &&
                     target.active &&
+                    target.CanBeChasedBy() &&
                     distance < lowest_distance &&
                     (
                         y_inaccuracy < inaccuracy_tolerance ||
