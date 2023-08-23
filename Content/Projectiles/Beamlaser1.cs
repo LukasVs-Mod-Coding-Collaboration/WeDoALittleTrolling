@@ -100,9 +100,19 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 
         public override bool ShouldUpdatePosition()
         {
+            float maxBeamTravelX = Main.screenWidth/2;
+            float maxBeamTravelY = Main.screenHeight/2;
+            if(maxBeamTravelX > 1920/2)
+            {
+                maxBeamTravelX = 1920/2;
+            }
+            if(maxBeamTravelY > 1080/2)
+            {
+                maxBeamTravelY = 1080/2;
+            }
             this.currentTick++;
-            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > 1280 || //Configure max lengh of beam in x coords
-               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > 768  || //Configure max lengh of beam in y coords
+            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
+               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY  || //Configure max lengh of beam in y coords
                this.location_is_locked)
             {
                 this.location_is_locked = true;

@@ -103,9 +103,19 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 
         public override bool ShouldUpdatePosition()
         {
+            float maxBeamTravelX = Main.screenWidth/2;
+            float maxBeamTravelY = Main.screenHeight/2;
+            if(maxBeamTravelX > 1920/2)
+            {
+                maxBeamTravelX = 1920/2;
+            }
+            if(maxBeamTravelY > 1080/2)
+            {
+                maxBeamTravelY = 1080/2;
+            }
             this.currentTick++;
-            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > 1280 || //Configure max lengh of beam in x coords
-               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > 768  || //Configure max lengh of beam in y coords
+            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
+               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY  || //Configure max lengh of beam in y coords
                this.location_is_locked)
             {
                 this.location_is_locked = true;
@@ -124,6 +134,16 @@ namespace  WeDoALittleTrolling.Content.Projectiles
         {
             Vector2 spawnCenter = Projectile.Center;
             float lowest_distance = 9999;
+            float maxBeamTravelX = Main.screenWidth/2;
+            float maxBeamTravelY = Main.screenHeight/2;
+            if(maxBeamTravelX > 1920/2)
+            {
+                maxBeamTravelX = 1920/2;
+            }
+            if(maxBeamTravelY > 1080/2)
+            {
+                maxBeamTravelY = 1080/2;
+            }
             for(int i = 0; i < Main.npc.Length; i++)
             {
                 NPC target = Main.npc[i];
@@ -153,8 +173,8 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                 if
                 (
                     (
-                        Math.Abs(this.original_location.X - target.position.X) < 1280 && //Configure detect zone in x coords
-                        Math.Abs(this.original_location.Y - target.position.Y) < 768     //Configure detect zone in y coords
+                        Math.Abs(this.original_location.X - target.position.X) < maxBeamTravelX && //Configure detect zone in x coords
+                        Math.Abs(this.original_location.Y - target.position.Y) < maxBeamTravelY     //Configure detect zone in y coords
                     ) &&
                     (
                         Math.Abs(this.original_location.X - target.position.X) > inaccuracy_tolerance ||   //Configure non-detect zone in x coords
