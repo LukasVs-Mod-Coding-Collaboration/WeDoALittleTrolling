@@ -151,7 +151,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.InfernoFriendlyBolt ||
                 projectile.type == ProjectileID.FrostBoltStaff ||
                 projectile.type == ProjectileID.UnholyTridentFriendly ||
-                projectile.type == ProjectileID.BookStaffShot
+                projectile.type == ProjectileID.BookStaffShot ||
+                projectile.type == ProjectileID.LunarFlare
             )
             {
                 projectile.tileCollide = false;
@@ -169,10 +170,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.InfernoFriendlyBolt ||
                 projectile.type == ProjectileID.FrostBoltStaff ||
                 projectile.type == ProjectileID.UnholyTridentFriendly ||
-                projectile.type == ProjectileID.BookStaffShot
+                projectile.type == ProjectileID.BookStaffShot ||
+                projectile.type == ProjectileID.LunarFlare
             )
             {
                 projectile.usesLocalNPCImmunity = true;
+                projectile.localNPCHitCooldown = 10;
+                projectile.usesIDStaticNPCImmunity = false;
+                projectile.idStaticNPCHitCooldown = -1;
             }
             if
             (
@@ -217,7 +222,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.InfernoFriendlyBolt ||
                 projectile.type == ProjectileID.FrostBoltStaff ||
                 projectile.type == ProjectileID.UnholyTridentFriendly ||
-                projectile.type == ProjectileID.BookStaffShot
+                projectile.type == ProjectileID.BookStaffShot ||
+                projectile.type == ProjectileID.LunarFlare
             )
             {
                 float lowest_distance = 0f; //Homing detection range
@@ -262,6 +268,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     case ProjectileID.BookStaffShot:
                         lowest_distance = 320f;
                         correction_factor = 1.375f;
+                        break;
+                    case ProjectileID.LunarFlare:
+                        lowest_distance = 512f;
+                        correction_factor = 1.67f;
                         break;
                     default:
                         break;

@@ -291,7 +291,8 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.BlizzardStaff ||
                 item.type == ItemID.FrostStaff ||
                 item.type == ItemID.UnholyTrident ||
-                item.type == ItemID.BookStaff
+                item.type == ItemID.BookStaff ||
+                item.type == ItemID.LunarFlareBook
             )
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ProjectileHomingDescription", "Projectiles move towards the closest target");
@@ -1350,6 +1351,21 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 20;
                 item.useAnimation = 20;
                 item.shootsEveryUse = true;
+            }
+
+            if(item.type == ItemID.Celeb2)
+            {
+                if(item.damage <= 70)
+                {
+                    item.damage = 70;
+                }
+            }
+            if(item.type == ItemID.FireworksLauncher)
+            {
+                if(item.damage <= 35)
+                {
+                    item.damage = 35;
+                }
             }
         }
     }
