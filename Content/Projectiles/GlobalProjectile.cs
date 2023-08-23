@@ -407,6 +407,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            if
+            (
+                projectile.type == ProjectileID.GiantBee &&
+                projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player) &&
+                (
+                    source is EntitySource_ItemUse ||
+                    source is EntitySource_ItemUse_OnHurt ||
+                    (source is EntitySource_Parent parentSource && parentSource.Entity is Projectile proj && proj.type == ProjectileID.BeeArrow)
+                )
+            )
+            {
+                if(player.strongBees && player.whoAmI == Main.myPlayer && random.NextBool(10))
+                {
+                    Projectile beenade = Projectile.NewProjectileDirect(source, projectile.Center, projectile.velocity, ProjectileID.Beenade, projectile.damage, projectile.knockBack, projectile.owner);
+                    projectile.active = false;
+                }
+            }
             if (projectile.type == ProjectileID.DeerclopsRangedProjectile)
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 0.75);

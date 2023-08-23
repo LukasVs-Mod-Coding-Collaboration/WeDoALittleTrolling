@@ -709,6 +709,18 @@ namespace WeDoALittleTrolling.Content.Items
                 item.shootsEveryUse = true;
                 item.knockBack = 5f;
             }
+            if (item.type == ItemID.BoneSword) 
+            {
+                if(item.damage <= 24)
+                {
+                    item.damage = 24;
+                }
+                item.useTime = 20;
+                item.useAnimation = 20;
+                item.shootsEveryUse = true;
+                item.shoot = ProjectileID.BoneGloveProj;
+                item.shootSpeed = 10f;
+            }
             if (item.type == ItemID.EnchantedSword) 
             {
                 if(item.damage <= 24)
