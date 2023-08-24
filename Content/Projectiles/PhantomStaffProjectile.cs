@@ -35,9 +35,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float attackOverlapCorrectionFactor = 0.02f;
         public const float detectionRange = 1024f;
         public const float detectionRangeOffset = 50f;
-        public const float moveSpeed = 16f;
-        public const float idleIdleness = 32f;
-        public const float attackIdleness = 2f;
+        public const float idleMoveSpeed = 4f;
+        public const float attackMoveSpeed = 16f;
+        public const float idleInertia = 8f;
+        public const float attackInertia = 2f;
         public const float idleDistance = 64f;
         public long lastActionTick;
         public static UnifiedRandom random = new UnifiedRandom();
@@ -203,8 +204,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     Vector2 moveVector = (targetCenter - Projectile.Center);
                     moveVector.Normalize();
-                    moveVector *= moveSpeed;
-                    Projectile.velocity = (((Projectile.velocity * (attackIdleness - 1f)) + moveVector) / attackIdleness);
+                    moveVector *= attackMoveSpeed;
+                    Projectile.velocity += (moveVector/attackInertia);
+                    if(Projectile.velocity.Length() > attackMoveSpeed)
+                    {
+                        Projectile.velocity.Normalize();
+                        Projectile.velocity *= attackMoveSpeed;
+                    }
                 }
                 if
                 (
@@ -218,14 +224,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         Vector2 offset2 = new Vector2(9.5f, -12.5f);
                         Vector2 pos1 = Projectile.Center + offset1;
                         Vector2 pos2 = Projectile.Center + offset2;
-                        Vector2 predictVelocity = targetVelocity * (distanceToTarget / (moveSpeed * 2f)); //Roughly Predict where the target is going to be when the Laser reaches it
+                        Vector2 predictVelocity = targetVelocity * (distanceToTarget / (attackMoveSpeed * 2f)); //Roughly Predict where the target is going to be when the Laser reaches it
                         Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
                         Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
                         int dmg = (int)Math.Round(Projectile.damage * 0.5); //We shoot 2 projectiles so only 0.5x damage per projectile.
                         shootVector1.Normalize();
-                        shootVector1 *= (moveSpeed * 2f);
+                        shootVector1 *= (attackMoveSpeed * 2f);
                         shootVector2.Normalize();
-                        shootVector2 *= (moveSpeed * 2f);
+                        shootVector2 *= (attackMoveSpeed * 2f);
                         Projectile.NewProjectileDirect
                         (
                             Projectile.GetSource_FromAI(),
@@ -256,8 +262,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if(distanceToIdlePos > idleDistance)
                 {
                     vectorToIdlePos.Normalize();
-                    vectorToIdlePos *= moveSpeed;
-                    Projectile.velocity = (((Projectile.velocity * (idleIdleness - 1f)) + vectorToIdlePos) / idleIdleness);
+                    float speedFactor = distanceToIdlePos * (1f/idleDistance);
+                    if(speedFactor < 1f) //Make sure speed will be at least idleMoveSpeed
+                    {
+                        speedFactor = 1f;
+                    }
+                    vectorToIdlePos *= (idleMoveSpeed * speedFactor);
+                    Projectile.velocity += (vectorToIdlePos/idleInertia);
+                    if(Projectile.velocity.Length() > (idleMoveSpeed * speedFactor)) //Smoothly accelerate/decelerate based on distance to idle position
+                    {
+                        Projectile.velocity.Normalize();
+                        Projectile.velocity *= (idleMoveSpeed * speedFactor);
+                    }
+                    if(Projectile.velocity.Length() > attackMoveSpeed) //Cap movement speed at attack movement speed
+                    {
+                        Projectile.velocity.Normalize();
+                        Projectile.velocity *= attackMoveSpeed;
+                    }
                 }
             }
             if(Projectile.velocity.Length() == 0f)
@@ -265,7 +286,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.velocity.X = (random.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (random.NextFloat() - 0.5f);
                 Projectile.velocity.Normalize();
-                Projectile.velocity *= moveSpeed;
+                Projectile.velocity *= idleMoveSpeed;
             }
         }
     }
