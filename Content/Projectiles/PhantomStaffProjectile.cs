@@ -34,7 +34,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float idleOverlapCorrectionFactor = 0.04f;
         public const float attackOverlapCorrectionFactor = 0.02f;
         public const float detectionRange = 1024f;
-        public const float detectionRangeOffset = 70f;
+        public const float detectionRangeOffset = 50f;
         public const float moveSpeed = 16f;
         public const float idleIdleness = 32f;
         public const float attackIdleness = 2f;
@@ -45,6 +45,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void SetStaticDefaults()
         {
             Main.projPet[Projectile.type] = true;
+            Main.projFrames[Projectile.type] = 1;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
@@ -107,14 +108,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
         }
 
-        /*
-            Credits to Riptide/RiptideDev/RiptideStudio for immensely
-            helping us design the AI_003_Luminite_Phantom() function.
-            RiptideDev on YouTube: https://www.youtube.com/@riptidedev3471
-            Riptide on YouTube: https://www.youtube.com/@RiptideDev
-            RiptideStudio on Github: https://github.com/RiptideStudio
-            RiptideMod on Github: https://github.com/RiptideStudio/RiptideMod
-        */
         private void AI_003_Luminite_Phantom()
         {
             Player ownerPlayer = Main.player[Projectile.owner];
@@ -269,8 +262,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if(Projectile.velocity.Length() == 0f)
             {
-                Projectile.velocity.X = 1f;
-                Projectile.velocity.Y = 1f;
+                Projectile.velocity.X = (random.NextFloat() - 0.5f);
+                Projectile.velocity.Y = (random.NextFloat() - 0.5f);
                 Projectile.velocity.Normalize();
                 Projectile.velocity *= moveSpeed;
             }
