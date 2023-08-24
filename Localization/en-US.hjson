@@ -390,6 +390,16 @@ Mods: {
 					'''
 			}
 
+			Beekeeping: {
+				DisplayName: Beekeeping
+				AdditionalTooltip:
+					'''
+					Enemies struck by you will release bees
+					Several accessories with this reforge 
+					also increase the damage done by the bees
+					'''
+			}
+
 			InfernoInfusion: {
 				DisplayName: Inferno infusing
 				AdditionalTooltip: +Inferno buff

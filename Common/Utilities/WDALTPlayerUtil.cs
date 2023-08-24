@@ -43,6 +43,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int dodgeChancePercent;
         public int wreckedResistanceStack;
         public int devastatedStack;
+        public int beekeeperStack;
         public bool spookyEmblem;
         public bool sorcerousMirror;
         public bool heartOfDespair;
@@ -63,6 +64,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
             devastatedStack = 0;
+            beekeeperStack = 0;
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
@@ -85,6 +87,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
             devastatedStack = 0;
+            beekeeperStack = 0;
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
@@ -97,6 +100,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void ResetEffects()
         {
             dodgeChancePercent = 0;
+            beekeeperStack = 0;
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
@@ -316,6 +320,54 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
             }
             base.ModifyHitNPC(target, ref modifiers);
+        }
+
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            spawnBees(target);
+            base.OnHitNPCWithItem(item, target, hit, damageDone);
+        }
+
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee)
+            {
+                spawnBees(target);
+            }
+            base.OnHitNPCWithProj(proj, target, hit, damageDone);
+        }
+
+        public void spawnBees(NPC target)
+        {
+            if (beekeeperStack > 0)
+            {
+                int beeType = ProjectileID.Bee;
+                int beeDamage = 10;
+
+                for (int j = 0; j < beekeeperStack; j++)
+                {
+
+                    if (random.NextBool(21) && player.strongBees)
+                    {
+                        beeType = ProjectileID.GiantBee;
+                        beeDamage = 20;
+                    }
+
+                    Projectile beekeeperStackBee = Projectile.NewProjectileDirect
+                        (
+                        player.GetSource_FromThis(),
+                        new Vector2(target.Center.X, target.Center.Y),
+                        new Vector2(random.NextFloat(-1f, 1f), random.NextFloat(-1f, 1f)),
+                        beeType,
+                        2 * beekeeperStack + beeDamage,
+                        0,
+                        player.whoAmI
+                        );
+
+                    beekeeperStackBee.timeLeft = 300;
+                    beekeeperStackBee.penetrate = -1;
+                }
+            }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
