@@ -30,7 +30,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.timeLeft = 600;
             Projectile.ArmorPenetration = 30;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = -1;
+            Projectile.localNPCHitCooldown = 20;
             AIType = ProjectileID.Bullet;
         }
 

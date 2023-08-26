@@ -132,6 +132,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.extraUpdates = 1;
             }
+            if(projectile.type == ProjectileID.TerrarianBeam || projectile.aiStyle == ProjAIStyleID.Yoyo)
+            {
+                projectile.usesLocalNPCImmunity = true;
+                projectile.localNPCHitCooldown = 20;
+                projectile.usesIDStaticNPCImmunity = false;
+                projectile.idStaticNPCHitCooldown = -1;
+            }
             if(projectile.type == ProjectileID.IceBoomerang)
             {
                 projectile.extraUpdates = projectile.GetGlobalProjectile<WDALTProjectileUtil>().extraUpdatesIceBoomerang;
