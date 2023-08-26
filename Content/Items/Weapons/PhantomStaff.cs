@@ -71,6 +71,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             position = Main.MouseWorld;
+            velocity.X = (PhantomStaffProjectile.random.NextFloat() - 0.5f);
+            velocity.Y = (PhantomStaffProjectile.random.NextFloat() - 0.5f);
+            velocity.Normalize();
+            velocity *= PhantomStaffProjectile.idleMoveSpeed;
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
 

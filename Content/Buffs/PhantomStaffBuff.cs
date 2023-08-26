@@ -31,6 +31,7 @@ namespace WeDoALittleTrolling.Content.Buffs
             else
             {
                 player.DelBuff(buffIndex);
+                buffIndex--;
             }
         }
     }

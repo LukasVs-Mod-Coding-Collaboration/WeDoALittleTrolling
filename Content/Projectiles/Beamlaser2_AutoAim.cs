@@ -65,10 +65,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 
             // Redraw the projectile with the color not influenced by light
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            Vector2 drawPosOrig = (this.original_location - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-            Color colorOrig = Projectile.GetAlpha(lightColor);
-            Main.EntitySpriteDraw(texture, drawPosOrig, null, colorOrig, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+            Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                 if(k <= location_is_locked_tick && ((k % 4) == 0)) //efficiency: Only paint projectile for every fourth cahched position
@@ -78,7 +75,9 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                     Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
                 }
             }
-
+            Vector2 drawPosOrig = (this.original_location - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+            Color colorOrig = Projectile.GetAlpha(lightColor);
+            Main.EntitySpriteDraw(texture, drawPosOrig, null, colorOrig, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
             return true;
         }
 
@@ -136,6 +135,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             float lowest_distance = 9999;
             float maxBeamTravelX = Main.screenWidth/2;
             float maxBeamTravelY = Main.screenHeight/2;
+            float origVelocityLength = Projectile.velocity.Length();
             if(maxBeamTravelX > 1920/2)
             {
                 maxBeamTravelX = 1920/2;
@@ -150,7 +150,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                 float shootToX                  = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
                 float shootToY                  = target.position.Y - spawnCenter.Y;
                 Vector2 shootTo                 = new Vector2(shootToX, shootToY);
-                float distance                  = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+                float distance                  = shootTo.Length();
                 Vector2 originalVector          = Projectile.velocity;
                 originalVector.Normalize();
                 float x                         = originalVector.X;
@@ -195,6 +195,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                 {
                     Vector2 newVelocity = shootTo;
                     newVelocity.Normalize();
+                    newVelocity *= origVelocityLength;
                     Projectile.velocity = newVelocity;
                     lowest_distance = distance;
                 }

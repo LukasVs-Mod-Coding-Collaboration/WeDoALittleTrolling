@@ -228,6 +228,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 float lowest_distance = 0f; //Homing detection range
                 float correction_factor = 0f;
+                float origVelocityLength = projectile.velocity.Length();
                 switch(projectile.type)
                 {
                     case ProjectileID.FrostBlastFriendly:

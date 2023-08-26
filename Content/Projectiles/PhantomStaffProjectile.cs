@@ -40,6 +40,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float idleInertia = 8f;
         public const float attackInertia = 2f;
         public const float idleDistance = 64f;
+        public const float idleAccelerationFactor = 0.75f;
         public long lastActionTick;
         public static UnifiedRandom random = new UnifiedRandom();
         
@@ -262,7 +263,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if(distanceToIdlePos > idleDistance)
                 {
                     vectorToIdlePos.Normalize();
-                    float speedFactor = distanceToIdlePos * (1f/idleDistance);
+                    float speedFactor = ((distanceToIdlePos * idleAccelerationFactor) / idleDistance);
                     if(speedFactor < 1f) //Make sure speed will be at least idleMoveSpeed
                     {
                         speedFactor = 1f;

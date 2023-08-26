@@ -199,7 +199,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ProjectileID.TungstenShortswordStab,
             ProjectileID.GoldShortswordStab,
             ProjectileID.PlatinumShortswordStab,
-            ProjectileID.GladiusStab,
+            ProjectileID.GladiusStab
         };
         public static readonly int[] SpeedupProjectileIDs =
         {

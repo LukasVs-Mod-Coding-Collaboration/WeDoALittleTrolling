@@ -64,10 +64,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 
             // Redraw the projectile with the color not influenced by light
-            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-            Vector2 drawPosOrig = (this.original_location - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-            Color colorOrig = Projectile.GetAlpha(lightColor);
-            Main.EntitySpriteDraw(texture, drawPosOrig, null, colorOrig, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+            Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                 if(k <= location_is_locked_tick && ((k % 4) == 0)) //efficiency: Only paint projectile for every fourth cahched position
@@ -77,7 +74,9 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                     Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
                 }
             }
-
+            Vector2 drawPosOrig = (this.original_location - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+            Color colorOrig = Projectile.GetAlpha(lightColor);
+            Main.EntitySpriteDraw(texture, drawPosOrig, null, colorOrig, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
             return true;
         }
 

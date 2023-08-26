@@ -1379,6 +1379,25 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 35;
                 }
             }
+
+            //Buff Shortswords
+            int[] shortSwordsToBuff =
+            {
+                ItemID.CopperShortsword,
+                ItemID.TinShortsword,
+                ItemID.IronShortsword,
+                ItemID.LeadShortsword,
+                ItemID.SilverShortsword,
+                ItemID.TungstenShortsword,
+                ItemID.GoldShortsword,
+                ItemID.PlatinumShortsword,
+                ItemID.Gladius
+            };
+            if(shortSwordsToBuff.Contains(item.type))
+            {
+                item.damage += 4;
+                item.knockBack += 1.5f;
+            }
         }
     }
 }

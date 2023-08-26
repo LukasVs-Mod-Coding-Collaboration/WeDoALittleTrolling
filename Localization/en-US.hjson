@@ -313,6 +313,18 @@ Mods: {
 				DisplayName: Mushroom Fossil
 				Tooltip: ""
 			}
+
+			YoyoArtefact: {
+				DisplayName: Yoyo Artefact
+				Tooltip:
+					'''
+					15% increased melee damage
+					Striking an enemy with a yoyo
+					spawns 3 Magic Artefacts that
+					chase after your enemy and
+					deal 33% weapon damage
+					'''
+			}
 		}
 
 		Projectiles: {
@@ -322,6 +334,7 @@ Mods: {
 			PhotonsplicerProjectile.DisplayName: Photonsplicer
 			PhantomStaffProjectile.DisplayName: Luminite Phantom
 			PhantomStaffProjectileBullet.DisplayName: Luminite Phantom Laser
+			MagicArtefact.DisplayName: Magic Artefact
 		}
 
 		Prefixes: {

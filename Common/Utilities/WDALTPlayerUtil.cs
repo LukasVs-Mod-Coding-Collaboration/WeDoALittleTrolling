@@ -32,6 +32,7 @@ using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using SteelSeries.GameSense;
+using WeDoALittleTrolling.Content.Projectiles;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -50,6 +51,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool searingSetBonus;
         public int searingSetBonusValue;
         public bool gnomedStonedDebuff;
+        public bool yoyoArtefact;
         public Player player;
         public long currentTick;
         public int chargeAccelerationTicks;
@@ -71,6 +73,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
+            yoyoArtefact = false;
             currentTick = 0;
             chargeAccelerationTicks = 0;
         }
@@ -94,6 +97,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
+            yoyoArtefact = false;
             chargeAccelerationTicks = 0;
         }
 
@@ -106,6 +110,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             heartOfDespair = false;
             searingSetBonus = false;
             gnomedStonedDebuff = false;
+            yoyoArtefact = false;
             base.ResetEffects();
         }
         
@@ -324,49 +329,75 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            spawnBees(target);
+            if (beekeeperStack > 0)
+            {
+                spawnBees(target);
+            }
             base.OnHitNPCWithItem(item, target, hit, damageDone);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee)
+            if (proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee && beekeeperStack > 0)
             {
                 spawnBees(target);
+            }
+            if
+            (
+                yoyoArtefact &&
+                (
+                    proj.type == ProjectileID.TerrarianBeam ||
+                    proj.aiStyle == ProjAIStyleID.Yoyo
+                )
+            )
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    int rMax = (int)proj.width;
+                    double r = rMax * Math.Sqrt(random.NextDouble());
+                    double angle = random.NextDouble() * 2 * Math.PI;
+                    int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                    int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                    Vector2 projPosition = proj.Center;
+                    projPosition.X += xOffset;
+                    projPosition.Y += yOffset;
+                    Vector2 projVelocity = new Vector2((random.NextFloat() - 0.5f), (random.NextFloat() - 0.5f));
+                    projVelocity.Normalize();
+                    projVelocity *= 12f;
+                    int dmg = (int)Math.Round(proj.damage * 0.33);
+                    Projectile.NewProjectileDirect(proj.GetSource_OnHit(target), projPosition, projVelocity, ModContent.ProjectileType<MagicArtefact>(), dmg, proj.knockBack, proj.owner);
+                }
             }
             base.OnHitNPCWithProj(proj, target, hit, damageDone);
         }
 
         public void spawnBees(NPC target)
         {
-            if (beekeeperStack > 0)
+            int beeType = ProjectileID.Bee;
+            int beeDamage = 10;
+
+            for (int j = 0; j < beekeeperStack; j++)
             {
-                int beeType = ProjectileID.Bee;
-                int beeDamage = 10;
 
-                for (int j = 0; j < beekeeperStack; j++)
+                if (random.NextBool(21) && player.strongBees)
                 {
-
-                    if (random.NextBool(21) && player.strongBees)
-                    {
-                        beeType = ProjectileID.GiantBee;
-                        beeDamage = 20;
-                    }
-
-                    Projectile beekeeperStackBee = Projectile.NewProjectileDirect
-                        (
-                        player.GetSource_FromThis(),
-                        new Vector2(target.Center.X, target.Center.Y),
-                        new Vector2(random.NextFloat(-1f, 1f), random.NextFloat(-1f, 1f)),
-                        beeType,
-                        2 * beekeeperStack + beeDamage,
-                        0,
-                        player.whoAmI
-                        );
-
-                    beekeeperStackBee.timeLeft = 300;
-                    beekeeperStackBee.penetrate = -1;
+                    beeType = ProjectileID.GiantBee;
+                    beeDamage = 20;
                 }
+
+                Projectile beekeeperStackBee = Projectile.NewProjectileDirect
+                    (
+                    player.GetSource_FromThis(),
+                    new Vector2(target.Center.X, target.Center.Y),
+                    new Vector2(random.NextFloat(-1f, 1f), random.NextFloat(-1f, 1f)),
+                    beeType,
+                    2 * beekeeperStack + beeDamage,
+                    0,
+                    player.whoAmI
+                    );
+
+                beekeeperStackBee.timeLeft = 300;
+                beekeeperStackBee.penetrate = -1;
             }
         }
 
