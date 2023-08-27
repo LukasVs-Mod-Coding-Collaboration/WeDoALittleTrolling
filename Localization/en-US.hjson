@@ -223,7 +223,7 @@ Mods: {
 
 			Photonsplicer: {
 				DisplayName: Photonsplicer
-				Tooltip: Legacy Item
+				Tooltip: Unfinished Item
 			}
 
 			DustyFossil: {
@@ -324,6 +324,11 @@ Mods: {
 					chase after your enemy and
 					deal 33% weapon damage
 					'''
+			}
+
+			GloriousDemiseInventoryItem: {
+				DisplayName: Glorious Demise
+				Tooltip: Unfinished Item
 			}
 		}
 
