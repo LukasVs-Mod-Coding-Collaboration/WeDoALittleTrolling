@@ -86,6 +86,12 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_AvengerEmblem.AddIngredient(ItemID.HallowedBar, 12);
             WDALT_AvengerEmblem.AddIngredient(ItemID.SoulofNight, 12);
             WDALT_AvengerEmblem.Register();
+
+            Recipe WDALT_SlimeStaff = Recipe.Create(ItemID.SlimeStaff, 1);
+            WDALT_SlimeStaff.AddTile(TileID.WorkBenches);
+            WDALT_SlimeStaff.AddIngredient(ItemID.Gel, 99);
+            WDALT_SlimeStaff.AddRecipeGroup(RecipeGroupID.Wood, 33);
+            WDALT_SlimeStaff.Register();
         }
 
         public static void AddComplexCraftingTreeItemDuplicationRecipes()
