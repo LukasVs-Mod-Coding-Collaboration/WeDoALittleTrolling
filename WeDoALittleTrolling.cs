@@ -17,6 +17,7 @@
 */
 
 using System.IO;
+using log4net;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.ModSystems;
 
@@ -26,11 +27,18 @@ namespace WeDoALittleTrolling
     {
         public const string ASSET_PATH = "WeDoALittleTrolling/Assets/";
         internal static WDALTNetworkingSystem networkingSystem = new WDALTNetworkingSystem();
-
+        public static ILog logger;
+        
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             networkingSystem.HandlePacket(reader, whoAmI, this);
             base.HandlePacket(reader, whoAmI);
+        }
+
+        public override void Load()
+        {
+            logger = this.Logger;
+            base.Load();
         }
 
     }

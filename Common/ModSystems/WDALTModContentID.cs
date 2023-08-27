@@ -94,7 +94,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             catch
             {
-                System.Console.WriteLine("WDALT: ERROR: GetThoriumBossNPCID() was called with an invalid ModContentID.");
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumBossNPCID() was called with an invalid ModContentID.");
             }
             return i;
         }
@@ -107,7 +107,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             catch
             {
-                System.Console.WriteLine("WDALT: ERROR: GetThoriumItemID was called with an invalid ModContentID.");
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumItemID was called with an invalid ModContentID.");
             }
             return i;
         }

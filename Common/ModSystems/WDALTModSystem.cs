@@ -17,8 +17,8 @@
 */
 
 using System;
+using Terraria;
 using Terraria.ModLoader;
-using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Recipes;
 
 namespace WeDoALittleTrolling.Common.ModSystems
@@ -43,6 +43,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 isThoriumModPresent = true;
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
+            IL_WorldGen.UpdateWorld_Inner += WDALTIntermediateLanguageEditing.IL_WorldGen_UpdateWorld;
             base.OnModLoad();
         }
 
