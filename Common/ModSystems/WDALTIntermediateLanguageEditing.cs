@@ -16,14 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
 using Terraria;
+using Terraria.ModLoader;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
-using Terraria.ModLoader;
-using Mono.Cecil;
-using log4net.Repository.Hierarchy;
-using log4net.Core;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {

@@ -33,6 +33,11 @@ namespace WeDoALittleTrolling.Content.Recipes
         public static void AddRecipes()
         {
             AddComplexCraftingTreeItemDuplicationRecipes();
+            AddShimmeringBetweenMimicItems_MeleeWeapons();
+            AddShimmeringBetweenMimicItems_RangedWeapons();
+            AddShimmeringBetweenMimicItems_MagicWeapons();
+            AddShimmeringBetweenMimicItems_Accessories();
+            AddShimmeringBetweenMimicItems_Hooks();
 
             Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
             
@@ -94,6 +99,87 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_SlimeStaff.Register();
         }
 
+        public static void AddShimmeringBetweenMimicItems_MeleeWeapons()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.ChainGuillotines, 1)
+            .AddIngredient(ItemID.FetidBaghnakhs, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.FetidBaghnakhs, 1)
+            .AddIngredient(ItemID.FlyingKnife, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.FlyingKnife, 1)
+            .AddIngredient(ItemID.ChainGuillotines, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+        }
+
+        public static void AddShimmeringBetweenMimicItems_RangedWeapons()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.DartRifle, 1)
+            .AddIngredient(ItemID.DartPistol, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.DartPistol, 1)
+            .AddIngredient(ItemID.DaedalusStormbow, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.DaedalusStormbow, 1)
+            .AddIngredient(ItemID.DartRifle, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+        }
+
+        public static void AddShimmeringBetweenMimicItems_MagicWeapons()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.ClingerStaff, 1)
+            .AddIngredient(ItemID.SoulDrain, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.SoulDrain, 1)
+            .AddIngredient(ItemID.CrystalVileShard, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.CrystalVileShard, 1)
+            .AddIngredient(ItemID.ClingerStaff, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+        }
+
+        public static void AddShimmeringBetweenMimicItems_Accessories()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.PutridScent, 1)
+            .AddIngredient(ItemID.FleshKnuckles, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.FleshKnuckles, 1)
+            .AddIngredient(ItemID.PutridScent, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+        }
+
+        public static void AddShimmeringBetweenMimicItems_Hooks()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.WormHook, 1)
+            .AddIngredient(ItemID.TendonHook, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.TendonHook, 1)
+            .AddIngredient(ItemID.IlluminantHook, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.IlluminantHook, 1)
+            .AddIngredient(ItemID.WormHook, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+        }
+        
         public static void AddComplexCraftingTreeItemDuplicationRecipes()
         {
             Condition AnkhShieldCondition = new Condition("Ankh Shield in Inventory", WDALTConditionFunctions.HasAnkhShieldInInventory);
