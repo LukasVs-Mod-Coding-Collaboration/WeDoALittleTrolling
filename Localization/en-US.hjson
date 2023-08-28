@@ -340,6 +340,7 @@ Mods: {
 			PhantomStaffProjectile.DisplayName: Luminite Phantom
 			PhantomStaffProjectileBullet.DisplayName: Luminite Phantom Laser
 			MagicArtefact.DisplayName: Magic Artefact
+			GloriousDemiseProjectile.DisplayName: Glorious Demise
 		}
 
 		Prefixes: {

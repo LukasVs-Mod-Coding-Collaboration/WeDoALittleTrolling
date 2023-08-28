@@ -27,7 +27,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.hostile = false;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 300;
             Projectile.ArmorPenetration = 30;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
@@ -37,6 +37,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void AI()
         {
             AI_005_MagicArtefact();
+            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
         }
 
         private void AI_005_MagicArtefact()

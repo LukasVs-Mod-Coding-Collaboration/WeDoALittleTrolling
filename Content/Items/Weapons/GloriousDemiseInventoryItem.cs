@@ -39,29 +39,24 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.rare = ItemRarityID.LightPurple;
             Item.value = Item.sellPrice(gold: 5);
 
-            Item.width = 200;
-            Item.height = 200;
-            Item.scale = (float)1.0;
+            Item.width = 66;
+            Item.height = 66;
+            Item.scale = 1f;
 
-            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.useAnimation = 24;
             Item.useTime = 24;
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
 
-            Item.damage = 80;
-            Item.knockBack = (float)10.0;
+            Item.damage = 60;
+            Item.knockBack = 10f;
             Item.noUseGraphic = true;
             Item.DamageType = DamageClass.Melee;
             Item.noMelee = true;
 
-            Item.shootSpeed = (float)3.7;
-            Item.shoot = ModContent.ProjectileType<PhotonsplicerProjectile>();
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            return player.ownedProjectileCounts[Item.shoot] < 1;
+            Item.shootSpeed = 12f;
+            Item.shoot = ModContent.ProjectileType<GloriousDemiseProjectile>();
         }
 
         public override bool? UseItem(Player player)

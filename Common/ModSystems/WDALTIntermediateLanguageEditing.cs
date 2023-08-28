@@ -32,13 +32,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
                 cursor.GotoNext(i => i.MatchStsfld<WorldGen>(nameof(WorldGen.AllowedToSpreadInfections))); //Go to the place right after the "AllowedToSpreadInfections" variable is set.
-                cursor.Index++; //Go in front of it now!
-                cursor.Emit(OpCodes.Ldc_I4_0); //set "false" as the parameter to write!!!
-                cursor.Emit(OpCodes.Stsfld, typeof(WorldGen).GetField(nameof(WorldGen.AllowedToSpreadInfections))); //Make sTuPEED compOOOOOter set the variable to false instead :saltroll: !1!!!1!!!!!!
-                cursor.GotoNext(i => i.MatchStsfld<WorldGen>(nameof(WorldGen.AllowedToSpreadInfections))); //Do the same if StopBiomeSpreadPower is enabled
+                cursor.Index++; //Go in front of it now.
+                cursor.Emit(OpCodes.Ldc_I4_0); //set "false" as the parameter to write.
+                cursor.Emit(OpCodes.Stsfld, typeof(WorldGen).GetField(nameof(WorldGen.AllowedToSpreadInfections))); //Write "false" into the "AllowedToSpreadInfections" variable.
+                cursor.GotoNext(i => i.MatchStsfld<WorldGen>(nameof(WorldGen.AllowedToSpreadInfections))); //Do the same if StopBiomeSpreadPower is enabled.
                 cursor.Index++;
                 cursor.Emit(OpCodes.Ldc_I4_0);
-                cursor.Emit(OpCodes.Stsfld, typeof(WorldGen).GetField(nameof(WorldGen.AllowedToSpreadInfections))); //hAhAHaHA gET r4KT sTuPEED cORrUPtIoN, cRiMSoN or hALloWEd1!!1!!!!!1
+                cursor.Emit(OpCodes.Stsfld, typeof(WorldGen).GetField(nameof(WorldGen.AllowedToSpreadInfections)));
             }
             catch
             {

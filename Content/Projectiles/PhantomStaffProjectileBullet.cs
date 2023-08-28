@@ -11,9 +11,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class PhantomStaffProjectileBullet : ModProjectile
     {
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Projectile.width = 12;
-            Projectile.height = 48;
+            Projectile.height = 12;
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -23,11 +24,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.light = 0.8f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-			Projectile.ArmorPenetration = 60;
+            Projectile.ArmorPenetration = 60;
             Projectile.extraUpdates = 1;
-			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 20;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 20;
             AIType = ProjectileID.Bullet;
+        }
+
+        public override void AI()
+        {
+            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
         }
     }
 }
