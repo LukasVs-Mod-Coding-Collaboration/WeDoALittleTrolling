@@ -38,6 +38,7 @@ using System.Collections.Generic;
 using Terraria.Utilities;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
+using WeDoALittleTrolling.Content.Tiles;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -117,6 +118,40 @@ namespace WeDoALittleTrolling.Content.Items
         {
             if(item.type == ItemID.WormholePotion)
             {
+                return false;
+            }
+            if(GlobalTiles.BuffTilesItemIDs.Contains(item.type))
+            {
+                SoundStyle buffActivateSoundStyle = SoundID.Item4;
+                bool playSound = true;
+                switch(item.type)
+                {
+                    case ItemID.WarTable:
+                        buffActivateSoundStyle = SoundID.Item4;
+                        break;
+                    case ItemID.BewitchingTable:
+                        buffActivateSoundStyle = SoundID.Item4;
+                        break;
+                    case ItemID.SharpeningStation:
+                        buffActivateSoundStyle = SoundID.Item37;
+                        break;
+                    case ItemID.CrystalBall:
+                        buffActivateSoundStyle = SoundID.Item4;
+                        break;
+                    case ItemID.AmmoBox:
+                        buffActivateSoundStyle = SoundID.Item149;
+                        break;
+                    case ItemID.SliceOfCake:
+                        buffActivateSoundStyle = SoundID.Item2;
+                        break;
+                    default:
+                        playSound = false;
+                        break;
+                }
+                if(playSound)
+                {
+                    SoundEngine.PlaySound(buffActivateSoundStyle, player.Center);
+                }
                 return false;
             }
             return base.ConsumeItem(item, player);
@@ -1397,6 +1432,37 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage += 4;
                 item.knockBack += 1.5f;
+            }
+
+            //Make Buff Furniture give their Buffs when used
+            if(GlobalTiles.BuffTilesItemIDs.Contains(item.type))
+            {
+                item.buffTime = 108000;
+                switch(item.type)
+                {
+                    case ItemID.WarTable:
+                        item.buffType = BuffID.WarTable;
+                        break;
+                    case ItemID.BewitchingTable:
+                        item.buffType = BuffID.Bewitched;
+                        break;
+                    case ItemID.SharpeningStation:
+                        item.buffType = BuffID.Sharpened;
+                        break;
+                    case ItemID.CrystalBall:
+                        item.buffType = BuffID.Clairvoyance;
+                        break;
+                    case ItemID.AmmoBox:
+                        item.buffType = BuffID.AmmoBox;
+                        break;
+                    case ItemID.SliceOfCake:
+                        item.buffType = BuffID.SugarRush;
+                        item.buffTime = 7200;
+                        break;
+                    default:
+                        item.buffTime = 0;
+                        break;
+                }
             }
         }
     }

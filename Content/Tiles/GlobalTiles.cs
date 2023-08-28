@@ -17,6 +17,7 @@
 */
 
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -29,6 +30,39 @@ namespace WeDoALittleTrolling.Content.Tiles
 {
     internal class GlobalTiles : GlobalTile
     {
+        public static readonly int[] BuffTilesItemIDs =
+        {
+            ItemID.BewitchingTable,
+            ItemID.WarTable,
+            ItemID.SharpeningStation,
+            ItemID.CrystalBall,
+            ItemID.AmmoBox,
+            ItemID.SliceOfCake
+        };
+        
+        public override void PlaceInWorld(int i, int j, int type, Item item)
+        {
+            if(BuffTilesItemIDs.Contains(item.type))
+            {
+                ReduceStack(item);
+            }
+            base.PlaceInWorld(i, j, type, item);
+        }
+
+        public static void ReduceStack(Item item)
+        {
+            if(item.stack > 1)
+            {
+                item.stack--;
+            }
+            else
+            {
+                item.type = 0;
+                item.stack = 0;
+                item.active = false;
+            }
+        }
+        
         public override void RightClick(int i, int j, int type)
         {
             if(type == TileID.Moondial)
