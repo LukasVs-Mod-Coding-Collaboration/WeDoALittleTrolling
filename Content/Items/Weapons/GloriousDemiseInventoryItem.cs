@@ -49,10 +49,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
 
-            Item.damage = 60;
+            Item.damage = 4;
             Item.knockBack = 10f;
             Item.noUseGraphic = true;
-            Item.DamageType = DamageClass.Melee;
+            Item.DamageType = DamageClass.Generic;
             Item.noMelee = true;
 
             Item.shootSpeed = 12f;
@@ -65,11 +65,98 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             return null;
         }
 
-        /*
-        public override void AddRecipes() {
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            float modifier = 1f;
+            if(NPC.downedBoss1)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedBoss2)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedBoss3)
+            {
+                modifier += 0.5f;
+            }
+            if(Main.hardMode)
+            {
+                modifier += 1.0f;
+            }
+            if(NPC.downedMechBoss2)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedMechBoss1)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedMechBoss3)
+            {
+                modifier += 0.5f;
+            }
+            if(NPC.downedChristmasIceQueen)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedChristmasSantank)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedChristmasTree)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedHalloweenKing)
+            {
+                modifier += 0.5f;
+            }
+            if(NPC.downedHalloweenTree)
+            {
+                modifier += 0.25f;
+            }
+            if(NPC.downedPlantBoss)
+            {
+                modifier *= 1.5f;
+            }
+            if(NPC.downedGolemBoss)
+            {
+                modifier *= 1.5f;
+            }
+            if(NPC.downedAncientCultist)
+            {
+                modifier *= 1.5f;
+            }
+            if(NPC.downedEmpressOfLight)
+            {
+                modifier *= 1.5f;
+            }
+            if(NPC.downedFishron)
+            {
+                modifier *= 1.5f;
+            }
+            if(NPC.downedMoonlord)
+            {
+                modifier *= 2f;
+            }
+            damage *= modifier;
+            base.ModifyWeaponDamage(player, ref damage);
+        }
+
+        public override void AddRecipes()
+        {
             CreateRecipe()
+                .AddTile(TileID.ShimmerMonolith)
+                .AddIngredient(ItemID.Spear)
+                .AddIngredient(ItemID.Ruby, 5)
+                .AddIngredient(ItemID.Amber, 5)
+                .AddIngredient(ItemID.Topaz, 5)
+                .AddIngredient(ItemID.Emerald, 5)
+                .AddIngredient(ItemID.Diamond, 5)
+                .AddIngredient(ItemID.Sapphire, 5)
+                .AddIngredient(ItemID.Amethyst, 5)
                 .Register();
         }
-        */
     }
 }

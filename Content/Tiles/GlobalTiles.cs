@@ -57,7 +57,7 @@ namespace WeDoALittleTrolling.Content.Tiles
             }
             else
             {
-                item.type = 0;
+                item.type = ItemID.None;
                 item.stack = 0;
                 item.active = false;
             }

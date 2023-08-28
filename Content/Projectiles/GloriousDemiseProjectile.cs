@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static UnifiedRandom random = new UnifiedRandom();
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = (7 * trailDistance);
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = (8 * trailDistance);
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
         public override void SetDefaults()
@@ -31,7 +31,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 600;
-            Projectile.light = 0.8f;
+            Projectile.light = 1f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
@@ -68,33 +68,41 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     switch (index)
                     {
                         case 0:
-                            drawLightColor = new Color(255, 0, 0);
+                            drawLightColor = lightColor;
                             break;
                         case 1:
-                            drawLightColor = new Color(255, 128, 0);
+                            drawLightColor = new Color(255, 0, 0);
                             break;
                         case 2:
-                            drawLightColor = new Color(255, 255, 0);
+                            drawLightColor = new Color(255, 128, 0);
                             break;
                         case 3:
-                            drawLightColor = new Color(0, 255, 0);
+                            drawLightColor = new Color(255, 255, 0);
                             break;
                         case 4:
-                            drawLightColor = new Color(0, 255, 255);
+                            drawLightColor = new Color(0, 255, 0);
                             break;
                         case 5:
-                            drawLightColor = new Color(0, 0, 255);
+                            drawLightColor = new Color(0, 255, 255);
                             break;
                         case 6:
+                            drawLightColor = new Color(0, 0, 255);
+                            break;
+                        case 7:
                             drawLightColor = new Color(128, 0, 255);
                             break;
                         default:
-                            drawLightColor = new Color(255, 0, 0);
+                            drawLightColor = lightColor;
                             break;
                     }
                     Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(drawLightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.oldRot[k], drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+                    SpriteEffects effects = SpriteEffects.None;
+                    if(Projectile.oldSpriteDirection[k] < 0)
+                    {
+                        effects = SpriteEffects.FlipHorizontally;
+                    }
+                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.oldRot[k], drawOrigin, Projectile.scale, effects, 0);
                 }
             }
             return true;

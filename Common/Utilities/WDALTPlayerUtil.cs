@@ -242,6 +242,12 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
         }
 
+        public override void OnRespawn()
+        {
+            player.Heal(player.statLifeMax2);
+            base.OnRespawn();
+        }
+
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             bool shortRespawn = true;

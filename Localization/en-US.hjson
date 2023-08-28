@@ -328,7 +328,12 @@ Mods: {
 
 			GloriousDemiseInventoryItem: {
 				DisplayName: Glorious Demise
-				Tooltip: Unfinished Item
+				Tooltip:
+					'''
+					This item's power increases as you defeat more bosses.
+					"The grim reaper takes many different forms
+					 and arrives in many different shades and colours!"
+					'''
 			}
 		}
 
