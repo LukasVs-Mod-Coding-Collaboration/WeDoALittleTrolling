@@ -617,6 +617,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                if(WDALTModContentID.GetThoriumBossProjectileInflictWreckedResistance1in1Group().Contains(projectile.type))
+                {
+                    if(random.Next(0, 1) == 0)
+                    {
+                        target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    }
+                }
+                if(WDALTModContentID.GetThoriumBossProjectileInflictDevastated1in1Group().Contains(projectile.type))
+                {
+                    if(random.Next(0, 1) == 0)
+                    {
+                        target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    }
+                }
+            }
             if
             (
                 projectile.type == ProjectileID.DeerclopsIceSpike ||

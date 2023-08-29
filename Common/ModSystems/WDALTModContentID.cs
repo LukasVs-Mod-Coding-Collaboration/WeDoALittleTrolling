@@ -24,6 +24,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
 {
     internal static class WDALTModContentID
     {
+        //IDs for content from other mods to make cross-compatibility possible
         public const int ThoriumBoss_GTB = 0;
         public const int ThoriumBoss_QJ = 1;
         public const int ThoriumBoss_VC = 2;
@@ -66,6 +67,74 @@ namespace WeDoALittleTrolling.Common.ModSystems
             "DreamEater"
         };
         private static int[] ThoriumBossNPCID = new int[ThoriumBossRegisterStrings.Length];
+        public const int ThoriumBossProjectile_BS_V1 = 0;
+        public const int ThoriumBossProjectile_BS_V2 = 1;
+        public const int ThoriumBossProjectile_BS_V3 = 2;
+        public const int ThoriumBossProjectile_BS_V4 = 3;
+        public const int ThoriumBossProjectile_FB_V1 = 4;
+        public const int ThoriumBossProjectile_FB_V2 = 5;
+        public const int ThoriumBossProjectile_FB_V3 = 6;
+        public const int ThoriumBossProjectile_FB_V4 = 7;
+        public const int ThoriumBossProjectile_FB_V5 = 8;
+        public const int ThoriumBossProjectile_LI_V1 = 9;
+        public const int ThoriumBossProjectile_LI_V2 = 10;
+        public const int ThoriumBossProjectile_LI_V3 = 11;
+        public const int ThoriumBossProjectile_LI_V4 = 12;
+        public const int ThoriumBossProjectile_LI_V5 = 13;
+        public const int ThoriumBossProjectile_LI_V6 = 14;
+        public const int ThoriumBossProjectile_LI_V7 = 15;
+        public const int ThoriumBossProjectile_LI_V8 = 16;
+        public const int ThoriumBossProjectile_LI_V9 = 17;
+        public const int ThoriumBossProjectile_LI_V10 = 18;
+        public const int ThoriumBossProjectile_LI_V11 = 19;
+        public const int ThoriumBossProjectile_LI_V12 = 20;
+        public const int ThoriumBossProjectile_FO_V1 = 21;
+        public const int ThoriumBossProjectile_FO_V2 = 22;
+        public const int ThoriumBossProjectile_FO_V3 = 23;
+        public const int ThoriumBossProjectile_FO_V4 = 24;
+        public const int ThoriumBossProjectile_FO_V5 = 25;
+        public const int ThoriumBossProjectile_AET_V1 = 26;
+        public const int ThoriumBossProjectile_SFF_V1 = 27;
+        public const int ThoriumBossProjectile_SFF_V2 = 28;
+        public const int ThoriumBossProjectile_DE_V1 = 29;
+        public const int ThoriumBossProjectile_OLD_V1 = 30;
+        public const int ThoriumBossProjectile_OLD_V2 = 31;
+        private static readonly string[] ThoriumBossProjectileRegisterStrings =
+        {
+            "BlizzardBoom",
+            "BlizzardCascade",
+            "BlizzardFang",
+            "BlizzardStart",
+            "BeholderBeam",
+            "BeholderEyeEffect",
+            "BeholderEyeEffect2",
+            "BeholderLavaCascade",
+            "BeholderLavaCascade1",
+            "LichFlare",
+            "LichFlareDeath",
+            "LichFlareDeathSpawn",
+            "LichFlareDeathSpawn2",
+            "LichFlareDeathSpawn3",
+            "LichFlareSpawn",
+            "LichFlareSpawn2",
+            "LichFlareSpawn3",
+            "LichGaze",
+            "LichPumpkinPro",
+            "LichPumpkinPro2",
+            "SoulRenderLich",
+            "AbyssalStrike",
+            "AbyssalStrike2",
+            "Whirlpool",
+            "ForgottenOneSpit",
+            "ForgottenOneSpit2",
+            "AquaSplash",
+            "FlameLash",
+            "FlamePulsePro",
+            "LucidPulse",
+            "DeathCircle",
+            "DeathCircle2"
+        };
+        private static int[] ThoriumBossProjectileID = new int[ThoriumBossProjectileRegisterStrings.Length];
         public const int ThoriumItem_Essence_AET = 0;
         public const int ThoriumItem_Essence_OLD = 1;
         public const int ThoriumItem_Essence_SFF = 2;
@@ -83,7 +152,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
         };
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
         private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(10+1)];
+        private static int[] InflictWreckedResistance1in1Group_ThoriumBossProjectile = new int[(26+1)];
         private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(1+1)];
+        private static int[] InflictDevastated1in1Group_ThoriumBossProjectile = new int[(4+1)];
 
         public static int GetThoriumBossNPCID(int modContentID)
         {
@@ -95,6 +166,19 @@ namespace WeDoALittleTrolling.Common.ModSystems
             catch
             {
                 WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumBossNPCID() was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+        public static int GetThoriumBossProjectileID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = ThoriumBossProjectileID[modContentID];
+            }
+            catch
+            {
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumBossProjectileID was called with an invalid ModContentID.");
             }
             return i;
         }
@@ -116,9 +200,17 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             return InflictWreckedResistance1in1Group_ThoriumBoss;
         }
+        public static int[] GetThoriumBossProjectileInflictWreckedResistance1in1Group()
+        {
+            return InflictWreckedResistance1in1Group_ThoriumBossProjectile;
+        }
         public static int[] GetThoriumBossInflictDevastated1in1Group()
         {
             return InflictDevastated1in1Group_ThoriumBoss;
+        }
+        public static int[] GetThoriumBossProjectileInflictDevastated1in1Group()
+        {
+            return InflictDevastated1in1Group_ThoriumBossProjectile;
         }
         
         public static bool SetContentIDs()
@@ -148,6 +240,17 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         integrity = false;
                     }
                 }
+                for(int i = 0; i < ThoriumBossProjectileRegisterStrings.Length; i++)
+                {
+                    if(thoriumMod.TryFind(ThoriumBossProjectileRegisterStrings[i], out ModProjectile proj))
+                    {
+                        ThoriumBossProjectileID[i] = proj.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
+                }
             }
             if(integrity)
             {
@@ -164,6 +267,38 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 InflictWreckedResistance1in1Group_ThoriumBoss[10] = GetThoriumBossNPCID(ThoriumBoss_DE);
                 InflictDevastated1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_OLD);
                 InflictDevastated1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_LI_V2);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[0] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V1);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[1] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V2);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V3);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[3] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V4);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[4] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V1);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[5] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V2);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[6] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V3);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[7] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V4);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[8] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V5);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[9] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V1);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[10] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V2);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[11] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V3);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[12] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V4);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[13] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V5);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[14] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V6);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[15] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V7);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[16] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V8);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[17] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V9);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[18] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V10);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[19] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V11);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[20] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V3);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[21] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V4);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[22] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V5);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[23] = GetThoriumBossProjectileID(ThoriumBossProjectile_AET_V1);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[24] = GetThoriumBossProjectileID(ThoriumBossProjectile_SFF_V1);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[25] = GetThoriumBossProjectileID(ThoriumBossProjectile_SFF_V2);
+                InflictWreckedResistance1in1Group_ThoriumBossProjectile[26] = GetThoriumBossProjectileID(ThoriumBossProjectile_DE_V1);
+                InflictDevastated1in1Group_ThoriumBossProjectile[0] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V1);
+                InflictDevastated1in1Group_ThoriumBossProjectile[1] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V2);
+                InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V12);
+                InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V1);
+                InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V2);
                 return true;
             }
             else
