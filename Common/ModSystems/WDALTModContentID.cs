@@ -297,8 +297,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 InflictDevastated1in1Group_ThoriumBossProjectile[0] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V1);
                 InflictDevastated1in1Group_ThoriumBossProjectile[1] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V2);
                 InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V12);
-                InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V1);
-                InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V2);
+                InflictDevastated1in1Group_ThoriumBossProjectile[3] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V1);
+                InflictDevastated1in1Group_ThoriumBossProjectile[4] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V2);
                 return true;
             }
             else

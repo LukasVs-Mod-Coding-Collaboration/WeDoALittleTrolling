@@ -177,7 +177,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             if(searingSetBonus)
             {
                 searingSetBonusValue = ((int)player.statDefense)/(int)4;
-                float modifierSAR = 1f + searingSetBonusValue * 0.01f;
+                float modifierSAR = (1f + (searingSetBonusValue * 0.01f));
                 player.DefenseEffectiveness *= modifierSAR;
                 player.GetDamage(DamageClass.Generic) *= modifierSAR;
             }

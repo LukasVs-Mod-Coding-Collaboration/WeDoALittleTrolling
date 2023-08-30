@@ -204,6 +204,11 @@ namespace WeDoALittleTrolling.Content.Items
                 player.GetDamage(DamageClass.Ranged) += 0.07f;
                 player.GetCritChance(DamageClass.Ranged) += 5f;
             }
+            if(item.type == ItemID.AnkhShield)
+            {
+                player.statDefense += 4;
+                player.DefenseEffectiveness *= 1.16f;
+            }
             base.UpdateAccessory(item, player, hideVisual);
         }
         
@@ -394,6 +399,14 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "17% increased ranged damage and attack speed\n15% increased ranged critical strike chance");
+            }
+            if
+            (
+                item.type == ItemID.AnkhShield
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Defense") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "8 defense\n16% increased defense effectiveness");
             }
             base.ModifyTooltips(item, tooltips);
         }
