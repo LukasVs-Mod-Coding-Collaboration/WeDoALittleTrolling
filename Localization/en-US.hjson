@@ -546,7 +546,7 @@ Mods: {
 				DisplayName: Devastated
 				Description:
 					'''
-					decreased max life
+					decreased max life and defense effectiveness
 					Cannot dodge attacks
 					'''
 			}

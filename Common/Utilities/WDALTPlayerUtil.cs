@@ -153,6 +153,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 float modifierD = (float)(90 - (devastatedStack*10)) * 0.01f;
                 player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
+                player.DefenseEffectiveness *= modifierD;
                 player.blackBelt = false;
                 player.brainOfConfusionItem = null;
                 dodgeChancePercent = 0;
