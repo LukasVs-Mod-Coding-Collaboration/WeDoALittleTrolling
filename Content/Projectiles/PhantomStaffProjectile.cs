@@ -221,8 +221,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     if(Projectile.owner == Main.myPlayer)
                     {
-                        Vector2 offset1 = new Vector2(-8.5f, -12.5f);
-                        Vector2 offset2 = new Vector2(9.5f, -12.5f);
+                        Vector2 offset1 = new Vector2(-8f, -13f);
+                        Vector2 offset2 = new Vector2(9f, -13f);
                         Vector2 pos1 = Projectile.Center + offset1;
                         Vector2 pos2 = Projectile.Center + offset2;
                         Vector2 predictVelocity = targetVelocity * (distanceToTarget / (attackMoveSpeed * 2f)); //Roughly Predict where the target is going to be when the Laser reaches it
