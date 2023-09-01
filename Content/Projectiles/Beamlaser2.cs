@@ -67,7 +67,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                if(k <= location_is_locked_tick && ((k % 4) == 0)) //efficiency: Only paint projectile for every fourth cahched position
+                if(k <= location_is_locked_tick && ((k % 1) == 0)) //efficiency: Disabled
                 {
                     Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
