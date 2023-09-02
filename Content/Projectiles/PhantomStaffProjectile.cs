@@ -41,6 +41,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float attackInertia = 2f;
         public const float idleDistance = 64f;
         public const float idleAccelerationFactor = 0.75f;
+        public const float bulletSpeed = 32f;
+        public static readonly int projWidth = 50;
+        public static readonly int projHeight = 70;
+        public static readonly float bulletOffsetMultiplier = 36f;
+        public static readonly Vector2 gfxShootOffset1 = new Vector2(-8f, -13f);
+        public static readonly Vector2 gfxShootOffset2 = new Vector2(9f, -13f);
         public long lastActionTick;
         public static UnifiedRandom random = new UnifiedRandom();
         
@@ -55,8 +61,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 50;
-            Projectile.height = 70;
+            Projectile.width = projWidth;
+            Projectile.height = projHeight;
+            Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.minion = true;
@@ -221,18 +228,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     if(Projectile.owner == Main.myPlayer)
                     {
-                        Vector2 offset1 = new Vector2(-8f, -13f);
-                        Vector2 offset2 = new Vector2(9f, -13f);
-                        Vector2 pos1 = Projectile.Center + offset1;
-                        Vector2 pos2 = Projectile.Center + offset2;
-                        Vector2 predictVelocity = targetVelocity * (distanceToTarget / (attackMoveSpeed * 2f)); //Roughly Predict where the target is going to be when the Laser reaches it
+                        Vector2 pos1 = Projectile.Center + gfxShootOffset1;
+                        Vector2 pos2 = Projectile.Center + gfxShootOffset2;
+                        Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
                         Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
                         Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
                         int dmg = (int)Math.Round(Projectile.damage * 0.5); //We shoot 2 projectiles so only 0.5x damage per projectile.
                         shootVector1.Normalize();
-                        shootVector1 *= (attackMoveSpeed * 2f);
+                        pos1 += (shootVector1 * bulletOffsetMultiplier);
+                        shootVector1 *= bulletSpeed;
                         shootVector2.Normalize();
-                        shootVector2 *= (attackMoveSpeed * 2f);
+                        pos2 += (shootVector2 * bulletOffsetMultiplier);
+                        shootVector2 *= bulletSpeed;
                         Projectile.NewProjectileDirect
                         (
                             Projectile.GetSource_FromAI(),

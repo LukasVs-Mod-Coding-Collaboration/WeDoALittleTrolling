@@ -15,7 +15,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             Projectile.width = 12;
             Projectile.height = 12;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Summon;
@@ -25,15 +25,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.ArmorPenetration = 60;
-            Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
-            AIType = ProjectileID.Bullet;
         }
 
         public override void AI()
         {
             Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
+            float roatateOffset = (float)Math.PI / 2f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + roatateOffset;
         }
     }
 }
