@@ -31,6 +31,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
+            AI_001_SimpleBullet();
+        }
+
+        private void AI_001_SimpleBullet()
+        {
             Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
             float roatateOffset = (float)Math.PI / 2f;
             Projectile.rotation = Projectile.velocity.ToRotation() + roatateOffset;

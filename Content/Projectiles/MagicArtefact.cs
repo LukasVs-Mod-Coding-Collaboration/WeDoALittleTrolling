@@ -37,7 +37,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void AI()
         {
             AI_005_MagicArtefact();
-            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
         }
 
         private void AI_005_MagicArtefact()
@@ -66,6 +65,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.velocity.Normalize();
                 Projectile.velocity *= origVelocityLength;
             }
+            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
         }
     }
 }

@@ -45,12 +45,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void AI()
         {
             AI_006_GloriousDemise();
-            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
-        }
-
-        private void AI_006_GloriousDemise()
-        {
-            Projectile.velocity.Y += gravityFactor;
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -159,6 +153,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             return base.PreKill(timeLeft);
+        }
+
+        private void AI_006_GloriousDemise()
+        {
+            Projectile.velocity.Y += gravityFactor;
+            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
         }
     }
 }
