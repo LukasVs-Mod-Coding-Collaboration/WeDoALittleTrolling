@@ -21,11 +21,11 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WeDoALittleTrolling.Common.AI;
 
 namespace  WeDoALittleTrolling.Content.Projectiles
 {
@@ -86,7 +86,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             this.original_location = Projectile.position;
             Projectile.netUpdate = true;
             //Auto-target AI
-            WDALTProjectileAI.AI_002_ApollonAimAssist(Projectile, ref original_location);
+            AI_002_ApollonAimAssist();
             base.OnSpawn(source);
         }
 
@@ -126,6 +126,79 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             else
             {
                 return true;
+            }
+        }
+
+        private void AI_002_ApollonAimAssist()
+        {
+            Vector2 spawnCenter = Projectile.Center;
+            float lowest_distance = 9999;
+            float maxBeamTravelX = Main.screenWidth/2;
+            float maxBeamTravelY = Main.screenHeight/2;
+            float origVelocityLength = Projectile.velocity.Length();
+            if(maxBeamTravelX > 1920/2)
+            {
+                maxBeamTravelX = 1920/2;
+            }
+            if(maxBeamTravelY > 1080/2)
+            {
+                maxBeamTravelY = 1080/2;
+            }
+            for(int i = 0; i < Main.npc.Length; i++)
+            {
+                NPC target = Main.npc[i];
+                float shootToX                  = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
+                float shootToY                  = target.position.Y - spawnCenter.Y;
+                Vector2 shootTo                 = new Vector2(shootToX, shootToY);
+                float distance                  = shootTo.Length();
+                Vector2 originalVector          = Projectile.velocity;
+                originalVector.Normalize();
+                float x                         = originalVector.X;
+                float y                         = originalVector.Y;
+                float a                         = Math.Abs(this.original_location.X - target.position.X);
+                float b                         = Math.Abs(this.original_location.Y - target.position.Y);
+                float a_through_x               = Math.Abs(a/x);
+                float b_through_y               = Math.Abs(b/y);
+                float x_y_inaccuracy            = x*a_through_x;
+                float y_y_inaccuracy            = y*a_through_x;
+                float x_x_inaccuracy            = x*b_through_y;
+                float y_x_inaccuracy            = y*b_through_y;
+                Vector2 KonePositionY           = original_location + new Vector2(x_y_inaccuracy, y_y_inaccuracy);
+                Vector2 KonePositionX           = original_location + new Vector2(x_x_inaccuracy, y_x_inaccuracy);
+                Vector2 LineToTargetY           = new Vector2(target.position.X - KonePositionY.X, target.position.Y - KonePositionY.Y);
+                Vector2 LineToTargetX           = new Vector2(target.position.X - KonePositionX.X, target.position.Y - KonePositionX.Y);
+                float y_inaccuracy              = (float)System.Math.Sqrt((double)(LineToTargetY.X * LineToTargetY.X + LineToTargetY.Y * LineToTargetY.Y));
+                float x_inaccuracy              = (float)System.Math.Sqrt((double)(LineToTargetX.X * LineToTargetX.X + LineToTargetX.Y * LineToTargetX.Y));
+                float inaccuracy_tolerance      = 160;
+                if
+                (
+                    (
+                        Math.Abs(this.original_location.X - target.position.X) < maxBeamTravelX && //Configure detect zone in x coords
+                        Math.Abs(this.original_location.Y - target.position.Y) < maxBeamTravelY     //Configure detect zone in y coords
+                    ) &&
+                    (
+                        Math.Abs(this.original_location.X - target.position.X) > inaccuracy_tolerance ||   //Configure non-detect zone in x coords
+                        Math.Abs(this.original_location.Y - target.position.Y) > inaccuracy_tolerance      //Configure non-detect zone in y coords
+                    )&&
+                    !target.friendly &&
+                    !target.CountsAsACritter &&
+                    !target.isLikeATownNPC &&
+                    !target.dontTakeDamage &&
+                    target.active &&
+                    target.CanBeChasedBy() &&
+                    distance < lowest_distance &&
+                    (
+                        y_inaccuracy < inaccuracy_tolerance ||
+                        x_inaccuracy < inaccuracy_tolerance
+                    )
+                )
+                {
+                    Vector2 newVelocity = shootTo;
+                    newVelocity.Normalize();
+                    newVelocity *= origVelocityLength;
+                    Projectile.velocity = newVelocity;
+                    lowest_distance = distance;
+                }
             }
         }
     }

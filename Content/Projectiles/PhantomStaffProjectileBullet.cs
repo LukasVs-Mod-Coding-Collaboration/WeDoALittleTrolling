@@ -1,6 +1,11 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
-using WeDoALittleTrolling.Common.AI;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -26,7 +31,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            WDALTProjectileAI.AI_001_SimpleBullet(Projectile);
+            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
+            float roatateOffset = (float)Math.PI / 2f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + roatateOffset;
         }
     }
 }

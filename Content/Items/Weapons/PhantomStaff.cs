@@ -21,7 +21,12 @@ using Terraria.Utilities;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using static Humanizer.In;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using System;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Projectiles;
 
@@ -29,8 +34,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class PhantomStaff : ModItem
     {
-        public static UnifiedRandom random = new UnifiedRandom();
-
         public override void SetStaticDefaults()
         {
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
@@ -68,10 +71,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             position = Main.MouseWorld;
-            velocity.X = (random.NextFloat() - 0.5f);
-            velocity.Y = (random.NextFloat() - 0.5f);
+            velocity.X = (PhantomStaffProjectile.random.NextFloat() - 0.5f);
+            velocity.Y = (PhantomStaffProjectile.random.NextFloat() - 0.5f);
             velocity.Normalize();
-            velocity *= 4f;
+            velocity *= PhantomStaffProjectile.idleMoveSpeed;
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
 
