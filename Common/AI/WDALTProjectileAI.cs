@@ -31,7 +31,8 @@ namespace WeDoALittleTrolling.Common.AI
 {
     internal static class WDALTProjectileAI
     {
-        public static UnifiedRandom random = new UnifiedRandom();
+        private static UnifiedRandom random = new UnifiedRandom();
+
         public static void AI_001_SimpleBullet(Projectile projectile)
         {
             projectile.spriteDirection = projectile.direction; //Fix wrong shading when shooting to the left.
@@ -145,7 +146,8 @@ namespace WeDoALittleTrolling.Common.AI
             if (projectile.owner == Main.myPlayer && distanceToIdlePos > (CONST_003_DetectionRange * 2f))
             {
                 projectile.position = idlePos;
-                projectile.velocity *= 0.16f;
+                projectile.velocity.Normalize();
+                projectile.velocity *= CONST_003_IdleMoveSpeed;
                 projectile.netUpdate = true;
             }
             float distanceToTarget = CONST_003_DetectionRange;
@@ -390,6 +392,177 @@ namespace WeDoALittleTrolling.Common.AI
         {
             projectile.velocity.Y += CONST_006_GravityFactor;
             projectile.spriteDirection = projectile.direction; //Fix wrong shading when shooting to the left.
+        }
+
+        public static void AI_007_GlobalProjectile(Projectile projectile)
+        {
+            if
+            (
+                projectile.type == ProjectileID.FrostBlastFriendly ||
+                projectile.type == ProjectileID.PoisonFang ||
+                projectile.type == ProjectileID.VenomFang ||
+                projectile.type == ProjectileID.SkyFracture ||
+                projectile.type == ProjectileID.Meteor1 ||
+                projectile.type == ProjectileID.Meteor2 ||
+                projectile.type == ProjectileID.Meteor3 ||
+                projectile.type == ProjectileID.Blizzard ||
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
+                projectile.type == ProjectileID.FrostBoltStaff ||
+                projectile.type == ProjectileID.UnholyTridentFriendly ||
+                projectile.type == ProjectileID.BookStaffShot ||
+                projectile.type == ProjectileID.LunarFlare
+            )
+            {
+                float lowest_distance = 0f; //Homing detection range
+                float correction_factor = 0f;
+                float origVelocityLength = projectile.velocity.Length();
+                switch(projectile.type)
+                {
+                    case ProjectileID.FrostBlastFriendly:
+                        lowest_distance = 1024f;
+                        correction_factor = 0.875f;
+                        break;
+                    case ProjectileID.PoisonFang:
+                    case ProjectileID.VenomFang:
+                        lowest_distance = 320f;
+                        correction_factor = 3.5f;
+                        break;
+                    case ProjectileID.SkyFracture:
+                        lowest_distance = 320f;
+                        correction_factor = 3.5f;
+                        break;
+                    case ProjectileID.Meteor1:
+                    case ProjectileID.Meteor2:
+                    case ProjectileID.Meteor3:
+                        lowest_distance = 512f;
+                        correction_factor = 0.84f;
+                        break;
+                    case ProjectileID.Blizzard:
+                        lowest_distance = 512f;
+                        correction_factor = 1.25f;
+                        break;
+                    case ProjectileID.InfernoFriendlyBolt:
+                        lowest_distance = 240f;
+                        correction_factor = 2.0f;
+                        break;
+                    case ProjectileID.FrostBoltStaff:
+                        lowest_distance = 320f;
+                        correction_factor = 4.0f;
+                        break;
+                    case ProjectileID.UnholyTridentFriendly:
+                        lowest_distance = 320f;
+                        correction_factor = 3.25f;
+                        break;
+                    case ProjectileID.BookStaffShot:
+                        lowest_distance = 320f;
+                        correction_factor = 1.375f;
+                        break;
+                    case ProjectileID.LunarFlare:
+                        lowest_distance = 512f;
+                        correction_factor = 1.67f;
+                        break;
+                    default:
+                        break;
+                }
+                NPC target = null;
+                for(int i = 0; i < Main.npc.Length; i++)
+                {
+                    NPC currentTarget = Main.npc[i];
+                    if
+                    (
+                        !currentTarget.dontTakeDamage &&
+                        currentTarget.active &&
+                        currentTarget.CanBeChasedBy() &&
+                        !currentTarget.friendly && 
+                        !currentTarget.CountsAsACritter && 
+                        !currentTarget.isLikeATownNPC && 
+                        currentTarget.type != NPCID.TargetDummy
+                    )
+                    {
+                        Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
+                        if (vectorToTarget.Length() < lowest_distance)
+                        {
+                            lowest_distance = vectorToTarget.Length();
+                            target = currentTarget;
+                        }
+                    }
+                }
+                if(target != null)
+                {
+                    Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
+                    vectorToTarget.Normalize();
+                    float originalLength = projectile.velocity.Length();
+                    projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
+                    Vector2 normalizedVeloctiy = projectile.velocity;
+                    normalizedVeloctiy.Normalize();
+                    projectile.velocity = normalizedVeloctiy * originalLength;
+                }
+            }
+            else if
+            (
+                (
+                    projectile.type == ProjectileID.SeedPlantera ||
+                    projectile.type == ProjectileID.PoisonSeedPlantera ||
+                    projectile.type == ProjectileID.Fireball ||
+                    projectile.type == ProjectileID.MartianTurretBolt ||
+                    projectile.type == ProjectileID.BrainScramblerBolt ||
+                    projectile.type == ProjectileID.RayGunnerLaser
+                ) &&
+                (
+                    !projectile.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed
+                )
+            )
+            {
+                float lowest_distance = 0f;
+                float correction_factor = 0f;
+                switch(projectile.type)
+                {
+                    case ProjectileID.SeedPlantera:
+                    case ProjectileID.PoisonSeedPlantera:
+                        lowest_distance = 1024f;
+                        correction_factor = 0.24f;
+                        break;
+                    case ProjectileID.Fireball:
+                        lowest_distance = 1024f;
+                        correction_factor = 0.16f;
+                        break;
+                    case ProjectileID.MartianTurretBolt:
+                    case ProjectileID.BrainScramblerBolt:
+                        lowest_distance = 512f;
+                        correction_factor = 0.64f;
+                        break;
+                    case ProjectileID.RayGunnerLaser:
+                        lowest_distance = 512f;
+                        correction_factor = 0.16f;
+                        break;
+                    default:
+                        break;
+                }
+                Player target = null;
+                for(int i = 0; i < Main.player.Length; i++)
+                {
+                    Player currentTarget = Main.player[i];
+                    if(currentTarget.active)
+                    {
+                        Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
+                        if (vectorToTarget.Length() < lowest_distance)
+                        {
+                            lowest_distance = vectorToTarget.Length();
+                            target = currentTarget;
+                        }
+                    }
+                }
+                if(target != null)
+                {
+                    Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
+                    vectorToTarget.Normalize();
+                    float originalLength = projectile.velocity.Length();
+                    projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
+                    Vector2 normalizedVeloctiy = projectile.velocity;
+                    normalizedVeloctiy.Normalize();
+                    projectile.velocity = normalizedVeloctiy * originalLength;
+                }
+            }
         }
     }
 }
