@@ -3,17 +3,16 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using WeDoALittleTrolling.Common.AI;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class GloriousDemiseProjectile : ModProjectile
     {
-        public const float gravityFactor = 0.05f;
         public const int trailDistance = 4;
         public static UnifiedRandom random = new UnifiedRandom();
         public override void SetStaticDefaults()
@@ -44,13 +43,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            AI_006_GloriousDemise();
-            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
-        }
-
-        private void AI_006_GloriousDemise()
-        {
-            Projectile.velocity.Y += gravityFactor;
+            WDALTProjectileAI.AI_006_GloriousDemise(Projectile);
         }
 
         public override bool PreDraw(ref Color lightColor)
