@@ -42,9 +42,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float idleDistance = 64f;
         public const float idleAccelerationFactor = 0.75f;
         public const float bulletSpeed = 32f;
-        public static readonly int projWidth = 50;
-        public static readonly int projHeight = 70;
-        public static readonly float bulletOffsetMultiplier = 36f;
+        public const float bulletOffsetMultiplier = 36f;
         public static readonly Vector2 gfxShootOffset1 = new Vector2(-8f, -13f);
         public static readonly Vector2 gfxShootOffset2 = new Vector2(9f, -13f);
         public long lastActionTick;
@@ -61,8 +59,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = projWidth;
-            Projectile.height = projHeight;
+            Projectile.width = 50;
+            Projectile.height = 70;
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -136,7 +134,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (Projectile.owner == Main.myPlayer && distanceToIdlePos > (detectionRange * 2f))
             {
                 Projectile.position = idlePos;
-                Projectile.velocity *= 0.16f;
+                Projectile.velocity.Normalize();
+                Projectile.velocity *= idleMoveSpeed;
                 Projectile.netUpdate = true;
             }
             float distanceToTarget = detectionRange;
