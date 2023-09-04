@@ -32,8 +32,6 @@ namespace  WeDoALittleTrolling.Content.Projectiles
     public class Beamlaser2_AutoAim : ModProjectile
     {
         public Vector2 original_location;
-        public long currentTick = 0;
-        public long location_is_locked_tick = 9999;
         public bool location_is_locked = false;
         public override void SetStaticDefaults() {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9999; // The length of old position to be recorded
@@ -48,19 +46,18 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Projectile.hostile = false; // Can the projectile deal damage to the player?
             Projectile.DamageType = DamageClass.Ranged; // Is the projectile shoot by a ranged weapon?
             Projectile.penetrate = -1; // How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
-            Projectile.timeLeft = 99*(99+1); // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
+            Projectile.timeLeft = 9999; // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
             Projectile.alpha = 255; // The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in) Make sure to delete this if you aren't using an aiStyle that fades in. You'll wonder why your projectile is invisible.
             Projectile.light = 1.0f; // How much light emit around the projectile
             Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
             Projectile.tileCollide = false; // Can the projectile collide with tiles?
-            Projectile.extraUpdates = 99; // Set to above 0 if you want the projectile to update multiple time in a frame
+            Projectile.extraUpdates = 200; // Set to above 0 if you want the projectile to update multiple time in a frame
             Projectile.ArmorPenetration = 250;
 
             AIType = ProjectileID.Bullet; // Act exactly like default Bullet
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             Main.instance.LoadProjectile(Projectile.type);
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 
@@ -68,7 +65,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                if(k <= location_is_locked_tick && ((k % 1) == 0)) //efficiency: Disabled
+                if(((k % 4) == 0)) //efficiency: Only render every 4th Projectile Trail Position
                 {
                     Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
@@ -112,13 +109,11 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             {
                 maxBeamTravelY = 1080/2;
             }
-            this.currentTick++;
             if(Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
                Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY  || //Configure max lengh of beam in y coords
                this.location_is_locked)
             {
                 this.location_is_locked = true;
-                this.location_is_locked_tick = this.currentTick;
                 this.Projectile.damage = 0;
                 this.Projectile.position = this.original_location;
                 return false;
