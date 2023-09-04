@@ -5,7 +5,6 @@ It mostly changes things we dislike about the game and and adds a few new featur
 Please keep in mind that this mod was made just for fun and isn't meant to be too serious.
 
 
-
 List of additions and changes:
 -Four new weapons (Two melee weapons, one ranged weapon, one summon weapon)
 -Searing armor, a classless tank set
@@ -18,7 +17,14 @@ List of additions and changes:
 -Debuffs inflicted by powerful enemies and bosses to prevent cheesing
 
 
+This Mod features compatibility/crossover features with Thorium Mod:
+- Increased health for Thorium Bosses
+- Thorium Hardmode Bosses inflict debuffs that prevent cheesing as well
+- Exclusive Beam Laser Weapons that are only accessible when playing with Thorium Mod
 
-We are also testing compatibility and boss rebalancing for the Thorium Mod at the moment.
 
-
+Credits:
+- Thorium Mod [DivermanSam] (Insipration for some weapon names, Cross Content/Compatibility)
+- Example Mod [tModLoader Team] (Code Examples, certain parts of code)
+- tModLoader [tModLoader Team] (Modding Framework and API)
+- Terraria [Re-Logic] (The game itself)
