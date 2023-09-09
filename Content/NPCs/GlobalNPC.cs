@@ -481,10 +481,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     npc.lifeMax *= 2;
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_VC))
-                {
-                    npc.lifeMax *= 2;
-                }
                 if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_GES))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
