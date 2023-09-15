@@ -33,11 +33,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 {
     internal class HeartOfDespair : ModItem
     {
-
-
-        float heartOfDespairDamageBonus;
-
-
         public override void SetDefaults()
         {
             Item.width = 42;
@@ -55,7 +50,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine despairBonus0 = new TooltipLine(Mod, "DespairBonus0", "Current damage bonus: "+(1 + ((Main.player[Main.myPlayer].statLifeMax - Main.player[Main.myPlayer].statLife) / 4))+"%");
+            int bonus = 0;
+            if(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus > 0)
+            {
+                bonus = Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus;
+            }
+            TooltipLine despairBonus0 = new TooltipLine(Mod, "DespairBonus0", "Current damage bonus: "+bonus+"%");
             tooltips.Add(despairBonus0);
             /*
             TooltipLine incompatible0 = new TooltipLine(Mod, "Incompatible0", "Cannot be equipped when the\nSorcerous Mirror is equipped");
@@ -66,10 +66,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            heartOfDespairDamageBonus = (player.statLifeMax - player.statLife) / 4;
-            if(heartOfDespairDamageBonus >= 0)
+            if(player.GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus >= 0f)
             {
-                player.GetDamage(DamageClass.Magic) += (0.01f + 0.01f * (int)heartOfDespairDamageBonus);
+                player.GetDamage(DamageClass.Magic) += (0.01f + (0.01f * (float)player.GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus));
             }
             player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair = true;
         }

@@ -48,6 +48,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool spookyEmblem;
         public bool sorcerousMirror;
         public bool heartOfDespair;
+        public int heartOfDespairDamageBonus;
         public bool searingSetBonus;
         public int searingSetBonusValue;
         public bool gnomedStonedDebuff;
@@ -70,6 +71,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
+            heartOfDespairDamageBonus = 0;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
@@ -94,6 +96,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
+            heartOfDespairDamageBonus = 0;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
@@ -211,6 +214,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                     Main.buffNoTimeDisplay[BuffID.Stoned] = false;
                 }
             }
+            heartOfDespairDamageBonus = (player.statLifeMax - player.statLife) / 4;
             base.PostUpdateEquips();
         }
 
