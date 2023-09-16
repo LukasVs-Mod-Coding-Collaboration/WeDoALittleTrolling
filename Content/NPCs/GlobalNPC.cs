@@ -602,7 +602,13 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers)
         {
-            if(npc.type == NPCID.PossessedArmor) //Possessed Armor has 50% DR%
+            if
+            (
+                npc.type == NPCID.PossessedArmor || //Possessed Armor has 50% DR%
+                npc.type == NPCID.Lihzahrd ||
+                npc.type == NPCID.LihzahrdCrawler ||
+                npc.type == NPCID.FlyingSnake
+            )
             {
                 modifiers.SourceDamage *= 0.5f;
             }

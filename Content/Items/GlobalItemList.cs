@@ -336,7 +336,8 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.FrostStaff ||
                 item.type == ItemID.UnholyTrident ||
                 item.type == ItemID.BookStaff ||
-                item.type == ItemID.LunarFlareBook
+                item.type == ItemID.LunarFlareBook ||
+                item.type == ItemID.BubbleGun
             )
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ProjectileHomingDescription", "Projectiles move towards the closest target");
@@ -356,7 +357,8 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if
             (
-                item.type == ItemID.RazorbladeTyphoon
+                item.type == ItemID.RazorbladeTyphoon ||
+                item.type == ItemID.BubbleGun
             )
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraArmorPenetrationDescription", "Ignores 20 points of enemy Defense");
@@ -855,6 +857,14 @@ namespace WeDoALittleTrolling.Content.Items
                 item.shootsEveryUse = true;
                 item.ArmorPenetration = 20;
                 item.mana = 10;
+            }
+            if (item.type == ItemID.BubbleGun)
+            {
+                item.damage = 65;
+                item.useTime = 8;
+                item.useAnimation = 8;
+                item.shootsEveryUse = true;
+                item.ArmorPenetration = 20;
             }
             if (item.type == ItemID.OpticStaff)
             {
