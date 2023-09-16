@@ -40,6 +40,16 @@ namespace WeDoALittleTrolling.Content.Recipes
             AddShimmeringBetweenMimicItems_Hooks();
 
             Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+
+            Recipe WDALT_CobaltShield_V1 = Recipe.Create(ItemID.CobaltShield, 1);
+            WDALT_CobaltShield_V1.AddTile(TileID.MythrilAnvil);
+            WDALT_CobaltShield_V1.AddIngredient(ItemID.CobaltBar, 8);
+            WDALT_CobaltShield_V1.Register();
+
+            Recipe WDALT_CobaltShield_V2 = Recipe.Create(ItemID.CobaltShield, 1);
+            WDALT_CobaltShield_V2.AddTile(TileID.MythrilAnvil);
+            WDALT_CobaltShield_V2.AddIngredient(ItemID.PalladiumBar, 8);
+            WDALT_CobaltShield_V2.Register();
             
             Recipe WDALT_Terraprisma = Recipe.Create(ItemID.EmpressBlade, 1);
             WDALT_Terraprisma.AddTile(TileID.LunarCraftingStation);
