@@ -50,7 +50,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
         public override float RollChance(Item item)
         {
-            return 0.5f;
+            return 1.0f;
         }
 
         public override bool CanRoll(Item item)
@@ -89,7 +89,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            int critDamageBonus = 100;
+            int critDamageBonus = 75;
             if(BuffGroup.Contains(item.type))
             {
                 critDamageBonus = 150;

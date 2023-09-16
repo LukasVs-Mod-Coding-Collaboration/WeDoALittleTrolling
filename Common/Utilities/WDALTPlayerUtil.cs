@@ -168,10 +168,10 @@ namespace WeDoALittleTrolling.Common.Utilities
             if(sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
             {
                 player.aggro -= 400;
-                player.statDefense += 6;
-                player.lifeRegen += 6;
-                player.GetCritChance(DamageClass.Generic) -= 6f;
-                player.GetDamage(DamageClass.Summon) *= 0.94f;
+                player.statDefense += 4;
+                player.lifeRegen += 4;
+                player.GetCritChance(DamageClass.Generic) -= 4f;
+                player.GetDamage(DamageClass.Summon) *= 0.96f;
                 player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 10, true);
             }
             else
@@ -225,7 +225,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override bool FreeDodge(Player.HurtInfo info)
         {
-            if(random.Next(0, 3) == 0 && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 3 chance
+            if(random.Next(0, 4) == 0 && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;
@@ -249,7 +249,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void OnRespawn()
         {
-            player.Heal(player.statLifeMax2);
+            player.Heal(999999);
             base.OnRespawn();
         }
 
@@ -315,7 +315,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                     }
                     else
                     {
-                        modifiers.CritDamage += 2.0f;
+                        modifiers.CritDamage += 1.5f;
                     }
                 }
             }

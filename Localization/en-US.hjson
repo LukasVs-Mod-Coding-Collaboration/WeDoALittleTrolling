@@ -185,7 +185,7 @@ Mods: {
 				DisplayName: Rain of Decay
 				Tooltip:
 					'''
-					Ignores 36 points of enemy Defense
+					Ignores 40 points of enemy Defense
 					"The sky is only cursed flames to them."
 					Right-Click to switch between attack modes
 					Multishot mode fires 4 arrows at once
@@ -277,10 +277,10 @@ Mods: {
 				Tooltip:
 					'''
 					Grants the following when holding a magic weapon:
-					Gives a 1 in 3 chance to dodge attacks
-					Regenerates 3 life per second
-					6 defense
-					6% decreased critical strike chance
+					Gives a 1 in 4 chance to dodge attacks
+					Regenerates 2 life per second
+					4 defense
+					4% decreased critical strike chance
 					Enemies are less likely to target you
 					Incompatible with the Mana Extraction Catalyst
 					'''
@@ -582,10 +582,10 @@ Mods: {
 				DisplayName: Sorcerous Mirror
 				Description:
 					'''
-					You will dodge 1 in 3 attacks
-					Provides 3 life regeneration per second
-					Increase defense by 6
-					6% decreased critical strike chance
+					You will dodge 1 in 4 attacks
+					Provides 2 life regeneration per second
+					Increase defense by 4
+					4% decreased critical strike chance
 					Enemies are less likely to target you
 					'''
 			}

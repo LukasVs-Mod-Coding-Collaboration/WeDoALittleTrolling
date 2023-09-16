@@ -314,7 +314,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.DukeFishron)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
             if(npc.type == NPCID.CultistBoss)
             {
@@ -335,10 +335,12 @@ namespace WeDoALittleTrolling.Content.NPCs
             (
                 npc.type == NPCID.SkeletronPrime ||
                 npc.type == NPCID.PrimeCannon ||
-                npc.type == NPCID.PrimeLaser
+                npc.type == NPCID.PrimeLaser ||
+                npc.type == NPCID.PrimeSaw ||
+                npc.type == NPCID.PrimeVice
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.0);
             }
             if
             (
@@ -347,6 +349,15 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
+            }
+            if
+            (
+                npc.type == NPCID.TheDestroyer ||
+                npc.type == NPCID.TheDestroyerBody ||
+                npc.type == NPCID.TheDestroyerTail
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
             }
             if
             (
@@ -367,15 +378,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(npc.type == NPCID.VileSpitEaterOfWorlds)
             {
                 npc.dontTakeDamage = true;
-            }
-            if
-            (
-                npc.type == NPCID.TheDestroyer ||
-                npc.type == NPCID.TheDestroyerBody ||
-                npc.type == NPCID.TheDestroyerTail
-            )
-            {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
             }
             if
             (
@@ -684,13 +686,17 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.Plantera)
             {
+                if(Main.player[npc.target].teleportTime > 0f)
+                {
+                    Main.player[npc.target].AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
+                }
                 long timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
                 int shotDelay = 120;
                 float dmg1 = 32f;
                 float dmg2 = 24f;
                 if(npc.life < (npc.lifeMax / 4))
                 {
-                    shotDelay = 90;
+                    shotDelay = 60;
                 }
                 if (!Main.player[npc.target].ZoneJungle || (double)Main.player[npc.target].position.Y < Main.worldSurface * 16.0 || Main.player[npc.target].position.Y > (double)(Main.UnderworldLayer * 16.0))
                 {

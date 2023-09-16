@@ -733,24 +733,24 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
-                if(item.damage <= 44)
+                if(item.damage <= 48)
                 {
-                    item.damage = 44;
+                    item.damage = 48;
                 }
-                item.useTime = 18;
-                item.useAnimation = 18;
+                item.useTime = 16;
+                item.useAnimation = 16;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Megashark)
             {
-                item.damage = 30;
+                item.damage = 36;
                 item.useTime = 6;
                 item.useAnimation = 6;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.DD2PhoenixBow)
             {
-                item.damage = 40;
+                item.damage = 44;
             }
             if (item.type == ItemID.CactusBreastplate) 
             {
@@ -860,7 +860,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BubbleGun)
             {
-                item.damage = 65;
+                item.damage = 55;
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
@@ -1308,9 +1308,9 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 if(item.damage <= 50)
                 {
-                    item.damage = 50;
+                    item.damage = 44;
                 }
-                item.crit = 6;
+                item.crit = 4;
             }
             if (item.type == ItemID.SkyFracture)
             {
@@ -1331,7 +1331,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if(item.type == ItemID.Uzi)
             {
-                item.damage = 36;
+                item.damage = 40;
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
