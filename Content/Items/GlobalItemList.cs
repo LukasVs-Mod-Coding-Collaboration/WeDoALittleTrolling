@@ -1173,7 +1173,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BlizzardStaff)
             {
-                item.damage = 58;
+                item.damage = 64;
                 item.UseSound = SoundID.Item9;
             }
             if (item.type == ItemID.NebulaBlaze)
@@ -1308,7 +1308,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 if(item.damage <= 50)
                 {
-                    item.damage = 44;
+                    item.damage = 40;
                 }
                 item.crit = 4;
             }
