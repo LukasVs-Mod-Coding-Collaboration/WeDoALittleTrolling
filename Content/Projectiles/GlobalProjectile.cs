@@ -128,7 +128,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
         
         public override void SetDefaults(Projectile projectile)
         {
-            if(projectile.type == ProjectileID.InfluxWaver)
+            if
+            (
+                projectile.type == ProjectileID.InfluxWaver
+            )
             {
                 projectile.extraUpdates = 1;
             }
@@ -218,6 +221,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI(Projectile projectile)
         {
+            if(projectile.type == ProjectileID.Bubble)
+            {
+                projectile.velocity *= 1.03f;
+            }
             if
             (
                 projectile.type == ProjectileID.FrostBlastFriendly ||
@@ -232,8 +239,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.FrostBoltStaff ||
                 projectile.type == ProjectileID.UnholyTridentFriendly ||
                 projectile.type == ProjectileID.BookStaffShot ||
-                projectile.type == ProjectileID.LunarFlare ||
-                projectile.type == ProjectileID.Bubble
+                projectile.type == ProjectileID.LunarFlare
             )
             {
                 float lowest_distance = 0f; //Homing detection range
@@ -284,10 +290,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         lowest_distance = 512f;
                         correction_factor = 1.67f;
                         break;
-                    case ProjectileID.Bubble:
-                        lowest_distance = 1024f;
-                        correction_factor = 3.75f;
-                        break;
                     default:
                         break;
                 }
@@ -319,10 +321,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
                     vectorToTarget.Normalize();
                     float originalLength = projectile.velocity.Length();
-                    if(projectile.type == ProjectileID.Bubble && originalLength < correction_factor)
-                    {
-                        originalLength = 15f;
-                    }
                     projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
                     Vector2 normalizedVeloctiy = projectile.velocity;
                     normalizedVeloctiy.Normalize();

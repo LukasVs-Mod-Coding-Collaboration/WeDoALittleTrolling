@@ -852,6 +852,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.RazorbladeTyphoon)
             {
+                item.damage = 100;
                 item.useTime = 20;
                 item.useAnimation = 20;
                 item.shootsEveryUse = true;
@@ -860,11 +861,12 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BubbleGun)
             {
-                item.damage = 55;
+                item.damage = 64;
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
                 item.ArmorPenetration = 20;
+                item.mana = 4;
             }
             if (item.type == ItemID.OpticStaff)
             {

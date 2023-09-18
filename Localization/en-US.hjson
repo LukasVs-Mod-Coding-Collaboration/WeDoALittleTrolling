@@ -335,6 +335,11 @@ Mods: {
 					 and arrives in many different shades and colours!"
 					'''
 			}
+
+			WallCreeperFang: {
+				DisplayName: Wall Creeper Fang
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {

@@ -80,7 +80,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.LihzahrdCrawler,
             NPCID.FlyingSnake,
             NPCID.BrainofCthulhu,
-            NPCID.PossessedArmor
+            NPCID.PossessedArmor,
+            NPCID.RockGolem
         };
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
@@ -199,6 +200,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(KnockbackResistanceGroup.Contains(npc.type))
             {
                 npc.knockBackResist = 0f;
+            }
+            if(npc.type == NPCID.RockGolem)
+            {
+                npc.value = 100000f;
+                npc.lifeMax *= 3;
             }
             if
             (
@@ -609,7 +615,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.PossessedArmor || //Possessed Armor has 50% DR%
                 npc.type == NPCID.Lihzahrd ||
                 npc.type == NPCID.LihzahrdCrawler ||
-                npc.type == NPCID.FlyingSnake
+                npc.type == NPCID.FlyingSnake ||
+                npc.type == NPCID.RockGolem
             )
             {
                 modifiers.SourceDamage *= 0.5f;
@@ -1187,6 +1194,47 @@ namespace WeDoALittleTrolling.Content.NPCs
                 int itemID = ModContent.ItemType<FrostCrystal>();
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                 npcLoot.Add(drop);
+            }
+            if
+            (
+                npc.type == NPCID.WallCreeper ||
+                npc.type == NPCID.WallCreeperWall
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 3;
+                int chanceNumeratorNormal = 1;
+                int chanceDenominatorNormal = 2;
+                int chanceNumeratorExpert = 9;
+                int chanceDenominatorExpert = 10;
+                int itemID = ModContent.ItemType<WallCreeperFang>();
+                DropBasedOnExpertMode drop = new DropBasedOnExpertMode
+                (
+                    new CommonDrop(itemID, chanceDenominatorNormal, dropAmountMin, dropAmountMax, chanceNumeratorNormal),
+                    new CommonDrop(itemID, chanceDenominatorExpert, dropAmountMin, dropAmountMax, chanceNumeratorExpert)
+                );
+                npcLoot.Add(drop);
+            }
+            if(npc.type == NPCID.RockGolem)
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 3;
+                int chanceNumerator = 1; // 100% chance
+                int chanceDenominator = 1;
+                CommonDrop[] dropList =
+                {
+                    new CommonDrop(ItemID.Ruby, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
+                    new CommonDrop(ItemID.Amber, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
+                    new CommonDrop(ItemID.Topaz, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
+                    new CommonDrop(ItemID.Emerald, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
+                    new CommonDrop(ItemID.Diamond, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
+                    new CommonDrop(ItemID.Sapphire, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
+                    new CommonDrop(ItemID.Amethyst, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
+                };
+                foreach(CommonDrop drop in dropList)
+                {
+                    npcLoot.Add(drop);
+                }
             }
             base.ModifyNPCLoot(npc, npcLoot);
         }
