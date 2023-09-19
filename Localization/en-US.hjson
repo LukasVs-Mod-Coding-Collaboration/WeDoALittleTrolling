@@ -318,13 +318,13 @@ Mods: {
 				Tooltip: ""
 			}
 
-			YoyoArtefact: {
-				DisplayName: Yoyo Artefact
+			YoyoArtifact: {
+				DisplayName: Yoyo Artifact
 				Tooltip:
 					'''
 					15% increased melee damage
 					Striking an enemy with a yoyo
-					spawns 3 Magic Artefacts that
+					spawns 3 Magic Artifacts that
 					chase after your enemy and
 					deal 33% weapon damage
 					'''
