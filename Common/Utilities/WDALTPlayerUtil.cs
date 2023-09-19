@@ -49,6 +49,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool sorcerousMirror;
         public bool heartOfDespair;
         public int heartOfDespairDamageBonus;
+        public bool soulPoweredShield;
         public bool searingSetBonus;
         public int searingSetBonusValue;
         public bool gnomedStonedDebuff;
@@ -72,6 +73,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             sorcerousMirror = false;
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
+            soulPoweredShield = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
@@ -97,6 +99,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             sorcerousMirror = false;
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
+            soulPoweredShield = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
@@ -111,6 +114,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyEmblem = false;
             sorcerousMirror = false;
             heartOfDespair = false;
+            soulPoweredShield = false;
             searingSetBonus = false;
             gnomedStonedDebuff = false;
             yoyoArtefact = false;
@@ -281,7 +285,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void UpdateLifeRegen()
         {
-            if(player.HasItem(ModContent.ItemType<HolyCharm>()) || searingSetBonus)
+            if(player.HasItem(ModContent.ItemType<HolyCharm>()) || searingSetBonus || (NPC.downedGolemBoss && soulPoweredShield))
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
             }

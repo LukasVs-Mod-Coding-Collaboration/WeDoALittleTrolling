@@ -194,11 +194,20 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
         }
 
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
+        {
+            if(TryGetParentNPC(out NPC npc) && npc.active)
+            {
+                GlobalNPCs.ModifyHitPlayerWithProjectile(npc, target, projectile, ref modifiers);
+            }
+            base.ModifyHitPlayer(projectile, target, ref modifiers);
+        }
+
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if(TryGetParentNPC(out NPC npc) && npc.active)
             {
-                GlobalNPCs.OnHitPlayerWithProjectile(npc, target, projectile);
+                GlobalNPCs.OnHitPlayerWithProjectile(npc, target, projectile, info);
             }
             base.OnHitPlayer(projectile, target, info);
         }

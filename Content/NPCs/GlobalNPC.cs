@@ -704,7 +704,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     shotDelay = 60;
                 }
-                if (!Main.player[npc.target].ZoneJungle || (double)Main.player[npc.target].position.Y < Main.worldSurface * 16.0 || Main.player[npc.target].position.Y > (double)(Main.UnderworldLayer * 16.0))
+                if (Main.player[npc.target].teleportTime > 0f || !Main.player[npc.target].ZoneJungle || (double)Main.player[npc.target].position.Y < Main.worldSurface * 16.0 || Main.player[npc.target].position.Y > (double)(Main.UnderworldLayer * 16.0))
                 {
                     dmg1 *= 2;
                     dmg2 *= 2;
@@ -780,16 +780,50 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.DrawEffects(npc, ref drawColor);
         }
 
+        public static void ModifyHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile, ref Player.HurtModifiers modifiers)
+        {
+            if(target.GetModPlayer<WDALTPlayerUtil>().soulPoweredShield)
+            {
+                float distanceToTarget = Vector2.Distance(npc.Center, target.Center);
+                if(distanceToTarget > 512f)
+                {
+                    distanceToTarget = 512f;
+                }
+                float rangeOffsetFactor = ((512f - 48f)/(1f - 0.83f));
+                float modifierSPS = Math.Abs(((distanceToTarget - 48f) / rangeOffsetFactor) + 0.83f);
+                if(modifierSPS < 0.83f)
+                {
+                    modifierSPS = 0.83f;
+                }
+                modifiers.FinalDamage *= modifierSPS;
+            }
+        }
+        
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
             if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
                 modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
             }
+            if(target.GetModPlayer<WDALTPlayerUtil>().soulPoweredShield)
+            {
+                float distanceToTarget = Vector2.Distance(npc.Center, target.Center);
+                if(distanceToTarget > 512f)
+                {
+                    distanceToTarget = 512f;
+                }
+                float rangeOffsetFactor = ((512f - 48f)/(1f - 0.83f)); //3093.333f
+                float modifierSPS = Math.Abs(((distanceToTarget - 48f) / rangeOffsetFactor) + 0.83f);
+                if(modifierSPS < 0.83f)
+                {
+                    modifierSPS = 0.83f;
+                }
+                modifiers.FinalDamage *= modifierSPS;
+            }
             base.ModifyHitPlayer(npc, target, ref modifiers);
         }
 
-        public static void OnHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile)
+        public static void OnHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile, Player.HurtInfo info)
         {
             if(target.GetModPlayer<WDALTPlayerUtil>().searingSetBonus)
             {

@@ -26,6 +26,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -49,8 +50,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.endurance += 0.20f; //Damage Reduction (originally 0.25)
-            player.statDefense += 12; // (originally 6)
+            player.GetModPlayer<WDALTPlayerUtil>().soulPoweredShield = true;
+            player.endurance += 0.17f; //Damage Reduction (originally 0.25)
+            player.statDefense += 7; // (originally 6)
             player.noKnockback = true;
             player.lavaImmune = true; //Immunity to Lava and Fire blocks
             player.fireWalk = true;
@@ -73,8 +75,10 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.buffImmune[BuffID.VortexDebuff] = true;
             player.buffImmune[BuffID.WitheredArmor] = true;
             player.buffImmune[BuffID.WitheredWeapon] = true;
-
-
+            if(NPC.downedPlantBoss)
+            {
+                player.buffImmune[BuffID.Venom] = true;
+            }
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
