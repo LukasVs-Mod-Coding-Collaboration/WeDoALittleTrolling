@@ -89,7 +89,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAccessoryBeekeepingDescription", AdditionalTooltip.Value)
+            yield return new TooltipLine(Mod, "PrefixAccessorySandsteppingDescription", AdditionalTooltip.Value)
             {
                 IsModifier = true,
             };
