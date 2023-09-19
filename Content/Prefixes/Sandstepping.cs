@@ -32,38 +32,40 @@ namespace WeDoALittleTrolling.Content.Prefixes
     public class Sandstepping : ModPrefix
     {
         public override PrefixCategory Category => PrefixCategory.Accessory;
+
+        public static readonly int[] CompatibleItemIDs =
+        {
+            ItemID.HermesBoots,
+            ItemID.RocketBoots,
+            ItemID.SailfishBoots,
+            ItemID.SpectreBoots,
+            ItemID.LightningBoots,
+            ItemID.FrostsparkBoots,
+            ItemID.TerrasparkBoots,
+            ItemID.WaterWalkingBoots,
+            ItemID.ObsidianWaterWalkingBoots,
+            ItemID.FlurryBoots,
+            ItemID.AmphibianBoots,
+            ItemID.RocketBoots,
+            ItemID.FairyBoots,
+            ItemID.FlowerBoots,
+            ItemID.LavaWaders,
+            ItemID.HellfireTreads,
+            ItemID.IceSkates,
+            ItemID.FlameWakerBoots
+        };
         public override float RollChance(Item item)
         {
             if(!NPC.downedBoss3)
             {
                 return 0f;
             }
-            return 0.3f;
+            return 1f;
         }
 
         public override bool CanRoll(Item item)
         {
-            if
-            (
-            item.type == ItemID.HermesBoots
-            || item.type == ItemID.RocketBoots
-            || item.type == ItemID.SailfishBoots
-            || item.type == ItemID.SpectreBoots
-            || item.type == ItemID.LightningBoots
-            || item.type == ItemID.FrostsparkBoots
-            || item.type == ItemID.TerrasparkBoots
-            || item.type == ItemID.WaterWalkingBoots
-            || item.type == ItemID.ObsidianWaterWalkingBoots
-            || item.type == ItemID.FlurryBoots
-            || item.type == ItemID.AmphibianBoots
-            || item.type == ItemID.RocketBoots
-            || item.type == ItemID.FairyBoots
-            || item.type == ItemID.FlowerBoots
-            || item.type == ItemID.LavaWaders
-            || item.type == ItemID.HellfireTreads
-            || item.type == ItemID.IceSkates
-            || item.type == ItemID.FlameWakerBoots
-            )
+            if (CompatibleItemIDs.Contains(item.type))
             {
                 return true;
             }
@@ -82,7 +84,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             player.desertBoots = true;
             player.buffImmune[BuffID.WindPushed] = true;
-            player.maxRunSpeed += 1f;
+            player.GetModPlayer<WDALTPlayerUtil>().sandStepping = true;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

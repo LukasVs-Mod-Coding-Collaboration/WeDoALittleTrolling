@@ -52,6 +52,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool soulPoweredShield;
         public bool searingSetBonus;
         public int searingSetBonusValue;
+        public bool sandStepping;
         public bool gnomedStonedDebuff;
         public bool yoyoArtifact;
         public Player player;
@@ -76,6 +77,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             soulPoweredShield = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
+            sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
             currentTick = 0;
@@ -102,6 +104,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             soulPoweredShield = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
+            sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
             chargeAccelerationTicks = 0;
@@ -116,6 +119,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             heartOfDespair = false;
             soulPoweredShield = false;
             searingSetBonus = false;
+            sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
             base.ResetEffects();
@@ -219,6 +223,10 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
             }
             heartOfDespairDamageBonus = (player.statLifeMax - player.statLife) / 4;
+            if(sandStepping)
+            {
+                player.maxRunSpeed += 2f;
+            }
             base.PostUpdateEquips();
         }
 

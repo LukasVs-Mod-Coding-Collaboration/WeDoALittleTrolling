@@ -17,6 +17,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
@@ -34,7 +35,6 @@ using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
-using System.Collections.Generic;
 using Terraria.Utilities;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
@@ -214,6 +214,15 @@ namespace WeDoALittleTrolling.Content.Items
                 player.DefenseEffectiveness *= 1.16f;
             }
             base.UpdateAccessory(item, player, hideVisual);
+        }
+
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+        {
+            if(Sandstepping.CompatibleItemIDs.Contains(equippedItem.type) && Sandstepping.CompatibleItemIDs.Contains(incomingItem.type))
+            {
+                return false;
+            }
+            return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
         }
         
         public static void ModifySetBonus(Player player)

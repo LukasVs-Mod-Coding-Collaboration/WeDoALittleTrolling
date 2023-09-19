@@ -95,23 +95,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void PostDraw(Color lightColor)
         {
-            int rMax = (int)Projectile.width;
-            double r = rMax * Math.Sqrt(random.NextDouble());
-            double angle = random.NextDouble() * 2 * Math.PI;
-            int xOffset = (int)Math.Round(r * Math.Cos(angle));
-            int yOffset = (int)Math.Round(r * Math.Sin(angle));
-            Vector2 dustPosition = Projectile.Center;
-            dustPosition.X += xOffset;
-            dustPosition.Y += yOffset;
-            int dustType = random.Next(0, 16);
-            switch (dustType)
+            if(random.NextBool(60))
             {
-                case 0:
-                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default);
-                    newDust.noGravity = true;
-                    break;
-                default:
-                    break;
+                int rMax = (int)Projectile.width;
+                double r = rMax * Math.Sqrt(random.NextDouble());
+                double angle = random.NextDouble() * 2 * Math.PI;
+                int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                Vector2 dustPosition = Projectile.Center;
+                dustPosition.X += xOffset;
+                dustPosition.Y += yOffset;
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default);
+                newDust.noGravity = true;
             }
         }
 
