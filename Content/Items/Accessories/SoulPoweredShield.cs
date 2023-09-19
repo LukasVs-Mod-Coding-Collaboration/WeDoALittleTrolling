@@ -49,8 +49,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.endurance += 0.30f; //Damage Reduction (originally 0.30)
-            player.statDefense += 6; // (originally 6)
+            player.endurance += 0.20f; //Damage Reduction (originally 0.25)
+            player.statDefense += 12; // (originally 6)
             player.noKnockback = true;
             player.lavaImmune = true; //Immunity to Lava and Fire blocks
             player.fireWalk = true;
@@ -65,6 +65,15 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.buffImmune[BuffID.Electrified] = true;
             player.buffImmune[BuffID.ShadowFlame] = true;
             player.buffImmune[BuffID.Blackout] = true;
+            player.buffImmune[BuffID.Lovestruck] = true;
+            player.buffImmune[BuffID.Stinky] = true;
+            player.buffImmune[BuffID.Suffocation] = true;
+            player.buffImmune[BuffID.Rabies] = true;
+            player.buffImmune[BuffID.Obstructed] = true;
+            player.buffImmune[BuffID.VortexDebuff] = true;
+            player.buffImmune[BuffID.WitheredArmor] = true;
+            player.buffImmune[BuffID.WitheredWeapon] = true;
+
 
         }
 
@@ -88,13 +97,22 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.WormScarf, 1)
-              .AddIngredient(ItemID.SoulofSight, 5)
-              .AddIngredient(ItemID.SoulofMight, 5)
-              .AddIngredient(ItemID.SoulofFright, 5)
-              .AddIngredient(ItemID.HallowedBar, 10)
               .AddIngredient(ItemID.CobaltShield, 1)
+              .AddIngredient(ItemID.SoulofMight, 5)
+              .AddIngredient(ItemID.HallowedBar, 10)
+              .AddIngredient(ItemID.TitaniumBar, 10)
               .AddIngredient(ItemID.Lens, 1)
               .Register();
+
+            CreateRecipe()
+             .AddTile(TileID.MythrilAnvil)
+             .AddIngredient(ItemID.WormScarf, 1)
+             .AddIngredient(ItemID.CobaltShield, 1)
+             .AddIngredient(ItemID.SoulofMight, 5)
+             .AddIngredient(ItemID.HallowedBar, 10)
+             .AddIngredient(ItemID.AdamantiteBar, 10)
+             .AddIngredient(ItemID.Lens, 1)
+             .Register();
         }
     }
 }

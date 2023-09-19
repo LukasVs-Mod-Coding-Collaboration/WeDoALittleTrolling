@@ -104,13 +104,15 @@ Mods: {
 				DisplayName: Soul-Powered Shield
 				Tooltip:
 					'''
-					A shield forged from the souls of powerful mechanical creatures
+					"A highly dense shield, imbued with the souls of a
+					 tough mechanical creature in order to protect you"
 					Blocks usage of the Worm Scarf
 					Grants knockback immunity
-					6 Defense
-					Reduces 30% of damage taken
-					Grants immunity to fire and frost effects of any kind
-					Also grants immunity to Blackout, Ichor and Electrified
+					12 Defense
+					Reduces 20% of damage taken
+					Grants immunity to most fire and frost effects
+					Also grants immunity to most other hazardous debuffs
+					which are not blocked by the Ankh Shield
 					'''
 			}
 
