@@ -407,6 +407,17 @@ Mods: {
 					'''
 			}
 
+			Sandstepping: {
+				DisplayName: Sandstepping
+				AdditionalTooltip:
+					'''
+					Allows you to run slightly faster
+					You also run much faster on sand and
+					you are not affected by the wind
+					during a Sandstorm
+					'''
+			}
+
 			Focusing: {
 				DisplayName: Focusing
 				AdditionalTooltip: -2% ranged damage
