@@ -66,7 +66,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             ProjectileID.SeedPlantera,
             ProjectileID.PoisonSeedPlantera,
-            ProjectileID.DeathLaser,
             ProjectileID.HallowBossDeathAurora,
             ProjectileID.HallowBossLastingRainbow,
             ProjectileID.HallowBossRainbowStreak,
@@ -615,6 +614,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if(InflictWreckedResistance1In1Group.Contains(projectile.type))
             {
                 if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
+            if
+            (
+                projectile.type == ProjectileID.DeathLaser &&
+                projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC attacker)
+            )
+            {
+                if(attacker.type == NPCID.PrimeLaser)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
