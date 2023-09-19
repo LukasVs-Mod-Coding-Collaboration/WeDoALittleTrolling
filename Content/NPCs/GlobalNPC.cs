@@ -204,7 +204,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(npc.type == NPCID.RockGolem)
             {
                 npc.value = 100000f;
-                npc.lifeMax *= 3;
             }
             if
             (
@@ -965,10 +964,32 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
+            if (npc.type == NPCID.GiantTortoise)
+            {
+                foreach (IItemDropRule rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.TurtleShell)
+                    {
+                        drop.chanceNumerator = 1;
+                        drop.chanceDenominator = 5;
+                    }
+                }
+            }
+            if (npc.type == NPCID.IceTortoise)
+            {
+                foreach (IItemDropRule rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.FrozenTurtleShell)
+                    {
+                        drop.chanceNumerator = 1;
+                        drop.chanceDenominator = 20;
+                    }
+                }
+            }
             if (npc.type == NPCID.ChaosElemental)
             {
-                int chanceNumerator = 1; // 1% chance
-                int chanceDenominator = 100;
+                int chanceNumerator = 1; // 4% chance
+                int chanceDenominator = 25;
                 TryModifyRodOfDiscordDropChance(npcLoot, chanceNumerator, chanceDenominator);
             }
             if
@@ -1221,6 +1242,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                 int dropAmountMax = 3;
                 int chanceNumerator = 1; // 100% chance
                 int chanceDenominator = 1;
+                int itemID = ItemID.Geode;
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+                /*
                 CommonDrop[] dropList =
                 {
                     new CommonDrop(ItemID.Ruby, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator),
@@ -1235,6 +1260,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     npcLoot.Add(drop);
                 }
+                */
             }
             base.ModifyNPCLoot(npc, npcLoot);
         }
