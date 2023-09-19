@@ -353,7 +353,7 @@ Mods: {
 			PhotonsplicerProjectile.DisplayName: Photonsplicer
 			PhantomStaffProjectile.DisplayName: Luminite Phantom
 			PhantomStaffProjectileBullet.DisplayName: Luminite Phantom Laser
-			MagicArtefact.DisplayName: Magic Artefact
+			MagicArtifact.DisplayName: Magic Artifact
 			GloriousDemiseProjectile.DisplayName: Glorious Demise
 		}
 
