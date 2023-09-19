@@ -82,7 +82,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             player.desertBoots = true;
             player.buffImmune[BuffID.WindPushed] = true;
-            player.maxRunSpeed += 5f;
+            player.maxRunSpeed += 1f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
