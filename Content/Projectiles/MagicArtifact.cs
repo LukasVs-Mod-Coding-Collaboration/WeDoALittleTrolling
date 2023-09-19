@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
-    public class MagicArtefact : ModProjectile
+    public class MagicArtifact : ModProjectile
     {
         public const float homingRange = 512f;
         public const float correctionFactor = 0.30f;
@@ -36,10 +36,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            AI_005_MagicArtefact();
+            AI_005_MagicArtifact();
         }
 
-        private void AI_005_MagicArtefact()
+        private void AI_005_MagicArtifact()
         {
             float origVelocityLength = Projectile.velocity.Length();
             float lowestDistance = homingRange;

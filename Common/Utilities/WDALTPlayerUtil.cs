@@ -53,7 +53,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool searingSetBonus;
         public int searingSetBonusValue;
         public bool gnomedStonedDebuff;
-        public bool yoyoArtefact;
+        public bool yoyoArtifact;
         public Player player;
         public long currentTick;
         public int chargeAccelerationTicks;
@@ -77,7 +77,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
-            yoyoArtefact = false;
+            yoyoArtifact = false;
             currentTick = 0;
             chargeAccelerationTicks = 0;
         }
@@ -103,7 +103,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             searingSetBonus = false;
             searingSetBonusValue = 0;
             gnomedStonedDebuff = false;
-            yoyoArtefact = false;
+            yoyoArtifact = false;
             chargeAccelerationTicks = 0;
         }
 
@@ -117,7 +117,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             soulPoweredShield = false;
             searingSetBonus = false;
             gnomedStonedDebuff = false;
-            yoyoArtefact = false;
+            yoyoArtifact = false;
             base.ResetEffects();
         }
         
@@ -359,7 +359,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             if
             (
-                yoyoArtefact &&
+                yoyoArtifact &&
                 (
                     proj.type == ProjectileID.TerrarianBeam ||
                     proj.aiStyle == ProjAIStyleID.Yoyo
@@ -380,7 +380,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                     projVelocity.Normalize();
                     projVelocity *= 12f;
                     int dmg = (int)Math.Round(proj.damage * 0.33);
-                    Projectile.NewProjectileDirect(proj.GetSource_OnHit(target), projPosition, projVelocity, ModContent.ProjectileType<MagicArtefact>(), dmg, proj.knockBack, proj.owner);
+                    Projectile.NewProjectileDirect(proj.GetSource_OnHit(target), projPosition, projVelocity, ModContent.ProjectileType<MagicArtifact>(), dmg, proj.knockBack, proj.owner);
                 }
             }
             base.OnHitNPCWithProj(proj, target, hit, damageDone);

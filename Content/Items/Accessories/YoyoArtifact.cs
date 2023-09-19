@@ -33,7 +33,7 @@ using Terraria.Localization;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-    internal class YoyoArtefact : ModItem
+    internal class YoyoArtifact : ModItem
     {
         public override void SetDefaults()
         {
@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<WDALTPlayerUtil>().yoyoArtefact = true;
+            player.GetModPlayer<WDALTPlayerUtil>().yoyoArtifact = true;
             player.GetDamage(DamageClass.Melee) += 0.15f;
             base.UpdateAccessory(player, hideVisual);
         }
