@@ -67,14 +67,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.minion = true;
             Projectile.DamageType = DamageClass.Summon;
             Projectile.penetrate = -1;
-            Projectile.minionSlots = 1f;
+            Projectile.minionSlots = 2f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.ArmorPenetration = 60;
+            Projectile.ArmorPenetration = 120;
             Projectile.timeLeft = 10;
             Projectile.netImportant = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 20;
+            Projectile.localNPCHitCooldown = 10;
             Projectile.light = 0.8f;
         }
 
@@ -216,7 +216,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 if
                 (
-                    (Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) >= Projectile.localNPCHitCooldown) &&
+                    (Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2)) &&
                     (distanceToTarget > detectionRangeOffset * 2)
                 )
                 {
@@ -227,7 +227,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
                         Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
                         Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
-                        int dmg = (int)Math.Round(Projectile.damage * 0.5); //We shoot 2 projectiles so only 0.5x damage per projectile.
+                        int dmg = Projectile.damage; //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
                         shootVector1.Normalize();
                         pos1 += (shootVector1 * bulletOffsetMultiplier);
                         shootVector1 *= bulletSpeed;

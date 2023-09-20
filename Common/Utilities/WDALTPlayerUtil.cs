@@ -230,6 +230,18 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.PostUpdateEquips();
         }
 
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
+            {
+                if(Main.npc[damageSource.SourceNPCIndex].type == NPCID.FungoFish)
+                {
+                    damageSource.SourceCustomReason = player.name + " was obliterated by LE' FUNGO-FEESH!";
+                }
+            }
+            return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+        }
+
         public override void PostUpdateBuffs()
         {
             base.PostUpdateBuffs();

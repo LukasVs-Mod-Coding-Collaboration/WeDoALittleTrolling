@@ -36,7 +36,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
+            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
+            ItemID.Sets.StaffMinionSlotsRequired[Type] = 2f;
         }
 
         public override void SetDefaults()
@@ -61,11 +63,20 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.shoot = ModContent.ProjectileType<PhantomStaffProjectile>();
 
             Item.damage = 120;
-            Item.mana = 12;
+            Item.mana = 24;
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;
 
             Item.rare = ItemRarityID.Red;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            if(player.maxMinions < ItemID.Sets.StaffMinionSlotsRequired[Type])
+            {
+                return false;
+            }
+            return base.CanUseItem(player);
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

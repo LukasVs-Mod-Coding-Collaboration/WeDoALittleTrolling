@@ -296,6 +296,7 @@ Mods: {
 					'''
 					Summons a Luminite Phantom to fight for you
 					Ignores a substantial amount of enemy defense
+					Occupies two minion slots
 					'''
 			}
 
