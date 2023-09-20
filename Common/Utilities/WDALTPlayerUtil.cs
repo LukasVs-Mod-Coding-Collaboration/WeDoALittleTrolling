@@ -234,9 +234,54 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
             {
-                if(Main.npc[damageSource.SourceNPCIndex].type == NPCID.FungoFish)
+                int[] LeFisheIDs =
+                {
+                    NPCID.FungoFish,
+                    NPCID.Piranha,
+                    NPCID.AnglerFish,
+                    NPCID.DukeFishron,
+                    NPCID.FlyingFish,
+                    NPCID.CorruptGoldfish,
+                    NPCID.CrimsonGoldfish,
+                    NPCID.Arapaima
+                };
+
+                int[] BeeIDs =
+                {
+                    NPCID.Bee,
+                    NPCID.BeeSmall,
+                    NPCID.QueenBee
+                };
+
+                int[] BoCIDs =
+                {
+                    NPCID.BrainofCthulhu,
+                    NPCID.Creeper
+                };
+
+                if (LeFisheIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
                     damageSource.SourceCustomReason = player.name + " was tragically slain by le fishe.";
+                }
+                if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.TheDestroyer && random.NextBool(4))
+                {
+                    damageSource.SourceCustomReason = player.name + " was eated.";
+                }
+                if (BeeIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(100))
+                {
+                    damageSource.SourceCustomReason = player.name + " does not prefer their bees roasted.";
+                }
+                if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.Gnome && random.NextBool(3))
+                {
+                    damageSource.SourceCustomReason = player.name + " was gnomed.";
+                }
+                if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.SkeletonSniper && random.NextBool(5))
+                {
+                    damageSource.SourceCustomReason = player.name + " discovered the meaning of stream sniping.";
+                }
+                if (BoCIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
+                {
+                    damageSource.SourceCustomReason = player.name + " had a stroke and passed away.";
                 }
             }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
