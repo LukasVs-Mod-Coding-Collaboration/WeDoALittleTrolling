@@ -297,7 +297,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 if (BoCIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
-                    damageSource.SourceCustomReason = player.name + " had a stroke and passed away.";
+                    damageSource.SourceCustomReason = player.name + " had a seizure and passed away.";
                 }
                 if (BlubbyIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
@@ -309,14 +309,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.SkeletronPrime && random.NextBool(5))
                 {
-                    if (random.NextBool(2))
-                    {
-                        damageSource.SourceCustomReason = player.name + " was forced to work at amazon.";
-                    }
-                    else
-                    {
-                        damageSource.SourceCustomReason = player.name + " fell victim to Jeff bezos.";
-                    }
+                    damageSource.SourceCustomReason = player.name + " was forced to work at amazon.";
                 }
             }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
