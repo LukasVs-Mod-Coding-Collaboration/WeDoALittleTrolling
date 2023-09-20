@@ -259,6 +259,22 @@ namespace WeDoALittleTrolling.Common.Utilities
                     NPCID.Creeper
                 };
 
+                int[] BlubbyIDs =
+                {
+                    NPCID.Plantera,
+                    NPCID.PlanterasHook,
+                    NPCID.PlanterasTentacle
+                };
+
+                int[] SansIDs =
+                {
+                    NPCID.SkeletronHead,
+                    NPCID.SkeletronHand,
+                    NPCID.Skeleton,
+                    NPCID.PrimeSaw,
+                    NPCID.PrimeVice
+                };
+
                 if (LeFisheIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
                     damageSource.SourceCustomReason = player.name + " was tragically slain by le fishe.";
@@ -282,6 +298,25 @@ namespace WeDoALittleTrolling.Common.Utilities
                 if (BoCIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
                     damageSource.SourceCustomReason = player.name + " had a stroke and passed away.";
+                }
+                if (BlubbyIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
+                {
+                    damageSource.SourceCustomReason = player.name + " tried to touch grass.";
+                }
+                if (SansIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
+                {
+                    damageSource.SourceCustomReason = player.name + " had a bad time.";
+                }
+                if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.SkeletronPrime && random.NextBool(5))
+                {
+                    if (random.NextBool(2))
+                    {
+                        damageSource.SourceCustomReason = player.name + " was forced to work at amazon.";
+                    }
+                    else
+                    {
+                        damageSource.SourceCustomReason = player.name + " fell victim to Jeff bezos.";
+                    }
                 }
             }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
