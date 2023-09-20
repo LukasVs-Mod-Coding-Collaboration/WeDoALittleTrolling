@@ -236,7 +236,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 if(Main.npc[damageSource.SourceNPCIndex].type == NPCID.FungoFish)
                 {
-                    damageSource.SourceCustomReason = player.name + " was obliterated by LE' FUNGO-FEESH!";
+                    damageSource.SourceCustomReason = player.name + " was tragically slain by le fishe.";
                 }
             }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
