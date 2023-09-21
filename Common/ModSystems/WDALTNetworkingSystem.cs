@@ -39,6 +39,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             int playerWidth = 0;
             int playerHeight = 0;
             int dropAmount = 0;
+            int netLifePvP = 100;
+            int netLifePvPPlayerIndex = 255;
             Vector2 itemSpawnPos = new Vector2(0f, 0f);
             if(type == WDALTPacketTypeID.updateWindSpeedTarget)
             {
@@ -56,6 +58,16 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 dropAmount = reader.ReadInt32();
                 itemSpawnPos = reader.ReadVector2();
             }
+            if(type == WDALTPacketTypeID.syncNetFinalDamage)
+            {
+                netLifePvP = reader.ReadInt32();
+                netLifePvPPlayerIndex = reader.ReadInt32();
+            }
+            if(type == WDALTPacketTypeID.broadcastNetFinalDamage)
+            {
+                netLifePvP = reader.ReadInt32();
+                netLifePvPPlayerIndex = reader.ReadInt32();
+            }
             if(Main.netMode == NetmodeID.MultiplayerClient)
             {
                 if (type == WDALTPacketTypeID.updateWindSpeedTarget)
@@ -66,9 +78,38 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     SoundEngine.PlaySound(SoundID.Item5, RODCsoundPos);
                 }
+                //SmartPVP(TM) Technology: Display actual pvp damage to clients on non-lethal hits and sync health
+                //Other relevent code is found in WDALTPlayerUtil
+                if (type == WDALTPacketTypeID.broadcastNetFinalDamage)
+                {
+                    if(netLifePvPPlayerIndex != Main.myPlayer)
+                    {
+                        CombatText.NewText
+                        (
+                            new Rectangle
+                            (
+                                (int)Main.player[netLifePvPPlayerIndex].position.X,
+                                (int)Main.player[netLifePvPPlayerIndex].position.Y,
+                                Main.player[netLifePvPPlayerIndex].width,
+                                Main.player[netLifePvPPlayerIndex].height
+                            ),
+                            CombatText.DamagedFriendly,
+                            (Main.player[netLifePvPPlayerIndex].statLife - netLifePvP)
+                        );
+                        Main.player[netLifePvPPlayerIndex].statLife = netLifePvP;
+                    }
+                }
             }
             if(Main.netMode == NetmodeID.Server)
             {
+                if(type == WDALTPacketTypeID.syncNetFinalDamage)
+                {
+                    ModPacket broadcastNetFinalDamagePacket = mod.GetPacket();
+                    broadcastNetFinalDamagePacket.Write(WDALTPacketTypeID.broadcastNetFinalDamage);
+                    broadcastNetFinalDamagePacket.Write(netLifePvP);
+                    broadcastNetFinalDamagePacket.Write(netLifePvPPlayerIndex);
+                    broadcastNetFinalDamagePacket.Send();
+                }
                 if(type == WDALTPacketTypeID.spawnCrateItem)
                 {
                     Item.NewItem(new EntitySource_SpawnNPC(), (int)itemSpawnPos.X, (int)itemSpawnPos.Y, playerWidth, playerHeight, itemType, dropAmount);

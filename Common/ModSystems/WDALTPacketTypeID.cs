@@ -31,5 +31,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public const short soundPlayRainOfDecay      = 6;
         public const short soundBroadcastRainOfDecay = 7;
         public const short spawnCrateItem            = 8;
+        public const short syncNetFinalDamage        = 9;
+        public const short broadcastNetFinalDamage   = 10;
     }
 }

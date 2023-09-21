@@ -33,6 +33,7 @@ using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using SteelSeries.GameSense;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Common.ModSystems;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -322,6 +323,36 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void PostUpdateBuffs()
         {
             base.PostUpdateBuffs();
+        }
+
+        //SmartPVP(TM) Technology: Display actual pvp damage to clients on non-lethal hits and sync health
+        //Other relevent code is found in WDALTNetworkingSystem
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+            if(Main.netMode == NetmodeID.MultiplayerClient && modifiers.PvP)
+            {
+                if(player.whoAmI != Main.myPlayer)
+                {
+                    modifiers.SetMaxDamage(1);
+                }
+            }
+            base.ModifyHurt(ref modifiers);
+        }
+        
+        public override void PostHurt(Player.HurtInfo info)
+        {
+            if(Main.netMode == NetmodeID.MultiplayerClient && info.PvP)
+            {
+                if(player.whoAmI == Main.myPlayer)
+                {
+                    ModPacket syncNetFinalDamagePacket = Mod.GetPacket();
+                    syncNetFinalDamagePacket.Write(WDALTPacketTypeID.syncNetFinalDamage);
+                    syncNetFinalDamagePacket.Write(player.statLife);
+                    syncNetFinalDamagePacket.Write(Main.myPlayer);
+                    syncNetFinalDamagePacket.Send();
+                }
+            }
+            base.OnHurt(info);
         }
 
         public override bool FreeDodge(Player.HurtInfo info)
