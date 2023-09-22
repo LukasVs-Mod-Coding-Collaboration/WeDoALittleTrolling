@@ -190,6 +190,17 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Clown
         };
 
+        public static readonly int[] ResistGloriousDemise50PercentGroup =
+        {
+            NPCID.Golem,
+            NPCID.GolemHead,
+            NPCID.GolemFistLeft,
+            NPCID.GolemFistRight,
+            NPCID.GolemHeadFree,
+            NPCID.CultistBoss,
+            NPCID.MartianSaucer
+        };
+
         public override void SetDefaults(NPC npc)
         {
             if(WDALTModSystem.isCalamityModPresent)

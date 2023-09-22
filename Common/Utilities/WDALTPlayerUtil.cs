@@ -34,6 +34,7 @@ using WeDoALittleTrolling.Content.Items.Accessories;
 using SteelSeries.GameSense;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Common.ModSystems;
+using WeDoALittleTrolling.Content.NPCs;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -477,6 +478,15 @@ namespace WeDoALittleTrolling.Common.Utilities
                 spawnBees(target);
             }
             base.OnHitNPCWithItem(item, target, hit, damageDone);
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if(proj.type == ModContent.ProjectileType<GloriousDemiseProjectile>() && GlobalNPCs.ResistGloriousDemise50PercentGroup.Contains(target.type))
+            {
+                modifiers.FinalDamage *= 0.5f;
+            }
+            base.ModifyHitNPCWithProj(proj, target, ref modifiers);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
