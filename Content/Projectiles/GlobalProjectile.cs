@@ -332,7 +332,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.type == ProjectileID.SeedPlantera ||
                     projectile.type == ProjectileID.PoisonSeedPlantera ||
                     projectile.type == ProjectileID.Fireball ||
-                    projectile.type == ProjectileID.MartianTurretBolt ||
                     projectile.type == ProjectileID.BrainScramblerBolt ||
                     projectile.type == ProjectileID.RayGunnerLaser
                 ) &&
@@ -354,7 +353,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         lowest_distance = 1024f;
                         correction_factor = 0.16f;
                         break;
-                    case ProjectileID.MartianTurretBolt:
                     case ProjectileID.BrainScramblerBolt:
                         lowest_distance = 512f;
                         correction_factor = 0.64f;
