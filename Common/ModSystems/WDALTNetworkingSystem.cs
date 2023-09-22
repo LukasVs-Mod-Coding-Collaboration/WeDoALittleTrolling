@@ -93,8 +93,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
                                 Main.player[netLifePvPPlayerIndex].width,
                                 Main.player[netLifePvPPlayerIndex].height
                             ),
-                            CombatText.DamagedFriendly,
-                            (Main.player[netLifePvPPlayerIndex].statLife - netLifePvP)
+                            new Color(255, 255, 0),
+                            ((Main.player[netLifePvPPlayerIndex].statLife - netLifePvP) + 1)
                         );
                         Main.player[netLifePvPPlayerIndex].statLife = netLifePvP;
                     }
