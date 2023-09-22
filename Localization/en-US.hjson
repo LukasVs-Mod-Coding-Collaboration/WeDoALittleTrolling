@@ -294,8 +294,8 @@ Mods: {
 				DisplayName: Luminite Phantom Staff
 				Tooltip:
 					'''
-					Summons a Luminite Phantom to fight for you
 					Ignores a substantial amount of enemy defense
+					Summons a Luminite Phantom to fight for you
 					Occupies two minion slots
 					'''
 			}

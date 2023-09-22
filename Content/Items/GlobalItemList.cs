@@ -1078,7 +1078,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 12;
                 item.useAnimation = 12;
                 item.shootsEveryUse = true;
-                item.shootSpeed = 32f;
+                item.shootSpeed = 24f;
             }
             if (item.type == ItemID.DayBreak)
             {
