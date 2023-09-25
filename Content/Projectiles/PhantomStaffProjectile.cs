@@ -46,7 +46,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly Vector2 gfxShootOffset1 = new Vector2(-8f, -13f);
         public static readonly Vector2 gfxShootOffset2 = new Vector2(9f, -13f);
         public long lastActionTick;
-        public static UnifiedRandom random = new UnifiedRandom();
+        public long lastParticleTick;
         
         public override void SetStaticDefaults()
         {
@@ -95,11 +95,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void PostDraw(Color lightColor)
         {
-            if(random.NextBool(60))
+            if(Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastParticleTick) >= 60)
             {
                 int rMax = (int)Projectile.width;
-                double r = rMax * Math.Sqrt(random.NextDouble());
-                double angle = random.NextDouble() * 2 * Math.PI;
+                double r = rMax * Math.Sqrt(Main.rand.NextDouble());
+                double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));
                 int yOffset = (int)Math.Round(r * Math.Sin(angle));
                 Vector2 dustPosition = Projectile.Center;
@@ -107,6 +107,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 dustPosition.Y += yOffset;
                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default);
                 newDust.noGravity = true;
+                lastParticleTick = Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
             }
         }
 
@@ -216,7 +217,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 if
                 (
-                    (Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2)) &&
+                    (Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2)) && //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
                     (distanceToTarget > detectionRangeOffset * 2)
                 )
                 {
@@ -227,7 +228,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
                         Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
                         Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
-                        int dmg = Projectile.damage; //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
                         shootVector1.Normalize();
                         pos1 += (shootVector1 * bulletOffsetMultiplier);
                         shootVector1 *= bulletSpeed;
@@ -240,7 +240,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                             pos1,
                             shootVector1,
                             ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
-                            dmg,
+                            Projectile.damage,
                             Projectile.knockBack,
                             Projectile.owner
                         );
@@ -250,7 +250,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                             pos2,
                             shootVector2,
                             ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
-                            dmg,
+                            Projectile.damage,
                             Projectile.knockBack,
                             Projectile.owner
                         );
@@ -285,8 +285,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if(Projectile.velocity.Length() == 0f)
             {
-                Projectile.velocity.X = (random.NextFloat() - 0.5f);
-                Projectile.velocity.Y = (random.NextFloat() - 0.5f);
+                Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
+                Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Normalize();
                 Projectile.velocity *= idleMoveSpeed;
             }

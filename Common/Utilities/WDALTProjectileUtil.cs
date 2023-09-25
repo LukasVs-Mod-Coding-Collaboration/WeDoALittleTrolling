@@ -194,6 +194,12 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
         }
 
+        public override bool PreAI(Projectile projectile)
+        {
+            ticksAlive += 1;
+            return base.PreAI(projectile);
+        }
+
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
             if(TryGetParentNPC(out NPC npc) && npc.active)
@@ -214,7 +220,6 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override bool ShouldUpdatePosition(Projectile projectile)
         {
-            ticksAlive += 1;
             if(projectile.type == ProjectileID.PoisonSeedPlantera && speedyPlanteraPoisonSeed && !speedyPlanteraPoisonSeedHasUpdated)
             {
                 projectile.netUpdate = true;
