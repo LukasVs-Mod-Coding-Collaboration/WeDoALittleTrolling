@@ -203,7 +203,13 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void SetDefaults(NPC npc)
         {
-            if(WDALTModSystem.isCalamityModPresent)
+            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
+            {
+                Main.npcCatchable[npc.type] = true;
+                npc.catchItem = ModContent.ItemType<Consumablebee>();
+                //revenge. REVENGE!!
+            }
+            if (WDALTModSystem.isCalamityModPresent)
             {
                 base.SetDefaults(npc);
                 return;
@@ -1037,6 +1043,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 int chanceDenominator = 25;
                 TryModifyRodOfDiscordDropChance(npcLoot, chanceNumerator, chanceDenominator);
             }
+            /*
             if
             (
                 npc.type == NPCID.Bee ||
@@ -1051,6 +1058,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                 npcLoot.Add(drop);
             }
+            */
 
             //Icy fossil drops
 
