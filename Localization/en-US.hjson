@@ -345,6 +345,16 @@ Mods: {
 				DisplayName: Wall Creeper Fang
 				Tooltip: ""
 			}
+
+			EternalMask: {
+				DisplayName: Eternal Mask
+				Tooltip:
+					'''
+					Increases maximum health by 250
+					Increases life regen by 50%
+					50% decreased damage
+					'''
+			}
 		}
 
 		Projectiles: {
