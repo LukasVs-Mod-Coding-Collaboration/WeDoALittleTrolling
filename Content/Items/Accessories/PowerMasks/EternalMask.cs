@@ -30,11 +30,13 @@ using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 using WeDoALittleTrolling.Content.AccessorySlots;
+using WeDoALittleTrolling.Content.Buffs.PowerMasks;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories.PowerMasks
 {
     internal class EternalMask : ModItem
     {
+        public const float MaskRange = 2048f;
         public override void SetDefaults()
         {
             Item.width = 30;
@@ -66,6 +68,14 @@ namespace WeDoALittleTrolling.Content.Items.Accessories.PowerMasks
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<WDALTPowerMaskUtil>().EternalMask = true;
+            if (player.whoAmI != Main.myPlayer && player.miscCounter % 30 == 0)
+            {
+                Player MyPlayer = Main.player[Main.myPlayer];
+                if (MyPlayer.team == player.team && player.team != 0 && Vector2.Distance(player.Center, MyPlayer.Center) <= MaskRange)
+                {
+                    MyPlayer.AddBuff(ModContent.BuffType<EternalPower>(), 60);
+                }
+            }
             base.UpdateAccessory(player, hideVisual);
         }
 

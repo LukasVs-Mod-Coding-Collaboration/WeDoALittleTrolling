@@ -353,6 +353,8 @@ Mods: {
 					Increases maximum health by 250
 					Increases life regen by 50%
 					50% decreased damage
+					Provides life regeneration to
+					nearby allies within 128 tiles
 					'''
 			}
 		}
@@ -640,6 +642,11 @@ Mods: {
 					 an Ankh Charm or an Ankh Shield equipped,
 					 you should probably avoid sunlight..."
 					'''
+			}
+
+			EternalPower: {
+				DisplayName: Eternal Power
+				Description: Provides life regeneration
 			}
 		}
 
