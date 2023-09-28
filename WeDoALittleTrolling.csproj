@@ -8,14 +8,16 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <AdditionalFiles Remove="Localisation\**" />
+    <Compile Remove="Localisation\**" />
+    <EmbeddedResource Remove="Localisation\**" />
+    <None Remove="Localisation\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Music\" />
-    <Folder Include="Assets\Textures\" />
-    <Folder Include="Assets\Sounds\" />
     <Folder Include="Common\" />
-    <Folder Include="Localisation\" />
     <Folder Include="OriginalArtwork\" />
   </ItemGroup>
 </Project>

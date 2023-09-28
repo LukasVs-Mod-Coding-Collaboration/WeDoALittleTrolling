@@ -642,5 +642,7 @@ Mods: {
 					'''
 			}
 		}
+
+		NPCs.HighEnergyTestDevice.DisplayName: High Energy Test Device
 	}
 }
