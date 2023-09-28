@@ -15,6 +15,7 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
     {
 
         private int bossPhase = 0;
+        Player target;
         public override void SetDefaults()
         {
             NPC.width = 246;
@@ -29,7 +30,7 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
             NPC.aiStyle = -1;
             NPC.noTileCollide = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/TestBossTheme");
-            NPC.EncourageDespawn(10);
+            NPC.noGravity = true;
 
         }
 
@@ -46,9 +47,26 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
 
         private void AI_TestBoss_High_Energy_Test_Device()
         {
-            if (bossPhase == 0)
+            //NPC.TargetClosest();
+            //target = Main.player[NPC.target];
+            Player target = null;
+            int highestAggro = 0;
+            float lowest_distance = 4096f;
+            for(int i = 0; i < Main.player.Length; i++)
             {
-                NPC.velocity = new Vector2(0f, 0.4f);
+                if (Main.player[i].aggro >= highestAggro && Vector2.Distance(Main.player[i].Center, NPC.Center) < lowest_distance)
+                {
+                    highestAggro = Main.player[i].aggro;
+                    lowest_distance = Vector2.Distance(Main.player[i].Center, NPC.Center);
+                    target = Main.player[i];
+                }
+            }
+            if(target != null)
+            {
+                if (bossPhase == 0)
+                {
+                    NPC.velocity = new Vector2(NPC.Center.X - target.Center.X, NPC.Center.Y - target.Center.Y);
+                } 
             }
         }
 
