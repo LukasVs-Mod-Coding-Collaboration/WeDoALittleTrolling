@@ -894,15 +894,15 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StardustDragonStaff)
             {
-                item.damage = 45;
+                item.damage = 50;
             }
             if (item.type == ItemID.StardustCellStaff)
             {
-                item.damage = 90;
+                item.damage = 75;
             }
             if (item.type == ItemID.EmpressBlade) //Terraprisma
             {
-                item.damage = 100;
+                item.damage = 125;
             }
             if
             (

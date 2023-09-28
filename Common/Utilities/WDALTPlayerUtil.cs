@@ -480,15 +480,6 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.OnHitNPCWithItem(item, target, hit, damageDone);
         }
 
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
-        {
-            if(proj.type == ModContent.ProjectileType<GloriousDemiseProjectile>() && GlobalNPCs.ResistGloriousDemise50PercentGroup.Contains(target.type))
-            {
-                modifiers.FinalDamage *= 0.5f;
-            }
-            base.ModifyHitNPCWithProj(proj, target, ref modifiers);
-        }
-
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee && beekeeperStack > 0)

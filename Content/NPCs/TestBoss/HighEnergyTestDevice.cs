@@ -15,7 +15,6 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
     {
 
         private int bossPhase = 0;
-        Player target;
         public override void SetDefaults()
         {
             NPC.width = 246;
@@ -36,7 +35,7 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
 
         public override void OnSpawn(IEntitySource source)
         {
-            bossPhase = 1;
+            bossPhase = 0;
             base.OnSpawn(source);
         }
 
@@ -47,32 +46,17 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
 
         private void AI_TestBoss_High_Energy_Test_Device()
         {
-            //NPC.TargetClosest();
-            //target = Main.player[NPC.target];
-            Player target = null;
-            int highestAggro = 0;
-            float lowest_distance = 4096f;
-            for(int i = 0; i < Main.player.Length; i++)
-            {
-                if (Main.player[i].aggro >= highestAggro && Vector2.Distance(Main.player[i].Center, NPC.Center) < lowest_distance)
-                {
-                    highestAggro = Main.player[i].aggro;
-                    lowest_distance = Vector2.Distance(Main.player[i].Center, NPC.Center);
-                    target = Main.player[i];
-                }
-            }
+            NPC.TargetClosest();
+            Player target = Main.player[NPC.target];
             if(target != null)
             {
                 if (bossPhase == 0)
                 {
-                    NPC.velocity = new Vector2(NPC.Center.X - target.Center.X, NPC.Center.Y - target.Center.Y);
+                    NPC.velocity = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y);
+                    NPC.velocity.Normalize();
+                    NPC.velocity *= 4f;
                 } 
             }
         }
-
-
-
-
-
     }
 }

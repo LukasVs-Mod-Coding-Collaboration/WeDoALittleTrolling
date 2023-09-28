@@ -37,6 +37,7 @@ using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.Utilities;
 using WeDoALittleTrolling.Common.ModSystems;
+using WeDoALittleTrolling.Content.Projectiles;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -640,6 +641,35 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.ModifyIncomingHit(npc, ref modifiers);
         }
 
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if(projectile.type == ModContent.ProjectileType<GloriousDemiseProjectile>() && ResistGloriousDemise50PercentGroup.Contains(npc.type))
+            {
+                modifiers.FinalDamage *= 0.5f;
+            }
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                if
+                (
+                    (
+                        npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SFF) ||
+                        npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_AET) ||
+                        npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_OLD) ||
+                        npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
+                    ) &&
+                    (
+                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectile>() ||
+                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectileBullet>() ||
+                        projectile.type == ModContent.ProjectileType<GloriousDemiseProjectile>()
+                    )
+                )
+                {
+                    modifiers.FinalDamage *= 0.5f;
+                }
+            }
+            base.ModifyHitByProjectile(npc, projectile, ref modifiers);
+        }
+
         public override bool PreAI(NPC npc)
         {
             if(npc.type == NPCID.VileSpitEaterOfWorlds)
@@ -757,7 +787,27 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                if
+                (
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SFF) ||
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_AET) ||
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_OLD) ||
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
+                )
+                {
+                    npc.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
+                }
+                else
+                {
+                    npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+                }
+            }
+            else
+            {
+                npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+            }
             base.UpdateLifeRegen(npc, ref damage);
         }
 

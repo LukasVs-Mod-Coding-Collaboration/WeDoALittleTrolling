@@ -45,8 +45,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float bulletOffsetMultiplier = 36f;
         public static readonly Vector2 gfxShootOffset1 = new Vector2(-8f, -13f);
         public static readonly Vector2 gfxShootOffset2 = new Vector2(9f, -13f);
-        public long lastActionTick;
-        public long lastParticleTick;
+        public long ticksAlive = 0;
+        public long lastActionTick = 0;
         
         public override void SetStaticDefaults()
         {
@@ -71,7 +71,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.ArmorPenetration = 120;
-            Projectile.timeLeft = 10;
+            Projectile.timeLeft = 2;
             Projectile.netImportant = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
@@ -95,7 +95,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void PostDraw(Color lightColor)
         {
-            if(Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastParticleTick) >= 60)
+            if(ticksAlive % 30 == 0)
             {
                 int rMax = (int)Projectile.width;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
@@ -107,12 +107,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 dustPosition.Y += yOffset;
                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.LunarOre, null, 0, default);
                 newDust.noGravity = true;
-                lastParticleTick = Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
             }
         }
 
         private void AI_003_Luminite_Phantom()
         {
+            ticksAlive++;
             Player ownerPlayer = Main.player[Projectile.owner];
             if(!ownerPlayer.active || ownerPlayer.dead)
             {
@@ -121,7 +121,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if(ownerPlayer.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
             {
-                Projectile.timeLeft = 10;
+                Projectile.timeLeft = 2;
             }
             Vector2 idlePos = ownerPlayer.Center;
             idlePos.Y -= (Projectile.height * 3f);
@@ -217,7 +217,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 if
                 (
-                    (Math.Abs(Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2)) && //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
+                    (Math.Abs(ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2)) && //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
                     (distanceToTarget > detectionRangeOffset * 2)
                 )
                 {
@@ -256,7 +256,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         );
                     }
                     SoundEngine.PlaySound(SoundID.NPCHit44, Projectile.Center);
-                    lastActionTick = Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive;
+                    lastActionTick = ticksAlive;
                 }
             }
             else

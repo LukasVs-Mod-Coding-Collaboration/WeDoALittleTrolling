@@ -26,7 +26,7 @@ namespace WeDoALittleTrolling.Content.Buffs
         {
             if(player.ownedProjectileCounts[ModContent.ProjectileType<PhantomStaffProjectile>()] > 0)
             {
-                player.buffTime[buffIndex] = 10;
+                player.buffTime[buffIndex] = 2;
             }
             else
             {
