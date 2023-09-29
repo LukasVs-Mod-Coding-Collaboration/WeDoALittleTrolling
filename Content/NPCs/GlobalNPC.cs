@@ -643,7 +643,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Lihzahrd ||
                 npc.type == NPCID.LihzahrdCrawler ||
                 npc.type == NPCID.FlyingSnake ||
-                npc.type == NPCID.RockGolem
+                npc.type == NPCID.RockGolem ||
+                npc.type == NPCID.Gnome
             )
             {
                 modifiers.SourceDamage *= 0.5f;
