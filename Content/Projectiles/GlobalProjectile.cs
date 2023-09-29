@@ -182,8 +182,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.UnholyTridentFriendly ||
                 projectile.type == ProjectileID.BookStaffShot ||
                 projectile.type == ProjectileID.LunarFlare ||
-                projectile.type == ProjectileID.Bubble ||
-                projectile.type == ProjectileID.DD2BetsyArrow
+                projectile.type == ProjectileID.Bubble
             )
             {
                 projectile.usesLocalNPCImmunity = true;
@@ -198,6 +197,33 @@ namespace WeDoALittleTrolling.Content.Projectiles
             )
             {
                 projectile.timeLeft = 80;
+            }
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                if(projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V1))
+                {
+                    if(Main.expertMode)
+                    {
+                        if(projectile.extraUpdates < 1)
+                        {
+                            projectile.extraUpdates = 1;
+                        }
+                        projectile.extraUpdates *= 4;
+                    }
+                    projectile.timeLeft *= 8;
+                }
+                if(projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V2))
+                {
+                    if(Main.expertMode)
+                    {
+                        if(projectile.extraUpdates < 1)
+                        {
+                            projectile.extraUpdates = 1;
+                        }
+                        projectile.extraUpdates *= 2;
+                    }
+                    projectile.timeLeft *= 8;
+                }
             }
             base.SetDefaults(projectile);
         }

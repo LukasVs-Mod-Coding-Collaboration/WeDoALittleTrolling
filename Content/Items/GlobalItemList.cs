@@ -725,8 +725,8 @@ namespace WeDoALittleTrolling.Content.Items
         {
             if (item.type == ItemID.Phantasm) 
             {
-                item.damage = 70;
-                item.crit = 3;
+                item.damage = 50;
+                item.crit = 1;
             }
             if (item.type == ItemID.VortexBeater) 
             {
@@ -1375,8 +1375,8 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 60;
                 item.crit = 2;
-                item.useTime = 20;
-                item.useAnimation = 20;
+                item.useTime = 25;
+                item.useAnimation = 25;
                 item.shootsEveryUse = true;
             }
 

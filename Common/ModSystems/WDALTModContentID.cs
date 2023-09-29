@@ -151,9 +151,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
             "ShootingStarFragment"
         };
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
-        private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(10+1)];
+        private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(9+1)];
         private static int[] InflictWreckedResistance1in1Group_ThoriumBossProjectile = new int[(26+1)];
-        private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(1+1)];
+        private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(2+1)];
         private static int[] InflictDevastated1in1Group_ThoriumBossProjectile = new int[(4+1)];
 
         public static int GetThoriumBossNPCID(int modContentID)
@@ -264,9 +264,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 InflictWreckedResistance1in1Group_ThoriumBoss[7] = GetThoriumBossNPCID(ThoriumBoss_FO_V3);
                 InflictWreckedResistance1in1Group_ThoriumBoss[8] = GetThoriumBossNPCID(ThoriumBoss_AET);
                 InflictWreckedResistance1in1Group_ThoriumBoss[9] = GetThoriumBossNPCID(ThoriumBoss_SFF);
-                InflictWreckedResistance1in1Group_ThoriumBoss[10] = GetThoriumBossNPCID(ThoriumBoss_DE);
-                InflictDevastated1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_OLD);
-                InflictDevastated1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_LI_V2);
+                InflictDevastated1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_LI_V2);
+                InflictDevastated1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_OLD);
+                InflictDevastated1in1Group_ThoriumBoss[2] = GetThoriumBossNPCID(ThoriumBoss_DE);
                 InflictWreckedResistance1in1Group_ThoriumBossProjectile[0] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V1);
                 InflictWreckedResistance1in1Group_ThoriumBossProjectile[1] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V2);
                 InflictWreckedResistance1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V3);

@@ -20,6 +20,7 @@ List of additions and changes:
 This Mod features compatibility/crossover features with Thorium Mod:
 - Increased health for Thorium Bosses
 - Thorium Hardmode Bosses inflict debuffs that prevent cheesing as well
+- Special adjustments to the Primordials to increase difficulty
 - Exclusive Beam Laser Weapons that are only accessible when playing with Thorium Mod
 
 

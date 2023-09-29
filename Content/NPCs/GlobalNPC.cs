@@ -542,13 +542,19 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 if
                 (
-                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_AET) ||
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_OLD) ||
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SFF) ||
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
                 )
                 {
                     npc.lifeMax *= 3;
+                }
+                if
+                (
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_AET)
+                )
+                {
+                    npc.lifeMax *= 6;
                 }
             }
             base.SetDefaults(npc);
@@ -609,7 +615,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 //Buff Thorium Bosses Accordingly
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS))
+                if
+                (
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS) ||
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SFF)
+                )
                 {
                     projectile.damage = (int)Math.Round(projectile.damage * 1.5);
                 }
@@ -629,7 +639,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             if
             (
-                npc.type == NPCID.PossessedArmor || //Possessed Armor has 50% DR%
+                npc.type == NPCID.PossessedArmor || //Possessed Armors, Lihzards, Flying Snakes and Rock Golems have 50% DR%
                 npc.type == NPCID.Lihzahrd ||
                 npc.type == NPCID.LihzahrdCrawler ||
                 npc.type == NPCID.FlyingSnake ||
@@ -637,6 +647,17 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 modifiers.SourceDamage *= 0.5f;
+            }
+            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                if
+                (
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_AET) ||
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
+                )
+                {
+                    modifiers.SourceDamage *= 0.5f;
+                }
             }
             base.ModifyIncomingHit(npc, ref modifiers);
         }
@@ -658,13 +679,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                         npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
                     ) &&
                     (
-                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectile>() ||
-                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectileBullet>() ||
+                        projectile.type == ProjectileID.MoonlordArrow ||
+                        projectile.type == ProjectileID.MoonlordArrowTrail ||
                         projectile.type == ModContent.ProjectileType<GloriousDemiseProjectile>()
                     )
                 )
                 {
-                    modifiers.FinalDamage *= 0.5f;
+                    modifiers.FinalDamage *= 0.75f; //The Primordials only take 75% damage from LPS and GLD.
                 }
             }
             base.ModifyHitByProjectile(npc, projectile, ref modifiers);
@@ -792,8 +813,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if
                 (
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SFF) ||
-                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_AET) ||
-                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_OLD) ||
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
                 )
                 {
@@ -808,6 +827,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
+            npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             base.UpdateLifeRegen(npc, ref damage);
         }
 
