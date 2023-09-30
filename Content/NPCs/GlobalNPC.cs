@@ -82,7 +82,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.FlyingSnake,
             NPCID.BrainofCthulhu,
             NPCID.PossessedArmor,
-            NPCID.RockGolem
+            NPCID.RockGolem,
+            NPCID.Gnome
         };
         public static readonly int[] InflictVenomDebuff1In1Group =
         {

@@ -220,7 +220,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         {
                             projectile.extraUpdates = 1;
                         }
-                        projectile.extraUpdates *= 2;
                     }
                     projectile.timeLeft *= 8;
                 }
