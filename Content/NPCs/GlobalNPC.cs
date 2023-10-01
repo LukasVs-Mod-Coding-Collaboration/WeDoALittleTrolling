@@ -328,11 +328,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.HallowBoss)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if(npc.type == NPCID.DukeFishron)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if(npc.type == NPCID.CultistBoss)
             {
