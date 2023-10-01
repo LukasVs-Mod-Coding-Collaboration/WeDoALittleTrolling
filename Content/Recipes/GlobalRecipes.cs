@@ -41,6 +41,16 @@ namespace WeDoALittleTrolling.Content.Recipes
 
             Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
 
+            Recipe WDALT_WormScarf_BoC_V1 = Recipe.Create(ItemID.WormScarf, 1);
+            WDALT_WormScarf_BoC_V1.AddCondition(ShimmerCondition);
+            WDALT_WormScarf_BoC_V1.AddIngredient(ItemID.BrainOfConfusion, 1);
+            WDALT_WormScarf_BoC_V1.Register();
+
+            Recipe WDALT_WormScarf_BoC_V2 = Recipe.Create(ItemID.BrainOfConfusion, 1);
+            WDALT_WormScarf_BoC_V2.AddCondition(ShimmerCondition);
+            WDALT_WormScarf_BoC_V2.AddIngredient(ItemID.WormScarf, 1);
+            WDALT_WormScarf_BoC_V2.Register();
+
             Recipe WDALT_CobaltShield_V1 = Recipe.Create(ItemID.CobaltShield, 1);
             WDALT_CobaltShield_V1.AddTile(TileID.MythrilAnvil);
             WDALT_CobaltShield_V1.AddIngredient(ItemID.CobaltBar, 8);
