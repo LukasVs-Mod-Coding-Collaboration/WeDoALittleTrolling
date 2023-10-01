@@ -190,7 +190,13 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.GolemFistRight,
             NPCID.GolemHeadFree,
             NPCID.CultistBoss,
-            NPCID.MartianSaucer
+            NPCID.MartianSaucer,
+            NPCID.TheDestroyer,
+            NPCID.TheDestroyerBody,
+            NPCID.TheDestroyerTail,
+            NPCID.EaterofWorldsHead,
+            NPCID.EaterofWorldsBody,
+            NPCID.EaterofWorldsTail
         };
 
         public override void SetDefaults(NPC npc)
