@@ -72,7 +72,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            useTimeMult *= 1.25f;
+            useTimeMult *= 1.3f;
         }
 
         public override void ModifyValue(ref float valueMult)
@@ -92,7 +92,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             int critDamageBonus = 75;
             if(BuffGroup.Contains(item.type))
             {
-                critDamageBonus = 150;
+                critDamageBonus = 125;
             }
             yield return new TooltipLine(Mod, "PrefixWeaponSupercriticalDescription", "+"+critDamageBonus+AdditionalTooltip.Value) {
                 IsModifier = true,

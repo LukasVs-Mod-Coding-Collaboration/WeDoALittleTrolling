@@ -118,27 +118,27 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             }
             if(NPC.downedPlantBoss)
             {
-                modifier *= 1.5f;
+                modifier *= 1.25f;
             }
             if(NPC.downedGolemBoss)
             {
-                modifier *= 1.5f;
+                modifier *= 1.25f;
             }
             if(NPC.downedAncientCultist)
             {
-                modifier *= 1.5f;
+                modifier *= 1.25f;
             }
             if(NPC.downedEmpressOfLight)
             {
-                modifier *= 1.5f;
+                modifier *= 1.25f;
             }
             if(NPC.downedFishron)
             {
-                modifier *= 1.5f;
+                modifier *= 1.25f;
             }
             if(NPC.downedMoonlord)
             {
-                modifier *= 2f;
+                modifier *= 3f;
             }
             damage *= modifier;
             base.ModifyWeaponDamage(player, ref damage);

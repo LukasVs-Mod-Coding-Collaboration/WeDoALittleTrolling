@@ -53,6 +53,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
             player.GetDamage(DamageClass.Generic) += 0.01f;
             player.GetAttackSpeed(DamageClass.Generic) *= 1.01f;
             player.GetCritChance(DamageClass.Generic) += 1.0f;
+            player.manaCost *= 0.99f;
+            player.endurance += 0.01f;
+            player.manaRegen += 1;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

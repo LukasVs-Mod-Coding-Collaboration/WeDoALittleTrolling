@@ -15,7 +15,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 4);
             Item.rare = ItemRarityID.Yellow;
-            Item.defense = 24;
+            Item.defense = 20;
         }
 
         public override void UpdateEquip(Player player)

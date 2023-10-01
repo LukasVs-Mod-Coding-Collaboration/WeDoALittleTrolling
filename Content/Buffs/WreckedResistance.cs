@@ -30,7 +30,7 @@ namespace WeDoALittleTrolling.Content.Buffs
         
         public override bool ReApply(Player player, int time, int buffIndex)
         {
-            if(player.GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack < 7)
+            if(player.GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack < 5)
             {
                 player.GetModPlayer<WDALTPlayerUtil>().wreckedResistanceStack += 1;
             }

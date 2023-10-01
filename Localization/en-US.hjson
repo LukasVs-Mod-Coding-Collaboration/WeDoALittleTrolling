@@ -18,6 +18,7 @@ Mods: {
 					Grants MASSIVE buffs to life regeneration
 					Prolongs immmunity frames
 					Increases attack speed by 25%
+					Post-Game and Game breaking
 					'''
 			}
 
@@ -108,7 +109,7 @@ Mods: {
 					 tough mechanical creature in order to protect you"
 					Blocks usage of the Worm Scarf
 					Grants knockback immunity
-					7 Defense
+					5 Defense
 					Reduces 17% of damage taken
 					Additionally reduces up to 17% of damage taken based on how
 					close you are to the attacker, this is unaffected by debuffs
@@ -135,7 +136,7 @@ Mods: {
 				Tooltip:
 					'''
 					Your magic damage increases as you lose health
-					Grants 1% damage for every 4 health you have lost
+					Grants 1% damage for every 5 health you have lost
 					"Don't you dare go hollow."
 					'''
 			}
@@ -567,6 +568,9 @@ Mods: {
 					+1% critical strike chance
 					+1% movement speed
 					+1% attack speed
+					+1% reduced damage taken
+					+1% reduced mana cost
+					+1 mana regeneration
 					+10 mana
 					'''
 			}

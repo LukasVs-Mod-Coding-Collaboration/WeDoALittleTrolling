@@ -15,7 +15,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             Item.height = 24;
             Item.value = Item.sellPrice(gold: 4);
             Item.rare = ItemRarityID.Yellow;
-            Item.defense = 20;
+            Item.defense = 16;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)

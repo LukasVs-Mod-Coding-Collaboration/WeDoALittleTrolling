@@ -224,7 +224,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                     Main.buffNoTimeDisplay[BuffID.Stoned] = false;
                 }
             }
-            heartOfDespairDamageBonus = (player.statLifeMax - player.statLife) / 4;
+            heartOfDespairDamageBonus = (player.statLifeMax2 - player.statLife) / 5;
             if(sandStepping)
             {
                 player.maxRunSpeed += 2f;
@@ -444,7 +444,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 {
                     if(Supercritical.BuffGroup.Contains(player.HeldItem.type))
                     {
-                        modifiers.CritDamage += 3.0f;
+                        modifiers.CritDamage += 2.5f;
                     }
                     else
                     {

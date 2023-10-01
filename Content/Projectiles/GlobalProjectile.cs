@@ -116,8 +116,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.AncientDoomProjectile,
             ProjectileID.PhantasmalDeathray,
             ProjectileID.SaucerDeathray,
-            ProjectileID.FairyQueenSunDance,
-            ProjectileID.Sharknado,
             ProjectileID.Cthulunado,
             ProjectileID.BombSkeletronPrime,
             ProjectileID.ThornBall,
@@ -152,7 +150,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if
             (
                 projectile.type == ProjectileID.DeathLaser ||
-                projectile.type == ProjectileID.PinkLaser ||
                 projectile.type == ProjectileID.FrostBlastFriendly ||
                 projectile.type == ProjectileID.PoisonFang ||
                 projectile.type == ProjectileID.VenomFang ||

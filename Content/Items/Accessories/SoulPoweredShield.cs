@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             player.GetModPlayer<WDALTPlayerUtil>().soulPoweredShield = true;
             player.endurance += 0.17f; //Damage Reduction (originally 0.25)
-            player.statDefense += 7; // (originally 6)
+            player.statDefense += 5; // (originally 6)
             player.noKnockback = true;
             player.lavaImmune = true; //Immunity to Lava and Fire blocks
             player.fireWalk = true;

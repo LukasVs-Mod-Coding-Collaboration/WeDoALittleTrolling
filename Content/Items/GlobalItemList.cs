@@ -83,6 +83,7 @@ namespace WeDoALittleTrolling.Content.Items
                 player.chatOverhead.NewMessage(player.name + " tried to uglify the world.", 180);
                 return false;
             }
+            /*
             else if
             (
                 item.type == ItemID.LandMine
@@ -91,6 +92,8 @@ namespace WeDoALittleTrolling.Content.Items
                 player.chatOverhead.NewMessage("You may not use this item.", 180);
                 return false;
             }
+            */
+            //I'm sorry, hit
             else if
             (
                 item.type == ItemID.RodOfHarmony
@@ -185,7 +188,7 @@ namespace WeDoALittleTrolling.Content.Items
         {
             if(item.type == ItemID.AvengerEmblem)
             {
-                player.GetAttackSpeed(DamageClass.Generic) += 0.12f;
+                player.GetAttackSpeed(DamageClass.Generic) += 0.10f;
             }
             if(item.type == ItemID.PutridScent)
             {
@@ -193,18 +196,15 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if(item.type == ItemID.DestroyerEmblem)
             {
-                player.GetAttackSpeed(DamageClass.Generic) += 0.12f;
                 player.GetDamage(DamageClass.Generic) += 0.02f;
                 player.GetCritChance(DamageClass.Generic) += 2f;
             }
             if(item.type == ItemID.SniperScope)
             {
-                player.GetAttackSpeed(DamageClass.Ranged) += 0.12f;
                 player.GetDamage(DamageClass.Ranged) += 0.02f;
             }
             if(item.type == ItemID.ReconScope)
             {
-                player.GetAttackSpeed(DamageClass.Ranged) += 0.17f;
                 player.GetDamage(DamageClass.Ranged) += 0.07f;
                 player.GetCritChance(DamageClass.Ranged) += 5f;
             }
@@ -379,15 +379,7 @@ namespace WeDoALittleTrolling.Content.Items
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "12% increased damage\n12% increased attack speed");
-            }
-            if
-            (
-                item.type == ItemID.PutridScent
-            )
-            {
-                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "5% increased damage, attack speed and\ncritical strike chance");
+                infoLine.ForEach(t => t.Text = "12% increased damage\n10% increased attack speed");
             }
             if
             (
@@ -395,7 +387,7 @@ namespace WeDoALittleTrolling.Content.Items
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "12% increased damage\n12% increased attack speed");
+                infoLine.ForEach(t => t.Text = "12% increased damage");
                 List<TooltipLine> infoLine2 = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
                 infoLine2.ForEach(t => t.Text = "10% increased critical strike chance");
             }
@@ -405,7 +397,7 @@ namespace WeDoALittleTrolling.Content.Items
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "12% increased ranged damage and attack speed\n10% increased ranged critical strike chance");
+                infoLine.ForEach(t => t.Text = "12% increased ranged damage\n10% increased ranged critical strike chance");
             }
             if
             (
@@ -413,7 +405,7 @@ namespace WeDoALittleTrolling.Content.Items
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "17% increased ranged damage and attack speed\n15% increased ranged critical strike chance");
+                infoLine.ForEach(t => t.Text = "17% increased ranged damage\n15% increased ranged critical strike chance");
             }
             if
             (
@@ -735,10 +727,9 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.FetidBaghnakhs) 
             {
-                item.damage = 70;
+                item.damage = 65;
                 item.useTime = 7;
                 item.useAnimation = 7;
-                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
@@ -838,8 +829,9 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChristmasTreeSword)
             {
-                item.damage = 95;
+                item.damage = 100;
             }
+            /*
             if (item.type == ItemID.ZapinatorOrange)
             {
                 item.buffType = BuffID.Electrified;
@@ -850,6 +842,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.buffType = BuffID.Electrified;
                 item.buffTime = 240;
             }
+            */
             if (item.type == ItemID.LastPrism)
             {
                 item.damage = 100;
@@ -857,7 +850,8 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ClingerStaff)
             {
-                item.damage = 50;
+                item.damage = 60;
+                item.knockBack = 10f;
             }
             if (item.type == ItemID.RazorbladeTyphoon)
             {
@@ -1082,8 +1076,8 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.DayBreak)
             {
-                item.useTime = 12;
-                item.useAnimation = 12;
+                item.useTime = 14;
+                item.useAnimation = 14;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.SolarEruption)
@@ -1373,8 +1367,8 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if(item.type == ItemID.Tsunami)
             {
-                item.damage = 60;
-                item.crit = 2;
+                item.damage = 55;
+                item.crit = 1;
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.shootsEveryUse = true;
@@ -1412,7 +1406,7 @@ namespace WeDoALittleTrolling.Content.Items
 
             //Pre-Hardmode Ranger Rebalance
             
-            if(item.type == ItemID.BeesKnees)
+            if(item.type == ItemID.BeesKnees && WDALTModSystem.isCalamityModPresent)
             {
                 item.damage = 24;
                 item.useTime = 22;
@@ -1426,14 +1420,14 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 24;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.HellwingBow)
+            if(item.type == ItemID.HellwingBow && WDALTModSystem.isCalamityModPresent)
             {
                 item.damage = 24;
                 item.useTime = 12;
                 item.useAnimation = 12;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.MoltenFury)
+            if(item.type == ItemID.MoltenFury && WDALTModSystem.isCalamityModPresent)
             {
                 item.damage = 32;
                 item.shootSpeed = 12f;
