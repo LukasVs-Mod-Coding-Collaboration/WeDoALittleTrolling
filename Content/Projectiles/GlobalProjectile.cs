@@ -645,7 +645,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC attacker)
             )
             {
-                if(attacker.type == NPCID.PrimeLaser)
+                if(attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.Retinazer)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
@@ -655,6 +655,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    Devastated.AnimateDevastated(target);
                 }
             }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
@@ -671,6 +672,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     if(random.Next(0, 1) == 0)
                     {
                         target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                        Devastated.AnimateDevastated(target);
                     }
                 }
             }

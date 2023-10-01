@@ -82,8 +82,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.FlyingSnake,
             NPCID.BrainofCthulhu,
             NPCID.PossessedArmor,
-            NPCID.RockGolem,
-            NPCID.Gnome
+            NPCID.RockGolem
         };
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
@@ -644,11 +643,14 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Lihzahrd ||
                 npc.type == NPCID.LihzahrdCrawler ||
                 npc.type == NPCID.FlyingSnake ||
-                npc.type == NPCID.RockGolem ||
-                npc.type == NPCID.Gnome
+                npc.type == NPCID.RockGolem
             )
             {
                 modifiers.SourceDamage *= 0.5f;
+            }
+            if(npc.type == NPCID.Gnome)
+            {
+                modifiers.SourceDamage *= 0.25f;
             }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
@@ -1045,6 +1047,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    Devastated.AnimateDevastated(target);
                 }
             }
             if(npcType == NPCID.PossessedArmor)
@@ -1061,6 +1064,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(WDALTModContentID.GetThoriumBossInflictDevastated1in1Group().Contains(npcType))
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    Devastated.AnimateDevastated(target);
                 }
             }
         }
