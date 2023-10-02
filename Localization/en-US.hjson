@@ -584,7 +584,7 @@ Mods: {
 				Description:
 					'''
 					decreased max life and defense effectiveness
-					Cannot dodge attacks
+					Cannot randomly dodge attacks
 					'''
 			}
 

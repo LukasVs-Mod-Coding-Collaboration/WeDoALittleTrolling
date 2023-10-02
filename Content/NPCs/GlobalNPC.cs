@@ -172,7 +172,17 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] InflictWreckedAccuracy1In1Group =
         {
-            NPCID.SkeletonSniper
+            NPCID.SkeletonSniper,
+            NPCID.Clown,
+            NPCID.NebulaBrain,
+            NPCID.NebulaHeadcrab,
+            NPCID.NebulaBeast,
+            NPCID.NebulaSoldier,
+            NPCID.VortexRifleman,
+            NPCID.VortexHornetQueen,
+            NPCID.VortexHornet,
+            NPCID.VortexLarva,
+            NPCID.VortexSoldier
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -182,7 +192,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.AncientDoom,
             NPCID.TheDestroyer,
             NPCID.WyvernHead,
-            NPCID.Clown
+            NPCID.SolarCrawltipedeHead,
+            NPCID.StardustJellyfishSmall
         };
 
         public static readonly int[] ResistGloriousDemise50PercentGroup =

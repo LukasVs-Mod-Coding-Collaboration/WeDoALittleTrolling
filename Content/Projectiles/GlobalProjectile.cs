@@ -112,7 +112,21 @@ namespace WeDoALittleTrolling.Content.Projectiles
         };
         public static readonly int[] InflictWreckedAccuracy1In1Group =
         {
-            ProjectileID.SniperBullet
+            ProjectileID.SniperBullet,
+            ProjectileID.HappyBomb,
+            ProjectileID.NebulaBolt,
+            ProjectileID.NebulaEye,
+            ProjectileID.NebulaSphere,
+            ProjectileID.NebulaLaser,
+            ProjectileID.VortexLaser,
+            ProjectileID.VortexAcid,
+            ProjectileID.VortexLightning,
+            ProjectileID.Boulder,
+            ProjectileID.BouncyBoulder,
+            ProjectileID.RollingCactus,
+            ProjectileID.MiniBoulder,
+            ProjectileID.LifeCrystalBoulder,
+            ProjectileID.MoonBoulder
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -124,7 +138,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.BombSkeletronPrime,
             ProjectileID.ThornBall,
             ProjectileID.EyeFire,
-            ProjectileID.HappyBomb
+            ProjectileID.HappyBomb,
+            ProjectileID.SniperBullet
         };
         
         public override void SetDefaults(Projectile projectile)

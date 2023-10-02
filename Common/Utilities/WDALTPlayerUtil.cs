@@ -180,7 +180,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                 player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
                 player.DefenseEffectiveness *= modifierD;
                 player.blackBelt = false;
-                player.longInvince = false;
                 player.brainOfConfusionItem = null;
                 dodgeChancePercent = 0;
             }
