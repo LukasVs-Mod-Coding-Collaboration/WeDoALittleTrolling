@@ -110,6 +110,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.SandnadoHostile,
             ProjectileID.SandnadoHostileMark
         };
+        public static readonly int[] InflictWreckedAccuracy1In1Group =
+        {
+            ProjectileID.SniperBullet
+        };
         public static readonly int[] InflictDevastated1In1Group =
         {
             ProjectileID.UnholyTridentHostile,
@@ -637,6 +641,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictWreckedAccuracy1In1Group.Contains(projectile.type))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if

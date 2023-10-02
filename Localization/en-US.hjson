@@ -652,6 +652,11 @@ Mods: {
 				DisplayName: Eternal Power
 				Description: Provides life regeneration
 			}
+
+			WreckedAccuracy: {
+				DisplayName: Wrecked Accuracy
+				Description: Critical strike chance is decreased by
+			}
 		}
 
 		NPCs.HighEnergyTestDevice.DisplayName: High Energy Test Device

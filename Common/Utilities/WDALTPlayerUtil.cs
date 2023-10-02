@@ -45,6 +45,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int spookyBonus3X;
         public int dodgeChancePercent;
         public int wreckedResistanceStack;
+        public int wreckedAccuracyStack;
         public int devastatedStack;
         public int beekeeperStack;
         public bool spookyEmblem;
@@ -70,6 +71,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
+            wreckedAccuracyStack = 0;
             devastatedStack = 0;
             beekeeperStack = 0;
             spookyEmblem = false;
@@ -97,6 +99,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             spookyBonus3X = 0;
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
+            wreckedAccuracyStack = 0;
             devastatedStack = 0;
             beekeeperStack = 0;
             spookyEmblem = false;
@@ -162,12 +165,22 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 wreckedResistanceStack = 0;
             }
+            if(player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
+            {
+                float modifierWA = (float)(10 + (wreckedAccuracyStack * 10));
+                player.GetCritChance(DamageClass.Generic) -= modifierWA;
+            }
+            else
+            {
+                wreckedAccuracyStack = 0;
+            }
             if(player.HasBuff(ModContent.BuffType<Devastated>()))
             {
                 float modifierD = (float)(90 - (devastatedStack*10)) * 0.01f;
                 player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
                 player.DefenseEffectiveness *= modifierD;
                 player.blackBelt = false;
+                player.longInvince = false;
                 player.brainOfConfusionItem = null;
                 dodgeChancePercent = 0;
             }

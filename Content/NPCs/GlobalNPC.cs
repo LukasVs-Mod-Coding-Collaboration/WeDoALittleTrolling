@@ -170,6 +170,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.IceGolem,
             NPCID.SandElemental
         };
+        public static readonly int[] InflictWreckedAccuracy1In1Group =
+        {
+            NPCID.SkeletonSniper
+        };
         public static readonly int[] InflictDevastated1In1Group =
         {
             NPCID.CultistDragonHead,
@@ -1040,6 +1044,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if(random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
+            if(InflictWreckedAccuracy1In1Group.Contains(npcType))
+            {
+                if(random.Next(0, 1) == 0)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if(InflictDevastated1In1Group.Contains(npcType))
