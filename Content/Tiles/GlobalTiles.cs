@@ -21,9 +21,11 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 using WeDoALittleTrolling.Common.ModSystems;
 
 namespace WeDoALittleTrolling.Content.Tiles
@@ -62,7 +64,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                 item.active = false;
             }
         }
-        
+
         public override void RightClick(int i, int j, int type)
         {
             if(type == TileID.Moondial)
@@ -215,6 +217,30 @@ namespace WeDoALittleTrolling.Content.Tiles
             }
             base.RightClick(i, j, type);
         }
+        /*
+        //Code to Modify Tile Wire Activation
+        public override void HitWire(int i, int j, int type)
+        {
+            if(type == TileID.Statues && TileObjectData.GetTileStyle(Main.tile[i , j]) == 4) //Check if Tile is a Statue and if the Tile Style is 4 (That's the slime statue).
+            {
+                NPC.NewNPC(new EntitySource_TileUpdate(i, j), i * 16, j * 16, NPCID.Pinky);
+            }
+        }
+        */
     }
+    /*
+    //Code to Modify Tile Wire Activation
+    public class SimeStatueDisableVanillaSpawning : GlobalNPC
+    {
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if(npc.type == NPCID.BlueSlime && source is EntitySource_Wiring) //Check if npc is Blue Slime and if it was spawned by a statue
+            {
+                npc.active = false; //Prevent npc from spawning
+            }
+            base.OnSpawn(npc, source);
+        }
+    }
+    */
 }
 
