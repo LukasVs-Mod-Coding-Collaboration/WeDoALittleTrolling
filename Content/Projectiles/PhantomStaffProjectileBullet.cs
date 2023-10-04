@@ -21,7 +21,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.DamageType = DamageClass.Summon;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 600;
-            Projectile.light = 0.8f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.ArmorPenetration = 120;
@@ -32,6 +31,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void AI()
         {
             AI_001_SimpleBullet();
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
         }
 
         private void AI_001_SimpleBullet()

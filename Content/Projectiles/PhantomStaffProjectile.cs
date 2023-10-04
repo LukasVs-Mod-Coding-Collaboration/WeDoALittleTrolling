@@ -51,7 +51,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void SetStaticDefaults()
         {
             Main.projPet[Projectile.type] = true;
-            Main.projFrames[Projectile.type] = 1;
+            Main.projFrames[Projectile.type] = 15;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
@@ -91,6 +91,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void AI()
         {
             AI_003_Luminite_Phantom();
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
         }
 
         public override void PostDraw(Color lightColor)
@@ -289,6 +294,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Normalize();
                 Projectile.velocity *= idleMoveSpeed;
+            }
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter >= 6)
+            {
+                Projectile.frameCounter = 0;
+                Projectile.frame++;
+                if (Projectile.frame >= Main.projFrames[Projectile.type])
+                {
+                    Projectile.frame = 0;
+                }
             }
         }
     }
