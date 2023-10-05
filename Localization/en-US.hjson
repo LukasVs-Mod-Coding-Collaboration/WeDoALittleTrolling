@@ -391,10 +391,16 @@ Mods: {
 				AdditionalTooltip: Enemies are much more likely to target you
 			}
 
-			# Rejuvenating: {
-			# DisplayName: Rejuvenating
-			# AdditionalTooltip: Your health regenerates slightly faster
-			# }
+			Rejuvenating: {
+				DisplayName: Rejuvenating
+				AdditionalTooltip:
+					'''
+					+2% magic damage
+					+2% magic critical strike chance
+					+20 mana
+					Your health regenerates slightly faster
+					'''
+			}
 			
 			Vital: {
 				DisplayName: Vital

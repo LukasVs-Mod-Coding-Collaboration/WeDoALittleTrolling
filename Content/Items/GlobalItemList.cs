@@ -733,9 +733,9 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
-                if(item.damage <= 48)
+                if(item.damage <= 42)
                 {
-                    item.damage = 48;
+                    item.damage = 42;
                 }
                 item.useTime = 16;
                 item.useAnimation = 16;
@@ -743,7 +743,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Megashark)
             {
-                item.damage = 36;
+                item.damage = 30;
                 item.useTime = 6;
                 item.useAnimation = 6;
                 item.shootsEveryUse = true;
@@ -874,6 +874,17 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.OpticStaff)
             {
                 item.damage = 32;
+            }
+            if
+            (
+                item.type == ItemID.PygmyStaff ||
+                item.type == ItemID.StormTigerStaff ||
+                item.type == ItemID.DeadlySphereStaff ||
+                item.type == ItemID.RavenStaff ||
+                item.type == ItemID.TempestStaff
+            )
+            {
+                item.damage += 10;
             }
             if (item.type == ItemID.XenoStaff)
             {
@@ -1123,6 +1134,20 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.material = true;
             }
+            if (item.type == ItemID.SpiderStaff)
+            {
+                if(item.damage <= 32)
+                {
+                    item.damage = 32;
+                }
+            }
+            if (item.type == ItemID.SanguineStaff)
+            {
+                if(item.damage <= 40)
+                {
+                    item.damage = 40;
+                }
+            }
             if (item.type == ItemID.Smolstar) //Blade Staff
             {
                 if(item.damage <= 8)
@@ -1200,12 +1225,14 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.BabyBirdStaff || //Finch Staff
                 item.type == ItemID.FlinxStaff ||
                 item.type == ItemID.SlimeStaff ||
-                item.type == ItemID.VampireFrogStaff ||
-                item.type == ItemID.HornetStaff ||
-                item.type == ItemID.ImpStaff
+                item.type == ItemID.VampireFrogStaff
             )
             {
                 item.damage += 2;
+            }
+            if (item.type == ItemID.ImpStaff || item.type == ItemID.HornetStaff)
+            {
+                item.damage += 4;
             }
 
             if (item.type == ItemID.ReaverShark)
@@ -1336,7 +1363,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if(item.type == ItemID.Uzi)
             {
-                item.damage = 40;
+                item.damage = 36;
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;

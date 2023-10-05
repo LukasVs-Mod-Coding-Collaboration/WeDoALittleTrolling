@@ -15,7 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-/*
 
 using System;
 using System.Collections.Generic;
@@ -37,7 +36,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             {
                 return 0f;
             }
-            return 0.25f;
+            return 0.50f;
         }
 
         public override bool CanRoll(Item item)
@@ -52,7 +51,10 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
+            player.GetDamage(DamageClass.Magic) += 0.02f;
+            player.GetCritChance(DamageClass.Magic) += 2f;
             player.lifeRegen += 2;
+            player.statManaMax2 += 20;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
@@ -73,4 +75,3 @@ namespace WeDoALittleTrolling.Content.Prefixes
     }
 
 }
-*/

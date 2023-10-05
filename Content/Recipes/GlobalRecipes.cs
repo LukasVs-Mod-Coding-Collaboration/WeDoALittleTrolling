@@ -60,6 +60,20 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_CobaltShield_V2.AddTile(TileID.MythrilAnvil);
             WDALT_CobaltShield_V2.AddIngredient(ItemID.PalladiumBar, 8);
             WDALT_CobaltShield_V2.Register();
+
+            Recipe WDALT_SanguineStaff_V1 = Recipe.Create(ItemID.SanguineStaff, 1);
+            WDALT_SanguineStaff_V1.AddTile(TileID.HeavyWorkBench);
+            WDALT_SanguineStaff_V1.AddIngredient(ItemID.BloodMoonStarter, 1);
+            WDALT_SanguineStaff_V1.AddIngredient(ItemID.BatBat, 1);
+            WDALT_SanguineStaff_V1.AddIngredient(ItemID.PalladiumBar, 12);
+            WDALT_SanguineStaff_V1.Register();
+
+            Recipe WDALT_SanguineStaff_V2 = Recipe.Create(ItemID.SanguineStaff, 1);
+            WDALT_SanguineStaff_V2.AddTile(TileID.HeavyWorkBench);
+            WDALT_SanguineStaff_V2.AddIngredient(ItemID.BloodMoonStarter, 1);
+            WDALT_SanguineStaff_V2.AddIngredient(ItemID.BatBat, 1);
+            WDALT_SanguineStaff_V2.AddIngredient(ItemID.CobaltBar, 12);
+            WDALT_SanguineStaff_V2.Register();
             
             Recipe WDALT_Terraprisma = Recipe.Create(ItemID.EmpressBlade, 1);
             WDALT_Terraprisma.AddTile(TileID.LunarCraftingStation);

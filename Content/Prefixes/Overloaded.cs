@@ -55,6 +55,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             damageMult *= 1.30f;
             knockbackMult *= 1.30f;
             useTimeMult *= 0.70f;
+            manaMult *= 0.70f;
         }
 
         public override void ModifyValue(ref float valueMult)

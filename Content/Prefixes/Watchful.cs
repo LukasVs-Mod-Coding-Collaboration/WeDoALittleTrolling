@@ -32,7 +32,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            if(!NPC.downedMechBoss2)
+            if(!Main.hardMode)
             {
                 return 0f;
             }
