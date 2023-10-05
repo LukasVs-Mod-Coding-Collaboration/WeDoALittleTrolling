@@ -632,8 +632,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 //Buff Thorium Bosses Accordingly
                 if
                 (
-                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS) ||
-                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SFF)
+                    npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS)
                 )
                 {
                     projectile.damage = (int)Math.Round(projectile.damage * 1.5);
@@ -675,7 +674,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
                 )
                 {
-                    modifiers.SourceDamage *= 0.5f;
+                    modifiers.FinalDamage *= 0.75f;
                 }
             }
             base.ModifyIncomingHit(npc, ref modifiers);
