@@ -659,6 +659,9 @@ Mods: {
 			}
 		}
 
-		NPCs.HighEnergyTestDevice.DisplayName: High Energy Test Device
+		NPCs: {
+			HighEnergyTestDevice.DisplayName: High Energy Test Device
+			FrozenGhoul.DisplayName: Frozen Ghoul
+		}
 	}
 }
