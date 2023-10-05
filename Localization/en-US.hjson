@@ -401,7 +401,7 @@ Mods: {
 					Your health regenerates slightly faster
 					'''
 			}
-			
+
 			Vital: {
 				DisplayName: Vital
 				AdditionalTooltip:
