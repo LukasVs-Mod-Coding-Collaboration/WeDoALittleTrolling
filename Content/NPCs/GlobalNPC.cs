@@ -700,11 +700,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                     (
                         projectile.type == ProjectileID.MoonlordArrow ||
                         projectile.type == ProjectileID.MoonlordArrowTrail ||
+                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectile>() ||
+                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectileBullet>() ||
                         projectile.type == ModContent.ProjectileType<GloriousDemiseProjectile>()
                     )
                 )
                 {
-                    modifiers.FinalDamage *= 0.75f; //The Primordials only take 75% damage from LPS and GLD.
+                    modifiers.FinalDamage *= 0.75f; //The Primordials only take 75% damage from Luminte Arrows, LPS and GLD.
                 }
             }
             base.ModifyHitByProjectile(npc, projectile, ref modifiers);

@@ -70,7 +70,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.minionSlots = 2f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.ArmorPenetration = 120;
+            Projectile.ArmorPenetration = 60;
             Projectile.timeLeft = 2;
             Projectile.netImportant = true;
             Projectile.usesLocalNPCImmunity = true;

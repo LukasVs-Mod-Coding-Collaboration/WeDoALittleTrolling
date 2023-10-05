@@ -64,7 +64,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) *= 0.98f;
+            player.GetDamage(DamageClass.Ranged) -= 0.02f;
             player.GetCritChance(DamageClass.Ranged) += 8;
         }
 
@@ -73,12 +73,12 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAccessoryFocusingDescription", AdditionalTooltip.Value)
+            yield return new TooltipLine(Mod, "PrefixAccessoryFocusingDescriptionNegative", AdditionalTooltip.Value)
             {
                 IsModifier = true,
                 IsModifierBad = true,
             };
-            yield return new TooltipLine(Mod, "PrefixAccessoryFocusingDescription", AdditionalTooltip2.Value)
+            yield return new TooltipLine(Mod, "PrefixAccessoryFocusingDescriptionPositive", AdditionalTooltip2.Value)
             {
                 IsModifier = true,
                 IsModifierBad = false,

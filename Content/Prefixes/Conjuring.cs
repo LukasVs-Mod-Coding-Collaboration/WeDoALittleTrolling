@@ -51,23 +51,34 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.maxMinions += 1;
-            player.GetDamage(DamageClass.Summon) -= 0.04f;
+            player.GetDamage(DamageClass.Magic) -= 0.06f;
+            player.GetCritChance(DamageClass.Magic) -= 6f;
+            player.GetDamage(DamageClass.Summon) += 0.06f;
+            player.statDefense += 3;
+            player.statManaMax2 += 12;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
+        public LocalizedText AdditionalTooltip2 => this.GetLocalization(nameof(AdditionalTooltip2));
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAccessoryWatchfulDescription", AdditionalTooltip.Value)
+            yield return new TooltipLine(Mod, "PrefixAccessoryConjuringDescriptionNegative", AdditionalTooltip.Value)
             {
                 IsModifier = true,
+                IsModifierBad = true,
+            };
+            yield return new TooltipLine(Mod, "PrefixAccessoryConjuringDescriptionPositive", AdditionalTooltip2.Value)
+            {
+                IsModifier = true,
+                IsModifierBad = false,
             };
         }
 
         public override void SetStaticDefaults()
         {
             _ = AdditionalTooltip;
+            _ = AdditionalTooltip2;
         }
 
     }

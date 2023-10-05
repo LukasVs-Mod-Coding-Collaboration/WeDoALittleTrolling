@@ -435,6 +435,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
             player.buffImmune[ModContent.BuffType<WreckedResistance>()] = false;
+            player.buffImmune[ModContent.BuffType<WreckedAccuracy>()] = false;
             player.buffImmune[ModContent.BuffType<Devastated>()] = false;
             base.UpdateLifeRegen();
         }

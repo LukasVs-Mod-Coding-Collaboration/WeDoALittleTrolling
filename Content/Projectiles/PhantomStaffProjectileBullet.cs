@@ -23,7 +23,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.ArmorPenetration = 120;
+            Projectile.ArmorPenetration = 60;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
         }

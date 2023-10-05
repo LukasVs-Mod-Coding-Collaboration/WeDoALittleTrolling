@@ -62,8 +62,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.dashType = 1;
+            player.maxMinions += 2;
             player.aggro += 400;
-            player.maxMinions += 1;
             player.statDefense += player.GetModPlayer<WDALTPlayerUtil>().spookyBonus3X;
             player.endurance += (((float)player.GetModPlayer<WDALTPlayerUtil>().spookyBonus3X) * 0.01f);
             base.UpdateAccessory(player, hideVisual);
