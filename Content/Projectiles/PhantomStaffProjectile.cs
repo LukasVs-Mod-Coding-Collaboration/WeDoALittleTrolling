@@ -90,7 +90,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            AI_003_Luminite_Phantom();
+            AI_003_LuminitePhantom();
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -115,7 +115,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
         }
 
-        private void AI_003_Luminite_Phantom()
+        private void AI_003_LuminitePhantom()
         {
             ticksAlive++;
             Player ownerPlayer = Main.player[Projectile.owner];

@@ -48,6 +48,12 @@ namespace WeDoALittleTrolling.Content.NPCs
             BannerItem = Item.BannerToItem(Banner);
         }
 
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(BuffID.Frostburn, 360, true); //6s, X2 in Expert Mode, X2.5 in Master Mode
+            base.OnHitPlayer(target, hurtInfo);
+        }
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange
