@@ -339,7 +339,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         !currentTarget.friendly && 
                         !currentTarget.CountsAsACritter && 
                         !currentTarget.isLikeATownNPC && 
-                        currentTarget.type != NPCID.TargetDummy
+                        currentTarget.type != NPCID.TargetDummy &&
+                        Collision.CanHitLine
+                        (
+                            projectile.position,
+                            projectile.width,
+                            projectile.height,
+                            currentTarget.position,
+                            currentTarget.width,
+                            currentTarget.height
+                        )
                     )
                     {
                         Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
