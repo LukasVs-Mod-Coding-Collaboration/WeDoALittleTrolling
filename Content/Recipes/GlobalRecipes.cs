@@ -61,6 +61,23 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_Wrath_Rage_V2.AddIngredient(ItemID.WrathPotion, 1);
             WDALT_Wrath_Rage_V2.Register();
 
+            Recipe WDALT_WoodBoomerang = Recipe.Create(ItemID.WoodenBoomerang, 1);
+            WDALT_WoodBoomerang.AddTile(TileID.WorkBenches);
+            WDALT_WoodBoomerang.AddIngredient(ItemID.Wood, 50);
+            WDALT_WoodBoomerang.Register();
+
+            Recipe WDALT_HorseShoe_V1 = Recipe.Create(ItemID.LuckyHorseshoe, 1);
+            WDALT_HorseShoe_V1.AddTile(TileID.Anvils);
+            WDALT_HorseShoe_V1.AddIngredient(ItemID.GoldBar, 10);
+            WDALT_HorseShoe_V1.AddIngredient(ItemID.Cloud, 10);
+            WDALT_HorseShoe_V1.Register();
+
+             Recipe WDALT_HorseShoe_V2 = Recipe.Create(ItemID.LuckyHorseshoe, 1);
+            WDALT_HorseShoe_V2.AddTile(TileID.Anvils);
+            WDALT_HorseShoe_V2.AddIngredient(ItemID.PlatinumBar, 10);
+            WDALT_HorseShoe_V2.AddIngredient(ItemID.Cloud, 10);
+            WDALT_HorseShoe_V2.Register();
+            
             Recipe WDALT_CobaltShield_V1 = Recipe.Create(ItemID.CobaltShield, 1);
             WDALT_CobaltShield_V1.AddTile(TileID.MythrilAnvil);
             WDALT_CobaltShield_V1.AddIngredient(ItemID.CobaltBar, 8);
