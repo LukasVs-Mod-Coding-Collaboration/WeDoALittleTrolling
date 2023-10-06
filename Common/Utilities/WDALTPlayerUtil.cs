@@ -161,10 +161,10 @@ namespace WeDoALittleTrolling.Common.Utilities
             if(sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
             {
                 player.aggro -= 400;
-                player.statDefense += 4;
-                player.lifeRegen += 4;
-                player.GetCritChance(DamageClass.Generic) -= 4f;
-                player.GetDamage(DamageClass.Summon) *= 0.96f;
+                player.statDefense += 6;
+                player.lifeRegen += 6;
+                player.GetCritChance(DamageClass.Generic) -= 6f;
+                player.GetDamage(DamageClass.Summon) *= 0.94f;
                 player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 10, true);
             }
             else
@@ -370,7 +370,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override bool FreeDodge(Player.HurtInfo info)
         {
-            if(random.Next(0, 4) == 0 && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
+            if(random.NextBool(6) && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;

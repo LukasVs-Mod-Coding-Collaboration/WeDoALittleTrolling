@@ -85,7 +85,14 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if
             (
-                (equippedItem.type == ItemID.WormScarf || incomingItem.type == ItemID.WormScarf)
+                (
+                    equippedItem.type == ItemID.WormScarf ||
+                    incomingItem.type == ItemID.WormScarf ||
+                    equippedItem.type == ModContent.ItemType<CrimsonAssassinGear>() ||
+                    incomingItem.type == ModContent.ItemType<CrimsonAssassinGear>() ||
+                    equippedItem.type == ItemID.BrainOfConfusion ||
+                    incomingItem.type == ItemID.BrainOfConfusion
+                )
             )
             {
                 return false;

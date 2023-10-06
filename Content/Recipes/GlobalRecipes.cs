@@ -51,6 +51,16 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_WormScarf_BoC_V2.AddIngredient(ItemID.WormScarf, 1);
             WDALT_WormScarf_BoC_V2.Register();
 
+            Recipe WDALT_Wrath_Rage_V1 = Recipe.Create(ItemID.WrathPotion, 1);
+            WDALT_Wrath_Rage_V1.AddCondition(ShimmerCondition);
+            WDALT_Wrath_Rage_V1.AddIngredient(ItemID.RagePotion, 1);
+            WDALT_Wrath_Rage_V1.Register();
+
+            Recipe WDALT_Wrath_Rage_V2 = Recipe.Create(ItemID.RagePotion, 1);
+            WDALT_Wrath_Rage_V2.AddCondition(ShimmerCondition);
+            WDALT_Wrath_Rage_V2.AddIngredient(ItemID.WrathPotion, 1);
+            WDALT_Wrath_Rage_V2.Register();
+
             Recipe WDALT_CobaltShield_V1 = Recipe.Create(ItemID.CobaltShield, 1);
             WDALT_CobaltShield_V1.AddTile(TileID.MythrilAnvil);
             WDALT_CobaltShield_V1.AddIngredient(ItemID.CobaltBar, 8);

@@ -194,7 +194,7 @@ Mods: {
 				DisplayName: Rain of Decay
 				Tooltip:
 					'''
-					Ignores 40 points of enemy Defense
+					Ignores 36 points of enemy Defense
 					"The sky is only cursed flames to them."
 					Right-Click to switch between attack modes
 					Multishot mode fires 4 arrows at once
@@ -286,10 +286,10 @@ Mods: {
 				Tooltip:
 					'''
 					Grants the following when holding a magic weapon:
-					Gives a 1 in 4 chance to dodge attacks
-					Regenerates 2 life per second
-					4 defense
-					4% decreased critical strike chance
+					Gives a 1 in 6 chance to dodge attacks
+					Regenerates 3 life per second
+					6 defense
+					6% decreased critical strike chance
 					Enemies are less likely to target you
 					Incompatible with the Mana Extraction Catalyst
 					'''

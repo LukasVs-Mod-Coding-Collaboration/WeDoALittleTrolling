@@ -181,6 +181,17 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.statManaMax2 += 60;
             }
+            if
+            (
+                item.type == ItemID.ChlorophyteMask ||
+                item.type == ItemID.ChlorophyteHelmet ||
+                item.type == ItemID.ChlorophyteHeadgear ||
+                item.type == ItemID.ChlorophytePlateMail ||
+                item.type == ItemID.ChlorophyteGreaves
+            )
+            {
+                player.lifeRegen += 2;
+            }
             base.UpdateEquip(item, player);
         }
 
@@ -223,6 +234,24 @@ namespace WeDoALittleTrolling.Content.Items
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
             if(Sandstepping.CompatibleItemIDs.Contains(equippedItem.type) && Sandstepping.CompatibleItemIDs.Contains(incomingItem.type))
+            {
+                return false;
+            }
+            if
+            (
+                (
+                    equippedItem.type == ItemID.WormScarf ||
+                    equippedItem.type == ItemID.BrainOfConfusion ||
+                    equippedItem.type == ModContent.ItemType<SoulPoweredShield>() ||
+                    equippedItem.type == ModContent.ItemType<CrimsonAssassinGear>()
+                ) &&
+                (
+                    incomingItem.type == ItemID.WormScarf ||
+                    incomingItem.type == ItemID.BrainOfConfusion ||
+                    incomingItem.type == ModContent.ItemType<SoulPoweredShield>() ||
+                    incomingItem.type == ModContent.ItemType<CrimsonAssassinGear>()
+                )
+            )
             {
                 return false;
             }
@@ -301,6 +330,18 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recoveres 5% of damage as health");
                 tooltips.Add(extraManaLine);
+            }
+            if
+            (
+                item.type == ItemID.ChlorophyteMask ||
+                item.type == ItemID.ChlorophyteHelmet ||
+                item.type == ItemID.ChlorophyteHeadgear ||
+                item.type == ItemID.ChlorophytePlateMail ||
+                item.type == ItemID.ChlorophyteGreaves
+            )
+            {
+                TooltipLine extraLifeRegenLine = new TooltipLine(Mod, "ArmorLifeRegenDescription", "Slowly regenerates life");
+                tooltips.Add(extraLifeRegenLine);
             }
             if(item.type == ItemID.ChlorophyteShotbow)
             {
@@ -752,7 +793,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Megashark)
             {
-                item.damage = 30;
+                item.damage = 32;
                 item.useTime = 6;
                 item.useAnimation = 6;
                 item.shootsEveryUse = true;
@@ -1221,9 +1262,20 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.UnholyTrident) 
             {
-                item.damage = 75;
-                item.mana = 12;
+                item.damage = 60;
+                item.mana = 20;
                 item.autoReuse = true;
+            }
+            if
+            (
+                item.type == ItemID.PoisonStaff ||
+                item.type == ItemID.VenomStaff
+            )
+            {
+                if(item.damage <= 50)
+                {
+                    item.damage = 40;
+                }
             }
             if (item.type == ItemID.BlizzardStaff)
             {
@@ -1355,18 +1407,6 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.MoonlordTurretStaff)
             {
                 item.damage = 120;
-            }
-            if
-            (
-                item.type == ItemID.PoisonStaff ||
-                item.type == ItemID.VenomStaff
-            )
-            {
-                if(item.damage <= 50)
-                {
-                    item.damage = 40;
-                }
-                item.crit = 4;
             }
             if (item.type == ItemID.SkyFracture)
             {

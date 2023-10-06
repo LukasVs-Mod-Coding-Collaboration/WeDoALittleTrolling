@@ -170,6 +170,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             (
                 projectile.type == ProjectileID.DeathLaser ||
                 projectile.type == ProjectileID.FrostBlastFriendly ||
+                projectile.type == ProjectileID.InfernoFriendlyBolt ||
                 projectile.type == ProjectileID.LunarFlare ||
                 projectile.type == ProjectileID.Bubble
             )

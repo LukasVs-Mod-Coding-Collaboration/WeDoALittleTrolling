@@ -61,6 +61,28 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.brainOfConfusionItem = Item;
         }
 
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+        {
+            if
+            (
+                (
+                    equippedItem.type == ItemID.BrainOfConfusion ||
+                    incomingItem.type == ItemID.BrainOfConfusion ||
+                    equippedItem.type == ModContent.ItemType<SoulPoweredShield>() ||
+                    incomingItem.type == ModContent.ItemType<SoulPoweredShield>() ||
+                    equippedItem.type == ItemID.WormScarf ||
+                    incomingItem.type == ItemID.WormScarf
+                )
+            )
+            {
+                return false;
+            }
+            else
+            {
+                return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem,player);
+            }
+        }
+
         public override void AddRecipes()
         {
             CreateRecipe()
