@@ -223,7 +223,11 @@ namespace WeDoALittleTrolling.Content.Tiles
         {
             if(type == TileID.Statues && TileObjectData.GetTileStyle(Main.tile[i , j]) == 4) //Check if Tile is a Statue and if the Tile Style is 4 (That's the slime statue).
             {
-                NPC.NewNPC(new EntitySource_TileUpdate(i, j), i * 16, j * 16, NPCID.Pinky);
+                int spawnAmount = 3;
+                for(int index = 0; index < spawnAmount; index++)
+                {
+                    NPC.NewNPC(new EntitySource_TileUpdate(i, j), i * 16 + Main.rand.Next(0, 16), j * 16 + Main.rand.Next(0, 16), NPCID.BlueSlime); //Main.rand.Next(0, 16) generates a random number between 0 and 15, we use that as a spawn position offset here.
+                }
             }
         }
         */
