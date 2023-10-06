@@ -37,9 +37,11 @@ Mods: {
 				DisplayName: Mana extraction Catalyst
 				Tooltip:
 					'''
-					The power of unlimited magic energy at the cost of some of your life force...
+					"The power of unlimited magic energy at
+					 the cost of some of your life force..."
 					You no longer gain mana sickness, however,
 					your maximal Health points are reduced by 100
+					Automatically use mana potions when needed
 					Incompatible with the Sorcerous Mirror
 					'''
 			}
@@ -395,9 +397,8 @@ Mods: {
 				DisplayName: Rejuvenating
 				AdditionalTooltip:
 					'''
-					+2% magic damage
-					+2% magic critical strike chance
 					+20 mana
+					Your mana regenerates slightly faster
 					Your health regenerates slightly faster
 					'''
 			}

@@ -154,38 +154,9 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void PostUpdateEquips()
         {
-            spookyBonus2X = player.maxMinions * 2;
-            spookyBonus3X = player.maxMinions * 3;
-            if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
+            if(sandStepping)
             {
-                float modifierWR = (float)(90 - (wreckedResistanceStack * 10)) * 0.01f;
-                player.endurance *= modifierWR;
-            }
-            else
-            {
-                wreckedResistanceStack = 0;
-            }
-            if(player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
-            {
-                float modifierWA = (float)(10 + (wreckedAccuracyStack * 10));
-                player.GetCritChance(DamageClass.Generic) -= modifierWA;
-            }
-            else
-            {
-                wreckedAccuracyStack = 0;
-            }
-            if(player.HasBuff(ModContent.BuffType<Devastated>()))
-            {
-                float modifierD = (float)(90 - (devastatedStack*10)) * 0.01f;
-                player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
-                player.DefenseEffectiveness *= modifierD;
-                player.blackBelt = false;
-                player.brainOfConfusionItem = null;
-                dodgeChancePercent = 0;
-            }
-            else
-            {
-                devastatedStack = 0;
+                player.maxRunSpeed += 2f;
             }
             if(sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
             {
@@ -206,6 +177,37 @@ namespace WeDoALittleTrolling.Common.Utilities
                 float modifierSAR = (1f + (searingSetBonusValue * 0.01f));
                 player.DefenseEffectiveness *= modifierSAR;
                 player.GetDamage(DamageClass.Generic) *= modifierSAR;
+            }
+            if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
+            {
+                float modifierWR = (float)(90 - (wreckedResistanceStack * 10)) * 0.01f;
+                player.endurance *= modifierWR;
+            }
+            else
+            {
+                wreckedResistanceStack = 0;
+            }
+            if(player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
+            {
+                float modifierWA = (float)(90 - (wreckedAccuracyStack * 10)) * 0.01f;
+                player.GetCritChance(DamageClass.Generic) *= modifierWA;
+            }
+            else
+            {
+                wreckedAccuracyStack = 0;
+            }
+            if(player.HasBuff(ModContent.BuffType<Devastated>()))
+            {
+                float modifierD = (float)(90 - (devastatedStack*10)) * 0.01f;
+                player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
+                player.DefenseEffectiveness *= modifierD;
+                player.blackBelt = false;
+                player.brainOfConfusionItem = null;
+                dodgeChancePercent = 0;
+            }
+            else
+            {
+                devastatedStack = 0;
             }
             if(gnomedStonedDebuff)
             {
@@ -236,11 +238,9 @@ namespace WeDoALittleTrolling.Common.Utilities
                     Main.buffNoTimeDisplay[BuffID.Stoned] = false;
                 }
             }
+            spookyBonus2X = player.maxMinions * 2;
+            spookyBonus3X = player.maxMinions * 3;
             heartOfDespairDamageBonus = (player.statLifeMax2 - player.statLife) / 5;
-            if(sandStepping)
-            {
-                player.maxRunSpeed += 2f;
-            }
             base.PostUpdateEquips();
         }
 

@@ -32,10 +32,6 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            if(!NPC.downedMechBoss1)
-            {
-                return 0f;
-            }
             return 0.50f;
         }
 
@@ -51,8 +47,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetDamage(DamageClass.Magic) += 0.02f;
-            player.GetCritChance(DamageClass.Magic) += 2f;
+            player.manaRegenDelayBonus += 4f;
+            player.manaRegenBonus += 8;
             player.lifeRegen += 2;
             player.statManaMax2 += 20;
         }

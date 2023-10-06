@@ -68,7 +68,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if(player.GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus >= 0f)
             {
-                player.GetDamage(DamageClass.Magic) += (0.01f + (0.01f * (float)player.GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus));
+                player.GetDamage(DamageClass.Magic) *= (1f + (0.01f + (0.01f * (float)player.GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus)));
             }
             player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair = true;
         }

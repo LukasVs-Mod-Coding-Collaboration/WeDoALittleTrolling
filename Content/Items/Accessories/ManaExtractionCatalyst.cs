@@ -51,6 +51,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             player.statLifeMax2 += -100; //Weird but working way to set Max down (originally 125)
             player.buffImmune[BuffID.ManaSickness] = true; //Immunity to Mana Sickness
+            player.manaFlower = true;
 
         }
 
@@ -75,10 +76,10 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe() //Recipe
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.ManaCrystal, 5)
+              .AddIngredient(ItemID.ManaFlower, 1)
               .AddIngredient(ItemID.SoulofMight, 5)
               .AddIngredient(ItemID.SoulofNight, 10)
               .AddIngredient(ItemID.Obsidian, 15)
-              .AddIngredient(ItemID.HallowedBar, 3)
               .Register();
         }
     }

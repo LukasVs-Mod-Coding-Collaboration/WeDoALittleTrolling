@@ -186,6 +186,10 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
+            if(item.prefix == PrefixID.Arcane)
+            {
+                player.statManaMax2 += 80;
+            }
             if(item.type == ItemID.AvengerEmblem)
             {
                 player.GetAttackSpeed(DamageClass.Generic) += 0.10f;
@@ -283,6 +287,11 @@ namespace WeDoALittleTrolling.Content.Items
         //Adjust Tooltips accordingly
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if(item.prefix == PrefixID.Arcane)
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMaxMana") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "+100 mana");
+            }
             if(item.type == ItemID.SpectreHood)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixAccMaxMana", "Increases maximum mana by 60");
@@ -843,6 +852,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.buffTime = 240;
             }
             */
+            if (item.type == ItemID.LunarFlareBook)
+            {
+                item.damage = 120;
+                item.mana = 8;
+            }
             if (item.type == ItemID.LastPrism)
             {
                 item.damage = 100;
@@ -1031,7 +1045,17 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StarWrath)
             {
-                item.damage = 110;
+                item.damage = 125;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.Meowmere)
+            {
+                item.damage = 425;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.Terrarian)
+            {
+                item.damage = 275;
             }
             if (item.type == ItemID.Seedler)
             {
