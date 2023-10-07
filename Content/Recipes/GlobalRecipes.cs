@@ -66,6 +66,14 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_WoodBoomerang.AddIngredient(ItemID.Wood, 50);
             WDALT_WoodBoomerang.Register();
 
+            Recipe WDALT_Yelets = Recipe.Create(ItemID.Yelets, 1);
+            WDALT_Yelets.AddTile(TileID.MythrilAnvil);
+            WDALT_Yelets.AddIngredient(ItemID.JungleYoyo, 1);
+            WDALT_Yelets.AddIngredient(ItemID.HallowedBar, 5);
+            WDALT_Yelets.AddIngredient(ItemID.Vine, 2);
+            WDALT_Yelets.AddIngredient(ItemID.TurtleShell, 1);
+            WDALT_Yelets.Register();
+
             Recipe WDALT_HorseShoe_V1 = Recipe.Create(ItemID.LuckyHorseshoe, 1);
             WDALT_HorseShoe_V1.AddTile(TileID.Anvils);
             WDALT_HorseShoe_V1.AddIngredient(ItemID.GoldBar, 10);
