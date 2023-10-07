@@ -74,6 +74,24 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_Yelets.AddIngredient(ItemID.TurtleShell, 1);
             WDALT_Yelets.Register();
 
+            Recipe WDALT_GHealPot = Recipe.Create(ItemID.GreaterHealingPotion, 60);
+            WDALT_GHealPot.AddTile(TileID.AlchemyTable);
+            WDALT_GHealPot.AddIngredient(ItemID.HealingPotion, 60);
+            WDALT_GHealPot.AddIngredient(ItemID.SoulofMight, 1);
+            WDALT_GHealPot.AddIngredient(ItemID.SoulofSight, 1);
+            WDALT_GHealPot.AddIngredient(ItemID.SoulofFright, 1);
+            WDALT_GHealPot.AddCustomShimmerResult(ItemID.GreaterHealingPotion, 60);
+            WDALT_GHealPot.Register();
+
+            Recipe WDALT_SManaPot = Recipe.Create(ItemID.SuperManaPotion, 60);
+            WDALT_SManaPot.AddTile(TileID.AlchemyTable);
+            WDALT_SManaPot.AddIngredient(ItemID.GreaterManaPotion, 60);
+            WDALT_SManaPot.AddIngredient(ItemID.SoulofMight, 1);
+            WDALT_SManaPot.AddIngredient(ItemID.SoulofSight, 1);
+            WDALT_SManaPot.AddIngredient(ItemID.SoulofFright, 1);
+            WDALT_SManaPot.AddCustomShimmerResult(ItemID.SuperManaPotion, 60);
+            WDALT_SManaPot.Register();
+
             Recipe WDALT_HorseShoe_V1 = Recipe.Create(ItemID.LuckyHorseshoe, 1);
             WDALT_HorseShoe_V1.AddTile(TileID.Anvils);
             WDALT_HorseShoe_V1.AddIngredient(ItemID.GoldBar, 10);
