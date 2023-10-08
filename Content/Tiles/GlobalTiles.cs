@@ -221,9 +221,10 @@ namespace WeDoALittleTrolling.Content.Tiles
         //Code to Modify Tile Wire Activation
         public override void HitWire(int i, int j, int type)
         {
-            if(type == TileID.Statues && TileObjectData.GetTileStyle(Main.tile[i , j]) == 4) //Check if Tile is a Statue and if the Tile Style is 4 (That's the slime statue).
+            int tileStyle = (Main.tile[i , j].TileFrameX / 36);
+            if(type == TileID.Statues && tileStyle == 4) //Check if Tile is a Statue and if the Tile Style is 4 (That's the slime statue).
             {
-                int spawnAmount = 3;
+                int spawnAmount = 1;
                 for(int index = 0; index < spawnAmount; index++)
                 {
                     NPC.NewNPC(new EntitySource_TileUpdate(i, j), i * 16 + Main.rand.Next(0, 16), j * 16 + Main.rand.Next(0, 16), NPCID.BlueSlime); //Main.rand.Next(0, 16) generates a random number between 0 and 15, we use that as a spawn position offset here.
