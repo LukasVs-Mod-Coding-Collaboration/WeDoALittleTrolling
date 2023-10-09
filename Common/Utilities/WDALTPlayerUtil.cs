@@ -326,9 +326,13 @@ namespace WeDoALittleTrolling.Common.Utilities
                     damageSource.SourceCustomReason = player.name + " was forced to work at amazon.";
                 }
             }
-            if(damageSource.SourceProjectileType == ProjectileID.SniperBullet && random.NextBool(5))
+            if (damageSource.SourceProjectileType == ProjectileID.SniperBullet && random.NextBool(5))
             {
                 damageSource.SourceCustomReason = player.name + " discovered the meaning of stream sniping.";
+            }
+            if (damageSource.SourceProjectileType == ProjectileID.Boulder && random.NextBool(5))
+            {
+                damageSource.SourceCustomReason = player.name + " was mistaken for a bowling pin by a Boulder.";
             }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
