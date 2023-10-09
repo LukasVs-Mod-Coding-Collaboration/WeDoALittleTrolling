@@ -192,6 +192,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.lifeRegen += 2;
             }
+            if(item.type == ItemID.ObsidianShirt)
+            {
+                player.maxMinions += 1;
+            }
             base.UpdateEquip(item, player);
         }
 
@@ -422,6 +426,14 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraArmorPenetrationDescription", "Ignores 20 points of enemy Defense");
                 tooltips.Add(extraCritChanceLine);
+            }
+            if
+            (
+                item.type == ItemID.ObsidianShirt
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "Increases your max number of minions by 2");
             }
             if
             (
@@ -1013,13 +1025,19 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.BeeHeadgear ||
                 item.type == ItemID.BeeBreastplate ||
                 item.type == ItemID.BeeGreaves ||
-                item.type == ItemID.FossilHelm ||
-                item.type == ItemID.FossilShirt ||
-                item.type == ItemID.FossilPants ||
                 item.type == ItemID.ObsidianHelm ||
                 item.type == ItemID.ObsidianShirt ||
                 item.type == ItemID.ObsidianPants ||
                 item.type == ItemID.FlinxFurCoat
+            )
+            {
+                item.defense += 2;
+            }
+            if
+            (
+                item.type == ItemID.FossilHelm ||
+                item.type == ItemID.FossilShirt ||
+                item.type == ItemID.FossilPants
             )
             {
                 item.defense += 1;
@@ -1300,15 +1318,25 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.AbigailsFlower ||
                 item.type == ItemID.BabyBirdStaff || //Finch Staff
                 item.type == ItemID.FlinxStaff ||
-                item.type == ItemID.SlimeStaff ||
+                item.type == ItemID.SlimeStaff
+            )
+            {
+                item.damage += 4;
+            }
+            if
+            (
+                item.type == ItemID.HornetStaff ||
                 item.type == ItemID.VampireFrogStaff
             )
             {
-                item.damage += 2;
+                item.damage += 6;
             }
-            if (item.type == ItemID.ImpStaff || item.type == ItemID.HornetStaff)
+            if
+            (
+                item.type == ItemID.ImpStaff
+            )
             {
-                item.damage += 4;
+                item.damage += 8;
             }
 
             if (item.type == ItemID.ReaverShark)
