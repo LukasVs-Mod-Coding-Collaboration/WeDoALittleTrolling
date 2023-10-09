@@ -332,7 +332,7 @@ Mods: {
 					Striking an enemy with a yoyo
 					spawns 3 Magic Artifacts that
 					chase after your enemy and
-					deal 33% weapon damage
+					deal 15% weapon damage
 					'''
 			}
 
@@ -362,6 +362,11 @@ Mods: {
 					nearby allies within 128 tiles
 					'''
 			}
+
+			ThrowOfTheLunatic: {
+				DisplayName: Throw Of The Lunatic
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -373,6 +378,8 @@ Mods: {
 			PhantomStaffProjectileBullet.DisplayName: Luminite Phantom Laser
 			MagicArtifact.DisplayName: Magic Artifact
 			GloriousDemiseProjectile.DisplayName: Glorious Demise
+			ThrowOfTheLunaticProjectile.DisplayName: Throw Of The Lunatic
+			ThrowOfTheLunaticProjectileBeam.DisplayName: Lunatic Beam
 		}
 
 		Prefixes: {

@@ -48,7 +48,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.consumable = false;
 
-            Item.value = Item.sellPrice(platinum: 1);
+            Item.value = Item.sellPrice(gold: 20);
             Item.maxStack = 1;
 
             Item.autoReuse = true;

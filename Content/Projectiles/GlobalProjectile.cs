@@ -151,7 +151,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.extraUpdates = 1;
             }
-            if(projectile.type == ProjectileID.TerrarianBeam || projectile.aiStyle == ProjAIStyleID.Yoyo)
+            if(projectile.aiStyle == ProjAIStyleID.TerrarianBeam || projectile.aiStyle == ProjAIStyleID.Yoyo)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;

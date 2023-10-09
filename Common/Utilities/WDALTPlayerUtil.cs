@@ -502,8 +502,9 @@ namespace WeDoALittleTrolling.Common.Utilities
             if
             (
                 yoyoArtifact &&
+                target.CanBeChasedBy() &&
                 (
-                    proj.type == ProjectileID.TerrarianBeam ||
+                    proj.aiStyle == ProjAIStyleID.TerrarianBeam ||
                     proj.aiStyle == ProjAIStyleID.Yoyo
                 )
             )
@@ -521,7 +522,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                     Vector2 projVelocity = new Vector2((random.NextFloat() - 0.5f), (random.NextFloat() - 0.5f));
                     projVelocity.Normalize();
                     projVelocity *= 12f;
-                    int dmg = (int)Math.Round(proj.damage * 0.33);
+                    int dmg = (int)Math.Round(proj.damage * 0.15);
                     Projectile.NewProjectileDirect(proj.GetSource_OnHit(target), projPosition, projVelocity, ModContent.ProjectileType<MagicArtifact>(), dmg, proj.knockBack, proj.owner);
                 }
             }

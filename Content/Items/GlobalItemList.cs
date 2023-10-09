@@ -1086,17 +1086,17 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StarWrath)
             {
-                item.damage = 125;
+                item.damage = 150;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Meowmere)
             {
-                item.damage = 425;
+                item.damage = 300;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Terrarian)
             {
-                item.damage = 275;
+                item.damage = 225;
             }
             if (item.type == ItemID.Seedler)
             {

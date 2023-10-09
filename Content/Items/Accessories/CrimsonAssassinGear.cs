@@ -45,7 +45,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.value = Item.buyPrice(gold: 10);
             Item.maxStack = 1;
 
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.Lime;
 
             Item.accessory = true;
         }
