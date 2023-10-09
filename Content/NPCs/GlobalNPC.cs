@@ -282,6 +282,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
+            if(npc.type == NPCID.Mothron)
+            {
+                npc.damage = (int)Math.Round(npc.damage * 1.5);
+            }
 
             //Boss buffs
 
