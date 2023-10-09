@@ -10,8 +10,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
     public class ThrowOfTheLunaticProjectileBeam : ModProjectile
     {
         public static readonly float homingRange = 512f;
-        public static readonly int moveSpeed = 8;
-        public static readonly float correctionFactor = 0.30f;
+        public static readonly int moveSpeed = 10;
+        public static readonly float correctionFactor = 0.5f;
 
         public override void SetStaticDefaults()
         {

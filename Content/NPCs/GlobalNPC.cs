@@ -38,6 +38,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Utilities;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Content.Items.Weapons;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -1145,6 +1146,16 @@ namespace WeDoALittleTrolling.Content.NPCs
                 int chanceNumerator = 1; // 4% chance
                 int chanceDenominator = 25;
                 TryModifyRodOfDiscordDropChance(npcLoot, chanceNumerator, chanceDenominator);
+            }
+            if(npc.type == NPCID.CultistBoss)
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 1;
+                int chanceDenominator = 1;
+                int itemID = ModContent.ItemType<ThrowOfTheLunatic>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
             }
             /*
             if
