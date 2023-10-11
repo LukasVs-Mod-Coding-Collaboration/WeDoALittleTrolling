@@ -330,10 +330,15 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixAccMaxMana", "Increases maximum mana by 60");
                 tooltips.Add(extraManaLine);
             }
-            if(item.type == ItemID.ChlorophytePartisan)
+            if (item.type == ItemID.ChlorophytePartisan)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recoveres 5% of damage as health");
                 tooltips.Add(extraManaLine);
+            }
+            if (item.type == ItemID.ThunderStaff)
+            {
+                TooltipLine extraThunderspellLine = new TooltipLine(Mod, "WeaponLeechingDescription", "\"I CAST THUNDERSPELL!!\"");
+                tooltips.Add(extraThunderspellLine);
             }
             if
             (

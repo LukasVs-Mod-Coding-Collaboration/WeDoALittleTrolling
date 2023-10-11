@@ -334,6 +334,57 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 damageSource.SourceCustomReason = player.name + " was mistaken for a bowling pin by a Boulder.";
             }
+
+            //very rare, absurd death reasons
+            string[] AbsurdDeathsUnspecific =
+            {
+                player.name + " went to Brazil.",
+                player.name + " died. Must have been the wind.",
+                player.name + " mysteriously vanished.",
+                player.name + " accepted candy from the man in the white van.",
+                player.name + " noclipped into the backrooms.",
+                player.name + " is gone, reduced to atoms.",
+                "According to all known laws of aviation, " + player.name + " is not able to fly.",
+                player.name + " was not forgiven for their sins.",
+                player.name + " died of natural causes.",
+                player.name + " forgot the uhmmm, the umm, uhhhhh",
+                player.name + " died peacefully in their sleep.",
+                player.name + " died of nothing in particular.",
+                //player.name + " was reminded of the incident by " + damageSource + ".",
+                player.name + " was finally arrested for their war crimes.",
+                player.name + " experienced the consequences of banana overdose.",
+                player.name + " didn’t know what happened on July Second.",
+                player.name + " decided to wear a paladin's shield during the daylight Empress of Light fight.",
+                player.name + " ate the tasty uranium-235.",
+                player.name + " tried to run Path of Exile on hitpower‘s PC.",
+                player.name + " took an arrow to the knee.",
+                player.name + " was unfortunate enough to fall victim to our clever little trap of social teasing.",
+                player.name + " is probably breaking their keyboard right now.",
+                player.name + " forgot about timezones.",
+                player.name + " told the truth to the psychiatrist.",
+                player.name + " made a severe and continuous lapse in their judgement.",
+                player.name + "'s honest reaction:",
+                player.name + " is trolled.",
+                player.name + " got morbed to death.",
+                //player.name + " was informed of their skill issue by " + damageSource + ".",
+                //player.name + " discovered that they were simply lacking the talent to overcome " + damageSource + ".",
+                //After some testing, I indeed concur that giving the correct name out on these is not that simple even with .getType().toString(). Dark, please check the source code and do your thing.
+                player.name + " was not that guy.",
+                "The voices in " + player.name + "'s head got too loud.",
+                player.name + " was- actually, nevermind.",
+                player.name + " didn’t pay their taxes and was caught by the IRC.",
+                player.name + "'s free trial of life expired.",
+                "Monday left " + player.name + " broken.",
+                player.name + " got cancelled on the internet.",
+                player.name + " got ratioed.",
+                player.name + " entered the void.",
+                player.name + " turned out to be a low intelligence specimen.",
+                player.name + " went to find their absent father."
+            };
+            if (random.NextBool(50))
+            {
+                damageSource.SourceCustomReason = AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)];
+            }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
 
