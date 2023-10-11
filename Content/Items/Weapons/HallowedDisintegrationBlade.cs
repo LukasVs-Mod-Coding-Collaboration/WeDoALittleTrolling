@@ -28,7 +28,7 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using Microsoft.CodeAnalysis;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -70,10 +70,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if(Math.Abs(player.GetModPlayer<WDALTPlayerUtil>().currentTick - lastDashTick) >= (player.itemAnimationMax * 2))
+            if(Math.Abs(player.GetModPlayer<WDALTPlayer>().currentTick - lastDashTick) >= (player.itemAnimationMax * 2))
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? ((int)Math.Round(player.itemAnimationMax * 1.0)) : ((int)Math.Round(player.itemAnimationMax * 0.75)));
-                lastDashTick = player.GetModPlayer<WDALTPlayerUtil>().currentTick;
+                lastDashTick = player.GetModPlayer<WDALTPlayer>().currentTick;
             }
             for (int i = 0; i < 5; i++)
             {

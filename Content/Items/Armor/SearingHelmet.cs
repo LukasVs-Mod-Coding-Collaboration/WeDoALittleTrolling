@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Items.Material;
 
 namespace WeDoALittleTrolling.Content.Items.Armor
@@ -25,8 +25,8 @@ namespace WeDoALittleTrolling.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.GetModPlayer<WDALTPlayerUtil>().searingSetBonus = true;
-            player.setBonus = "Attackers deal 30% reduced damage and lose life\nGrants immunity to Searing Inferno\nIncreases defense effectiveness and attack damage\nby 1% for every 4 defense you have\nCurrent bonus: "+player.GetModPlayer<WDALTPlayerUtil>().searingSetBonusValue+"%";
+            player.GetModPlayer<WDALTPlayer>().searingSetBonus = true;
+            player.setBonus = "Attackers deal 30% reduced damage and lose life\nGrants immunity to Searing Inferno\nIncreases defense effectiveness and attack damage\nby 1% for every 4 defense you have\nCurrent bonus: "+player.GetModPlayer<WDALTPlayer>().searingSetBonusValue+"%";
         }
 
         public override void AddRecipes()

@@ -27,7 +27,7 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using System.Collections.Generic;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -51,9 +51,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int bonus = 0;
-            if(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus > 0)
+            if(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().heartOfDespairDamageBonus > 0)
             {
-                bonus = Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus;
+                bonus = Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().heartOfDespairDamageBonus;
             }
             TooltipLine despairBonus0 = new TooltipLine(Mod, "DespairBonus0", "Current damage bonus: "+bonus+"%");
             tooltips.Add(despairBonus0);
@@ -66,17 +66,17 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if(player.GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus >= 0f)
+            if(player.GetModPlayer<WDALTPlayer>().heartOfDespairDamageBonus >= 0f)
             {
-                player.GetDamage(DamageClass.Magic) *= (1f + (0.01f + (0.01f * (float)player.GetModPlayer<WDALTPlayerUtil>().heartOfDespairDamageBonus)));
+                player.GetDamage(DamageClass.Magic) *= (1f + (0.01f + (0.01f * (float)player.GetModPlayer<WDALTPlayer>().heartOfDespairDamageBonus)));
             }
-            player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair = true;
+            player.GetModPlayer<WDALTPlayer>().heartOfDespair = true;
         }
 
         /*
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
-            if(player.GetModPlayer<WDALTPlayerUtil>().sorcerousMirror)
+            if(player.GetModPlayer<WDALTPlayer>().sorcerousMirror)
             {
                 return false;
             }

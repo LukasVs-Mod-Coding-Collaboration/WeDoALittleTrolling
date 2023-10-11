@@ -25,7 +25,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Buffs;
 using System;
 using System.Collections.Generic;
@@ -72,7 +72,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<WDALTPlayerUtil>().sorcerousMirror = true;
+            player.GetModPlayer<WDALTPlayer>().sorcerousMirror = true;
             base.UpdateAccessory(player, hideVisual);
         }
 
@@ -95,7 +95,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         /*
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
-            if(player.GetModPlayer<WDALTPlayerUtil>().heartOfDespair)
+            if(player.GetModPlayer<WDALTPlayer>().heartOfDespair)
             {
                 return false;
             }

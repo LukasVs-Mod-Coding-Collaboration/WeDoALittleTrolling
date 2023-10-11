@@ -31,18 +31,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class PhantomStaffProjectile : ModProjectile
     {
-        public const float idleOverlapCorrectionFactor = 0.04f;
-        public const float attackOverlapCorrectionFactor = 0.02f;
-        public const float detectionRange = 1024f;
-        public const float detectionRangeOffset = 50f;
-        public const float idleMoveSpeed = 4f;
-        public const float attackMoveSpeed = 16f;
-        public const float idleInertia = 8f;
-        public const float attackInertia = 2f;
-        public const float idleDistance = 64f;
-        public const float idleAccelerationFactor = 0.75f;
-        public const float bulletSpeed = 32f;
-        public const float bulletOffsetMultiplier = 36f;
+        public static readonly float idleOverlapCorrectionFactor = 0.04f;
+        public static readonly float attackOverlapCorrectionFactor = 0.02f;
+        public static readonly float detectionRange = 1024f;
+        public static readonly float detectionRangeOffset = 50f;
+        public static readonly float idleMoveSpeed = 4f;
+        public static readonly float attackMoveSpeed = 16f;
+        public static readonly float idleInertia = 8f;
+        public static readonly float attackInertia = 2f;
+        public static readonly float idleDistance = 64f;
+        public static readonly float idleAccelerationFactor = 0.75f;
+        public static readonly float bulletSpeed = 32f;
+        public static readonly float bulletOffsetMultiplier = 36f;
         public static readonly Vector2 gfxShootOffset1 = new Vector2(-9f, -12f);
         public static readonly Vector2 gfxShootOffset2 = new Vector2(10f, -12f);
         public long ticksAlive = 0;

@@ -8,7 +8,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.NPCs;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 
 namespace WeDoALittleTrolling.Content.Buffs
@@ -24,15 +24,15 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            tip = tip+" "+(10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().wreckedAccuracyStack * 10))+"%";
+            tip = tip+" "+(10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().wreckedAccuracyStack * 10))+"%";
             base.ModifyBuffText(ref buffName, ref tip, ref rare);
         }
         
         public override bool ReApply(Player player, int time, int buffIndex)
         {
-            if(player.GetModPlayer<WDALTPlayerUtil>().wreckedAccuracyStack < 5)
+            if(player.GetModPlayer<WDALTPlayer>().wreckedAccuracyStack < 5)
             {
-                player.GetModPlayer<WDALTPlayerUtil>().wreckedAccuracyStack += 1;
+                player.GetModPlayer<WDALTPlayer>().wreckedAccuracyStack += 1;
             }
             return base.ReApply(player, time, buffIndex);
         }

@@ -28,7 +28,7 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using Microsoft.CodeAnalysis;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -69,14 +69,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool AltFunctionUse(Player player) // Woohoo invincibility charge!
         {
-            if(Math.Abs(player.GetModPlayer<WDALTPlayerUtil>().currentTick - lastDashTick) >= 120)
+            if(Math.Abs(player.GetModPlayer<WDALTPlayer>().currentTick - lastDashTick) >= 120)
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 90 : 60);
                 Vector2 chargeDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
                 chargeDirection.Normalize();
                 chargeDirection *= 24f;
                 player.velocity = chargeDirection;
-                player.GetModPlayer<WDALTPlayerUtil>().chargeAccelerationTicks += 25;
+                player.GetModPlayer<WDALTPlayer>().chargeAccelerationTicks += 25;
                 for (int i = 0; i < 60; i++)
                 {
                     int rMax = (int)player.width;
@@ -94,7 +94,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     newDust.noGravity = true;
                 }
                 SoundEngine.PlaySound(SoundID.Item117, player.Center);
-                lastDashTick = player.GetModPlayer<WDALTPlayerUtil>().currentTick;
+                lastDashTick = player.GetModPlayer<WDALTPlayer>().currentTick;
             }
             return false;
         }

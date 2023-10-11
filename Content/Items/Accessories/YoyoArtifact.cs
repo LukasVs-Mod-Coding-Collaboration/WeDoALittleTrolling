@@ -25,7 +25,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Buffs;
 using System;
 using System.Collections.Generic;
@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<WDALTPlayerUtil>().yoyoArtifact = true;
+            player.GetModPlayer<WDALTPlayer>().yoyoArtifact = true;
             player.GetDamage(DamageClass.Melee) += 0.15f;
             base.UpdateAccessory(player, hideVisual);
         }

@@ -26,7 +26,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -50,7 +50,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<WDALTPlayerUtil>().soulPoweredShield = true;
+            player.GetModPlayer<WDALTPlayer>().soulPoweredShield = true;
             player.endurance += 0.17f; //Damage Reduction (originally 0.25)
             player.statDefense += 5; // (originally 6)
             player.noKnockback = true;

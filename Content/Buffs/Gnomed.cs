@@ -8,8 +8,8 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.NPCs;
-using WeDoALittleTrolling.Common.Utilities;
 using ReLogic.Content;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Buffs
 {
@@ -25,11 +25,11 @@ namespace WeDoALittleTrolling.Content.Buffs
         {
             if(Gnomed_ShouldTurnToStone(player))
             {
-                player.GetModPlayer<WDALTPlayerUtil>().gnomedStonedDebuff = true;
+                player.GetModPlayer<WDALTPlayer>().gnomedStonedDebuff = true;
             }
             else
             {
-                player.GetModPlayer<WDALTPlayerUtil>().gnomedStonedDebuff = false;
+                player.GetModPlayer<WDALTPlayer>().gnomedStonedDebuff = false;
             }
         }
 

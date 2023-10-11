@@ -24,7 +24,7 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 using Terraria.ID;
 
 namespace WeDoALittleTrolling.Content.Prefixes
@@ -84,7 +84,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             player.desertBoots = true;
             player.buffImmune[BuffID.WindPushed] = true;
-            player.GetModPlayer<WDALTPlayerUtil>().sandStepping = true;
+            player.GetModPlayer<WDALTPlayer>().sandStepping = true;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

@@ -25,7 +25,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
-using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -51,8 +51,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current critical strike chance bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus3X+"%");
-            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", "Current armor penetration bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayerUtil>().spookyBonus3X);
+            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current critical strike chance bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().spookyBonus3X+"%");
+            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", "Current armor penetration bonus: "+Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().spookyBonus3X);
             tooltips.Add(spookyBonus0);
             tooltips.Add(spookyBonus1);
             base.ModifyTooltips(tooltips);
@@ -63,7 +63,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.blackBelt = true;
             player.maxMinions += 2;
             player.aggro -= 400;
-            player.GetModPlayer<WDALTPlayerUtil>().spookyEmblem = true;
+            player.GetModPlayer<WDALTPlayer>().spookyEmblem = true;
             base.UpdateAccessory(player, hideVisual);
         }
 

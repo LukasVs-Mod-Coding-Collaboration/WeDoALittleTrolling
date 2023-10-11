@@ -28,6 +28,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
@@ -894,7 +895,7 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static void ModifyHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile, ref Player.HurtModifiers modifiers)
         {
-            if(target.GetModPlayer<WDALTPlayerUtil>().soulPoweredShield)
+            if(target.GetModPlayer<WDALTPlayer>().soulPoweredShield)
             {
                 float distanceToTarget = Vector2.Distance(npc.Center, target.Center);
                 if(distanceToTarget > 512f)
@@ -917,7 +918,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
             }
-            if(target.GetModPlayer<WDALTPlayerUtil>().soulPoweredShield)
+            if(target.GetModPlayer<WDALTPlayer>().soulPoweredShield)
             {
                 float distanceToTarget = Vector2.Distance(npc.Center, target.Center);
                 if(distanceToTarget > 512f)
@@ -937,7 +938,7 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static void OnHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile, Player.HurtInfo info)
         {
-            if(target.GetModPlayer<WDALTPlayerUtil>().searingSetBonus)
+            if(target.GetModPlayer<WDALTPlayer>().searingSetBonus)
             {
                 npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
             }
@@ -946,7 +947,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             ApplyDebuffsToPlayerBasedOnNPC(npc.type, target);
-            if(target.GetModPlayer<WDALTPlayerUtil>().searingSetBonus)
+            if(target.GetModPlayer<WDALTPlayer>().searingSetBonus)
             {
                 npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
             }
