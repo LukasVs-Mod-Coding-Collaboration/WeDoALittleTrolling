@@ -292,9 +292,13 @@ namespace WeDoALittleTrolling.Content.Recipes
             .AddIngredient(ItemID.DualHook, 1)
             .AddCondition(ShimmerCondition)
             .Register();
-            //Requires manual Intervention 
+            //Requires manual intervention 
             Recipe.Create(ItemID.StarCloak, 1)
             .AddIngredient(ItemID.CrossNecklace, 1)
+            .AddTile(TileID.ShimmerMonolith)
+            .Register();
+            Recipe.Create(ItemID.CrossNecklace, 1)
+            .AddIngredient(ItemID.StarCloak, 1)
             .AddTile(TileID.ShimmerMonolith)
             .Register();
         }
