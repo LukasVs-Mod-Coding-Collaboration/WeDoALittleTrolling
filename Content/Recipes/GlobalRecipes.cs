@@ -38,6 +38,8 @@ namespace WeDoALittleTrolling.Content.Recipes
             AddShimmeringBetweenMimicItems_MagicWeapons();
             AddShimmeringBetweenMimicItems_Accessories();
             AddShimmeringBetweenMimicItems_Hooks();
+            AddShimmeringBetweenMimicItems_NormalMimics();
+            AddShimmeringBetweenMimicItems_IceMimics();
 
             Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
 
@@ -263,6 +265,53 @@ namespace WeDoALittleTrolling.Content.Recipes
             .Register();
             Recipe.Create(ItemID.IlluminantHook, 1)
             .AddIngredient(ItemID.WormHook, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+        }
+
+        public static void AddShimmeringBetweenMimicItems_NormalMimics()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.DualHook, 1)
+            .AddIngredient(ItemID.MagicDagger, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.MagicDagger, 1)
+            .AddIngredient(ItemID.TitanGlove, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.TitanGlove, 1)
+            .AddIngredient(ItemID.PhilosophersStone, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.PhilosophersStone, 1)
+            .AddIngredient(ItemID.CrossNecklace, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.CrossNecklace, 1)
+            .AddIngredient(ItemID.DualHook, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            //Requires manual Intervention 
+            Recipe.Create(ItemID.StarCloak, 1)
+            .AddIngredient(ItemID.CrossNecklace, 1)
+            .AddTile(TileID.ShimmerMonolith)
+            .Register();
+        }
+
+        public static void AddShimmeringBetweenMimicItems_IceMimics()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.Frostbrand, 1)
+            .AddIngredient(ItemID.IceBow, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.IceBow, 1)
+            .AddIngredient(ItemID.FlowerofFrost, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.FlowerofFrost, 1)
+            .AddIngredient(ItemID.Frostbrand, 1)
             .AddCondition(ShimmerCondition)
             .Register();
         }

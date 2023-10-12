@@ -367,6 +367,16 @@ Mods: {
 				DisplayName: Throw Of The Lunatic
 				Tooltip: ""
 			}
+
+			CornSword: {
+				DisplayName: Corn Sword
+				Tooltip: ""
+			}
+
+			Corncob: {
+				DisplayName: Corncob
+				Tooltip: Minor improvements to all stats
+			}
 		}
 
 		Projectiles: {
@@ -380,6 +390,7 @@ Mods: {
 			GloriousDemiseProjectile.DisplayName: Glorious Demise
 			ThrowOfTheLunaticProjectile.DisplayName: Throw Of The Lunatic
 			ThrowOfTheLunaticProjectileBeam.DisplayName: Lunatic Beam
+			ThrownCorncob.DisplayName: Corncob
 		}
 
 		Prefixes: {

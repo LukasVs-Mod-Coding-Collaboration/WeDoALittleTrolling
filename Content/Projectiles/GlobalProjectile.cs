@@ -251,6 +251,54 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                 }
             }
+            if(projectile.type == ProjectileID.OrnamentFriendly && projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive > 25)
+            {
+                float lowest_distance = 512f; //Homing detection range
+                float correction_factor = 2.5f;
+                float speed = 10f;
+                NPC target = null;
+                for(int i = 0; i < Main.npc.Length; i++)
+                {
+                    NPC currentTarget = Main.npc[i];
+                    if
+                    (
+                        !currentTarget.dontTakeDamage &&
+                        currentTarget.active &&
+                        currentTarget.CanBeChasedBy() &&
+                        !currentTarget.friendly && 
+                        !currentTarget.CountsAsACritter && 
+                        !currentTarget.isLikeATownNPC && 
+                        currentTarget.type != NPCID.TargetDummy &&
+                        Collision.CanHitLine
+                        (
+                            projectile.position,
+                            projectile.width,
+                            projectile.height,
+                            currentTarget.position,
+                            currentTarget.width,
+                            currentTarget.height
+                        )
+                    )
+                    {
+                        Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
+                        if (vectorToTarget.Length() < lowest_distance)
+                        {
+                            lowest_distance = vectorToTarget.Length();
+                            target = currentTarget;
+                        }
+                    }
+                }
+                if(target != null)
+                {
+                    Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
+                    vectorToTarget.Normalize();
+                    projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
+                    Vector2 normalizedVeloctiy = projectile.velocity;
+                    normalizedVeloctiy.Normalize();
+                    projectile.velocity = normalizedVeloctiy * speed;
+                    return false;
+                }
+            }
             return base.PreAI(projectile);
         }
 
@@ -279,7 +327,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 float lowest_distance = 0f; //Homing detection range
                 float correction_factor = 0f;
-                float origVelocityLength = projectile.velocity.Length();
                 switch(projectile.type)
                 {
                     case ProjectileID.FrostBlastFriendly:
@@ -500,6 +547,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.damage *= 2;
                 projectile.netUpdate = true;
             }
+            if (projectile.type == ProjectileID.OrnamentFriendly)
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 0.5f);
+                projectile.netUpdate = true;
+            }
             if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentHeldItem(out Item item))
             {
                 if (item.prefix == ModContent.PrefixType<Colossal>())
@@ -527,7 +579,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if(projectile.type == ProjectileID.TrueNightsEdge)
             {
-                for(int i = 0;i < 320;i++)
+                for(int i = 0; i < 320; i++)
                 {
                     int rMax = (int)Math.Round(projectile.width*3*projectile.scale);
                     double r = rMax * Math.Sqrt(random.NextDouble());

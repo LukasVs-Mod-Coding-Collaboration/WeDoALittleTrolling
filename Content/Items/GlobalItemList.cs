@@ -897,6 +897,7 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.ChristmasTreeSword)
             {
                 item.damage = 100;
+                item.shootSpeed = 10f;
             }
             /*
             if (item.type == ItemID.ZapinatorOrange)
