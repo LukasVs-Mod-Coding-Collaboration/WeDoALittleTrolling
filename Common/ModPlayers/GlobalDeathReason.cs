@@ -189,12 +189,19 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " was informed of their skill issue by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " discovered that they were simply lacking the talent to overcome " + Main.npc[damageSource.SourceNPCIndex].FullName + "."
                 };
-                if (random.NextBool(1))
+                if (random.NextBool(50))
                 {
-                    damageSource.SourceCustomReason = AbsurdDeathsByNPC[random.Next(0, AbsurdDeathsByNPC.Length)];
+                    if(random.NextBool(5))
+                    {
+                        damageSource.SourceCustomReason = AbsurdDeathsByNPC[random.Next(0, AbsurdDeathsByNPC.Length)];
+                    }
+                    else
+                    {
+                        damageSource.SourceCustomReason = AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)];
+                    }
                 }
             }
-            else if (random.NextBool(1))
+            else if (random.NextBool(50))
             {
                 damageSource.SourceCustomReason = AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)];
             }
