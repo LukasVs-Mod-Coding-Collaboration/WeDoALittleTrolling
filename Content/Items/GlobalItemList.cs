@@ -83,7 +83,7 @@ namespace WeDoALittleTrolling.Content.Items
                 player.chatOverhead.NewMessage(player.name + " tried to uglify the world.", 180);
                 return false;
             }
-            /*
+            //I'm sorry, hit
             else if
             (
                 item.type == ItemID.LandMine
@@ -92,8 +92,6 @@ namespace WeDoALittleTrolling.Content.Items
                 player.chatOverhead.NewMessage("You may not use this item.", 180);
                 return false;
             }
-            */
-            //I'm sorry, hit
             else if
             (
                 item.type == ItemID.RodOfHarmony
@@ -898,6 +896,12 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 100;
                 item.shootSpeed = 10f;
+            }
+            if (item.type == ItemID.TheHorsemansBlade)
+            {
+                item.useTime = 15;
+                item.useAnimation = 15;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.NailGun)
             {

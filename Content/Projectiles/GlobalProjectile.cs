@@ -146,7 +146,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if
             (
-                projectile.type == ProjectileID.InfluxWaver
+                projectile.type == ProjectileID.InfluxWaver || projectile.type == ProjectileID.FlamingJack
             )
             {
                 projectile.extraUpdates = 1;
