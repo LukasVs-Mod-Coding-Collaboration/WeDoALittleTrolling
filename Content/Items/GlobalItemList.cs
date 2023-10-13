@@ -899,6 +899,14 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 100;
                 item.shootSpeed = 10f;
             }
+            if (item.type == ItemID.NailGun)
+            {
+                item.damage = 100;
+            }
+            if (item.type == ItemID.MagnetSphere)
+            {
+                item.damage = 64;
+            }
             /*
             if (item.type == ItemID.ZapinatorOrange)
             {

@@ -43,6 +43,21 @@ namespace WeDoALittleTrolling.Content.Recipes
 
             Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
 
+            Recipe.Create(ItemID.VampireKnives, 1)
+            .AddIngredient(ItemID.ScourgeoftheCorruptor, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.ScourgeoftheCorruptor, 1)
+            .AddIngredient(ItemID.VampireKnives, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+
+            Recipe.Create(ItemID.GravityGlobe, 1)
+            .AddIngredient(ItemID.GravitationPotion, 10)
+            .AddIngredient(ItemID.GelBalloon, 10)
+            .AddTile(TileID.AlchemyTable)
+            .Register();
+
             Recipe WDALT_WormScarf_BoC_V1 = Recipe.Create(ItemID.WormScarf, 1);
             WDALT_WormScarf_BoC_V1.AddCondition(ShimmerCondition);
             WDALT_WormScarf_BoC_V1.AddIngredient(ItemID.BrainOfConfusion, 1);
