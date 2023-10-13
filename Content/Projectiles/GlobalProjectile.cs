@@ -132,7 +132,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             ProjectileID.UnholyTridentHostile,
             ProjectileID.AncientDoomProjectile,
-            ProjectileID.PhantasmalDeathray,
             ProjectileID.SaucerDeathray,
             ProjectileID.Cthulunado,
             ProjectileID.BombSkeletronPrime,
@@ -739,6 +738,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Devastated.AnimateDevastated(target);
                 }
             }
+            if(projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
+            {
+                if(npc.type == NPCID.MoonLordHead)
+                {
+                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    Devastated.AnimateDevastated(target);
+                }
+            }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if(WDALTModContentID.GetThoriumBossProjectileInflictWreckedResistance1in1Group().Contains(projectile.type))
@@ -770,6 +777,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 target.buffImmune[BuffID.Slow] = true;
             }
             base.OnHitPlayer(projectile, target, info);
+        }
+
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
+        {
+            if(projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
+            {
+                if(npc.type == NPCID.MoonLordFreeEye)
+                {
+                    modifiers.SourceDamage *= 0.5f;
+                }
+            }
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
