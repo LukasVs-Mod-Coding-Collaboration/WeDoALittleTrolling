@@ -54,11 +54,11 @@ namespace WeDoALittleTrolling.Content.Items.Material
 
         public override void AddRecipes()
         {
-            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
-            Recipe ShimmerRecipe = Recipe.Create(ItemID.Sunflower, 1)
-                .AddIngredient(ModContent.ItemType<Corncob>(), 1)
-                .AddCondition(ShimmerCondition)
-                .Register();
+            CreateRecipe(1)
+            .AddIngredient(ItemID.Sunflower, 5)
+            .AddIngredient(ItemID.Pumpkin, 10)
+            .AddTile(TileID.ShimmerMonolith)
+            .Register();
         }
     }
 }
