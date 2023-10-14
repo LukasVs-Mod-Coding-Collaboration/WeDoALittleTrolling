@@ -75,7 +75,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             if(Main.hardMode && spawnInfo.Player.ZoneSnow && spawnInfo.Player.ZoneRockLayerHeight && !spawnInfo.PlayerInTown)
             {
-                return 0.15f;
+                return 0.1f;
             }
             return base.SpawnChance(spawnInfo);
         }
@@ -132,7 +132,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     );
                     if(tickCount == 54)
                     {
-                        if(hitLine || (distX >= (18 * 16) && Main.player[NPC.target].Center.Y <= NPC.Center.Y))
+                        if(hitLine)
                         {
                             leapFlag = true;
                         }
