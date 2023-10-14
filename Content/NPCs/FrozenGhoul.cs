@@ -35,11 +35,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.aiStyle = 3;
             NPC.HitSound = SoundID.NPCHit27;
             NPC.DeathSound = SoundID.NPCDeath30;
-            NPC.value = 600f;
-            NPC.knockBackResist = 0.4f;
-            NPC.lifeMax = 600;
-            NPC.damage = 60;
-            NPC.defense = 30;
+            NPC.value = 800f;
+            NPC.knockBackResist = 0.2f;
+            NPC.lifeMax = 800;
+            NPC.damage = 80;
+            NPC.defense = 20;
             NPC.scale = 1f;
 
             AIType = NPCID.DesertGhoul;
@@ -50,7 +50,7 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            target.AddBuff(BuffID.Frostburn, 360, true); //6s, X2 in Expert Mode, X2.5 in Master Mode
+            target.AddBuff(BuffID.Frostburn, 480, true); //8s, X2 in Expert Mode, X2.5 in Master Mode
             base.OnHitPlayer(target, hurtInfo);
         }
 
