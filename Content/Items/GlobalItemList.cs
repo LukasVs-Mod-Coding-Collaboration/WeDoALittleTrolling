@@ -1357,11 +1357,6 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage += 8;
             }
 
-            if (item.type == ItemID.ReaverShark)
-            {
-                item.pick = 100;
-            }
-
             // Buff Ice-Biome related stuff
             // Pre-Hardmode
             if (item.type == ItemID.IceSickle)
