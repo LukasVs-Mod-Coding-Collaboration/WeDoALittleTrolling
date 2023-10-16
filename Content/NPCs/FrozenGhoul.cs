@@ -36,9 +36,9 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.HitSound = SoundID.NPCHit27;
             NPC.DeathSound = SoundID.NPCDeath30;
             NPC.value = 800f;
-            NPC.knockBackResist = 0.2f;
+            NPC.knockBackResist = 0.5f;
             NPC.lifeMax = 800;
-            NPC.damage = 80;
+            NPC.damage = 40;
             NPC.defense = 20;
             NPC.scale = 1f;
 
