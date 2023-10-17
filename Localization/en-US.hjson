@@ -220,6 +220,17 @@ Mods: {
 					'''
 			}
 
+			Boulderspell: {
+				DisplayName: Boulderspell
+				Tooltip:
+					'''
+					"I CAST BOULDERSPELL! ALL OF IT! BEHOLD!!"
+					Fires a boulder that deals more damage dependent on the world difficulty
+					Right click to convert all your mana into a fatal rain of boulders,
+					this activates near your cursor but with low accuracy
+					'''
+			}
+
 			Consumablebee: {
 				DisplayName: Edible Bee
 				Tooltip: "'However, I prefer my bees roasted.'"
