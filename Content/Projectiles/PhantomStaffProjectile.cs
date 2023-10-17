@@ -47,7 +47,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly Vector2 gfxShootOffset2 = new Vector2(10f, -12f);
         public long ticksAlive = 0;
         public long lastActionTick = 0;
-        
+
         public override void SetStaticDefaults()
         {
             Main.projPet[Projectile.type] = true;
@@ -100,7 +100,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void PostDraw(Color lightColor)
         {
-            if(ticksAlive % 30 == 0)
+            if (ticksAlive % 30 == 0)
             {
                 int rMax = (int)Projectile.width;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
@@ -119,12 +119,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             ticksAlive++;
             Player ownerPlayer = Main.player[Projectile.owner];
-            if(!ownerPlayer.active || ownerPlayer.dead)
+            if (!ownerPlayer.active || ownerPlayer.dead)
             {
                 ownerPlayer.ClearBuff(ModContent.BuffType<PhantomStaffBuff>());
                 return;
             }
-            if(ownerPlayer.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
+            if (ownerPlayer.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
             {
                 Projectile.timeLeft = 2;
             }
@@ -143,10 +143,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             bool targetDetected = false;
             Vector2 targetCenter = Projectile.Center;
             Vector2 targetVelocity = Vector2.Zero;
-            if(ownerPlayer.HasMinionAttackTargetNPC)
+            if (ownerPlayer.HasMinionAttackTargetNPC)
             {
                 NPC target = Main.npc[ownerPlayer.MinionAttackTargetNPC];
-                if(Vector2.Distance(target.Center, Projectile.Center) < (detectionRange * 2f))
+                if (Vector2.Distance(target.Center, Projectile.Center) < (detectionRange * 2f))
                 {
                     distanceToTarget = Vector2.Distance(target.Center, Projectile.Center);
                     targetCenter = target.Center;
@@ -154,15 +154,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     targetDetected = true;
                 }
             }
-            if(!targetDetected)
+            if (!targetDetected)
             {
                 for (int i = 0; i < Main.npc.Length; i++)
                 {
                     NPC target = Main.npc[i];
-                    if(target.CanBeChasedBy())
+                    if (target.CanBeChasedBy())
                     {
                         float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
-                        if(currentDistance < distanceToTarget)
+                        if (currentDistance < distanceToTarget)
                         {
                             distanceToTarget = currentDistance;
                             targetCenter = target.Center;
@@ -173,7 +173,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
             }
             float cFactor = attackOverlapCorrectionFactor;
-            if(!targetDetected)
+            if (!targetDetected)
             {
                 cFactor = idleOverlapCorrectionFactor;
             }
@@ -206,15 +206,21 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                 }
             }
-            if(targetDetected)
+            if (targetDetected)
             {
-                if(distanceToTarget > detectionRangeOffset)
+                if (distanceToTarget > detectionRangeOffset)
                 {
                     Vector2 moveVector = (targetCenter - Projectile.Center);
+                    //Anti-Circle-Algorithm: If circular movement is detected, discard previous velocity.
+                    float correctionAngle = MathHelper.ToDegrees((float)Math.Acos(Vector2.Dot(moveVector, Projectile.velocity) / (moveVector.Length() * Projectile.velocity.Length()))); //Correction Angle in Degrees
+                    if (Math.Abs(correctionAngle - 90f) < 15f)
+                    {
+                        Projectile.velocity = Vector2.Zero;
+                    }
                     moveVector.Normalize();
                     moveVector *= attackMoveSpeed;
-                    Projectile.velocity += (moveVector/attackInertia);
-                    if(Projectile.velocity.Length() > attackMoveSpeed)
+                    Projectile.velocity += (moveVector / attackInertia);
+                    if (Projectile.velocity.Length() > attackMoveSpeed)
                     {
                         Projectile.velocity.Normalize();
                         Projectile.velocity *= attackMoveSpeed;
@@ -226,7 +232,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     (distanceToTarget > detectionRangeOffset * 2)
                 )
                 {
-                    if(Projectile.owner == Main.myPlayer)
+                    if (Projectile.owner == Main.myPlayer)
                     {
                         Vector2 pos1 = Projectile.Center + gfxShootOffset1;
                         Vector2 pos2 = Projectile.Center + gfxShootOffset2;
@@ -266,29 +272,30 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             else
             {
-                if(distanceToIdlePos > idleDistance)
+                if (distanceToIdlePos > idleDistance)
                 {
-                    vectorToIdlePos.Normalize();
+                    //Smooth-Slowdown-Algorithm: Smoothly slow down from attack to idle speed.
                     float speedFactor = ((distanceToIdlePos * idleAccelerationFactor) / idleDistance);
-                    if(speedFactor < 1f) //Make sure speed will be at least idleMoveSpeed
+                    if (speedFactor < 1f) //Make sure speed will be at least idleMoveSpeed
                     {
                         speedFactor = 1f;
                     }
+                    vectorToIdlePos.Normalize();
                     vectorToIdlePos *= (idleMoveSpeed * speedFactor);
-                    Projectile.velocity += (vectorToIdlePos/idleInertia);
-                    if(Projectile.velocity.Length() > (idleMoveSpeed * speedFactor)) //Smoothly accelerate/decelerate based on distance to idle position
+                    Projectile.velocity += (vectorToIdlePos / idleInertia);
+                    if (Projectile.velocity.Length() > (idleMoveSpeed * speedFactor)) //Smoothly accelerate/decelerate based on distance to idle position
                     {
                         Projectile.velocity.Normalize();
                         Projectile.velocity *= (idleMoveSpeed * speedFactor);
                     }
-                    if(Projectile.velocity.Length() > attackMoveSpeed) //Cap movement speed at attack movement speed
+                    if (Projectile.velocity.Length() > attackMoveSpeed) //Cap movement speed at attack movement speed
                     {
                         Projectile.velocity.Normalize();
                         Projectile.velocity *= attackMoveSpeed;
                     }
                 }
             }
-            if(Projectile.velocity.Length() == 0f)
+            if (Projectile.velocity.Length() == 0f)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
