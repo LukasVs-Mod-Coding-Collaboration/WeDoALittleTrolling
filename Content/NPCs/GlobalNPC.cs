@@ -234,7 +234,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if(npc.type == NPCID.RockGolem)
             {
-                npc.value = 100000f;
+                npc.value = Item.sellPrice(gold: 10);
             }
             if
             (
@@ -259,7 +259,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.PossessedArmor
             )
             {
-                npc.lifeMax *= 3;
+                npc.lifeMax *= 2;
             }
             if
             (

@@ -60,7 +60,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult *= 1.4f;
+            valueMult = 1.9f;
         }
 
     }

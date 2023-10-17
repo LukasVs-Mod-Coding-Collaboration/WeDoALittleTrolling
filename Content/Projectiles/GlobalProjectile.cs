@@ -788,6 +788,32 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     modifiers.SourceDamage *= 0.5f;
                 }
             }
+            if(projectile.type == ProjectileID.Boulder && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
+            {
+                modifiers.SourceDamage *= 0.5f;
+                if(Main.expertMode)
+                {
+                    modifiers.SourceDamage *= 0.5f;
+                }
+                if(Main.masterMode)
+                {
+                    modifiers.SourceDamage *= 0.5f;
+                }
+            }
+        }
+
+        public override bool CanHitPlayer(Projectile projectile, Player target)
+        {
+            if
+            (
+                projectile.type == ProjectileID.Boulder &&
+                projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player) &&
+                projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive < 30
+            )
+            {
+                return false;
+            }
+            return base.CanHitPlayer(projectile, target);
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
