@@ -797,7 +797,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 if(Main.masterMode)
                 {
-                    modifiers.SourceDamage *= 0.5f;
+                    modifiers.SourceDamage *= (1f/1.5f);
                 }
             }
         }

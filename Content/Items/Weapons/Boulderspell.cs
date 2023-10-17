@@ -84,19 +84,18 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             base.ModifyWeaponDamage(player, ref damage);
         }
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            //Vector2 testspawnpos = new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y);
+            Vector2 testspawnpos = new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y);
             //this works
 
-            //Vector2 testmomentumdown = new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 20);
+            Vector2 testmomentumdown = new Vector2(0f, 16.3f);
             //This does not work, the boulder just explodes.
 
-            //position = testspawnpos;
-            //velocity = testmomentumdown;
-
-
-
+            position = testspawnpos;
+            velocity = testmomentumdown;
+            Projectile.NewProjectile(source, position, velocity, Item.shoot, Item.damage, Item.knockBack, player.whoAmI);
+            return false;
         }
 
         public override void AddRecipes()
