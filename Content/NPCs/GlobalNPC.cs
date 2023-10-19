@@ -1145,7 +1145,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.ChaosElemental)
             {
                 int chanceNumerator = 1; // 4% chance
-                int chanceDenominator = 25;
+                int chanceDenominator = 100;
                 TryModifyRodOfDiscordDropChance(npcLoot, chanceNumerator, chanceDenominator);
             }
             if(npc.type == NPCID.CultistBoss)

@@ -90,7 +90,24 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            AI_003_LuminitePhantom();
+            AI_003_LuminitePhantom(out Player ownerPlayer, out bool runAI);
+            if(!runAI)
+            {
+                return;
+            }
+            AI_003_LuminitePhantom_CoreTasks(ref ownerPlayer, out Vector2 idlePos, out Vector2 vectorToIdlePos, out float distanceToIdlePos);
+            AI_003_LuminitePhantom_SearchTargets(ref ownerPlayer, out float distanceToTarget, out bool targetDetected, out Vector2 targetCenter, out Vector2 targetVelocity);
+            AI_003_LuminitePhantom_CorrectOverlap(ref targetDetected);
+            if (targetDetected)
+            {
+                AI_003_LuminitePhantom_AttackAI(ref distanceToTarget, ref targetCenter, ref targetVelocity);
+            }
+            else
+            {
+                AI_003_LuminitePhantom_IdleAI(ref distanceToIdlePos, ref vectorToIdlePos);
+            }
+            AI_003_LuminitePhantom_CorrectFreeze();
+            AI_003_LuminitePhantom_UpdateFrames();
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -115,23 +132,28 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
         }
 
-        private void AI_003_LuminitePhantom()
+        private void AI_003_LuminitePhantom(out Player ownerPlayer, out bool runAI)
         {
             ticksAlive++;
-            Player ownerPlayer = Main.player[Projectile.owner];
+            runAI = true;
+            ownerPlayer = Main.player[Projectile.owner];
             if (!ownerPlayer.active || ownerPlayer.dead)
             {
                 ownerPlayer.ClearBuff(ModContent.BuffType<PhantomStaffBuff>());
-                return;
+                runAI = false;
             }
-            if (ownerPlayer.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
+            else if (ownerPlayer.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
             {
                 Projectile.timeLeft = 2;
             }
-            Vector2 idlePos = ownerPlayer.Center;
+        }
+
+        private void AI_003_LuminitePhantom_CoreTasks(ref Player ownerPlayer, out Vector2 idlePos, out Vector2 vectorToIdlePos, out float distanceToIdlePos)
+        {
+            idlePos = ownerPlayer.Center;
             idlePos.Y -= (Projectile.height * 3f);
-            Vector2 vectorToIdlePos = idlePos - Projectile.Center;
-            float distanceToIdlePos = vectorToIdlePos.Length();
+            vectorToIdlePos = idlePos - Projectile.Center;
+            distanceToIdlePos = vectorToIdlePos.Length();
             if (Projectile.owner == Main.myPlayer && distanceToIdlePos > (detectionRange * 2f))
             {
                 Projectile.position = idlePos;
@@ -139,10 +161,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.velocity *= idleMoveSpeed;
                 Projectile.netUpdate = true;
             }
-            float distanceToTarget = detectionRange;
-            bool targetDetected = false;
-            Vector2 targetCenter = Projectile.Center;
-            Vector2 targetVelocity = Vector2.Zero;
+        }
+
+        private void AI_003_LuminitePhantom_SearchTargets(ref Player ownerPlayer, out float distanceToTarget, out bool targetDetected, out Vector2 targetCenter, out Vector2 targetVelocity)
+        {
+            distanceToTarget = detectionRange;
+            targetDetected = false;
+            targetCenter = Projectile.Center;
+            targetVelocity = Vector2.Zero;
             if (ownerPlayer.HasMinionAttackTargetNPC)
             {
                 NPC target = Main.npc[ownerPlayer.MinionAttackTargetNPC];
@@ -172,6 +198,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                 }
             }
+        }
+
+        private void AI_003_LuminitePhantom_CorrectOverlap(ref bool targetDetected)
+        {
             float cFactor = attackOverlapCorrectionFactor;
             if (!targetDetected)
             {
@@ -180,12 +210,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             for (int i = 0; i < Main.projectile.Length; i++)
             {
                 Projectile otherMinion = Main.projectile[i];
+                bool proximity = ((Math.Abs(Projectile.position.X - otherMinion.position.X) + Math.Abs(Projectile.position.Y - otherMinion.position.Y)) < (Projectile.width));
                 if
                 (
                     (i != Projectile.whoAmI) &&
                     (otherMinion.active) &&
                     (otherMinion.owner == Projectile.owner) &&
-                    ((Math.Abs(Projectile.position.X - otherMinion.position.X) + Math.Abs(Projectile.position.Y - otherMinion.position.Y)) < (Projectile.width))
+                    (proximity)
                 )
                 {
                     if (Projectile.position.X < otherMinion.position.X)
@@ -206,95 +237,103 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                 }
             }
-            if (targetDetected)
+        }
+
+        private void AI_003_LuminitePhantom_AttackAI(ref float distanceToTarget, ref Vector2 targetCenter, ref Vector2 targetVelocity)
+        {
+            if (distanceToTarget > detectionRangeOffset)
             {
-                if (distanceToTarget > detectionRangeOffset)
+                Vector2 moveVector = (targetCenter - Projectile.Center);
+                //Anti-Circle-Algorithm: If circular movement is detected, discard previous velocity.
+                float correctionAngle = MathHelper.ToDegrees((float)Math.Acos(Vector2.Dot(moveVector, Projectile.velocity) / (moveVector.Length() * Projectile.velocity.Length()))); //Correction Angle in Degrees
+                if (Math.Abs(correctionAngle - 90f) < 15f)
                 {
-                    Vector2 moveVector = (targetCenter - Projectile.Center);
-                    //Anti-Circle-Algorithm: If circular movement is detected, discard previous velocity.
-                    float correctionAngle = MathHelper.ToDegrees((float)Math.Acos(Vector2.Dot(moveVector, Projectile.velocity) / (moveVector.Length() * Projectile.velocity.Length()))); //Correction Angle in Degrees
-                    if (Math.Abs(correctionAngle - 90f) < 15f)
-                    {
-                        Projectile.velocity = Vector2.Zero;
-                    }
-                    moveVector.Normalize();
-                    moveVector *= attackMoveSpeed;
-                    Projectile.velocity += (moveVector / attackInertia);
-                    if (Projectile.velocity.Length() > attackMoveSpeed)
-                    {
-                        Projectile.velocity.Normalize();
-                        Projectile.velocity *= attackMoveSpeed;
-                    }
+                    Projectile.velocity = Vector2.Zero;
                 }
-                if
-                (
-                    (Math.Abs(ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2)) && //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
-                    (distanceToTarget > detectionRangeOffset * 2)
-                )
+                moveVector.Normalize();
+                moveVector *= attackMoveSpeed;
+                Projectile.velocity += (moveVector / attackInertia);
+                if (Projectile.velocity.Length() > attackMoveSpeed)
                 {
-                    if (Projectile.owner == Main.myPlayer)
-                    {
-                        Vector2 pos1 = Projectile.Center + gfxShootOffset1;
-                        Vector2 pos2 = Projectile.Center + gfxShootOffset2;
-                        Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
-                        Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
-                        Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
-                        shootVector1.Normalize();
-                        pos1 += (shootVector1 * bulletOffsetMultiplier);
-                        shootVector1 *= bulletSpeed;
-                        shootVector2.Normalize();
-                        pos2 += (shootVector2 * bulletOffsetMultiplier);
-                        shootVector2 *= bulletSpeed;
-                        Projectile.NewProjectileDirect
-                        (
-                            Projectile.GetSource_FromAI(),
-                            pos1,
-                            shootVector1,
-                            ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
-                            Projectile.damage,
-                            Projectile.knockBack,
-                            Projectile.owner
-                        );
-                        Projectile.NewProjectileDirect
-                        (
-                            Projectile.GetSource_FromAI(),
-                            pos2,
-                            shootVector2,
-                            ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
-                            Projectile.damage,
-                            Projectile.knockBack,
-                            Projectile.owner
-                        );
-                    }
-                    SoundEngine.PlaySound(SoundID.NPCHit44, Projectile.Center);
-                    lastActionTick = ticksAlive;
+                    Projectile.velocity.Normalize();
+                    Projectile.velocity *= attackMoveSpeed;
                 }
             }
-            else
+            //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
+            bool cooldownFinished = (Math.Abs(ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2));
+            if
+            (
+                (cooldownFinished) &&
+                (distanceToTarget > detectionRangeOffset * 2)
+            )
             {
-                if (distanceToIdlePos > idleDistance)
+                if (Projectile.owner == Main.myPlayer)
                 {
-                    //Smooth-Slowdown-Algorithm: Smoothly slow down from attack to idle speed.
-                    float speedFactor = ((distanceToIdlePos * idleAccelerationFactor) / idleDistance);
-                    if (speedFactor < 1f) //Make sure speed will be at least idleMoveSpeed
-                    {
-                        speedFactor = 1f;
-                    }
-                    vectorToIdlePos.Normalize();
-                    vectorToIdlePos *= (idleMoveSpeed * speedFactor);
-                    Projectile.velocity += (vectorToIdlePos / idleInertia);
-                    if (Projectile.velocity.Length() > (idleMoveSpeed * speedFactor)) //Smoothly accelerate/decelerate based on distance to idle position
-                    {
-                        Projectile.velocity.Normalize();
-                        Projectile.velocity *= (idleMoveSpeed * speedFactor);
-                    }
-                    if (Projectile.velocity.Length() > attackMoveSpeed) //Cap movement speed at attack movement speed
-                    {
-                        Projectile.velocity.Normalize();
-                        Projectile.velocity *= attackMoveSpeed;
-                    }
+                    Vector2 pos1 = Projectile.Center + gfxShootOffset1;
+                    Vector2 pos2 = Projectile.Center + gfxShootOffset2;
+                    Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
+                    Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
+                    Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
+                    shootVector1.Normalize();
+                    pos1 += (shootVector1 * bulletOffsetMultiplier);
+                    shootVector1 *= bulletSpeed;
+                    shootVector2.Normalize();
+                    pos2 += (shootVector2 * bulletOffsetMultiplier);
+                    shootVector2 *= bulletSpeed;
+                    Projectile.NewProjectileDirect
+                    (
+                        Projectile.GetSource_FromAI(),
+                        pos1,
+                        shootVector1,
+                        ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
+                        Projectile.damage,
+                        Projectile.knockBack,
+                        Projectile.owner
+                    );
+                    Projectile.NewProjectileDirect
+                    (
+                        Projectile.GetSource_FromAI(),
+                        pos2,
+                        shootVector2,
+                        ModContent.ProjectileType<PhantomStaffProjectileBullet>(),
+                        Projectile.damage,
+                        Projectile.knockBack,
+                        Projectile.owner
+                    );
+                }
+                SoundEngine.PlaySound(SoundID.NPCHit44, Projectile.Center);
+                lastActionTick = ticksAlive;
+            }
+        }
+
+        private void AI_003_LuminitePhantom_IdleAI(ref float distanceToIdlePos, ref Vector2 vectorToIdlePos)
+        {
+            if (distanceToIdlePos > idleDistance)
+            {
+                //Smooth-Slowdown-Algorithm: Smoothly slow down from attack to idle speed.
+                float speedFactor = ((distanceToIdlePos * idleAccelerationFactor) / idleDistance);
+                if (speedFactor < 1f) //Make sure speed will be at least idleMoveSpeed
+                {
+                    speedFactor = 1f;
+                }
+                vectorToIdlePos.Normalize();
+                vectorToIdlePos *= (idleMoveSpeed * speedFactor);
+                Projectile.velocity += (vectorToIdlePos / idleInertia);
+                if (Projectile.velocity.Length() > (idleMoveSpeed * speedFactor)) //Smoothly accelerate/decelerate based on distance to idle position
+                {
+                    Projectile.velocity.Normalize();
+                    Projectile.velocity *= (idleMoveSpeed * speedFactor);
+                }
+                if (Projectile.velocity.Length() > attackMoveSpeed) //Cap movement speed at attack movement speed
+                {
+                    Projectile.velocity.Normalize();
+                    Projectile.velocity *= attackMoveSpeed;
                 }
             }
+        }
+
+        private void AI_003_LuminitePhantom_CorrectFreeze()
+        {
             if (Projectile.velocity.Length() == 0f)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
@@ -302,6 +341,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Projectile.velocity.Normalize();
                 Projectile.velocity *= idleMoveSpeed;
             }
+        }
+
+        private void AI_003_LuminitePhantom_UpdateFrames()
+        {
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= 6)
             {

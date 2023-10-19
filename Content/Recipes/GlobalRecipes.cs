@@ -58,6 +58,11 @@ namespace WeDoALittleTrolling.Content.Recipes
             .AddTile(TileID.AlchemyTable)
             .Register();
 
+            Recipe.Create(ItemID.RodofDiscord, 1)
+            .AddIngredient(ItemID.ChaosElementalBanner, 2)
+            .AddTile(TileID.HeavyWorkBench)
+            .Register();
+
             Recipe WDALT_WormScarf_BoC_V1 = Recipe.Create(ItemID.WormScarf, 1);
             WDALT_WormScarf_BoC_V1.AddCondition(ShimmerCondition);
             WDALT_WormScarf_BoC_V1.AddIngredient(ItemID.BrainOfConfusion, 1);
