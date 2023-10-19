@@ -27,18 +27,20 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace  WeDoALittleTrolling.Content.Projectiles
+namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class Beamlaser2 : ModProjectile
     {
         public Vector2 original_location;
         public bool location_is_locked = false;
-        public override void SetStaticDefaults() {
+        public override void SetStaticDefaults()
+        {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9999; // The length of old position to be recorded
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Projectile.width = 10; // The width of projectile hitbox
             Projectile.height = 10; // The height of projectile hitbox
             Projectile.aiStyle = 1; // The ai style of the projectile, please reference the source code of Terraria
@@ -57,7 +59,8 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             AIType = ProjectileID.Bullet; // Act exactly like default Bullet
         }
 
-        public override bool PreDraw(ref Color lightColor) {
+        public override bool PreDraw(ref Color lightColor)
+        {
             Main.instance.LoadProjectile(Projectile.type);
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 
@@ -65,7 +68,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                if(((k % 4) == 0)) //efficiency: Only render every 4th Projectile Trail Position
+                if (((k % 4) == 0)) //efficiency: Only render every 4th Projectile Trail Position
                 {
                     Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
@@ -97,18 +100,18 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 
         public override bool ShouldUpdatePosition()
         {
-            float maxBeamTravelX = Main.screenWidth/2;
-            float maxBeamTravelY = Main.screenHeight/2;
-            if(maxBeamTravelX > 1920/2)
+            float maxBeamTravelX = Main.screenWidth / 2;
+            float maxBeamTravelY = Main.screenHeight / 2;
+            if (maxBeamTravelX > 1920 / 2)
             {
-                maxBeamTravelX = 1920/2;
+                maxBeamTravelX = 1920 / 2;
             }
-            if(maxBeamTravelY > 1080/2)
+            if (maxBeamTravelY > 1080 / 2)
             {
-                maxBeamTravelY = 1080/2;
+                maxBeamTravelY = 1080 / 2;
             }
-            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
-               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY  || //Configure max lengh of beam in y coords
+            if (Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
+               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY || //Configure max lengh of beam in y coords
                this.location_is_locked)
             {
                 this.location_is_locked = true;

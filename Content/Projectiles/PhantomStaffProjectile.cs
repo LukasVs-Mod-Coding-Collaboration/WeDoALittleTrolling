@@ -91,7 +91,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void AI()
         {
             AI_003_LuminitePhantom(out Player ownerPlayer, out bool runAI);
-            if(!runAI)
+            if (!runAI)
             {
                 return;
             }

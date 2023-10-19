@@ -27,18 +27,20 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace  WeDoALittleTrolling.Content.Projectiles
+namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class Beamlaser2_AutoAim : ModProjectile
     {
         public Vector2 original_location;
         public bool location_is_locked = false;
-        public override void SetStaticDefaults() {
+        public override void SetStaticDefaults()
+        {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9999; // The length of old position to be recorded
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
         }
 
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Projectile.width = 10; // The width of projectile hitbox
             Projectile.height = 10; // The height of projectile hitbox
             Projectile.aiStyle = 1; // The ai style of the projectile, please reference the source code of Terraria
@@ -57,7 +59,8 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             AIType = ProjectileID.Bullet; // Act exactly like default Bullet
         }
 
-        public override bool PreDraw(ref Color lightColor) {
+        public override bool PreDraw(ref Color lightColor)
+        {
             Main.instance.LoadProjectile(Projectile.type);
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 
@@ -65,7 +68,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
             Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                if(((k % 4) == 0)) //efficiency: Only render every 4th Projectile Trail Position
+                if (((k % 4) == 0)) //efficiency: Only render every 4th Projectile Trail Position
                 {
                     Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
@@ -99,18 +102,18 @@ namespace  WeDoALittleTrolling.Content.Projectiles
 
         public override bool ShouldUpdatePosition()
         {
-            float maxBeamTravelX = Main.screenWidth/2;
-            float maxBeamTravelY = Main.screenHeight/2;
-            if(maxBeamTravelX > 1920/2)
+            float maxBeamTravelX = Main.screenWidth / 2;
+            float maxBeamTravelY = Main.screenHeight / 2;
+            if (maxBeamTravelX > 1920 / 2)
             {
-                maxBeamTravelX = 1920/2;
+                maxBeamTravelX = 1920 / 2;
             }
-            if(maxBeamTravelY > 1080/2)
+            if (maxBeamTravelY > 1080 / 2)
             {
-                maxBeamTravelY = 1080/2;
+                maxBeamTravelY = 1080 / 2;
             }
-            if(Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
-               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY  || //Configure max lengh of beam in y coords
+            if (Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
+               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY || //Configure max lengh of beam in y coords
                this.location_is_locked)
             {
                 this.location_is_locked = true;
@@ -128,43 +131,43 @@ namespace  WeDoALittleTrolling.Content.Projectiles
         {
             Vector2 spawnCenter = Projectile.Center;
             float lowest_distance = 9999;
-            float maxBeamTravelX = Main.screenWidth/2;
-            float maxBeamTravelY = Main.screenHeight/2;
+            float maxBeamTravelX = Main.screenWidth / 2;
+            float maxBeamTravelY = Main.screenHeight / 2;
             float origVelocityLength = Projectile.velocity.Length();
-            if(maxBeamTravelX > 1920/2)
+            if (maxBeamTravelX > 1920 / 2)
             {
-                maxBeamTravelX = 1920/2;
+                maxBeamTravelX = 1920 / 2;
             }
-            if(maxBeamTravelY > 1080/2)
+            if (maxBeamTravelY > 1080 / 2)
             {
-                maxBeamTravelY = 1080/2;
+                maxBeamTravelY = 1080 / 2;
             }
-            for(int i = 0; i < Main.npc.Length; i++)
+            for (int i = 0; i < Main.npc.Length; i++)
             {
                 NPC target = Main.npc[i];
-                float shootToX                  = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
-                float shootToY                  = target.position.Y - spawnCenter.Y;
-                Vector2 shootTo                 = new Vector2(shootToX, shootToY);
-                float distance                  = shootTo.Length();
-                Vector2 originalVector          = Projectile.velocity;
+                float shootToX = target.position.X + (float)target.width * 0.5f - spawnCenter.X;
+                float shootToY = target.position.Y - spawnCenter.Y;
+                Vector2 shootTo = new Vector2(shootToX, shootToY);
+                float distance = shootTo.Length();
+                Vector2 originalVector = Projectile.velocity;
                 originalVector.Normalize();
-                float x                         = originalVector.X;
-                float y                         = originalVector.Y;
-                float a                         = Math.Abs(this.original_location.X - target.position.X);
-                float b                         = Math.Abs(this.original_location.Y - target.position.Y);
-                float a_through_x               = Math.Abs(a/x);
-                float b_through_y               = Math.Abs(b/y);
-                float x_y_inaccuracy            = x*a_through_x;
-                float y_y_inaccuracy            = y*a_through_x;
-                float x_x_inaccuracy            = x*b_through_y;
-                float y_x_inaccuracy            = y*b_through_y;
-                Vector2 KonePositionY           = original_location + new Vector2(x_y_inaccuracy, y_y_inaccuracy);
-                Vector2 KonePositionX           = original_location + new Vector2(x_x_inaccuracy, y_x_inaccuracy);
-                Vector2 LineToTargetY           = new Vector2(target.position.X - KonePositionY.X, target.position.Y - KonePositionY.Y);
-                Vector2 LineToTargetX           = new Vector2(target.position.X - KonePositionX.X, target.position.Y - KonePositionX.Y);
-                float y_inaccuracy              = (float)System.Math.Sqrt((double)(LineToTargetY.X * LineToTargetY.X + LineToTargetY.Y * LineToTargetY.Y));
-                float x_inaccuracy              = (float)System.Math.Sqrt((double)(LineToTargetX.X * LineToTargetX.X + LineToTargetX.Y * LineToTargetX.Y));
-                float inaccuracy_tolerance      = 160;
+                float x = originalVector.X;
+                float y = originalVector.Y;
+                float a = Math.Abs(this.original_location.X - target.position.X);
+                float b = Math.Abs(this.original_location.Y - target.position.Y);
+                float a_through_x = Math.Abs(a / x);
+                float b_through_y = Math.Abs(b / y);
+                float x_y_inaccuracy = x * a_through_x;
+                float y_y_inaccuracy = y * a_through_x;
+                float x_x_inaccuracy = x * b_through_y;
+                float y_x_inaccuracy = y * b_through_y;
+                Vector2 KonePositionY = original_location + new Vector2(x_y_inaccuracy, y_y_inaccuracy);
+                Vector2 KonePositionX = original_location + new Vector2(x_x_inaccuracy, y_x_inaccuracy);
+                Vector2 LineToTargetY = new Vector2(target.position.X - KonePositionY.X, target.position.Y - KonePositionY.Y);
+                Vector2 LineToTargetX = new Vector2(target.position.X - KonePositionX.X, target.position.Y - KonePositionX.Y);
+                float y_inaccuracy = (float)System.Math.Sqrt((double)(LineToTargetY.X * LineToTargetY.X + LineToTargetY.Y * LineToTargetY.Y));
+                float x_inaccuracy = (float)System.Math.Sqrt((double)(LineToTargetX.X * LineToTargetX.X + LineToTargetX.Y * LineToTargetX.Y));
+                float inaccuracy_tolerance = 160;
                 if
                 (
                     (
@@ -174,7 +177,7 @@ namespace  WeDoALittleTrolling.Content.Projectiles
                     (
                         Math.Abs(this.original_location.X - target.position.X) > inaccuracy_tolerance ||   //Configure non-detect zone in x coords
                         Math.Abs(this.original_location.Y - target.position.Y) > inaccuracy_tolerance      //Configure non-detect zone in y coords
-                    )&&
+                    ) &&
                     !target.friendly &&
                     !target.CountsAsACritter &&
                     !target.isLikeATownNPC &&

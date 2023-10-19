@@ -29,9 +29,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class PhotonsplicerProjectile : ModProjectile
     {
-        protected virtual float SpearLengh => (float)Math.Sqrt((200*200)+(200*200));
-        protected virtual float HoldoutRangeMin => (SpearLengh/2 - (float)64.0) + (float)32.0;
-        protected virtual float HoldoutRangeMax => (SpearLengh/2 + (float)64.0) + (float)32.0;
+        protected virtual float SpearLengh => (float)Math.Sqrt((200 * 200) + (200 * 200));
+        protected virtual float HoldoutRangeMin => (SpearLengh / 2 - (float)64.0) + (float)32.0;
+        protected virtual float HoldoutRangeMax => (SpearLengh / 2 + (float)64.0) + (float)32.0;
 
         public override void SetDefaults()
         {
@@ -52,8 +52,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             Vector2 vOffset = Projectile.velocity * 16;
             Point pOffset = new Point();
-            pOffset.X = - (int)Math.Round(vOffset.X);
-            pOffset.Y = - (int)Math.Round(vOffset.Y);
+            pOffset.X = -(int)Math.Round(vOffset.X);
+            pOffset.Y = -(int)Math.Round(vOffset.Y);
             hitbox.Offset(pOffset);
             base.ModifyDamageHitbox(ref hitbox);
         }
@@ -72,7 +72,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             player.heldProj = Projectile.whoAmI;
 
             // Reset projectile time left if necessary
-            if (Projectile.timeLeft > duration) {
+            if (Projectile.timeLeft > duration)
+            {
                 Projectile.timeLeft = duration;
             }
             // Stop projectile after having travelled half way back, so it seems less like a piston.

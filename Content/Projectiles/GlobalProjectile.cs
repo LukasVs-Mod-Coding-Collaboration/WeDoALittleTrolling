@@ -140,7 +140,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.HappyBomb,
             ProjectileID.SniperBullet
         };
-        
+
         public override void SetDefaults(Projectile projectile)
         {
             if
@@ -150,18 +150,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.extraUpdates = 1;
             }
-            if(projectile.aiStyle == ProjAIStyleID.TerrarianBeam || projectile.aiStyle == ProjAIStyleID.Yoyo)
+            if (projectile.aiStyle == ProjAIStyleID.TerrarianBeam || projectile.aiStyle == ProjAIStyleID.Yoyo)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;
                 projectile.usesIDStaticNPCImmunity = false;
                 projectile.idStaticNPCHitCooldown = -1;
             }
-            if(projectile.type == ProjectileID.IceBoomerang)
+            if (projectile.type == ProjectileID.IceBoomerang)
             {
                 projectile.extraUpdates = projectile.GetGlobalProjectile<WDALTProjectileUtil>().extraUpdatesIceBoomerang;
             }
-            if(projectile.type == ProjectileID.BookOfSkullsSkull)
+            if (projectile.type == ProjectileID.BookOfSkullsSkull)
             {
                 projectile.penetrate = -1;
             }
@@ -207,13 +207,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.timeLeft = 80;
             }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
-                if(projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V1))
+                if (projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V1))
                 {
-                    if(Main.expertMode)
+                    if (Main.expertMode)
                     {
-                        if(projectile.extraUpdates < 1)
+                        if (projectile.extraUpdates < 1)
                         {
                             projectile.extraUpdates = 1;
                         }
@@ -221,11 +221,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                     projectile.timeLeft *= 8;
                 }
-                if(projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V2))
+                if (projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V2))
                 {
-                    if(Main.expertMode)
+                    if (Main.expertMode)
                     {
-                        if(projectile.extraUpdates < 1)
+                        if (projectile.extraUpdates < 1)
                         {
                             projectile.extraUpdates = 1;
                         }
@@ -235,28 +235,28 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             base.SetDefaults(projectile);
         }
-        
+
         public override bool PreAI(Projectile projectile)
         {
-            if(projectile.type == ProjectileID.IceBoomerang)
+            if (projectile.type == ProjectileID.IceBoomerang)
             {
                 int baseSoundDelay = 8;
-                if(projectile.soundDelay == (baseSoundDelay - 1))
+                if (projectile.soundDelay == (baseSoundDelay - 1))
                 {
-                    if(!projectile.GetGlobalProjectile<WDALTProjectileUtil>().HasRecentlyPassedSoundDelay(ProjectileID.IceBoomerang))
+                    if (!projectile.GetGlobalProjectile<WDALTProjectileUtil>().HasRecentlyPassedSoundDelay(ProjectileID.IceBoomerang))
                     {
                         int multiplier = (projectile.GetGlobalProjectile<WDALTProjectileUtil>().extraUpdatesIceBoomerang + 1);
                         projectile.soundDelay = (baseSoundDelay * multiplier);
                     }
                 }
             }
-            if(projectile.type == ProjectileID.OrnamentFriendly && projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive > 25)
+            if (projectile.type == ProjectileID.OrnamentFriendly && projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive > 25)
             {
                 float lowest_distance = 512f; //Homing detection range
                 float correction_factor = 2.5f;
                 float speed = 10f;
                 NPC target = null;
-                for(int i = 0; i < Main.npc.Length; i++)
+                for (int i = 0; i < Main.npc.Length; i++)
                 {
                     NPC currentTarget = Main.npc[i];
                     if
@@ -264,9 +264,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         !currentTarget.dontTakeDamage &&
                         currentTarget.active &&
                         currentTarget.CanBeChasedBy() &&
-                        !currentTarget.friendly && 
-                        !currentTarget.CountsAsACritter && 
-                        !currentTarget.isLikeATownNPC && 
+                        !currentTarget.friendly &&
+                        !currentTarget.CountsAsACritter &&
+                        !currentTarget.isLikeATownNPC &&
                         currentTarget.type != NPCID.TargetDummy &&
                         Collision.CanHitLine
                         (
@@ -287,7 +287,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         }
                     }
                 }
-                if(target != null)
+                if (target != null)
                 {
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
                     vectorToTarget.Normalize();
@@ -303,7 +303,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI(Projectile projectile)
         {
-            if(projectile.type == ProjectileID.Bubble)
+            if (projectile.type == ProjectileID.Bubble)
             {
                 projectile.velocity *= 1.03f;
             }
@@ -326,7 +326,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 float lowest_distance = 0f; //Homing detection range
                 float correction_factor = 0f;
-                switch(projectile.type)
+                switch (projectile.type)
                 {
                     case ProjectileID.FrostBlastFriendly:
                         lowest_distance = 1024f;
@@ -375,7 +375,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         break;
                 }
                 NPC target = null;
-                for(int i = 0; i < Main.npc.Length; i++)
+                for (int i = 0; i < Main.npc.Length; i++)
                 {
                     NPC currentTarget = Main.npc[i];
                     if
@@ -383,9 +383,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         !currentTarget.dontTakeDamage &&
                         currentTarget.active &&
                         currentTarget.CanBeChasedBy() &&
-                        !currentTarget.friendly && 
-                        !currentTarget.CountsAsACritter && 
-                        !currentTarget.isLikeATownNPC && 
+                        !currentTarget.friendly &&
+                        !currentTarget.CountsAsACritter &&
+                        !currentTarget.isLikeATownNPC &&
                         currentTarget.type != NPCID.TargetDummy &&
                         Collision.CanHitLine
                         (
@@ -406,7 +406,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         }
                     }
                 }
-                if(target != null)
+                if (target != null)
                 {
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
                     vectorToTarget.Normalize();
@@ -433,7 +433,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 float lowest_distance = 0f;
                 float correction_factor = 0f;
-                switch(projectile.type)
+                switch (projectile.type)
                 {
                     case ProjectileID.SeedPlantera:
                     case ProjectileID.PoisonSeedPlantera:
@@ -456,10 +456,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         break;
                 }
                 Player target = null;
-                for(int i = 0; i < Main.player.Length; i++)
+                for (int i = 0; i < Main.player.Length; i++)
                 {
                     Player currentTarget = Main.player[i];
-                    if(currentTarget.active)
+                    if (currentTarget.active)
                     {
                         Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
                         if (vectorToTarget.Length() < lowest_distance)
@@ -469,7 +469,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         }
                     }
                 }
-                if(target != null)
+                if (target != null)
                 {
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
                     vectorToTarget.Normalize();
@@ -502,7 +502,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         success = true;
                     }
                 }
-                if(!success && projectile.GetGlobalProjectile<WDALTProjectileUtil>().colossalSolarWhip)
+                if (!success && projectile.GetGlobalProjectile<WDALTProjectileUtil>().colossalSolarWhip)
                 {
                     projectile.ai[0] -= 0.5f;
                 }
@@ -523,7 +523,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 )
             )
             {
-                if(player.strongBees && player.whoAmI == Main.myPlayer && random.NextBool(10))
+                if (player.strongBees && player.whoAmI == Main.myPlayer && random.NextBool(10))
                 {
                     Projectile beenade = Projectile.NewProjectileDirect(source, projectile.Center, projectile.velocity, ProjectileID.Beenade, projectile.damage, projectile.knockBack, projectile.owner);
                     projectile.active = false;
@@ -576,11 +576,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override bool PreKill(Projectile projectile, int timeLeft)
         {
-            if(projectile.type == ProjectileID.TrueNightsEdge)
+            if (projectile.type == ProjectileID.TrueNightsEdge)
             {
-                for(int i = 0; i < 320; i++)
+                for (int i = 0; i < 320; i++)
                 {
-                    int rMax = (int)Math.Round(projectile.width*3*projectile.scale);
+                    int rMax = (int)Math.Round(projectile.width * 3 * projectile.scale);
                     double r = rMax * Math.Sqrt(random.NextDouble());
                     double angle = random.NextDouble() * 2 * Math.PI;
                     int xOffset = (int)Math.Round(r * Math.Cos(angle));
@@ -616,17 +616,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         int scalingFactor = 2;
                         int horizonalIncrease = (int)Math.Round((hitbox.Width * scalingFactor) / (2 * Math.Sqrt(2)));
                         int verticalIncrease = (int)Math.Round((hitbox.Height * scalingFactor) / (2 * Math.Sqrt(2)));
-                        if(projectile.type == ProjectileID.Terragrim || projectile.type == ProjectileID.Arkhalis)
+                        if (projectile.type == ProjectileID.Terragrim || projectile.type == ProjectileID.Arkhalis)
                         {
                             horizonalIncrease = (int)Math.Round(horizonalIncrease / Math.Sqrt(2));
                             verticalIncrease = (int)Math.Round(verticalIncrease / Math.Sqrt(2));
                         }
                         hitbox.Inflate(horizonalIncrease, verticalIncrease);
                     }
-                    else if(Colossal.ShortswordCompatibleProjectileIDs.Contains(projectile.type))
+                    else if (Colossal.ShortswordCompatibleProjectileIDs.Contains(projectile.type))
                     {
                         int scalingFactor = 2;
-                        int horizonalIncrease  = (int)Math.Round((hitbox.Width * scalingFactor) / (Math.Sqrt(2)));
+                        int horizonalIncrease = (int)Math.Round((hitbox.Width * scalingFactor) / (Math.Sqrt(2)));
                         int verticalIncrease = (int)Math.Round((hitbox.Height * scalingFactor) / (Math.Sqrt(2)));
                         hitbox.Inflate(horizonalIncrease, verticalIncrease);
                     }
@@ -637,15 +637,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if(projectile.type == ProjectileID.SporeCloud)
+            if (projectile.type == ProjectileID.SporeCloud)
             {
                 target.AddBuff(BuffID.Poisoned, 240, false);
             }
-            if(projectile.type == ProjectileID.DeathSickle)
+            if (projectile.type == ProjectileID.DeathSickle)
             {
                 target.AddBuff(BuffID.ShadowFlame, 240, false);
             }
-            if(projectile.type == ProjectileID.IceSickle)
+            if (projectile.type == ProjectileID.IceSickle)
             {
                 target.AddBuff(BuffID.Frostburn, 240, false);
             }
@@ -661,7 +661,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 target.AddBuff(BuffID.CursedInferno, 240, false);
             }
-            if(projectile.type == ProjectileID.HellfireArrow)
+            if (projectile.type == ProjectileID.HellfireArrow)
             {
                 target.AddBuff(BuffID.OnFire3, 240, false);
             }
@@ -670,51 +670,51 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
-            if(InflictVenomDebuff1In1Group.Contains(projectile.type))
+            if (InflictVenomDebuff1In1Group.Contains(projectile.type))
             {
-                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
                     target.AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictPoisonDebuff1In1Group.Contains(projectile.type))
+            if (InflictPoisonDebuff1In1Group.Contains(projectile.type))
             {
-                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
                     target.AddBuff(BuffID.Poisoned, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictBleedingDebuff1In1Group.Contains(projectile.type))
+            if (InflictBleedingDebuff1In1Group.Contains(projectile.type))
             {
-                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
                     target.AddBuff(BuffID.Bleeding, 960, true); //16s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictBleedingDebuff1In8Group.Contains(projectile.type))
+            if (InflictBleedingDebuff1In8Group.Contains(projectile.type))
             {
-                if(random.Next(0, 8) == 0) //1 in 8 Chance
+                if (random.Next(0, 8) == 0) //1 in 8 Chance
                 {
                     target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictSearingInferno1In1Group.Contains(projectile.type))
+            if (InflictSearingInferno1In1Group.Contains(projectile.type))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictWreckedResistance1In1Group.Contains(projectile.type))
+            if (InflictWreckedResistance1In1Group.Contains(projectile.type))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictWreckedAccuracy1In1Group.Contains(projectile.type))
+            if (InflictWreckedAccuracy1In1Group.Contains(projectile.type))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
@@ -725,39 +725,39 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC attacker)
             )
             {
-                if(attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.Retinazer)
+                if (attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.Retinazer)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictDevastated1In1Group.Contains(projectile.type))
+            if (InflictDevastated1In1Group.Contains(projectile.type))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
                 }
             }
-            if(projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
+            if (projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
             {
-                if(npc.type == NPCID.MoonLordHead)
+                if (npc.type == NPCID.MoonLordHead)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
                 }
             }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
-                if(WDALTModContentID.GetThoriumBossProjectileInflictWreckedResistance1in1Group().Contains(projectile.type))
+                if (WDALTModContentID.GetThoriumBossProjectileInflictWreckedResistance1in1Group().Contains(projectile.type))
                 {
-                    if(random.Next(0, 1) == 0)
+                    if (random.Next(0, 1) == 0)
                     {
                         target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     }
                 }
-                if(WDALTModContentID.GetThoriumBossProjectileInflictDevastated1in1Group().Contains(projectile.type))
+                if (WDALTModContentID.GetThoriumBossProjectileInflictDevastated1in1Group().Contains(projectile.type))
                 {
-                    if(random.Next(0, 1) == 0)
+                    if (random.Next(0, 1) == 0)
                     {
                         target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                         Devastated.AnimateDevastated(target);
@@ -781,23 +781,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
-            if(projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
+            if (projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
             {
-                if(npc.type == NPCID.MoonLordFreeEye)
+                if (npc.type == NPCID.MoonLordFreeEye)
                 {
                     modifiers.SourceDamage *= 0.5f;
                 }
             }
-            if(projectile.type == ProjectileID.Boulder && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
+            if (projectile.type == ProjectileID.Boulder && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
             {
                 modifiers.SourceDamage *= 0.5f;
-                if(Main.expertMode)
+                if (Main.expertMode)
                 {
                     modifiers.SourceDamage *= 0.5f;
                 }
-                if(Main.masterMode)
+                if (Main.masterMode)
                 {
-                    modifiers.SourceDamage *= (1f/1.5f);
+                    modifiers.SourceDamage *= (1f / 1.5f);
                 }
             }
         }
@@ -828,7 +828,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.RainbowCrystalExplosion
             )
             {
-                if(random.Next(0, 100) < 30)
+                if (random.Next(0, 100) < 30)
                 {
                     modifiers.SetCrit();
                 }

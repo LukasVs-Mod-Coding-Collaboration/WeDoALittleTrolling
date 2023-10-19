@@ -73,7 +73,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool CanUseItem(Player player)
         {
-            if(player.maxMinions < ItemID.Sets.StaffMinionSlotsRequired[Type])
+            if (player.maxMinions < ItemID.Sets.StaffMinionSlotsRequired[Type])
             {
                 return false;
             }

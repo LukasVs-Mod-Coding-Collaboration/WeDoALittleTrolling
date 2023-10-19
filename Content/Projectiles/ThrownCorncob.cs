@@ -48,7 +48,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             Projectile.velocity *= 0.75f;
             bounces++;
-            if(bounces >= 5)
+            if (bounces >= 5)
             {
                 Projectile.Kill();
             }
@@ -66,7 +66,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AnimateImpact()
         {
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 int rMax = (int)Math.Round(Projectile.width * Projectile.scale);
                 double r = rMax * Math.Sqrt(random.NextDouble());

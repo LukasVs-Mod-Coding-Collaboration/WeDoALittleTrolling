@@ -120,12 +120,12 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_HorseShoe_V1.AddIngredient(ItemID.Cloud, 10);
             WDALT_HorseShoe_V1.Register();
 
-             Recipe WDALT_HorseShoe_V2 = Recipe.Create(ItemID.LuckyHorseshoe, 1);
+            Recipe WDALT_HorseShoe_V2 = Recipe.Create(ItemID.LuckyHorseshoe, 1);
             WDALT_HorseShoe_V2.AddTile(TileID.Anvils);
             WDALT_HorseShoe_V2.AddIngredient(ItemID.PlatinumBar, 10);
             WDALT_HorseShoe_V2.AddIngredient(ItemID.Cloud, 10);
             WDALT_HorseShoe_V2.Register();
-            
+
             Recipe WDALT_CobaltShield_V1 = Recipe.Create(ItemID.CobaltShield, 1);
             WDALT_CobaltShield_V1.AddTile(TileID.MythrilAnvil);
             WDALT_CobaltShield_V1.AddIngredient(ItemID.CobaltBar, 8);
@@ -149,7 +149,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_SanguineStaff_V2.AddIngredient(ItemID.BatBat, 1);
             WDALT_SanguineStaff_V2.AddIngredient(ItemID.CobaltBar, 12);
             WDALT_SanguineStaff_V2.Register();
-            
+
             Recipe WDALT_Terraprisma = Recipe.Create(ItemID.EmpressBlade, 1);
             WDALT_Terraprisma.AddTile(TileID.LunarCraftingStation);
             WDALT_Terraprisma.AddIngredient(ItemID.RainbowWhip, 1);
@@ -339,7 +339,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             .AddCondition(ShimmerCondition)
             .Register();
         }
-        
+
         public static void AddComplexCraftingTreeItemDuplicationRecipes()
         {
             Condition AnkhShieldCondition = new Condition("Ankh Shield in Inventory", WDALTConditionFunctions.HasAnkhShieldInInventory);
@@ -449,29 +449,29 @@ namespace WeDoALittleTrolling.Content.Recipes
 
         public static void PostAddRecipes()
         {
-            for(int i = 0; i < Recipe.numRecipes; i++)
+            for (int i = 0; i < Recipe.numRecipes; i++)
             {
                 Recipe recipe = Main.recipe[i];
 
                 //Platinum Armor
 
-                if(recipe.TryGetResult(ItemID.PlatinumHelmet, out Item PlatinumHelmet))
+                if (recipe.TryGetResult(ItemID.PlatinumHelmet, out Item PlatinumHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PlatinumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PlatinumBar, out Item ingredient))
                     {
                         ingredient.stack = 12;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.PlatinumChainmail, out Item PlatinumChainmail))
+                if (recipe.TryGetResult(ItemID.PlatinumChainmail, out Item PlatinumChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PlatinumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PlatinumBar, out Item ingredient))
                     {
                         ingredient.stack = 22;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.PlatinumGreaves, out Item PlatinumGreaves))
+                if (recipe.TryGetResult(ItemID.PlatinumGreaves, out Item PlatinumGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PlatinumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PlatinumBar, out Item ingredient))
                     {
                         ingredient.stack = 16;
                     }
@@ -479,23 +479,23 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Gold Armor
 
-                if(recipe.TryGetResult(ItemID.GoldHelmet, out Item GoldHelmet))
+                if (recipe.TryGetResult(ItemID.GoldHelmet, out Item GoldHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.GoldBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.GoldBar, out Item ingredient))
                     {
                         ingredient.stack = 12;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.GoldChainmail, out Item GoldChainmail))
+                if (recipe.TryGetResult(ItemID.GoldChainmail, out Item GoldChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.GoldBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.GoldBar, out Item ingredient))
                     {
                         ingredient.stack = 22;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.GoldGreaves, out Item GoldGreaves))
+                if (recipe.TryGetResult(ItemID.GoldGreaves, out Item GoldGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.GoldBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.GoldBar, out Item ingredient))
                     {
                         ingredient.stack = 16;
                     }
@@ -503,23 +503,23 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Iron Armor
 
-                if(recipe.TryGetResult(ItemID.IronHelmet, out Item IronHelmet))
+                if (recipe.TryGetResult(ItemID.IronHelmet, out Item IronHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.IronBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.IronBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.IronChainmail, out Item IronChainmail))
+                if (recipe.TryGetResult(ItemID.IronChainmail, out Item IronChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.IronBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.IronBar, out Item ingredient))
                     {
                         ingredient.stack = 20;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.IronGreaves, out Item IronGreaves))
+                if (recipe.TryGetResult(ItemID.IronGreaves, out Item IronGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.IronBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.IronBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
@@ -527,23 +527,23 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Lead Armor
 
-                if(recipe.TryGetResult(ItemID.LeadHelmet, out Item LeadHelmet))
+                if (recipe.TryGetResult(ItemID.LeadHelmet, out Item LeadHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.LeadBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.LeadBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.LeadChainmail, out Item LeadChainmail))
+                if (recipe.TryGetResult(ItemID.LeadChainmail, out Item LeadChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.LeadBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.LeadBar, out Item ingredient))
                     {
                         ingredient.stack = 20;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.LeadGreaves, out Item LeadGreaves))
+                if (recipe.TryGetResult(ItemID.LeadGreaves, out Item LeadGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.LeadBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.LeadBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
@@ -551,23 +551,23 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Silver Armor
 
-                if(recipe.TryGetResult(ItemID.SilverHelmet, out Item SilverHelmet))
+                if (recipe.TryGetResult(ItemID.SilverHelmet, out Item SilverHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.SilverBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.SilverBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.SilverChainmail, out Item SilverChainmail))
+                if (recipe.TryGetResult(ItemID.SilverChainmail, out Item SilverChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.SilverBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.SilverBar, out Item ingredient))
                     {
                         ingredient.stack = 20;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.SilverGreaves, out Item SilverGreaves))
+                if (recipe.TryGetResult(ItemID.SilverGreaves, out Item SilverGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.SilverBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.SilverBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
@@ -575,23 +575,23 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Tungsten Armor
 
-                if(recipe.TryGetResult(ItemID.TungstenHelmet, out Item TungstenHelmet))
+                if (recipe.TryGetResult(ItemID.TungstenHelmet, out Item TungstenHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TungstenBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TungstenBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TungstenChainmail, out Item TungstenChainmail))
+                if (recipe.TryGetResult(ItemID.TungstenChainmail, out Item TungstenChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TungstenBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TungstenBar, out Item ingredient))
                     {
                         ingredient.stack = 20;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TungstenGreaves, out Item TungstenGreaves))
+                if (recipe.TryGetResult(ItemID.TungstenGreaves, out Item TungstenGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TungstenBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TungstenBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
@@ -599,23 +599,23 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Copper Armor
 
-                if(recipe.TryGetResult(ItemID.CopperHelmet, out Item CopperHelmet))
+                if (recipe.TryGetResult(ItemID.CopperHelmet, out Item CopperHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CopperBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CopperBar, out Item ingredient))
                     {
                         ingredient.stack = 8;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.CopperChainmail, out Item CopperChainmail))
+                if (recipe.TryGetResult(ItemID.CopperChainmail, out Item CopperChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CopperBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CopperBar, out Item ingredient))
                     {
                         ingredient.stack = 14;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.CopperGreaves, out Item CopperGreaves))
+                if (recipe.TryGetResult(ItemID.CopperGreaves, out Item CopperGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CopperBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CopperBar, out Item ingredient))
                     {
                         ingredient.stack = 8;
                     }
@@ -623,23 +623,23 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Tin Armor
 
-                if(recipe.TryGetResult(ItemID.TinHelmet, out Item TinHelmet))
+                if (recipe.TryGetResult(ItemID.TinHelmet, out Item TinHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TinBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TinBar, out Item ingredient))
                     {
                         ingredient.stack = 8;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TinChainmail, out Item TinChainmail))
+                if (recipe.TryGetResult(ItemID.TinChainmail, out Item TinChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TinBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TinBar, out Item ingredient))
                     {
                         ingredient.stack = 14;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TinGreaves, out Item TinGreaves))
+                if (recipe.TryGetResult(ItemID.TinGreaves, out Item TinGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TinBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TinBar, out Item ingredient))
                     {
                         ingredient.stack = 8;
                     }
@@ -647,37 +647,37 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Cobalt Armor
 
-                if(recipe.TryGetResult(ItemID.CobaltHat, out Item CobaltHat))
+                if (recipe.TryGetResult(ItemID.CobaltHat, out Item CobaltHat))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.CobaltHelmet, out Item CobaltHelmet))
+                if (recipe.TryGetResult(ItemID.CobaltHelmet, out Item CobaltHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.CobaltMask, out Item CobaltMask))
+                if (recipe.TryGetResult(ItemID.CobaltMask, out Item CobaltMask))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.CobaltBreastplate, out Item CobaltBreastplate))
+                if (recipe.TryGetResult(ItemID.CobaltBreastplate, out Item CobaltBreastplate))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.CobaltLeggings, out Item CobaltLeggings))
+                if (recipe.TryGetResult(ItemID.CobaltLeggings, out Item CobaltLeggings))
                 {
-                    if(recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.CobaltBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
@@ -685,37 +685,37 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Palladium Armor
 
-                if(recipe.TryGetResult(ItemID.PalladiumHelmet, out Item PalladiumHelmet))
+                if (recipe.TryGetResult(ItemID.PalladiumHelmet, out Item PalladiumHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.PalladiumHeadgear, out Item PalladiumHeadgear))
+                if (recipe.TryGetResult(ItemID.PalladiumHeadgear, out Item PalladiumHeadgear))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.PalladiumMask, out Item PalladiumMask))
+                if (recipe.TryGetResult(ItemID.PalladiumMask, out Item PalladiumMask))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.PalladiumBreastplate, out Item PalladiumBreastplate))
+                if (recipe.TryGetResult(ItemID.PalladiumBreastplate, out Item PalladiumBreastplate))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.PalladiumLeggings, out Item PalladiumLeggings))
+                if (recipe.TryGetResult(ItemID.PalladiumLeggings, out Item PalladiumLeggings))
                 {
-                    if(recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.PalladiumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
@@ -723,37 +723,37 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Mythril Armor
 
-                if(recipe.TryGetResult(ItemID.MythrilHat, out Item MythrilHat))
+                if (recipe.TryGetResult(ItemID.MythrilHat, out Item MythrilHat))
                 {
-                    if(recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.MythrilHelmet, out Item MythrilHelmet))
+                if (recipe.TryGetResult(ItemID.MythrilHelmet, out Item MythrilHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.MythrilHood, out Item MythrilMask))
+                if (recipe.TryGetResult(ItemID.MythrilHood, out Item MythrilMask))
                 {
-                    if(recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.MythrilChainmail, out Item MythrilChainmail))
+                if (recipe.TryGetResult(ItemID.MythrilChainmail, out Item MythrilChainmail))
                 {
-                    if(recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.MythrilGreaves, out Item MythrilGreaves))
+                if (recipe.TryGetResult(ItemID.MythrilGreaves, out Item MythrilGreaves))
                 {
-                    if(recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.MythrilBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
@@ -761,37 +761,37 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Orichalcum Armor
 
-                if(recipe.TryGetResult(ItemID.OrichalcumHelmet, out Item OrichalcumHelmet))
+                if (recipe.TryGetResult(ItemID.OrichalcumHelmet, out Item OrichalcumHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.OrichalcumHeadgear, out Item OrichalcumHeadgear))
+                if (recipe.TryGetResult(ItemID.OrichalcumHeadgear, out Item OrichalcumHeadgear))
                 {
-                    if(recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.OrichalcumMask, out Item OrichalcumMask))
+                if (recipe.TryGetResult(ItemID.OrichalcumMask, out Item OrichalcumMask))
                 {
-                    if(recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.OrichalcumBreastplate, out Item OrichalcumBreastplate))
+                if (recipe.TryGetResult(ItemID.OrichalcumBreastplate, out Item OrichalcumBreastplate))
                 {
-                    if(recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.OrichalcumLeggings, out Item OrichalcumLeggings))
+                if (recipe.TryGetResult(ItemID.OrichalcumLeggings, out Item OrichalcumLeggings))
                 {
-                    if(recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.OrichalcumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
@@ -799,37 +799,37 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Adamantite Armor
 
-                if(recipe.TryGetResult(ItemID.AdamantiteHelmet, out Item AdamantiteHelmet))
+                if (recipe.TryGetResult(ItemID.AdamantiteHelmet, out Item AdamantiteHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.AdamantiteHeadgear, out Item AdamantiteHeadgear))
+                if (recipe.TryGetResult(ItemID.AdamantiteHeadgear, out Item AdamantiteHeadgear))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.AdamantiteMask, out Item AdamantiteMask))
+                if (recipe.TryGetResult(ItemID.AdamantiteMask, out Item AdamantiteMask))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
                     {
                         ingredient.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.AdamantiteBreastplate, out Item AdamantiteBreastplate))
+                if (recipe.TryGetResult(ItemID.AdamantiteBreastplate, out Item AdamantiteBreastplate))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.AdamantiteLeggings, out Item AdamantiteLeggings))
+                if (recipe.TryGetResult(ItemID.AdamantiteLeggings, out Item AdamantiteLeggings))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
@@ -837,37 +837,37 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Titanium Armor
 
-                if(recipe.TryGetResult(ItemID.TitaniumHelmet, out Item TitaniumHelmet))
+                if (recipe.TryGetResult(ItemID.TitaniumHelmet, out Item TitaniumHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TitaniumHeadgear, out Item TitaniumHeadgear))
+                if (recipe.TryGetResult(ItemID.TitaniumHeadgear, out Item TitaniumHeadgear))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TitaniumMask, out Item TitaniumMask))
+                if (recipe.TryGetResult(ItemID.TitaniumMask, out Item TitaniumMask))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TitaniumBreastplate, out Item TitaniumBreastplate))
+                if (recipe.TryGetResult(ItemID.TitaniumBreastplate, out Item TitaniumBreastplate))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.TitaniumLeggings, out Item TitaniumLeggings))
+                if (recipe.TryGetResult(ItemID.TitaniumLeggings, out Item TitaniumLeggings))
                 {
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item ingredient))
                     {
                         ingredient.stack = 15;
                     }
@@ -875,35 +875,35 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Frost Armor
 
-                if(recipe.TryGetResult(ItemID.FrostHelmet, out Item FrostHelmet))
+                if (recipe.TryGetResult(ItemID.FrostHelmet, out Item FrostHelmet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_FrostHelmet))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_FrostHelmet))
                     {
                         AdamantiteBar_FrostHelmet.stack = 10;
                     }
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_FrostHelmet))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_FrostHelmet))
                     {
                         TitaniumBar_FrostHelmet.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.FrostBreastplate, out Item FrostBreastplate))
+                if (recipe.TryGetResult(ItemID.FrostBreastplate, out Item FrostBreastplate))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_FrostBreastplate))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_FrostBreastplate))
                     {
                         AdamantiteBar_FrostBreastplate.stack = 15;
                     }
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_FrostBreastplate))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_FrostBreastplate))
                     {
                         TitaniumBar_FrostBreastplate.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.FrostLeggings, out Item FrostLeggings))
+                if (recipe.TryGetResult(ItemID.FrostLeggings, out Item FrostLeggings))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_FrostLeggings))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_FrostLeggings))
                     {
                         AdamantiteBar_FrostLeggings.stack = 10;
                     }
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_FrostLeggings))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_FrostLeggings))
                     {
                         TitaniumBar_FrostLeggings.stack = 10;
                     }
@@ -911,35 +911,35 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Forbidden Armor
 
-                if(recipe.TryGetResult(ItemID.AncientBattleArmorHat, out Item AncientBattleArmorHat))
+                if (recipe.TryGetResult(ItemID.AncientBattleArmorHat, out Item AncientBattleArmorHat))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_AncientBattleArmorHat))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_AncientBattleArmorHat))
                     {
                         AdamantiteBar_AncientBattleArmorHat.stack = 10;
                     }
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_AncientBattleArmorHat))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_AncientBattleArmorHat))
                     {
                         TitaniumBar_AncientBattleArmorHat.stack = 10;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.AncientBattleArmorShirt, out Item AncientBattleArmorShirt))
+                if (recipe.TryGetResult(ItemID.AncientBattleArmorShirt, out Item AncientBattleArmorShirt))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_AncientBattleArmorShirt))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_AncientBattleArmorShirt))
                     {
                         AdamantiteBar_AncientBattleArmorShirt.stack = 15;
                     }
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_AncientBattleArmorShirt))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_AncientBattleArmorShirt))
                     {
                         TitaniumBar_AncientBattleArmorShirt.stack = 15;
                     }
                 }
-                if(recipe.TryGetResult(ItemID.AncientBattleArmorPants, out Item AncientBattleArmorPants))
+                if (recipe.TryGetResult(ItemID.AncientBattleArmorPants, out Item AncientBattleArmorPants))
                 {
-                    if(recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_AncientBattleArmorPants))
+                    if (recipe.TryGetIngredient(ItemID.AdamantiteBar, out Item AdamantiteBar_AncientBattleArmorPants))
                     {
                         AdamantiteBar_AncientBattleArmorPants.stack = 10;
                     }
-                    if(recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_AncientBattleArmorPants))
+                    if (recipe.TryGetIngredient(ItemID.TitaniumBar, out Item TitaniumBar_AncientBattleArmorPants))
                     {
                         TitaniumBar_AncientBattleArmorPants.stack = 10;
                     }
@@ -947,9 +947,9 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Chlorophyte Bar
 
-                if(recipe.TryGetResult(ItemID.ChlorophyteBar, out Item ChlorophyteBar))
+                if (recipe.TryGetResult(ItemID.ChlorophyteBar, out Item ChlorophyteBar))
                 {
-                    if(recipe.TryGetIngredient(ItemID.ChlorophyteOre, out Item ChlorophyteOre))
+                    if (recipe.TryGetIngredient(ItemID.ChlorophyteOre, out Item ChlorophyteOre))
                     {
                         ChlorophyteOre.stack = 3;
                     }
@@ -957,9 +957,9 @@ namespace WeDoALittleTrolling.Content.Recipes
 
                 //Chlorophyte Bullet
 
-                if(recipe.TryGetResult(ItemID.ChlorophyteBullet, out Item ChlorophyteBullet))
+                if (recipe.TryGetResult(ItemID.ChlorophyteBullet, out Item ChlorophyteBullet))
                 {
-                    if(recipe.TryGetIngredient(ItemID.MusketBall, out Item MusketBall))
+                    if (recipe.TryGetIngredient(ItemID.MusketBall, out Item MusketBall))
                     {
                         MusketBall.stack = 150;
                     }
@@ -967,42 +967,42 @@ namespace WeDoALittleTrolling.Content.Recipes
                 }
 
                 //Spooky Armor
-                if(recipe.TryGetResult(ItemID.SpookyHelmet, out Item SpookyHelmet))
+                if (recipe.TryGetResult(ItemID.SpookyHelmet, out Item SpookyHelmet))
                 {
                     recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
                 }
-                if(recipe.TryGetResult(ItemID.SpookyBreastplate, out Item SpookyBreastplate))
+                if (recipe.TryGetResult(ItemID.SpookyBreastplate, out Item SpookyBreastplate))
                 {
                     recipe.AddIngredient(ItemID.ChlorophyteBar, 18);
                 }
-                if(recipe.TryGetResult(ItemID.SpookyLeggings, out Item SpookyLeggings))
+                if (recipe.TryGetResult(ItemID.SpookyLeggings, out Item SpookyLeggings))
                 {
                     recipe.AddIngredient(ItemID.ChlorophyteBar, 15);
                 }
 
                 //Progression Changes
-                if(recipe.TryGetResult(ItemID.NightmarePickaxe, out Item NightmarePickaxe))
+                if (recipe.TryGetResult(ItemID.NightmarePickaxe, out Item NightmarePickaxe))
                 {
                     recipe.AddIngredient(ItemID.FossilOre, 6);
                     recipe.AddIngredient(ItemID.FlinxFur, 6);
                 }
-                if(recipe.TryGetResult(ItemID.DeathbringerPickaxe, out Item DeathbringerPickaxe))
+                if (recipe.TryGetResult(ItemID.DeathbringerPickaxe, out Item DeathbringerPickaxe))
                 {
                     recipe.AddIngredient(ItemID.FossilOre, 6);
                     recipe.AddIngredient(ItemID.FlinxFur, 6);
                 }
-                if(recipe.TryGetResult(ItemID.MythrilAnvil, out Item MythrilAnvil))
+                if (recipe.TryGetResult(ItemID.MythrilAnvil, out Item MythrilAnvil))
                 {
-                    if(!recipe.HasTile(TileID.MythrilAnvil))
+                    if (!recipe.HasTile(TileID.MythrilAnvil))
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
                         recipe.AddCustomShimmerResult(ItemID.MythrilBar, 10);
                     }
                 }
-                if(recipe.TryGetResult(ItemID.OrichalcumAnvil, out Item OrichalcumAnvil))
+                if (recipe.TryGetResult(ItemID.OrichalcumAnvil, out Item OrichalcumAnvil))
                 {
-                    if(!recipe.HasTile(TileID.MythrilAnvil))
+                    if (!recipe.HasTile(TileID.MythrilAnvil))
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);

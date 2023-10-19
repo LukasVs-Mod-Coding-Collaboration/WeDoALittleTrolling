@@ -55,7 +55,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                if(((k % trailDistance) == 0)) //efficiency: Only paint projectile for every fourth cahched position
+                if (((k % trailDistance) == 0)) //efficiency: Only paint projectile for every fourth cahched position
                 {
                     int index = (k / trailDistance);
                     Color drawLightColor = lightColor;
@@ -92,7 +92,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(drawLightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
                     SpriteEffects effects = SpriteEffects.None;
-                    if(Projectile.oldSpriteDirection[k] < 0)
+                    if (Projectile.oldSpriteDirection[k] < 0)
                     {
                         effects = SpriteEffects.FlipHorizontally;
                     }
@@ -104,7 +104,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override bool PreKill(int timeLeft)
         {
-            if(Projectile.owner == Main.myPlayer)
+            if (Projectile.owner == Main.myPlayer)
             {
                 float spawnYOffset = 20f;
                 Vector2 spawnPos = new Vector2((Projectile.Center.X), (Projectile.Center.Y - spawnYOffset));
@@ -130,7 +130,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 dustVelocity *= 8f;
                 int dustTypeRandom = random.Next(0, 4);
                 int dustType = DustID.Confetti_Blue;
-                switch(dustTypeRandom)
+                switch (dustTypeRandom)
                 {
                     case 0:
                         dustType = DustID.Confetti_Blue;

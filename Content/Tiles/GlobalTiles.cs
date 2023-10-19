@@ -41,10 +41,10 @@ namespace WeDoALittleTrolling.Content.Tiles
             ItemID.AmmoBox,
             ItemID.SliceOfCake
         };
-        
+
         public override void PlaceInWorld(int i, int j, int type, Item item)
         {
-            if(BuffTilesItemIDs.Contains(item.type))
+            if (BuffTilesItemIDs.Contains(item.type))
             {
                 ReduceStack(item);
             }
@@ -53,7 +53,7 @@ namespace WeDoALittleTrolling.Content.Tiles
 
         public static void ReduceStack(Item item)
         {
-            if(item.stack > 1)
+            if (item.stack > 1)
             {
                 item.stack--;
             }
@@ -67,11 +67,11 @@ namespace WeDoALittleTrolling.Content.Tiles
 
         public override void RightClick(int i, int j, int type)
         {
-            if(type == TileID.Moondial)
+            if (type == TileID.Moondial)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if(Main.moondialCooldown > 2)
+                    if (Main.moondialCooldown > 2)
                     {
                         Main.moondialCooldown = 2;
                     }
@@ -82,13 +82,13 @@ namespace WeDoALittleTrolling.Content.Tiles
                     moondialPacket.Write(WDALTPacketTypeID.moondial);
                     moondialPacket.Send();
                 }
-                
+
             }
-            else if(type == TileID.Sundial)
+            else if (type == TileID.Sundial)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if(Main.sundialCooldown > 2)
+                    if (Main.sundialCooldown > 2)
                     {
                         Main.sundialCooldown = 2;
                     }
@@ -100,7 +100,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                     sundialPacket.Send();
                 }
             }
-            else if(type == TileID.WeatherVane)
+            else if (type == TileID.WeatherVane)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
@@ -129,7 +129,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                         SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                     }
                 }
-                else if(Main.netMode == NetmodeID.MultiplayerClient)
+                else if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket weatherVanePacket = Mod.GetPacket();
                     weatherVanePacket.Write(WDALTPacketTypeID.weatherVane);
@@ -137,11 +137,11 @@ namespace WeDoALittleTrolling.Content.Tiles
                     SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                 }
             }
-            else if(type == TileID.DjinnLamp)
+            else if (type == TileID.DjinnLamp)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    float windSpeedPerMph = ((1.0f)/(50.0f));
+                    float windSpeedPerMph = ((1.0f) / (50.0f));
                     float windSign = 1.0f;
                     if (Main.windSpeedTarget >= 0)
                     {
@@ -174,7 +174,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                         SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
                     }
                 }
-                else if(Main.netMode == NetmodeID.MultiplayerClient)
+                else if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket djinnLampPacket = Mod.GetPacket();
                     djinnLampPacket.Write(WDALTPacketTypeID.djinnLamp);
@@ -182,11 +182,11 @@ namespace WeDoALittleTrolling.Content.Tiles
                     SoundEngine.PlaySound(SoundID.Item20, new Vector2(i * 16, j * 16));
                 }
             }
-            else if(type == TileID.SkyMill)
+            else if (type == TileID.SkyMill)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    float windSpeedPerMph = ((1.0f)/(50.0f));
+                    float windSpeedPerMph = ((1.0f) / (50.0f));
                     float windSign = 1.0f;
                     if (Main.windSpeedTarget >= 0)
                     {
@@ -207,7 +207,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                         SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                     }
                 }
-                else if(Main.netMode == NetmodeID.MultiplayerClient)
+                else if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket skyMillPacket = Mod.GetPacket();
                     skyMillPacket.Write(WDALTPacketTypeID.skyMill);

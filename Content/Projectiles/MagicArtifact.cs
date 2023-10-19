@@ -45,18 +45,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
             float lowestDistance = homingRange;
             bool targetDetected = false;
             Vector2 targetCenter = Vector2.Zero;
-            for(int i = 0; i < Main.npc.Length; i++)
+            for (int i = 0; i < Main.npc.Length; i++)
             {
                 NPC npc = Main.npc[i];
                 float distance = Vector2.Distance(Projectile.Center, npc.Center);
-                if((distance < lowestDistance) && npc.CanBeChasedBy())
+                if ((distance < lowestDistance) && npc.CanBeChasedBy())
                 {
                     targetCenter = npc.Center;
                     targetDetected = true;
                     lowestDistance = distance;
                 }
             }
-            if(targetDetected)
+            if (targetDetected)
             {
                 Vector2 moveVector = (targetCenter - Projectile.Center);
                 moveVector.Normalize();

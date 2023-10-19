@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            if(Projectile.owner == Main.myPlayer && Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive % 20 == 0)
+            if (Projectile.owner == Main.myPlayer && Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive % 20 == 0)
             {
                 Vector2 velocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
                 velocity.Normalize();
