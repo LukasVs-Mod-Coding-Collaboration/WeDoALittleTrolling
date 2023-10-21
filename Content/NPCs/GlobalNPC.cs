@@ -79,6 +79,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         public static readonly int[] KnockbackResistanceGroup =
         {
             NPCID.AngryTrapper,
+            NPCID.Mothron,
             NPCID.Lihzahrd,
             NPCID.LihzahrdCrawler,
             NPCID.FlyingSnake,
@@ -163,7 +164,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.BigMimicCrimson,
             NPCID.BigMimicHallow,
             NPCID.BigMimicJungle,
-            NPCID.Mothron,
             NPCID.BloodNautilus,
             NPCID.BloodEelHead,
             NPCID.BloodEelBody,
@@ -193,6 +193,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.AncientLight,
             NPCID.AncientDoom,
             NPCID.TheDestroyer,
+            NPCID.Mothron,
             NPCID.WyvernHead,
             NPCID.SolarCrawltipedeHead,
             NPCID.StardustJellyfishSmall
@@ -374,7 +375,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.MoonLordLeechBlob
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 3.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
             }
             if
             (
@@ -393,7 +394,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Spazmatism
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
             }
             if
             (
@@ -402,7 +403,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.TheDestroyerTail
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if
             (

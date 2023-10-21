@@ -376,7 +376,11 @@ Mods: {
 
 			ThrowOfTheLunatic: {
 				DisplayName: Throw Of The Lunatic
-				Tooltip: ""
+				Tooltip:
+					'''
+					"Stolen from a Cultist as obsessed
+					 with yoyos as with the moon..."
+					'''
 			}
 
 			CornSword: {

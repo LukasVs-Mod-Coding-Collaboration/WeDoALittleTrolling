@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -38,7 +39,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Vector2 velocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
                 velocity.Normalize();
                 velocity *= Main.rand.Next(ThrowOfTheLunaticProjectileBeam.moveSpeed / 2, ThrowOfTheLunaticProjectileBeam.moveSpeed);
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity, ModContent.ProjectileType<ThrowOfTheLunaticProjectileBeam>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile
+                (
+                    Projectile.GetSource_FromThis(),
+                    Projectile.Center,
+                    velocity,
+                    ModContent.ProjectileType<ThrowOfTheLunaticProjectileBeam>(),
+                    (int)Math.Round(Projectile.damage * 0.75),
+                    Projectile.knockBack,
+                    Projectile.owner
+                );
             }
         }
 

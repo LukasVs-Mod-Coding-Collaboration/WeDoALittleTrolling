@@ -1122,7 +1122,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StarWrath)
             {
-                item.damage = 150;
+                item.damage = 110;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Meowmere)
@@ -1132,7 +1132,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Terrarian)
             {
-                item.damage = 225;
+                item.damage = 165;
             }
             if (item.type == ItemID.Seedler)
             {
@@ -1169,7 +1169,7 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.InfluxWaver)
             {
                 item.shootsEveryUse = true;
-                item.damage = 100;
+                item.damage = 120;
             }
             if (item.type == ItemID.PossessedHatchet)
             {

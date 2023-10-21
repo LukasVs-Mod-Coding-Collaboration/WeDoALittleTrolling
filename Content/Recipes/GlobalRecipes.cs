@@ -128,6 +128,16 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_HorseShoe_V2.AddIngredient(ItemID.Cloud, 10);
             WDALT_HorseShoe_V2.Register();
 
+            Recipe.Create(ItemID.Spear, 1)
+            .AddTile(TileID.Anvils)
+            .AddIngredient(ItemID.GoldBar, 12)
+            .Register();
+
+            Recipe.Create(ItemID.Spear, 1)
+            .AddTile(TileID.Anvils)
+            .AddIngredient(ItemID.PlatinumBar, 12)
+            .Register();
+
             Recipe WDALT_CobaltShield_V1 = Recipe.Create(ItemID.CobaltShield, 1);
             WDALT_CobaltShield_V1.AddTile(TileID.MythrilAnvil);
             WDALT_CobaltShield_V1.AddIngredient(ItemID.CobaltBar, 8);

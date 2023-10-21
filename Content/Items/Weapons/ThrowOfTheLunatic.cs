@@ -1,5 +1,4 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Projectiles;
@@ -27,10 +26,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.noUseGraphic = true;
             Item.UseSound = SoundID.Item1;
 
-            Item.damage = 185;
+            Item.damage = 115;
             Item.DamageType = DamageClass.MeleeNoSpeed;
             Item.knockBack = 5f;
-            Item.crit = 5;
             Item.channel = true;
             Item.rare = ItemRarityID.Cyan;
             Item.value = Item.sellPrice(gold: 10);
