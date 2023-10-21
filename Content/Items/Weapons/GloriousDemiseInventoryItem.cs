@@ -136,9 +136,13 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 modifier *= 1.25f;
             }
-            if(NPC.downedMoonlord)
+            if (NPC.downedMoonlord)
             {
                 modifier *= 3f;
+            }
+            if (player.shimmerImmune)
+            {
+                modifier *= 2f;
             }
             damage *= modifier;
             base.ModifyWeaponDamage(player, ref damage);
