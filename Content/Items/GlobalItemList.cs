@@ -70,7 +70,7 @@ namespace WeDoALittleTrolling.Content.Items
             ItemID.OceanCrate,
             ItemID.OceanCrateHard
         };
-        
+
         public override bool CanUseItem(Item item, Player player)
         {
             // Anti-Poo-Block-Mechanism
@@ -97,16 +97,16 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.RodOfHarmony
             )
             {
-                if(player.HasBuff(BuffID.ChaosState))
+                if (player.HasBuff(BuffID.ChaosState))
                 {
-                    if((player.statLife - (int)Math.Round((float)player.statLifeMax2/(float)7)) >= 0)
+                    if ((player.statLife - (int)Math.Round((float)player.statLifeMax2 / (float)7)) >= 0)
                     {
-                        player.statLife -= (int)Math.Round((float)player.statLifeMax2/(float)7);
+                        player.statLife -= (int)Math.Round((float)player.statLifeMax2 / (float)7);
                     }
                     else
                     {
                         PlayerDeathReason reason = new PlayerDeathReason();
-                        reason.SourceCustomReason = player.name+" didn't materialize";
+                        reason.SourceCustomReason = player.name + " didn't materialize";
                         player.KillMe(reason, 9999999999.0, 0, false);
                     }
                 }
@@ -125,11 +125,11 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 return false;
             }
-            if(GlobalTiles.BuffTilesItemIDs.Contains(item.type))
+            if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
             {
                 SoundStyle buffActivateSoundStyle = SoundID.Item4;
                 bool playSound = true;
-                switch(item.type)
+                switch (item.type)
                 {
                     case ItemID.WarTable:
                         buffActivateSoundStyle = SoundID.Item4;
@@ -153,7 +153,7 @@ namespace WeDoALittleTrolling.Content.Items
                         playSound = false;
                         break;
                 }
-                if(playSound)
+                if (playSound)
                 {
                     SoundEngine.PlaySound(buffActivateSoundStyle, player.Center);
                 }
@@ -162,7 +162,7 @@ namespace WeDoALittleTrolling.Content.Items
             return base.ConsumeItem(item, player);
         }
 
-        
+
         //Revert damage reduction from Spectre Hood
         public override void UpdateEquip(Item item, Player player)
         {
@@ -175,7 +175,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.GetDamage(DamageClass.Magic) += (float)0.4;
             }
-            if(item.type == ItemID.SpectreHood)
+            if (item.type == ItemID.SpectreHood)
             {
                 player.statManaMax2 += 60;
             }
@@ -190,7 +190,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.lifeRegen += 2;
             }
-            if(item.type == ItemID.ObsidianShirt)
+            if (item.type == ItemID.ObsidianShirt)
             {
                 player.maxMinions += 1;
             }
@@ -199,33 +199,33 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            if(item.prefix == PrefixID.Arcane)
+            if (item.prefix == PrefixID.Arcane)
             {
                 player.statManaMax2 += 80;
             }
-            if(item.type == ItemID.AvengerEmblem)
+            if (item.type == ItemID.AvengerEmblem)
             {
                 player.GetAttackSpeed(DamageClass.Generic) += 0.10f;
             }
-            if(item.type == ItemID.PutridScent)
+            if (item.type == ItemID.PutridScent)
             {
                 player.GetAttackSpeed(DamageClass.Generic) += 0.05f;
             }
-            if(item.type == ItemID.DestroyerEmblem)
+            if (item.type == ItemID.DestroyerEmblem)
             {
                 player.GetDamage(DamageClass.Generic) += 0.02f;
                 player.GetCritChance(DamageClass.Generic) += 2f;
             }
-            if(item.type == ItemID.SniperScope)
+            if (item.type == ItemID.SniperScope)
             {
                 player.GetDamage(DamageClass.Ranged) += 0.02f;
             }
-            if(item.type == ItemID.ReconScope)
+            if (item.type == ItemID.ReconScope)
             {
                 player.GetDamage(DamageClass.Ranged) += 0.07f;
                 player.GetCritChance(DamageClass.Ranged) += 5f;
             }
-            if(item.type == ItemID.AnkhShield)
+            if (item.type == ItemID.AnkhShield)
             {
                 player.statDefense += 4;
                 player.DefenseEffectiveness *= 1.16f;
@@ -235,7 +235,7 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            if(Sandstepping.CompatibleItemIDs.Contains(equippedItem.type) && Sandstepping.CompatibleItemIDs.Contains(incomingItem.type))
+            if (Sandstepping.CompatibleItemIDs.Contains(equippedItem.type) && Sandstepping.CompatibleItemIDs.Contains(incomingItem.type))
             {
                 return false;
             }
@@ -259,7 +259,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
         }
-        
+
         public static void ModifySetBonus(Player player)
         {
             if
@@ -314,16 +314,16 @@ namespace WeDoALittleTrolling.Content.Items
                 player.setBonus += "\nThis is not affected by the Wrecked Resistance debuff";
             }
         }
-        
+
         //Adjust Tooltips accordingly
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if(item.prefix == PrefixID.Arcane)
+            if (item.prefix == PrefixID.Arcane)
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMaxMana") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "+100 mana");
             }
-            if(item.type == ItemID.SpectreHood)
+            if (item.type == ItemID.SpectreHood)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixAccMaxMana", "Increases maximum mana by 60");
                 tooltips.Add(extraManaLine);
@@ -350,42 +350,42 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraLifeRegenLine = new TooltipLine(Mod, "ArmorLifeRegenDescription", "Slowly regenerates life");
                 tooltips.Add(extraLifeRegenLine);
             }
-            if(item.type == ItemID.ChlorophyteShotbow)
+            if (item.type == ItemID.ChlorophyteShotbow)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into chlorophyte arrows");
                 tooltips.Add(extraManaLine);
             }
-            if(item.type == ItemID.MoltenFury)
+            if (item.type == ItemID.MoltenFury)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into hellfire arrows");
                 tooltips.Add(extraManaLine);
             }
-            if(item.type == ItemID.DaedalusStormbow)
+            if (item.type == ItemID.DaedalusStormbow)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into holy arrows");
                 tooltips.Add(extraManaLine);
             }
-            if(item.type == ItemID.Moondial)
+            if (item.type == ItemID.Moondial)
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "Allows time to fast forward to dusk");
             }
-            if(item.type == ItemID.Sundial)
+            if (item.type == ItemID.Sundial)
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "Allows time to fast forward to dawn");
             }
-            if(item.type == ItemID.WeatherVane)
+            if (item.type == ItemID.WeatherVane)
             {
                 TooltipLine tileFunctionLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows rain to start, intesify and stop");
                 tooltips.Add(tileFunctionLine);
             }
-            if(item.type == ItemID.SkyMill)
+            if (item.type == ItemID.SkyMill)
             {
                 TooltipLine tileFunctionLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows wind to start, intesify, change direction and stop");
                 tooltips.Add(tileFunctionLine);
             }
-            if(item.type == ItemID.DjinnLamp)
+            if (item.type == ItemID.DjinnLamp)
             {
                 TooltipLine tileFunctionLine = new TooltipLine(Mod, "TileFunctionDescription", "Allows sandstorms to start and stop");
                 tooltips.Add(tileFunctionLine);
@@ -416,7 +416,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.HoundiusShootius ||
                 item.type == ItemID.RainbowCrystalStaff ||
                 item.type == ItemID.MoonlordTurretStaff
-            ) 
+            )
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectiles have a 30% chance to land a critical strike");
                 tooltips.Add(extraCritChanceLine);
@@ -491,7 +491,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.IronCrateHard
             )
             {
-                if(random.Next(0, 8) == 0)
+                if (random.Next(0, 8) == 0)
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -509,7 +509,7 @@ namespace WeDoALittleTrolling.Content.Items
                         Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial, 1);
                     }
                 }
-                if(random.Next(0, 8) == 0)
+                if (random.Next(0, 8) == 0)
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -534,7 +534,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.GoldenCrateHard
             )
             {
-                if(random.Next(0, 4) == 0)
+                if (random.Next(0, 4) == 0)
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -578,7 +578,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.OceanCrateHard
             )
             {
-                if(random.Next(0, 5) == 0)
+                if (random.Next(0, 5) == 0)
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -655,7 +655,7 @@ namespace WeDoALittleTrolling.Content.Items
                     Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, goldItemID, amountGold);
                 }
             }
-            if(item.type == ItemID.JungleFishingCrateHard && NPC.downedMechBossAny)
+            if (item.type == ItemID.JungleFishingCrateHard && NPC.downedMechBossAny)
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -749,23 +749,23 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            if(item.type == ItemID.MoltenFury)
+            if (item.type == ItemID.MoltenFury)
             {
-                if(type == ProjectileID.FireArrow)
+                if (type == ProjectileID.FireArrow)
                 {
                     type = ProjectileID.HellfireArrow;
                 }
             }
-            if(item.type == ItemID.ChlorophyteShotbow)
+            if (item.type == ItemID.ChlorophyteShotbow)
             {
-                if(type == ProjectileID.WoodenArrowFriendly)
+                if (type == ProjectileID.WoodenArrowFriendly)
                 {
                     type = ProjectileID.ChlorophyteArrow;
                 }
             }
-            if(item.type == ItemID.DaedalusStormbow)
+            if (item.type == ItemID.DaedalusStormbow)
             {
-                if(type == ProjectileID.WoodenArrowFriendly)
+                if (type == ProjectileID.WoodenArrowFriendly)
                 {
                     type = ProjectileID.HolyArrow;
                 }
@@ -780,17 +780,17 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void SetDefaults(Item item)
         {
-            if (item.type == ItemID.Phantasm) 
+            if (item.type == ItemID.Phantasm)
             {
                 item.damage = 50;
                 item.crit = 1;
             }
-            if (item.type == ItemID.VortexBeater) 
+            if (item.type == ItemID.VortexBeater)
             {
                 item.damage = 70;
                 item.crit = 3;
             }
-            if (item.type == ItemID.FetidBaghnakhs) 
+            if (item.type == ItemID.FetidBaghnakhs)
             {
                 item.damage = 65;
                 item.useTime = 7;
@@ -798,7 +798,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
-                if(item.damage <= 42)
+                if (item.damage <= 42)
                 {
                     item.damage = 42;
                 }
@@ -817,20 +817,20 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 44;
             }
-            if (item.type == ItemID.CactusBreastplate) 
+            if (item.type == ItemID.CactusBreastplate)
             {
                 item.defense += 2;
             }
-            if (item.type == ItemID.CactusSword) 
+            if (item.type == ItemID.CactusSword)
             {
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.shootsEveryUse = true;
                 item.knockBack = 5f;
             }
-            if (item.type == ItemID.BoneSword) 
+            if (item.type == ItemID.BoneSword)
             {
-                if(item.damage <= 24)
+                if (item.damage <= 24)
                 {
                     item.damage = 24;
                 }
@@ -840,9 +840,9 @@ namespace WeDoALittleTrolling.Content.Items
                 item.shoot = ProjectileID.BoneGloveProj;
                 item.shootSpeed = 10f;
             }
-            if (item.type == ItemID.EnchantedSword) 
+            if (item.type == ItemID.EnchantedSword)
             {
-                if(item.damage <= 24)
+                if (item.damage <= 24)
                 {
                     item.damage = 24;
                 }
@@ -851,27 +851,27 @@ namespace WeDoALittleTrolling.Content.Items
                 item.shootsEveryUse = true;
                 item.knockBack = 5.25f;
             }
-            if (item.type == ItemID.FalconBlade) 
+            if (item.type == ItemID.FalconBlade)
             {
                 item.damage = 30;
                 item.useTime = 15;
                 item.useAnimation = 15;
                 item.shootsEveryUse = true;
             }
-            if (item.type == ItemID.BeamSword) 
+            if (item.type == ItemID.BeamSword)
             {
                 item.useTime = 30;
                 item.useAnimation = 15;
                 item.attackSpeedOnlyAffectsWeaponAnimation = false;
                 item.GetGlobalItem<WDALTItemUtil>().attackSpeedRoundingErrorProtection = true;
             }
-            if (item.type == ItemID.ClockworkAssaultRifle) 
+            if (item.type == ItemID.ClockworkAssaultRifle)
             {
                 item.damage = 24;
             }
-            if (item.type == ItemID.Marrow) 
+            if (item.type == ItemID.Marrow)
             {
-                if(item.damage <= 64)
+                if (item.damage <= 64)
                 {
                     item.damage = 64;
                 }
@@ -881,7 +881,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.crit = 12;
                 item.ArmorPenetration = 32;
             }
-            if (item.type == ItemID.FlintlockPistol) 
+            if (item.type == ItemID.FlintlockPistol)
             {
                 item.damage = 15;
             }
@@ -1035,7 +1035,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.defense += 2;
             }
-            
+
             // Buff all pre-hardmode summon armors
 
             if
@@ -1097,18 +1097,18 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage += 10;
             }
-            if(item.type == ItemID.ScytheWhip) //Dark Harvest
+            if (item.type == ItemID.ScytheWhip) //Dark Harvest
             {
                 item.damage += 25;
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.MaceWhip) //Morning Star
+            if (item.type == ItemID.MaceWhip) //Morning Star
             {
                 item.damage += 15;
             }
-            if(item.type == ItemID.RainbowWhip) //Kaleidoscope
+            if (item.type == ItemID.RainbowWhip) //Kaleidoscope
             {
                 item.damage += 20;
             }
@@ -1151,7 +1151,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TrueNightsEdge)
             {
-                if(item.damage <= 75)
+                if (item.damage <= 75)
                 {
                     item.damage = 75;
                 }
@@ -1194,7 +1194,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.SolarEruption)
             {
-                if(item.damage <= 125)
+                if (item.damage <= 125)
                 {
                     item.damage = 125;
                 }
@@ -1205,7 +1205,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.AntlionClaw) //Mandible Blade
             {
-                if(item.damage <= 20)
+                if (item.damage <= 20)
                 {
                     item.damage = 20;
                 }
@@ -1237,28 +1237,28 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.SpiderStaff)
             {
-                if(item.damage <= 32)
+                if (item.damage <= 32)
                 {
                     item.damage = 32;
                 }
             }
             if (item.type == ItemID.SanguineStaff)
             {
-                if(item.damage <= 40)
+                if (item.damage <= 40)
                 {
                     item.damage = 40;
                 }
             }
             if (item.type == ItemID.Smolstar) //Blade Staff
             {
-                if(item.damage <= 8)
+                if (item.damage <= 8)
                 {
                     item.damage = 8;
                 }
             }
             if (item.type == ItemID.ChlorophytePartisan)
             {
-                if(item.damage <= 60)
+                if (item.damage <= 60)
                 {
                     item.damage = 60;
                 }
@@ -1286,17 +1286,17 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.DeathSickle)
             {
-                if(item.damage <= 65)
+                if (item.damage <= 65)
                 {
                     item.damage = 65;
                 }
             }
-            if (item.type == ItemID.FlowerofFire) 
+            if (item.type == ItemID.FlowerofFire)
             {
                 item.mana = 8;
                 item.autoReuse = true;
             }
-            if (item.type == ItemID.UnholyTrident) 
+            if (item.type == ItemID.UnholyTrident)
             {
                 item.damage = 60;
                 item.mana = 20;
@@ -1308,7 +1308,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.VenomStaff
             )
             {
-                if(item.damage <= 50)
+                if (item.damage <= 50)
                 {
                     item.damage = 40;
                 }
@@ -1361,7 +1361,7 @@ namespace WeDoALittleTrolling.Content.Items
             // Pre-Hardmode
             if (item.type == ItemID.IceSickle)
             {
-                if(item.damage <= 55)
+                if (item.damage <= 55)
                 {
                     item.damage = 55;
                 }
@@ -1369,7 +1369,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.FrostStaff)
             {
-                if(item.damage <= 55)
+                if (item.damage <= 55)
                 {
                     item.damage = 55;
                 }
@@ -1378,7 +1378,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.IceBoomerang)
             {
-                if(item.damage <= 24)
+                if (item.damage <= 24)
                 {
                     item.damage = 24;
                 }
@@ -1389,7 +1389,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.IceBlade)
             {
-                if(item.damage <= 18)
+                if (item.damage <= 18)
                 {
                     item.damage = 18;
                 }
@@ -1409,7 +1409,7 @@ namespace WeDoALittleTrolling.Content.Items
             //Hardmode
             if (item.type == ItemID.Frostbrand)
             {
-                if(item.damage <= 50)
+                if (item.damage <= 50)
                 {
                     item.damage = 50;
                 }
@@ -1417,19 +1417,19 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 22;
                 item.shootsEveryUse = true;
             }
-            if (item.type == ItemID.IceBow) 
+            if (item.type == ItemID.IceBow)
             {
-                if(item.damage <= 50)
+                if (item.damage <= 50)
                 {
                     item.damage = 50;
                 }
             }
-            if (item.type == ItemID.FlowerofFrost) 
+            if (item.type == ItemID.FlowerofFrost)
             {
                 item.mana = 8;
                 item.autoReuse = true;
             }
-            if (item.type == ItemID.StaffoftheFrostHydra) 
+            if (item.type == ItemID.StaffoftheFrostHydra)
             {
                 item.damage = 80;
             }
@@ -1451,7 +1451,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.SkyFracture)
             {
-                if(item.damage <= 45)
+                if (item.damage <= 45)
                 {
                     item.damage = 45;
                 }
@@ -1466,21 +1466,21 @@ namespace WeDoALittleTrolling.Content.Items
                 item.damage = 45;
                 item.mana = 12;
             }
-            if(item.type == ItemID.Uzi)
+            if (item.type == ItemID.Uzi)
             {
                 item.damage = 36;
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.VenusMagnum)
+            if (item.type == ItemID.VenusMagnum)
             {
                 item.damage = 56;
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.TacticalShotgun)
+            if (item.type == ItemID.TacticalShotgun)
             {
                 item.damage = 36;
                 item.useTime = 32;
@@ -1488,7 +1488,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.autoReuse = true;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.SniperRifle)
+            if (item.type == ItemID.SniperRifle)
             {
                 item.damage = 240;
                 item.crit = 28;
@@ -1497,7 +1497,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.autoReuse = true;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.Tsunami)
+            if (item.type == ItemID.Tsunami)
             {
                 item.damage = 55;
                 item.crit = 1;
@@ -1537,29 +1537,29 @@ namespace WeDoALittleTrolling.Content.Items
             }
 
             //Pre-Hardmode Ranger Rebalance
-            
-            if(item.type == ItemID.BeesKnees && WDALTModSystem.isCalamityModPresent)
+
+            if (item.type == ItemID.BeesKnees && WDALTModSystem.isCalamityModPresent)
             {
                 item.damage = 24;
                 item.useTime = 22;
                 item.useAnimation = 22;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.DemonBow)
+            if (item.type == ItemID.DemonBow)
             {
                 item.damage = 16;
                 item.useTime = 24;
                 item.useAnimation = 24;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.HellwingBow && WDALTModSystem.isCalamityModPresent)
+            if (item.type == ItemID.HellwingBow && WDALTModSystem.isCalamityModPresent)
             {
                 item.damage = 24;
                 item.useTime = 12;
                 item.useAnimation = 12;
                 item.shootsEveryUse = true;
             }
-            if(item.type == ItemID.MoltenFury && WDALTModSystem.isCalamityModPresent)
+            if (item.type == ItemID.MoltenFury && WDALTModSystem.isCalamityModPresent)
             {
                 item.damage = 32;
                 item.shootSpeed = 12f;
@@ -1568,16 +1568,16 @@ namespace WeDoALittleTrolling.Content.Items
                 item.shootsEveryUse = true;
             }
 
-            if(item.type == ItemID.Celeb2)
+            if (item.type == ItemID.Celeb2)
             {
-                if(item.damage <= 70)
+                if (item.damage <= 70)
                 {
                     item.damage = 70;
                 }
             }
-            if(item.type == ItemID.FireworksLauncher)
+            if (item.type == ItemID.FireworksLauncher)
             {
-                if(item.damage <= 35)
+                if (item.damage <= 35)
                 {
                     item.damage = 35;
                 }
@@ -1596,17 +1596,17 @@ namespace WeDoALittleTrolling.Content.Items
                 ItemID.PlatinumShortsword,
                 ItemID.Gladius
             };
-            if(shortSwordsToBuff.Contains(item.type))
+            if (shortSwordsToBuff.Contains(item.type))
             {
                 item.damage += 4;
                 item.knockBack += 1.5f;
             }
 
             //Make Buff Furniture give their Buffs when used
-            if(GlobalTiles.BuffTilesItemIDs.Contains(item.type))
+            if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
             {
                 item.buffTime = 108000;
-                switch(item.type)
+                switch (item.type)
                 {
                     case ItemID.WarTable:
                         item.buffType = BuffID.WarTable;
@@ -1632,6 +1632,17 @@ namespace WeDoALittleTrolling.Content.Items
                         break;
                 }
             }
+        }
+
+        public override bool ReforgePrice(Item item, ref int reforgePrice, ref bool canApplyDiscount)
+        {
+            canApplyDiscount = false;
+            reforgePrice = Item.buyPrice(silver: 50);
+            if (Main.hardMode)
+            {
+                reforgePrice *= 2;
+            }
+            return false;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasAnkhShieldInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.AnkhShield))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.AnkhShield))
             {
                 return true;
             }
@@ -42,7 +42,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasCellPhoneInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.CellPhone))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.CellPhone))
             {
                 return true;
             }
@@ -51,7 +51,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasTerrasparkBootsInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.TerrasparkBoots))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.TerrasparkBoots))
             {
                 return true;
             }
@@ -60,7 +60,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasArcticDivingGearInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.ArcticDivingGear))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.ArcticDivingGear))
             {
                 return true;
             }
@@ -69,7 +69,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasCelestialCuffsInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.CelestialCuffs))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.CelestialCuffs))
             {
                 return true;
             }
@@ -78,7 +78,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasCelestialEmblemInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.CelestialEmblem))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.CelestialEmblem))
             {
                 return true;
             }
@@ -87,7 +87,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasCelestialShellInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.CelestialShell))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.CelestialShell))
             {
                 return true;
             }
@@ -96,7 +96,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasFireGauntletInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.FireGauntlet))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.FireGauntlet))
             {
                 return true;
             }
@@ -105,7 +105,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasFrogGearInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.FrogGear))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.FrogGear))
             {
                 return true;
             }
@@ -114,7 +114,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasLavaproofTackleBagInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.LavaproofTackleBag))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.LavaproofTackleBag))
             {
                 return true;
             }
@@ -123,7 +123,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasSniperScopeInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.SniperScope))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.SniperScope))
             {
                 return true;
             }
@@ -132,7 +132,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasMasterNinjaGearInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ItemID.MasterNinjaGear))
+            if (Main.player[Main.myPlayer].HasItem(ItemID.MasterNinjaGear))
             {
                 return true;
             }
@@ -141,7 +141,61 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasHolyCharmInInventory()
         {
-            if(Main.player[Main.myPlayer].HasItem(ModContent.ItemType<HolyCharm>()))
+            if (Main.player[Main.myPlayer].HasItem(ModContent.ItemType<HolyCharm>()))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasPiranhaGunInInventory()
+        {
+            if (Main.player[Main.myPlayer].HasItem(ItemID.PiranhaGun))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasScourgeoftheCorruptorInInventory()
+        {
+            if (Main.player[Main.myPlayer].HasItem(ItemID.ScourgeoftheCorruptor))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasVampireKnivesInInventory()
+        {
+            if (Main.player[Main.myPlayer].HasItem(ItemID.VampireKnives))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasRainbowGunInInventory()
+        {
+            if (Main.player[Main.myPlayer].HasItem(ItemID.RainbowGun))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasStaffoftheFrostHydraInInventory()
+        {
+            if (Main.player[Main.myPlayer].HasItem(ItemID.StaffoftheFrostHydra))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasStormTigerStaffInInventory()
+        {
+            if (Main.player[Main.myPlayer].HasItem(ItemID.StormTigerStaff))
             {
                 return true;
             }

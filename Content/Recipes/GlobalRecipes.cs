@@ -52,6 +52,8 @@ namespace WeDoALittleTrolling.Content.Recipes
             .AddCondition(ShimmerCondition)
             .Register();
 
+            AddBiomeKeyDuplicationRecipes();
+
             Recipe.Create(ItemID.GravityGlobe, 1)
             .AddIngredient(ItemID.GravitationPotion, 10)
             .AddIngredient(ItemID.GelBalloon, 10)
@@ -445,6 +447,45 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_HolyCharm.AddCondition(HolyCharmCondition);
             WDALT_HolyCharm.AddCustomShimmerResult(ItemID.PlatinumCoin, 1);
             WDALT_HolyCharm.Register();
+        }
+
+        public static void AddBiomeKeyDuplicationRecipes()
+        {
+            Recipe.Create(ItemID.PiranhaGun, 1)
+            .AddIngredient(ItemID.JungleKey, 1)
+            .AddCondition(new Condition("Piranha Gun in Inventory", WDALTConditionFunctions.HasPiranhaGunInInventory))
+            .AddCustomShimmerResult(ItemID.PiranhaGun, 1)
+            .Register();
+
+            Recipe.Create(ItemID.ScourgeoftheCorruptor, 1)
+            .AddIngredient(ItemID.CorruptionKey, 1)
+            .AddCondition(new Condition("Scourge of the Corruptor in Inventory", WDALTConditionFunctions.HasScourgeoftheCorruptorInInventory))
+            .AddCustomShimmerResult(ItemID.ScourgeoftheCorruptor, 1)
+            .Register();
+
+            Recipe.Create(ItemID.VampireKnives, 1)
+            .AddIngredient(ItemID.CrimsonKey, 1)
+            .AddCondition(new Condition("Vampire Knives in Inventory", WDALTConditionFunctions.HasVampireKnivesInInventory))
+            .AddCustomShimmerResult(ItemID.VampireKnives, 1)
+            .Register();
+
+            Recipe.Create(ItemID.RainbowGun, 1)
+            .AddIngredient(ItemID.HallowedKey, 1)
+            .AddCondition(new Condition("Rainbow Gun in Inventory", WDALTConditionFunctions.HasRainbowGunInInventory))
+            .AddCustomShimmerResult(ItemID.RainbowGun, 1)
+            .Register();
+
+            Recipe.Create(ItemID.StaffoftheFrostHydra, 1)
+            .AddIngredient(ItemID.FrozenKey, 1)
+            .AddCondition(new Condition("Staff of the Frost Hydra in Inventory", WDALTConditionFunctions.HasStaffoftheFrostHydraInInventory))
+            .AddCustomShimmerResult(ItemID.StaffoftheFrostHydra, 1)
+            .Register();
+
+            Recipe.Create(ItemID.StormTigerStaff, 1)
+            .AddIngredient(ItemID.DungeonDesertKey, 1)
+            .AddCondition(new Condition("Desert Tiger Staff in Inventory", WDALTConditionFunctions.HasStormTigerStaffInInventory))
+            .AddCustomShimmerResult(ItemID.StormTigerStaff, 1)
+            .Register();
         }
 
         public static void PostAddRecipes()
