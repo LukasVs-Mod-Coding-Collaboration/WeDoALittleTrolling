@@ -35,6 +35,11 @@ namespace WeDoALittleTrolling.Content.Prefixes
             return 1.0f;
         }
 
+        public override bool CanRoll(Item item)
+        {
+            return true;
+        }
+
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
             damageMult *= 0.8f;
