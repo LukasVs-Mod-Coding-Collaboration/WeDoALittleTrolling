@@ -236,10 +236,6 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override bool CanRoll(Item item)
         {
-            if(item.DamageType != DamageClass.Melee && item.DamageType != DamageClass.MeleeNoSpeed)
-            {
-                return false;
-            }
             if(CompatibleItemIDs.Contains(item.type))
             {
                 return true;
