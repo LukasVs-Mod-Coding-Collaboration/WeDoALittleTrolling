@@ -29,27 +29,10 @@ namespace WeDoALittleTrolling.Content.Prefixes
 {
     public class Leeching : ModPrefix
     {
-        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
+        public override PrefixCategory Category => PrefixCategory.Melee;
         public override float RollChance(Item item)
         {
             return 1.0f;
-        }
-        
-        public override bool CanRoll(Item item)
-        {
-            if
-            (
-                item.DamageType == DamageClass.Melee ||
-                item.DamageType == DamageClass.MeleeNoSpeed ||
-                item.DamageType == DamageClass.SummonMeleeSpeed
-            )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
