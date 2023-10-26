@@ -78,6 +78,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
               .AddIngredient(ItemID.ShadowScale, 4)
               .AddIngredient(ItemID.Amber, 4)
               .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.HeavyWorkBench)
+              .AddIngredient(ItemID.Pumpkin, 64)
+              .AddIngredient(ItemID.CrimtaneBar, 8)
+              .AddIngredient(ItemID.TissueSample, 4)
+              .AddIngredient(ItemID.Amber, 4)
+              .Register();
         }
     }
 }
