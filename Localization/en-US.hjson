@@ -392,6 +392,11 @@ Mods: {
 				DisplayName: Corncob
 				Tooltip: Minor improvements to all stats
 			}
+
+			HauntedStaff: {
+				DisplayName: Haunted Staff
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
