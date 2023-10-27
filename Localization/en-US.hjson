@@ -220,6 +220,18 @@ Mods: {
 					'''
 			}
 
+			PharaohsCurseblade: {
+				DisplayName: Pharaoh's Curseblade
+				Tooltip:
+					'''
+					"An ancient sword once wielded by the
+					 great ruler of the wind and the sands"
+					Right click to charge a tornado.
+					The Tornado will do more damage
+					depending on how long it is charged.
+					'''
+			}
+
 			Boulderspell: {
 				DisplayName: Boulderspell
 				Tooltip:
