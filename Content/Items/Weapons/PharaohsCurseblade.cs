@@ -44,12 +44,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.consumable = false;
 
-            Item.value = Item.sellPrice(platinum: 1);
+            Item.value = Item.sellPrice(gold: 5);
             Item.maxStack = 1;
 
-            Item.autoReuse = true;
-            Item.useTime = 14;
-            Item.useAnimation = 14;
+            Item.useTime = 18;
+            Item.useAnimation = 18;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item60;
@@ -59,8 +58,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.knockBack = 5.5f;
             Item.crit = 6;
 
-            Item.rare = ItemRarityID.Red;
-            Item.scale = 1.0f;
+            Item.rare = ItemRarityID.Orange;
+            Item.scale = 0.85f;
         }
 
         public override bool AltFunctionUse(Player player) // Woohoo Tornado Launch! (not yet implemented)
