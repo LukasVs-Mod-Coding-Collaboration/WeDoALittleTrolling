@@ -58,29 +58,86 @@ namespace WeDoALittleTrolling.Common.ModSystems
             bool successInjectDestroyerAIHook = true;
             try
             {
+                double liftoffLimit = 0.5;
+                double accelerationLimit = 0.25;
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
                 cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.maxTilesY)));
                 cursor.GotoNext(i => i.MatchLdcI4(0));
                 cursor.Index++;
-                intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx); //fetch memory adress of local "flag2" variable.
-                byte idx = (byte)fetchedIdx;
+                intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx1); //fetch memory adress of local "flag2" variable.
+                byte idx1 = (byte)fetchedIdx1;
                 cursor.Index++;
                 cursor.Emit(OpCodes.Ldarg_0); //push the NPC instance onto the stack.
                 cursor.EmitDelegate<Func<NPC, bool>>
                 (
-                    (
-                        npc
-                    ) =>
+                    (npc) =>
                     {
                         bool gravity = true;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * 0.25))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * liftoffLimit))
                         {
                             gravity = false; //Disable gravity code.
                         }
                         return !gravity;
                     }
                 );
-                cursor.Emit(OpCodes.Stloc_S, idx); //write "true" into the local "flag2" variable.
+                cursor.Emit(OpCodes.Stloc_S, idx1); //write "true" into the local "flag2" variable.
+                cursor.GotoNext(i => i.MatchCall<Main>(nameof(Main.IsItDay)));
+                cursor.Index--;
+                intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx2); //fetch memory adress of local "num18" variable.
+                byte idx2 = (byte)fetchedIdx2;
+                cursor.Index++;
+                cursor.Emit(OpCodes.Ldarg_0); //push the NPC instance onto the stack.
+                cursor.EmitDelegate<Func<NPC, float>>
+                (
+                    (npc) =>
+                    {
+                        float maxSpeed = 16f;
+                        if(npc.life < (int)Math.Round(npc.lifeMax * accelerationLimit))
+                        {
+                            maxSpeed = 24f;
+                        }
+                        return maxSpeed;
+                    }
+                );
+                cursor.Emit(OpCodes.Stloc_S, idx2); //write "true" into the local "num18" variable.
+                cursor.GotoNext(i => i.MatchStfld<Entity>(nameof(Entity.active)));
+                cursor.GotoNext(i => i.MatchLdcR4(out float dummy1));
+                cursor.Index++;
+                intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx3); //fetch memory adress of local "num19" variable.
+                byte idx3 = (byte)fetchedIdx3;
+                cursor.Index++;
+                cursor.Emit(OpCodes.Ldarg_0); //push the NPC instance onto the stack.
+                cursor.EmitDelegate<Func<NPC, float>>
+                (
+                    (npc) =>
+                    {
+                        float maxAcc1 = 0.1f;
+                        if(npc.life < (int)Math.Round(npc.lifeMax * accelerationLimit))
+                        {
+                            maxAcc1 = 0.2f;
+                        }
+                        return maxAcc1;
+                    }
+                );
+                cursor.Emit(OpCodes.Stloc_S, idx3); //write "true" into the local "num19" variable.
+                cursor.Index++;
+                intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx4); //fetch memory adress of local "num20" variable.
+                byte idx4 = (byte)fetchedIdx4;
+                cursor.Index++;
+                cursor.Emit(OpCodes.Ldarg_0); //push the NPC instance onto the stack.
+                cursor.EmitDelegate<Func<NPC, float>>
+                (
+                    (npc) =>
+                    {
+                        float maxAcc2 = 0.15f;
+                        if(npc.life < (int)Math.Round(npc.lifeMax * accelerationLimit))
+                        {
+                            maxAcc2 = 0.3f;
+                        }
+                        return maxAcc2;
+                    }
+                );
+                cursor.Emit(OpCodes.Stloc_S, idx4); //write "true" into the local "num20" variable.
             }
             catch
             {
