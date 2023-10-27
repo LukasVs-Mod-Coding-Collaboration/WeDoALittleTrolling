@@ -20,6 +20,7 @@ using Terraria;
 using Terraria.ModLoader;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
+using System;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -49,6 +50,47 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(successInjectInfectionSpreadHook)
             {
                 WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Infection Spread Hook via IL Editing.");
+            }
+        }
+
+        public static void IL_NPC_AI_037_Destroyer(ILContext intermediateLanguageContext)
+        {
+            bool successInjectDestroyerAIHook = true;
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.maxTilesY)));
+                cursor.GotoNext(i => i.MatchLdcI4(0));
+                cursor.Index++;
+                intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx); //fetch memory adress of local "flag2" variable.
+                byte idx = (byte)fetchedIdx;
+                cursor.Index++;
+                cursor.Emit(OpCodes.Ldarg_0); //push the NPC instance onto the stack.
+                cursor.EmitDelegate<Func<NPC, bool>>
+                (
+                    (
+                        npc
+                    ) =>
+                    {
+                        bool gravity = true;
+                        if(npc.life < (int)Math.Round(npc.lifeMax * 0.25))
+                        {
+                            gravity = false; //Disable gravity code.
+                        }
+                        return !gravity;
+                    }
+                );
+                cursor.Emit(OpCodes.Stloc_S, idx); //write "true" into the local "flag2" variable.
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Destroyer AI Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectDestroyerAIHook = false;
+            }
+            if(successInjectDestroyerAIHook)
+            {
+                WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
             }
         }
     }
