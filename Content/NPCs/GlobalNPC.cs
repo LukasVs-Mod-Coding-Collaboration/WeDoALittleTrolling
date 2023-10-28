@@ -512,7 +512,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.BrainScrambler
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 3.25);
             }
             if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
