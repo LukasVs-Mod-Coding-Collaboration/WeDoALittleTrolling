@@ -302,13 +302,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
-            if
-            (
-                npc.type == NPCID.SkeletronHead ||
-                npc.type == NPCID.SkeletronHand
-            )
+            if(npc.type == NPCID.SkeletronHead)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
+            }
+            if(npc.type == NPCID.SkeletronHand)
+            {
+                npc.lifeMax *= 2;
             }
             if (npc.type == NPCID.BrainofCthulhu)
             {
