@@ -28,8 +28,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static bool isCalamityModPresent = false;
         public static bool isThoriumModPresent = false;
-        public const string calamityModName = "CalamityMod";
-        public const string thoriumModName = "ThoriumMod";
+        public static readonly string calamityModName = "CalamityMod";
+        public static readonly string thoriumModName = "ThoriumMod";
         public static bool MCIDIntegrity;
         
         public override void OnModLoad()
