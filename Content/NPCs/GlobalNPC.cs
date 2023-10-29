@@ -229,11 +229,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 base.SetDefaults(npc);
                 return;
             }
-            if(KnockbackResistanceGroup.Contains(npc.type))
+            if (KnockbackResistanceGroup.Contains(npc.type))
             {
                 npc.knockBackResist = 0f;
             }
-            if(npc.type == NPCID.RockGolem)
+            if (npc.type == NPCID.RockGolem)
             {
                 npc.value = Item.sellPrice(gold: 10);
             }
@@ -285,28 +285,28 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
             }
-            if(npc.type == NPCID.Mothron)
+            if (npc.type == NPCID.Mothron)
             {
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
 
             //Boss buffs
 
-            if(npc.type == NPCID.EyeofCthulhu)
+            if (npc.type == NPCID.EyeofCthulhu)
             {
                 npc.lifeMax *= 3;
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
-            if(npc.type == NPCID.KingSlime)
+            if (npc.type == NPCID.KingSlime)
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
-            if(npc.type == NPCID.SkeletronHead)
+            if (npc.type == NPCID.SkeletronHead)
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
             }
-            if(npc.type == NPCID.SkeletronHand)
+            if (npc.type == NPCID.SkeletronHand)
             {
                 npc.lifeMax *= 2;
             }
@@ -354,17 +354,18 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
-            if(npc.type == NPCID.HallowBoss)
+            if (npc.type == NPCID.HallowBoss)
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
             }
-            if(npc.type == NPCID.DukeFishron)
+            if (npc.type == NPCID.DukeFishron)
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
             }
-            if(npc.type == NPCID.CultistBoss)
+            if (npc.type == NPCID.CultistBoss)
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 3.25);
+                npc.damage = (int)Math.Round(npc.damage * 1.75);
             }
             if
             (
@@ -421,7 +422,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.lifeMax *= 2;
             }
-            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            if (npc.type == NPCID.VileSpitEaterOfWorlds)
             {
                 npc.dontTakeDamage = true;
             }
@@ -514,43 +515,43 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 3.25);
             }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 //Buff Thorium Bosses Accordingly
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_GTB))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_GTB))
                 {
                     npc.lifeMax *= 3;
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_QJ))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_QJ))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_VC))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_VC))
                 {
                     npc.lifeMax *= 2;
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_GES))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_GES))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BC))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BC))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
                     npc.damage = (int)Math.Round(npc.damage * 1.5);
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BS_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BS_V2))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BS_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BS_V2))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_FB_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_FB_V2))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_FB_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_FB_V2))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
                 }
-                if(npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V2))
+                if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V2))
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
                 }
@@ -585,23 +586,23 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            if (npc.type == NPCID.VileSpitEaterOfWorlds)
             {
                 npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft = 300;
                 npc.netUpdate = true;
             }
             //Decreasing damage during SetDefaults() is unsafe, do it in OnSpawn() instead.
-            if(NerfGroup25Percent.Contains(npc.type))
+            if (NerfGroup25Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * 0.75);
                 npc.netUpdate = true;
             }
-            if(NerfGroup35Percent.Contains(npc.type))
+            if (NerfGroup35Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * 0.65);
                 npc.netUpdate = true;
             }
-            if(NerfGroup50Percent.Contains(npc.type))
+            if (NerfGroup50Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * 0.5);
                 npc.netUpdate = true;
@@ -611,26 +612,26 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static void OnSpawnProjectile(NPC npc, Projectile projectile)
         {
-            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            if (npc.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
                 projectile.damage = (int)Math.Round(projectile.damage * (1.0f - SearingInferno.damageNerfMultiplier));
                 projectile.netUpdate = true;
             }
-            if(WDALTModSystem.isCalamityModPresent)
+            if (WDALTModSystem.isCalamityModPresent)
             {
                 return;
             }
-            if(NerfGroup25Percent.Contains(npc.type))
+            if (NerfGroup25Percent.Contains(npc.type))
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 0.75);
                 projectile.netUpdate = true;
             }
-            if(NerfGroup35Percent.Contains(npc.type))
+            if (NerfGroup35Percent.Contains(npc.type))
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 0.65);
                 projectile.netUpdate = true;
             }
-            if(NerfGroup50Percent.Contains(npc.type))
+            if (NerfGroup50Percent.Contains(npc.type))
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 0.5);
                 projectile.netUpdate = true;
@@ -647,7 +648,12 @@ namespace WeDoALittleTrolling.Content.NPCs
                 projectile.damage = (int)Math.Round(projectile.damage * 1.5);
                 projectile.netUpdate = true;
             }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (npc.type == NPCID.CultistBoss)
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 1.75);
+                projectile.netUpdate = true;
+            }
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 //Buff Thorium Bosses Accordingly
                 if
@@ -663,7 +669,7 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override bool? CanCollideWithPlayerMeleeAttack(NPC npc, Player player, Item item, Rectangle meleeAttackHitbox)
         {
-            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            if (npc.type == NPCID.VileSpitEaterOfWorlds)
             {
                 return false;
             }
@@ -683,11 +689,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 modifiers.SourceDamage *= 0.5f;
             }
-            if(npc.type == NPCID.Gnome)
+            if (npc.type == NPCID.Gnome)
             {
                 modifiers.SourceDamage *= 0.25f;
             }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if
                 (
@@ -703,11 +709,11 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
-            if(projectile.type == ModContent.ProjectileType<GloriousDemiseProjectile>() && ResistGloriousDemise50PercentGroup.Contains(npc.type))
+            if (projectile.type == ModContent.ProjectileType<GloriousDemiseProjectile>() && ResistGloriousDemise50PercentGroup.Contains(npc.type))
             {
                 modifiers.FinalDamage *= 0.5f;
             }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if
                 (
@@ -734,16 +740,16 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override bool PreAI(NPC npc)
         {
-            if(npc.type == NPCID.VileSpitEaterOfWorlds)
+            if (npc.type == NPCID.VileSpitEaterOfWorlds)
             {
-                if(npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft <= 0)
+                if (npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft <= 0)
                 {
                     npc.active = false;
                 }
-                if(Collision.SolidCollision(npc.position, npc.width+(int)npc.velocity.Length()+2, npc.height+(int)npc.velocity.Length()+2) && npc.velocity.Length() > 0f)
+                if (Collision.SolidCollision(npc.position, npc.width + (int)npc.velocity.Length() + 2, npc.height + (int)npc.velocity.Length() + 2) && npc.velocity.Length() > 0f)
                 {
                     npc.ai[0] += 1f;
-                    if(npc.ai[0] > 3f)
+                    if (npc.ai[0] > 3f)
                     {
                         npc.ai[0] = 3f;
                     }
@@ -766,30 +772,30 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 //Replicate vanilla behavior as good as possible.
-                if(random.NextBool(300) && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient)
+                if (random.NextBool(300) && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
-                    if(!Collision.CanHitLine(npc.Center, 1, 1, Main.player[npc.target].Center, 1, 1))
+                    if (!Collision.CanHitLine(npc.Center, 1, 1, Main.player[npc.target].Center, 1, 1))
                     {
                         NPC.NewNPC(new EntitySource_Parent(npc), (int)(npc.position.X + (float)(npc.width / 2) + npc.velocity.X), (int)(npc.position.Y + (float)(npc.height / 2) + npc.velocity.Y), NPCID.VileSpitEaterOfWorlds, 0, 0f, 1f);
                     }
                 }
             }
             npc.GetGlobalNPC<WDALTNPCUtil>().VileSpitTimeLeft--;
-            if(npc.type == NPCID.TheDestroyerBody)
+            if (npc.type == NPCID.TheDestroyerBody)
             {
                 //Replicate vanilla behavior as good as possible.
-                if(random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient)
+                if (random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
-                    if(!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
+                    if (!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                     {
                         Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));
                         float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.X;
                         float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.Y;
                         float randomMultiplierLengh = 8f / (new Vector2(randomMultiplierX, randomMultiplierY).Length());
-                        randomMultiplierX = (randomMultiplierX*randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
-                        randomMultiplierY = (randomMultiplierY*randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
+                        randomMultiplierX = (randomMultiplierX * randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
+                        randomMultiplierY = (randomMultiplierY * randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
                         posWithOffset.X += randomMultiplierX * 4f;
                         posWithOffset.Y += randomMultiplierY * 4f;
                         int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
@@ -799,9 +805,9 @@ namespace WeDoALittleTrolling.Content.NPCs
                     }
                 }
             }
-            if(npc.type == NPCID.Plantera)
+            if (npc.type == NPCID.Plantera)
             {
-                if(Main.player[npc.target].teleportTime > 0f)
+                if (Main.player[npc.target].teleportTime > 0f)
                 {
                     Main.player[npc.target].AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
@@ -809,7 +815,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 int shotDelay = 120;
                 float dmg1 = 32f;
                 float dmg2 = 40f;
-                if(npc.life < (npc.lifeMax / 4))
+                if (npc.life < (npc.lifeMax / 4))
                 {
                     shotDelay = 60;
                 }
@@ -819,11 +825,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                     dmg2 *= 2;
                     shotDelay = 30;
                 }
-                if(timeSinceLastShot >= shotDelay && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient && (npc.life < (npc.lifeMax / 2)))
+                if (timeSinceLastShot >= shotDelay && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient && (npc.life < (npc.lifeMax / 2)))
                 {
                     npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick = npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive;
                     npc.TargetClosest();
-                    if(Main.player[npc.target].active && !Main.player[npc.target].dead)
+                    if (Main.player[npc.target].active && !Main.player[npc.target].dead)
                     {
                         int damage = npc.GetAttackDamage_ForProjectiles(dmg1, dmg2);
                         int amount = random.Next(4, 7);
@@ -849,7 +855,7 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if
                 (
@@ -879,18 +885,18 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
-            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            if (npc.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
                 drawColor.R = 255;
                 drawColor.G = 191;
                 drawColor.B = 0;
-                int xOffset = random.Next(-(npc.width/2), (npc.width/2));
-                int yOffset = random.Next(-(npc.height/2), (npc.height/2));
+                int xOffset = random.Next(-(npc.width / 2), (npc.width / 2));
+                int yOffset = random.Next(-(npc.height / 2), (npc.height / 2));
                 Vector2 dustPosition = npc.Center;
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
                 int dustType = random.Next(0, 2);
-                switch(dustType)
+                switch (dustType)
                 {
                     case 0:
                         Dust newDust1 = Dust.NewDustPerfect(dustPosition, DustID.SolarFlare);
@@ -903,46 +909,46 @@ namespace WeDoALittleTrolling.Content.NPCs
                     default:
                         break;
                 }
-                
+
             }
             base.DrawEffects(npc, ref drawColor);
         }
 
         public static void ModifyHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile, ref Player.HurtModifiers modifiers)
         {
-            if(target.GetModPlayer<WDALTPlayer>().soulPoweredShield)
+            if (target.GetModPlayer<WDALTPlayer>().soulPoweredShield)
             {
                 float distanceToTarget = Vector2.Distance(npc.Center, target.Center);
-                if(distanceToTarget > 512f)
+                if (distanceToTarget > 512f)
                 {
                     distanceToTarget = 512f;
                 }
-                float rangeOffsetFactor = ((512f - 48f)/(1f - 0.83f));
+                float rangeOffsetFactor = ((512f - 48f) / (1f - 0.83f));
                 float modifierSPS = Math.Abs(((distanceToTarget - 48f) / rangeOffsetFactor) + 0.83f);
-                if(modifierSPS < 0.83f)
+                if (modifierSPS < 0.83f)
                 {
                     modifierSPS = 0.83f;
                 }
                 modifiers.FinalDamage *= modifierSPS;
             }
         }
-        
+
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
-            if(npc.HasBuff(ModContent.BuffType<SearingInferno>()))
+            if (npc.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
                 modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
             }
-            if(target.GetModPlayer<WDALTPlayer>().soulPoweredShield)
+            if (target.GetModPlayer<WDALTPlayer>().soulPoweredShield)
             {
                 float distanceToTarget = Vector2.Distance(npc.Center, target.Center);
-                if(distanceToTarget > 512f)
+                if (distanceToTarget > 512f)
                 {
                     distanceToTarget = 512f;
                 }
-                float rangeOffsetFactor = ((512f - 48f)/(1f - 0.83f)); //3093.333f
+                float rangeOffsetFactor = ((512f - 48f) / (1f - 0.83f)); //3093.333f
                 float modifierSPS = Math.Abs(((distanceToTarget - 48f) / rangeOffsetFactor) + 0.83f);
-                if(modifierSPS < 0.83f)
+                if (modifierSPS < 0.83f)
                 {
                     modifierSPS = 0.83f;
                 }
@@ -953,7 +959,7 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static void OnHitPlayerWithProjectile(NPC npc, Player target, Projectile projectile, Player.HurtInfo info)
         {
-            if(target.GetModPlayer<WDALTPlayer>().searingSetBonus)
+            if (target.GetModPlayer<WDALTPlayer>().searingSetBonus)
             {
                 npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
             }
@@ -962,7 +968,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             ApplyDebuffsToPlayerBasedOnNPC(npc.type, target);
-            if(target.GetModPlayer<WDALTPlayer>().searingSetBonus)
+            if (target.GetModPlayer<WDALTPlayer>().searingSetBonus)
             {
                 npc.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
             }
@@ -979,7 +985,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.PrimeVice)
             {
-                if(!target.HeldItem.IsAir)
+                if (!target.HeldItem.IsAir)
                 {
                     Item itemToDrop = target.HeldItem;
                     target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
@@ -987,7 +993,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 else
                 {
-                int j = -1;
+                    int j = -1;
                     if (!target.armor[0].IsAir)
                     {
                         j = 0;
@@ -1016,96 +1022,96 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static void ApplyDebuffsToPlayerBasedOnNPC(int npcType, Player target)
         {
-            if(InflictVenomDebuff1In1Group.Contains(npcType))
+            if (InflictVenomDebuff1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
                     target.AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictPoisonDebuff1In1Group.Contains(npcType))
+            if (InflictPoisonDebuff1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
                     target.AddBuff(BuffID.Poisoned, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictBleedingDebuff1In1Group.Contains(npcType))
+            if (InflictBleedingDebuff1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0) //1 in 1 Chance
+                if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
                     target.AddBuff(BuffID.Bleeding, 960, true); //16s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictBleedingDebuff1In8Group.Contains(npcType))
+            if (InflictBleedingDebuff1In8Group.Contains(npcType))
             {
-                if(random.Next(0, 8) == 0) //1 in 8 Chance
+                if (random.Next(0, 8) == 0) //1 in 8 Chance
                 {
                     target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictSearingInferno1In1Group.Contains(npcType))
+            if (InflictSearingInferno1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictBrokenArmor1In1Group.Contains(npcType))
+            if (InflictBrokenArmor1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(BuffID.BrokenArmor, 960, true); //16s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictSlowness1In1Group.Contains(npcType))
+            if (InflictSlowness1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(BuffID.Slow, 960, true); //16s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictCursed1In1Group.Contains(npcType))
+            if (InflictCursed1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(BuffID.Cursed, 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictWreckedResistance1In1Group.Contains(npcType))
+            if (InflictWreckedResistance1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictWreckedAccuracy1In1Group.Contains(npcType))
+            if (InflictWreckedAccuracy1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
-            if(InflictDevastated1In1Group.Contains(npcType))
+            if (InflictDevastated1In1Group.Contains(npcType))
             {
-                if(random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
                 }
             }
-            if(npcType == NPCID.PossessedArmor)
+            if (npcType == NPCID.PossessedArmor)
             {
                 target.AddBuff(BuffID.Blackout, 900, true); //15s, X2 in Expert, X2.5 in Master
             }
-            if(WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 //Buff Thorium Bosses Accordingly
-                if(WDALTModContentID.GetThoriumBossInflictWreckedResistance1in1Group().Contains(npcType))
+                if (WDALTModContentID.GetThoriumBossInflictWreckedResistance1in1Group().Contains(npcType))
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
-                if(WDALTModContentID.GetThoriumBossInflictDevastated1in1Group().Contains(npcType))
+                if (WDALTModContentID.GetThoriumBossInflictDevastated1in1Group().Contains(npcType))
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
@@ -1115,16 +1121,16 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
-            foreach(IItemDropRule rule in globalLoot.Get())
+            foreach (IItemDropRule rule in globalLoot.Get())
             {
-                if(rule is ItemDropWithConditionRule conditionRule)
+                if (rule is ItemDropWithConditionRule conditionRule)
                 {
-                    if(conditionRule.condition is Conditions.SoulOfLight)
+                    if (conditionRule.condition is Conditions.SoulOfLight)
                     {
                         conditionRule.chanceNumerator = 2;
                         conditionRule.chanceDenominator = 5;
                     }
-                    if(conditionRule.condition is Conditions.SoulOfNight)
+                    if (conditionRule.condition is Conditions.SoulOfNight)
                     {
                         conditionRule.chanceNumerator = 2;
                         conditionRule.chanceDenominator = 5;
@@ -1163,7 +1169,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 int chanceDenominator = 100;
                 TryModifyRodOfDiscordDropChance(npcLoot, chanceNumerator, chanceDenominator);
             }
-            if(npc.type == NPCID.CultistBoss)
+            if (npc.type == NPCID.CultistBoss)
             {
                 int dropAmountMin = 1;
                 int dropAmountMax = 1;
@@ -1383,7 +1389,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if
             (
-                npc.type == NPCID.Flocko||
+                npc.type == NPCID.Flocko ||
                 npc.type == NPCID.GingerbreadMan ||
                 npc.type == NPCID.ZombieElf ||
                 npc.type == NPCID.ZombieElfBeard ||
@@ -1419,7 +1425,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 );
                 npcLoot.Add(drop);
             }
-            if(npc.type == NPCID.RockGolem)
+            if (npc.type == NPCID.RockGolem)
             {
                 int dropAmountMin = 1;
                 int dropAmountMax = 3;
@@ -1449,7 +1455,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         }
 
         //Modify Rod of Discord drop chance. Are you kidding me, Re-Logic???!!!
-        
+
         public static void TryModifyRodOfDiscordDropChance(NPCLoot npcLoot, int newChanceNumerator, int newChanceDenominator)
         {
             try
