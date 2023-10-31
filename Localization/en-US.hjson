@@ -409,6 +409,15 @@ Mods: {
 				DisplayName: Haunted Staff
 				Tooltip: ""
 			}
+
+			WormCandle: {
+				Tooltip:
+					'''
+					Holding this may attract unwanted attention...
+					...from WORMS!
+					'''
+				DisplayName: Worm Candle
+			}
 		}
 
 		Projectiles: {
@@ -721,6 +730,11 @@ Mods: {
 			WreckedAccuracy: {
 				DisplayName: Wrecked Accuracy
 				Description: Critical strike chance is decreased by
+			}
+
+			WormCandleBuff: {
+				Description: Increased worm spawn rate
+				DisplayName: Worm Candle
 			}
 		}
 

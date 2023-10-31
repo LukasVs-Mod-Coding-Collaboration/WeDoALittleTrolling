@@ -61,6 +61,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public Player player;
         public long currentTick;
         public int chargeAccelerationTicks;
+        public bool zoneWormCandle;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -86,6 +87,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             yoyoArtifact = false;
             currentTick = 0;
             chargeAccelerationTicks = 0;
+            zoneWormCandle = false;
         }
 
         public override void UpdateDead()
@@ -113,6 +115,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
             chargeAccelerationTicks = 0;
+            zoneWormCandle = false;
         }
 
         public override void ResetEffects()
@@ -135,6 +138,22 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             GlobalItemList.ModifySetBonus(player);
             currentTick++;
             base.PostUpdate();
+        }
+
+        public override void PreUpdateBuffs()
+        {
+            if(player.whoAmI == Main.myPlayer)
+            {
+                if(WDALTSceneMetrics.HasWormCandle)
+                {
+                    zoneWormCandle = true;
+                    player.AddBuff(ModContent.BuffType<WormCandleBuff>(), 2);
+                }
+                else
+                {
+                    zoneWormCandle = false;
+                }
+            }
         }
 
         public override void ModifyLuck(ref float luck)

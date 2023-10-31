@@ -150,5 +150,32 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
             }
         }
+
+        public static void IL_SceneMetrics_Reset(ILContext intermediateLanguageContext)
+        {
+            bool successInjectSceneMetricsHook = true;
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdarg0());
+                cursor.EmitDelegate
+                (
+                    () =>
+                    {
+                        WDALTSceneMetrics.Reset();;
+                    }
+                );
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Scene Metrics Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectSceneMetricsHook = false;
+            }
+            if(successInjectSceneMetricsHook)
+            {
+                WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Scene Metrics Hook via IL Editing.");
+            }
+        }
     }
 }

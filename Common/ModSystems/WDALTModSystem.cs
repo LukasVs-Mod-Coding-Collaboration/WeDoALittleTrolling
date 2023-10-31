@@ -45,6 +45,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             IL_WorldGen.UpdateWorld_Inner += WDALTIntermediateLanguageEditing.IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer += WDALTIntermediateLanguageEditing.IL_NPC_AI_037_Destroyer;
+            IL_SceneMetrics.Reset += WDALTIntermediateLanguageEditing.IL_SceneMetrics_Reset;
             base.OnModLoad();
         }
 

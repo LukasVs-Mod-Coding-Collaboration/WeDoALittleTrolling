@@ -1,4 +1,4 @@
 displayName = We Do A Little Trolling
 author = LukasV-Coding
-version = 0.9.11
+version = 0.9.12
 sortAfter = ThoriumMod, CalamityMod

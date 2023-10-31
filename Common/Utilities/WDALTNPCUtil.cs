@@ -16,25 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
-using WeDoALittleTrolling.Content.Buffs;
-using WeDoALittleTrolling.Content.NPCs;
-using WeDoALittleTrolling.Content.Prefixes;
-using WeDoALittleTrolling.Content.Items;
-using WeDoALittleTrolling.Content.Items.Material;
-using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 using System.IO;
+using WeDoALittleTrolling.Common.ModPlayers;
+using System.Collections.Generic;
+using Terraria.ID;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -69,6 +58,73 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             ticksAlive++;
             base.PostAI(npc);
+        }
+
+        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+        {
+            if (player.GetModPlayer<WDALTPlayer>().zoneWormCandle)
+            {
+                spawnRate = (int)((double)spawnRate * 0.25);
+            }
+        }
+
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.Player.GetModPlayer<WDALTPlayer>().zoneWormCandle)
+            {
+                if ((Main.IsItRaining && spawnInfo.Player.ZoneForest) || spawnInfo.Player.ZoneNormalUnderground || spawnInfo.Player.ZoneNormalCaverns)
+                {
+                    pool[NPCID.Worm] = 5f;
+                    pool[NPCID.GoldWorm] = 1.25f;
+                }
+                if (spawnInfo.Player.ZoneGlowshroom)
+                {
+                    pool[NPCID.TruffleWorm] = 2.5f;
+                }
+                if (spawnInfo.Player.ZoneUndergroundDesert)
+                {
+                    pool[NPCID.TombCrawlerHead] = 5f;
+                    if (Main.hardMode)
+                    {
+                        pool[NPCID.DuneSplicerHead] = 5f;
+                    }
+                }
+                if
+                (
+                    spawnInfo.Player.ZoneNormalUnderground ||
+                    spawnInfo.Player.ZoneNormalCaverns ||
+                    (
+                        spawnInfo.Player.ZoneJungle &&
+                        (
+                            spawnInfo.Player.ZoneDirtLayerHeight ||
+                            spawnInfo.Player.ZoneRockLayerHeight
+                        )
+                    )
+                )
+                {
+                    pool[NPCID.GiantWormHead] = 5f;
+                    if (Main.hardMode)
+                    {
+                        pool[NPCID.DiggerHead] = 5f;
+                    }
+                }
+                if (spawnInfo.Player.ZoneCorrupt)
+                {
+                    pool[NPCID.DevourerHead] = 5f;
+                    if (Main.hardMode)
+                    {
+                        pool[NPCID.SeekerHead] = 5f;
+                    }
+                }
+                if (spawnInfo.Player.ZoneUnderworldHeight)
+                {
+                    pool[NPCID.BoneSerpentHead] = 5f;
+                }
+                if (!Main.IsItDay() && !Main.IsItRaining && spawnInfo.Player.ZoneOverworldHeight)
+                {
+                    pool[NPCID.EnchantedNightcrawler] = 2.5f;
+                }
+            }
         }
     }
 }
