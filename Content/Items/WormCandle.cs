@@ -43,12 +43,14 @@ namespace WeDoALittleTrolling.Content.Items
             CreateRecipe(1)
             .AddTile(TileID.ShimmerMonolith)
             .AddIngredient(ItemID.Candle, 1)
+            .AddIngredient(ItemID.Worm, 10)
             .AddCustomShimmerResult(ItemID.Candle, 1)
             .Register();
 
             CreateRecipe(1)
             .AddTile(TileID.ShimmerMonolith)
             .AddIngredient(ItemID.PlatinumCandle, 1)
+            .AddIngredient(ItemID.Worm, 10)
             .AddCustomShimmerResult(ItemID.PlatinumCandle, 1)
             .Register();
         }
