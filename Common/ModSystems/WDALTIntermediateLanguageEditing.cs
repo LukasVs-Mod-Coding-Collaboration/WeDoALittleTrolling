@@ -162,7 +162,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 (
                     () =>
                     {
-                        WDALTSceneMetrics.Reset();;
+                        WDALTSceneMetrics.Reset();
                     }
                 );
             }
