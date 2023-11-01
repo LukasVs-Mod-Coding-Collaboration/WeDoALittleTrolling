@@ -183,6 +183,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.statManaMax2 += 80;
             }
+            if (item.prefix == PrefixID.Warding)
+            {
+                player.endurance += 0.02f;
+            }
             if (item.type == ItemID.AvengerEmblem)
             {
                 player.GetAttackSpeed(DamageClass.Generic) += 0.10f;
@@ -312,6 +316,11 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMaxMana") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "+100 mana");
+            }
+            if (item.prefix == PrefixID.Warding)
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccDefense") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "+4 defense\n+2% reduced damage taken");
             }
             if (item.type == ItemID.SpectreHood)
             {

@@ -54,8 +54,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
             player.GetDamage(DamageClass.Magic) -= 0.06f;
             player.GetCritChance(DamageClass.Magic) -= 6f;
             player.GetDamage(DamageClass.Summon) += 0.06f;
-            player.statDefense += 3;
-            player.statManaMax2 += 12;
+            player.statDefense += 2;
+            player.statManaMax2 += 10;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

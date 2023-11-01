@@ -436,33 +436,23 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 !target.CountsAsACritter && 
                 !target.isLikeATownNPC && 
                 target.type != NPCID.TargetDummy &&
-                target.canGhostHeal
+                target.canGhostHeal &&
+                target.CanBeChasedBy()
             )
             {
                 // 1 Base Heal + 5% of damage done
                 int healingAmount = 1 + (int)Math.Round(damageDone * 0.05);
-                if(hit.Crit)
+                // Stop Sacling at ~160 Damage
+                if(healingAmount > 8)
                 {
-                    // Stop Sacling at ~320 Damage for Critical Hits
-                    if(healingAmount > 16)
-                    {
-                        healingAmount = 16;
-                    }
-                }
-                else
-                {
-                    // Stop Sacling at ~160 Damage for Normal Hits
-                    if(healingAmount > 8)
-                    {
-                        healingAmount = 8;
-                    }
+                    healingAmount = 8;
                 }
                 // Having Moon Bite means the effect still works, however,
-                // it will be 75% less effective
+                // it will be 90% less effective
                 // 1 Base Heal is still guaranteed
                 if(player.HasBuff(BuffID.MoonLeech) && (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan))
                 {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
+                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                 }
                 // Chlorophyte Partisan go BRRRR!!!
                 if(player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
@@ -472,7 +462,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 if(player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
                     long ticksSinceLastHeal = Math.Abs(currentTick - lastLeechingHealTick);
-                    if(ticksSinceLastHeal >= ((double)player.itemAnimationMax/2.0)) // Only heal player 2 times every item use
+                    if(ticksSinceLastHeal >= player.itemAnimationMax) // Only heal player one time every item use
                     {
                         player.Heal(healingAmount);
                         lastLeechingHealTick = currentTick;
