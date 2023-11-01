@@ -213,6 +213,20 @@ namespace WeDoALittleTrolling.Content.Items
             base.UpdateAccessory(item, player, hideVisual);
         }
 
+        /* No Wings Challenge Code
+        public override bool CanEquipAccessory(Item item, Player player, int slot, bool modded)
+        {
+            if(item.wingSlot > -1 && item.wingSlot < ArmorIDs.Wing.Sets.Stats.Length)
+            {
+                if(ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime > 0)
+                {
+                    return false;
+                }
+            }
+            return base.CanEquipAccessory(item, player, slot, modded);
+        }
+        */
+
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
             if
