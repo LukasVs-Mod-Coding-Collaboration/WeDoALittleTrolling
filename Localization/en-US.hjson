@@ -635,18 +635,7 @@ Mods: {
 
 			Indecisive: {
 				DisplayName: Indecisive
-				AdditionalTooltip:
-					'''
-					+1 defense
-					+1% damage
-					+1% critical strike chance
-					+1% movement speed
-					+1% attack speed
-					+1% reduced damage taken
-					+1% reduced mana cost
-					+1 mana regeneration
-					+10 mana
-					'''
+				AdditionalTooltip: +2 to all "reforge stats"
 			}
 
 			Overloaded.DisplayName: Overloaded

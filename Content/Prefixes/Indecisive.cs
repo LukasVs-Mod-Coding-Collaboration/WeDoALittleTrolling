@@ -32,7 +32,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 1.0f;
+            return 0.1f;
         }
 
         public override bool CanRoll(Item item)
@@ -42,20 +42,17 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult *= 1.4f;
+            valueMult *= 1.5f;
         }
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.statDefense += 1;
-            player.moveSpeed *= 1.01f;
-            player.statManaMax2 += 10;
-            player.GetDamage(DamageClass.Generic) += 0.01f;
-            player.GetAttackSpeed(DamageClass.Generic) *= 1.01f;
-            player.GetCritChance(DamageClass.Generic) += 1.0f;
-            player.manaCost *= 0.99f;
-            player.endurance += 0.01f;
-            player.manaRegen += 1;
+            player.statDefense += 2;
+            player.moveSpeed += 0.02f;
+            player.statManaMax2 += 20;
+            player.GetDamage(DamageClass.Generic) += 0.02f;
+            player.GetAttackSpeed(DamageClass.Generic) += 0.02f;
+            player.GetCritChance(DamageClass.Generic) += 2.0f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
