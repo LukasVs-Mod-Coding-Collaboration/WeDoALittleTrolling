@@ -92,26 +92,6 @@ namespace WeDoALittleTrolling.Content.Items
                 player.chatOverhead.NewMessage("You may not use this item.", 180);
                 return false;
             }
-            else if
-            (
-                item.type == ItemID.RodOfHarmony
-            )
-            {
-                if (player.HasBuff(BuffID.ChaosState))
-                {
-                    if ((player.statLife - (int)Math.Round((float)player.statLifeMax2 / (float)7)) >= 0)
-                    {
-                        player.statLife -= (int)Math.Round((float)player.statLifeMax2 / (float)7);
-                    }
-                    else
-                    {
-                        PlayerDeathReason reason = new PlayerDeathReason();
-                        reason.SourceCustomReason = player.name + " didn't materialize";
-                        player.KillMe(reason, 9999999999.0, 0, false);
-                    }
-                }
-                player.AddBuff(BuffID.ChaosState, 180, true);
-            }
             return base.CanUseItem(item, player);
         }
 
@@ -235,10 +215,6 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            if (Sandstepping.CompatibleItemIDs.Contains(equippedItem.type) && Sandstepping.CompatibleItemIDs.Contains(incomingItem.type))
-            {
-                return false;
-            }
             if
             (
                 (
