@@ -840,10 +840,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.RainbowCrystalExplosion
             )
             {
-                if (random.Next(0, 100) < 30)
+                if (random.Next(0, 100) < 15)
                 {
                     modifiers.SetCrit();
                 }
+            }
+            if (projectile.type == ProjectileID.ScytheWhipProj)
+            {
+                modifiers.SourceDamage *= 1.25f;
             }
             base.ModifyHitNPC(projectile, target, ref modifiers);
         }

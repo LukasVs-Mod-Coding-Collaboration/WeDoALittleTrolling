@@ -327,6 +327,11 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraManaLine = new TooltipLine(Mod, "PrefixAccMaxMana", "Increases maximum mana by 60");
                 tooltips.Add(extraManaLine);
             }
+            if (item.type == ItemID.ScytheWhip) //Dark Harvest
+            {
+                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "'The harvest is bountiful this year...'");
+                tooltips.Add(extraLoreLine);
+            }
             if (item.type == ItemID.ChlorophytePartisan)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recoveres 5% of damage as health");
@@ -417,7 +422,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.MoonlordTurretStaff
             )
             {
-                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectiles have a 30% chance to land a critical strike");
+                TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraCritChanceDescription", "Projectiles have a 15% chance to land a critical strike");
                 tooltips.Add(extraCritChanceLine);
             }
             if
