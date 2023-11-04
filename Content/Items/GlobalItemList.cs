@@ -329,7 +329,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ScytheWhip) //Dark Harvest
             {
-                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "'The harvest is bountiful this year...'");
+                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"The harvest is bountiful this year\"");
                 tooltips.Add(extraLoreLine);
             }
             if (item.type == ItemID.ChlorophytePartisan)
