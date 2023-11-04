@@ -26,6 +26,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
 {
     internal static class WDALTIntermediateLanguageEditing
     {
+        public static void RegisterILHooks()
+        {
+            IL_WorldGen.UpdateWorld_Inner += IL_WorldGen_UpdateWorld;
+            IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
+            IL_SceneMetrics.Reset += IL_SceneMetrics_Reset;
+        }
+
         public static void IL_WorldGen_UpdateWorld(ILContext intermediateLanguageContext)
         {
             bool successInjectInfectionSpreadHook = true;
