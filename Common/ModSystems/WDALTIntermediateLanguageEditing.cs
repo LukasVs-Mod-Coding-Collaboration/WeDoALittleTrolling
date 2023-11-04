@@ -30,7 +30,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             IL_WorldGen.UpdateWorld_Inner += IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
-            IL_SceneMetrics.Reset += IL_SceneMetrics_Reset;
+        }
+
+        public static void UnregisterILHooks()
+        {
+            IL_WorldGen.UpdateWorld_Inner -= IL_WorldGen_UpdateWorld;
+            IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
         }
 
         public static void IL_WorldGen_UpdateWorld(ILContext intermediateLanguageContext)
@@ -155,33 +160,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(successInjectDestroyerAIHook)
             {
                 WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
-            }
-        }
-
-        public static void IL_SceneMetrics_Reset(ILContext intermediateLanguageContext)
-        {
-            bool successInjectSceneMetricsHook = true;
-            try
-            {
-                ILCursor cursor = new ILCursor(intermediateLanguageContext);
-                cursor.GotoNext(i => i.MatchLdarg0());
-                cursor.EmitDelegate
-                (
-                    () =>
-                    {
-                        WDALTSceneMetrics.Reset();
-                    }
-                );
-            }
-            catch
-            {
-                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
-                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Scene Metrics Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
-                successInjectSceneMetricsHook = false;
-            }
-            if(successInjectSceneMetricsHook)
-            {
-                WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Scene Metrics Hook via IL Editing.");
             }
         }
     }

@@ -44,7 +44,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             WDALTIntermediateLanguageEditing.RegisterILHooks();
+            On_SceneMetrics.Reset += WDALTSceneMetrics.On_SceneMetrics_Reset;
             base.OnModLoad();
+        }
+
+        public override void OnModUnload()
+        {
+            WDALTIntermediateLanguageEditing.UnregisterILHooks();
+            On_SceneMetrics.Reset -= WDALTSceneMetrics.On_SceneMetrics_Reset;
+            base.OnModUnload();
         }
 
         public static bool TryGetCalamityMod(out Mod calamityMod)
