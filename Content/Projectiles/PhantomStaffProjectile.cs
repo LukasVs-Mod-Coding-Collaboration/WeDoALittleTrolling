@@ -334,7 +334,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AI_003_LuminitePhantom_CorrectFreeze()
         {
-            if (Projectile.velocity.Length() < idleMoveSpeed * 0.1f) //If movement speed is slower than 10% of idle move Speed, accelerate in a random direction.
+            if (Projectile.velocity.Length() < idleMoveSpeed * 0.04f) //If movement speed is slower than 4% of idle move Speed, accelerate in a random direction.
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
