@@ -593,6 +593,31 @@ namespace WeDoALittleTrolling.Content.Items
                     }
                 }
             }
+            if
+            (
+                item.type == ItemID.OasisCrate ||
+                item.type == ItemID.OasisCrateHard
+            )
+            {
+                if (random.Next(0, 5) == 0)
+                {
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                        spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                        spawnCrateItemPacket.Write((short)ItemID.SandstorminaBottle);
+                        spawnCrateItemPacket.Write((int)player.width);
+                        spawnCrateItemPacket.Write((int)player.height);
+                        spawnCrateItemPacket.Write((int)1); //Drop amount
+                        spawnCrateItemPacket.WriteVector2(player.position);
+                        spawnCrateItemPacket.Send();
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.SandstorminaBottle, 1);
+                    }
+                }
+            }
             int amountGold = 0;
             short goldItemID = ItemID.GoldCoin;
             if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)

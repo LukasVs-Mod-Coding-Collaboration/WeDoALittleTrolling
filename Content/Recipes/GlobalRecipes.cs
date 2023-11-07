@@ -65,6 +65,34 @@ namespace WeDoALittleTrolling.Content.Recipes
             .AddTile(TileID.HeavyWorkBench)
             .Register();
 
+            Recipe.Create(ItemID.BandofRegeneration, 1)
+            .AddIngredient(ItemID.CrimtaneBar, 4)
+            .AddIngredient(ItemID.LifeCrystal, 1)
+            .AddTile(TileID.HeavyWorkBench)
+            .Register();
+
+            Recipe.Create(ItemID.BandofRegeneration, 1)
+            .AddIngredient(ItemID.DemoniteBar, 4)
+            .AddIngredient(ItemID.LifeCrystal, 1)
+            .AddTile(TileID.HeavyWorkBench)
+            .Register();
+
+            Recipe.Create(ItemID.AngelStatue, 1)
+            .AddIngredient(ItemID.StoneBlock, 50)
+            .AddIngredient(ItemID.ShimmerTorch, 25)
+            .AddTile(TileID.ShimmerMonolith)
+            .Register();
+
+            Recipe.Create(ItemID.TsunamiInABottle, 1)
+            .AddIngredient(ItemID.CloudinaBottle, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+
+            Recipe.Create(ItemID.CloudinaBottle, 1)
+            .AddIngredient(ItemID.TsunamiInABottle, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+
             Recipe WDALT_WormScarf_BoC_V1 = Recipe.Create(ItemID.WormScarf, 1);
             WDALT_WormScarf_BoC_V1.AddCondition(ShimmerCondition);
             WDALT_WormScarf_BoC_V1.AddIngredient(ItemID.BrainOfConfusion, 1);
