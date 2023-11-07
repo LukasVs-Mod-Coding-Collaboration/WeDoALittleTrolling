@@ -245,10 +245,7 @@ Mods: {
 
 			Consumablebee: {
 				DisplayName: Edible Bee
-				Tooltip:
-					'''
-					"However, I prefer my bees roasted."
-					'''
+				Tooltip: '''"However, I prefer my bees roasted."'''
 			}
 
 			InfiniteRocketAmmo: {
@@ -312,10 +309,10 @@ Mods: {
 				Tooltip:
 					'''
 					Grants the following when holding a magic weapon:
-					Gives a 1 in 6 chance to dodge attacks
-					Regenerates 3 life per second
-					6 defense
-					6% decreased critical strike chance
+					Gives a 1 in 4 chance to dodge attacks
+					Regenerates 2 life per second
+					4 defense
+					16% decreased damage
 					Enemies are less likely to target you
 					Incompatible with the Mana Extraction Catalyst
 					'''
@@ -420,6 +417,16 @@ Mods: {
 					...from WORMS!
 					'''
 				DisplayName: Worm Candle
+			}
+
+			UnionMirror: {
+				DisplayName: Union Mirror
+				Tooltip:
+					'''
+					Gaze in the mirror to return home
+					Teleports you to a party member
+					Click their head on the fullscreen map
+					'''
 			}
 		}
 
@@ -688,7 +695,7 @@ Mods: {
 					You will dodge 1 in 4 attacks
 					Provides 2 life regeneration per second
 					Increase defense by 4
-					4% decreased critical strike chance
+					16% decreased damage
 					Enemies are less likely to target you
 					'''
 			}

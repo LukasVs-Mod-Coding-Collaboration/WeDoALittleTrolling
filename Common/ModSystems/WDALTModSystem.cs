@@ -19,6 +19,7 @@
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.Recipes;
 
 namespace WeDoALittleTrolling.Common.ModSystems
@@ -44,7 +45,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             WDALTIntermediateLanguageEditing.RegisterILHooks();
-            On_SceneMetrics.Reset += WDALTSceneMetrics.On_SceneMetrics_Reset;
+            WDALTSceneMetrics.RegisterHooks();
+            UnionMirror.RegisterHooks();
             base.OnModLoad();
         }
 

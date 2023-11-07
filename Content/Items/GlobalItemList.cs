@@ -97,14 +97,6 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override bool ConsumeItem(Item item, Player player)
         {
-            if
-            (
-                item.type == ItemID.WormholePotion ||
-                item.type == ItemID.PotionOfReturn
-            )
-            {
-                return false;
-            }
             if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
             {
                 SoundStyle buffActivateSoundStyle = SoundID.Item4;
@@ -1525,15 +1517,6 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.MechanicalSkull ||
                 item.type == ItemID.MechdusaSummon ||
                 item.type == ItemID.CelestialSigil
-            )
-            {
-                item.consumable = false;
-                item.maxStack = 1;
-            }
-            if
-            (
-                item.type == ItemID.WormholePotion ||
-                item.type == ItemID.PotionOfReturn
             )
             {
                 item.consumable = false;

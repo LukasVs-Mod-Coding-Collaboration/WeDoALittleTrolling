@@ -504,6 +504,24 @@ namespace WeDoALittleTrolling.Content.Recipes
             {
                 Recipe recipe = Main.recipe[i];
 
+                if (recipe.TryGetResult(ItemID.PotionOfReturn, out Item PotionOfReturn))
+                {
+                    PotionOfReturn.stack = 3;
+                    if (recipe.TryGetIngredient(ItemID.RecallPotion, out Item RecallPotion1))
+                    {
+                        RecallPotion1.stack = 3;
+                    }
+                }
+
+                if (recipe.TryGetResult(ItemID.RecallPotion, out Item RecallPotion2))
+                {
+                    RecallPotion2.stack = 3;
+                    if (recipe.TryGetIngredient(ItemID.BottledWater, out Item BottledWater1))
+                    {
+                        BottledWater1.stack = 3;
+                    }
+                }
+                
                 //Platinum Armor
 
                 if (recipe.TryGetResult(ItemID.PlatinumHelmet, out Item PlatinumHelmet))

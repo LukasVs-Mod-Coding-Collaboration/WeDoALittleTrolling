@@ -25,6 +25,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
     {
         public static bool HasWormCandle = false;
 
+        public static void RegisterHooks()
+        {
+            On_SceneMetrics.Reset += On_SceneMetrics_Reset;
+        }
+
         public static void On_SceneMetrics_Reset(On_SceneMetrics.orig_Reset orig, SceneMetrics self)
         {
             HasWormCandle = false;
