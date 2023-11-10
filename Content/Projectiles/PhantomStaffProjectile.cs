@@ -34,7 +34,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly float idleOverlapCorrectionFactor = 0.04f;
         public static readonly float attackOverlapCorrectionFactor = 0.02f;
         public static readonly float detectionRange = 1024f;
-        public static readonly float detectionRangeOffset = 50f;
+        public static readonly float detectionRangeOffset = 32f;
         public static readonly float idleMoveSpeed = 4f;
         public static readonly float attackMoveSpeed = 16f;
         public static readonly float idleInertia = 8f;
@@ -101,12 +101,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (targetDetected)
             {
                 AI_003_LuminitePhantom_AttackAI(ref distanceToTarget, ref targetCenter, ref targetVelocity);
+                AI_003_LuminitePhantom_AttackCorrectFreeze(ref distanceToTarget);
             }
             else
             {
                 AI_003_LuminitePhantom_IdleAI(ref distanceToIdlePos, ref vectorToIdlePos);
+                AI_003_LuminitePhantom_IdleCorrectFreeze(ref distanceToIdlePos);
             }
-            AI_003_LuminitePhantom_CorrectFreeze();
             AI_003_LuminitePhantom_UpdateFrames();
         }
 
@@ -264,7 +265,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if
             (
                 (cooldownFinished) &&
-                (distanceToTarget > detectionRangeOffset * 2)
+                (distanceToTarget > detectionRangeOffset * 3f)
             )
             {
                 if (Projectile.owner == Main.myPlayer)
@@ -306,6 +307,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
         }
 
+        private void AI_003_LuminitePhantom_AttackCorrectFreeze(ref float distanceToTarget)
+        {
+            if (Projectile.velocity.Length() < (1f/attackMoveSpeed) && distanceToTarget <= detectionRangeOffset)
+            {
+                Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
+                Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
+                Projectile.velocity.Normalize();
+                Projectile.velocity *= (attackMoveSpeed / attackInertia);
+            }
+        }
+
         private void AI_003_LuminitePhantom_IdleAI(ref float distanceToIdlePos, ref Vector2 vectorToIdlePos)
         {
             if (distanceToIdlePos > idleDistance)
@@ -332,14 +344,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
         }
 
-        private void AI_003_LuminitePhantom_CorrectFreeze()
+        private void AI_003_LuminitePhantom_IdleCorrectFreeze(ref float distanceToIdlePos)
         {
-            if (Projectile.velocity.Length() < 0.0625f) //If movement speed is slower than 4% of idle move Speed, accelerate in a random direction.
+            if (Projectile.velocity.Length() < (1f/idleMoveSpeed) && distanceToIdlePos <= idleDistance)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Normalize();
-                Projectile.velocity *= idleMoveSpeed;
+                Projectile.velocity *= (idleMoveSpeed / idleInertia);
             }
         }
 

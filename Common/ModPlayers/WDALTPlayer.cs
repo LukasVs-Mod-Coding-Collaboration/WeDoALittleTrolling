@@ -90,7 +90,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
             hasIsrapony = false;
-    }
+        }
 
         public override void UpdateDead()
         {
