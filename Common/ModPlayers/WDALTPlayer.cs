@@ -62,6 +62,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public long currentTick;
         public int chargeAccelerationTicks;
         public bool zoneWormCandle;
+        public bool hasIsrapony;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -88,7 +89,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             currentTick = 0;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
-        }
+            hasIsrapony = false;
+    }
 
         public override void UpdateDead()
         {
@@ -116,6 +118,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             yoyoArtifact = false;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
+            hasIsrapony = false;
         }
 
         public override void ResetEffects()
@@ -130,6 +133,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
+            hasIsrapony = false;
             base.ResetEffects();
         }
         
@@ -137,6 +141,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             GlobalItemList.ModifySetBonus(player);
             currentTick++;
+            if (player.HasItem(ItemID.SunshineofIsrapony))
+            {
+                hasIsrapony = true;
+            }
             base.PostUpdate();
         }
 

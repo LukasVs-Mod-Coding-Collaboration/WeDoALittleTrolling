@@ -632,6 +632,20 @@ Mods: {
 				AdditionalTooltip: +Featherfall buff
 			}
 
+			ClamInfusion: {
+				DisplayName: Calm infusing
+				AdditionalTooltip: +Calm buff
+			}
+
+			NoTrapsInfusion: {
+				DisplayName: Dangersense infusing
+				AdditionalTooltip:
+					'''
+					+Dangersense buff
+					Can only be obtained on a "No Traps" world.
+					'''
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
@@ -646,6 +660,11 @@ Mods: {
 			Indecisive: {
 				DisplayName: Indecisive
 				AdditionalTooltip: +2 to all "reforge stats"
+			}
+
+			SunshineOf: {
+				DisplayName: Sunshine of
+				AdditionalTooltip: WHAT IN THE NAME OF ISRAPONY IS HAPPENING
 			}
 
 			Overloaded.DisplayName: Overloaded
