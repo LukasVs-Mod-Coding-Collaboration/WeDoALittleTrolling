@@ -637,6 +637,11 @@ Mods: {
 				AdditionalTooltip: +Calm buff
 			}
 
+			BiomeSightInfusion: {
+				DisplayName: Biome Sight infusing
+				AdditionalTooltip: +Biome sight buff
+			}
+
 			NoTrapsInfusion: {
 				DisplayName: Dangersense infusing
 				AdditionalTooltip:
