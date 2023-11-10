@@ -142,7 +142,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             }
             if (player.shimmerImmune)
             {
-                modifier *= 2f;
+                modifier *= 1.25f;
             }
             damage *= modifier;
             base.ModifyWeaponDamage(player, ref damage);

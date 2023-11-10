@@ -52,9 +52,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
         // Damage Multiplier, Knockback Multiplier, Use Time Multiplier, Scale Multiplier (Size), Shoot Speed Multiplier, Mana Multiplier (Mana cost), Crit Bonus.
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            damageMult *= 1.3f; // Add + x * Power to allow for other mods to change effectiveness of modifier
+            damageMult *= 1.4f; // Add + x * Power to allow for other mods to change effectiveness of modifier
             useTimeMult *= 1.4f;
-            knockbackMult *= 1.5f;
+            knockbackMult *= 1.6f;
         }
 
         // Modify the cost of items with this modifier with this function.

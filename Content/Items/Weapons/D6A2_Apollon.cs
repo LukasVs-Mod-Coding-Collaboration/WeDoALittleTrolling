@@ -41,9 +41,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 144;
-            Item.height = 57;
-            Item.scale = 0.75f;
+            Item.width = 96;
+            Item.height = 38;
+            Item.scale = 0.875f;
             Item.rare = ItemRarityID.Expert;
 
             Item.useTime = 120;
@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item84;
 
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 16000;
+            Item.damage = 4000;
             Item.knockBack = 5f;
             Item.noMelee = true;
             Item.crit = 0;

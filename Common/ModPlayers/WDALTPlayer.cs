@@ -317,7 +317,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                     else
                     {
-                        modifiers.CritDamage += 1.5f;
+                        modifiers.CritDamage += 2.0f;
                     }
                 }
             }
