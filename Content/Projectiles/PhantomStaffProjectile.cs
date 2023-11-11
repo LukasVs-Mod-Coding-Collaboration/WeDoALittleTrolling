@@ -310,7 +310,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         private void AI_003_LuminitePhantom_AttackCorrectFreeze(ref float distanceToTarget)
         {
             float currentSpeed = Projectile.velocity.Length();
-            float minSpeed = 1f / attackMoveSpeed;
+            float minSpeed = 0.1f * attackMoveSpeed;
             if (currentSpeed < minSpeed && distanceToTarget <= detectionRangeOffset)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
@@ -349,7 +349,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         private void AI_003_LuminitePhantom_IdleCorrectFreeze(ref float distanceToIdlePos)
         {
             float currentSpeed = Projectile.velocity.Length();
-            float minSpeed = 1f / idleMoveSpeed;
+            float minSpeed = 0.1f * idleMoveSpeed;
             if (currentSpeed < minSpeed && distanceToIdlePos <= idleDistance)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
