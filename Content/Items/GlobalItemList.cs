@@ -153,6 +153,15 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if
             (
+                item.type == ItemID.MiningHelmet &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.MiningShirt) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.MiningPants)
+            )
+            {
+                player.statDefense += 5;
+            }
+            if
+            (
                 item.type == ItemID.ChlorophyteMask ||
                 item.type == ItemID.ChlorophyteHelmet ||
                 item.type == ItemID.ChlorophyteHeadgear ||
@@ -298,6 +307,15 @@ namespace WeDoALittleTrolling.Content.Items
             )
             {
                 player.setBonus += "\nThis is not affected by the Wrecked Resistance debuff";
+            }
+            if
+            (
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.MiningHelmet) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.MiningShirt) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.MiningPants)
+            )
+            {
+                player.setBonus += "\n5 defense";
             }
         }
 
