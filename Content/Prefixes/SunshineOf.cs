@@ -40,7 +40,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
         public override float RollChance(Item item)
         {
-            if(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().hasIsrapony == true)
+            if(Main.player[Main.myPlayer].HasItem(ItemID.SunshineofIsrapony) == true)
             {
                 return 1.0f;
             }
