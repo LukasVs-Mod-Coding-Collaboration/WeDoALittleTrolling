@@ -428,6 +428,71 @@ Mods: {
 					Click their head on the fullscreen map
 					'''
 			}
+
+			GrayCrystal: {
+				DisplayName: Gray Crystal
+				Tooltip: '''"Infused with the power of Skeletron"'''
+			}
+
+			WhiteCrystal: {
+				DisplayName: White Crystal
+				Tooltip: '''"Infused with the power of the Mechanical Bosses"'''
+			}
+
+			RedCrystal: {
+				DisplayName: Red Crystal
+				Tooltip: '''"Infused with the power of the Wall of Flesh"'''
+			}
+
+			PurpleCrystal: {
+				DisplayName: Purple Crystal
+				Tooltip: '''"Infused with the power of the World Evils"'''
+			}
+
+			PinkCrystal: {
+				DisplayName: Pink Crystal
+				Tooltip: '''"Infused with the power of Queen Slime"'''
+			}
+
+			OrangeCrystal: {
+				DisplayName: Orange Crystal
+				Tooltip: '''"Infused with the power of Queen Bee"'''
+			}
+
+			LimeCrystal: {
+				DisplayName: Lime Crystal
+				Tooltip: '''"Infused with the power of Plantera"'''
+			}
+
+			LightRedCrystal: {
+				DisplayName: Light Red Crystal
+				Tooltip: '''"Infused with the power of the Eye of Cuthulu"'''
+			}
+
+			LightPurpleCrystal: {
+				DisplayName: Light Purple Crystal
+				Tooltip: '''"Infused with the power of Nothing"'''
+			}
+
+			GreenCrystal: {
+				DisplayName: Green Crystal
+				Tooltip: '''"Infused with the power of Nothing"'''
+			}
+
+			CyanCrystal: {
+				DisplayName: Cyan Crystal
+				Tooltip: '''"Infused with the power of Deerclops"'''
+			}
+
+			BlueCrystal: {
+				DisplayName: Blue Crystal
+				Tooltip: '''"Infused with the power of King Slime"'''
+			}
+
+			YellowCrystal: {
+				DisplayName: Yellow Crystal
+				Tooltip: '''"Infused with the power of Nothing"'''
+			}
 		}
 
 		Projectiles: {

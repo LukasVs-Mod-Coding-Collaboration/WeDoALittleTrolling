@@ -34,7 +34,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly float idleOverlapCorrectionFactor = 0.04f;
         public static readonly float attackOverlapCorrectionFactor = 0.02f;
         public static readonly float detectionRange = 1024f;
-        public static readonly float detectionRangeOffset = 32f;
+        public static readonly float detectionRangeOffset = 48f;
         public static readonly float idleMoveSpeed = 4f;
         public static readonly float attackMoveSpeed = 16f;
         public static readonly float idleInertia = 8f;
@@ -265,7 +265,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if
             (
                 (cooldownFinished) &&
-                (distanceToTarget > detectionRangeOffset * 3f)
+                (distanceToTarget > detectionRangeOffset * 2f)
             )
             {
                 if (Projectile.owner == Main.myPlayer)
