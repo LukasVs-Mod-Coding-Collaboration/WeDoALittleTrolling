@@ -40,6 +40,8 @@ using Terraria.Utilities;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Content.Items.Weapons;
+using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
+using Terraria.GameContent.NetModules;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -1195,6 +1197,38 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npcLoot.Add(drop);
             }
             */
+            if
+            (
+                npc.type == NPCID.RockGolem ||
+                npc.type == NPCID.UndeadMiner
+            )
+            {
+                int dropAmountMin = 1;
+                int dropAmountMax = 1;
+                int chanceNumerator = 1;
+                int chanceDenominator = 25;
+                if (npc.type == NPCID.UndeadMiner)
+                {
+                    chanceDenominator = 10;
+                }
+                int itemID = ModContent.ItemType<YellowCrystal>();
+                CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                npcLoot.Add(drop);
+            }
+
+            if (WDALTModSystem.isConsolariaModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                if (npc.type == WDALTModContentID.GetConsolariaNPCID(WDALTModContentID.ConsolariaNPC_VM))
+                {
+                    int dropAmountMin = 1;
+                    int dropAmountMax = 1;
+                    int chanceNumerator = 1;
+                    int chanceDenominator = 10;
+                    int itemID = ModContent.ItemType<YellowCrystal>();
+                    CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+                    npcLoot.Add(drop);
+                }
+            }
 
             //Icy fossil drops
 

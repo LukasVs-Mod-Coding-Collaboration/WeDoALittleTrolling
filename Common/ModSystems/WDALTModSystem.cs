@@ -29,8 +29,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static bool isCalamityModPresent = false;
         public static bool isThoriumModPresent = false;
+        public static bool isConsolariaModPresent = false;
         public static readonly string calamityModName = "CalamityMod";
         public static readonly string thoriumModName = "ThoriumMod";
+        public static readonly string consolariaModName = "Consolaria";
         public static bool MCIDIntegrity;
         
         public override void OnModLoad()
@@ -42,6 +44,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(ModLoader.HasMod(thoriumModName))
             {
                 isThoriumModPresent = true;
+            }
+            if(ModLoader.HasMod(consolariaModName))
+            {
+                isConsolariaModPresent = true;
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             WDALTIntermediateLanguageEditing.RegisterILHooks();
@@ -81,6 +87,20 @@ namespace WeDoALittleTrolling.Common.ModSystems
             else
             {
                 thoriumMod = null;
+                return false;
+            }
+        }
+
+        public static bool TryGetConsolariaMod(out Mod consolariaMod)
+        {
+            if(ModLoader.TryGetMod(consolariaModName, out Mod mod))
+            {
+                consolariaMod = mod;
+                return true;
+            }
+            else
+            {
+                consolariaMod = null;
                 return false;
             }
         }

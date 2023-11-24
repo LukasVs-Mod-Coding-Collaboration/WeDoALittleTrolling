@@ -151,10 +151,30 @@ namespace WeDoALittleTrolling.Common.ModSystems
             "ShootingStarFragment"
         };
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
-        private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(9+1)];
-        private static int[] InflictWreckedResistance1in1Group_ThoriumBossProjectile = new int[(26+1)];
-        private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(2+1)];
-        private static int[] InflictDevastated1in1Group_ThoriumBossProjectile = new int[(4+1)];
+        private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(9 + 1)];
+        private static int[] InflictWreckedResistance1in1Group_ThoriumBossProjectile = new int[(26 + 1)];
+        private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(2 + 1)];
+        private static int[] InflictDevastated1in1Group_ThoriumBossProjectile = new int[(4 + 1)];
+        public const int ConsolariaNPC_VM = 0;
+        private static readonly string[] ConsolariaNPCRegisterStrings =
+        {
+            "VampireMiner"
+        };
+        private static int[] ConsolariaNPCID = new int[ConsolariaNPCRegisterStrings.Length];
+
+        public static int GetConsolariaNPCID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = ConsolariaNPCID[modContentID];
+            }
+            catch
+            {
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetConsolariaNPCID() was called with an invalid ModContentID.");
+            }
+            return i;
+        }
 
         public static int GetThoriumBossNPCID(int modContentID)
         {
@@ -212,15 +232,29 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             return InflictDevastated1in1Group_ThoriumBossProjectile;
         }
-        
+
         public static bool SetContentIDs()
         {
             bool integrity = true;
-            if(WDALTModSystem.TryGetThoriumMod(out Mod thoriumMod))
+            if (WDALTModSystem.TryGetConsolariaMod(out Mod consolariaMod))
             {
-                for(int i = 0; i < ThoriumBossRegisterStrings.Length; i++)
+                for (int i = 0; i < ConsolariaNPCRegisterStrings.Length; i++)
                 {
-                    if(thoriumMod.TryFind(ThoriumBossRegisterStrings[i], out ModNPC bossNPC))
+                    if (consolariaMod.TryFind<ModNPC>(ConsolariaNPCRegisterStrings[i], out ModNPC npc))
+                    {
+                        ConsolariaNPCID[i] = npc.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
+                }
+            }
+            if (WDALTModSystem.TryGetThoriumMod(out Mod thoriumMod))
+            {
+                for (int i = 0; i < ThoriumBossRegisterStrings.Length; i++)
+                {
+                    if (thoriumMod.TryFind(ThoriumBossRegisterStrings[i], out ModNPC bossNPC))
                     {
                         ThoriumBossNPCID[i] = bossNPC.Type;
                     }
@@ -229,9 +263,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         integrity = false;
                     }
                 }
-                for(int i = 0; i < ThoriumItemRegisterStrings.Length; i++)
+                for (int i = 0; i < ThoriumItemRegisterStrings.Length; i++)
                 {
-                    if(thoriumMod.TryFind(ThoriumItemRegisterStrings[i], out ModItem item))
+                    if (thoriumMod.TryFind(ThoriumItemRegisterStrings[i], out ModItem item))
                     {
                         ThoriumItemItemID[i] = item.Type;
                     }
@@ -240,9 +274,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         integrity = false;
                     }
                 }
-                for(int i = 0; i < ThoriumBossProjectileRegisterStrings.Length; i++)
+                for (int i = 0; i < ThoriumBossProjectileRegisterStrings.Length; i++)
                 {
-                    if(thoriumMod.TryFind(ThoriumBossProjectileRegisterStrings[i], out ModProjectile proj))
+                    if (thoriumMod.TryFind(ThoriumBossProjectileRegisterStrings[i], out ModProjectile proj))
                     {
                         ThoriumBossProjectileID[i] = proj.Type;
                     }
@@ -252,7 +286,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     }
                 }
             }
-            if(integrity)
+            if (integrity)
             {
                 InflictWreckedResistance1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_BS_V1);
                 InflictWreckedResistance1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_BS_V2);

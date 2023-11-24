@@ -35,11 +35,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.aiStyle = 3;
             NPC.HitSound = SoundID.NPCHit27;
             NPC.DeathSound = SoundID.NPCDeath30;
-            NPC.value = 800f;
-            NPC.knockBackResist = 0.5f;
-            NPC.lifeMax = 800;
-            NPC.damage = 40;
-            NPC.defense = 20;
+            NPC.value = 1600f;
+            NPC.knockBackResist = 0f;
+            NPC.lifeMax = 1600;
+            NPC.damage = 80;
+            NPC.defense = 40;
             NPC.scale = 1f;
 
             AIType = NPCID.DesertGhoul;
@@ -73,9 +73,9 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if(Main.hardMode && spawnInfo.Player.ZoneSnow && spawnInfo.Player.ZoneRockLayerHeight && !spawnInfo.PlayerInTown)
+            if(Main.hardMode && spawnInfo.Player.ZoneSnow && spawnInfo.Player.ZoneRockLayerHeight && !spawnInfo.PlayerInTown && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
             {
-                return 0.1f;
+                return 0.2f;
             }
             return base.SpawnChance(spawnInfo);
         }
@@ -86,7 +86,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             int dropAmountMax = 1;
             int chanceNumerator = 20; // 20% chance
             int chanceDenominator = 100;
-            int itemID = ModContent.ItemType<IcyFossil>();
+            int itemID = ModContent.ItemType<FrozenFossil>();
             CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
             npcLoot.Add(drop);
             base.ModifyNPCLoot(npcLoot);
@@ -117,7 +117,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     if(tickCount == 50)
                     {
-                        NPC.velocity.Y -= 6f;
+                        NPC.velocity.Y -= 8f;
                     }
                     float distX = Math.Abs(Main.player[NPC.target].Center.X - NPC.Center.X);
                     bool hitLine =
@@ -149,10 +149,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                     {
                         Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;
                         vectorToTarget.Normalize();
-                        vectorToTarget *= 1.5f;
+                        vectorToTarget *= 1.75f;
                         if(distX >= (18 * 16) && !hitLine && Main.player[NPC.target].Center.Y <= NPC.Center.Y)
                         {
-                            vectorToTarget.Y *= 1.5f;
+                            vectorToTarget.Y *= 1.25f;
                         }
                         NPC.velocity += vectorToTarget;
                         if (vectorToTarget.X > 0)
