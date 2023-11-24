@@ -471,12 +471,12 @@ Mods: {
 
 			LightPurpleCrystal: {
 				DisplayName: Light Purple Crystal
-				Tooltip: '''"Infused with the power of Nothing"'''
+				Tooltip: '''"Infused with the power of the Ocean"'''
 			}
 
 			GreenCrystal: {
 				DisplayName: Green Crystal
-				Tooltip: '''"Infused with the power of Nothing"'''
+				Tooltip: '''"Infused with the power of Duke Fishron"'''
 			}
 
 			CyanCrystal: {
@@ -491,7 +491,7 @@ Mods: {
 
 			YellowCrystal: {
 				DisplayName: Yellow Crystal
-				Tooltip: '''"Infused with the power of Nothing"'''
+				Tooltip: '''"Infused with the power of the Underground"'''
 			}
 		}
 

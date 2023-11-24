@@ -79,6 +79,10 @@ namespace WeDoALittleTrolling.Content.Items.ProgressionCrystals
                     itemID = ModContent.ItemType<LimeCrystal>();
                     addLoot = true;
                     break;
+                case NPCID.DukeFishron:
+                    itemID = ModContent.ItemType<GreenCrystal>();
+                    addLoot = true;
+                    break;
                 default:
                     addLoot = false;
                     break;

@@ -33,7 +33,14 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            return 0.1f;
+            if (Main.hardMode)
+            {
+                return 0.2f;
+            }
+            else
+            {
+                return 0f;
+            }
         }
 
         public override bool CanRoll(Item item)

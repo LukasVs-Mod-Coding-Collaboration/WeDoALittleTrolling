@@ -25,6 +25,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria;
 using Terraria.ID;
+using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
@@ -33,11 +34,14 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            if(!NPC.downedBoss3)
+            if (Main.player[Main.myPlayer].HasItem(ModContent.ItemType<PinkCrystal>()) == true)
+            {
+                return 0.2f;
+            }
+            else
             {
                 return 0f;
             }
-            return 0.1f;
         }
 
         public override bool CanRoll(Item item)

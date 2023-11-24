@@ -141,7 +141,41 @@ namespace WeDoALittleTrolling.Content.Items.ProgressionCrystals
         }
     }
 
-    internal class LightPurpleCrystal : ModItem
+    internal class LightPurpleCrystalTier1 : ModItem
+    {
+        public override void SetDefaults()
+        {
+            Item.width = 38;
+            Item.height = 32;
+
+            Item.consumable = false;
+            Item.noUseGraphic = true;
+
+            Item.value = Item.sellPrice(gold: 1);
+            Item.maxStack = 1;
+
+            Item.rare = ItemRarityID.LightPurple;
+        }
+    }
+
+    internal class LightPurpleCrystalTier2 : ModItem
+    {
+        public override void SetDefaults()
+        {
+            Item.width = 38;
+            Item.height = 32;
+
+            Item.consumable = false;
+            Item.noUseGraphic = true;
+
+            Item.value = Item.sellPrice(gold: 1);
+            Item.maxStack = 1;
+
+            Item.rare = ItemRarityID.LightPurple;
+        }
+    }
+
+    internal class LightPurpleCrystalTier3 : ModItem
     {
         public override void SetDefaults()
         {
