@@ -469,8 +469,18 @@ Mods: {
 				Tooltip: '''"Infused with the power of the Eye of Cuthulu"'''
 			}
 
-			LightPurpleCrystal: {
-				DisplayName: Light Purple Crystal
+			LightPurpleCrystalTier1: {
+				DisplayName: Light Purple Crystal I
+				Tooltip: '''"Infused with the power of the Ocean"'''
+			}
+
+			LightPurpleCrystalTier2: {
+				DisplayName: Light Purple Crystal II
+				Tooltip: '''"Infused with the power of the Ocean"'''
+			}
+
+			LightPurpleCrystalTier3: {
+				DisplayName: Light Purple Crystal III
 				Tooltip: '''"Infused with the power of the Ocean"'''
 			}
 
@@ -627,11 +637,6 @@ Mods: {
 				AdditionalTooltip: +Stoned debuff
 			}
 
-			ObsidianskinInfusion: {
-				DisplayName: Obsidian Skin infusing
-				AdditionalTooltip: +Obsidian Skin buff
-			}
-
 			GillsInfusion: {
 				DisplayName: Gills infusing
 				AdditionalTooltip: +Gills buff
@@ -705,6 +710,21 @@ Mods: {
 			BiomeSightInfusion: {
 				DisplayName: Biome Sight infusing
 				AdditionalTooltip: +Biome sight buff
+			}
+
+			WarmthInfusion: {
+				DisplayName: Warmth infusing
+				AdditionalTooltip: +Warmth buff
+			}
+
+			HunterInfusion: {
+				DisplayName: Hunter infusing
+				AdditionalTooltip: +Hunter buff
+			}
+
+			SwiftnessInfusion: {
+				DisplayName: Swiftness infusing
+				AdditionalTooltip: +Swiftness buff
 			}
 
 			NoTrapsInfusion: {
