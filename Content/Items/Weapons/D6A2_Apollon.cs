@@ -84,8 +84,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             Vector2 shootDirection = velocity;
             shootDirection.Normalize();
-            float xOffset = shootDirection.X * 84.0f;
-            float yOffset = shootDirection.Y * 84.0f;
+            float xOffset = shootDirection.X * 72.0f;
+            float yOffset = shootDirection.Y * 72.0f;
             position = new Vector2(position.X + xOffset, position.Y + yOffset - 10.0f);
             if(this.autoAim)
             {
@@ -101,7 +101,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-36.5f, -5.0f);
+            return new Vector2(-18.5f, -6.0f);
         }
 
         public override void AddRecipes()
