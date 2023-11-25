@@ -62,6 +62,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public long currentTick;
         public int chargeAccelerationTicks;
         public bool zoneWormCandle;
+        public bool shroomiteGenesis;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -88,6 +89,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             currentTick = 0;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
+            shroomiteGenesis = false;
         }
 
         public override void UpdateDead()
@@ -116,6 +118,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             yoyoArtifact = false;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
+            shroomiteGenesis = false;
         }
 
         public override void ResetEffects()
@@ -130,6 +133,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
+            shroomiteGenesis = false;
             base.ResetEffects();
         }
         
@@ -477,6 +481,19 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 }
             }
             base.OnHitNPC(target, hit, damageDone);
+        }
+
+        public override bool CanConsumeAmmo(Item weapon, Item ammo)
+        {
+            if (shroomiteGenesis)
+            {
+                return false;
+            }
+            else
+            {
+                return base.CanConsumeAmmo(weapon, ammo);
+            }
+
         }
     }
 }

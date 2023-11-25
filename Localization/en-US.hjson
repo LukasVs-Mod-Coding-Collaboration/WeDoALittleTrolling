@@ -79,6 +79,16 @@ Mods: {
 					'''
 			}
 
+			ShroomiteGenesis: {
+				DisplayName: Shroomite Genesis
+				Tooltip:
+					'''
+					You do not consume ammo.
+					"How? ... Don't ask."
+					Might have unforeseen drawbacks
+					'''
+			}
+
 			SpookyEmblem: {
 				DisplayName: Spooky Emblem
 				Tooltip:
