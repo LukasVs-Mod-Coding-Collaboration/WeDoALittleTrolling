@@ -35,6 +35,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly float attackOverlapCorrectionFactor = 0.02f;
         public static readonly float detectionRange = 768f;
         public static readonly float detectionRangeOffset = 256f;
+        public static readonly float shootRangeOffset = 36f;
         public static readonly float idleMoveSpeed = 3f;
         public static readonly float attackMoveSpeed = 6f;
         public static readonly float idleInertia = 12f;
@@ -256,7 +257,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             else
             {
-                Projectile.velocity *= idleAccelerationFactor;
                 if (Projectile.velocity == Vector2.Zero)
                 {
                     Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
@@ -264,7 +264,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 float currentSpeed = Projectile.velocity.Length();
                 float minSpeed = (idleMoveSpeed / idleInertia) * 0.25f;
-                if (currentSpeed < minSpeed)
+                if (currentSpeed > (idleMoveSpeed / idleInertia))
+                {
+                    Projectile.velocity *= idleAccelerationFactor;
+                }
+                else if (currentSpeed < minSpeed)
                 {
                     Projectile.velocity.Normalize();
                     Projectile.velocity *= (idleMoveSpeed / idleInertia);
@@ -272,7 +276,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 AI_012_FrozenElemental_CorrectOverlap(ref targetDetected);
             }
             bool cooldownFinished = (Math.Abs(ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown));
-            if (cooldownFinished)
+            if (cooldownFinished && distanceToTarget > shootRangeOffset)
             {
                 if (Projectile.owner == Main.myPlayer)
                 {
