@@ -503,6 +503,16 @@ Mods: {
 				DisplayName: Yellow Crystal
 				Tooltip: '''"Infused with the power of the Underground"'''
 			}
+
+			FrozenFossil: {
+				DisplayName: Frozen Fossil
+				Tooltip: ""
+			}
+
+			ElementalStaff: {
+				DisplayName: Frozen Elemental Staff
+				Tooltip: The Frozen Elemental will fight for you
+			}
 		}
 
 		Projectiles: {
@@ -517,6 +527,7 @@ Mods: {
 			ThrowOfTheLunaticProjectile.DisplayName: Throw Of The Lunatic
 			ThrowOfTheLunaticProjectileBeam.DisplayName: Lunatic Beam
 			ThrownCorncob.DisplayName: Corncob
+			ElementalStaffProjectile.DisplayName: Frozen Elemental
 		}
 
 		Prefixes: {
@@ -843,6 +854,11 @@ Mods: {
 			WormCandleBuff: {
 				Description: Increased worm spawn rate
 				DisplayName: Worm Candle
+			}
+
+			ElementalStaffBuff: {
+				DisplayName: Frozen Elemental
+				Description: The Frozen Elemental will fight for you
 			}
 		}
 

@@ -14,7 +14,7 @@ using WeDoALittleTrolling.Content.Projectiles;
 
 namespace WeDoALittleTrolling.Content.Buffs
 {
-    public class PhantomStaffBuff : ModBuff
+    public class ElementalStaffBuff : ModBuff
     {
         public override void SetStaticDefaults()
         {
@@ -24,7 +24,7 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if(player.ownedProjectileCounts[ModContent.ProjectileType<PhantomStaffProjectile>()] > 0)
+            if(player.ownedProjectileCounts[ModContent.ProjectileType<ElementalStaffProjectile>()] > 0)
             {
                 player.buffTime[buffIndex] = 8;
             }

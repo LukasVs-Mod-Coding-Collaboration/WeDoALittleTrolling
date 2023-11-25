@@ -42,7 +42,7 @@ namespace WeDoALittleTrolling.Content.Items.Material
             Item.value = Item.sellPrice(gold: 4);
             Item.maxStack = Item.CommonMaxStack;
 
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ItemRarityID.LightPurple;
         }
     }
 }

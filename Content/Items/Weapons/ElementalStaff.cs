@@ -29,16 +29,17 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Content.Items.Material;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
-    internal class PhantomStaff : ModItem
+    internal class ElementalStaff : ModItem
     {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
-            ItemID.Sets.StaffMinionSlotsRequired[Type] = 2f;
+            ItemID.Sets.StaffMinionSlotsRequired[Type] = 1f;
         }
 
         public override void SetDefaults()
@@ -58,17 +59,17 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTurn = true;
             Item.noMelee = true;
             Item.UseSound = SoundID.Item44;
-            Item.scale = (float)Math.Sqrt(2.0);
+            Item.scale = 1f;
 
-            Item.buffType = ModContent.BuffType<PhantomStaffBuff>();
-            Item.shoot = ModContent.ProjectileType<PhantomStaffProjectile>();
+            Item.buffType = ModContent.BuffType<ElementalStaffBuff>();
+            Item.shoot = ModContent.ProjectileType<ElementalStaffProjectile>();
 
-            Item.damage = 120;
-            Item.mana = 24;
+            Item.damage = 36;
+            Item.mana = 12;
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;
 
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.LightPurple;
         }
 
         public override bool CanUseItem(Player player)
@@ -86,7 +87,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             velocity.X = (Main.rand.NextFloat() - 0.5f);
             velocity.Y = (Main.rand.NextFloat() - 0.5f);
             velocity.Normalize();
-            velocity *= PhantomStaffProjectile.idleMoveSpeed;
+            velocity *= ElementalStaffProjectile.idleMoveSpeed;
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
 
@@ -101,12 +102,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void AddRecipes()
         {
             CreateRecipe()
-              .AddTile(TileID.LunarCraftingStation)
-              .AddIngredient(ItemID.LunarBar, 16)
-              .AddIngredient(ItemID.FragmentSolar, 4)
-              .AddIngredient(ItemID.FragmentVortex, 4)
-              .AddIngredient(ItemID.FragmentNebula, 4)
-              .AddIngredient(ItemID.FragmentStardust, 4)
+              .AddTile(TileID.ShimmerMonolith)
+              .AddIngredient(ModContent.ItemType<FrozenFossil>(), 8)
+              .AddIngredient(ItemID.HallowedBar, 8)
               .Register();
         }
     }
