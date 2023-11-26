@@ -488,7 +488,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override bool CanUseItem(Item item)
         {
-            if (shroomiteGenesis && item.DamageType == DamageClass.Ranged && shroomiteGenesisOverheatTimer > 0)
+            if (item.DamageType == DamageClass.Ranged && shroomiteGenesisOverheatTimer > 0)
             {
                 return false;
             }
