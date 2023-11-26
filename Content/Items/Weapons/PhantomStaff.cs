@@ -65,6 +65,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.damage = 120;
             Item.mana = 24;
+            Item.ArmorPenetration = 90;
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;
 
@@ -95,6 +96,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             player.AddBuff(Item.buffType, 8);
             Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
             projectile.originalDamage = Item.damage;
+            projectile.netUpdate = true;
             return false;
         }
 

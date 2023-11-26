@@ -20,10 +20,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Summon;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 512;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.ArmorPenetration = 60;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
         }

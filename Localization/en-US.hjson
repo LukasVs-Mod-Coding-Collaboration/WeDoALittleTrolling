@@ -538,6 +538,7 @@ Mods: {
 			ThrowOfTheLunaticProjectileBeam.DisplayName: Lunatic Beam
 			ThrownCorncob.DisplayName: Corncob
 			ElementalStaffProjectile.DisplayName: Frozen Elemental
+			ElementalStaffProjectileBullet.DisplayName: Frozen Elemental Shard
 		}
 
 		Prefixes: {

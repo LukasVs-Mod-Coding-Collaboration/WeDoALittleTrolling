@@ -35,14 +35,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly float attackOverlapCorrectionFactor = 0.02f;
         public static readonly float detectionRange = 768f;
         public static readonly float detectionRangeOffset = 256f;
-        public static readonly float shootRangeOffset = 36f;
+        public static readonly float shootRangeOffset = 36f; //DO NOT SET TO 0f!!! CAUSE MINIONS TO DESPAWN WITH THORIUM!!!
         public static readonly float idleMoveSpeed = 3f;
         public static readonly float attackMoveSpeed = 6f;
         public static readonly float idleInertia = 12f;
         public static readonly float attackInertia = 6f;
         public static readonly float idleDistance = 48f;
         public static readonly float idleAccelerationFactor = 0.625f;
-        public static readonly float bulletSpeed = 18f;
+        public static readonly float bulletSpeed = 12f;
+        public static readonly float bulletOffsetMultiplier = 36f;
         public static readonly Vector2 gfxShootOffset = new Vector2(0f, 0f);
         public long ticksAlive = 0;
         public long lastActionTick = 0;
@@ -69,7 +70,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.minionSlots = 1f;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.ArmorPenetration = 60;
             Projectile.timeLeft = 8;
             Projectile.netImportant = true;
             Projectile.usesLocalNPCImmunity = true;
@@ -281,21 +281,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if (Projectile.owner == Main.myPlayer)
                 {
                     Vector2 pos = Projectile.Center + gfxShootOffset;
-                    Vector2 predictVelocity = targetVelocity * (distanceToTarget / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
+                    Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
                     Vector2 shootVector = ((targetCenter + predictVelocity) - pos);
                     shootVector.Normalize();
+                    pos += (shootVector * bulletOffsetMultiplier);
                     shootVector *= bulletSpeed;
                     Projectile.NewProjectileDirect
                     (
                         Projectile.GetSource_FromAI(),
                         pos,
                         shootVector,
-                        ProjectileID.FrostBoltStaff,
+                        ModContent.ProjectileType<ElementalStaffProjectileBullet>(),
                         Projectile.damage,
                         Projectile.knockBack,
                         Projectile.owner
                     );
                 }
+                SoundEngine.PlaySound(SoundID.Item28, Projectile.Center);
                 lastActionTick = ticksAlive;
             }
         }
