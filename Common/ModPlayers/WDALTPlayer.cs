@@ -63,6 +63,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int chargeAccelerationTicks;
         public bool zoneWormCandle;
         public bool shroomiteGenesis;
+        public int shroomiteGenesisOverheatTicks;
+        public int shroomiteGenesisOverchannelTicks;
+        public int shroomiteGenesisOverheatTimer;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -90,6 +93,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
             shroomiteGenesis = false;
+            shroomiteGenesisOverheatTicks = 0;
+            shroomiteGenesisOverchannelTicks = 0;
+            shroomiteGenesisOverheatTimer = 0;
         }
 
         public override void UpdateDead()
@@ -119,6 +125,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
             shroomiteGenesis = false;
+            shroomiteGenesisOverheatTicks = 0;
+            shroomiteGenesisOverchannelTicks = 0;
+            shroomiteGenesisOverheatTimer = 0;
         }
 
         public override void ResetEffects()
@@ -141,6 +150,32 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             GlobalItemList.ModifySetBonus(player);
             currentTick++;
+            if (shroomiteGenesisOverheatTimer > 0)
+            {
+                shroomiteGenesisOverheatTimer--;
+            }
+            if (shroomiteGenesis && player.channel && player.HeldItem.DamageType == DamageClass.Ranged)
+            {
+                shroomiteGenesisOverchannelTicks++;
+                if (shroomiteGenesisOverchannelTicks >= 1200)
+                {
+                    CombatText.NewText
+                    (
+                        new Rectangle
+                        (
+                            (int)player.position.X,
+                            (int)player.position.Y,
+                            player.width,
+                            player.height
+                        ),
+                        new Color(255, 0, 0),
+                        "Overheated!"
+                    );
+                    shroomiteGenesisOverheatTimer = 180;
+                    shroomiteGenesisOverchannelTicks = 0;
+                    player.channel = false;
+                }
+            }
             base.PostUpdate();
         }
 
@@ -417,6 +452,47 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 beekeeperStackBee.timeLeft = 300;
                 beekeeperStackBee.penetrate = -1;
             }
+        }
+
+        public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (shroomiteGenesis && item.DamageType == DamageClass.Ranged)
+            {
+                shroomiteGenesisOverheatTicks++;
+                int limit = 24;
+                if (item.useAnimation > 0 && !item.channel)
+                {
+                    limit = item.useAnimation;
+                }
+                if (shroomiteGenesisOverheatTicks >= 60 * (float)((float)24 / (float)limit))
+                {
+                    CombatText.NewText
+                    (
+                        new Rectangle
+                        (
+                            (int)player.position.X,
+                            (int)player.position.Y,
+                            player.width,
+                            player.height
+                        ),
+                        new Color(255, 0, 0),
+                        "Overheated!"
+                    );
+                    shroomiteGenesisOverheatTimer = 180;
+                    shroomiteGenesisOverheatTicks = 0;
+                    return false;
+                }
+            }
+            return base.Shoot(item, source, position, velocity, type, damage, knockback);
+        }
+
+        public override bool CanUseItem(Item item)
+        {
+            if (shroomiteGenesis && item.DamageType == DamageClass.Ranged && shroomiteGenesisOverheatTimer > 0)
+            {
+                return false;
+            }
+            return base.CanUseItem(item);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
