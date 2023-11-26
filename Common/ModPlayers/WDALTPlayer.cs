@@ -459,12 +459,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (shroomiteGenesis && item.DamageType == DamageClass.Ranged)
             {
                 shroomiteGenesisOverheatTicks++;
-                int limit = 24;
+                int limit = 20;
                 if (item.useAnimation > 0 && !item.channel)
                 {
                     limit = item.useAnimation;
                 }
-                if (shroomiteGenesisOverheatTicks >= 60 * (float)((float)24 / (float)limit))
+                if (shroomiteGenesisOverheatTicks >= 60 * (float)((float)20 / (float)limit))
                 {
                     CombatText.NewText
                     (
