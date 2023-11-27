@@ -1459,6 +1459,28 @@ namespace WeDoALittleTrolling.Content.NPCs
                 );
                 npcLoot.Add(drop);
             }
+            if
+            (
+                npc.type == NPCID.WallCreeper ||
+                npc.type == NPCID.WallCreeperWall ||
+                npc.type == NPCID.BlackRecluse ||
+                npc.type == NPCID.BlackRecluseWall
+            )
+            {
+                int dropAmountMin = 5;
+                int dropAmountMax = 15;
+                int chanceNumeratorNormal = 1;
+                int chanceDenominatorNormal = 2;
+                int chanceNumeratorExpert = 9;
+                int chanceDenominatorExpert = 10;
+                int itemID = ItemID.Cobweb;
+                DropBasedOnExpertMode drop = new DropBasedOnExpertMode
+                (
+                    new CommonDrop(itemID, chanceDenominatorNormal, dropAmountMin, dropAmountMax, chanceNumeratorNormal),
+                    new CommonDrop(itemID, chanceDenominatorExpert, dropAmountMin, dropAmountMax, chanceNumeratorExpert)
+                );
+                npcLoot.Add(drop);
+            }
             if (npc.type == NPCID.RockGolem)
             {
                 int dropAmountMin = 1;
