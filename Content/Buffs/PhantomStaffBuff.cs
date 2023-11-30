@@ -11,6 +11,7 @@ using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.GameContent;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Buffs
 {
@@ -24,14 +25,18 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if(player.ownedProjectileCounts[ModContent.ProjectileType<PhantomStaffProjectile>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<PhantomStaffProjectile>()] > 0)
             {
-                player.buffTime[buffIndex] = 8;
+                player.GetModPlayer<WDALTPlayer>().lumintePhantomMinion = true;
             }
-            else
+            if (!player.GetModPlayer<WDALTPlayer>().lumintePhantomMinion)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;
+            }
+            else
+            {
+                player.buffTime[buffIndex] = 18000;
             }
         }
     }

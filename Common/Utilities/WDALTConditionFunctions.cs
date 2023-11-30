@@ -21,6 +21,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Items.Accessories;
+using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -223,6 +224,15 @@ namespace WeDoALittleTrolling.Common.Utilities
         public static bool HasTier3FishingQuests()
         {
             if(Main.player[Main.myPlayer].anglerQuestsFinished >= 15 && Main.player[Main.myPlayer].ZoneBeach)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool DukeCrystal()
+        {
+            if(NPC.downedFishron && Main.player[Main.myPlayer].HasItem(ModContent.ItemType<GreenCrystal>()) && Main.player[Main.myPlayer].ZoneBeach)
             {
                 return true;
             }

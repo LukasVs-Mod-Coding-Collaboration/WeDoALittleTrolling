@@ -26,6 +26,7 @@ using WeDoALittleTrolling.Content.Buffs;
 using Terraria.Audio;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.DataStructures;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -35,7 +36,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly float attackOverlapCorrectionFactor = 0.02f;
         public static readonly float detectionRange = 768f;
         public static readonly float detectionRangeOffset = 256f;
-        public static readonly float shootRangeOffset = 36f; //DO NOT SET TO 0f!!! CAUSE MINIONS TO DESPAWN WITH THORIUM!!!
+        public static readonly float detectionRangeOffset2 = 128f;
         public static readonly float idleMoveSpeed = 3f;
         public static readonly float attackMoveSpeed = 6f;
         public static readonly float idleInertia = 12f;
@@ -65,6 +66,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.minion = true;
+            Projectile.timeLeft *= 5;
             Projectile.DamageType = DamageClass.Summon;
             Projectile.penetrate = -1;
             Projectile.minionSlots = 1f;
@@ -138,12 +140,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ownerPlayer = Main.player[Projectile.owner];
             if (!ownerPlayer.active || ownerPlayer.dead)
             {
-                ownerPlayer.ClearBuff(ModContent.BuffType<ElementalStaffBuff>());
+                ownerPlayer.GetModPlayer<WDALTPlayer>().frostElementalMinion = false;
                 runAI = false;
             }
-            else if (ownerPlayer.HasBuff(ModContent.BuffType<ElementalStaffBuff>()))
+            if (ownerPlayer.GetModPlayer<WDALTPlayer>().frostElementalMinion)
             {
-                Projectile.timeLeft = 8;
+                Projectile.timeLeft = 2;
             }
         }
 
@@ -257,12 +259,20 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             else
             {
+                float currentSpeed = Projectile.velocity.Length();
+                if (distanceToTarget > detectionRangeOffset2)
+                {
+                    Vector2 moveVector = (targetCenter - Projectile.Center);
+                    Projectile.velocity = moveVector;
+                    Projectile.velocity.Normalize();
+                    Projectile.velocity *= currentSpeed;
+                }
                 if (Projectile.velocity == Vector2.Zero)
                 {
                     Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                     Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
                 }
-                float currentSpeed = Projectile.velocity.Length();
+                currentSpeed = Projectile.velocity.Length();
                 float minSpeed = (idleMoveSpeed / idleInertia) * 0.25f;
                 if (currentSpeed > (idleMoveSpeed / idleInertia))
                 {
@@ -276,7 +286,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 AI_012_FrozenElemental_CorrectOverlap(ref targetDetected);
             }
             bool cooldownFinished = (Math.Abs(ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown));
-            if (cooldownFinished && distanceToTarget > shootRangeOffset)
+            if (cooldownFinished)
             {
                 if (Projectile.owner == Main.myPlayer)
                 {

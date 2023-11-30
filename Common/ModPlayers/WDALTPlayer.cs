@@ -66,6 +66,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int shroomiteGenesisOverheatTicks;
         public int shroomiteGenesisOverchannelTicks;
         public int shroomiteGenesisOverheatTimer;
+        public bool lumintePhantomMinion;
+        public bool frostElementalMinion;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -96,6 +98,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverheatTicks = 0;
             shroomiteGenesisOverchannelTicks = 0;
             shroomiteGenesisOverheatTimer = 0;
+            lumintePhantomMinion = false;
+            frostElementalMinion = false;
         }
 
         public override void UpdateDead()
@@ -128,6 +132,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverheatTicks = 0;
             shroomiteGenesisOverchannelTicks = 0;
             shroomiteGenesisOverheatTimer = 0;
+            lumintePhantomMinion = false;
+            frostElementalMinion = false;
         }
 
         public override void ResetEffects()
@@ -143,6 +149,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
             shroomiteGenesis = false;
+            lumintePhantomMinion = false;
+            frostElementalMinion = false;
             base.ResetEffects();
         }
         
@@ -183,7 +191,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if(player.whoAmI == Main.myPlayer)
             {
-                if(WDALTSceneMetrics.HasWormCandle)
+                if (WDALTSceneMetrics.HasWormCandle)
                 {
                     zoneWormCandle = true;
                     player.AddBuff(ModContent.BuffType<WormCandleBuff>(), 2);
@@ -191,6 +199,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 else
                 {
                     zoneWormCandle = false;
+                }
+                if (player.HeldItem.prefix == ModContent.PrefixType<MilitaryInfusion>())
+                {
+                    player.AddBuff(BuffID.Dangersense, 2, true);
+                    player.AddBuff(BuffID.Hunter, 2, true);
+                    player.AddBuff(BuffID.NightOwl, 2, true);
                 }
             }
         }

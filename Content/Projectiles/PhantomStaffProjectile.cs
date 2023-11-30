@@ -26,6 +26,7 @@ using WeDoALittleTrolling.Content.Buffs;
 using Terraria.Audio;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.DataStructures;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -65,6 +66,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.minion = true;
+            Projectile.timeLeft *= 5;
             Projectile.DamageType = DamageClass.Summon;
             Projectile.penetrate = -1;
             Projectile.minionSlots = 2f;
@@ -139,12 +141,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ownerPlayer = Main.player[Projectile.owner];
             if (!ownerPlayer.active || ownerPlayer.dead)
             {
-                ownerPlayer.ClearBuff(ModContent.BuffType<PhantomStaffBuff>());
+                ownerPlayer.GetModPlayer<WDALTPlayer>().lumintePhantomMinion = false;
                 runAI = false;
             }
-            else if (ownerPlayer.HasBuff(ModContent.BuffType<PhantomStaffBuff>()))
+            if (ownerPlayer.GetModPlayer<WDALTPlayer>().lumintePhantomMinion)
             {
-                Projectile.timeLeft = 8;
+                Projectile.timeLeft = 2;
             }
         }
 

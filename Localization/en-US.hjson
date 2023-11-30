@@ -760,6 +760,16 @@ Mods: {
 					'''
 			}
 
+			MilitaryInfusion: {
+				DisplayName: Military infusing
+				AdditionalTooltip:
+					'''
+					+Dangersense buff
+					+Hunter buff
+					+Night Owl buff
+					'''
+			}
+
 			Berserk.DisplayName: Berserk
 			Lacerating.DisplayName: Lacerating
 			Boundless.DisplayName: Boundless
