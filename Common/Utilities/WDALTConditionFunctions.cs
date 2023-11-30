@@ -201,5 +201,32 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             return false;
         }
+
+        public static bool HasTier1FishingQuests()
+        {
+            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 5 && Main.player[Main.myPlayer].ZoneBeach)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasTier2FishingQuests()
+        {
+            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 10 && Main.player[Main.myPlayer].ZoneBeach)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool HasTier3FishingQuests()
+        {
+            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 15 && Main.player[Main.myPlayer].ZoneBeach)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

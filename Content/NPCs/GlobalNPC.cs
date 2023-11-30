@@ -669,6 +669,22 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
         }
 
+        public override void ModifyShop(NPCShop shop)
+        {
+            if (shop.NpcType == NPCID.Stylist || shop.NpcType == NPCID.Pirate)
+            {
+                Condition LPCT1 = new Condition("At least 5 finished fishing quests", WDALTConditionFunctions.HasTier1FishingQuests);
+                Condition LPCT2 = new Condition("At least 10 finished fishing quests", WDALTConditionFunctions.HasTier2FishingQuests);
+                Condition LPCT3 = new Condition("At least 15 finished fishing quests", WDALTConditionFunctions.HasTier3FishingQuests);
+                NPCShop.Entry[] entry = new NPCShop.Entry[3];
+                entry[0] = new NPCShop.Entry(ModContent.ItemType<LightPurpleCrystalTier1>(), LPCT1);
+                entry[1] = new NPCShop.Entry(ModContent.ItemType<LightPurpleCrystalTier2>(), LPCT2);
+                entry[2] = new NPCShop.Entry(ModContent.ItemType<LightPurpleCrystalTier3>(), LPCT3);
+                shop.Add(entry);
+            }
+            base.ModifyShop(shop);
+        }
+
         public override bool? CanCollideWithPlayerMeleeAttack(NPC npc, Player player, Item item, Rectangle meleeAttackHitbox)
         {
             if (npc.type == NPCID.VileSpitEaterOfWorlds)
