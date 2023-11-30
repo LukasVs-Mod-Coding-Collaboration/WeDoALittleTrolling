@@ -555,7 +555,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V2))
                 {
-                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
                 }
                 if
                 (
