@@ -1085,7 +1085,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.Gnome)
             {
-                target.AddBuff(ModContent.BuffType<Gnomed>(), 7200, true); //2m, X2 in Expert, X2.5 in Master
+                target.AddBuff(ModContent.BuffType<Gnomed>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
             }
             if (npc.type == NPCID.Deerclops)
             {
