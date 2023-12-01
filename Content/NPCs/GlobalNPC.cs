@@ -353,7 +353,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
-                npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
             if (npc.type == NPCID.HallowBoss)
             {
@@ -637,18 +636,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 projectile.damage = (int)Math.Round(projectile.damage * 0.5);
                 projectile.netUpdate = true;
             }
-            if
-            (
-                npc.type == NPCID.Golem ||
-                npc.type == NPCID.GolemHead ||
-                npc.type == NPCID.GolemFistLeft ||
-                npc.type == NPCID.GolemFistRight ||
-                npc.type == NPCID.GolemHeadFree
-            )
-            {
-                projectile.damage = (int)Math.Round(projectile.damage * 1.5);
-                projectile.netUpdate = true;
-            }
             if (npc.type == NPCID.CultistBoss)
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 1.75);
@@ -787,9 +774,9 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 if (shootFlag)
                 {
-                    Vector2 shootVector = (new Vector2(1f, 0f)) * 12f;
-                    float rotation = MathHelper.ToRadians((180f / (12f - 1f)));
-                    for (int i = 0; i < 12; i++)
+                    Vector2 shootVector = (new Vector2(1f, 0f)) * 8f;
+                    float rotation = MathHelper.ToRadians((180f / (16f - 1f)));
+                    for (int i = 0; i < 16; i++)
                     {
                         Projectile proj = Projectile.NewProjectileDirect
                         (
@@ -797,7 +784,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                             npc.Center,
                             shootVector.RotatedBy(- (rotation * (float)i)),
                             ProjectileID.BoulderStaffOfEarth,
-                            (int)Math.Round(npc.damage * 0.1875f),
+                            (int)Math.Round(npc.damage * 0.25f),
                             4f
                         );
                         proj.hostile = true;
