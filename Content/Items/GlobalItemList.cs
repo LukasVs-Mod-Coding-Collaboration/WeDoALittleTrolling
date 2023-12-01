@@ -1003,9 +1003,6 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 item.type == ItemID.PygmyStaff ||
-                item.type == ItemID.StormTigerStaff ||
-                item.type == ItemID.DeadlySphereStaff ||
-                item.type == ItemID.RavenStaff ||
                 item.type == ItemID.TempestStaff
             )
             {
@@ -1139,7 +1136,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ScytheWhip) //Dark Harvest
             {
-                item.damage += 25;
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.shootsEveryUse = true;

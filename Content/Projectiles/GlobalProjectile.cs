@@ -849,10 +849,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     modifiers.SetCrit();
                 }
             }
-            if (projectile.type == ProjectileID.ScytheWhipProj)
-            {
-                modifiers.SourceDamage *= 1.25f;
-            }
             base.ModifyHitNPC(projectile, target, ref modifiers);
         }
     }
