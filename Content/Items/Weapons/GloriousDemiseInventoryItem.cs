@@ -51,6 +51,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.damage = 4;
             Item.knockBack = 10f;
+            Item.ArmorPenetration = 333;
             Item.noUseGraphic = true;
             Item.DamageType = DamageClass.Generic;
             Item.noMelee = true;

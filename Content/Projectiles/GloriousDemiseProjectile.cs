@@ -37,7 +37,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 1;
-            Projectile.ArmorPenetration = 300;
             Projectile.knockBack = 10f;
             AIType = ProjectileID.Bullet;
         }

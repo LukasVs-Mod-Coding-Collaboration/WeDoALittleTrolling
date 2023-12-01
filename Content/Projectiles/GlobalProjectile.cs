@@ -737,7 +737,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC attacker)
             )
             {
-                if (attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.Retinazer)
+                if (attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.SkeletronPrime || attacker.type == NPCID.Retinazer)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }

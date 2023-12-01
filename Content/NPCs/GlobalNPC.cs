@@ -41,7 +41,6 @@ using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Content.Items.Weapons;
 using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
-using Terraria.GameContent.NetModules;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -397,7 +396,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Spazmatism
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.0);
             }
             if
             (
@@ -823,6 +822,77 @@ namespace WeDoALittleTrolling.Content.NPCs
                         Main.projectile[i].timeLeft = 300;
                         npc.netUpdate = true;
                     }
+                }
+            }
+            if (npc.type == NPCID.SkeletronPrime)
+            {
+                bool shootFlag = true;
+                int numArms = 0;
+                if (!(Math.Abs(npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick) >= 60))
+                {
+                    shootFlag = false;
+                }
+                if (!(npc.ai[1] < 0.1f) || !(Main.netMode != NetmodeID.MultiplayerClient))
+                {
+                    shootFlag = false;
+                }
+                for (int i = 0; i < Main.npc.Length; i++)
+                {
+                    if
+                    (
+                        Main.npc[i].active &&
+                        (
+                            Main.npc[i].type == NPCID.PrimeCannon ||
+                            Main.npc[i].type == NPCID.PrimeLaser ||
+                            Main.npc[i].type == NPCID.PrimeSaw ||
+                            Main.npc[i].type == NPCID.PrimeVice
+                        )
+                    )
+                    {
+                        shootFlag = false;
+                        numArms++;
+                    }
+                }
+                npc.defense += (numArms * 25);
+                if(shootFlag)
+                {
+                    npc.TargetClosest();
+                    if (npc.target < 0 || npc.target > Main.player.Length)
+                    {
+                        return;
+                    }
+                    Vector2 gfxShootOffset1 = new Vector2(-17f, -10f);
+                    Vector2 gfxShootOffset2 = new Vector2(18f, -10f);
+                    Vector2 pos1 = npc.Center + gfxShootOffset1;
+                    Vector2 pos2 = npc.Center + gfxShootOffset2;
+                    Vector2 predictVelocity = Main.player[npc.target].velocity * (Vector2.Distance(npc.Center, Main.player[npc.target].Center) / (14f * (float)3)); //Roughly Predict where the target is going to be when the Laser reaches it
+                    Vector2 shootVector1 = ((Main.player[npc.target].Center + predictVelocity) - pos1);
+                    Vector2 shootVector2 = ((Main.player[npc.target].Center + predictVelocity) - pos2);
+                    shootVector1.Normalize();
+                    pos1 += shootVector1;
+                    shootVector1 *= 14f;
+                    shootVector2.Normalize();
+                    pos2 += shootVector2;
+                    shootVector2 *= 14f;
+                    Projectile.NewProjectileDirect
+                    (
+                        npc.GetSource_FromAI(),
+                        pos1,
+                        shootVector1,
+                        ProjectileID.DeathLaser,
+                        (int)Math.Round(npc.damage * 0.25),
+                        3.5f
+                    );
+                    Projectile.NewProjectileDirect
+                    (
+                        npc.GetSource_FromAI(),
+                        pos2,
+                        shootVector2,
+                        ProjectileID.DeathLaser,
+                        (int)Math.Round(npc.damage * 0.25),
+                        3.5f
+                    );
+                    npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick = npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive;
                 }
             }
             if (npc.type == NPCID.Plantera)
