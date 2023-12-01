@@ -39,6 +39,7 @@ using Terraria.Utilities;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
 using WeDoALittleTrolling.Content.Tiles;
+using Terraria.GameContent.Items;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -1247,6 +1248,14 @@ namespace WeDoALittleTrolling.Content.Items
                 if (item.damage <= 20)
                 {
                     item.damage = 20;
+                }
+            }
+            if (item.type == ItemID.ChainKnife)
+            {
+                item.damage = 16;
+                if(item.Variant == ItemVariants.StrongerVariant)
+                {
+                    item.damage = 75;
                 }
             }
             if (item.type == ItemID.ThunderSpear)
