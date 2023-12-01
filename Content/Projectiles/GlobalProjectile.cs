@@ -649,6 +649,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            if (projectile.type == ProjectileID.CoolWhipProj)
+            {
+                if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
+                {
+                    player.Heal(3);
+                    if(!player.HasBuff(BuffID.Regeneration))
+                    {
+                        player.AddBuff(BuffID.Regeneration, 180, true);
+                    }
+                }
+            }
             if (projectile.type == ProjectileID.SporeCloud)
             {
                 target.AddBuff(BuffID.Poisoned, 240, false);
@@ -848,6 +859,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     modifiers.SetCrit();
                 }
+            }
+            if (projectile.type == ProjectileID.ScytheWhipProj)
+            {
+                modifiers.SourceDamage *= 2f;
+            }
+            if (projectile.type == ProjectileID.CoolWhipProj)
+            {
+                modifiers.SourceDamage *= 4f;
             }
             base.ModifyHitNPC(projectile, target, ref modifiers);
         }

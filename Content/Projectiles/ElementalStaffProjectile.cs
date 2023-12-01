@@ -43,7 +43,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly float attackInertia = 6f;
         public static readonly float idleDistance = 48f;
         public static readonly float idleAccelerationFactor = 0.625f;
-        public static readonly float bulletSpeed = 16f;
+        public static readonly float bulletSpeed = 18f;
         public static readonly float bulletOffsetMultiplier = 36f;
         public static readonly Vector2 gfxShootOffset = new Vector2(0f, 0f);
         public long ticksAlive = 0;

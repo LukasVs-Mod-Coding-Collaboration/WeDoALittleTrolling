@@ -584,12 +584,12 @@ Mods: {
 				DisplayName: Conjuring
 				AdditionalTooltip:
 					'''
-					-6% magic damage
-					-6% magic critical strike chance
+					-4% magic damage
+					-4% magic critical strike chance
 					'''
 				AdditionalTooltip2:
 					'''
-					+6% summon damage
+					+4% summon damage
 					+2 defense
 					+10 mana
 					'''

@@ -1125,14 +1125,17 @@ namespace WeDoALittleTrolling.Content.Items
 
             // Buff hardmode whips
 
-            if
-            (
-                item.type == ItemID.FireWhip || //Firecracker
-                item.type == ItemID.CoolWhip ||
-                item.type == ItemID.SwordWhip //Durendal
-            )
+            if (item.type == ItemID.FireWhip) //Firecracker
             {
                 item.damage += 10;
+            }
+            if (item.type == ItemID.CoolWhip) 
+            {
+                item.damage += 15;
+            }
+            if (item.type == ItemID.SwordWhip) //Durendal
+            {
+                item.damage += 20;
             }
             if (item.type == ItemID.ScytheWhip) //Dark Harvest
             {

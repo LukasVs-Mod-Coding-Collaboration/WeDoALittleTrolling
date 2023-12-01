@@ -51,9 +51,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetDamage(DamageClass.Magic) -= 0.06f;
-            player.GetCritChance(DamageClass.Magic) -= 6f;
-            player.GetDamage(DamageClass.Summon) += 0.06f;
+            player.GetDamage(DamageClass.Magic) -= 0.04f;
+            player.GetCritChance(DamageClass.Magic) -= 4f;
+            player.GetDamage(DamageClass.Summon) += 0.04f;
             player.statDefense += 2;
             player.statManaMax2 += 10;
         }
