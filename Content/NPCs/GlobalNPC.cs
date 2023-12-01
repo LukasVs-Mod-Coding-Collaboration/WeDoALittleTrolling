@@ -778,6 +778,36 @@ namespace WeDoALittleTrolling.Content.NPCs
                     return false;
                 }
             }
+            if (npc.type == NPCID.Golem)
+            {
+                bool shootFlag = true;
+                if (!(npc.ai[0] == 1f && Math.Abs(npc.velocity.Y) == 0f) || !(Main.netMode != NetmodeID.MultiplayerClient))
+                {
+                    shootFlag = false;
+                }
+                if (shootFlag)
+                {
+                    Vector2 shootVector = (new Vector2(1f, 0f)) * 12f;
+                    float rotation = MathHelper.ToRadians((180f / (12f - 1f)));
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Projectile proj = Projectile.NewProjectileDirect
+                        (
+                            npc.GetSource_FromAI(),
+                            npc.Center,
+                            shootVector.RotatedBy(- (rotation * (float)i)),
+                            ProjectileID.BoulderStaffOfEarth,
+                            (int)Math.Round(npc.damage * 0.1875f),
+                            4f
+                        );
+                        proj.hostile = true;
+                        proj.friendly = false;
+                        proj.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder = true;
+                        proj.netUpdate = true;
+                        SoundEngine.PlaySound(SoundID.Item69, proj.position);
+                    }
+                }
+            }
             return base.PreAI(npc);
         }
 
@@ -832,7 +862,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     shootFlag = false;
                 }
-                if (!(npc.ai[1] < 0.1f) || !(Main.netMode != NetmodeID.MultiplayerClient))
+                if (!(npc.ai[1] == 0f) || !(Main.netMode != NetmodeID.MultiplayerClient))
                 {
                     shootFlag = false;
                 }

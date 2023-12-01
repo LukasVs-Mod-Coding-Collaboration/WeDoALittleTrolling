@@ -71,6 +71,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool colossalSolarWhip = false;
         public bool speedyPlanteraPoisonSeed = false;
         public bool speedyPlanteraPoisonSeedHasUpdated = false;
+        public bool hostileGolemBoulder = false;
+        public bool hostileGolemBoulderHasUpdated = false;
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
@@ -142,6 +144,14 @@ namespace WeDoALittleTrolling.Common.Utilities
                     speedyPlanteraPoisonSeedHasUpdated = true;
                 }
             }
+            if(projectile.type == ProjectileID.BoulderStaffOfEarth)
+            {
+                binaryWriter.Write(hostileGolemBoulder);
+                if(hostileGolemBoulder)
+                {
+                    hostileGolemBoulderHasUpdated = true;
+                }
+            }
         }
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
@@ -192,6 +202,16 @@ namespace WeDoALittleTrolling.Common.Utilities
                     SoundEngine.PlaySound(SoundID.Item17, projectile.position);
                 }
             }
+            if(projectile.type == ProjectileID.BoulderStaffOfEarth)
+            {
+                hostileGolemBoulder = binaryReader.ReadBoolean();
+                if(hostileGolemBoulder)
+                {
+                    projectile.hostile = true;
+                    projectile.friendly = false;
+                    SoundEngine.PlaySound(SoundID.Item69, projectile.position);
+                }
+            }
         }
 
         public override bool PreAI(Projectile projectile)
@@ -221,6 +241,10 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override bool ShouldUpdatePosition(Projectile projectile)
         {
             if(projectile.type == ProjectileID.PoisonSeedPlantera && speedyPlanteraPoisonSeed && !speedyPlanteraPoisonSeedHasUpdated)
+            {
+                projectile.netUpdate = true;
+            }
+            if(projectile.type == ProjectileID.BoulderStaffOfEarth && hostileGolemBoulder && !hostileGolemBoulderHasUpdated)
             {
                 projectile.netUpdate = true;
             }

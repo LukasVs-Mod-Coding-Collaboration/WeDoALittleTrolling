@@ -758,6 +758,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Devastated.AnimateDevastated(target);
                 }
             }
+            if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
+            {
+                target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                Devastated.AnimateDevastated(target);
+            }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if (WDALTModContentID.GetThoriumBossProjectileInflictWreckedResistance1in1Group().Contains(projectile.type))
