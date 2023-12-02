@@ -353,6 +353,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+                npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
             if (npc.type == NPCID.HallowBoss)
             {
@@ -634,6 +635,18 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (NerfGroup50Percent.Contains(npc.type))
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 0.5);
+                projectile.netUpdate = true;
+            }
+            if
+            (
+                npc.type == NPCID.Golem ||
+                npc.type == NPCID.GolemHead ||
+                npc.type == NPCID.GolemFistLeft ||
+                npc.type == NPCID.GolemFistRight ||
+                npc.type == NPCID.GolemHeadFree
+            )
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 1.5);
                 projectile.netUpdate = true;
             }
             if (npc.type == NPCID.CultistBoss)
