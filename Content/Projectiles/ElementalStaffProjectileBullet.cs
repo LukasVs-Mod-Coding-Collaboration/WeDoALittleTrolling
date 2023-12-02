@@ -23,7 +23,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Summon;
-            Projectile.penetrate = 1;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 512;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            AI_013_SimpleBullet_AutoAim();
+            AI_001_SimpleBullet();
         }
 
         public override bool PreKill(int timeLeft)
@@ -77,32 +77,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             return Color.White;
         }
 
-        private void AI_013_SimpleBullet_AutoAim()
+        private void AI_001_SimpleBullet()
         {
-            float origVelocityLength = Projectile.velocity.Length();
-            float lowestDistance = homingRange;
-            bool targetDetected = false;
-            Vector2 targetCenter = Vector2.Zero;
-            for (int i = 0; i < Main.npc.Length; i++)
-            {
-                NPC npc = Main.npc[i];
-                float distance = Vector2.Distance(Projectile.Center, npc.Center);
-                if ((distance < lowestDistance) && npc.CanBeChasedBy())
-                {
-                    targetCenter = npc.Center;
-                    targetDetected = true;
-                    lowestDistance = distance;
-                }
-            }
-            if (targetDetected)
-            {
-                Vector2 moveVector = (targetCenter - Projectile.Center);
-                moveVector.Normalize();
-                moveVector *= (origVelocityLength * correctionFactor);
-                Projectile.velocity += moveVector;
-                Projectile.velocity.Normalize();
-                Projectile.velocity *= origVelocityLength;
-            }
             Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
             float roatateOffset = (float)Math.PI / 2f;
             Projectile.rotation = Projectile.velocity.ToRotation() + roatateOffset;

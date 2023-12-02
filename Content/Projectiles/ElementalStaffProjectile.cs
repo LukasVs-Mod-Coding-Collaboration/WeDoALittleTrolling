@@ -32,8 +32,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class ElementalStaffProjectile : ModProjectile
     {
-        public static readonly float idleOverlapCorrectionFactor = 0.04f;
-        public static readonly float attackOverlapCorrectionFactor = 0.02f;
+        public static readonly float idleOverlapCorrectionFactor = 0.06f;
+        public static readonly float attackOverlapCorrectionFactor = 0.12f;
         public static readonly float detectionRange = 768f;
         public static readonly float detectionRangeOffset = 256f;
         public static readonly float detectionRangeOffset2 = 128f;
@@ -290,22 +290,26 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 if (Projectile.owner == Main.myPlayer)
                 {
-                    Vector2 pos = Projectile.Center + gfxShootOffset;
-                    Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
-                    Vector2 shootVector = ((targetCenter + predictVelocity) - pos);
-                    shootVector.Normalize();
-                    pos += (shootVector * bulletOffsetMultiplier);
-                    shootVector *= bulletSpeed;
-                    Projectile.NewProjectileDirect
-                    (
-                        Projectile.GetSource_FromAI(),
-                        pos,
-                        shootVector,
-                        ModContent.ProjectileType<ElementalStaffProjectileBullet>(),
-                        Projectile.damage,
-                        Projectile.knockBack,
-                        Projectile.owner
-                    );
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Vector2 pos = Projectile.Center + gfxShootOffset;
+                        Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
+                        Vector2 shootVector = ((targetCenter + predictVelocity) - pos);
+                        shootVector.Normalize();
+                        pos += (shootVector * bulletOffsetMultiplier);
+                        shootVector *= bulletSpeed;
+                        float rotation = -3f + (i * 3f);
+                        Projectile.NewProjectileDirect
+                        (
+                            Projectile.GetSource_FromAI(),
+                            pos,
+                            shootVector.RotatedBy(MathHelper.ToRadians(rotation)),
+                            ModContent.ProjectileType<ElementalStaffProjectileBullet>(),
+                            (int)Math.Round(Projectile.damage * 0.5),
+                            Projectile.knockBack,
+                            Projectile.owner
+                        );
+                    }
                 }
                 SoundEngine.PlaySound(SoundID.Item28, Projectile.Center);
                 lastActionTick = ticksAlive;

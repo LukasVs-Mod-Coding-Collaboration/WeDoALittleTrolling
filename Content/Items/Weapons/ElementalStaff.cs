@@ -64,9 +64,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.buffType = ModContent.BuffType<ElementalStaffBuff>();
             Item.shoot = ModContent.ProjectileType<ElementalStaffProjectile>();
 
-            Item.damage = 42;
-            Item.mana = 18;
-            Item.ArmorPenetration = 18;
+            Item.damage = 36;
+            Item.mana = 12;
+            Item.ArmorPenetration = 12;
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;
 
