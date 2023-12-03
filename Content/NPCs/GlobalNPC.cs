@@ -309,7 +309,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.SkeletronHand)
             {
-                npc.lifeMax *= 2;
+                npc.lifeMax *= 4;
             }
             if (npc.type == NPCID.BrainofCthulhu)
             {
@@ -322,6 +322,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.QueenBee)
             {
                 npc.lifeMax *= 2;
+                npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
             if
             (
@@ -352,7 +353,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.GolemHeadFree
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
             if (npc.type == NPCID.HallowBoss)
@@ -652,6 +653,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.CultistBoss)
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 1.75);
+                projectile.netUpdate = true;
+            }
+            if (npc.type == NPCID.QueenBee)
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 1.5);
                 projectile.netUpdate = true;
             }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)

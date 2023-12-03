@@ -654,7 +654,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
                 {
                     player.Heal(3);
-                    if(!player.HasBuff(BuffID.Regeneration))
+                    if(!player.HasBuff(BuffID.Regeneration) || player.buffTime[player.FindBuffIndex(BuffID.Regeneration)] < 180)
                     {
                         player.AddBuff(BuffID.Regeneration, 180, true);
                     }
