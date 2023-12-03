@@ -336,13 +336,19 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if
             (
-                npc.type == NPCID.Plantera ||
+                npc.type == NPCID.Plantera
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
+            }
+            if
+            (
                 npc.type == NPCID.PlanterasHook ||
                 npc.type == NPCID.PlanterasTentacle ||
                 npc.type == NPCID.Spore
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
             }
             if
             (
@@ -794,8 +800,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if (shootFlag)
                 {
                     Vector2 shootVector = (new Vector2(1f, 0f)) * 8f;
-                    float rotation = MathHelper.ToRadians((180f / (16f - 1f)));
-                    for (int i = 0; i < 16; i++)
+                    float rotation = MathHelper.ToRadians((180f / (24f - 1f)));
+                    for (int i = 0; i < 24; i++)
                     {
                         Projectile proj = Projectile.NewProjectileDirect
                         (
@@ -803,7 +809,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                             npc.Center,
                             shootVector.RotatedBy(- (rotation * (float)i)),
                             ProjectileID.BoulderStaffOfEarth,
-                            (int)Math.Round(npc.damage * 0.25f),
+                            (int)Math.Round(npc.damage * 0.1875f),
                             4f
                         );
                         proj.hostile = true;
