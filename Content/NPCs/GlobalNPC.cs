@@ -234,10 +234,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 npc.knockBackResist = 0f;
             }
-            if (npc.type == NPCID.RockGolem)
-            {
-                npc.value = Item.sellPrice(gold: 10);
-            }
             if
             (
                 npc.type == NPCID.Lihzahrd ||
@@ -714,8 +710,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.PossessedArmor || //Possessed Armors, Lihzards, Flying Snakes and Rock Golems have 50% DR%
                 npc.type == NPCID.Lihzahrd ||
                 npc.type == NPCID.LihzahrdCrawler ||
-                npc.type == NPCID.FlyingSnake ||
-                npc.type == NPCID.RockGolem
+                npc.type == NPCID.FlyingSnake
             )
             {
                 modifiers.SourceDamage *= 0.5f;
