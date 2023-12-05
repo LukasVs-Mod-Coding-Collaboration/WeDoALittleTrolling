@@ -900,16 +900,15 @@ namespace WeDoALittleTrolling.Content.NPCs
                         Vector2 gfxShootOffset2 = new Vector2(18f, -10f);
                         Vector2 pos1 = npc.Center + gfxShootOffset1;
                         Vector2 pos2 = npc.Center + gfxShootOffset2;
-                        Vector2 predictVelocity = Main.player[npc.target].velocity * (Vector2.Distance(npc.Center, Main.player[npc.target].Center) / (14f * (float)3)); //Roughly Predict where the target is going to be when the Laser reaches it
-                        predictVelocity *= 0.875f; //Nerf prediction a bit so it isn't too overpowered.
+                        Vector2 predictVelocity = Main.player[npc.target].velocity * (Vector2.Distance(npc.Center, Main.player[npc.target].Center) / (12f * (float)3)); //Roughly Predict where the target is going to be when the Laser reaches it
                         Vector2 shootVector1 = ((Main.player[npc.target].Center + predictVelocity) - pos1);
                         Vector2 shootVector2 = ((Main.player[npc.target].Center + predictVelocity) - pos2);
                         shootVector1.Normalize();
                         pos1 += shootVector1;
-                        shootVector1 *= 14f;
+                        shootVector1 *= 12f;
                         shootVector2.Normalize();
                         pos2 += shootVector2;
-                        shootVector2 *= 14f;
+                        shootVector2 *= 12f;
                         Projectile.NewProjectileDirect
                         (
                             npc.GetSource_FromAI(),
