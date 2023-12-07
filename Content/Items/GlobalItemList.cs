@@ -1041,18 +1041,20 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.StardustLeggings ||
                 item.type == ItemID.NebulaHelmet ||
                 item.type == ItemID.NebulaBreastplate ||
-                item.type == ItemID.NebulaLeggings
+                item.type == ItemID.NebulaLeggings ||
+                item.type == ItemID.VortexHelmet ||
+                item.type == ItemID.VortexBreastplate ||
+                item.type == ItemID.VortexLeggings ||
+                item.type == ItemID.SolarFlareHelmet ||
+                item.type == ItemID.SolarFlareBreastplate ||
+                item.type == ItemID.SolarFlareLeggings
             )
             {
                 item.defense += 2;
             }
-            if (item.type == ItemID.TikiMask)
-            {
-                item.defense += 1;
-                item.shopCustomPrice = 300000;
-            }
             if
             (
+                item.type == ItemID.TikiMask ||
                 item.type == ItemID.TikiShirt ||
                 item.type == ItemID.TikiPants
             )
@@ -1062,18 +1064,44 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 item.type == ItemID.SpookyHelmet ||
-                item.type == ItemID.SpookyLeggings
+                item.type == ItemID.SpookyLeggings ||
+                item.type == ItemID.SpookyBreastplate
             )
             {
                 item.defense += 2;
             }
-            if (item.type == ItemID.SpookyBreastplate)
+            if (item.type == ItemID.SpectreMask)
             {
                 item.defense += 4;
             }
             if (item.type == ItemID.SpectreRobe)
             {
                 item.defense += 2;
+            }
+            if
+            (
+                item.type == ItemID.ShroomiteHeadgear ||
+                item.type == ItemID.ShroomiteMask ||
+                item.type == ItemID.ShroomiteHelmet
+            )
+            {
+                item.defense += 5;
+            }
+            if
+            (
+                item.type == ItemID.ShroomiteBreastplate ||
+                item.type == ItemID.ShroomiteLeggings
+            )
+            {
+                item.defense += 4;
+            }
+            if (item.type == ItemID.BeetleShell)
+            {
+                item.defense += 4;
+            }
+            if (item.type == ItemID.BeetleLeggings)
+            {
+                item.defense += 3;
             }
 
             // Buff all pre-hardmode summon armors
