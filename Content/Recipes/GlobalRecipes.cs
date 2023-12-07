@@ -219,6 +219,19 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_OrichalcumAnvil_Duplicate.AddTile(TileID.MythrilAnvil);
             WDALT_OrichalcumAnvil_Duplicate.Register();
 
+            Recipe WDALT_MythrilAnvil_Alternate = Recipe.Create(ItemID.MythrilAnvil, 1);
+            WDALT_MythrilAnvil_Alternate.AddIngredient(ItemID.MythrilBar, 10);
+            WDALT_MythrilAnvil_Alternate.AddIngredient(ItemID.FrostCore, 5);
+            WDALT_MythrilAnvil_Alternate.AddIngredient(ItemID.AncientBattleArmorMaterial, 5);
+            WDALT_MythrilAnvil_Alternate.AddTile(TileID.Anvils);
+            WDALT_MythrilAnvil_Alternate.Register();
+            Recipe WDALT_OrichalcumAnvil_Alternate = Recipe.Create(ItemID.OrichalcumAnvil, 1);
+            WDALT_OrichalcumAnvil_Alternate.AddIngredient(ItemID.OrichalcumBar, 12);
+            WDALT_OrichalcumAnvil_Alternate.AddIngredient(ItemID.FrostCore, 5);
+            WDALT_OrichalcumAnvil_Alternate.AddIngredient(ItemID.AncientBattleArmorMaterial, 5);
+            WDALT_OrichalcumAnvil_Alternate.AddTile(TileID.Anvils);
+            WDALT_OrichalcumAnvil_Alternate.Register();
+
             Recipe WDALT_Soulconvert_V1 = Recipe.Create(ItemID.SoulofFright, 3);
             WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofFright, 1);
             WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofMight, 1);
@@ -1090,7 +1103,7 @@ namespace WeDoALittleTrolling.Content.Recipes
                 }
                 if (recipe.TryGetResult(ItemID.MythrilAnvil, out Item MythrilAnvil))
                 {
-                    if (!recipe.HasTile(TileID.MythrilAnvil))
+                    if (!recipe.HasTile(TileID.MythrilAnvil) && !recipe.HasIngredient(ItemID.FrostCore))
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
@@ -1099,7 +1112,7 @@ namespace WeDoALittleTrolling.Content.Recipes
                 }
                 if (recipe.TryGetResult(ItemID.OrichalcumAnvil, out Item OrichalcumAnvil))
                 {
-                    if (!recipe.HasTile(TileID.MythrilAnvil))
+                    if (!recipe.HasTile(TileID.MythrilAnvil) && !recipe.HasIngredient(ItemID.FrostCore))
                     {
                         recipe.AddIngredient(ModContent.ItemType<IcyFossil>(), 10);
                         recipe.AddIngredient(ModContent.ItemType<DustyFossil>(), 10);
