@@ -373,6 +373,21 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if
             (
+                npc.type == NPCID.CultistDragonHead ||
+                npc.type == NPCID.CultistDragonBody1 ||
+                npc.type == NPCID.CultistDragonBody2 ||
+                npc.type == NPCID.CultistDragonBody3 ||
+                npc.type == NPCID.CultistDragonBody4 ||
+                npc.type == NPCID.CultistDragonTail ||
+                npc.type == NPCID.AncientCultistSquidhead ||
+                npc.type == NPCID.AncientLight ||
+                npc.type == NPCID.AncientDoom
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+            }
+            if
+            (
                 npc.type == NPCID.MoonLordCore ||
                 npc.type == NPCID.MoonLordHead ||
                 npc.type == NPCID.MoonLordHand ||
@@ -652,7 +667,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 projectile.damage = (int)Math.Round(projectile.damage * 1.5);
                 projectile.netUpdate = true;
             }
-            if (npc.type == NPCID.CultistBoss)
+            if (npc.type == NPCID.CultistBoss && projectile.type != ProjectileID.CultistBossIceMist && projectile.type != ProjectileID.CultistBossLightningOrb)
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 1.75);
                 projectile.netUpdate = true;
@@ -785,6 +800,24 @@ namespace WeDoALittleTrolling.Content.NPCs
                     return false;
                 }
             }
+            if (npc.type == NPCID.CultistBoss)
+            {
+                if(npc.ai[0] == 5f && npc.ai[1] == 30f && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int avCount = 0;
+                    for (int i = 0; i < Main.npc.Length; i++)
+                    {
+                        if (Main.npc[i].active && Main.npc[i].type == NPCID.AncientCultistSquidhead)
+                        {
+                            avCount++;
+                        }
+                    }
+                    if (avCount < 20) //Cap max ancient visions at 20.
+                    {
+                        NPC.NewNPCDirect(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, NPCID.AncientCultistSquidhead, 0, 0f, 0f, 0f, 0, npc.target);
+                    }
+                }
+            }
             if (npc.type == NPCID.Golem)
             {
                 bool shootFlag = true;
@@ -794,7 +827,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 if (shootFlag)
                 {
-                    Vector2 shootVector = (new Vector2(1f, 0f)) * 8f;
+                    Vector2 shootVector = (new Vector2(1f, 0f)) * 10f;
                     float rotation = MathHelper.ToRadians((180f / (24f - 1f)));
                     for (int i = 0; i < 24; i++)
                     {
@@ -1052,6 +1085,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if (distanceToTarget > 512f)
                 {
                     distanceToTarget = 512f;
+                }
+                if (distanceToTarget < 48f)
+                {
+                    distanceToTarget = 48f;
                 }
                 float rangeOffsetFactor = ((512f - 48f) / (1f - 0.83f));
                 float modifierSPS = Math.Abs(((distanceToTarget - 48f) / rangeOffsetFactor) + 0.83f);

@@ -811,6 +811,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
+            if (projectile.type == ProjectileID.CultistBossIceMist)
+            {
+                modifiers.SourceDamage *= 1.75f;
+            }
             if (projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
             {
                 if (npc.type == NPCID.MoonLordFreeEye)

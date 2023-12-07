@@ -41,14 +41,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
     internal class WDALTPlayer : ModPlayer
     {
         public long lastLeechingHealTick;
-        public int spookyBonus2X;
-        public int spookyBonus3X;
+        public int spookyBonus;
         public int dodgeChancePercent;
         public int wreckedResistanceStack;
         public int wreckedAccuracyStack;
         public int devastatedStack;
         public int beekeeperStack;
         public bool spookyEmblem;
+        public bool spookyShield;
         public bool sorcerousMirror;
         public bool heartOfDespair;
         public int heartOfDespairDamageBonus;
@@ -74,14 +74,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             player = this.Player;
             lastLeechingHealTick = 0;
-            spookyBonus2X = 0;
-            spookyBonus3X = 0;
+            spookyBonus = 0;
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
             wreckedAccuracyStack = 0;
             devastatedStack = 0;
             beekeeperStack = 0;
             spookyEmblem = false;
+            spookyShield = false;
             sorcerousMirror = false;
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
@@ -109,14 +109,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         private void ResetVariables()
         {
-            spookyBonus2X = 0;
-            spookyBonus3X = 0;
+            spookyBonus = 0;
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
             wreckedAccuracyStack = 0;
             devastatedStack = 0;
             beekeeperStack = 0;
             spookyEmblem = false;
+            spookyShield = false;
             sorcerousMirror = false;
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
@@ -141,6 +141,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             dodgeChancePercent = 0;
             beekeeperStack = 0;
             spookyEmblem = false;
+            spookyShield = false;
             sorcerousMirror = false;
             heartOfDespair = false;
             soulPoweredShield = false;
@@ -303,8 +304,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     Main.buffNoTimeDisplay[BuffID.Stoned] = false;
                 }
             }
-            spookyBonus2X = player.maxMinions * 2;
-            spookyBonus3X = player.maxMinions * 3;
+            spookyBonus = player.maxMinions * 3;
+            if (spookyShield)
+            {
+                player.statDefense += spookyBonus;
+            }
             heartOfDespairDamageBonus = (player.statLifeMax2 - player.statLife) / 5;
             base.PostUpdateEquips();
         }
@@ -349,6 +353,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.UpdateLifeRegen();
         }
 
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+            if (spookyShield)
+            {
+                modifiers.FinalDamage *= (1f - ((float)spookyBonus * 0.01f));
+            }
+            base.ModifyHurt(ref modifiers);
+        }
+
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if(player.HasBuff(ModContent.BuffType<SearingInferno>()))
@@ -383,8 +396,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if(spookyEmblem)
                 {
-                    modifiers.ArmorPenetration += spookyBonus3X;
-                    if(random.Next(0, 100) < spookyBonus3X) //(3 x <Player Minion Slots>)% Chance
+                    modifiers.ArmorPenetration += spookyBonus;
+                    if(random.Next(0, 100) < spookyBonus) //(3 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }
