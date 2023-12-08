@@ -67,7 +67,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int shroomiteGenesisOverchannelTicks;
         public int shroomiteGenesisOverheatTimer;
         public bool lumintePhantomMinion;
-        public bool frostElementalMinion;
+        public bool frozenElementalMinion;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -99,7 +99,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverchannelTicks = 0;
             shroomiteGenesisOverheatTimer = 0;
             lumintePhantomMinion = false;
-            frostElementalMinion = false;
+            frozenElementalMinion = false;
         }
 
         public override void UpdateDead()
@@ -133,7 +133,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverchannelTicks = 0;
             shroomiteGenesisOverheatTimer = 0;
             lumintePhantomMinion = false;
-            frostElementalMinion = false;
+            frozenElementalMinion = false;
         }
 
         public override void ResetEffects()
@@ -151,7 +151,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             yoyoArtifact = false;
             shroomiteGenesis = false;
             lumintePhantomMinion = false;
-            frostElementalMinion = false;
+            frozenElementalMinion = false;
             base.ResetEffects();
         }
         

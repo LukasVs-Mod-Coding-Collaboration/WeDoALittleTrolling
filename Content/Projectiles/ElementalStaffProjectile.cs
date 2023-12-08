@@ -140,10 +140,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ownerPlayer = Main.player[Projectile.owner];
             if (!ownerPlayer.active || ownerPlayer.dead)
             {
-                ownerPlayer.GetModPlayer<WDALTPlayer>().frostElementalMinion = false;
+                ownerPlayer.GetModPlayer<WDALTPlayer>().frozenElementalMinion = false;
                 runAI = false;
             }
-            if (ownerPlayer.GetModPlayer<WDALTPlayer>().frostElementalMinion)
+            if (ownerPlayer.GetModPlayer<WDALTPlayer>().frozenElementalMinion)
             {
                 Projectile.timeLeft = 2;
             }

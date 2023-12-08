@@ -27,9 +27,9 @@ namespace WeDoALittleTrolling.Content.Buffs
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<ElementalStaffProjectile>()] > 0)
             {
-                player.GetModPlayer<WDALTPlayer>().frostElementalMinion = true;
+                player.GetModPlayer<WDALTPlayer>().frozenElementalMinion = true;
             }
-            if (!player.GetModPlayer<WDALTPlayer>().frostElementalMinion)
+            if (!player.GetModPlayer<WDALTPlayer>().frozenElementalMinion)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;
