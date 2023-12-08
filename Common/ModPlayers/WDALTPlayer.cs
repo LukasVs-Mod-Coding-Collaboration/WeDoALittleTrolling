@@ -120,14 +120,38 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 gnomedDebuff = true;
                 gnomedDebuffTicksLeft = tag.GetInt("GnomedDebuff");
             }
+            if (tag.ContainsKey("DevastatedStack"))
+            {
+                devastatedStack = tag.GetInt("DevastatedStack");
+            }
+            if (tag.ContainsKey("WreckedResistanceStack"))
+            {
+                wreckedResistanceStack = tag.GetInt("WreckedResistanceStack");
+            }
+            if (tag.ContainsKey("WreckedAccuracyStack"))
+            {
+                wreckedAccuracyStack = tag.GetInt("WreckedAccuracyStack");
+            }
             base.LoadData(tag);
         }
 
         public override void SaveData(TagCompound tag)
         {
-            if(gnomedDebuff)
+            if (gnomedDebuff)
             {
                 tag["GnomedDebuff"] = gnomedDebuffTicksLeft;
+            }
+            if (devastatedStack > 0)
+            {
+                tag["DevastatedStack"] = devastatedStack;
+            }
+            if (wreckedResistanceStack > 0)
+            {
+                tag["WreckedResistanceStack"] = wreckedResistanceStack;
+            }
+            if (wreckedAccuracyStack > 0)
+            {
+                tag["WreckedAccuracyStack"] = wreckedAccuracyStack;
             }
             base.SaveData(tag);
         }
@@ -293,8 +317,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if(player.HasBuff(ModContent.BuffType<Devastated>()))
             {
-                float modifierD = (float)(90 - (devastatedStack*10)) * 0.01f;
-                player.statLifeMax2 = (int)Math.Round(player.statLifeMax2*modifierD);
+                float modifierD = (float)(90 - (devastatedStack * 10)) * 0.01f;
+                player.statLifeMax2 = (int)Math.Round(player.statLifeMax2 * modifierD);
                 player.DefenseEffectiveness *= modifierD;
                 player.blackBelt = false;
                 player.brainOfConfusionItem = null;
