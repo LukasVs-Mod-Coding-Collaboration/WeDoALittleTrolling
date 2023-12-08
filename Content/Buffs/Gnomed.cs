@@ -18,7 +18,7 @@ namespace WeDoALittleTrolling.Content.Buffs
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
-            BuffID.Sets.LongerExpertDebuff[Type] = true;
+            BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
         
         public override void Update(Player player, ref int buffIndex)
@@ -30,6 +30,17 @@ namespace WeDoALittleTrolling.Content.Buffs
             else
             {
                 player.GetModPlayer<WDALTPlayer>().gnomedStonedDebuff = false;
+            }
+            if (player.GetModPlayer<WDALTPlayer>().gnomedDebuffTicksLeft > 0)
+            {
+                player.GetModPlayer<WDALTPlayer>().gnomedDebuffTicksLeft--;
+            }
+            else
+            {
+                player.GetModPlayer<WDALTPlayer>().gnomedDebuffTicksLeft = 0;
+                player.GetModPlayer<WDALTPlayer>().gnomedDebuff = false;
+                player.DelBuff(buffIndex);
+                buffIndex--;
             }
         }
 

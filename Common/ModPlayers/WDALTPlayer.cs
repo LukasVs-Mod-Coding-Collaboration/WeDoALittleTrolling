@@ -35,6 +35,8 @@ using SteelSeries.GameSense;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.NPCs;
+using WeDoALittleTrolling.Common.Utilities;
+using Terraria.ModLoader.IO;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -57,6 +59,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int searingSetBonusValue;
         public bool sandStepping;
         public bool gnomedStonedDebuff;
+        public bool gnomedDebuff;
+        public int gnomedDebuffTicksLeft;
         public bool yoyoArtifact;
         public Player player;
         public long currentTick;
@@ -90,6 +94,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             searingSetBonusValue = 0;
             sandStepping = false;
             gnomedStonedDebuff = false;
+            gnomedDebuff = false;
+            gnomedDebuffTicksLeft = 0;
             yoyoArtifact = false;
             currentTick = 0;
             chargeAccelerationTicks = 0;
@@ -105,6 +111,25 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public override void UpdateDead()
         {
             ResetVariables();
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.ContainsKey("GnomedDebuff"))
+            {
+                gnomedDebuff = true;
+                gnomedDebuffTicksLeft = tag.GetInt("GnomedDebuff");
+            }
+            base.LoadData(tag);
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            if(gnomedDebuff)
+            {
+                tag["GnomedDebuff"] = gnomedDebuffTicksLeft;
+            }
+            base.SaveData(tag);
         }
 
         private void ResetVariables()
@@ -207,6 +232,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.AddBuff(BuffID.Hunter, 2, true);
                     player.AddBuff(BuffID.NightOwl, 2, true);
                 }
+                if (gnomedDebuff && !player.HasBuff(ModContent.BuffType<Gnomed>()))
+                {
+                    player.AddBuff(ModContent.BuffType<Gnomed>(), gnomedDebuffTicksLeft, true);
+                }
             }
         }
 
@@ -214,7 +243,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if(player.HasBuff<Gnomed>())
             {
-                luck -= 1f;
+                luck -= 5f;
             }
             base.ModifyLuck(ref luck);
         }
@@ -277,31 +306,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if(gnomedStonedDebuff)
             {
-                if((Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient) && player.whoAmI == Main.myPlayer)
-                {
-                    Main.buffNoTimeDisplay[BuffID.Stoned] = true;
-                }
                 if(!player.buffImmune[BuffID.Stoned])
                 {
-                    if(player.HasBuff(BuffID.Stoned))
+                    if(!player.HasBuff(BuffID.Stoned) && currentTick % 60 == 0 && random.NextBool(5))
                     {
-                        int stonedIndex = player.FindBuffIndex(BuffID.Stoned);
-                        if(stonedIndex > -1 && stonedIndex < player.buffTime.Length)
-                        {
-                            player.buffTime[stonedIndex] = 10;
-                        }
+                        player.AddBuff(BuffID.Stoned, 300, true);
                     }
-                    else
-                    {
-                        player.AddBuff(BuffID.Stoned, 10, true);
-                    }
-                }
-            }
-            else
-            {
-                if((Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient) && player.whoAmI == Main.myPlayer)
-                {
-                    Main.buffNoTimeDisplay[BuffID.Stoned] = false;
                 }
             }
             spookyBonus = player.maxMinions * 3;
