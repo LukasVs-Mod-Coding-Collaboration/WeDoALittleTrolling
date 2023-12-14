@@ -45,6 +45,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ItemID.LastPrism,
             ItemID.SniperRifle,
             ItemID.Marrow,
+            ItemID.SDMG,
             ModContent.ItemType<Rain_of_Decay>(),
         };
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;

@@ -51,8 +51,13 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if (!player.channel)
             {
-                player.GetAttackSpeed(DamageClass.Ranged) += (float)0.30;
+                player.GetAttackSpeed(DamageClass.Ranged) *= (float)1.30;
                 player.GetArmorPenetration(DamageClass.Ranged) += (float)30.0;
+                player.GetDamage(DamageClass.Ranged) *= (float)0.925;
+            }
+            else
+            {
+                player.GetArmorPenetration(DamageClass.Ranged) += (float)120.0;
                 player.GetDamage(DamageClass.Ranged) *= (float)0.925;
             }
         }

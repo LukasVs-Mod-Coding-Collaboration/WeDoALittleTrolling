@@ -189,6 +189,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
+            NPCID.DukeFishron,
             NPCID.CultistDragonHead,
             NPCID.AncientCultistSquidhead,
             NPCID.AncientLight,
@@ -360,11 +361,12 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.HallowBoss)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
             }
             if (npc.type == NPCID.DukeFishron)
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
+                npc.damage = (int)Math.Round(npc.damage * 1.75);
             }
             if (npc.type == NPCID.CultistBoss)
             {
@@ -666,6 +668,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 projectile.damage = (int)Math.Round(projectile.damage * 1.5);
                 projectile.netUpdate = true;
+            }
+            if (npc.type == NPCID.HallowBoss)
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 1.75);
             }
             if (npc.type == NPCID.CultistBoss && projectile.type != ProjectileID.CultistBossIceMist && projectile.type != ProjectileID.CultistBossLightningOrb)
             {

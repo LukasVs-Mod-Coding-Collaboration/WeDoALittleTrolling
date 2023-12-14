@@ -822,8 +822,8 @@ namespace WeDoALittleTrolling.Content.Items
         {
             if (item.type == ItemID.Phantasm)
             {
-                item.damage = 50;
-                item.crit = 1;
+                item.damage = 60;
+                item.crit = 2;
             }
             if (item.type == ItemID.VortexBeater)
             {
@@ -950,6 +950,10 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.MagnetSphere)
             {
                 item.damage = 64;
+            }
+            if (item.type == ItemID.ReaverShark)
+            {
+                item.pick = 100;
             }
             /*
             if (item.type == ItemID.ZapinatorOrange)

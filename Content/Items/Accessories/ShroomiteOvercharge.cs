@@ -53,7 +53,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             {
                 player.GetDamage(DamageClass.Ranged) *= (float)1.30;
                 player.GetCritChance(DamageClass.Ranged) += (float)10.0;
-                player.GetAttackSpeed(DamageClass.Ranged) -= (float)0.075;
+                player.GetAttackSpeed(DamageClass.Ranged) *= (float)0.925;
+            }
+            else
+            {
+                player.GetDamage(DamageClass.Ranged) *= (float)1.20;
+                player.GetCritChance(DamageClass.Ranged) += (float)10.0;
             }
         }
 
