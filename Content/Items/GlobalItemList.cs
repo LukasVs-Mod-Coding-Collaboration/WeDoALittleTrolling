@@ -72,6 +72,25 @@ namespace WeDoALittleTrolling.Content.Items
             ItemID.OceanCrateHard
         };
 
+        public static readonly int[] fishronWeapons =
+        {
+            ItemID.Tsunami,
+            ItemID.TempestStaff,
+            ItemID.RazorbladeTyphoon,
+            ItemID.Flairon,
+            ItemID.BubbleGun
+        };
+
+        public static readonly int[] empressWeapons =
+        {
+            ItemID.FairyQueenMagicItem,
+            ItemID.PiercingStarlight,
+            ItemID.RainbowWhip,
+            ItemID.FairyQueenRangedItem,
+            ItemID.SparkleGuitar,
+            ItemID.EmpressBlade
+        };
+
         public override bool CanUseItem(Item item, Player player)
         {
             // Anti-Poo-Block-Mechanism
@@ -177,6 +196,22 @@ namespace WeDoALittleTrolling.Content.Items
                 player.maxMinions += 1;
             }
             base.UpdateEquip(item, player);
+        }
+
+        public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
+        {
+            if
+            (
+                (
+                    fishronWeapons.Contains(item.type) ||
+                    empressWeapons.Contains(item.type)
+                )
+                && !NPC.downedGolemBoss
+            )
+            {
+                damage *= 0.5f;
+            }
+            base.ModifyWeaponDamage(item, player, ref damage);
         }
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
@@ -963,10 +998,12 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 64;
             }
+            /*
             if (item.type == ItemID.ReaverShark)
             {
                 item.pick = 100;
             }
+            */
             /*
             if (item.type == ItemID.ZapinatorOrange)
             {
