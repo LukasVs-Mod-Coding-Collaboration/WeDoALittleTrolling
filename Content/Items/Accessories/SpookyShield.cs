@@ -38,7 +38,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void SetDefaults()
         {
             Item.width = 32;
-            Item.height = 36;
+            Item.height = 32;
 
             Item.consumable = false;
 
@@ -61,9 +61,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.dashType = 1;
             player.maxMinions += 2;
-            player.aggro += 400;
             player.GetModPlayer<WDALTPlayer>().spookyShield = true;
             base.UpdateAccessory(player, hideVisual);
         }
@@ -90,7 +88,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.TinkerersWorkbench)
               .AddIngredient(ItemID.SpookyWood, 250)
               .AddIngredient(ItemID.NecromanticScroll, 1)
-              .AddIngredient(ItemID.Tabi, 1)
+              .AddIngredient(ItemID.SunStone, 1)
               .Register();
         }
     }

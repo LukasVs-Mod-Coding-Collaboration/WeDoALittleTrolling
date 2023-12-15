@@ -60,9 +60,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.blackBelt = true;
             player.maxMinions += 2;
-            player.aggro -= 400;
             player.GetModPlayer<WDALTPlayer>().spookyEmblem = true;
             base.UpdateAccessory(player, hideVisual);
         }
@@ -89,7 +87,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.TinkerersWorkbench)
               .AddIngredient(ItemID.SpookyWood, 250)
               .AddIngredient(ItemID.NecromanticScroll, 1)
-              .AddIngredient(ItemID.BlackBelt, 1)
+              .AddIngredient(ItemID.EyeoftheGolem, 1)
               .Register();
         }
     }

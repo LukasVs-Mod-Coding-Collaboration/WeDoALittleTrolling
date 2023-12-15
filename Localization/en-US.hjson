@@ -95,12 +95,10 @@ Mods: {
 				DisplayName: Spooky Emblem
 				Tooltip:
 					'''
-					Gives a chance to dodge attacks
 					Grants 3% summon critical strike chance per minion slot
 					This is not affected by the Wrecked Accuracy debuff
 					Grants 3 summon armor penetration per minion slot
 					Increases your max number of minions by 2
-					Enemies are less likely to target you
 					'''
 			}
 
@@ -108,12 +106,10 @@ Mods: {
 				DisplayName: Spooky Shield
 				Tooltip:
 					'''
-					Allows the ability to dash
 					Reduces damage taken by 3% per minion slot
 					This is not affected by the Wrecked Resistance debuff
 					3 defense per minion slot
 					Increases your max number of minions by 2
-					Enemies are more likely to target you
 					'''
 			}
 

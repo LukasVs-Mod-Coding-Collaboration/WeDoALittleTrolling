@@ -211,6 +211,10 @@ namespace WeDoALittleTrolling.Content.Items
                 player.GetDamage(DamageClass.Ranged) += 0.07f;
                 player.GetCritChance(DamageClass.Ranged) += 5f;
             }
+            if (item.type == ItemID.PygmyNecklace)
+            {
+                player.maxMinions += 1;
+            }
             if (item.type == ItemID.AnkhShield)
             {
                 player.statDefense += 4;
@@ -444,6 +448,14 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ExtraArmorPenetrationDescription", "Ignores 20 points of enemy Defense");
                 tooltips.Add(extraCritChanceLine);
+            }
+            if
+            (
+                item.type == ItemID.PygmyNecklace
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = "Increases your max number of minions by 2");
             }
             if
             (
