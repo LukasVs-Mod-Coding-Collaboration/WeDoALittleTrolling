@@ -83,7 +83,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ItemID.RangerEmblem, 1)
               .AddIngredient(ItemID.EndlessMusketPouch, 1)
               .AddIngredient(ItemID.EndlessQuiver, 1)
-              .AddIngredient(ItemID.EndlessQuiver, 1)
               .AddIngredient(ModContent.ItemType<InfiniteRocketAmmo>(), 1)
               .Register();
         }

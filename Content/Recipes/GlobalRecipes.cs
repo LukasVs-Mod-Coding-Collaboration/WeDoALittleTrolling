@@ -54,6 +54,18 @@ namespace WeDoALittleTrolling.Content.Recipes
 
             AddBiomeKeyDuplicationRecipes();
 
+            Recipe.Create(ItemID.JungleGrassSeeds, 5)
+            .AddIngredient(ItemID.GrassSeeds, 5)
+            .AddIngredient(ItemID.JungleSpores, 1)
+            .AddTile(TileID.ShimmerMonolith)
+            .Register();
+
+            Recipe.Create(ItemID.BloodMoonMonolith, 5)
+            .AddIngredient(ItemID.AngelStatue, 1)
+            .AddIngredient(ItemID.BloodMoonStarter, 1)
+            .AddTile(TileID.ShimmerMonolith)
+            .Register();
+
             Recipe.Create(ItemID.GravityGlobe, 1)
             .AddIngredient(ItemID.GravitationPotion, 10)
             .AddIngredient(ItemID.GelBalloon, 10)

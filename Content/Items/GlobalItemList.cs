@@ -1669,7 +1669,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.MechanicalEye ||
                 item.type == ItemID.MechanicalSkull ||
                 item.type == ItemID.MechdusaSummon ||
-                item.type == ItemID.CelestialSigil
+                item.type == ItemID.CelestialSigil ||
+                item.type == ItemID.PumpkinMoonMedallion ||
+                item.type == ItemID.NaughtyPresent ||
+                item.type == ItemID.GoblinBattleStandard ||
+                item.type == ItemID.PirateMap
             )
             {
                 item.consumable = false;
