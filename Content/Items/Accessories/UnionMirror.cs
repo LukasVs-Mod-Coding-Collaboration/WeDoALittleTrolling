@@ -29,6 +29,7 @@ using WeDoALittleTrolling.Content.Items.Material;
 using System.Collections.Generic;
 using Humanizer;
 using System;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -56,11 +57,16 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                player.RemoveAllGrapplingHooks();
-                player.StopVanityActions(multiplayerBroadcast: false);
-                player.Spawn(PlayerSpawnContext.RecallFromItem);
+                player.GetModPlayer<WDALTPlayer>().unionMirrorTicks = (Item.useAnimation / 2) + 1;
                 base.UseAnimation(player);
             }
+        }
+
+        public static void TeleportHome(Player player)
+        {
+            player.RemoveAllGrapplingHooks();
+            player.StopVanityActions(multiplayerBroadcast: false);
+            player.Spawn(PlayerSpawnContext.RecallFromItem);
         }
 
         public override bool? UseItem(Player player)

@@ -72,6 +72,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int shroomiteGenesisOverheatTimer;
         public bool lumintePhantomMinion;
         public bool frozenElementalMinion;
+        public int unionMirrorTicks;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -106,6 +107,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverheatTimer = 0;
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
+            unionMirrorTicks = 0;
         }
 
         public override void UpdateDead()
@@ -183,6 +185,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverheatTimer = 0;
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
+            unionMirrorTicks = 0;
         }
 
         public override void ResetEffects()
@@ -233,6 +236,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     shroomiteGenesisOverchannelTicks = 0;
                     player.channel = false;
                 }
+            }
+            if (unionMirrorTicks > 0)
+            {
+                if (unionMirrorTicks == 1)
+                {
+                    UnionMirror.TeleportHome(player);
+                }
+                unionMirrorTicks--;
             }
             base.PostUpdate();
         }
