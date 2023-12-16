@@ -181,7 +181,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             return false;
         }
 
-
+        /*
         public override void AddRecipes()
         {
             CreateRecipe()
@@ -211,6 +211,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
              .Register();
 
         }
+        */
 
     }
 }
