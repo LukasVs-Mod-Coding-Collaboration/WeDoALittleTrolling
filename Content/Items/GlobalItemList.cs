@@ -198,22 +198,6 @@ namespace WeDoALittleTrolling.Content.Items
             base.UpdateEquip(item, player);
         }
 
-        public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
-        {
-            if
-            (
-                (
-                    fishronWeapons.Contains(item.type) ||
-                    empressWeapons.Contains(item.type)
-                )
-                && !NPC.downedGolemBoss
-            )
-            {
-                damage *= 0.5f;
-            }
-            base.ModifyWeaponDamage(item, player, ref damage);
-        }
-
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             if (item.prefix == PrefixID.Arcane)
@@ -986,8 +970,28 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TheHorsemansBlade)
             {
-                item.useTime = 15;
-                item.useAnimation = 15;
+                item.useTime = 12;
+                item.useAnimation = 12;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.BatScepter)
+            {
+                item.damage = 90;
+            }
+            if (item.type == ItemID.CandyCornRifle)
+            {
+                item.ArmorPenetration = 40;
+                item.damage = 80;
+                item.useTime = 6;
+                item.useAnimation = 6;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.JackOLanternLauncher)
+            {
+                item.damage = 120;
+                item.useTime = 24;
+                item.useAnimation = 24;
+                item.crit = 20;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.NailGun)
@@ -1058,11 +1062,14 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.PygmyStaff ||
                 item.type == ItemID.StormTigerStaff ||
                 item.type == ItemID.DeadlySphereStaff ||
-                item.type == ItemID.RavenStaff ||
                 item.type == ItemID.TempestStaff
             )
             {
                 item.damage += 10;
+            }
+            if (item.type == ItemID.RavenStaff)
+            {
+                item.damage = 75;
             }
             if (item.type == ItemID.XenoStaff)
             {
@@ -1636,6 +1643,16 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.StakeLauncher)
+            {
+                item.damage = 120;
+                item.crit = 20;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.Stake)
+            {
+                item.damage = 30;
             }
 
             // Make boss summoning items non-consumable

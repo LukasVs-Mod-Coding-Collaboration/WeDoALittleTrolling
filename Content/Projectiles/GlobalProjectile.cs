@@ -155,6 +155,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.timeLeft = 1800;
             }
+            if (projectile.type == ProjectileID.CandyCorn)
+            {
+                projectile.usesLocalNPCImmunity = true;
+                projectile.localNPCHitCooldown = 6;
+                projectile.usesIDStaticNPCImmunity = false;
+                projectile.idStaticNPCHitCooldown = -1;
+            }
             if
             (
                 projectile.type == ProjectileID.InfluxWaver || projectile.type == ProjectileID.FlamingJack

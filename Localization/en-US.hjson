@@ -99,6 +99,7 @@ Mods: {
 					This is not affected by the Wrecked Accuracy debuff
 					Grants 3 summon armor penetration per minion slot
 					Increases your max number of minions by 2
+					Enemies are less likely to target you
 					'''
 			}
 
@@ -110,6 +111,7 @@ Mods: {
 					This is not affected by the Wrecked Resistance debuff
 					3 defense per minion slot
 					Increases your max number of minions by 2
+					Enemies are more likely to target you
 					'''
 			}
 

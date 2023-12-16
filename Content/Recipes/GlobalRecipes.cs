@@ -545,6 +545,11 @@ namespace WeDoALittleTrolling.Content.Recipes
             {
                 Recipe recipe = Main.recipe[i];
 
+                if (recipe.TryGetResult(ItemID.PumpkinMoonMedallion, out Item PumpkinMoonMedallion))
+                {
+                    recipe.AddIngredient(ItemID.BeetleHusk, 5);
+                }
+
                 if (recipe.TryGetResult(ItemID.PotionOfReturn, out Item PotionOfReturn))
                 {
                     PotionOfReturn.stack = 3;

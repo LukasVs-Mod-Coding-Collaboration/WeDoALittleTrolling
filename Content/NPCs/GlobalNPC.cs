@@ -185,7 +185,18 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.VortexHornetQueen,
             NPCID.VortexHornet,
             NPCID.VortexLarva,
-            NPCID.VortexSoldier
+            NPCID.VortexSoldier,
+            NPCID.Scarecrow1,
+            NPCID.Scarecrow2,
+            NPCID.Scarecrow3,
+            NPCID.Scarecrow4,
+            NPCID.Scarecrow5,
+            NPCID.Scarecrow6,
+            NPCID.Scarecrow7,
+            NPCID.Scarecrow8,
+            NPCID.Scarecrow9,
+            NPCID.Scarecrow10,
+            NPCID.Poltergeist
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -216,6 +227,20 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.EaterofWorldsHead,
             NPCID.EaterofWorldsBody,
             NPCID.EaterofWorldsTail
+        };
+
+        public static readonly int[] ScarecrowGroup =
+        {
+            NPCID.Scarecrow1,
+            NPCID.Scarecrow2,
+            NPCID.Scarecrow3,
+            NPCID.Scarecrow4,
+            NPCID.Scarecrow5,
+            NPCID.Scarecrow6,
+            NPCID.Scarecrow7,
+            NPCID.Scarecrow8,
+            NPCID.Scarecrow9,
+            NPCID.Scarecrow10
         };
 
         public override void SetDefaults(NPC npc)
@@ -483,15 +508,27 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.MourningWood
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
+            }
+            if
+            (
+                ScarecrowGroup.Contains(npc.type) ||
+                npc.type == NPCID.Splinterling ||
+                npc.type == NPCID.Hellhound ||
+                npc.type == NPCID.Poltergeist
+            )
+            {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 4.5);
             }
             if
             (
                 npc.type == NPCID.Pumpking ||
-                npc.type == NPCID.PumpkingBlade
+                npc.type == NPCID.PumpkingBlade ||
+                npc.type == NPCID.HeadlessHorseman
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 5.25);
+                npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
             if
             (
