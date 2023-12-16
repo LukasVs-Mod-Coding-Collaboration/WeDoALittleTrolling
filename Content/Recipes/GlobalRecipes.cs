@@ -60,7 +60,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             .AddTile(TileID.ShimmerMonolith)
             .Register();
 
-            Recipe.Create(ItemID.BloodMoonMonolith, 5)
+            Recipe.Create(ItemID.BloodMoonMonolith, 1)
             .AddIngredient(ItemID.AngelStatue, 1)
             .AddIngredient(ItemID.BloodMoonStarter, 1)
             .AddTile(TileID.ShimmerMonolith)
