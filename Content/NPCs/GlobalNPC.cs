@@ -505,17 +505,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if
             (
-                npc.type == NPCID.MourningWood
-            )
-            {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
-            }
-            if
-            (
-                ScarecrowGroup.Contains(npc.type) ||
+                npc.type == NPCID.MourningWood ||
                 npc.type == NPCID.Splinterling ||
                 npc.type == NPCID.Hellhound ||
-                npc.type == NPCID.Poltergeist
+                npc.type == NPCID.Poltergeist ||
+                ScarecrowGroup.Contains(npc.type)
             )
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 4.5);
