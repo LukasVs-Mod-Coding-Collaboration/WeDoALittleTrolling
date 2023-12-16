@@ -75,7 +75,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 if ((Main.IsItRaining && spawnInfo.Player.ZoneForest) || spawnInfo.Player.ZoneNormalUnderground || spawnInfo.Player.ZoneNormalCaverns)
                 {
                     pool[NPCID.Worm] = 5f;
-                    pool[NPCID.GoldWorm] = 1.25f;
+                    pool[NPCID.GoldWorm] = 0.25f;
                 }
                 if (spawnInfo.Player.ZoneGlowshroom)
                 {

@@ -28,6 +28,8 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 using WeDoALittleTrolling.Content.Items.Material;
 using System.Collections.Generic;
 using Humanizer;
+using System;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -55,11 +57,22 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                player.RemoveAllGrapplingHooks();
-                player.StopVanityActions(multiplayerBroadcast: false);
-                player.Spawn(PlayerSpawnContext.RecallFromItem);
+                player.GetModPlayer<WDALTPlayer>().unionMirrorTicks = (Item.useAnimation / 2) + 1;
                 base.UseAnimation(player);
             }
+        }
+
+        public static void TeleportHome(Player player)
+        {
+            player.RemoveAllGrapplingHooks();
+            player.StopVanityActions(multiplayerBroadcast: false);
+            player.Spawn(PlayerSpawnContext.RecallFromItem);
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            AnimateUnionMirror(player);
+            return base.UseItem(player);
         }
 
         public static void RegisterHooks()
@@ -99,6 +112,26 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
                 .AddIngredient(ItemID.IceMirror, 1)
                 .AddIngredient(ItemID.WormholePotion, 4)
                 .Register();
+        }
+
+        public static void AnimateUnionMirror(Player player)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                int rMax = (int)player.width * 4;
+                double r = rMax * Math.Sqrt(Main.rand.NextDouble());
+                double angle = Main.rand.NextDouble() * 2 * Math.PI;
+                int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                Vector2 dustPosition = player.Center;
+                dustPosition.X += xOffset;
+                dustPosition.Y += yOffset;
+                Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
+                dustVelocity.Normalize();
+                dustVelocity *= 3f;
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.UltraBrightTorch, dustVelocity, 0, default);
+                newDust.noGravity = true;
+            }
         }
     }
 }
