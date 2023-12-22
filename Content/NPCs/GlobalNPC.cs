@@ -284,6 +284,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             )
             {
                 npc.lifeMax *= 2;
+                if (WDALTSeedSystem.TestyWorld)
+                {
+                    npc.lifeMax *= 4;
+                }
             }
             if
             (

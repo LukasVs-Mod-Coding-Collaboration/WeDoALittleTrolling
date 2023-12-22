@@ -343,7 +343,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if(!player.buffImmune[BuffID.Stoned])
                 {
-                    if(!player.HasBuff(BuffID.Stoned) && currentTick % 60 == 0 && random.NextBool(5))
+                    int chanceDenominator = 5;
+                    if (Main.drunkWorld) {
+                        chanceDenominator = 3;
+                    }
+                    if(!player.HasBuff(BuffID.Stoned) && currentTick % 60 == 0 && random.NextBool(chanceDenominator))
                     {
                         player.AddBuff(BuffID.Stoned, 300, true);
                     }

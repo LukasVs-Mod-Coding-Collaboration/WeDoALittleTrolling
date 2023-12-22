@@ -105,6 +105,18 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
         }
 
+        public override void OnWorldLoad()
+        {
+            WDALTSeedSystem.InitWorldVariables();
+            base.OnWorldLoad();
+        }
+
+        public override void OnWorldUnload()
+        {
+            WDALTSeedSystem.ResetWorldVariables();
+            base.OnWorldUnload();
+        }
+
         public override void AddRecipes()
         {
             GlobalRecipes.AddRecipes();
