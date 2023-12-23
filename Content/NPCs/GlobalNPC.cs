@@ -322,7 +322,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.EyeofCthulhu)
             {
                 npc.lifeMax *= 3;
-                npc.damage = (int)Math.Round(npc.damage * 1.5);
+                npc.damage = (int)Math.Round(npc.damage * 2.0);
             }
             if (npc.type == NPCID.KingSlime)
             {
