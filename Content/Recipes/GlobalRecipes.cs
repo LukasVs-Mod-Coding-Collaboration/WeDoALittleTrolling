@@ -54,6 +54,13 @@ namespace WeDoALittleTrolling.Content.Recipes
 
             AddBiomeKeyDuplicationRecipes();
 
+            Recipe.Create(ItemID.ObsidianRose, 1)
+            .AddIngredient(ItemID.Obsidian, 50)
+            .AddIngredient(ItemID.JungleRose, 1)
+            .AddIngredient(ItemID.Hellstone, 10)
+            .AddTile(TileID.Hellforge)
+            .Register();
+
             Recipe.Create(ItemID.JungleGrassSeeds, 5)
             .AddIngredient(ItemID.GrassSeeds, 5)
             .AddIngredient(ItemID.JungleSpores, 1)
