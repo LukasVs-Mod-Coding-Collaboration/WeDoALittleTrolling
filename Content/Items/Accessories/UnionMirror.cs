@@ -81,6 +81,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             On_Player.TakeUnityPotion += On_Player_TakeUnityPotion;
         }
 
+        public static void UnregisterHooks()
+        {
+            On_Player.HasUnityPotion -= On_Player_HasUnityPotion;
+            On_Player.TakeUnityPotion -= On_Player_TakeUnityPotion;
+        }
+
         public static bool On_Player_HasUnityPotion(On_Player.orig_HasUnityPotion orig, Player player)
         {
             if(player.HasItem(ModContent.ItemType<UnionMirror>()))

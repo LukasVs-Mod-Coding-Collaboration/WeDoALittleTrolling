@@ -53,13 +53,16 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTIntermediateLanguageEditing.RegisterILHooks();
             WDALTSceneMetrics.RegisterHooks();
             UnionMirror.RegisterHooks();
+            WDALTSeedSystem.RegisterHooks();
             base.OnModLoad();
         }
 
         public override void OnModUnload()
         {
             WDALTIntermediateLanguageEditing.UnregisterILHooks();
-            On_SceneMetrics.Reset -= WDALTSceneMetrics.On_SceneMetrics_Reset;
+            WDALTSceneMetrics.UnregisterHooks();
+            UnionMirror.UnregisterHooks();
+            WDALTSeedSystem.UnregisterHooks();
             base.OnModUnload();
         }
 

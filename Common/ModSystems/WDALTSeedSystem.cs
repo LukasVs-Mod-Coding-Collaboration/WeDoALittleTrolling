@@ -16,12 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
 using Terraria;
-using Terraria.IO;
-using Terraria.ModLoader;
-using WeDoALittleTrolling.Content.Items.Accessories;
-using WeDoALittleTrolling.Content.Recipes;
+using Terraria.GameContent;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -45,6 +41,22 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void ResetWorldVariables()
         {
             TestyWorld = false;
+        }
+
+        public static void RegisterHooks()
+        {
+            On_DontStarveDarknessDamageDealer.Update += On_DontStarveDarknessDamageDealer_Update;
+        }
+
+        public static void UnregisterHooks()
+        {
+            On_DontStarveDarknessDamageDealer.Update -= On_DontStarveDarknessDamageDealer_Update;
+        }
+
+        public static void On_DontStarveDarknessDamageDealer_Update(On_DontStarveDarknessDamageDealer.orig_Update orig, Player player)
+        {
+            DontStarveDarknessDamageDealer.Reset();
+            orig.Invoke(player);
         }
     }
 }
