@@ -23,6 +23,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -32,6 +33,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
             ItemID.Sets.Spears[Item.type] = true;
+            PrefixLegacy.ItemSets.SpearsMacesChainsawsDrillsPunchCannon[Item.type] = true;
         }
 
         public override void SetDefaults()
