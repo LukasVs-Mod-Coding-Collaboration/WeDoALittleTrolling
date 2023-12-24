@@ -13,8 +13,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class GloriousDemiseProjectile : ModProjectile
     {
-        public static readonly float gravityFactor = 0.05f;
-        public static readonly int trailDistance = 4;
+        public const float gravityFactor = 0.05f;
+        public const int trailDistance = 4;
         public static UnifiedRandom random = new UnifiedRandom();
         public override void SetStaticDefaults()
         {

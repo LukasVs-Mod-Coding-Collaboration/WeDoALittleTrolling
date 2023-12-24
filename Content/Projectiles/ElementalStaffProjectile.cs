@@ -32,19 +32,19 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class ElementalStaffProjectile : ModProjectile
     {
-        public static readonly float idleOverlapCorrectionFactor = 0.06f;
-        public static readonly float attackOverlapCorrectionFactor = 0.12f;
-        public static readonly float detectionRange = 768f;
-        public static readonly float detectionRangeOffset = 256f;
-        public static readonly float detectionRangeOffset2 = 128f;
-        public static readonly float idleMoveSpeed = 3f;
-        public static readonly float attackMoveSpeed = 6f;
-        public static readonly float idleInertia = 12f;
-        public static readonly float attackInertia = 6f;
-        public static readonly float idleDistance = 48f;
-        public static readonly float idleAccelerationFactor = 0.625f;
-        public static readonly float bulletSpeed = 18f;
-        public static readonly float bulletOffsetMultiplier = 36f;
+        public const float idleOverlapCorrectionFactor = 0.06f;
+        public const float attackOverlapCorrectionFactor = 0.12f;
+        public const float detectionRange = 768f;
+        public const float detectionRangeOffset = 256f;
+        public const float detectionRangeOffset2 = 128f;
+        public const float idleMoveSpeed = 3f;
+        public const float attackMoveSpeed = 6f;
+        public const float idleInertia = 12f;
+        public const float attackInertia = 6f;
+        public const float idleDistance = 48f;
+        public const float idleAccelerationFactor = 0.625f;
+        public const float bulletSpeed = 18f;
+        public const float bulletOffsetMultiplier = 36f;
         public static readonly Vector2 gfxShootOffset = new Vector2(0f, 0f);
         public long ticksAlive = 0;
         public long lastActionTick = 0;

@@ -9,9 +9,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class ThrowOfTheLunaticProjectileBeam : ModProjectile
     {
-        public static readonly float homingRange = 512f;
-        public static readonly int moveSpeed = 10;
-        public static readonly float correctionFactor = 0.5f;
+        public const float homingRange = 512f;
+        public const int moveSpeed = 10;
+        public const float correctionFactor = 0.5f;
 
         public override void SetStaticDefaults()
         {

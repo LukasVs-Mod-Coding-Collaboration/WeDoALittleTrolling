@@ -12,8 +12,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class ElementalStaffProjectileBullet : ModProjectile
     {
-        public static readonly float homingRange = 512f;
-        public static readonly float correctionFactor = 0.30f;
+        public const float homingRange = 512f;
+        public const float correctionFactor = 0.30f;
 
         public override void SetDefaults()
         {

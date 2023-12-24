@@ -14,7 +14,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
     {
         public static UnifiedRandom random = new UnifiedRandom();
         public int bounces = 0;
-        public static readonly float gravityFactor = 0.25f;
+        public const float gravityFactor = 0.25f;
         public override void SetDefaults()
         {
             Projectile.width = 28;
