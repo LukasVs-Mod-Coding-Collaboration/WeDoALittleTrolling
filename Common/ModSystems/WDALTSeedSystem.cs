@@ -70,7 +70,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void On_Main_UpdateTime_StartNight(On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
         {
             orig.Invoke(ref stopEvents);
-            if(Main.dontStarveWorld && Main.netMode != NetmodeID.MultiplayerClient && !Main.IsItRaining && Main.rand.NextBool(5))
+            if
+            (
+                Main.dontStarveWorld &&
+                Main.netMode != NetmodeID.MultiplayerClient &&
+                Main.moonPhase != 0 &&
+                !Main.bloodMoon &&
+                !Main.IsItRaining &&
+                Main.rand.NextBool(5)
+            )
             {
                 Main.StartRain();
                 Main.SyncRain();
