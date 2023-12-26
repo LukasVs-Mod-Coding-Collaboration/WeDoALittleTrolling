@@ -140,7 +140,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 (
                     Main.player[NPC.target] != null &&
                     Main.player[NPC.target].active &&
-                    !Main.player[NPC.target].dead
+                    !Main.player[NPC.target].dead &&
+                    (Main.player[NPC.target].itemAnimation != 0 || Main.player[NPC.target].aggro >= 0)
                 )
                 {
                     Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;
