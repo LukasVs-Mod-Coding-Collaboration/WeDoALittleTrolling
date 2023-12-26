@@ -123,14 +123,14 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 if(type == WDALTPacketTypeID.moondial)
                 {
-                    if(Main.moondialCooldown > 2)
+                    if (Main.moondialCooldown > 2)
                     {
                         Main.moondialCooldown = 2;
                     }
                 }
                 if(type == WDALTPacketTypeID.sundial)
                 {
-                    if(Main.sundialCooldown > 2)
+                    if(!Main.dontStarveWorld && Main.sundialCooldown > 2)
                     {
                         Main.sundialCooldown = 2;
                     }
@@ -147,7 +147,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         {
                             Main.maxRaining = 0.8f;
                         }
-                        else
+                        else if (!Main.dontStarveWorld)
                         {
                             Main.StopRain();
                         }

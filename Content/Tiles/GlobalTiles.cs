@@ -88,7 +88,7 @@ namespace WeDoALittleTrolling.Content.Tiles
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if (Main.sundialCooldown > 2)
+                    if (!Main.dontStarveWorld && Main.sundialCooldown > 2)
                     {
                         Main.sundialCooldown = 2;
                     }
@@ -116,7 +116,7 @@ namespace WeDoALittleTrolling.Content.Tiles
                             Main.maxRaining = 0.8f;
                             SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));
                         }
-                        else
+                        else if (!Main.dontStarveWorld)
                         {
                             Main.StopRain();
                             SoundEngine.PlaySound(SoundID.Item4, new Vector2(i * 16, j * 16));

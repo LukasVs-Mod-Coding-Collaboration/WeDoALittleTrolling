@@ -97,7 +97,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         !Main.IsItDay() &&
                         !spawnInfo.PlayerInTown &&
                         spawnInfo.Player.ZoneOverworldHeight &&
-                        Main.moonPhase % 4 == 0 &&
+                        Main.moonPhase != 0 &&
                         !Main.bloodMoon
                     )
                 )
@@ -144,7 +144,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;
                     vectorToTarget.Normalize();
-                    vectorToTarget *= 10f;
+                    vectorToTarget *= 8f;
                     vectorToTarget.Y *= 1.5f;
                     NPC.velocity += vectorToTarget;
                     for (int i = 0; i < 60; i++)
