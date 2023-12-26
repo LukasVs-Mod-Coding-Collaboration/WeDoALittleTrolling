@@ -108,11 +108,13 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool IsBehindHousingWall()
         {
             int posX = (int)(player.position.X + (float)(player.width / 2)) / 16;
-			int posY = (int)(player.position.Y + (float)(player.height / 2)) / 16;
-			if (Main.wallHouse[Main.tile[posX, posY].WallType])
-			{
-				return true;
-			}
+            int posY = (int)(player.position.Y + (float)(player.height / 2)) / 16;
+            Color color = Lighting.GetColor((int)player.Center.X / 16, (int)player.Center.Y / 16);
+            float brightness = color.ToVector3().Length();
+            if (Main.wallHouse[Main.tile[posX, posY].WallType] && brightness >= 0.1f)
+            {
+                return true;
+            }
             return false;
         }
 
