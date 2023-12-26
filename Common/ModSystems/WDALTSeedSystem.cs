@@ -18,6 +18,9 @@
 
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
+using WeDoALittleTrolling.Content.Buffs;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -55,7 +58,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static void On_DontStarveDarknessDamageDealer_Update(On_DontStarveDarknessDamageDealer.orig_Update orig, Player player)
         {
-            DontStarveDarknessDamageDealer.Reset();
+            if (!player.HasBuff(ModContent.BuffType<Haunted>()))
+            {
+                DontStarveDarknessDamageDealer.Reset();
+            }
             orig.Invoke(player);
         }
     }

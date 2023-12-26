@@ -1184,6 +1184,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 target.GetModPlayer<WDALTPlayer>().gnomedDebuffTicksLeft = 18000;
                 target.GetModPlayer<WDALTPlayer>().gnomedDebuff = true;
+                target.AddBuff(ModContent.BuffType<Gnomed>(), 18000, true);
             }
             if (npc.type == NPCID.Deerclops)
             {

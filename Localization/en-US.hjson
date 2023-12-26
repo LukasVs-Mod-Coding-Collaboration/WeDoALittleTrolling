@@ -876,11 +876,17 @@ Mods: {
 				DisplayName: Frozen Elemental
 				Description: The Frozen Elemental will fight for you
 			}
+
+			Haunted: {
+				DisplayName: Haunted
+				Description: You are afraid of darkness...
+			}
 		}
 
 		NPCs: {
 			HighEnergyTestDevice.DisplayName: High Energy Test Device
 			FrozenGhoul.DisplayName: Frozen Ghoul
+			NightmarePhantom.DisplayName: Nightmare Phantom
 		}
 	}
 }

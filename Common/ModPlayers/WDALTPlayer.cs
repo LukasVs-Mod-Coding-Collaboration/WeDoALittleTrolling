@@ -61,6 +61,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool gnomedStonedDebuff;
         public bool gnomedDebuff;
         public int gnomedDebuffTicksLeft;
+        public bool hauntedDebuff;
+        public int hauntedDebuffTicksLeft;
         public bool yoyoArtifact;
         public Player player;
         public long currentTick;
@@ -97,6 +99,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             gnomedStonedDebuff = false;
             gnomedDebuff = false;
             gnomedDebuffTicksLeft = 0;
+            hauntedDebuff = false;
+            hauntedDebuffTicksLeft = 0;
             yoyoArtifact = false;
             currentTick = 0;
             chargeAccelerationTicks = 0;
@@ -122,6 +126,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 gnomedDebuff = true;
                 gnomedDebuffTicksLeft = tag.GetInt("GnomedDebuff");
             }
+            if (tag.ContainsKey("HauntedDebuff"))
+            {
+                hauntedDebuff = true;
+                hauntedDebuffTicksLeft = tag.GetInt("HauntedDebuff");
+            }
             if (tag.ContainsKey("DevastatedStack"))
             {
                 devastatedStack = tag.GetInt("DevastatedStack");
@@ -142,6 +151,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (gnomedDebuff)
             {
                 tag["GnomedDebuff"] = gnomedDebuffTicksLeft;
+            }
+            if (hauntedDebuff)
+            {
+                tag["HauntedDebuff"] = hauntedDebuffTicksLeft;
             }
             if (devastatedStack > 0)
             {
@@ -270,6 +283,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 if (gnomedDebuff && !player.HasBuff(ModContent.BuffType<Gnomed>()))
                 {
                     player.AddBuff(ModContent.BuffType<Gnomed>(), gnomedDebuffTicksLeft, true);
+                }
+                if (hauntedDebuff && !player.HasBuff(ModContent.BuffType<Haunted>()))
+                {
+                    player.AddBuff(ModContent.BuffType<Haunted>(), hauntedDebuffTicksLeft, true);
                 }
             }
         }
