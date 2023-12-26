@@ -96,10 +96,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         !spawnInfo.PlayerInTown &&
                         spawnInfo.Player.ZoneOverworldHeight &&
                         Main.moonPhase % 4 == 0 &&
-                        !Main.bloodMoon &&
-                        !spawnInfo.Player.HasBuff(BuffID.NeutralHunger) &&
-                        !spawnInfo.Player.HasBuff(BuffID.Hunger) &&
-                        !spawnInfo.Player.HasBuff(BuffID.Starving)
+                        !Main.bloodMoon
                     )
                 )
             )
