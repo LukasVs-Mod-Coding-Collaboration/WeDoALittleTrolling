@@ -46,11 +46,13 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 NPC.damage *= 2;
                 NPC.lifeMax *= 2;
+                NPC.defense *= 2;
             }
             if (NPC.downedPlantBoss)
             {
                 NPC.damage *= 2;
                 NPC.lifeMax *= 2;
+                NPC.defense *= 2;
             }
             AIType = NPCID.Ghost;
             AnimationType = NPCID.Ghost;
