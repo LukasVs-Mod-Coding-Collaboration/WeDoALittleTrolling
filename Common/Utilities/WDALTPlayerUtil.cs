@@ -84,9 +84,8 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.OnRespawn();
         }
 
-        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        public static bool IsBossActive()
         {
-            bool shortRespawn = true;
             for(int i = 0;i < Main.npc.Length; i++)
             {
                 if
@@ -100,10 +99,26 @@ namespace WeDoALittleTrolling.Common.Utilities
                     )
                 )
                 {
-                    shortRespawn = false;
+                    return true;
                 }
             }
-            if(shortRespawn)
+            return false;
+        }
+
+        public bool IsBehindHousingWall()
+        {
+            int posX = (int)(player.position.X + (float)(player.width / 2)) / 16;
+			int posY = (int)(player.position.Y + (float)(player.height / 2)) / 16;
+			if (Main.wallHouse[Main.tile[posX, posY].WallType])
+			{
+				return true;
+			}
+            return false;
+        }
+
+        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        {
+            if(!IsBossActive())
             {
                 player.respawnTimer = 180;
             }

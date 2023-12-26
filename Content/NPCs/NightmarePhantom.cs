@@ -7,6 +7,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.ModPlayers;
+using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Items.Material;
 
@@ -56,8 +57,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             AIType = NPCID.Ghost;
             AnimationType = NPCID.Ghost;
-            Banner = Item.NPCtoBanner(NPCID.Ghost);
-            BannerItem = Item.BannerToItem(Banner);
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
@@ -95,6 +94,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                     spawnInfo.Player.ZoneGraveyard ||
                     (
                         !Main.IsItDay() &&
+                        !WDALTPlayerUtil.IsBossActive() &&
+                        !spawnInfo.Player.GetModPlayer<WDALTPlayerUtil>().IsBehindHousingWall() &&
                         !spawnInfo.PlayerInTown &&
                         spawnInfo.Player.ZoneOverworldHeight &&
                         Main.moonPhase != 0 &&
