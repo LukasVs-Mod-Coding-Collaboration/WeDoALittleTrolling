@@ -57,6 +57,42 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             AIType = NPCID.Ghost;
             AnimationType = NPCID.Ghost;
+            NPC.GetGlobalNPC<WDALTNPCUtil>().nightmarePhantom = true;
+        }
+
+        public static void RegisterHooks()
+        {
+            On_NPC.SetTargetTrackingValues += On_NPC_SetTargetTrackingValues;
+        }
+
+        public static void UnregisterHooks()
+        {
+            On_NPC.SetTargetTrackingValues -= On_NPC_SetTargetTrackingValues;
+        }
+
+        public static void On_NPC_SetTargetTrackingValues(On_NPC.orig_SetTargetTrackingValues orig, NPC self, bool faceTarget, float realDist, int tankTarget)
+        {
+            orig.Invoke(self, faceTarget, realDist, tankTarget);
+            if
+            (
+                self.GetGlobalNPC<WDALTNPCUtil>().nightmarePhantom &&
+                faceTarget &&
+                Main.player[self.target] != null &&
+                Main.player[self.target].active &&
+                !Main.player[self.target].dead
+            )
+            {
+                self.direction = 1;
+                if ((float)(self.targetRect.X + self.targetRect.Width / 2) < self.position.X + (float)(self.width / 2))
+                {
+                    self.direction = -1;
+                }
+                self.directionY = 1;
+                if ((float)(self.targetRect.Y + self.targetRect.Height / 2) < self.position.Y + (float)(self.height / 2))
+                {
+                    self.directionY = -1;
+                }
+            }
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
@@ -75,7 +111,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 new IBestiaryInfoElement[]
                 {
                     BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                    new FlavorTextBestiaryInfoElement("Even after death, the Nightmare Phantoms will still haunt their killers in the dark...")
+                    new FlavorTextBestiaryInfoElement("Even after death, the Nightmare Phantoms will still haunt their targets in the dark...")
                 }
             );
         }
@@ -140,16 +176,15 @@ namespace WeDoALittleTrolling.Content.NPCs
                 (
                     Main.player[NPC.target] != null &&
                     Main.player[NPC.target].active &&
-                    !Main.player[NPC.target].dead &&
-                    (Main.player[NPC.target].itemAnimation != 0 || Main.player[NPC.target].aggro >= 0)
+                    !Main.player[NPC.target].dead
                 )
                 {
                     Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;
                     vectorToTarget.Normalize();
                     vectorToTarget *= 8f;
-                    vectorToTarget.Y *= 1.5f;
+                    vectorToTarget.Y *= 1.75f;
                     NPC.velocity += vectorToTarget;
-                    for (int i = 0; i < 60; i++)
+                    for (int i = 0; i < 128; i++)
                     {
                         int rMax = (int)NPC.width;
                         double r = rMax * Math.Sqrt(Main.rand.NextDouble());
@@ -162,7 +197,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
                         dustVelocity.Normalize();
                         dustVelocity *= 8f;
-                        Dust newDust = Dust.NewDustPerfect(dustPosition, 182, dustVelocity, 0, default);
+                        Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.RedTorch, dustVelocity, 0, default);
                         newDust.noGravity = true;
                     }
                     SoundEngine.PlaySound(SoundID.Zombie53, NPC.Center);

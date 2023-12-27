@@ -20,6 +20,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Items.Accessories;
+using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Recipes;
 
 namespace WeDoALittleTrolling.Common.ModSystems
@@ -54,6 +55,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTSceneMetrics.RegisterHooks();
             UnionMirror.RegisterHooks();
             WDALTSeedSystem.RegisterHooks();
+            NightmarePhantom.RegisterHooks();
             base.OnModLoad();
         }
 
@@ -63,6 +65,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTSceneMetrics.UnregisterHooks();
             UnionMirror.UnregisterHooks();
             WDALTSeedSystem.UnregisterHooks();
+            NightmarePhantom.UnregisterHooks();
             base.OnModUnload();
         }
 

@@ -23,7 +23,7 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public static void AnimateHaunted(Player player)
         {
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < 128; i++)
             {
                 int rMax = (int)player.width;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
@@ -36,7 +36,7 @@ namespace WeDoALittleTrolling.Content.Buffs
                 Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
                 dustVelocity.Normalize();
                 dustVelocity *= 16f;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Shadowflame, dustVelocity, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.RedTorch, dustVelocity, 0, default);
                 newDust.noGravity = true;
             }
             SoundEngine.PlaySound(SoundID.NPCHit55, player.Center);

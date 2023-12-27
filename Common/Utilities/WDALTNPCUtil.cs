@@ -34,6 +34,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int VileSpitTimeLeft;
         public long ticksAlive = 0;
         public long lastActionTick = 0;
+        public bool nightmarePhantom = false;
 
         public override void ResetEffects(NPC npc)
         {
