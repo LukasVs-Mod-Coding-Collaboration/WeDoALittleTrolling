@@ -54,6 +54,15 @@ namespace WeDoALittleTrolling.Content.Recipes
 
             AddBiomeKeyDuplicationRecipes();
 
+            Recipe.Create(ItemID.CrimsonSeeds, 1)
+            .AddIngredient(ItemID.CorruptSeeds, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.CorruptSeeds, 1)
+            .AddIngredient(ItemID.CrimsonSeeds, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+
             Recipe.Create(ItemID.ObsidianRose, 1)
             .AddIngredient(ItemID.Obsidian, 50)
             .AddIngredient(ItemID.JungleRose, 1)
