@@ -662,11 +662,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     if (!player.HasBuff(BuffID.MoonLeech))
                     {
-                        player.Heal(3);
+                        player.Heal(2);
                     }
-                    if(!player.HasBuff(BuffID.Regeneration) || player.buffTime[player.FindBuffIndex(BuffID.Regeneration)] < 180)
+                    if(!player.HasBuff(BuffID.Regeneration) || player.buffTime[player.FindBuffIndex(BuffID.Regeneration)] < 120)
                     {
-                        player.AddBuff(BuffID.Regeneration, 180, true);
+                        player.AddBuff(BuffID.Regeneration, 120, true);
                     }
                 }
             }
