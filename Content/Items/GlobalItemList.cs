@@ -1381,13 +1381,6 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 32;
                 }
             }
-            if (item.type == ItemID.SanguineStaff)
-            {
-                if (item.damage <= 40)
-                {
-                    item.damage = 40;
-                }
-            }
             if (item.type == ItemID.Smolstar) //Blade Staff
             {
                 if (item.damage <= 8)
@@ -1475,25 +1468,13 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.AbigailsFlower ||
                 item.type == ItemID.BabyBirdStaff || //Finch Staff
                 item.type == ItemID.FlinxStaff ||
-                item.type == ItemID.SlimeStaff
-            )
-            {
-                item.damage += 4;
-            }
-            if
-            (
+                item.type == ItemID.SlimeStaff ||
                 item.type == ItemID.HornetStaff ||
-                item.type == ItemID.VampireFrogStaff
-            )
-            {
-                item.damage += 6;
-            }
-            if
-            (
+                item.type == ItemID.VampireFrogStaff ||
                 item.type == ItemID.ImpStaff
             )
             {
-                item.damage += 8;
+                item.damage += 4;
             }
 
             // Buff Ice-Biome related stuff
