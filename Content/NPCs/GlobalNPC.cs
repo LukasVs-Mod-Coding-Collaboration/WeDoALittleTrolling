@@ -300,7 +300,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Fritz ||
                 npc.type == NPCID.ThePossessed ||
                 npc.type == NPCID.Reaper ||
-                npc.type == NPCID.Mothron ||
                 npc.type == NPCID.MothronEgg ||
                 npc.type == NPCID.MothronSpawn ||
                 npc.type == NPCID.Butcher ||
@@ -310,10 +309,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Psycho
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.75);
             }
             if (npc.type == NPCID.Mothron)
             {
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
 
