@@ -868,7 +868,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 if (shootFlag)
                 {
-                    Vector2 shootVector = (new Vector2(1f, 0f)) * 10f;
+                    Vector2 shootVector = (new Vector2(1f, 0f)) * 8f;
                     float rotation = MathHelper.ToRadians((180f / (24f - 1f)));
                     for (int i = 0; i < 24; i++)
                     {
@@ -878,7 +878,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                             npc.Center,
                             shootVector.RotatedBy(- (rotation * (float)i)),
                             ProjectileID.BoulderStaffOfEarth,
-                            (int)Math.Round(npc.damage * 0.1875f),
+                            (int)Math.Round(npc.damage * 0.175f),
                             4f
                         );
                         proj.hostile = true;
