@@ -174,10 +174,12 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.BloodEelTail,
             NPCID.GoblinShark,
             NPCID.IceGolem,
-            NPCID.SandElemental
+            NPCID.SandElemental,
+            NPCID.DetonatingBubble
         };
         public static readonly int[] InflictWreckedAccuracy1In1Group =
         {
+            NPCID.DukeFishron,
             NPCID.SkeletonSniper,
             NPCID.Clown,
             NPCID.NebulaBrain,
@@ -199,11 +201,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Scarecrow8,
             NPCID.Scarecrow9,
             NPCID.Scarecrow10,
-            NPCID.Poltergeist
+            NPCID.Poltergeist,
+            NPCID.DetonatingBubble
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
-            NPCID.DukeFishron,
             NPCID.CultistDragonHead,
             NPCID.AncientCultistSquidhead,
             NPCID.AncientLight,
@@ -403,7 +405,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.DukeFishron)
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.75);
-                npc.damage = (int)Math.Round(npc.damage * 1.75);
+                npc.damage = (int)Math.Round(npc.damage * 1.25);
             }
             if (npc.type == NPCID.CultistBoss)
             {
@@ -1026,7 +1028,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 long timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
                 int shotDelay = 120;
                 float dmg1 = 32f;
-                float dmg2 = 40f;
+                float dmg2 = 36f;
                 if (npc.life < (npc.lifeMax / 4))
                 {
                     shotDelay = 60;

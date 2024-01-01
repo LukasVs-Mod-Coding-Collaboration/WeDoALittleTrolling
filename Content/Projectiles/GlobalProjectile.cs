@@ -108,7 +108,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.MartianTurretBolt,
             ProjectileID.FrostBeam,
             ProjectileID.SandnadoHostile,
-            ProjectileID.SandnadoHostileMark
+            ProjectileID.SandnadoHostileMark,
+            ProjectileID.Sharknado,
+            ProjectileID.SharknadoBolt
         };
         public static readonly int[] InflictWreckedAccuracy1In1Group =
         {
@@ -126,7 +128,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.RollingCactus,
             ProjectileID.MiniBoulder,
             ProjectileID.LifeCrystalBoulder,
-            ProjectileID.MoonBoulder
+            ProjectileID.MoonBoulder,
+            ProjectileID.Sharknado,
+            ProjectileID.SharknadoBolt
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -782,6 +786,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
             {
                 target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
             }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
