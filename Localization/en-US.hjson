@@ -61,7 +61,7 @@ Mods: {
 				DisplayName: Shroomite Overcharge
 				Tooltip:
 					'''
-					Works differently channelling weapons
+					Works differently with channelling weapons
 					Increases damage at the cost of attack speed
 					Increases ranged attack damage by 25%
 					Increases ranged critical strike chance by 10%
