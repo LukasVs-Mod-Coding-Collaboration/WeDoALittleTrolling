@@ -251,6 +251,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.catchItem = ModContent.ItemType<Consumablebee>();
                 //revenge. REVENGE!!
             }
+            if (npc.type == NPCID.BoundTownSlimeOld)
+            {
+                Main.npcCatchable[npc.type] = true;
+                npc.catchItem = ItemID.Gel;
+            }
             if (WDALTModSystem.isCalamityModPresent)
             {
                 base.SetDefaults(npc);
