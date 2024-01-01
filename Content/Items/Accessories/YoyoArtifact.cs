@@ -62,7 +62,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.WarriorEmblem, 1)
-              .AddIngredient(ItemID.GreenCounterweight, 1)
+              .AddIngredient(ItemID.YoYoGlove, 1)
               .AddIngredient(ItemID.CyanHusk, 3)
               .AddIngredient(ItemID.RedHusk, 3)
               .AddIngredient(ItemID.VioletHusk, 3)

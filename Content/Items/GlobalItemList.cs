@@ -212,10 +212,6 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.GetAttackSpeed(DamageClass.Generic) += 0.10f;
             }
-            if (item.type == ItemID.PutridScent)
-            {
-                player.GetAttackSpeed(DamageClass.Generic) += 0.05f;
-            }
             if (item.type == ItemID.DestroyerEmblem)
             {
                 player.GetDamage(DamageClass.Generic) += 0.02f;
@@ -258,6 +254,20 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
+            if
+            (
+                (
+                    equippedItem.type == ItemID.SniperScope ||
+                    equippedItem.type == ItemID.ReconScope
+                ) &&
+                (
+                    incomingItem.type == ItemID.SniperScope ||
+                    incomingItem.type == ItemID.ReconScope
+                )
+            )
+            {
+                return false;
+            }
             if
             (
                 (
@@ -853,25 +863,24 @@ namespace WeDoALittleTrolling.Content.Items
         {
             if (item.type == ItemID.Phantasm)
             {
-                item.damage = 60;
-                item.crit = 2;
+                item.damage = 50;
+                item.crit = 1;
             }
             if (item.type == ItemID.VortexBeater)
             {
-                item.damage = 70;
-                item.crit = 3;
+                item.damage = 60;
+                item.crit = 2;
             }
             if (item.type == ItemID.FetidBaghnakhs)
             {
-                item.damage = 65;
                 item.useTime = 7;
                 item.useAnimation = 7;
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
-                if (item.damage <= 42)
+                if (item.damage <= 40)
                 {
-                    item.damage = 42;
+                    item.damage = 40;
                 }
                 item.useTime = 16;
                 item.useAnimation = 16;
@@ -879,7 +888,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Megashark)
             {
-                item.damage = 32;
+                item.damage = 30;
                 item.useTime = 6;
                 item.useAnimation = 6;
                 item.shootsEveryUse = true;
@@ -949,8 +958,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 16;
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
-                item.crit = 12;
-                item.ArmorPenetration = 32;
+                item.crit = 4;
             }
             if (item.type == ItemID.FlintlockPistol)
             {
@@ -965,7 +973,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChristmasTreeSword)
             {
-                item.damage = 100;
                 item.shootSpeed = 10f;
             }
             if (item.type == ItemID.TheHorsemansBlade)
@@ -976,7 +983,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BatScepter)
             {
-                item.damage = 90;
+                item.damage = 50;
             }
             if (item.type == ItemID.CandyCornRifle)
             {
@@ -988,7 +995,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.JackOLanternLauncher)
             {
-                item.damage = 120;
+                item.damage = 80;
                 item.useTime = 24;
                 item.useAnimation = 24;
                 item.crit = 20;
@@ -1062,14 +1069,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.PygmyStaff ||
                 item.type == ItemID.StormTigerStaff ||
                 item.type == ItemID.DeadlySphereStaff ||
-                item.type == ItemID.TempestStaff
+                item.type == ItemID.TempestStaff ||
+                item.type == ItemID.RavenStaff
             )
             {
                 item.damage += 10;
-            }
-            if (item.type == ItemID.RavenStaff)
-            {
-                item.damage = 75;
             }
             if (item.type == ItemID.XenoStaff)
             {
@@ -1292,26 +1296,22 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TerraBlade)
             {
-                item.damage = 100;
-                item.useTime = 16;
-                item.useAnimation = 16;
-                item.shootsEveryUse = true;
+                item.damage = 90;
             }
             if (item.type == ItemID.InfluxWaver)
             {
                 item.shootsEveryUse = true;
-                item.damage = 120;
             }
             if (item.type == ItemID.PossessedHatchet)
             {
-                item.damage = 110;
-                item.useTime = 11;
-                item.useAnimation = 11;
+                item.damage = 90;
+                item.useTime = 12;
+                item.useAnimation = 12;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.PaladinsHammer)
             {
-                item.damage = 120;
+                item.damage = 100;
                 item.useTime = 12;
                 item.useAnimation = 12;
                 item.shootsEveryUse = true;
@@ -1418,10 +1418,11 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.DeathSickle)
             {
-                if (item.damage <= 65)
+                if (item.damage <= 70)
                 {
-                    item.damage = 65;
+                    item.damage = 70;
                 }
+                item.crit = 3;
             }
             if (item.type == ItemID.FlowerofFire)
             {
@@ -1481,10 +1482,11 @@ namespace WeDoALittleTrolling.Content.Items
             // Pre-Hardmode
             if (item.type == ItemID.IceSickle)
             {
-                if (item.damage <= 55)
+                if (item.damage <= 60)
                 {
-                    item.damage = 55;
+                    item.damage = 60;
                 }
+                item.crit = 2;
                 item.autoReuse = true;
             }
             if (item.type == ItemID.FrostStaff)
@@ -1494,6 +1496,7 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 55;
                 }
                 item.autoReuse = true;
+                item.crit = 1;
                 item.mana = 8;
             }
             if (item.type == ItemID.IceBoomerang)
@@ -1600,6 +1603,13 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
             }
+            if (item.type == ItemID.LeafBlower)
+            {
+                item.damage = 56;
+                item.useTime = 6;
+                item.useAnimation = 6;
+                item.shootsEveryUse = true;
+            }
             if (item.type == ItemID.TacticalShotgun)
             {
                 item.damage = 36;
@@ -1624,16 +1634,6 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.shootsEveryUse = true;
-            }
-            if (item.type == ItemID.StakeLauncher)
-            {
-                item.damage = 120;
-                item.crit = 20;
-                item.shootsEveryUse = true;
-            }
-            if (item.type == ItemID.Stake)
-            {
-                item.damage = 30;
             }
 
             // Make boss summoning items non-consumable
