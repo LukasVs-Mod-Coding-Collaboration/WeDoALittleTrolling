@@ -245,7 +245,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         new Color(255, 0, 0),
                         "Overheated!"
                     );
-                    shroomiteGenesisOverheatTimer = 180;
+                    shroomiteGenesisOverheatTimer = 120;
                     shroomiteGenesisOverchannelTicks = 0;
                     player.channel = false;
                 }
@@ -311,7 +311,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.aggro -= 400;
                 player.statDefense += 4;
                 player.lifeRegen += 4;
-                player.GetDamage(DamageClass.Generic) *= 0.84f;
+                player.GetDamage(DamageClass.Generic) *= 0.76f;
                 player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 2, true);
             }
             else
@@ -571,7 +571,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         new Color(255, 0, 0),
                         "Overheated!"
                     );
-                    shroomiteGenesisOverheatTimer = 180;
+                    shroomiteGenesisOverheatTimer = 120;
                     shroomiteGenesisOverheatTicks = 0;
                     return false;
                 }

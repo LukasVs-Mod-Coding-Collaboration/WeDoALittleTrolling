@@ -51,13 +51,13 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             if (!player.channel)
             {
-                player.GetDamage(DamageClass.Ranged) *= (float)1.30;
+                player.GetDamage(DamageClass.Ranged) *= (float)1.25;
                 player.GetCritChance(DamageClass.Ranged) += (float)10.0;
-                player.GetAttackSpeed(DamageClass.Ranged) *= (float)0.925;
+                player.GetAttackSpeed(DamageClass.Ranged) *= (float)0.9;
             }
             else
             {
-                player.GetDamage(DamageClass.Ranged) *= (float)1.20;
+                player.GetDamage(DamageClass.Ranged) *= (float)1.15;
                 player.GetCritChance(DamageClass.Ranged) += (float)10.0;
             }
         }

@@ -1620,7 +1620,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
 
             //Frost Crystal drops
-
+            /*
             if
             (
                 npc.type == NPCID.PresentMimic ||
@@ -1657,6 +1657,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                 npcLoot.Add(drop);
             }
+            */
+            /*
             if
             (
                 npc.type == NPCID.WallCreeper ||
@@ -1677,6 +1679,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 );
                 npcLoot.Add(drop);
             }
+            */
             if
             (
                 npc.type == NPCID.WallCreeper ||

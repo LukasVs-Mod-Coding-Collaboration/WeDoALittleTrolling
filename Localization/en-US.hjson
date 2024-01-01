@@ -63,9 +63,9 @@ Mods: {
 					'''
 					Works differently channelling weapons
 					Increases damage at the cost of attack speed
-					Increases ranged attack damage by 30%
+					Increases ranged attack damage by 25%
 					Increases ranged critical strike chance by 10%
-					Decreases ranged attack speed by 7.5%
+					Decreases ranged attack speed by 10%
 					'''
 			}
 
@@ -75,9 +75,9 @@ Mods: {
 					'''
 					Works differently with channelling weapons
 					Increases attack speed at the cost of damage
-					Increases ranged attack speed by 30%
-					Increases ranged armor penetration by 30
-					Decreases ranged attack damage by 7.5%
+					Increases ranged attack speed by 25%
+					Increases ranged armor penetration by 25
+					Decreases ranged attack damage by 10%
 					'''
 			}
 
@@ -98,7 +98,7 @@ Mods: {
 					Grants 3% summon critical strike chance per minion slot
 					This is not affected by the Wrecked Accuracy debuff
 					Grants 3 summon armor penetration per minion slot
-					Increases your max number of minions by 2
+					Increases your max number of minions by 1
 					Enemies are less likely to target you
 					'''
 			}
@@ -110,7 +110,7 @@ Mods: {
 					Reduces damage taken by 3% per minion slot
 					This is not affected by the Wrecked Resistance debuff
 					3 defense per minion slot
-					Increases your max number of minions by 2
+					Increases your max number of minions by 1
 					Enemies are more likely to target you
 					'''
 			}
@@ -322,7 +322,7 @@ Mods: {
 					Gives a 1 in 4 chance to dodge attacks
 					Regenerates 2 life per second
 					4 defense
-					16% decreased damage
+					24% decreased damage
 					Enemies are less likely to target you
 					Incompatible with the Mana Extraction Catalyst
 					'''
@@ -831,7 +831,7 @@ Mods: {
 					You will dodge 1 in 4 attacks
 					Provides 2 life regeneration per second
 					Increase defense by 4
-					16% decreased damage
+					24% decreased damage
 					Enemies are less likely to target you
 					'''
 			}

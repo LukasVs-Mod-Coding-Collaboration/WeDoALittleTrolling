@@ -52,11 +52,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.HallowedBar, 12)
               .AddIngredient(ItemID.HolyWater, 12)
-              .AddIngredient(ModContent.ItemType<HellishFossil>(), 12)
-              .AddIngredient(ModContent.ItemType<MushroomFossil>(), 12)
+              .AddIngredient(ModContent.ItemType<HellishFossil>(), 6)
+              .AddIngredient(ModContent.ItemType<MushroomFossil>(), 6)
               .AddIngredient(ModContent.ItemType<FrozenFossil>(), 6)
-              .AddIngredient(ModContent.ItemType<FrostCrystal>(), 24)
-              .AddIngredient(ItemID.BrokenHeroSword, 1)
               .AddCustomShimmerResult(ItemID.PlatinumCoin, 1)
               .Register();
         }

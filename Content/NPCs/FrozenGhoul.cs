@@ -84,7 +84,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             int dropAmountMin = 1;
             int dropAmountMax = 1;
-            int chanceNumerator = 20; // 20% chance
+            int chanceNumerator = 40; // 40% chance
             int chanceDenominator = 100;
             int itemID = ModContent.ItemType<FrozenFossil>();
             CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
