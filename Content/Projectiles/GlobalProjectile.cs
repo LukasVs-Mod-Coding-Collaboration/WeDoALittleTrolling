@@ -636,9 +636,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     if (Colossal.CompatibleProjectileIDs.Contains(projectile.type))
                     {
-                        int scalingFactor = 2;
-                        int horizonalIncrease = (int)Math.Round((hitbox.Width * scalingFactor) / (2 * Math.Sqrt(2)));
-                        int verticalIncrease = (int)Math.Round((hitbox.Height * scalingFactor) / (2 * Math.Sqrt(2)));
+                        int horizonalIncrease = (int)Math.Round((hitbox.Width * Colossal.scalingFactor) / (Colossal.scalingFactor * Colossal.sqrt));
+                        int verticalIncrease = (int)Math.Round((hitbox.Height * Colossal.scalingFactor) / (Colossal.scalingFactor * Colossal.sqrt));
                         if (projectile.type == ProjectileID.Terragrim || projectile.type == ProjectileID.Arkhalis)
                         {
                             horizonalIncrease = (int)Math.Round(horizonalIncrease / Math.Sqrt(2));
@@ -648,9 +647,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                     else if (Colossal.ShortswordCompatibleProjectileIDs.Contains(projectile.type))
                     {
-                        int scalingFactor = 2;
-                        int horizonalIncrease = (int)Math.Round((hitbox.Width * scalingFactor) / (Math.Sqrt(2)));
-                        int verticalIncrease = (int)Math.Round((hitbox.Height * scalingFactor) / (Math.Sqrt(2)));
+                        int horizonalIncrease = (int)Math.Round((hitbox.Width * Colossal.scalingFactor) / (Colossal.sqrt));
+                        int verticalIncrease = (int)Math.Round((hitbox.Height * Colossal.scalingFactor) / (Colossal.sqrt));
                         hitbox.Inflate(horizonalIncrease, verticalIncrease);
                     }
                 }
@@ -668,9 +666,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     {
                         player.Heal(2);
                     }
-                    if(!player.HasBuff(BuffID.Regeneration) || player.buffTime[player.FindBuffIndex(BuffID.Regeneration)] < 120)
+                    if(!player.HasBuff(BuffID.Regeneration) || player.buffTime[player.FindBuffIndex(BuffID.Regeneration)] < 180)
                     {
-                        player.AddBuff(BuffID.Regeneration, 120, true);
+                        player.AddBuff(BuffID.Regeneration, 180, true);
                     }
                 }
             }
@@ -878,10 +876,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     modifiers.SetCrit();
                 }
-            }
-            if (projectile.type == ProjectileID.ScytheWhipProj)
-            {
-                modifiers.SourceDamage *= 2f;
             }
             if (projectile.type == ProjectileID.CoolWhipProj)
             {

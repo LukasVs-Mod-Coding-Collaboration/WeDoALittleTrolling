@@ -32,9 +32,10 @@ using System.Linq;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-
     public class Colossal : ModPrefix
     {
+        public const double scalingFactor = 2.0;
+        public static readonly double sqrt = Math.Sqrt(scalingFactor);
         public static readonly int[] CompatibleItemIDs =
         {
             //Ore/Wood Swords

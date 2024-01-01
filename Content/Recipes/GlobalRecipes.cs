@@ -218,12 +218,6 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_SanguineStaff_V2.AddIngredient(ItemID.CobaltBar, 12);
             WDALT_SanguineStaff_V2.Register();
 
-            Recipe WDALT_Terraprisma = Recipe.Create(ItemID.EmpressBlade, 1);
-            WDALT_Terraprisma.AddTile(TileID.LunarCraftingStation);
-            WDALT_Terraprisma.AddIngredient(ItemID.RainbowWhip, 1);
-            WDALT_Terraprisma.AddIngredient(ItemID.RainbowCrystalStaff, 1);
-            WDALT_Terraprisma.Register();
-
             Recipe WDALT_HardySaddleToHeartCrystal = Recipe.Create(ItemID.LifeCrystal, 1);
             WDALT_HardySaddleToHeartCrystal.AddIngredient(ItemID.HardySaddle, 1);
             WDALT_HardySaddleToHeartCrystal.Register();
