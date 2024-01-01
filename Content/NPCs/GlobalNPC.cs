@@ -923,21 +923,18 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if (random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest();
-                    if (!Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
-                    {
-                        Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));
-                        float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.X;
-                        float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.Y;
-                        float randomMultiplierLengh = 8f / (new Vector2(randomMultiplierX, randomMultiplierY).Length());
-                        randomMultiplierX = (randomMultiplierX * randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
-                        randomMultiplierY = (randomMultiplierY * randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
-                        posWithOffset.X += randomMultiplierX * 4f;
-                        posWithOffset.Y += randomMultiplierY * 4f;
-                        int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
-                        int i = Projectile.NewProjectile(npc.GetSource_FromThis(), posWithOffset.X, posWithOffset.Y, randomMultiplierX, randomMultiplierY, ProjectileID.DeathLaser, damage, 0f, Main.myPlayer);
-                        Main.projectile[i].timeLeft = 300;
-                        npc.netUpdate = true;
-                    }
+                    Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));
+                    float randomMultiplierX = Main.player[npc.target].position.X + ((float)Main.player[npc.target].width * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.X;
+                    float randomMultiplierY = Main.player[npc.target].position.Y + ((float)Main.player[npc.target].height * 0.5f) + (float)random.Next(-16, 17) - posWithOffset.Y;
+                    float randomMultiplierLengh = 8f / (new Vector2(randomMultiplierX, randomMultiplierY).Length());
+                    randomMultiplierX = (randomMultiplierX * randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
+                    randomMultiplierY = (randomMultiplierY * randomMultiplierLengh) + ((float)random.Next(-16, 17) * 0.04f);
+                    posWithOffset.X += randomMultiplierX * 4f;
+                    posWithOffset.Y += randomMultiplierY * 4f;
+                    int damage = npc.GetAttackDamage_ForProjectiles(22f, 18f);
+                    int i = Projectile.NewProjectile(npc.GetSource_FromThis(), posWithOffset.X, posWithOffset.Y, randomMultiplierX, randomMultiplierY, ProjectileID.DeathLaser, damage, 0f, Main.myPlayer);
+                    Main.projectile[i].timeLeft = 300;
+                    npc.netUpdate = true;
                 }
             }
             if (npc.type == NPCID.SkeletronPrime)
@@ -961,8 +958,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                         )
                     )
                     {
-                        shootFlag = false;
                         numArms++;
+                    }
+                    if (Main.npc[i].active && Main.npc[i].type == NPCID.PrimeLaser)
+                    {
+                        shootFlag = false;
                     }
                 }
                 npc.defense += (numArms * 25);

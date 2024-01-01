@@ -70,8 +70,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             bool successInjectDestroyerAIHook = true;
             try
             {
-                double liftoffLimit = 0.5;
-                double accelerationLimit = 0.25;
+                double liftoffLimit = 0.66;
+                double accelerationLimit = 0.33;
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
                 cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.maxTilesY)));
                 cursor.GotoNext(i => i.MatchLdcI4(0));
