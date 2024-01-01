@@ -48,6 +48,9 @@ namespace WeDoALittleTrolling.Content.NPCs
     {
         public override bool InstancePerEntity => false;
         public static UnifiedRandom random = new UnifiedRandom();
+        public const double destroyerLiftoffLimit = 0.66;
+        public const double destroyerAccelerationLimit = 0.33;
+
         public static readonly int[] NerfGroup25Percent =
         {
             NPCID.Derpling,
@@ -920,7 +923,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.TheDestroyerBody)
             {
                 //Replicate vanilla behavior as good as possible.
-                if (random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient)
+                if (random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient && npc.life >= (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
                 {
                     npc.TargetClosest();
                     Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));

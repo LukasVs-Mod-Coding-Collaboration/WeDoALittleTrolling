@@ -21,6 +21,7 @@ using Terraria.ModLoader;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using System;
+using WeDoALittleTrolling.Content.NPCs;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -70,8 +71,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             bool successInjectDestroyerAIHook = true;
             try
             {
-                double liftoffLimit = 0.66;
-                double accelerationLimit = 0.33;
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
                 cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.maxTilesY)));
                 cursor.GotoNext(i => i.MatchLdcI4(0));
@@ -85,7 +84,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         bool gravity = true;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * liftoffLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerLiftoffLimit))
                         {
                             gravity = false; //Disable gravity code.
                         }
@@ -104,7 +103,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         float maxSpeed = 16f;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * accelerationLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
                         {
                             maxSpeed = 24f;
                         }
@@ -124,7 +123,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         float maxAcc1 = 0.1f;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * accelerationLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
                         {
                             maxAcc1 = 0.2f;
                         }
@@ -142,7 +141,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         float maxAcc2 = 0.15f;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * accelerationLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
                         {
                             maxAcc2 = 0.3f;
                         }
