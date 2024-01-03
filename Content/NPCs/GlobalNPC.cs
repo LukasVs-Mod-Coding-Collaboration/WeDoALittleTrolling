@@ -219,11 +219,6 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static readonly int[] ResistGloriousDemise50PercentGroup =
         {
-            NPCID.Golem,
-            NPCID.GolemHead,
-            NPCID.GolemFistLeft,
-            NPCID.GolemFistRight,
-            NPCID.GolemHeadFree,
             NPCID.CultistBoss,
             NPCID.MartianSaucer,
             NPCID.TheDestroyer,

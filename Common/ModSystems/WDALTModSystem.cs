@@ -22,6 +22,7 @@ using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Recipes;
+using WeDoALittleTrolling.Content.Tiles;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -56,6 +57,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             UnionMirror.RegisterHooks();
             WDALTSeedSystem.RegisterHooks();
             NightmarePhantom.RegisterHooks();
+            GlobalTiles.RegisterHooks();
             base.OnModLoad();
         }
 
@@ -66,6 +68,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             UnionMirror.UnregisterHooks();
             WDALTSeedSystem.UnregisterHooks();
             NightmarePhantom.UnregisterHooks();
+            GlobalTiles.UnregisterHooks();
             base.OnModUnload();
         }
 

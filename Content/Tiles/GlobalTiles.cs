@@ -42,6 +42,25 @@ namespace WeDoALittleTrolling.Content.Tiles
             ItemID.SliceOfCake
         };
 
+        public static void RegisterHooks()
+        {
+            On_Player.GetPickaxeDamage += On_Player_GetPickaxeDamage;
+        }
+
+        public static void UnregisterHooks()
+        {
+            On_Player.GetPickaxeDamage -= On_Player_GetPickaxeDamage;
+        }
+
+        public static int On_Player_GetPickaxeDamage(On_Player.orig_GetPickaxeDamage orig, Player self, int x, int y, int pickPower, int hitBufferIndex, Tile tileTarget)
+        {
+            if (tileTarget.TileType == TileID.LihzahrdAltar)
+            {
+                return 100;
+            }
+            return orig.Invoke(self, x, y, pickPower, hitBufferIndex, tileTarget);
+        }
+
         public override void PlaceInWorld(int i, int j, int type, Item item)
         {
             if (BuffTilesItemIDs.Contains(item.type))
