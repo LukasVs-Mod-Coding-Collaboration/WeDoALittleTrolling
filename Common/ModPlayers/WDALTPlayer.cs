@@ -481,6 +481,26 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.OnHitNPCWithItem(item, target, hit, damageDone);
         }
 
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            base.ModifyHitNPCWithProj(proj, target, ref modifiers);
+            //Dirty hack to work around OnHitNPC() not being called for Influx Waver projectiles...
+            if (proj.type == ProjectileID.InfluxWaver)
+            {
+                OnHitNPC
+                (
+                    target,
+                    modifiers.ToHitInfo
+                    (
+                        proj.originalDamage,
+                        ((modifiers.CritDamage == modifiers.NonCritDamage) ? false : true),
+                        proj.knockBack
+                    ),
+                    proj.damage
+                );
+            }
+        }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee && beekeeperStack > 0)
