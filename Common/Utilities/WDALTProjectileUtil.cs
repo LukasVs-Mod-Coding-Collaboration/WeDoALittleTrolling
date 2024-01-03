@@ -209,6 +209,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 {
                     projectile.hostile = true;
                     projectile.friendly = false;
+                    projectile.timeLeft = 480;
                     SoundEngine.PlaySound(SoundID.Item69, projectile.position);
                 }
             }

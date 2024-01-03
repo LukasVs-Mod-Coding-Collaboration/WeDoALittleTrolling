@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            if(!NPC.downedMechBoss2)
+            if(!Main.hardMode)
             {
                 return 0f;
             }
@@ -68,7 +68,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) -= 0.02f;
+            player.GetDamage(DamageClass.Ranged) -= 0.04f;
             player.GetCritChance(DamageClass.Ranged) += 8;
         }
 

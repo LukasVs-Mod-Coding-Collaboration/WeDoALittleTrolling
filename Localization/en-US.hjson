@@ -582,9 +582,9 @@ Mods: {
 				DisplayName: Conjuring
 				AdditionalTooltip:
 					'''
-					+4% summon damage
+					+6% summon damage
 					+2 defense
-					+10 mana
+					+20 mana
 					'''
 			}
 
@@ -593,7 +593,7 @@ Mods: {
 				AdditionalTooltip:
 					'''
 					Increases your max number of sentries by 1,
-					but reduces your summon damage by 4%
+					but reduces your summon damage by 6%
 					'''
 			}
 
@@ -610,7 +610,7 @@ Mods: {
 
 			Focusing: {
 				DisplayName: Focusing
-				AdditionalTooltip: -2% ranged damage
+				AdditionalTooltip: -4% ranged damage
 				AdditionalTooltip2: +8% ranged critical strike chance
 			}
 

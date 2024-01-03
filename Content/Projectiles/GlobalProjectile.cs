@@ -326,6 +326,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI(Projectile projectile)
         {
+            if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
+            {
+                if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive < 30)
+                {
+                    projectile.tileCollide = false;
+                }
+                else
+                {
+                    projectile.tileCollide = true;
+                }
+            }
             if (projectile.type == ProjectileID.Bubble)
             {
                 projectile.velocity *= 1.03f;
@@ -843,6 +854,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     modifiers.SourceDamage *= (1f / 1.5f);
                 }
+            }
+            if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
+            {
+                modifiers.SourceDamage *= 0.5f;
             }
         }
 

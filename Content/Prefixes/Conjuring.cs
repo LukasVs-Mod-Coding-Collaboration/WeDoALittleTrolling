@@ -51,9 +51,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += 0.04f;
+            player.GetDamage(DamageClass.Summon) += 0.06f;
             player.statDefense += 2;
-            player.statManaMax2 += 10;
+            player.statManaMax2 += 20;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

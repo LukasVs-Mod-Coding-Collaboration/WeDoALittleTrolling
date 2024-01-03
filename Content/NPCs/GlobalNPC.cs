@@ -871,14 +871,68 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.Golem)
             {
-                bool shootFlag = true;
-                if (!(npc.ai[0] == 1f && Math.Abs(npc.velocity.Y) == 0f) || !(Main.netMode != NetmodeID.MultiplayerClient))
+                if (npc.ai[0] == 1f && Math.Abs(npc.velocity.Y) == 0f && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    shootFlag = false;
+                    npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration = 1;
+                    npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderStartPosition = npc.Center;
                 }
-                if (shootFlag)
+                if
+                (
+                    npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration > 0 &&
+                    (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick) >= 5 &&
+                    Main.netMode != NetmodeID.MultiplayerClient
+                )
                 {
-                    Vector2 shootVector = (new Vector2(1f, 0f)) * 8f;
+                    int dmg = 75;
+                    Vector2 shootVector = (new Vector2(0f, -1f)) * 8f;
+                    Vector2 shootPos1 = npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderStartPosition;
+                    Vector2 shootPos2 = npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderStartPosition;
+                    float xOffset = (npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration * 50f) + 50f;
+                    float yOffset = npc.height * 0.5f;
+                    shootPos1.X += xOffset;
+                    shootPos2.X -= xOffset;
+                    shootPos1.Y += yOffset;
+                    shootPos2.Y += yOffset;
+                    Projectile proj1 = Projectile.NewProjectileDirect
+                    (
+                        npc.GetSource_FromAI(),
+                        shootPos1,
+                        shootVector,
+                        ProjectileID.BoulderStaffOfEarth,
+                        dmg,
+                        4f
+                    );
+                    proj1.hostile = true;
+                    proj1.friendly = false;
+                    proj1.timeLeft = 480;
+                    proj1.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder = true;
+                    proj1.netUpdate = true;
+                    SoundEngine.PlaySound(SoundID.Item69, proj1.position);
+                    Projectile proj2 = Projectile.NewProjectileDirect
+                    (
+                        npc.GetSource_FromAI(),
+                        shootPos2,
+                        shootVector,
+                        ProjectileID.BoulderStaffOfEarth,
+                        dmg,
+                        4f
+                    );
+                    proj2.hostile = true;
+                    proj2.friendly = false;
+                    proj2.timeLeft = 480;
+                    proj2.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder = true;
+                    proj2.netUpdate = true;
+                    SoundEngine.PlaySound(SoundID.Item69, proj2.position);
+                    if (npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration < 16)
+                    {
+                        npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration++;
+                    }
+                    else
+                    {
+                        npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration = 0;
+                    }
+                    npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick = npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive;
+                    /*
                     float rotation = MathHelper.ToRadians((180f / (24f - 1f)));
                     for (int i = 0; i < 24; i++)
                     {
@@ -897,6 +951,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         proj.netUpdate = true;
                         SoundEngine.PlaySound(SoundID.Item69, proj.position);
                     }
+                    */
                 }
             }
             return base.PreAI(npc);

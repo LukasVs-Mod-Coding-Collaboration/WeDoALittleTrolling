@@ -58,7 +58,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         // Modify the cost of items with this modifier with this function.
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult *= 10f;
+            valueMult *= 25f;
         }
 
         // This is used to modify most other stats of items which have this modifier.

@@ -614,10 +614,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 // 1 Base Heal + 5% of damage done
                 int healingAmount = 1 + (int)Math.Round(damageDone * 0.05);
-                // Stop Sacling at ~160 Damage
-                if(healingAmount > 8)
+                // Stop Sacling at ~200 Damage
+                if(healingAmount > 10)
                 {
-                    healingAmount = 8;
+                    healingAmount = 10;
                 }
                 // Having Moon Bite means the effect still works, however,
                 // it will be 90% less effective

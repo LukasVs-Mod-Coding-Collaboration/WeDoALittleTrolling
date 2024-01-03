@@ -35,6 +35,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public long ticksAlive = 0;
         public long lastActionTick = 0;
         public bool nightmarePhantom = false;
+        public int golemBoulderIteration = 0;
+        public Vector2 golemBoulderStartPosition;
 
         public override void ResetEffects(NPC npc)
         {

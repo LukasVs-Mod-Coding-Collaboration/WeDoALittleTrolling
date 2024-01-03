@@ -34,7 +34,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            if (Main.player[Main.myPlayer].HasItem(ModContent.ItemType<YellowCrystal>()) == true)
+            if (Main.player[Main.myPlayer].HasItem(ModContent.ItemType<LimeCrystal>()) == true)
             {
                 return 0.2f;
             }
