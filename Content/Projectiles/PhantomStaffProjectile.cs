@@ -174,7 +174,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (ownerPlayer.HasMinionAttackTargetNPC)
             {
                 NPC target = Main.npc[ownerPlayer.MinionAttackTargetNPC];
-                if (Vector2.Distance(target.Center, Projectile.Center) < (detectionRange * 2f))
+                float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
+                if (currentDistance < (detectionRange * 2f))
                 {
                     distanceToTarget = Vector2.Distance(target.Center, Projectile.Center);
                     targetCenter = target.Center;
@@ -187,16 +188,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 for (int i = 0; i < Main.npc.Length; i++)
                 {
                     NPC target = Main.npc[i];
-                    if (target.CanBeChasedBy())
+                    if (!target.CanBeChasedBy())
                     {
-                        float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
-                        if (currentDistance < distanceToTarget)
-                        {
-                            distanceToTarget = currentDistance;
-                            targetCenter = target.Center;
-                            targetVelocity = target.velocity;
-                            targetDetected = true;
-                        }
+                        continue;
+                    }
+                    float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
+                    if (currentDistance < distanceToTarget)
+                    {
+                        distanceToTarget = currentDistance;
+                        targetCenter = target.Center;
+                        targetVelocity = target.velocity;
+                        targetDetected = true;
                     }
                 }
             }
