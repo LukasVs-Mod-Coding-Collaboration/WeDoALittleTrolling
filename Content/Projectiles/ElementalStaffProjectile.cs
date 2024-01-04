@@ -286,7 +286,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 AI_012_FrozenElemental_CorrectOverlap(ref targetDetected);
             }
-            bool cooldownFinished = (Math.Abs(ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown));
+            bool cooldownFinished = ((ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown));
             if (cooldownFinished)
             {
                 if (Projectile.owner == Main.myPlayer)

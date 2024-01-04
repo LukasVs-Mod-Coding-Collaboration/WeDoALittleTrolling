@@ -13,8 +13,9 @@ namespace WeDoALittleTrolling.Content.NPCs
 {
     public class TestNPC : ModNPC
     {
-
+        private const float detectionRange = 1920f + 1f; //One Screen Wide
         private Player target;
+        private float distanceToTarget;
         //private int targetAggro;
         //private bool hasTarget;
         //Usable later but brick the NPC apparently
@@ -48,18 +49,23 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         private void TestNPCAI()
         {
+            distanceToTarget = detectionRange;
             for (int i = 0 ; i < Main.player.Length ; i++)
             {
+                if
+                (
+                    Main.player[i] == null ||
+                    Main.player[i].dead ||
+                    !Main.player[i].active
+                )
+                {
+                    continue;
+                }
                 float TargetDistanceControl = Vector2.Distance(NPC.Center, Main.player[i].Center);
-                TargetDistanceControl = Math.Abs(TargetDistanceControl);
-                if (
-
-                    Main.player[i] != null &&
-                    !Main.player[i].dead &&
-                    Main.player[i].active
-                    )
+                if (TargetDistanceControl < distanceToTarget)
                 {
                     target = Main.player[i];
+                    distanceToTarget = TargetDistanceControl;
                 }
             }
 

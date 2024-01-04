@@ -264,7 +264,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
             }
             //We shoot 2 projectiles so only 0.5x fire rate compared to melee.
-            bool cooldownFinished = (Math.Abs(ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2));
+            bool cooldownFinished = ((ticksAlive - lastActionTick) >= (Projectile.localNPCHitCooldown * 2));
             if
             (
                 (cooldownFinished) &&
