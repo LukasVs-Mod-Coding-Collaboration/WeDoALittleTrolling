@@ -866,7 +866,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 )
                 {
                     int dmg = 75;
-                    Vector2 shootVector = (new Vector2(0f, -1f)) * 8f;
+                    Vector2 shootVector = (new Vector2(0f, -1f)) * 10f;
                     Vector2 shootPos1 = npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderStartPosition;
                     Vector2 shootPos2 = npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderStartPosition;
                     float xOffset = (npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration * 50f) + 50f;
@@ -882,7 +882,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         shootVector,
                         ProjectileID.BoulderStaffOfEarth,
                         dmg,
-                        4f
+                        5f
                     );
                     proj1.hostile = true;
                     proj1.friendly = false;
@@ -897,7 +897,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         shootVector,
                         ProjectileID.BoulderStaffOfEarth,
                         dmg,
-                        4f
+                        5f
                     );
                     proj2.hostile = true;
                     proj2.friendly = false;
@@ -905,7 +905,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     proj2.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder = true;
                     proj2.netUpdate = true;
                     SoundEngine.PlaySound(SoundID.Item69, proj2.position);
-                    if (npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration < 16)
+                    if (npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration < 20)
                     {
                         npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration++;
                     }
