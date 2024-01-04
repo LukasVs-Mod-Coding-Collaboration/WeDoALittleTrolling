@@ -187,11 +187,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 for (int i = 0; i < Main.npc.Length; i++)
                 {
-                    NPC target = Main.npc[i];
-                    if (!target.CanBeChasedBy())
+                    if (!Main.npc[i].CanBeChasedBy())
                     {
                         continue;
                     }
+                    NPC target = Main.npc[i];
                     float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
                     if (currentDistance < distanceToTarget)
                     {

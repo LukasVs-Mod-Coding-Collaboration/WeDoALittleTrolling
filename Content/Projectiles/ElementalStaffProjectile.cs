@@ -173,9 +173,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (ownerPlayer.HasMinionAttackTargetNPC)
             {
                 NPC target = Main.npc[ownerPlayer.MinionAttackTargetNPC];
-                float distance = Vector2.Distance(target.Center, Projectile.Center);
+                float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
                 bool collisionLine = Collision.CanHitLine(Projectile.Center, 1, 1, target.Center, 1, 1);
-                if (distance < (detectionRange * 2f) && collisionLine)
+                if (currentDistance < (detectionRange * 2f) && collisionLine)
                 {
                     distanceToTarget = Vector2.Distance(target.Center, Projectile.Center);
                     targetCenter = target.Center;
@@ -187,18 +187,19 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 for (int i = 0; i < Main.npc.Length; i++)
                 {
-                    NPC target = Main.npc[i];
-                    if (target.CanBeChasedBy())
+                    if (!Main.npc[i].CanBeChasedBy())
                     {
-                        float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
-                        bool collisionLine = Collision.CanHitLine(Projectile.Center, 1, 1, target.Center, 1, 1);
-                        if (currentDistance < distanceToTarget && collisionLine)
-                        {
-                            distanceToTarget = currentDistance;
-                            targetCenter = target.Center;
-                            targetVelocity = target.velocity;
-                            targetDetected = true;
-                        }
+                        continue;
+                    }
+                    NPC target = Main.npc[i];
+                    float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
+                    bool collisionLine = Collision.CanHitLine(Projectile.Center, 1, 1, target.Center, 1, 1);
+                    if (currentDistance < distanceToTarget && collisionLine)
+                    {
+                        distanceToTarget = currentDistance;
+                        targetCenter = target.Center;
+                        targetVelocity = target.velocity;
+                        targetDetected = true;
                     }
                 }
             }
