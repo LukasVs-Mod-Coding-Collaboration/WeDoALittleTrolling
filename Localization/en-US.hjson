@@ -886,6 +886,7 @@ Mods: {
 			HighEnergyTestDevice.DisplayName: High Energy Test Device
 			FrozenGhoul.DisplayName: Frozen Ghoul
 			NightmarePhantom.DisplayName: Nightmare Phantom
+			TestNPC.DisplayName: Test Temp Plate
 		}
 	}
 }
