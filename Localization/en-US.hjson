@@ -785,6 +785,16 @@ Mods: {
 			}
 
 			Overloaded.DisplayName: Overloaded
+
+			Accelerated: {
+				DisplayName: Accelerated
+				AdditionalTooltip: +10% horizontal flight speed
+			}
+
+			Weighted: {
+				DisplayName: Weighted
+				AdditionalTooltip: +20% max fall speed
+			}
 		}
 
 		Buffs: {

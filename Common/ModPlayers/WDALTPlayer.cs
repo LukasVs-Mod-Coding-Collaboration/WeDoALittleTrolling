@@ -75,6 +75,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool lumintePhantomMinion;
         public bool frozenElementalMinion;
         public int unionMirrorTicks;
+        public int weightedStack;
+        public int acceleratedStack;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -112,6 +114,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
             unionMirrorTicks = 0;
+            weightedStack = 0;
+            acceleratedStack = 0;
         }
 
         public override void UpdateDead()
@@ -199,6 +203,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
             unionMirrorTicks = 0;
+            weightedStack = 0;
+            acceleratedStack = 0;
         }
 
         public override void ResetEffects()
@@ -217,6 +223,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesis = false;
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
+            weightedStack = 0;
+            acceleratedStack = 0;
             base.ResetEffects();
         }
         
@@ -400,6 +408,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 player.maxFallSpeed *= 3.5f;
                 chargeAccelerationTicks--;
+            }
+            else if (weightedStack > 0)
+            {
+                float modifierWeighted = 2f * weightedStack;
+                player.maxFallSpeed += modifierWeighted;
             }
         }
 

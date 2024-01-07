@@ -520,7 +520,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 ScarecrowGroup.Contains(npc.type)
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
             }
             if
             (
@@ -529,7 +529,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.HeadlessHorseman
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 3.25);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
                 npc.damage = (int)Math.Round(npc.damage * 1.5);
             }
             if

@@ -21,6 +21,7 @@ using Terraria;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.NPCs;
+using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Recipes;
 using WeDoALittleTrolling.Content.Tiles;
 
@@ -53,23 +54,35 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             WDALTIntermediateLanguageEditing.RegisterILHooks();
-            WDALTSceneMetrics.RegisterHooks();
-            UnionMirror.RegisterHooks();
-            WDALTSeedSystem.RegisterHooks();
-            NightmarePhantom.RegisterHooks();
-            GlobalTiles.RegisterHooks();
+            RegisterHooks();
             base.OnModLoad();
         }
 
         public override void OnModUnload()
         {
             WDALTIntermediateLanguageEditing.UnregisterILHooks();
+            UnregisterHooks();
+            base.OnModUnload();
+        }
+
+        public static void RegisterHooks()
+        {
+            WDALTSceneMetrics.RegisterHooks();
+            UnionMirror.RegisterHooks();
+            WDALTSeedSystem.RegisterHooks();
+            NightmarePhantom.RegisterHooks();
+            GlobalTiles.RegisterHooks();
+            Accelerated.RegisterHooks();
+        }
+
+        public static void UnregisterHooks()
+        {
             WDALTSceneMetrics.UnregisterHooks();
             UnionMirror.UnregisterHooks();
             WDALTSeedSystem.UnregisterHooks();
             NightmarePhantom.UnregisterHooks();
             GlobalTiles.UnregisterHooks();
-            base.OnModUnload();
+            Accelerated.UnregisterHooks();
         }
 
         public static bool TryGetCalamityMod(out Mod calamityMod)
