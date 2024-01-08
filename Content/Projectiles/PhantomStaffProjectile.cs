@@ -371,7 +371,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         private void AI_003_LuminitePhantom_UpdateFrames()
         {
             Projectile.frameCounter++;
-            if (Projectile.frameCounter >= 6)
+            if (Projectile.frameCounter >= 4)
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;
