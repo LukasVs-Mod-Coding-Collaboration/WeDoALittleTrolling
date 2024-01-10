@@ -11,6 +11,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class PhantomStaffProjectileBullet : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 12;
@@ -25,6 +31,27 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Main.instance.LoadProjectile(Projectile.type);
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+            // Redraw the projectile with the color not influenced by light
+            Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                    Color drawLightColor = lightColor;
+                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                    Color color = Projectile.GetAlpha(drawLightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                    SpriteEffects effects = SpriteEffects.None;
+                    if (Projectile.oldSpriteDirection[k] < 0)
+                    {
+                        effects = SpriteEffects.FlipHorizontally;
+                    }
+                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
+            }
+            return true;
         }
 
         public override void AI()
