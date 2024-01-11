@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+/*
 
 using Terraria;
 using Terraria.ModLoader;
@@ -56,7 +57,7 @@ namespace WeDoALittleTrolling.Content.Items.Tools
 
             Item.rare = ItemRarityID.Yellow;
         }
-        /*
+
         public override void AddRecipes()
         {
             CreateRecipe()
@@ -75,6 +76,6 @@ namespace WeDoALittleTrolling.Content.Items.Tools
              .AddIngredient(ItemID.Sapphire, 5)
              .Register();
         }
-        */
     }
 }
+*/

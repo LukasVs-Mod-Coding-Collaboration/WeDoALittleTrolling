@@ -840,7 +840,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 if (npc.type == NPCID.MoonLordFreeEye)
                 {
-                    modifiers.SourceDamage *= 0.5f;
+                    modifiers.SourceDamage *= 0.75f;
+                }
+                if (npc.type == NPCID.MoonLordHead)
+                {
+                    modifiers.SourceDamage *= (4f / 3f);
                 }
             }
             if (projectile.type == ProjectileID.Boulder && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))

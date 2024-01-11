@@ -54,6 +54,24 @@ namespace WeDoALittleTrolling.Content.Recipes
 
             AddBiomeKeyDuplicationRecipes();
 
+            AddCellPhoneRecipes();
+
+            AddArchitectGizmoPackRecipes();
+
+            Recipe.Create(ItemID.ActuationAccessory, 1)
+            .AddIngredient(ItemID.PlatinumBar, 5)
+            .AddIngredient(ItemID.Wire, 5)
+            .AddIngredient(ItemID.Actuator, 10)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.ActuationAccessory, 1)
+            .AddIngredient(ItemID.GoldBar, 5)
+            .AddIngredient(ItemID.Wire, 5)
+            .AddIngredient(ItemID.Actuator, 10)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
             Recipe.Create(ItemID.CrimsonSeeds, 1)
             .AddIngredient(ItemID.CorruptSeeds, 1)
             .AddCondition(ShimmerCondition)
@@ -281,6 +299,118 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_SlimeStaff.AddIngredient(ItemID.Gel, 99);
             WDALT_SlimeStaff.AddRecipeGroup(RecipeGroupID.Wood, 33);
             WDALT_SlimeStaff.Register();
+        }
+
+        public static void AddCellPhoneRecipes()
+        {
+            Recipe.Create(ItemID.LifeformAnalyzer, 1)
+            .AddIngredient(ItemID.Radar, 1)
+            .AddIngredient(ItemID.PlatinumBar, 4)
+            .AddIngredient(ItemID.Wire, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.LifeformAnalyzer, 1)
+            .AddIngredient(ItemID.Radar, 1)
+            .AddIngredient(ItemID.GoldBar, 4)
+            .AddIngredient(ItemID.Wire, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.Stopwatch, 1)
+            .AddIngredient(ItemID.PlatinumWatch, 1)
+            .AddIngredient(ItemID.Wire, 4)
+            .AddIngredient(ItemID.TimerOneFourthSecond, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.Stopwatch, 1)
+            .AddIngredient(ItemID.GoldWatch, 1)
+            .AddIngredient(ItemID.Wire, 4)
+            .AddIngredient(ItemID.TimerOneFourthSecond, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.DPSMeter, 1)
+            .AddIngredient(ItemID.TargetDummy, 1)
+            .AddIngredient(ItemID.Sapphire, 4)
+            .AddIngredient(ItemID.IronBar, 2)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.DPSMeter, 1)
+            .AddIngredient(ItemID.TargetDummy, 1)
+            .AddIngredient(ItemID.Sapphire, 4)
+            .AddIngredient(ItemID.LeadBar, 2)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.Sextant, 1)
+            .AddIngredient(ItemID.Binoculars, 1)
+            .AddIngredient(ItemID.PlatinumBar, 4)
+            .AddIngredient(ItemID.IronBar, 2)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.Sextant, 1)
+            .AddIngredient(ItemID.Binoculars, 1)
+            .AddIngredient(ItemID.GoldBar, 4)
+            .AddIngredient(ItemID.LeadBar, 2)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+        }
+
+        public static void AddArchitectGizmoPackRecipes()
+        {
+            Recipe.Create(ItemID.BrickLayer, 1)
+            .AddIngredient(ItemID.Lever, 1)
+            .AddIngredient(ItemID.SilverBar, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.BrickLayer, 1)
+            .AddIngredient(ItemID.Lever, 1)
+            .AddIngredient(ItemID.TungstenBar, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.ExtendoGrip, 1)
+            .AddIngredient(ItemID.Wrench, 1)
+            .AddIngredient(ItemID.IronBar, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.ExtendoGrip, 1)
+            .AddIngredient(ItemID.Wrench, 1)
+            .AddIngredient(ItemID.LeadBar, 8)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.PaintSprayer, 1)
+            .AddIngredient(ItemID.Bottle, 1)
+            .AddIngredient(ItemID.ProjectilePressurePad, 1)
+            .AddIngredient(ItemID.IronBar, 4)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.PaintSprayer, 1)
+            .AddIngredient(ItemID.Bottle, 1)
+            .AddIngredient(ItemID.ProjectilePressurePad, 1)
+            .AddIngredient(ItemID.LeadBar, 4)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.PortableCementMixer, 1)
+            .AddIngredient(ItemID.EngineeringHelmet, 1)
+            .AddIngredient(ItemID.SilverBar, 4)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
+
+            Recipe.Create(ItemID.PortableCementMixer, 1)
+            .AddIngredient(ItemID.EngineeringHelmet, 1)
+            .AddIngredient(ItemID.TungstenBar, 4)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
         }
 
         public static void AddShimmeringBetweenMimicItems_MeleeWeapons()

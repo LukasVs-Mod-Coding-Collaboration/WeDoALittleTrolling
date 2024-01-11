@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+/*
 
 using Terraria;
 using Terraria.ModLoader;
@@ -71,12 +72,11 @@ namespace WeDoALittleTrolling.Content.Experimental
             return false;
         }
 
-        /*
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(1.0f, 1.0f);
         }
-        */
+
         //We really don't need a holdout offset right now.
 
         //public override bool CanUseItem(Player player) => player.ownedProjectileCounts[ProjectileID.Electrosphere] <= 0;
@@ -84,3 +84,4 @@ namespace WeDoALittleTrolling.Content.Experimental
 
     }
 }
+*/

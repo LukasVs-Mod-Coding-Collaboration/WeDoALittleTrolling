@@ -53,7 +53,6 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static readonly int[] NerfGroup25Percent =
         {
-            NPCID.Derpling,
             NPCID.Antlion,
             NPCID.WalkingAntlion,
             NPCID.GiantWalkingAntlion,
@@ -63,22 +62,20 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.BlackRecluse,
             NPCID.BlackRecluseWall,
             NPCID.IchorSticker,
-            NPCID.RedDevil
+            NPCID.Wraith
         };
         public static readonly int[] NerfGroup35Percent =
         {
             NPCID.GiantTortoise,
-            NPCID.IceTortoise,
             NPCID.GiantMossHornet,
             NPCID.BigMossHornet,
             NPCID.MossHornet,
             NPCID.LittleMossHornet,
-            NPCID.TinyMossHornet
+            NPCID.TinyMossHornet,
+            NPCID.PossessedArmor
         };
         public static readonly int[] NerfGroup50Percent =
         {
-            NPCID.Wraith,
-            NPCID.PossessedArmor
         };
         public static readonly int[] KnockbackResistanceGroup =
         {
@@ -86,7 +83,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Mothron,
             NPCID.Lihzahrd,
             NPCID.LihzahrdCrawler,
-            NPCID.FlyingSnake,
             NPCID.BrainofCthulhu,
             NPCID.PossessedArmor,
             NPCID.RockGolem
@@ -219,8 +215,6 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public static readonly int[] ResistGloriousDemise50PercentGroup =
         {
-            NPCID.CultistBoss,
-            NPCID.MartianSaucer,
             NPCID.TheDestroyer,
             NPCID.TheDestroyerBody,
             NPCID.TheDestroyerTail,
