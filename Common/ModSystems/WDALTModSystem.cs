@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Items.Accessories;
@@ -83,6 +83,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
             NightmarePhantom.UnregisterHooks();
             GlobalTiles.UnregisterHooks();
             Accelerated.UnregisterHooks();
+        }
+
+        public override void PreUpdatePlayers()
+        {
+            Main.anglerWhoFinishedToday.Clear();
+            Main.anglerQuestFinished = false;
         }
 
         public static bool TryGetCalamityMod(out Mod calamityMod)
