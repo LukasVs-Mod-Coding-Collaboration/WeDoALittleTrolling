@@ -704,7 +704,7 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 amountGold *= 2;
             }
-            if (item.type == ItemID.OceanCrateHard && NPC.downedFishron && player.anglerQuestsFinished >= 50)
+            if (item.type == ItemID.OceanCrateHard && NPC.downedFishron && player.anglerQuestsFinished >= 100)
             {
                 amountGold = 4;
                 goldItemID = ItemID.PlatinumCoin;
