@@ -116,10 +116,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     .AddIngredient(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_Essence_AET), 3)
                     .AddIngredient(ItemID.LunarBar, 20)
                     .AddIngredient(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_Fragment_WD), 20)
-                    .AddIngredient(ItemID.FragmentStardust, 26)
-                    .AddIngredient(ItemID.FragmentVortex, 26)
-                    .AddIngredient(ItemID.FragmentNebula, 26)
-                    .AddIngredient(ItemID.FragmentSolar, 26)
+                    .AddIngredient(ItemID.FragmentStardust, 20)
+                    .AddIngredient(ItemID.FragmentVortex, 20)
+                    .AddIngredient(ItemID.FragmentNebula, 20)
+                    .AddIngredient(ItemID.FragmentSolar, 20)
                     .Register();
             }
         }
