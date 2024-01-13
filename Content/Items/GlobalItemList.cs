@@ -191,10 +191,6 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.lifeRegen += 2;
             }
-            if (item.type == ItemID.ObsidianShirt)
-            {
-                player.maxMinions += 1;
-            }
             base.UpdateEquip(item, player);
         }
 
@@ -481,14 +477,6 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 item.type == ItemID.PygmyNecklace
-            )
-            {
-                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "Increases your max number of minions by 2");
-            }
-            if
-            (
-                item.type == ItemID.ObsidianShirt
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
@@ -1077,7 +1065,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.XenoStaff)
             {
-                item.damage = 48;
+                item.damage = 42;
             }
             if (item.type == ItemID.Xenopopper)
             {
