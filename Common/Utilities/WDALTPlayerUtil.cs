@@ -55,15 +55,18 @@ namespace WeDoALittleTrolling.Common.Utilities
         public override void PreUpdate()
         {
             currentTick++;
-            if (Main.dontStarveWorld && Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer && currentTick % 60 == 0)
+            if (Main.dontStarveWorld && Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer && currentTick % 60 == 0)
             {
                 Color color = Lighting.GetColor((int)player.Center.X / 16, (int)player.Center.Y / 16);
                 lightBrightness = color.ToVector3().Length();
-                ModPacket syncBrightnessPacket = Mod.GetPacket();
-                syncBrightnessPacket.Write(WDALTPacketTypeID.syncBrightness);
-                syncBrightnessPacket.Write(lightBrightness);
-                syncBrightnessPacket.Write(Main.myPlayer);
-                syncBrightnessPacket.Send();
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket syncBrightnessPacket = Mod.GetPacket();
+                    syncBrightnessPacket.Write(WDALTPacketTypeID.syncBrightness);
+                    syncBrightnessPacket.Write(lightBrightness);
+                    syncBrightnessPacket.Write(Main.myPlayer);
+                    syncBrightnessPacket.Send();
+                }
             }
         }
 
