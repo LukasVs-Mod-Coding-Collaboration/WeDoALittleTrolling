@@ -140,7 +140,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 )
             )
             {
-                return 0.125f;
+                return 0.25f;
             }
             return base.SpawnChance(spawnInfo);
         }
