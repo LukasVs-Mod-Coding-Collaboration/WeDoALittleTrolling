@@ -131,7 +131,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             int posX = (int)(player.position.X + (float)(player.width / 2)) / 16;
             int posY = (int)(player.position.Y + (float)(player.height / 2)) / 16;
-            if (Main.wallHouse[Main.tile[posX, posY].WallType] && lightBrightness >= 0.1f)
+            bool brightCondition = (Main.dontStarveWorld ? (lightBrightness >= 0.1f) : true);
+            if (Main.wallHouse[Main.tile[posX, posY].WallType] && brightCondition)
             {
                 return true;
             }
