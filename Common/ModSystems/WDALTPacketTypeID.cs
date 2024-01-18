@@ -33,5 +33,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public const short spawnCrateItem            = 8;
         public const short syncNetFinalDamage        = 9;
         public const short broadcastNetFinalDamage   = 10;
+        public const short syncBrightness            = 11;
     }
 }
