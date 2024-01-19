@@ -18,6 +18,7 @@
 
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.NPCs;
@@ -83,6 +84,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
             NightmarePhantom.UnregisterHooks();
             GlobalTiles.UnregisterHooks();
             Accelerated.UnregisterHooks();
+        }
+
+        public override void PostUpdatePlayers()
+        {
+            WDALTSeedSystem.UpdateRain();
         }
 
         public override void PreUpdatePlayers()
