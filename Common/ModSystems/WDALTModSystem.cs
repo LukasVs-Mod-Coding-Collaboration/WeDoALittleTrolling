@@ -86,11 +86,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             Accelerated.UnregisterHooks();
         }
 
-        public override void PostUpdatePlayers()
-        {
-            WDALTSeedSystem.UpdateRain();
-        }
-
         public override void PreUpdatePlayers()
         {
             Main.anglerWhoFinishedToday.Clear();

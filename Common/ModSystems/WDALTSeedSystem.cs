@@ -27,7 +27,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
     internal static class WDALTSeedSystem
     {
         public static bool TestyWorld = false;
-        public static bool rainFlag = false;
 
         public static void InitWorldVariables()
         {
@@ -50,13 +49,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void RegisterHooks()
         {
             On_DontStarveDarknessDamageDealer.Update += On_DontStarveDarknessDamageDealer_Update;
-            On_Main.UpdateTime_StartNight += On_Main_UpdateTime_StartNight;
         }
 
         public static void UnregisterHooks()
         {
             On_DontStarveDarknessDamageDealer.Update -= On_DontStarveDarknessDamageDealer_Update;
-            On_Main.UpdateTime_StartNight -= On_Main_UpdateTime_StartNight;
         }
 
         public static void On_DontStarveDarknessDamageDealer_Update(On_DontStarveDarknessDamageDealer.orig_Update orig, Player player)
@@ -66,33 +63,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 DontStarveDarknessDamageDealer.Reset();
             }
             orig.Invoke(player);
-        }
-
-        public static void On_Main_UpdateTime_StartNight(On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
-        {
-            rainFlag = true;
-            orig.Invoke(ref stopEvents);
-        }
-
-        public static void UpdateRain()
-        {
-            if (rainFlag)
-            {
-                rainFlag = false;
-                if
-                (
-                    Main.dontStarveWorld &&
-                    Main.netMode != NetmodeID.MultiplayerClient &&
-                    Main.moonPhase != 0 &&
-                    !Main.bloodMoon &&
-                    !Main.IsItRaining &&
-                    Main.rand.NextBool(5)
-                )
-                {
-                    Main.StartRain();
-                    Main.maxRaining = 0.1f;
-                }
-            }
         }
     }
 }
