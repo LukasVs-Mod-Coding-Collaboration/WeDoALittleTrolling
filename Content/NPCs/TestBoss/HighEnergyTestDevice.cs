@@ -15,6 +15,7 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
     {
 
         private int bossPhase = 0;
+        private bool circleFlag = false;
         public override void SetDefaults()
         {
             NPC.width = 246;
@@ -52,9 +53,25 @@ namespace WeDoALittleTrolling.Content.NPCs.TestBoss
             {
                 if (bossPhase == 0)
                 {
+                    /*
                     NPC.velocity = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y);
                     NPC.velocity.Normalize();
                     NPC.velocity *= 4f;
+                    */
+                    float dist = Vector2.Distance(NPC.Center, target.Center);
+                    if (dist >= 320f)
+                    {
+                        circleFlag = false;
+                        WDALTBossAIUtil.BossAI_DashToPlayer(NPC, target, 8f);
+                    }
+                    else if (dist <= 256f)
+                    {
+                        circleFlag = true;
+                    }
+                    if (circleFlag)
+                    {
+                        WDALTBossAIUtil.BossAI_CirclePlayer(NPC, target, 16f);
+                    }
                 } 
             }
         }
