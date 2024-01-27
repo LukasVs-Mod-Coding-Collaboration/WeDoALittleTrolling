@@ -107,7 +107,7 @@ Mods: {
 				DisplayName: Spooky Shield
 				Tooltip:
 					'''
-					Reduces damage taken by 3% per minion slot
+					Reduces damage taken by 1.5% per minion slot
 					This is not affected by the Wrecked Resistance debuff
 					3 defense per minion slot
 					Increases your max number of minions by 1

@@ -378,10 +378,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                 }
             }
-            spookyBonus = player.maxMinions * 3;
+            spookyBonus = player.maxMinions;
             if (spookyShield)
             {
-                player.statDefense += spookyBonus;
+                player.statDefense += (spookyBonus * 3);
             }
             heartOfDespairDamageBonus = (player.statLifeMax2 - player.statLife) / 5;
             base.PostUpdateEquips();
@@ -436,7 +436,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if (spookyShield)
             {
-                modifiers.FinalDamage *= (1f - ((float)spookyBonus * 0.01f));
+                modifiers.FinalDamage *= (1f - (((float)spookyBonus * 1.5f) * 0.01f));
             }
             base.ModifyHurt(ref modifiers);
         }
@@ -475,8 +475,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if(spookyEmblem)
                 {
-                    modifiers.ArmorPenetration += spookyBonus;
-                    if(random.Next(0, 100) < spookyBonus) //(3 x <Player Minion Slots>)% Chance
+                    modifiers.ArmorPenetration += (spookyBonus * 3);
+                    if(random.Next(0, 100) < (spookyBonus * 3)) //(3 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }
