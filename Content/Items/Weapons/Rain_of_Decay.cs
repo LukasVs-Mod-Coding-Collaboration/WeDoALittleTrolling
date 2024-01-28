@@ -30,6 +30,7 @@ using WeDoALittleTrolling.Common.ModSystems;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -41,6 +42,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = false;
         }
 
         public override void SetDefaults()

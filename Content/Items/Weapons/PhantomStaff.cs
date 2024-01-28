@@ -58,7 +58,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTurn = true;
             Item.noMelee = true;
             Item.UseSound = SoundID.Item44;
-            Item.scale = (float)Math.Sqrt(2.0);
+            Item.scale = 1.25f;
 
             Item.buffType = ModContent.BuffType<PhantomStaffBuff>();
             Item.shoot = ModContent.ProjectileType<PhantomStaffProjectile>();
