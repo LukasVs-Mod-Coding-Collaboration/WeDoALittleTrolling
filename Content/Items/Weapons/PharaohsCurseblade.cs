@@ -34,8 +34,16 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class PharaohsCurseblade : ModItem
     {
+        public const int chargeTicksMax = 450;
+        public const float chargeTicksScalingFactor = 0.01f;
         public static UnifiedRandom rnd = new UnifiedRandom(); //rnd
-        public long lastDashTick;
+        public int chargeTicks;
+        public bool isCharging;
+
+        public override void SetStaticDefaults()
+        {
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+        }
 
         public override void SetDefaults()
         {
@@ -47,13 +55,13 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.value = Item.sellPrice(gold: 5);
             Item.maxStack = 1;
 
-            Item.useTime = 18;
-            Item.useAnimation = 18;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item60;
 
-            Item.damage = 20;
+            Item.damage = 45;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 5.5f;
             Item.crit = 6;
@@ -64,34 +72,66 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool AltFunctionUse(Player player) // Woohoo Tornado Launch! (not yet implemented)
         {
-            if(Math.Abs(player.GetModPlayer<WDALTPlayer>().currentTick - lastDashTick) >= 120)
+            if (!isCharging)
             {
-                player.SetImmuneTimeForAllTypes(player.longInvince ? 90 : 60);
-                Vector2 chargeDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
-                chargeDirection.Normalize();
-                chargeDirection *= 24f;
-                player.velocity = chargeDirection;
-                player.GetModPlayer<WDALTPlayer>().chargeAccelerationTicks += 25;
-                for (int i = 0; i < 60; i++)
+                chargeTicks = 0;
+                isCharging = true;
+            }
+            if (chargeTicks < chargeTicksMax)
+            {
+                chargeTicks++;
+                int rMax = (int)player.width;
+                double r = rMax * Math.Sqrt(rnd.NextDouble());
+                double angle = rnd.NextDouble() * 2 * Math.PI;
+                int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                Vector2 dustPosition = player.Center;
+                dustPosition.X += xOffset;
+                dustPosition.Y += yOffset;
+                Vector2 dustVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
+                dustVelocity.Normalize();
+                dustVelocity *= 8f;
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.ApprenticeStorm, dustVelocity, 0, default);
+                newDust.noGravity = true;
+                if (chargeTicks == 1 || chargeTicks % 45 == 0)
                 {
-                    int rMax = (int)player.width;
-                    double r = rMax * Math.Sqrt(rnd.NextDouble());
-                    double angle = rnd.NextDouble() * 2 * Math.PI;
-                    int xOffset = (int)Math.Round(r * Math.Cos(angle));
-                    int yOffset = (int)Math.Round(r * Math.Sin(angle));
-                    Vector2 dustPosition = player.Center;
-                    dustPosition.X += xOffset;
-                    dustPosition.Y += yOffset;
-                    Vector2 dustVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
-                    dustVelocity.Normalize();
-                    dustVelocity *= 8f;
-                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Electric, dustVelocity, 0, default);
-                    newDust.noGravity = true;
+                    SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, player.Center);
                 }
-                SoundEngine.PlaySound(SoundID.Item117, player.Center);
-                lastDashTick = player.GetModPlayer<WDALTPlayer>().currentTick;
+                if (player.itemAnimation <= (Item.useAnimation / 4))
+                {
+                    player.SetItemAnimation(Item.useAnimation);
+                    player.itemAnimation = (Item.useAnimation / 4);
+                }
             }
             return false;
+        }
+
+        public override bool? CanHitNPC(Player player, NPC target)
+        {
+            if(isCharging)
+            {
+                return false;
+            }
+            return base.CanHitNPC(player, target);
+        }
+
+        public override bool CanHitPvp(Player player, Player target)
+        {
+            if(isCharging)
+            {
+                return false;
+            }
+            return base.CanHitPvp(player, target);
+        }
+
+        public override void UseAnimation(Player player)
+        {
+            if (isCharging)
+            {
+                isCharging = false;
+                Vector2 velocity = (new Vector2(((float)player.direction), 0f)) * (2f * chargeTicksScalingFactor * (float)chargeTicks);
+                Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), player.Center, velocity, ProjectileID.DD2ApprenticeStorm, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks));
+            }
         }
 
         public override void AddRecipes()
