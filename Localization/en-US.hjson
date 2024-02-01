@@ -899,5 +899,10 @@ Mods: {
 			NightmarePhantom.DisplayName: Nightmare Phantom
 			TestNPC.DisplayName: Test Temp Plate
 		}
+
+		WorldGen: {
+			IceBiomeCustomCavesMessage: Generating additional ice biome caves
+			IceBiomeGloomMessage: Generating additional ice biome gloom
+		}
 	}
 }
