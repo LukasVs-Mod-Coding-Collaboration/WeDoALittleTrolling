@@ -38,12 +38,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float detectionRangeOffset = 256f;
         public const float detectionRangeOffset2 = 128f;
         public const float idleMoveSpeed = 3f;
-        public const float attackMoveSpeed = 6f;
+        public const float attackMoveSpeed = 9f;
         public const float idleInertia = 12f;
         public const float attackInertia = 6f;
         public const float idleDistance = 48f;
         public const float idleAccelerationFactor = 0.625f;
-        public const float bulletSpeed = 18f;
+        public const float bulletSpeed = 24f;
         public const float bulletOffsetMultiplier = 36f;
         public static readonly Vector2 gfxShootOffset = new Vector2(0f, 0f);
         public long ticksAlive = 0;

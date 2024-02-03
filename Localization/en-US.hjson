@@ -901,7 +901,7 @@ Mods: {
 		}
 
 		WorldGen: {
-			IceBiomeCustomCavesMessage: Generating additional ice biome caves
+			IceBiomeCustomCavesMessage: Generating additional ice biome caves... This may take a while...
 			IceBiomeGloomMessage: Generating additional ice biome gloom
 		}
 	}
