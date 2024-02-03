@@ -144,6 +144,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ItemID.Arkhalis,
             ItemID.VampireKnives,
             ItemID.ScourgeoftheCorruptor,
+            ItemID.TitaniumWaraxe,
+            ItemID.AdamantiteWaraxe,
             ModContent.ItemType<HallowedDisintegrationBlade>(),
             ModContent.ItemType<LittleBlue>()
         };

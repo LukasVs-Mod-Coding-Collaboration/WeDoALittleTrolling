@@ -1437,8 +1437,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TitaniumRepeater)
             {
-                item.damage = 50;
-                item.crit = 1;
                 item.useTime = 12;
                 item.useAnimation = 12;
             }
@@ -1468,10 +1466,13 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.AdamantiteRepeater)
             {
-                item.damage = 50;
-                item.crit = 1;
                 item.useTime = 13;
                 item.useAnimation = 13;
+            }
+            if (item.type == ItemID.HallowedRepeater)
+            {
+                item.useTime = 12;
+                item.useAnimation = 12;
             }
             if (item.type == ItemID.FlowerofFire)
             {
