@@ -115,6 +115,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (WorldGen.TileType (x + 1, y + 1) != TileID.BreakableIce) &&
                     (WorldGen.TileType (x    , y + 1) != TileID.BreakableIce) &&
                     (WorldGen.TileType (x - 1, y + 1) != TileID.BreakableIce) &&
+                    (WorldGen.TileType (x + 1, y - 1) != TileID.Campfire) &&
+                    (WorldGen.TileType (x    , y - 1) != TileID.Campfire) &&
+                    (WorldGen.TileType (x - 1, y - 1) != TileID.Campfire) &&
                     !WorldGen.SolidTile(x + 1, y    ) &&
                     !WorldGen.SolidTile(x    , y    ) &&
                     !WorldGen.SolidTile(x - 1, y    ) &&
