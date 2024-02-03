@@ -1191,7 +1191,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.AncientBattleArmorPants //Forbidden Treads
             )
             {
-                item.defense += 2;
+                item.defense += 4;
             }
 
             // Buff pre-hardmode whips
@@ -1383,6 +1383,17 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 60;
                 }
             }
+            if
+            (
+                item.type == ItemID.ChlorophyteHeadgear ||
+                item.type == ItemID.ChlorophyteHelmet ||
+                item.type == ItemID.ChlorophyteMask ||
+                item.type == ItemID.ChlorophytePlateMail ||
+                item.type == ItemID.ChlorophyteGreaves
+            )
+            {
+                item.defense += 3;
+            }
             if (item.type == ItemID.ChlorophyteClaymore)
             {
                 item.useTime = 52;
@@ -1406,11 +1417,61 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.DeathSickle)
             {
-                if (item.damage <= 70)
+                if (item.damage <= 60)
                 {
-                    item.damage = 70;
+                    item.damage = 60;
                 }
-                item.crit = 3;
+                item.crit = 2;
+            }
+            if (item.type == ItemID.TitaniumSword)
+            {
+                item.damage = 100;
+            }
+            if (item.type == ItemID.TitaniumTrident)
+            {
+                item.damage = 90;
+            }
+            if (item.type == ItemID.TitaniumWaraxe)
+            {
+                item.damage = 140;
+            }
+            if (item.type == ItemID.TitaniumRepeater)
+            {
+                item.damage = 50;
+                item.crit = 1;
+                item.useTime = 12;
+                item.useAnimation = 12;
+            }
+            if (item.type == ItemID.TitaniumHelmet)
+            {
+                item.defense += 10;
+            }
+            if (item.type == ItemID.TitaniumMask)
+            {
+                item.defense += 3;
+            }
+            if (item.type == ItemID.AdamantiteHelmet)
+            {
+                item.defense += 6;
+            }
+            if (item.type == ItemID.AdamantiteSword)
+            {
+                item.damage = 100;
+            }
+            if (item.type == ItemID.AdamantiteGlaive)
+            {
+                item.damage = 90;
+            }
+            if (item.type == ItemID.AdamantiteWaraxe)
+            {
+                item.damage = 140;
+            }
+            if (item.type == ItemID.AdamantiteRepeater)
+            {
+                item.damage = 50;
+                item.crit = 1;
+                item.useTime = 13;
+                item.useAnimation = 13;
             }
             if (item.type == ItemID.FlowerofFire)
             {
@@ -1470,11 +1531,11 @@ namespace WeDoALittleTrolling.Content.Items
             // Pre-Hardmode
             if (item.type == ItemID.IceSickle)
             {
-                if (item.damage <= 60)
+                if (item.damage <= 55)
                 {
-                    item.damage = 60;
+                    item.damage = 55;
                 }
-                item.crit = 2;
+                item.crit = 1;
                 item.autoReuse = true;
             }
             if (item.type == ItemID.FrostStaff)

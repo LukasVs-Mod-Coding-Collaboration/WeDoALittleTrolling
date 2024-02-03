@@ -222,6 +222,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_CobaltShield_V2.AddIngredient(ItemID.PalladiumBar, 8);
             WDALT_CobaltShield_V2.Register();
 
+            /*
             Recipe WDALT_SanguineStaff_V1 = Recipe.Create(ItemID.SanguineStaff, 1);
             WDALT_SanguineStaff_V1.AddTile(TileID.HeavyWorkBench);
             WDALT_SanguineStaff_V1.AddIngredient(ItemID.BloodMoonStarter, 1);
@@ -235,6 +236,7 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_SanguineStaff_V2.AddIngredient(ItemID.BatBat, 1);
             WDALT_SanguineStaff_V2.AddIngredient(ItemID.CobaltBar, 12);
             WDALT_SanguineStaff_V2.Register();
+            */
 
             Recipe WDALT_HardySaddleToHeartCrystal = Recipe.Create(ItemID.LifeCrystal, 1);
             WDALT_HardySaddleToHeartCrystal.AddIngredient(ItemID.HardySaddle, 1);
