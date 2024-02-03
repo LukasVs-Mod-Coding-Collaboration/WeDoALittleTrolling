@@ -28,16 +28,17 @@ using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
-    public class ElementalStaffProjectileBullet : ModProjectile
+    public class PortableSpiderBullet : ModProjectile
     {
+        public const int dustID = 191;
         public override void SetDefaults()
         {
-            Projectile.width = 12;
-            Projectile.height = 12;
+            Projectile.width = 16;
+            Projectile.height = 24;
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.DamageType = DamageClass.Summon;
+            Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 240;
             Projectile.ignoreWater = true;
@@ -63,10 +64,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Vector2 dustPosition = Projectile.Center;
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.IceTorch, null, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, dustID, null, 0, default);
                 newDust.noGravity = true;
             }
-            SoundEngine.PlaySound(SoundID.Item27, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.NPCDeath32, Projectile.Center);
             return base.PreKill(timeLeft);
         }
 
@@ -82,7 +83,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Vector2 dustPosition = Projectile.Center;
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.IceTorch, null, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, dustID, null, 0, default);
                 newDust.noGravity = true;
             }
         }

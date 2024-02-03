@@ -524,6 +524,11 @@ Mods: {
 				DisplayName: Frozen Elemental Staff
 				Tooltip: The Frozen Elemental will fight for you
 			}
+
+			PortableSpider: {
+				Tooltip: ""
+				DisplayName: Portable Spider
+			}
 		}
 
 		Projectiles: {
@@ -540,6 +545,7 @@ Mods: {
 			ThrownCorncob.DisplayName: Corncob
 			ElementalStaffProjectile.DisplayName: Frozen Elemental
 			ElementalStaffProjectileBullet.DisplayName: Frozen Elemental Shard
+			PortableSpiderBullet.DisplayName: Fangling
 		}
 
 		Prefixes: {

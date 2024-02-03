@@ -1459,7 +1459,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npcLoot.Add(drop);
             }
             */
-            /*
             if
             (
                 npc.type == NPCID.WallCreeper ||
@@ -1480,7 +1479,6 @@ namespace WeDoALittleTrolling.Content.NPCs
                 );
                 npcLoot.Add(drop);
             }
-            */
             if
             (
                 npc.type == NPCID.WallCreeper ||
