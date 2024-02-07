@@ -206,11 +206,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.AvengerEmblem)
             {
-                player.GetAttackSpeed(DamageClass.Generic) += 0.10f;
+                player.GetAttackSpeed(DamageClass.Generic) += 0.06f;
             }
             if (item.type == ItemID.DestroyerEmblem)
             {
-                player.GetDamage(DamageClass.Generic) += 0.02f;
                 player.GetCritChance(DamageClass.Generic) += 2f;
             }
             if (item.type == ItemID.SniperScope)
@@ -488,15 +487,13 @@ namespace WeDoALittleTrolling.Content.Items
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "12% increased damage\n10% increased attack speed");
+                infoLine.ForEach(t => t.Text = "12% increased damage\n6% increased attack speed");
             }
             if
             (
                 item.type == ItemID.DestroyerEmblem
             )
             {
-                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "12% increased damage");
                 List<TooltipLine> infoLine2 = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
                 infoLine2.ForEach(t => t.Text = "10% increased critical strike chance");
             }
