@@ -290,12 +290,6 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_Soulconvert_V3.AddCondition(ShimmerCondition);
             WDALT_Soulconvert_V3.Register();
 
-            Recipe WDALT_AvengerEmblem = Recipe.Create(ItemID.AvengerEmblem, 1);
-            WDALT_AvengerEmblem.AddTile(TileID.MythrilAnvil);
-            WDALT_AvengerEmblem.AddIngredient(ItemID.HallowedBar, 12);
-            WDALT_AvengerEmblem.AddIngredient(ItemID.SoulofNight, 12);
-            WDALT_AvengerEmblem.Register();
-
             Recipe WDALT_SlimeStaff = Recipe.Create(ItemID.SlimeStaff, 1);
             WDALT_SlimeStaff.AddTile(TileID.WorkBenches);
             WDALT_SlimeStaff.AddIngredient(ItemID.Gel, 99);

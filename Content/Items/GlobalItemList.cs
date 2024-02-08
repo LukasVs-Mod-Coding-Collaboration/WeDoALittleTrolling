@@ -115,6 +115,35 @@ namespace WeDoALittleTrolling.Content.Items
             return base.CanUseItem(item, player);
         }
 
+        public static void RegisterHooks()
+        {
+            On_Player.ItemCheck_UseTeleportRod += On_Player_ItemCheck_UseTeleportRod;
+        }
+
+        public static void UnregisterHooks()
+        {
+            On_Player.ItemCheck_UseTeleportRod -= On_Player_ItemCheck_UseTeleportRod;
+        }
+
+        public static void On_Player_ItemCheck_UseTeleportRod(On_Player.orig_ItemCheck_UseTeleportRod orig, Player self, Item sItem)
+        {
+            bool harmony = (sItem.type == ItemID.RodOfHarmony);
+            if (harmony)
+            {
+                Item imanginaryRodOfDiscord = new Item(ItemID.RodofDiscord, 1, 0);
+                orig.Invoke(self, imanginaryRodOfDiscord);
+                if (self.itemAnimation > 0 && self.chaosState)
+                {
+                    int idx = self.FindBuffIndex(BuffID.ChaosState);
+                    if (idx >= 0 && idx < self.buffTime.Length)
+                    {
+                        self.buffTime[idx] = 180;
+                    }
+                }
+            }
+            orig.Invoke(self, sItem);
+        }
+
         public override bool ConsumeItem(Item item, Player player)
         {
             if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
@@ -520,6 +549,14 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Defense") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "8 defense\n16% increased defense effectiveness");
+            }
+            if
+            (
+                item.type == ItemID.RodOfHarmony
+            )
+            {
+                TooltipLine chaosStateLine = new TooltipLine(Mod, "ChaosState", "Causes the chaos state");
+                tooltips.Add(chaosStateLine);
             }
             base.ModifyTooltips(item, tooltips);
         }

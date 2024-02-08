@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Prefixes;
@@ -74,6 +75,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             NightmarePhantom.RegisterHooks();
             GlobalTiles.RegisterHooks();
             Accelerated.RegisterHooks();
+            GlobalItemList.RegisterHooks();
         }
 
         public static void UnregisterHooks()
@@ -84,6 +86,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             NightmarePhantom.UnregisterHooks();
             GlobalTiles.UnregisterHooks();
             Accelerated.UnregisterHooks();
+            GlobalItemList.UnregisterHooks();
         }
 
         public override void PreUpdatePlayers()
