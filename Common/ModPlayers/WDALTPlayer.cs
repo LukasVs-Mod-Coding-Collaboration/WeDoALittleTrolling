@@ -37,6 +37,7 @@ using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.ModLoader.IO;
+using Terraria.GameInput;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -77,6 +78,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int unionMirrorTicks;
         public int weightedStack;
         public int acceleratedStack;
+        public bool lifeforceEngineActivated;
+        public int lifeforceEngineTicks;
+        public int lifeforceEngineCooldown;
+        public bool hasLifeforceEngine;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -116,6 +121,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             unionMirrorTicks = 0;
             weightedStack = 0;
             acceleratedStack = 0;
+            lifeforceEngineActivated = false;
+            lifeforceEngineTicks = 0;
+            lifeforceEngineCooldown = 0;
+            hasLifeforceEngine = false;
         }
 
         public override void UpdateDead()
@@ -205,6 +214,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             unionMirrorTicks = 0;
             weightedStack = 0;
             acceleratedStack = 0;
+            lifeforceEngineActivated = false;
+            lifeforceEngineTicks = 0;
+            lifeforceEngineCooldown = 0;
+            hasLifeforceEngine = false;
         }
 
         public override void ResetEffects()
@@ -225,9 +238,19 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             frozenElementalMinion = false;
             weightedStack = 0;
             acceleratedStack = 0;
+            hasLifeforceEngine = false;
             base.ResetEffects();
         }
-        
+
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (WDALTKeybindSystem.LifeforceEngineKeybind.JustPressed)
+            {
+                lifeforceEngineActivated = true;
+               // Main.NewText($"Engine Input Detected");
+            }
+        }
+
         public override void PostUpdate()
         {
             GlobalItemList.ModifySetBonus(player);
@@ -265,6 +288,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     UnionMirror.TeleportHome(player);
                 }
                 unionMirrorTicks--;
+            }
+            if (lifeforceEngineTicks > 0)
+            {
+                lifeforceEngineTicks--;
+            }
+            if (lifeforceEngineCooldown > 0)
+            {
+                lifeforceEngineCooldown--;
             }
             base.PostUpdate();
         }
@@ -384,6 +415,26 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.statDefense += (spookyBonus * 3);
             }
             heartOfDespairDamageBonus = (player.statLifeMax2 - player.statLife) / 5;
+            if (lifeforceEngineActivated)
+            {
+                if (lifeforceEngineCooldown == 0 && hasLifeforceEngine)
+                {
+                    lifeforceEngineTicks = 300;
+                    lifeforceEngineCooldown = 7500;
+                    lifeforceEngineActivated = false;
+                }
+                else
+                {
+                    lifeforceEngineActivated = false;
+                }
+            }
+            if(lifeforceEngineTicks > 0)
+            {
+                int currentDefense = 0;
+                currentDefense = player.statDefense;
+                player.lifeRegen += currentDefense;
+                player.statDefense -= currentDefense;
+            }
             base.PostUpdateEquips();
         }
 

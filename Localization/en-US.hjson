@@ -9,16 +9,15 @@
 Mods: {
 	WeDoALittleTrolling: {
 		Items: {
-			GreenstrikeDynamo: {
-				DisplayName: Greenstrike Dynamo
+			LifeforceEngine: {
+				DisplayName: Lifeforce Engine
 				Tooltip:
 					'''
-					In memory of Bad Piggies
-					Negates fall damage and increases running speed
-					Grants MASSIVE buffs to life regeneration
-					Prolongs immmunity frames
-					Increases attack speed by 25%
-					Post-Game and Game breaking
+					Activate the engine to temporarily transform
+					all your defence into health regeneration
+					for five seconds. This synergises best with
+					the melee class due to its high base defence.
+					This has a 2 minute cooldown.
 					'''
 			}
 
@@ -911,5 +910,7 @@ Mods: {
 			IceBiomeCustomCavesMessage: Generating additional ice biome caves... This may take a while...
 			IceBiomeGloomMessage: Generating additional ice biome gloom
 		}
+
+		Keybinds.LifeforceEngine.DisplayName: Activate Lifeforce Engine
 	}
 }

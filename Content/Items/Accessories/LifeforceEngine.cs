@@ -26,10 +26,11 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-    internal class GreenstrikeDynamo : ModItem
+    internal class LifeforceEngine : ModItem
     {
 
         public override void SetDefaults()
@@ -49,17 +50,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += 1.25f; // (originally 1.5)
-            player.noFallDmg = true;
-            player.accRunSpeed += 0.4f;
-            if(player.lifeRegen >= 0)
-            {
-                player.lifeRegen += 25; //HP Regen (originally 25)
-            }
-            //player.GetAttackSpeed(DamageClass.Generic) += 0.25f;
-            player.longInvince = true; //Cross Necklace effect
-            player.wingTimeMax += 1200;
-            player.GetAttackSpeed(DamageClass.Generic) += (float)0.25;
+            player.GetModPlayer<WDALTPlayer>().hasLifeforceEngine = true;
         }
 
         public override void AddRecipes()
@@ -67,10 +58,12 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.LifeFruit, 5)
-              .AddIngredient(ItemID.LunarBar, 10)
-              .AddIngredient(ItemID.ChlorophyteBar, 10)
-              .AddIngredient(ItemID.Wire, 50)
               .AddIngredient(ItemID.MartianConduitPlating, 10)
+              .AddIngredient(ItemID.ChlorophyteBar, 10)
+              .AddRecipeGroup(RecipeGroupID.IronBar, 10)
+              .AddIngredient(ItemID.Wire, 50)
+              .AddIngredient(ItemID.Switch, 1)
+              .AddIngredient(ItemID.Timer5Second, 24)
               .Register();
         }
     }
