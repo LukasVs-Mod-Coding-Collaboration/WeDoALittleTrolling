@@ -247,7 +247,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (WDALTKeybindSystem.LifeforceEngineKeybind.JustPressed)
             {
                 lifeforceEngineActivated = true;
-               // Main.NewText($"Engine Input Detected");
             }
         }
 
@@ -417,11 +416,28 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             heartOfDespairDamageBonus = (player.statLifeMax2 - player.statLife) / 5;
             if (lifeforceEngineActivated)
             {
-                if (lifeforceEngineCooldown == 0 && hasLifeforceEngine)
+                if (hasLifeforceEngine && lifeforceEngineCooldown <= 0 && player.statLife < player.statLifeMax2)
                 {
                     lifeforceEngineTicks = 300;
                     lifeforceEngineCooldown = 7500;
                     lifeforceEngineActivated = false;
+                    for (int i = 0; i < 60; i++)
+                    {
+                        int rMax = (int)player.width;
+                        double r = rMax * Math.Sqrt(Main.rand.NextDouble());
+                        double angle = Main.rand.NextDouble() * 2 * Math.PI;
+                        int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                        int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                        Vector2 dustPosition = player.Center;
+                        dustPosition.X += xOffset;
+                        dustPosition.Y += yOffset;
+                        Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
+                        dustVelocity.Normalize();
+                        dustVelocity *= 16f;
+                        Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Electric, dustVelocity, 0, default);
+                        newDust.noGravity = true;
+                    }
+                    SoundEngine.PlaySound(SoundID.Item22, player.Center);
                 }
                 else
                 {
@@ -430,10 +446,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if(lifeforceEngineTicks > 0)
             {
-                int currentDefense = 0;
-                currentDefense = player.statDefense;
-                player.lifeRegen += currentDefense;
-                player.statDefense -= currentDefense;
+                player.lifeRegen += Math.Abs(player.statDefense);
+                player.statDefense -= Math.Abs(player.statDefense);
             }
             base.PostUpdateEquips();
         }
