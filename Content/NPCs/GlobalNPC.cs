@@ -83,7 +83,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Mothron,
             NPCID.Lihzahrd,
             NPCID.LihzahrdCrawler,
-            NPCID.BrainofCthulhu,
             NPCID.PossessedArmor,
             NPCID.RockGolem
         };
@@ -335,14 +334,31 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.SkeletronHand)
             {
                 npc.lifeMax *= 4;
+                if (Main.getGoodWorld)
+                {
+                    npc.damage = (int)Math.Round(npc.damage * 0.5);
+                }
             }
             if (npc.type == NPCID.BrainofCthulhu)
             {
                 npc.lifeMax *= 2;
+                if (Main.getGoodWorld)
+                {
+                    npc.defense -= 10;
+                    npc.knockBackResist = 1.25f;
+                }
+                else
+                {
+                    npc.knockBackResist = 0f;
+                }
             }
             if (npc.type == NPCID.Creeper)
             {
                 npc.lifeMax *= 2;
+                if (Main.getGoodWorld)
+                {
+                    npc.knockBackResist = 2.5f;
+                }
             }
             if (npc.type == NPCID.QueenBee)
             {
