@@ -35,7 +35,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override float RollChance(Item item)
         {
-            if(!NPC.downedBoss3)
+            if(!NPC.downedBoss3 && !Main.getGoodWorld)
             {
                 return 0f;
             }
