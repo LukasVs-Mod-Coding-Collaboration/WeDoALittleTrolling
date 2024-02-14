@@ -753,14 +753,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if (InflictWreckedResistance1In1Group.Contains(projectile.type))
             {
-                if (random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictWreckedAccuracy1In1Group.Contains(projectile.type))
             {
-                if (random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
@@ -771,14 +771,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC attacker)
             )
             {
-                if (attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.SkeletronPrime || attacker.type == NPCID.Retinazer)
+                if ((attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.SkeletronPrime || attacker.type == NPCID.Retinazer) && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictDevastated1In1Group.Contains(projectile.type))
             {
-                if (random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
@@ -786,7 +786,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if (projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
             {
-                if (npc.type == NPCID.MoonLordHead)
+                if (npc.type == NPCID.MoonLordHead && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
@@ -795,20 +795,23 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
             {
                 target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
-                target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                if (Main.masterMode)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
             }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if (WDALTModContentID.GetThoriumBossProjectileInflictWreckedResistance1in1Group().Contains(projectile.type))
                 {
-                    if (random.Next(0, 1) == 0)
+                    if (random.Next(0, 1) == 0 && Main.masterMode)
                     {
                         target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     }
                 }
                 if (WDALTModContentID.GetThoriumBossProjectileInflictDevastated1in1Group().Contains(projectile.type))
                 {
-                    if (random.Next(0, 1) == 0)
+                    if (random.Next(0, 1) == 0 && Main.masterMode)
                     {
                         target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                         Devastated.AnimateDevastated(target);

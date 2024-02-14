@@ -66,8 +66,12 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_EaterofWorldsExtras(NPC npc, ref UnifiedRandom random)
         {
+            if (!Main.expertMode)
+            {
+                return;
+            }
             //Replicate vanilla behavior as good as possible.
-            if (random.NextBool(300) && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient)
+            if (random.NextBool(300) && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.TargetClosest();
                 if (!Collision.CanHitLine(npc.Center, 1, 1, Main.player[npc.target].Center, 1, 1))
@@ -100,6 +104,10 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_SkeletronPrimeExtras(NPC npc)
         {
+            if (!Main.expertMode)
+            {
+                return;
+            }
             bool shootFlag = true;
             int numArms = 0;
             if (!(npc.ai[1] == 0f) || !(Main.netMode != NetmodeID.MultiplayerClient))
@@ -178,6 +186,10 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_PlanteraShotgun(NPC npc, ref UnifiedRandom random)
         {
+            if (!Main.expertMode)
+            {
+                return;
+            }
             if (Main.player[npc.target].teleportTime > 0f)
             {
                 Main.player[npc.target].AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
@@ -196,7 +208,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 dmg2 *= 2;
                 shotDelay = 30;
             }
-            if (timeSinceLastShot >= shotDelay && Main.expertMode && Main.netMode != NetmodeID.MultiplayerClient && (npc.life < (npc.lifeMax / 2)))
+            if (timeSinceLastShot >= shotDelay && Main.netMode != NetmodeID.MultiplayerClient && (npc.life < (npc.lifeMax / 2)))
             {
                 npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick = npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive;
                 npc.TargetClosest();
@@ -224,6 +236,10 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_GolemExtras(NPC npc)
         {
+            if (!Main.expertMode)
+            {
+                return;
+            }
             if (npc.ai[0] == 1f && Math.Abs(npc.velocity.Y) == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.GetGlobalNPC<WDALTNPCUtil>().golemBoulderIteration = 1;

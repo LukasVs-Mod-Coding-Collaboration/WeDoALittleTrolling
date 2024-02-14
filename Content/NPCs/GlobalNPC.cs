@@ -1149,21 +1149,21 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (InflictWreckedResistance1In1Group.Contains(npcType))
             {
-                if (random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictWreckedAccuracy1In1Group.Contains(npcType))
             {
-                if (random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictDevastated1In1Group.Contains(npcType))
             {
-                if (random.Next(0, 1) == 0)
+                if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
@@ -1176,11 +1176,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 //Buff Thorium Bosses Accordingly
-                if (WDALTModContentID.GetThoriumBossInflictWreckedResistance1in1Group().Contains(npcType))
+                if (WDALTModContentID.GetThoriumBossInflictWreckedResistance1in1Group().Contains(npcType) && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
-                if (WDALTModContentID.GetThoriumBossInflictDevastated1in1Group().Contains(npcType))
+                if (WDALTModContentID.GetThoriumBossInflictDevastated1in1Group().Contains(npcType) && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);
