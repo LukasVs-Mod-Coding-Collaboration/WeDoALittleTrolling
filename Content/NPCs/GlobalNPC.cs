@@ -320,12 +320,26 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (npc.type == NPCID.EyeofCthulhu)
             {
                 npc.lifeMax *= 3;
-                npc.damage = (int)Math.Round(npc.damage * 2.0);
+                if (Main.getGoodWorld)
+                {
+                    npc.damage = (int)Math.Round(npc.damage * Math.Sqrt(2.0));
+                }
+                else
+                {
+                    npc.damage = (int)Math.Round(npc.damage * 2.0);
+                }
             }
             if (npc.type == NPCID.KingSlime)
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);
-                npc.damage = (int)Math.Round(npc.damage * 1.5);
+                if (Main.getGoodWorld)
+                {
+                    npc.damage = (int)Math.Round(npc.damage * Math.Sqrt(1.5));
+                }
+                else
+                {
+                    npc.damage = (int)Math.Round(npc.damage * 1.5);
+                }
             }
             if (npc.type == NPCID.SkeletronHead)
             {
@@ -354,16 +368,27 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.Creeper)
             {
-                npc.lifeMax *= 2;
                 if (Main.getGoodWorld)
                 {
                     npc.knockBackResist = 2.5f;
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * Math.Sqrt(2.0));
+                }
+                else
+                {
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.0);
                 }
             }
             if (npc.type == NPCID.QueenBee)
             {
                 npc.lifeMax *= 2;
-                npc.damage = (int)Math.Round(npc.damage * 1.5);
+                if (Main.getGoodWorld)
+                {
+                    npc.damage = (int)Math.Round(npc.damage * Math.Sqrt(1.5));
+                }
+                else
+                {
+                    npc.damage = (int)Math.Round(npc.damage * 1.5);
+                }
             }
             if
             (
@@ -373,7 +398,14 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.TheHungryII
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                if (Main.getGoodWorld)
+                {
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * Math.Sqrt(2.25));
+                }
+                else
+                {
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                }
             }
             if
             (

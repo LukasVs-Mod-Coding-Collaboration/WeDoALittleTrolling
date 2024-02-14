@@ -49,11 +49,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void RegisterHooks()
         {
             On_DontStarveDarknessDamageDealer.Update += On_DontStarveDarknessDamageDealer_Update;
+            On_Player.VanillaBaseDefenseEffectiveness += On_Player_VanillaBaseDefenseEffectiveness;
         }
 
         public static void UnregisterHooks()
         {
             On_DontStarveDarknessDamageDealer.Update -= On_DontStarveDarknessDamageDealer_Update;
+            On_Player.VanillaBaseDefenseEffectiveness -= On_Player_VanillaBaseDefenseEffectiveness;
         }
 
         public static void On_DontStarveDarknessDamageDealer_Update(On_DontStarveDarknessDamageDealer.orig_Update orig, Player player)
@@ -63,6 +65,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 DontStarveDarknessDamageDealer.Reset();
             }
             orig.Invoke(player);
+        }
+
+        public static float On_Player_VanillaBaseDefenseEffectiveness(On_Player.orig_VanillaBaseDefenseEffectiveness orig)
+        {
+            if (Main.getGoodWorld && Main.GameModeInfo.IsMasterMode)
+            {
+                return 1.25f;
+            }
+            return orig.Invoke();
         }
     }
 }
