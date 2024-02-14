@@ -31,12 +31,14 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             IL_WorldGen.UpdateWorld_Inner += IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
+            IL_Player.UpdateBiomes += IL_Player_UpdateBiomes;
         }
 
         public static void UnregisterILHooks()
         {
             IL_WorldGen.UpdateWorld_Inner -= IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
+            IL_Player.UpdateBiomes -= IL_Player_UpdateBiomes;
         }
 
         public static void IL_WorldGen_UpdateWorld(ILContext intermediateLanguageContext)
@@ -159,6 +161,29 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(successInjectDestroyerAIHook)
             {
                 WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
+            }
+        }
+
+        public static void IL_Player_UpdateBiomes(ILContext intermediateLanguageContext)
+        {
+            bool successInjectGetGoodWorldLightingHook = true;
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.getGoodWorld)));
+                cursor.Index++;
+                cursor.Emit(OpCodes.Pop);
+                cursor.Emit(OpCodes.Ldc_I4_0);
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject For The Worthy Lighting Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectGetGoodWorldLightingHook = false;
+            }
+            if(successInjectGetGoodWorldLightingHook)
+            {
+                WeDoALittleTrolling.logger.Info("WDALT: Successfully injected For The Worthy Lighting Hook via IL Editing.");
             }
         }
     }
