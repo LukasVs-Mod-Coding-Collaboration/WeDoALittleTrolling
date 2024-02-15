@@ -953,6 +953,50 @@ namespace WeDoALittleTrolling.Content.Items
                 item.shootsEveryUse = true;
                 item.knockBack = 5.25f;
             }
+            if (item.type == ItemID.TheRottedFork)
+            {
+                if (item.damage <= 20)
+                {
+                    item.damage = 20;
+                }
+                item.useTime = 24;
+                item.useAnimation = 24;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.BlueMoon)
+            {
+                if (item.damage <= 64)
+                {
+                    item.damage = 64;
+                }
+            }
+            if (item.type == ItemID.Sunfury)
+            {
+                if (item.damage <= 74)
+                {
+                    item.damage = 74;
+                }
+            }
+            if (item.type == ItemID.DarkLance)
+            {
+                if (item.damage <= 40)
+                {
+                    item.damage = 40;
+                }
+                item.useTime = 20;
+                item.useAnimation = 20;
+                item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.Gungnir)
+            {
+                if (item.damage <= 70)
+                {
+                    item.damage = 70;
+                }
+                item.useTime = 20;
+                item.useAnimation = 20;
+                item.shootsEveryUse = true;
+            }
             if (item.type == ItemID.FalconBlade)
             {
                 item.damage = 30;
@@ -1747,7 +1791,7 @@ namespace WeDoALittleTrolling.Content.Items
 
             //Pre-Hardmode Ranger Rebalance
 
-            if (item.type == ItemID.BeesKnees && WDALTModSystem.isCalamityModPresent)
+            if (item.type == ItemID.BeesKnees)
             {
                 item.damage = 24;
                 item.useTime = 22;
@@ -1761,14 +1805,14 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 24;
                 item.shootsEveryUse = true;
             }
-            if (item.type == ItemID.HellwingBow && WDALTModSystem.isCalamityModPresent)
+            if (item.type == ItemID.HellwingBow)
             {
                 item.damage = 24;
                 item.useTime = 12;
                 item.useAnimation = 12;
                 item.shootsEveryUse = true;
             }
-            if (item.type == ItemID.MoltenFury && WDALTModSystem.isCalamityModPresent)
+            if (item.type == ItemID.MoltenFury)
             {
                 item.damage = 32;
                 item.shootSpeed = 12f;
