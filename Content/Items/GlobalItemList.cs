@@ -963,6 +963,13 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 24;
                 item.shootsEveryUse = true;
             }
+            if (item.type == ItemID.FlamingMace)
+            {
+                if (item.damage <= 24)
+                {
+                    item.damage = 24;
+                }
+            }
             if (item.type == ItemID.BlueMoon)
             {
                 if (item.damage <= 64)
@@ -992,6 +999,41 @@ namespace WeDoALittleTrolling.Content.Items
                 if (item.damage <= 95)
                 {
                     item.damage = 95;
+                }
+            }
+            if (item.type == ItemID.MonkStaffT1)
+            {
+                if (item.damage <= 70)
+                {
+                    item.damage = 70;
+                }
+            }
+            if (item.type == ItemID.MonkStaffT2)
+            {
+                if (item.damage <= 90)
+                {
+                    item.damage = 90;
+                }
+            }
+            if (item.type == ItemID.MonkStaffT3)
+            {
+                if (item.damage <= 150)
+                {
+                    item.damage = 150;
+                }
+            }
+            if (item.type == ItemID.Terragrim)
+            {
+                if (item.damage <= 20)
+                {
+                    item.damage = 20;
+                }
+            }
+            if (item.type == ItemID.Arkhalis)
+            {
+                if (item.damage <= 35)
+                {
+                    item.damage = 35;
                 }
             }
             if (item.type == ItemID.FalconBlade)
@@ -1364,6 +1406,12 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.TerraBlade)
             {
                 item.damage = 90;
+            }
+            if (item.type == ItemID.DD2SquireBetsySword)
+            {
+                item.useTime = 16;
+                item.useAnimation = 16;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.InfluxWaver)
             {
