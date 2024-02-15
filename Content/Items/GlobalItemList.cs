@@ -989,13 +989,10 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Gungnir)
             {
-                if (item.damage <= 70)
+                if (item.damage <= 95)
                 {
-                    item.damage = 70;
+                    item.damage = 95;
                 }
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.FalconBlade)
             {
@@ -1349,6 +1346,10 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
                 item.knockBack = 14;
+            }
+            if (item.type == ItemID.Excalibur)
+            {
+                item.damage = 115;
             }
             if (item.type == ItemID.TrueNightsEdge)
             {
