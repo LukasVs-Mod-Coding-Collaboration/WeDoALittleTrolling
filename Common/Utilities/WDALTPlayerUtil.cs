@@ -42,32 +42,17 @@ namespace WeDoALittleTrolling.Common.Utilities
     {
         public Player player;
         public static UnifiedRandom random = new UnifiedRandom();
-        public float lightBrightness;
         public long currentTick;
         
         public override void Initialize()
         {
             player = this.Player;
-            lightBrightness = 0f;
             currentTick = 0;
         }
 
         public override void PreUpdate()
         {
             currentTick++;
-            if (Main.dontStarveWorld && Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer && currentTick % 60 == 0)
-            {
-                Color color = Lighting.GetColor((int)player.Center.X / 16, (int)player.Center.Y / 16);
-                lightBrightness = color.ToVector3().Length();
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    ModPacket syncBrightnessPacket = Mod.GetPacket();
-                    syncBrightnessPacket.Write(WDALTPacketTypeID.syncBrightness);
-                    syncBrightnessPacket.Write(lightBrightness);
-                    syncBrightnessPacket.Write(Main.myPlayer);
-                    syncBrightnessPacket.Send();
-                }
-            }
         }
 
         //SmartPVP(TM) Technology: Display actual pvp damage to clients on non-lethal hits and sync health
@@ -131,8 +116,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             int posX = (int)(player.position.X + (float)(player.width / 2)) / 16;
             int posY = (int)(player.position.Y + (float)(player.height / 2)) / 16;
-            bool brightCondition = (Main.dontStarveWorld ? (lightBrightness >= 0.1f) : true);
-            if (Main.wallHouse[Main.tile[posX, posY].WallType] && brightCondition)
+            if (Main.wallHouse[Main.tile[posX, posY].WallType])
             {
                 return true;
             }

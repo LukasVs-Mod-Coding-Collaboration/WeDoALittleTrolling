@@ -42,14 +42,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             int dropAmount = 0;
             int netLifePvP = 100;
             int netLifePvPPlayerIndex = 255;
-            float brightness = 0f;
-            int brightnessPlayerIndex = 255;
             Vector2 itemSpawnPos = new Vector2(0f, 0f);
-            if(type == WDALTPacketTypeID.syncBrightness)
-            {
-                brightness = reader.ReadSingle();
-                brightnessPlayerIndex = reader.ReadInt32();
-            }
             if(type == WDALTPacketTypeID.updateWindSpeedTarget)
             {
                 value = reader.ReadSingle();
@@ -110,10 +103,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(Main.netMode == NetmodeID.Server)
             {
-                if(type == WDALTPacketTypeID.syncBrightness)
-                {
-                    Main.player[brightnessPlayerIndex].GetModPlayer<WDALTPlayerUtil>().lightBrightness = brightness;
-                }
                 if(type == WDALTPacketTypeID.syncNetFinalDamage)
                 {
                     ModPacket broadcastNetFinalDamagePacket = mod.GetPacket();
