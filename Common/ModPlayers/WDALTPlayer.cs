@@ -340,11 +340,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void PostUpdateEquips()
         {
-            if(sandStepping)
+            if (sandStepping)
             {
                 player.maxRunSpeed += 2f;
             }
-            if(sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
+            if (sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
             {
                 player.aggro -= 400;
                 player.statDefense += 4;
@@ -356,14 +356,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 player.ClearBuff(ModContent.BuffType<SorcerousMirrorBuff>());
             }
-            if(searingSetBonus)
+            if (searingSetBonus)
             {
-                searingSetBonusValue = ((int)player.statDefense)/(int)4;
+                searingSetBonusValue = ((int)player.statDefense) / (int)4;
                 float modifierSAR = (1f + (searingSetBonusValue * 0.01f));
                 player.DefenseEffectiveness *= modifierSAR;
                 player.GetDamage(DamageClass.Generic) *= modifierSAR;
             }
-            if(player.HasBuff(ModContent.BuffType<WreckedResistance>()))
+            if (player.HasBuff(ModContent.BuffType<WreckedResistance>()))
             {
                 float modifierWR = (float)(90 - (wreckedResistanceStack * 10)) * 0.01f;
                 player.endurance *= modifierWR;
@@ -372,16 +372,24 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 wreckedResistanceStack = 0;
             }
-            if(player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
+            if (player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
             {
                 float modifierWA = (float)(90 - (wreckedAccuracyStack * 10)) * 0.01f;
-                player.GetCritChance(DamageClass.Generic) *= modifierWA;
+                for (int i = 0; i < DamageClassLoader.DamageClassCount; i++)
+                {
+                    DamageClass c = DamageClassLoader.GetDamageClass(i);
+                    if (c != null)
+                    {
+                        player.GetCritChance(c) *= modifierWA;
+                    }
+                }
+                player.GetCritChance(DamageClass.Generic) -= (float)player.HeldItem.crit * (1f - modifierWA);
             }
             else
             {
                 wreckedAccuracyStack = 0;
             }
-            if(player.HasBuff(ModContent.BuffType<Devastated>()))
+            if (player.HasBuff(ModContent.BuffType<Devastated>()))
             {
                 float modifierD = (float)(90 - (devastatedStack * 10)) * 0.01f;
                 player.statLifeMax2 = (int)Math.Round(player.statLifeMax2 * modifierD);
@@ -394,15 +402,16 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 devastatedStack = 0;
             }
-            if(gnomedStonedDebuff)
+            if (gnomedStonedDebuff)
             {
-                if(!player.buffImmune[BuffID.Stoned])
+                if (!player.buffImmune[BuffID.Stoned])
                 {
                     int chanceDenominator = 5;
-                    if (Main.drunkWorld) {
+                    if (Main.drunkWorld)
+                    {
                         chanceDenominator = 3;
                     }
-                    if(!player.HasBuff(BuffID.Stoned) && currentTick % 60 == 0 && random.NextBool(chanceDenominator))
+                    if (!player.HasBuff(BuffID.Stoned) && currentTick % 60 == 0 && random.NextBool(chanceDenominator))
                     {
                         player.AddBuff(BuffID.Stoned, 300, true);
                     }
@@ -444,7 +453,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     lifeforceEngineActivated = false;
                 }
             }
-            if(lifeforceEngineTicks > 0)
+            if (lifeforceEngineTicks > 0)
             {
                 player.lifeRegen += Math.Abs(player.statDefense);
                 player.statDefense -= Math.Abs(player.statDefense);

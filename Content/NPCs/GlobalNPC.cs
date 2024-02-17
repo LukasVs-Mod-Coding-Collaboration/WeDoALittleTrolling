@@ -72,7 +72,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.MossHornet,
             NPCID.LittleMossHornet,
             NPCID.TinyMossHornet,
-            NPCID.PossessedArmor
+            NPCID.PossessedArmor,
+            NPCID.FireImp
         };
         public static readonly int[] NerfGroup50Percent =
         {
@@ -405,6 +406,16 @@ namespace WeDoALittleTrolling.Content.NPCs
                 else
                 {
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.25);
+                }
+            }
+            if
+            (
+                npc.type == NPCID.FireImp
+            )
+            {
+                if (Main.getGoodWorld)
+                {
+                    npc.defense -= 8;
                 }
             }
             if
@@ -914,6 +925,18 @@ namespace WeDoALittleTrolling.Content.NPCs
                 WDALTBossAIUtil.BossAI_PlanteraShotgun(npc, ref random);
             }
             base.AI(npc);
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            if (Main.getGoodWorld)
+            {
+                if (npc.type == NPCID.BurningSphere && npc.dontTakeDamage)
+                {
+                    npc.dontTakeDamage = false;
+                }
+            }
+            base.PostAI(npc);
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
