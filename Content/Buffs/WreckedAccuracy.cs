@@ -42,7 +42,7 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
         {
-            tip = tip+" "+(5+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().wreckedAccuracyStack * 5))+" degrees";
+            tip = tip+" "+(10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().wreckedAccuracyStack * 10))+"%";
             base.ModifyBuffText(ref buffName, ref tip, ref rare);
         }
         

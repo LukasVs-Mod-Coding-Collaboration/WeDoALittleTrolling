@@ -880,7 +880,7 @@ Mods: {
 
 			WreckedAccuracy: {
 				DisplayName: Wrecked Accuracy
-				Description: Projectile accuracy is decreased by up to
+				Description: Critical strike chance is decreased by
 			}
 
 			WormCandleBuff: {

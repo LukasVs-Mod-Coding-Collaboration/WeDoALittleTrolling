@@ -83,7 +83,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int lifeforceEngineCooldown;
         public bool hasLifeforceEngine;
         public static UnifiedRandom random = new UnifiedRandom();
-
+        
         public override void Initialize()
         {
             player = this.Player;
@@ -301,7 +301,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void PreUpdateBuffs()
         {
-            if (player.whoAmI == Main.myPlayer)
+            if(player.whoAmI == Main.myPlayer)
             {
                 if (WDALTSceneMetrics.HasWormCandle)
                 {
@@ -329,20 +329,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
         }
 
-        public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-            if (player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
-            {
-                float rndAmount = 5f + ((float)wreckedAccuracyStack * 5f);
-                float turnAngle = MathHelper.ToRadians(Main.rand.NextFloat(-rndAmount, rndAmount));
-                velocity = velocity.RotatedBy(turnAngle, default);
-            }
-            base.ModifyShootStats(item, ref position, ref velocity, ref type, ref damage, ref knockback);
-        }
-
         public override void ModifyLuck(ref float luck)
         {
-            if (player.HasBuff<Gnomed>())
+            if(player.HasBuff<Gnomed>())
             {
                 luck -= 5f;
             }
@@ -383,7 +372,20 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 wreckedResistanceStack = 0;
             }
-            if (!player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
+            if (player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
+            {
+                float modifierWA = (float)(90 - (wreckedAccuracyStack * 10)) * 0.01f;
+                for (int i = 0; i < DamageClassLoader.DamageClassCount; i++)
+                {
+                    DamageClass c = DamageClassLoader.GetDamageClass(i);
+                    if (c != null)
+                    {
+                        player.GetCritChance(c) *= modifierWA;
+                    }
+                }
+                player.GetCritChance(DamageClass.Generic) -= (float)player.HeldItem.crit * (1f - modifierWA);
+            }
+            else
             {
                 wreckedAccuracyStack = 0;
             }
@@ -461,12 +463,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override bool FreeDodge(Player.HurtInfo info)
         {
-            if (random.NextBool(4) && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
+            if(random.NextBool(4) && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;
             }
-            if (random.Next(0, 100) < dodgeChancePercent && dodgeChancePercent > 0 && !player.HasBuff(ModContent.BuffType<Devastated>()))
+            if(random.Next(0, 100) < dodgeChancePercent && dodgeChancePercent > 0 && !player.HasBuff(ModContent.BuffType<Devastated>()))
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;
@@ -490,7 +492,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void UpdateLifeRegen()
         {
-            if (player.HasItem(ModContent.ItemType<HolyCharm>()) || searingSetBonus || (NPC.downedGolemBoss && soulPoweredShield))
+            if(player.HasItem(ModContent.ItemType<HolyCharm>()) || searingSetBonus || (NPC.downedGolemBoss && soulPoweredShield))
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
             }
@@ -515,7 +517,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (player.HasBuff(ModContent.BuffType<SearingInferno>()))
+            if(player.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
                 modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
             }
@@ -528,7 +530,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if (player.HeldItem.prefix == ModContent.PrefixType<Supercritical>())
                 {
-                    if (Supercritical.BuffGroup.Contains(player.HeldItem.type))
+                    if(Supercritical.BuffGroup.Contains(player.HeldItem.type))
                     {
                         modifiers.CritDamage += 2.5f;
                     }
@@ -545,10 +547,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 modifiers.DamageType == DamageClass.MagicSummonHybrid
             )
             {
-                if (spookyEmblem)
+                if(spookyEmblem)
                 {
                     modifiers.ArmorPenetration += (spookyBonus * 3);
-                    if (random.Next(0, 100) < (spookyBonus * 3)) //(3 x <Player Minion Slots>)% Chance
+                    if(random.Next(0, 100) < (spookyBonus * 3)) //(3 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }
@@ -700,7 +702,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 (
                     player.HeldItem.prefix == ModContent.PrefixType<Leeching>() ||
                     player.HeldItem.prefix == ModContent.PrefixType<Siphoning>() ||
-                    player.HeldItem.type == ItemID.ChlorophytePartisan
+                    player.HeldItem.type   == ItemID.ChlorophytePartisan
                 ) &&
                 (
                     hit.DamageType == DamageClass.Melee ||
@@ -709,9 +711,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     hit.DamageType == DamageClass.Magic ||
                     hit.DamageType == DamageClass.MagicSummonHybrid
                 ) &&
-                !target.friendly &&
-                !target.CountsAsACritter &&
-                !target.isLikeATownNPC &&
+                !target.friendly && 
+                !target.CountsAsACritter && 
+                !target.isLikeATownNPC && 
                 target.type != NPCID.TargetDummy &&
                 target.canGhostHeal &&
                 target.CanBeChasedBy()
@@ -720,34 +722,34 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 // 1 Base Heal + 5% of damage done
                 int healingAmount = 1 + (int)Math.Round(damageDone * 0.05);
                 // Stop Sacling at ~200 Damage
-                if (healingAmount > 10)
+                if(healingAmount > 10)
                 {
                     healingAmount = 10;
                 }
                 // Having Moon Bite means the effect still works, however,
                 // it will be 90% less effective
                 // 1 Base Heal is still guaranteed
-                if (player.HasBuff(BuffID.MoonLeech) && (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan))
+                if(player.HasBuff(BuffID.MoonLeech) && (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan))
                 {
                     healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                 }
                 // Chlorophyte Partisan go BRRRR!!!
-                if (player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
+                if(player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
                 {
                     healingAmount *= 2;
                 }
-                if (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
+                if(player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
                     long ticksSinceLastHeal = Math.Abs(currentTick - lastLeechingHealTick);
-                    if (ticksSinceLastHeal >= player.itemAnimationMax) // Only heal player one time every item use
+                    if(ticksSinceLastHeal >= player.itemAnimationMax) // Only heal player one time every item use
                     {
                         player.Heal(healingAmount);
                         lastLeechingHealTick = currentTick;
                     }
                 }
-                else if (player.HeldItem.prefix == ModContent.PrefixType<Siphoning>())
+                else if(player.HeldItem.prefix == ModContent.PrefixType<Siphoning>())
                 {
-                    if (player.statMana <= (player.statManaMax2 - healingAmount))
+                    if(player.statMana <= (player.statManaMax2 - healingAmount))
                     {
                         player.statMana += healingAmount;
                     }
