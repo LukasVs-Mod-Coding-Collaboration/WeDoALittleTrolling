@@ -175,18 +175,8 @@ namespace WeDoALittleTrolling.Content.NPCs
         };
         public static readonly int[] InflictWreckedAccuracy1In1Group =
         {
-            NPCID.DukeFishron,
             NPCID.SkeletonSniper,
             NPCID.Clown,
-            NPCID.NebulaBrain,
-            NPCID.NebulaHeadcrab,
-            NPCID.NebulaBeast,
-            NPCID.NebulaSoldier,
-            NPCID.VortexRifleman,
-            NPCID.VortexHornetQueen,
-            NPCID.VortexHornet,
-            NPCID.VortexLarva,
-            NPCID.VortexSoldier,
             NPCID.Scarecrow1,
             NPCID.Scarecrow2,
             NPCID.Scarecrow3,
@@ -197,8 +187,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Scarecrow8,
             NPCID.Scarecrow9,
             NPCID.Scarecrow10,
-            NPCID.Poltergeist,
-            NPCID.DetonatingBubble
+            NPCID.Poltergeist
         };
         public static readonly int[] InflictDevastated1In1Group =
         {

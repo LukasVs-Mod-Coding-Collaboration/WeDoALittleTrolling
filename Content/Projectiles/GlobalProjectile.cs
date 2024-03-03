@@ -116,21 +116,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             ProjectileID.SniperBullet,
             ProjectileID.HappyBomb,
-            ProjectileID.NebulaBolt,
-            ProjectileID.NebulaEye,
-            ProjectileID.NebulaSphere,
-            ProjectileID.NebulaLaser,
-            ProjectileID.VortexLaser,
-            ProjectileID.VortexAcid,
-            ProjectileID.VortexLightning,
             ProjectileID.Boulder,
             ProjectileID.BouncyBoulder,
             ProjectileID.RollingCactus,
             ProjectileID.MiniBoulder,
             ProjectileID.LifeCrystalBoulder,
-            ProjectileID.MoonBoulder,
-            ProjectileID.Sharknado,
-            ProjectileID.SharknadoBolt
+            ProjectileID.MoonBoulder
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -779,14 +770,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (InflictDevastated1In1Group.Contains(projectile.type))
             {
                 if (random.Next(0, 1) == 0 && Main.masterMode)
-                {
-                    target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
-                    Devastated.AnimateDevastated(target);
-                }
-            }
-            if (projectile.type == ProjectileID.PhantasmalDeathray && projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
-            {
-                if (npc.type == NPCID.MoonLordHead && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     Devastated.AnimateDevastated(target);

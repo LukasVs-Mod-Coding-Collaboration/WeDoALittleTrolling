@@ -461,8 +461,43 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.PostUpdateEquips();
         }
 
+        public override bool ConsumableDodge(Player.HurtInfo info)
+        {
+            if (info.DamageSource.SourceProjectileType == ProjectileID.PhantasmalDeathray)
+            {
+                if (info.DamageSource.SourceProjectileLocalIndex >= 0 && info.DamageSource.SourceProjectileLocalIndex < Main.projectile.Length)
+                {
+                    if (Main.projectile[info.DamageSource.SourceProjectileLocalIndex].GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
+                    {
+                        if (npc.type == NPCID.MoonLordHead && Main.masterMode)
+                        {
+                            Devastated.AnimateDisintegration(player);
+                            Devastated.DisintegratePlayer(player);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return base.ConsumableDodge(info);
+        }
+
         public override bool FreeDodge(Player.HurtInfo info)
         {
+            if (info.DamageSource.SourceProjectileType == ProjectileID.PhantasmalDeathray)
+            {
+                if (info.DamageSource.SourceProjectileLocalIndex >= 0 && info.DamageSource.SourceProjectileLocalIndex < Main.projectile.Length)
+                {
+                    if (Main.projectile[info.DamageSource.SourceProjectileLocalIndex].GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
+                    {
+                        if (npc.type == NPCID.MoonLordHead && Main.masterMode)
+                        {
+                            Devastated.AnimateDisintegration(player);
+                            Devastated.DisintegratePlayer(player);
+                            return true;
+                        }
+                    }
+                }
+            }
             if (random.NextBool(4) && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
