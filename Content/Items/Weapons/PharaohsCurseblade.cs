@@ -34,7 +34,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class PharaohsCurseblade : ModItem
     {
-        public const int chargeTicksMax = 450;
+        public const int chargeTicksMax = 120;
         public const float chargeTicksScalingFactor = 0.01f;
         public static UnifiedRandom rnd = new UnifiedRandom(); //rnd
         public int chargeTicks;
@@ -55,13 +55,13 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.value = Item.sellPrice(gold: 5);
             Item.maxStack = 1;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item60;
 
-            Item.damage = 21;
+            Item.damage = 28;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 5.5f;
 
@@ -89,7 +89,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 Vector2 dustVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
                 dustVelocity.Normalize();
                 dustVelocity *= 8f;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.ApprenticeStorm, dustVelocity, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Sandnado, dustVelocity, 0, default);
                 newDust.noGravity = true;
                 if (chargeTicks == 1 || chargeTicks % 45 == 0)
                 {
@@ -127,8 +127,10 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             if (isCharging)
             {
                 isCharging = false;
-                Vector2 velocity = (new Vector2(((float)player.direction), 0f)) * (2f * chargeTicksScalingFactor * (float)chargeTicks);
-                Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), player.Center, velocity, ProjectileID.DD2ApprenticeStorm, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks));
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), Main.MouseWorld, Vector2.Zero, ProjectileID.SandnadoFriendly, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks));
+                }
             }
         }
 

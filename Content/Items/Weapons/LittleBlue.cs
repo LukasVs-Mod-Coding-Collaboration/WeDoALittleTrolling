@@ -22,14 +22,8 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
-using Microsoft.CodeAnalysis;
 using WeDoALittleTrolling.Common.ModPlayers;
-using WeDoALittleTrolling.Common.ModSystems;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
