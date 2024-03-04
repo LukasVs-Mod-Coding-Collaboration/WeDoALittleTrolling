@@ -47,27 +47,25 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 68;
-            Item.height = 76;
+            Item.width = 50;
+            Item.height = 54;
 
             Item.consumable = false;
 
             Item.value = Item.sellPrice(gold: 5);
             Item.maxStack = 1;
 
-            Item.useTime = 25;
-            Item.useAnimation = 25;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item60;
 
-            Item.damage = 45;
+            Item.damage = 21;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 5.5f;
-            Item.crit = 6;
 
             Item.rare = ItemRarityID.Orange;
-            Item.scale = 0.85f;
         }
 
         public override bool AltFunctionUse(Player player) // Woohoo Tornado Launch! (not yet implemented)

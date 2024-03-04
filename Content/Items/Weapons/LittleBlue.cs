@@ -29,6 +29,7 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using Microsoft.CodeAnalysis;
 using WeDoALittleTrolling.Common.ModPlayers;
+using WeDoALittleTrolling.Common.ModSystems;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -58,7 +59,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.buffTime = 200;
 
 
-            Item.damage = 1875;
+            Item.damage = 1800;
             Item.DamageType = DamageClass.Melee; //Item damage type
             Item.knockBack = 8f;
             Item.crit = 16;
@@ -101,13 +102,34 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            int littleBlueProjectileCount = 5;
             int damage = damageDone;
             float knockBack = hit.Knockback;
+            for (int i = 0; i < littleBlueProjectileCount; i++)
+            {
+                Vector2 littleBlueBulletSpawnPos = new Vector2(target.position.X + rnd.Next(-240, 240), target.position.Y + rnd.Next(-240, 240));
+                Vector2 littleBlueBulletVelocity = new Vector2(target.Center.X - littleBlueBulletSpawnPos.X, target.Center.Y - littleBlueBulletSpawnPos.Y);
+                littleBlueBulletVelocity.Normalize();
+                littleBlueBulletVelocity *= 6f;
+                Projectile.NewProjectile(player.GetSource_FromThis(), littleBlueBulletSpawnPos, littleBlueBulletVelocity, ProjectileID.MagicMissile, damage = 900, knockBack = 6f, player.whoAmI);
+                for (int j = 0; j < 20; j++)
+                {
+                    Vector2 dustPosition = littleBlueBulletSpawnPos;
+                    Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
+                    dustVelocity.Normalize();
+                    dustVelocity *= 4f;
+                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.HallowSpray, dustVelocity, 0, default);
+                    newDust.noGravity = true;
+                }
+            }
+
+            /*
             Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(-6, -3), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
             Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(-3, 0), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
             Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 580), new Vector2(0, 30f), ProjectileID.Electrosphere, damage = 1875, knockBack = 6f, player.whoAmI);
             Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 640), new Vector2(rnd.Next(0, 3), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
             Projectile.NewProjectileDirect(player.GetSource_FromThis(), new Vector2(target.position.X, target.position.Y - 700), new Vector2(rnd.Next(3, 6), 15f), ProjectileID.Typhoon, damage = 625, knockBack = 6f, player.whoAmI);
+            */
             base.OnHitNPC(player, target, hit, damageDone);    
         } //Projectile spawn location calculator, summons projectiles on hit
 
