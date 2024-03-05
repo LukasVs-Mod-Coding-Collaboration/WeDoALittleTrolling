@@ -546,6 +546,7 @@ Mods: {
 			ElementalStaffProjectile.DisplayName: Frozen Elemental
 			ElementalStaffProjectileBullet.DisplayName: Frozen Elemental Shard
 			PortableSpiderBullet.DisplayName: Fangling
+			PharaohsCursebladeBeam.DisplayName: Pharaoh's Curse
 		}
 
 		Prefixes: {

@@ -23,12 +23,8 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
-using Microsoft.CodeAnalysis;
-using WeDoALittleTrolling.Common.ModPlayers;
+using WeDoALittleTrolling.Content.Projectiles;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -58,12 +54,15 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTurn = true;
+            Item.useTurn = false;
             Item.UseSound = SoundID.Item60;
 
             Item.damage = 28;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 5.5f;
+            Item.shoot = ModContent.ProjectileType<PharaohsCursebladeBeam>();
+            Item.shootSpeed = 14f;
+            Item.shootsEveryUse = true;
 
             Item.rare = ItemRarityID.Orange;
         }
@@ -132,6 +131,31 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), Main.MouseWorld, Vector2.Zero, ProjectileID.SandnadoFriendly, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks));
                 }
             }
+        }
+
+        public override void UseItemFrame(Player player)
+        {
+            if (!isCharging)
+            {
+                int rMax = (int)Item.height;
+                double r = rMax * Math.Sqrt(Main.rand.NextDouble());
+                double angle = Main.rand.NextDouble() * 2 * Math.PI;
+                int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                Vector2 dustPosition = player.Center;
+                dustPosition.Y -= 24;
+                dustPosition.X += xOffset;
+                dustPosition.Y += yOffset;
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Sandnado, null, 0, default);
+                newDust.noGravity = true;
+            }
+            base.UseItemFrame(player);
+        }
+
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            position.Y -= 24;
+            base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
 
         public override void AddRecipes()
