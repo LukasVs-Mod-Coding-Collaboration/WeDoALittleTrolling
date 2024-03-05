@@ -236,10 +236,13 @@ Mods: {
 					'''
 					"An ancient sword once wielded by the
 					 great ruler of the wind and the sands"
+					Shoots sharp Sapphire Blades that deal
+					75% of the weapon's damage
 					Right click to charge a tornado
 					The Tornado will do more damage
 					depending on how long it is charged,
-					up to a maximum of 120% weapon damage
+					up to a maximum of 125% of the
+					weapon's damage
 					'''
 			}
 

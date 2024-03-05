@@ -30,7 +30,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class PharaohsCurseblade : ModItem
     {
-        public const int chargeTicksMax = 120;
+        public const int chargeTicksMax = 125;
         public const float chargeTicksScalingFactor = 0.01f;
         public static UnifiedRandom rnd = new UnifiedRandom(); //rnd
         public int chargeTicks;
@@ -154,6 +154,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
+            damage = (int)Math.Round((double)damage * 0.75);
             position.Y -= 24;
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
@@ -162,11 +163,12 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             CreateRecipe()
               .AddTile(TileID.CatBast)
-              .AddIngredient(ItemID.Cactus, 5)
-              .AddIngredient(ItemID.NightsEdge,1)
+              .AddIngredient(ItemID.NightsEdge, 1)
+              .AddIngredient(ItemID.SandstorminaBottle, 1)
               .AddIngredient(ItemID.Amber, 10)
-              .AddIngredient(ItemID.SandBlock, 10)
-              .AddIngredient(ItemID.AntlionMandible, 5)
+              .AddIngredient(ItemID.Sapphire, 10)
+              .AddIngredient(ItemID.GoldBar, 10)
+              .AddIngredient(ItemID.SilverBar, 10)
               .Register();
         }
     }

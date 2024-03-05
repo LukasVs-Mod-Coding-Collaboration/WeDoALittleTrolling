@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 20;
+            Projectile.penetrate = 12;
             Projectile.timeLeft = 120;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
