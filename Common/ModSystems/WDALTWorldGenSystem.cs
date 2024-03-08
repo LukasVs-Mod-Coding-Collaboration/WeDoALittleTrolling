@@ -257,6 +257,162 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     continue;
                 }
             }
+            for (int k = 0; k < 1; k++) //Spawn exactly 1 time.
+            {
+                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int x = 0;
+                if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
+                {
+                    x = WorldGen.genRand.Next(GenVars.snowMinX[y], GenVars.snowMaxX[y]);
+                }
+                else
+                {
+                    x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
+                }
+                bool cond = true; //Prevent Houses from spawning on top of each other
+                for (int i = 1; i >= -27; i--)
+                {
+                    for (int j = 25; j >= -25; j--)
+                    {
+                        if
+                        (
+                            WorldGen.TileType((x + j), (y + i)) == TileID.Campfire ||
+                            WorldGen.TileType((x + j), (y + i)) == TileID.IceBrick ||
+                            WorldGen.TileType((x + j), (y + i)) == TileID.Containers
+                        )
+                        {
+                            cond = false;
+                        }
+                    }
+                }
+                if (cond)
+                {
+                    for (int i = 1; i >= -27; i--)
+                    {
+                        for (int j = 25; j >= -25; j--)
+                        {
+                            Main.tile[(x + j), (y + i)].ClearEverything();
+                            if (i <= 0 && i >= -26 && j <= 23 && j >= -23)
+                            {
+                                WorldGen.PlaceWall((x + j), (y + i), WallID.IronBrick, mute: true);
+                            }
+                            if ((i == 1 || i == -6 || i == -13 || i == -20 || i == -27) || (j == 24 || j == 0 || j == -24))
+                            {
+                                if
+                                (
+                                    (
+                                        (i == -6 || i == -13 || i == -20) &&
+                                        ((j <= 23 && j >= 17) || (j >= -23 && j <= -17))
+                                    )
+                                )
+                                {
+                                    WorldGen.PlaceTile((x + j), (y + i), TileID.Platforms, mute: true, default, default, 10);
+                                }
+                                else if (!(j == 0 && (i == 0 || i == -1 || i == -2 || i == -7 || i == -8 || i == -9 || i == -14 || i == -15 || i == -16 || i == -21 || i == -22 || i == -23)))
+                                {
+                                    WorldGen.PlaceTile((x + j), (y + i), TileID.IronBrick, mute: true);
+                                }
+                            }
+                            SlopeType slopeType = (j < 0 ? SlopeType.SlopeDownLeft : SlopeType.SlopeDownRight);
+                            SlopeType slopeTypeInverse = (j >= 0 ? SlopeType.SlopeDownLeft : SlopeType.SlopeDownRight);
+                            if
+                            (
+                                !(i == 1 || i == -6 || i == -13 || i == -20 || i == -27) &&
+                                (i >= -20) &&
+                                (j == (-17 + (i % 7)) || j == (17 - (i % 7)))
+                            )
+                            {
+                                WorldGen.PlaceTile((x + j), (y + i), TileID.Platforms, mute: true, default, default, 10);
+                                WorldGen.SlopeTile((x + j), (y + i), (int)slopeType, noEffects: true);
+                            }
+                            if ((i == -6 || i == -13 || i == -20) && (j == 23 || j == -23))
+                            {
+                                WorldGen.SlopeTile((x + j), (y + i), (int)slopeType, noEffects: true);
+                            }
+                            if ((i == 1 || i == -6 || i == -13 || i == -20 || i == -27) && (j == 25 || j == -25))
+                            {
+                                WorldGen.SlopeTile((x + j), (y + i), (int)slopeTypeInverse, noEffects: true);
+                            }
+                        }
+                    }
+                    int posX = x - 23;
+                    int posY = y + 1;
+                    while (!WorldGen.SolidTile(posX, (posY + 1)))
+                    {
+                        if (posY == y + 1)
+                        {
+                            WorldGen.PlaceWall(posX, posY, WallID.WroughtIronFence, mute: true);
+                        }
+                        Main.tile[posX, (posY + 1)].ClearEverything();
+                        WorldGen.PlaceWall(posX, (posY + 1), WallID.WroughtIronFence, mute: true);
+                        if (WorldGen.SolidTile(posX, (posY + 2)))
+                        {
+                            WorldGen.PlaceWall(posX, (posY + 2), WallID.WroughtIronFence, mute: true);
+                        }
+                        posY++;
+                    }
+                    posX = x + 23;
+                    posY = y + 1;
+                    while (!WorldGen.SolidTile(posX, (posY + 1)))
+                    {
+                        if (posY == y + 1)
+                        {
+                            WorldGen.PlaceWall(posX, posY, WallID.WroughtIronFence, mute: true);
+                        }
+                        Main.tile[posX, (posY + 1)].ClearEverything();
+                        WorldGen.PlaceWall(posX, (posY + 1), WallID.WroughtIronFence, mute: true);
+                        if (WorldGen.SolidTile(posX, (posY + 2)))
+                        {
+                            WorldGen.PlaceWall(posX, (posY + 2), WallID.WroughtIronFence, mute: true);
+                        }
+                        posY++;
+                    }
+                    posX = x;
+                    posY = y + 1;
+                    while (!WorldGen.SolidTile(posX, (posY + 1)))
+                    {
+                        if (posY == y + 1)
+                        {
+                            WorldGen.PlaceWall(posX, posY, WallID.WroughtIronFence, mute: true);
+                        }
+                        Main.tile[posX, (posY + 1)].ClearEverything();
+                        WorldGen.PlaceWall(posX, (posY + 1), WallID.WroughtIronFence, mute: true);
+                        if (WorldGen.SolidTile(posX, (posY + 2)))
+                        {
+                            WorldGen.PlaceWall(posX, (posY + 2), WallID.WroughtIronFence, mute: true);
+                        }
+                        posY++;
+                    }
+                    WorldGen.Place1x2Top((x + 25), (y - 5), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 25), (y - 5), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x + 25), (y - 12), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 25), (y - 12), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x + 25), (y - 19), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 25), (y - 19), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x + 25), (y - 26), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 25), (y - 26), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x + 1), (y - 5), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 1), (y - 5), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x + 1), (y - 12), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 1), (y - 12), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x + 1), (y - 19), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 1), (y - 19), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x + 1), (y - 26), TileID.HangingLanterns, 2);
+                    WorldGen.Place1x2Top((x - 1), (y - 26), TileID.HangingLanterns, 2);
+                    WorldGen.Place1xX(x, (y - 0), TileID.ClosedDoor, 15);
+                    WorldGen.Place1xX(x, (y - 7), TileID.ClosedDoor, 15);
+                    WorldGen.Place1xX(x, (y - 14), TileID.ClosedDoor, 15);
+                    WorldGen.Place1xX(x, (y - 21), TileID.ClosedDoor, 15);
+                }
+                else
+                {
+                    if (k > 0)
+                    {
+                        k--;
+                    }
+                    continue;
+                }
+            }
         }
     }
 
