@@ -27,7 +27,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.Default;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria.ObjectData;
+using Terraria.Utilities;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -49,9 +49,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 tasks.Insert(IceBiomeIndex + 1, new IceBiomeCustomCaves("Generate Additional Ice Biome Caves", 100f));
             }
-            int PotsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Pots"));
-            if (PotsIndex != -1) {
-                tasks.Insert(PotsIndex, new IceBiomeGloom("Generate Additional Ice Biome Gloom", 100f));
+            int GloomIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
+            if (GloomIndex != -1) {
+                tasks.Insert((GloomIndex + 1), new IceBiomeGloom("Generate Additional Ice Biome Gloom", 100f));
             }
         }
     }
@@ -308,6 +308,82 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WorldGen.Place1x1(x + (sign * 4), y, TileID.GoldCoinPile, 0);
             WorldGen.Place3x2(x + (sign * 6), y, TileID.GoldCoinPile, 0);
             WorldGen.Place1x1(x + (sign * 8), y, TileID.GoldCoinPile, 0);
+            int chestX = x - (sign * 6);
+            if (sign < 0)
+            {
+                chestX--;
+            }
+            int idx = WorldGen.PlaceChest(chestX, y, TileID.Containers, notNearOtherChests: false, 11);
+            if (idx >= 0 && idx < Main.chest.Length)
+            {
+                Chest chest = Main.chest[idx];
+                List<(int type, int stack)> itemsToAdd = new List<(int type, int stack)>();
+                int specialItem = new WeightedRandom<int>
+                (
+                    Tuple.Create((int)ItemID.IceBoomerang, 1.0),
+                    Tuple.Create((int)ItemID.IceBlade, 1.0),
+                    Tuple.Create((int)ItemID.IceSkates, 1.0),
+                    Tuple.Create((int)ItemID.BlizzardinaBottle, 2.0),
+                    Tuple.Create((int)ItemID.FlurryBoots, 1.0),
+                    Tuple.Create((int)ItemID.IceMirror, 1.0),
+                    Tuple.Create((int)ItemID.IceMachine, 1.0),
+                    Tuple.Create((int)ItemID.Fish, 1.0)
+                );
+                if (specialItem != ItemID.None)
+                {
+                    itemsToAdd.Add((specialItem, 1));
+                }
+
+                switch (Main.rand.Next(4))
+                {
+                    case 0:
+                        itemsToAdd.Add((ItemID.FiberglassFishingPole, 1));
+                        itemsToAdd.Add((ItemID.FrozenCrate, 1));
+                        itemsToAdd.Add((ItemID.FishingPotion, 2));
+                        itemsToAdd.Add((ItemID.CratePotion, 2));
+                        itemsToAdd.Add((ItemID.SonarPotion, 2));
+                        itemsToAdd.Add((ItemID.MasterBait, Main.rand.Next(8, 17)));
+                        break;
+                    case 1:
+                        itemsToAdd.Add((ItemID.BonePickaxe, 1));
+                        itemsToAdd.Add((ItemID.LeadBar, Main.rand.Next(4, 17)));
+                        itemsToAdd.Add((ItemID.TungstenBar, Main.rand.Next(4, 17)));
+                        itemsToAdd.Add((ItemID.PlatinumBar, Main.rand.Next(4, 17)));
+                        itemsToAdd.Add((ItemID.MiningPotion, 2));
+                        itemsToAdd.Add((ItemID.SpelunkerPotion, 2));
+                        break;
+                    case 2:
+                        itemsToAdd.Add((ItemID.ManaPotion, Main.rand.Next(8, 17)));
+                        itemsToAdd.Add((ItemID.ManaRegenerationPotion, 2));
+                        itemsToAdd.Add((ItemID.MagicPowerPotion, 2));
+                        itemsToAdd.Add((ItemID.HealingPotion, Main.rand.Next(8, 17)));
+                        itemsToAdd.Add((ItemID.RegenerationPotion, 2));
+                        itemsToAdd.Add((ItemID.LifeforcePotion, 2));
+                        break;
+                    case 3:
+                        itemsToAdd.Add((ItemID.RestorationPotion, Main.rand.Next(8, 17)));
+                        itemsToAdd.Add((ItemID.CreativeWings, 1));
+                        itemsToAdd.Add((ItemID.GoblinBattleStandard, 1));
+                        itemsToAdd.Add((ItemID.SuspiciousLookingEye, 1));
+                        itemsToAdd.Add((ItemID.FrostburnArrow, Main.rand.Next(200, 401)));
+                        itemsToAdd.Add((ItemID.PartyBullet, Main.rand.Next(200, 401)));
+                        break;
+                }
+
+                int chestItemIndex = 0;
+                foreach (var itemToAdd in itemsToAdd)
+                {
+                    Item item = new Item();
+                    item.SetDefaults(itemToAdd.type);
+                    item.stack = itemToAdd.stack;
+                    chest.item[chestItemIndex] = item;
+                    chestItemIndex++;
+                    if (chestItemIndex >= 40)
+                    {
+                        break;
+                    }
+                }
+            }
             for (int i = 0; i >= -4; i--)
             {
                 for (int j = 9; j >= -9; j--)
@@ -356,21 +432,30 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 if (cond)
                 {
                     WorldGen.PlaceAlch(x, y, 6);
-                    Main.tile[x, y].TileType = TileID.BloomingHerbs;
-                    Main.tile[x, y].TileFrameX = 108;
-                    Main.tile[x, y].TileFrameY = 0;
+                    if (Main.tile[x, y].HasTile)
+                    {
+                        Main.tile[x, y].TileType = TileID.BloomingHerbs;
+                        Main.tile[x, y].TileFrameX = 108;
+                        Main.tile[x, y].TileFrameY = 0;
+                    }
                 }
                 else
                 {
-                    if (k > 0)
+                    if (k >= 0)
                     {
                         k--;
                     }
                     continue;
                 }
             }
-            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 6.0); k++)
+            int br = 0;
+            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 5.0); k++)
             {
+                
+                if (br > 10000) //Max. 10000 attempts
+                {
+                    break;
+                }
                 int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
@@ -392,13 +477,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 );
                 if (cond)
                 {
+                    br = 0;
                     WorldGen.PlaceUncheckedStalactite(x, y, WorldGen.genRand.NextBool(3), 0, false);
                     WorldGen.SquareTileFrame(x, y, default);
                     WorldGen.SquareTileFrame(x, (y + 1), default);
                 }
                 else
                 {
-                    if (k > 0)
+                    br++;
+                    if (k >= 0)
                     {
                         k--;
                     }
@@ -432,7 +519,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 else
                 {
-                    if (k > 0)
+                    if (k >= 0)
                     {
                         k--;
                     }
@@ -475,7 +562,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 else
                 {
-                    if (k > 0)
+                    if (k >= 0)
                     {
                         k--;
                     }
@@ -516,7 +603,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 else
                 {
-                    if (k > 0)
+                    if (k >= 0)
                     {
                         k--;
                     }
@@ -602,7 +689,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 double dirY = (double)WorldGen.genRand.NextFloat(-1f, 1f);
                 WorldGen.digTunnel((double)x, (double)y, dirX, dirY, 64, 3, false);
             }
-            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.25); k++)
+            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.5); k++)
             {
                 int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
                 int x = 0;
