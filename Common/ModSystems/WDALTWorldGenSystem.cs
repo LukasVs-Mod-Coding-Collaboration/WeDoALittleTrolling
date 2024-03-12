@@ -58,6 +58,18 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
     public class IceBiomeGloom : GenPass
     {
+        public static WeightedRandom<int> wRandom = new WeightedRandom<int>
+        (
+            Tuple.Create((int)ItemID.IceBoomerang, 1.0),
+            Tuple.Create((int)ItemID.IceBlade, 1.0),
+            Tuple.Create((int)ItemID.IceSkates, 1.0),
+            Tuple.Create((int)ItemID.BlizzardinaBottle, 2.0),
+            Tuple.Create((int)ItemID.FlurryBoots, 1.0),
+            Tuple.Create((int)ItemID.IceMirror, 1.0),
+            Tuple.Create((int)ItemID.IceMachine, 1.0),
+            Tuple.Create((int)ItemID.Fish, 1.0)
+        );
+        
         public IceBiomeGloom(string name, float loadWeight) : base(name, loadWeight)
         {
         }
@@ -318,17 +330,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 Chest chest = Main.chest[idx];
                 List<(int type, int stack)> itemsToAdd = new List<(int type, int stack)>();
-                int specialItem = new WeightedRandom<int>
-                (
-                    Tuple.Create((int)ItemID.IceBoomerang, 1.0),
-                    Tuple.Create((int)ItemID.IceBlade, 1.0),
-                    Tuple.Create((int)ItemID.IceSkates, 1.0),
-                    Tuple.Create((int)ItemID.BlizzardinaBottle, 2.0),
-                    Tuple.Create((int)ItemID.FlurryBoots, 1.0),
-                    Tuple.Create((int)ItemID.IceMirror, 1.0),
-                    Tuple.Create((int)ItemID.IceMachine, 1.0),
-                    Tuple.Create((int)ItemID.Fish, 1.0)
-                );
+                wRandom.random.SetSeed(Main.rand.Next(0, 10000));
+                wRandom.needsRefresh = true;
+                int specialItem = wRandom.Get();
                 if (specialItem != ItemID.None)
                 {
                     itemsToAdd.Add((specialItem, 1));
@@ -420,14 +424,14 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 (
                      WorldGen.SolidTile(x, y + 1) &&
                     !WorldGen.SolidTile(x, y    ) &&
-                    !WorldGen.SolidTile(x, y - 1) &&
                     (
                         Main.tile[x, y + 1].TileType == TileID.SnowBlock ||
                         Main.tile[x, y + 1].TileType == TileID.IceBlock
                     ) &&
-                    !Main.tile[x, y - 1].HasTile &&
-                    Main.tile[x, y - 1].LiquidAmount == 0 &&
-                    Main.tile[x, y].HasUnactuatedTile
+                    !Main.tile[x, y].HasTile &&
+                    Main.tile[x, y].LiquidAmount == 0 &&
+                    Main.tile[x, y + 1].HasUnactuatedTile &&
+                    Main.tile[x, y + 1].Slope == SlopeType.Solid
                 );
                 if (cond)
                 {
