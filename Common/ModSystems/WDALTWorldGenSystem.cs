@@ -27,6 +27,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.Default;
 using Microsoft.Xna.Framework;
 using System;
+using Terraria.ObjectData;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -327,6 +328,83 @@ namespace WeDoALittleTrolling.Common.ModSystems
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = WDALTWorldGenSystem.IceBiomeGloomMessage.Value;
+            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.75); k++)
+            {
+                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int x = 0;
+                if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
+                {
+                    x = WorldGen.genRand.Next(GenVars.snowMinX[y], GenVars.snowMaxX[y]);
+                }
+                else
+                {
+                    x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
+                }
+                bool cond =
+                (
+                     WorldGen.SolidTile(x, y + 1) &&
+                    !WorldGen.SolidTile(x, y    ) &&
+                    !WorldGen.SolidTile(x, y - 1) &&
+                    (
+                        Main.tile[x, y + 1].TileType == TileID.SnowBlock ||
+                        Main.tile[x, y + 1].TileType == TileID.IceBlock
+                    ) &&
+                    !Main.tile[x, y - 1].HasTile &&
+                    Main.tile[x, y - 1].LiquidAmount == 0 &&
+                    Main.tile[x, y].HasUnactuatedTile
+                );
+                if (cond)
+                {
+                    WorldGen.PlaceAlch(x, y, 6);
+                    Main.tile[x, y].TileType = TileID.BloomingHerbs;
+                    Main.tile[x, y].TileFrameX = 108;
+                    Main.tile[x, y].TileFrameY = 0;
+                }
+                else
+                {
+                    if (k > 0)
+                    {
+                        k--;
+                    }
+                    continue;
+                }
+            }
+            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 6.0); k++)
+            {
+                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int x = 0;
+                if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
+                {
+                    x = WorldGen.genRand.Next(GenVars.snowMinX[y], GenVars.snowMaxX[y]);
+                }
+                else
+                {
+                    x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
+                }
+                bool cond =
+                (
+                     WorldGen.SolidTile(x, y - 1) &&
+                    !WorldGen.SolidTile(x, y    ) &&
+                    !WorldGen.SolidTile(x, y + 1) &&
+                    Main.tile[x, y - 1].TileType == TileID.IceBlock &&
+                    !Main.tile[x, y].HasTile &&
+                    !Main.tile[x, (y + 1)].HasTile
+                );
+                if (cond)
+                {
+                    WorldGen.PlaceUncheckedStalactite(x, y, WorldGen.genRand.NextBool(3), 0, false);
+                    WorldGen.SquareTileFrame(x, y, default);
+                    WorldGen.SquareTileFrame(x, (y + 1), default);
+                }
+                else
+                {
+                    if (k > 0)
+                    {
+                        k--;
+                    }
+                    continue;
+                }
+            }
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.125); k++)
             {
                 int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
@@ -343,7 +421,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 (
                      WorldGen.SolidTile(x, y - 1) &&
                     !WorldGen.SolidTile(x, y    ) &&
-                    !WorldGen.SolidTile(x, y + 1)
+                    !WorldGen.SolidTile(x, y + 1) &&
+                    Main.tile[x, y].TileType != TileID.Stalactite &&
+                    !Main.tile[x, y].HasTile &&
+                    !Main.tile[x, (y + 1)].HasTile
                 );
                 if (cond)
                 {
