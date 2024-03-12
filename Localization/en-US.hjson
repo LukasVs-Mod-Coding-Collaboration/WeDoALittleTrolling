@@ -532,6 +532,11 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Portable Spider
 			}
+
+			BlazingShieldSpawner: {
+				DisplayName: Blazing Shield Test Item
+				Tooltip: Attempting to get the Blazing Shield to spawn
+			}
 		}
 
 		Projectiles: {
@@ -550,6 +555,7 @@ Mods: {
 			ElementalStaffProjectileBullet.DisplayName: Frozen Elemental Shard
 			PortableSpiderBullet.DisplayName: Fangling
 			PharaohsCursebladeBeam.DisplayName: Pharaoh's Curse
+			BlazingShield.DisplayName: Blazing Shield
 		}
 
 		Prefixes: {
