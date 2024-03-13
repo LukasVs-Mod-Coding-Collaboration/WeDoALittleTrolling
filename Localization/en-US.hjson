@@ -415,7 +415,7 @@ Mods: {
 			}
 
 			Corncob: {
-				DisplayName: Corncob
+				DisplayName: Golden Corncob
 				Tooltip: Minor improvements to all stats
 			}
 
@@ -537,6 +537,11 @@ Mods: {
 				DisplayName: Blazing Shield Test Item
 				Tooltip: Attempting to get the Blazing Shield to spawn
 			}
+
+			CornEmblem: {
+				DisplayName: Corn Emblem
+				Tooltip: Makes Corn Swords throw Golden Corncobs
+			}
 		}
 
 		Projectiles: {
@@ -550,7 +555,7 @@ Mods: {
 			GloriousDemiseProjectile.DisplayName: Glorious Demise
 			ThrowOfTheLunaticProjectile.DisplayName: Throw Of The Lunatic
 			ThrowOfTheLunaticProjectileBeam.DisplayName: Lunatic Beam
-			ThrownCorncob.DisplayName: Corncob
+			ThrownCorncob.DisplayName: Golden Corncob
 			ElementalStaffProjectile.DisplayName: Frozen Elemental
 			ElementalStaffProjectileBullet.DisplayName: Frozen Elemental Shard
 			PortableSpiderBullet.DisplayName: Fangling

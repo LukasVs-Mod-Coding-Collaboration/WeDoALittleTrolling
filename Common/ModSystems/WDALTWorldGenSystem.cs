@@ -67,7 +67,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             Tuple.Create((int)ItemID.FlurryBoots, 1.0),
             Tuple.Create((int)ItemID.IceMirror, 1.0),
             Tuple.Create((int)ItemID.IceMachine, 1.0),
-            Tuple.Create((int)ItemID.Fish, 1.0)
+            Tuple.Create((int)ItemID.Fish, 1.0),
+            Tuple.Create((int)ItemID.SnowballCannon, 1.0)
         );
         
         public IceBiomeGloom(string name, float loadWeight) : base(name, loadWeight)
@@ -211,7 +212,31 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 WorldGen.Place2x2((x - k), (y - 21), TileID.Safes, 0);
                 WorldGen.Place2x2((x - k), (y - 24), TileID.Safes, 0);
             }
-            WorldGen.PlaceChest((x - 12), (y - 21), TileID.Containers, notNearOtherChests: false, 6);
+            int idx1 = WorldGen.PlaceChest((x - 12), (y - 21), TileID.Containers, notNearOtherChests: false, 6);
+            if (idx1 >= 0 && idx1 < Main.chest.Length)
+            {
+                Chest chest = Main.chest[idx1];
+                List<(int type, int stack)> itemsToAdd = new List<(int type, int stack)>();
+                itemsToAdd.Add((ItemID.TinCan, Main.rand.Next(3, 6)));
+                itemsToAdd.Add((ItemID.OldShoe, Main.rand.Next(1, 3)));
+                itemsToAdd.Add((ItemID.Cobweb, Main.rand.Next(5, 11)));
+                itemsToAdd.Add((ItemID.Glowstick, Main.rand.Next(5, 11)));
+                itemsToAdd.Add((ItemID.DirtBlock, Main.rand.Next(3, 6)));
+                itemsToAdd.Add(((Main.rand.NextBool(2) ? ItemID.PaperAirplaneA : ItemID.PaperAirplaneB), Main.rand.Next(1, 4)));
+                int chestItemIndex = 0;
+                foreach ((int type, int stack) itemToAdd in itemsToAdd)
+                {
+                    Item item = new Item();
+                    item.SetDefaults(itemToAdd.type);
+                    item.stack = itemToAdd.stack;
+                    chest.item[chestItemIndex] = item;
+                    chestItemIndex++;
+                    if (chestItemIndex >= 40)
+                    {
+                        break;
+                    }
+                }
+            }
             WorldGen.Place2x2((x - 13), (y - 21), TileID.Sinks, 14);
             // Room 2
             WorldGen.Place1x2((x - 3), (y - 14), TileID.Chairs, 17);
@@ -221,8 +246,59 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WorldGen.Place3x2((x - 14), (y - 14), TileID.Loom, 0);
             WorldGen.Place1x1((x - 18), (y - 14), TileID.StinkbugHousingBlocker, 0);
             // Room 3
-            WorldGen.PlaceChest((x - 9), (y - 7), TileID.Containers, notNearOtherChests: false, 5);
-            WorldGen.PlaceChest((x - 11), (y - 7), TileID.Containers, notNearOtherChests: false, 5);
+            int idx2 = WorldGen.PlaceChest((x - 9), (y - 7), TileID.Containers, notNearOtherChests: false, 5);
+            int idx3 = WorldGen.PlaceChest((x - 11), (y - 7), TileID.Containers, notNearOtherChests: false, 5);
+            if (idx2 >= 0 && idx2 < Main.chest.Length && idx3 >= 0 && idx3 < Main.chest.Length)
+            {
+                Chest chest1 = Main.chest[idx2];
+                Chest chest2 = Main.chest[idx3];
+                List<(int type, int stack)> itemsToAdd1 = new List<(int type, int stack)>();
+                itemsToAdd1.Add((ItemID.FlaskofFire, Main.rand.Next(4, 9)));
+                itemsToAdd1.Add((ItemID.FlaskofPoison, Main.rand.Next(4, 9)));
+                itemsToAdd1.Add((ItemID.FlaskofGold, Main.rand.Next(4, 9)));
+                itemsToAdd1.Add((ItemID.LuckPotion, Main.rand.Next(4, 9)));
+                itemsToAdd1.Add((ItemID.SpelunkerPotion, Main.rand.Next(4, 9)));
+                itemsToAdd1.Add((ItemID.ShinePotion, Main.rand.Next(4, 9)));
+                itemsToAdd1.Add((ItemID.Blinkroot, Main.rand.Next(4, 13)));
+                itemsToAdd1.Add((ItemID.Deathweed, Main.rand.Next(4, 13)));
+                itemsToAdd1.Add((ItemID.Fireblossom, Main.rand.Next(4, 13)));
+                List<(int type, int stack)> itemsToAdd2 = new List<(int type, int stack)>();
+                itemsToAdd2.Add((ItemID.IronskinPotion, Main.rand.Next(4, 9)));
+                itemsToAdd2.Add((ItemID.EndurancePotion, Main.rand.Next(4, 9)));
+                itemsToAdd2.Add((ItemID.InvisibilityPotion, Main.rand.Next(4, 9)));
+                itemsToAdd2.Add((ItemID.BuilderPotion, Main.rand.Next(4, 9)));
+                itemsToAdd2.Add((ItemID.BiomeSightPotion, Main.rand.Next(4, 9)));
+                itemsToAdd2.Add((ItemID.CalmingPotion, Main.rand.Next(4, 9)));
+                itemsToAdd2.Add((ItemID.Daybloom, Main.rand.Next(4, 13)));
+                itemsToAdd2.Add((ItemID.Moonglow, Main.rand.Next(4, 13)));
+                itemsToAdd2.Add((ItemID.Waterleaf, Main.rand.Next(4, 13)));
+                int chestItemIndex = 0;
+                foreach ((int type, int stack) itemToAdd in itemsToAdd1)
+                {
+                    Item item = new Item();
+                    item.SetDefaults(itemToAdd.type);
+                    item.stack = itemToAdd.stack;
+                    chest1.item[chestItemIndex] = item;
+                    chestItemIndex++;
+                    if (chestItemIndex >= 40)
+                    {
+                        break;
+                    }
+                }
+                chestItemIndex = 0;
+                foreach ((int type, int stack) itemToAdd in itemsToAdd2)
+                {
+                    Item item = new Item();
+                    item.SetDefaults(itemToAdd.type);
+                    item.stack = itemToAdd.stack;
+                    chest2.item[chestItemIndex] = item;
+                    chestItemIndex++;
+                    if (chestItemIndex >= 40)
+                    {
+                        break;
+                    }
+                }
+            }
             for (int k = 3; k < 12; k++)
             {
                 WorldGen.PlaceTile((x - k), (y - 10), TileID.Platforms, mute: true, default, default, 35);
@@ -375,7 +451,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
 
                 int chestItemIndex = 0;
-                foreach (var itemToAdd in itemsToAdd)
+                foreach ((int type, int stack) itemToAdd in itemsToAdd)
                 {
                     Item item = new Item();
                     item.SetDefaults(itemToAdd.type);

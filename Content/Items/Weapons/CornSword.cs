@@ -19,6 +19,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Projectiles;
 
@@ -28,7 +29,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         public override void SetDefaults()
         {
-            Item.damage = 20;
+            Item.damage = 12;
             Item.DamageType = DamageClass.Melee;
             Item.shoot = ModContent.ProjectileType<ThrownCorncob>();
             Item.shootSpeed = 10f;
@@ -47,6 +48,17 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.maxStack = 1;
         }
 
+        public override bool CanShoot(Player player)
+        {
+            if (player.GetModPlayer<WDALTPlayer>().cornEmblem)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public override void AddRecipes()
         {
