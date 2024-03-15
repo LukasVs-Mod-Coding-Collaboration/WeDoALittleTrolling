@@ -502,6 +502,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                 }
             }
+            if (info.DamageSource.SourceProjectileType == ProjectileID.Landmine) //Prevent Landmines from damaging players.
+            {
+                return true;
+            }
             if (random.NextBool(4) && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);

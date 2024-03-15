@@ -59,12 +59,14 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void AddRecipes()
         {
+            /*
             CreateRecipe()
               .AddTile(TileID.Anvils)
-              .AddIngredient(ModContent.ItemType<Corncob>(), 16)
-              .AddRecipeGroup(RecipeGroupID.IronBar, 4)
-              .AddIngredient(ItemID.GoldBar, 2)
+              .AddIngredient(ModContent.ItemType<Corncob>(), 15)
+              .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+              .AddIngredient(ItemID.GoldBar, 5)
               .Register();
+            */
         }
     }
 }

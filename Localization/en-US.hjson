@@ -411,12 +411,16 @@ Mods: {
 
 			CornSword: {
 				DisplayName: Corn Sword
-				Tooltip: ""
+				Tooltip: Unfinished Item
 			}
 
 			Corncob: {
 				DisplayName: Golden Corncob
-				Tooltip: Minor improvements to all stats
+				Tooltip:
+					'''
+					Minor improvements to all stats
+					Unfinished Item
+					'''
 			}
 
 			HauntedStaff: {
@@ -540,7 +544,11 @@ Mods: {
 
 			CornEmblem: {
 				DisplayName: Corn Emblem
-				Tooltip: Makes Corn Swords throw Golden Corncobs
+				Tooltip:
+					'''
+					Makes Corn Swords throw Golden Corncobs
+					Unfinished Item
+					'''
 			}
 		}
 

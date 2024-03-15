@@ -54,11 +54,14 @@ namespace WeDoALittleTrolling.Content.Items.Material
 
         public override void AddRecipes()
         {
-            CreateRecipe(1)
+            /*
+            CreateRecipe(5)
+            .AddIngredient(ItemID.GoldBar, 1)
             .AddIngredient(ItemID.Sunflower, 5)
-            .AddIngredient(ItemID.Pumpkin, 10)
+            .AddIngredient(ItemID.Pumpkin, 5)
             .AddTile(TileID.ShimmerMonolith)
             .Register();
+            */
         }
     }
 }

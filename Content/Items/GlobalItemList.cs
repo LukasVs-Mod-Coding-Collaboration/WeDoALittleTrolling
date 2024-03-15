@@ -104,6 +104,7 @@ namespace WeDoALittleTrolling.Content.Items
                 return false;
             }
             //I'm sorry, hit
+            /*
             else if
             (
                 item.type == ItemID.LandMine
@@ -112,6 +113,7 @@ namespace WeDoALittleTrolling.Content.Items
                 player.chatOverhead.NewMessage("You may not use this item.", 180);
                 return false;
             }
+            */
             return base.CanUseItem(item, player);
         }
 

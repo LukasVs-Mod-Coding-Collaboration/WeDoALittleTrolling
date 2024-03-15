@@ -16,6 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +31,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         public override void SetDefaults()
         {
-            Item.damage = 12;
+            Item.damage = 20;
             Item.DamageType = DamageClass.Melee;
             Item.shoot = ModContent.ProjectileType<ThrownCorncob>();
             Item.shootSpeed = 10f;
@@ -48,6 +50,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.maxStack = 1;
         }
 
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            damage = (int)Math.Round(((double)damage) * 0.75);
+        }
+
         public override bool CanShoot(Player player)
         {
             if (player.GetModPlayer<WDALTPlayer>().cornEmblem)
@@ -62,10 +69,19 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void AddRecipes()
         {
+            /*
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Corncob>(), 10);
-            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddIngredient(ItemID.DemoniteBar, 5);
+            recipe.AddTile(TileID.ShimmerMonolith);
             recipe.Register();
+
+            Recipe recipe2 = CreateRecipe();
+            recipe2.AddIngredient(ModContent.ItemType<Corncob>(), 10);
+            recipe2.AddIngredient(ItemID.CrimtaneBar, 5);
+            recipe2.AddTile(TileID.ShimmerMonolith);
+            recipe2.Register();
+            */
         }
     }
 }
