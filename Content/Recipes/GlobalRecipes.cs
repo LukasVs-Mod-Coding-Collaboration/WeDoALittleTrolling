@@ -172,6 +172,13 @@ namespace WeDoALittleTrolling.Content.Recipes
             WDALT_Yelets.AddIngredient(ItemID.TurtleShell, 1);
             WDALT_Yelets.Register();
 
+            Recipe.Create(ItemID.LandMine, 10)
+            .AddTile(TileID.HeavyWorkBench)
+            .AddIngredient(ItemID.ExplosivePowder, 5)
+            .AddRecipeGroup(RecipeGroupID.IronBar, 3)
+            .AddIngredient(ItemID.RedPressurePlate, 1)
+            .Register();
+
             Recipe WDALT_GHealPot = Recipe.Create(ItemID.GreaterHealingPotion, 60);
             WDALT_GHealPot.AddTile(TileID.AlchemyTable);
             WDALT_GHealPot.AddIngredient(ItemID.HealingPotion, 60);

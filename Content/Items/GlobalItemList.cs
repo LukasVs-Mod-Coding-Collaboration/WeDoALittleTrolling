@@ -900,6 +900,10 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 7;
                 item.useAnimation = 7;
             }
+            if (item.type == ItemID.LandMine)
+            {
+                item.value = Item.buyPrice(silver: 50);
+            }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
                 if (item.damage <= 40)
