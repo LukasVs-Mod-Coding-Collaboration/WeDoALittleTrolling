@@ -26,6 +26,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using WeDoALittleTrolling.Common.Utilities;
+using WeDoALittleTrolling.Content.NPCs;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -42,6 +43,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             int dropAmount = 0;
             int netLifePvP = 100;
             int netLifePvPPlayerIndex = 255;
+            int blazingShieldOwner = -1;
             Vector2 itemSpawnPos = new Vector2(0f, 0f);
             if(type == WDALTPacketTypeID.updateWindSpeedTarget)
             {
@@ -68,6 +70,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 netLifePvP = reader.ReadInt32();
                 netLifePvPPlayerIndex = reader.ReadInt32();
+            }
+            if(type == WDALTPacketTypeID.spawnBlazingShield || type == WDALTPacketTypeID.clearBlazingShield)
+            {
+                blazingShieldOwner = reader.ReadInt32();
             }
             if(Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -110,6 +116,28 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     broadcastNetFinalDamagePacket.Write(netLifePvP);
                     broadcastNetFinalDamagePacket.Write(netLifePvPPlayerIndex);
                     broadcastNetFinalDamagePacket.Send();
+                }
+                if(type == WDALTPacketTypeID.spawnBlazingShield)
+                {
+                    if (blazingShieldOwner >= 0 && blazingShieldOwner < Main.player.Length)
+                    {
+                        NPC shield = NPC.NewNPCDirect(Main.player[blazingShieldOwner].GetSource_FromThis(), (int)Math.Round((double)Main.player[blazingShieldOwner].Center.X), (int)Math.Round((double)Main.player[blazingShieldOwner].Center.Y), ModContent.NPCType<BlazingShieldNPC>());
+                        shield.GetGlobalNPC<WDALTNPCUtil>().BlazingShieldOwnerIndex = blazingShieldOwner;
+                        shield.netUpdate = true;
+                    }
+                }
+                if(type == WDALTPacketTypeID.clearBlazingShield)
+                {
+                    if (blazingShieldOwner >= 0 && blazingShieldOwner < Main.player.Length)
+                    {
+                        for (int i = 0; i < Main.npc.Length; i++)
+                        {
+                            if (Main.npc[i].active && Main.npc[i].GetGlobalNPC<WDALTNPCUtil>().BlazingShieldOwnerIndex == blazingShieldOwner)
+                            {
+                                Main.npc[i].StrikeInstantKill();
+                            }
+                        }
+                    }
                 }
                 if(type == WDALTPacketTypeID.spawnCrateItem)
                 {

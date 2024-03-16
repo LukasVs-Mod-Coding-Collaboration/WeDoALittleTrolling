@@ -36,6 +36,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public long lastActionTick = 0;
         public bool nightmarePhantom = false;
         public int golemBoulderIteration = 0;
+        public int BlazingShieldOwnerIndex = -1;
         public Vector2 golemBoulderStartPosition;
 
         public override void ResetEffects(NPC npc)
@@ -47,6 +48,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             binaryWriter.Write((int)npc.damage);
             binaryWriter.Write((int)VileSpitTimeLeft);
+            binaryWriter.Write((int)BlazingShieldOwnerIndex);
             base.SendExtraAI(npc, bitWriter, binaryWriter);
         }
 
@@ -54,6 +56,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             npc.damage = binaryReader.ReadInt32();
             VileSpitTimeLeft = binaryReader.ReadInt32();
+            BlazingShieldOwnerIndex = binaryReader.ReadInt32();
             base.ReceiveExtraAI(npc, bitReader, binaryReader);
         }
 
