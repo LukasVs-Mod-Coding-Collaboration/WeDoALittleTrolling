@@ -27,16 +27,17 @@ using Terraria.Audio;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.DataStructures;
 using WeDoALittleTrolling.Common.ModPlayers;
+using System.IO;
 
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
     public class BlazingShieldNPC : ModNPC
     {
-        int rotationsPerSecond = 1; // Change to adjust spinning speed
-        int currentDegree = 0;
-        int baseDegreeMultiplier = 6;
-        int distanceFromPlayer = 64;
+        public const int rotationsPerSecond = 1; // Change to adjust spinning speed
+        public int currentDegree = 0;
+        public const int baseDegreeMultiplier = 6;
+        public const int distanceFromPlayer = 64;
         Player shieldOwner;
 
 
@@ -62,6 +63,18 @@ namespace WeDoALittleTrolling.Content.NPCs
             AI_022_BlazingShield();
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((int)currentDegree);
+            base.SendExtraAI(writer);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            currentDegree = reader.ReadInt32();
+            base.ReceiveExtraAI(reader);
+        }
+
         private void AI_022_BlazingShield()
         {
             int idx = NPC.GetGlobalNPC<WDALTNPCUtil>().BlazingShieldOwnerIndex;
@@ -81,6 +94,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     currentDegree = currentDegree % 360;
                 }
+            }
+            if (NPC.GetGlobalNPC<WDALTNPCUtil>().ticksAlive % 60 == 0) //Sync position once every second.
+            {
+                NPC.netUpdate = true;
             }
         }
     }

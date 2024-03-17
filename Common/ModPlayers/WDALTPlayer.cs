@@ -56,6 +56,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool heartOfDespair;
         public int heartOfDespairDamageBonus;
         public bool soulPoweredShield;
+        public bool soulPoweredShieldPrev;
         public bool searingSetBonus;
         public int searingSetBonusValue;
         public bool sandStepping;
@@ -101,6 +102,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
             soulPoweredShield = false;
+            soulPoweredShieldPrev = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             sandStepping = false;
@@ -200,6 +202,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
             soulPoweredShield = false;
+            soulPoweredShieldPrev = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             sandStepping = false;
@@ -344,6 +347,45 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void PostUpdateEquips()
         {
+            if (soulPoweredShield && player.whoAmI == Main.myPlayer)
+            {
+                if (!player.GetModPlayer<WDALTPlayerUtil>().HasBlazingShield())
+                {
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        NPC shield = NPC.NewNPCDirect(player.GetSource_FromThis(), (int)Math.Round((double)player.Center.X), (int)Math.Round((double)player.Center.Y), ModContent.NPCType<BlazingShieldNPC>());
+                        shield.GetGlobalNPC<WDALTNPCUtil>().BlazingShieldOwnerIndex = Main.myPlayer;
+                    }
+                    else if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket spawnBlazingShieldPacket = Mod.GetPacket();
+                        spawnBlazingShieldPacket.Write(WDALTPacketTypeID.spawnBlazingShield);
+                        spawnBlazingShieldPacket.Write((int)Main.myPlayer);
+                        spawnBlazingShieldPacket.Send();
+                    }
+                }
+            }
+            else if (!soulPoweredShield && soulPoweredShieldPrev && player.whoAmI == Main.myPlayer)
+            {
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    for (int i = 0; i < Main.npc.Length; i++)
+                    {
+                        if (Main.npc[i].active && Main.npc[i].GetGlobalNPC<WDALTNPCUtil>().BlazingShieldOwnerIndex == Main.myPlayer)
+                        {
+                            Main.npc[i].StrikeInstantKill();
+                        }
+                    }
+                }
+                else if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket clearBlazingShieldPacket = Mod.GetPacket();
+                    clearBlazingShieldPacket.Write(WDALTPacketTypeID.clearBlazingShield);
+                    clearBlazingShieldPacket.Write((int)Main.myPlayer);
+                    clearBlazingShieldPacket.Send();
+                }
+            }
+            soulPoweredShieldPrev = soulPoweredShield;
             if (sandStepping)
             {
                 player.maxRunSpeed += 2f;

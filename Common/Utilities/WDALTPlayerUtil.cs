@@ -91,6 +91,36 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.OnRespawn();
         }
 
+        public bool HasBlazingShield()
+        {
+            bool ret = false;
+            for (int i = 0; i < Main.npc.Length; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<BlazingShieldNPC>())
+                {
+                    if (Main.npc[i].GetGlobalNPC<WDALTNPCUtil>().BlazingShieldOwnerIndex == player.whoAmI)
+                    {
+                        if (ret)
+                        {
+                            if (Main.netMode == NetmodeID.SinglePlayer && player.whoAmI == Main.myPlayer)
+                            {
+                                Main.npc[i].StrikeInstantKill();
+                            }
+                            else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
+                            {
+                                ModPacket clearBlazingShieldPacket = Mod.GetPacket();
+                                clearBlazingShieldPacket.Write(WDALTPacketTypeID.clearBlazingShield);
+                                clearBlazingShieldPacket.Write((int)Main.myPlayer);
+                                clearBlazingShieldPacket.Send();
+                            }
+                        }
+                        ret = true;
+                    }
+                }
+            }
+            return ret;
+        }
+
         public static bool IsBossActive()
         {
             for(int i = 0;i < Main.npc.Length; i++)
