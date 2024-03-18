@@ -217,6 +217,20 @@ Mods: {
 					'''
 			}
 
+			EmberRay: {
+				DisplayName: Ember Ray
+				Tooltip:
+					'''
+					"Melts just about anything, no matter
+					 how heat resistant it might be"
+					Converts wooden arrows into Ember Bolts
+					Striking an enemy with Ember Bolts will
+					build up Blazing Fuel, an invisible buff
+					which gradually increases the weapon's 
+					critical strike chance and damage
+					'''
+			}
+
 			LittleBlue: {
 				DisplayName: Little Blue
 				Tooltip:
@@ -569,6 +583,7 @@ Mods: {
 			PortableSpiderBullet.DisplayName: Fangling
 			PharaohsCursebladeBeam.DisplayName: Pharaoh's Curse
 			BlazingShield.DisplayName: Blazing Shield
+			EmberBolt.DisplayName: Ember Bolt
 		}
 
 		Prefixes: {
