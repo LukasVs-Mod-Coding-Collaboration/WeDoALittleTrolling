@@ -64,11 +64,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(drawLightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
                     SpriteEffects effects = SpriteEffects.None;
+                    float scale = Projectile.scale - (0.1f * k);
                     if (Projectile.oldSpriteDirection[k] < 0)
                     {
                         effects = SpriteEffects.FlipHorizontally;
                     }
-                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
+                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, scale, effects, 0);
             }
             return true;
         }

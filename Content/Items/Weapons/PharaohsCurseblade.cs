@@ -30,8 +30,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class PharaohsCurseblade : ModItem
     {
-        public const int chargeTicksMax = 125;
-        public const float chargeTicksScalingFactor = 0.01f;
+        public const int chargeTicksMax = 240;
+        public const float chargeTicksScalingFactor = 0.005f;
         public static UnifiedRandom rnd = new UnifiedRandom(); //rnd
         public int chargeTicks;
         public bool isCharging;
@@ -126,7 +126,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             if (isCharging)
             {
                 isCharging = false;
-                if (player.whoAmI == Main.myPlayer && chargeTicks >= player.itemAnimationMax)
+                if (player.whoAmI == Main.myPlayer && chargeTicks >= (player.itemAnimationMax * 2))
                 {
                     Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), Main.MouseWorld, Vector2.Zero, ProjectileID.SandnadoFriendly, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks));
                 }
@@ -154,7 +154,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            damage = (int)Math.Round((double)damage * 0.75);
+            damage = (int)Math.Round((double)damage * 0.9);
             position.Y -= 24;
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
