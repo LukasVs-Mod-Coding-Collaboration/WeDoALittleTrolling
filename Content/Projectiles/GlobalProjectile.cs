@@ -223,6 +223,27 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
+                if
+                (
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V1) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V2) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V3) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V4) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V5) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V6) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V7) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V8) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V9) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V10) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V11) ||
+                    projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V12)
+                )
+                {
+                    if (Main.expertMode)
+                    {
+                        projectile.extraUpdates++;
+                    }
+                }
                 if (projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V1))
                 {
                     if (Main.expertMode)
