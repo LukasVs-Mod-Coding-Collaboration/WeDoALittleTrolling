@@ -242,6 +242,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     if (Main.expertMode)
                     {
                         projectile.extraUpdates++;
+                        if (projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_LI_V12))
+                        {
+                            projectile.extraUpdates++;
+                        }
                     }
                 }
                 if (projectile.type == WDALTModContentID.GetThoriumBossProjectileID(WDALTModContentID.ThoriumBossProjectile_SFF_V1))

@@ -412,7 +412,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Plantera
             )
             {
-                npc.lifeMax = (int)Math.Round(npc.lifeMax * 3.5);
+                npc.lifeMax = (int)Math.Round(npc.lifeMax * 4.0);
             }
             if
             (
@@ -653,7 +653,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_LI_V2))
                 {
-                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 5.0);
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 4.5);
                 }
                 if
                 (
