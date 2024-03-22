@@ -56,7 +56,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool heartOfDespair;
         public int heartOfDespairDamageBonus;
         public bool soulPoweredShield;
-        public bool soulPoweredShieldPrev;
+        public bool blazingShieldPrev;
+        public bool blazingShield;
         public bool searingSetBonus;
         public int searingSetBonusValue;
         public bool sandStepping;
@@ -102,7 +103,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
             soulPoweredShield = false;
-            soulPoweredShieldPrev = false;
+            blazingShieldPrev = false;
+            blazingShield = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             sandStepping = false;
@@ -202,7 +204,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             heartOfDespair = false;
             heartOfDespairDamageBonus = 0;
             soulPoweredShield = false;
-            soulPoweredShieldPrev = false;
+            blazingShieldPrev = false;
+            blazingShield = false;
             searingSetBonus = false;
             searingSetBonusValue = 0;
             sandStepping = false;
@@ -235,6 +238,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             sorcerousMirror = false;
             heartOfDespair = false;
             soulPoweredShield = false;
+            blazingShield = false;
             searingSetBonus = false;
             sandStepping = false;
             gnomedStonedDebuff = false;
@@ -347,7 +351,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void PostUpdateEquips()
         {
-            if (soulPoweredShield && player.whoAmI == Main.myPlayer)
+            if (blazingShield && player.whoAmI == Main.myPlayer)
             {
                 if (!player.GetModPlayer<WDALTPlayerUtil>().HasBlazingShield())
                 {
@@ -365,7 +369,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                 }
             }
-            else if (!soulPoweredShield && soulPoweredShieldPrev && player.whoAmI == Main.myPlayer)
+            else if (!blazingShield && blazingShieldPrev && player.whoAmI == Main.myPlayer)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
@@ -385,7 +389,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     clearBlazingShieldPacket.Send();
                 }
             }
-            soulPoweredShieldPrev = soulPoweredShield;
+            blazingShieldPrev = blazingShield;
             if (sandStepping)
             {
                 player.maxRunSpeed += 2f;

@@ -306,7 +306,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                             pos,
                             shootVector.RotatedBy(MathHelper.ToRadians(rotation)),
                             ModContent.ProjectileType<ElementalStaffProjectileBullet>(),
-                            (int)Math.Round(Projectile.damage * 0.5),
+                            Projectile.damage,
                             Projectile.knockBack,
                             Projectile.owner
                         );

@@ -560,7 +560,44 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine chaosStateLine = new TooltipLine(Mod, "ChaosState", "Causes the chaos state");
                 tooltips.Add(chaosStateLine);
             }
+            if (item.DamageType == DamageClass.Throwing)
+            {
+                TooltipLine throwerClassExtraDmgLine = new TooltipLine(Mod, "WDALTPowerup", "+50% damage (From WeDoALittleTrolling)")
+                {
+                    IsModifier = true,
+                    IsModifierBad = false,
+                };
+                tooltips.Add(throwerClassExtraDmgLine);
+            }
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity && item.DamageType != null && item.DamageType.Mod != null && item.DamageType.Mod.Name != null)
+            {
+                if (item.DamageType.Mod.Name == WDALTModSystem.thoriumModName)
+                {
+                    TooltipLine thoriumClassExtraDmgLine = new TooltipLine(Mod, "WDALTPowerup", "+50% damage (From WeDoALittleTrolling)")
+                    {
+                        IsModifier = true,
+                        IsModifierBad = false,
+                    };
+                    tooltips.Add(thoriumClassExtraDmgLine);
+                }
+            }
             base.ModifyTooltips(item, tooltips);
+        }
+
+        public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
+        {
+            if (item.DamageType == DamageClass.Throwing)
+            {
+                damage += 0.5f;
+            }
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity && item.DamageType != null && item.DamageType.Mod != null && item.DamageType.Mod.Name != null)
+            {
+                if (item.DamageType.Mod.Name == WDALTModSystem.thoriumModName)
+                {
+                    damage += 0.5f;
+                }
+            }
+            base.ModifyWeaponDamage(item, player, ref damage);
         }
 
         public override void RightClick(Item item, Player player)
