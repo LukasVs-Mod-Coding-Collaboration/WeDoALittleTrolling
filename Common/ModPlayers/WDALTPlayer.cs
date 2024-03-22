@@ -446,6 +446,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.DefenseEffectiveness *= modifierD;
                 player.blackBelt = false;
                 player.brainOfConfusionItem = null;
+                player.longInvince = false;
                 dodgeChancePercent = 0;
             }
             else
@@ -521,8 +522,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     {
                         if (npc.type == NPCID.MoonLordHead && Main.masterMode)
                         {
-                            Devastated.AnimateDisintegration(player);
-                            Devastated.DisintegratePlayer(player);
+                            while(!player.dead)
+                            {
+                                Devastated.AnimateDisintegration(player);
+                                Devastated.DisintegratePlayer(player);
+                            }
                             return true;
                         }
                     }
@@ -541,8 +545,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     {
                         if (npc.type == NPCID.MoonLordHead && Main.masterMode)
                         {
-                            Devastated.AnimateDisintegration(player);
-                            Devastated.DisintegratePlayer(player);
+                            while(!player.dead)
+                            {
+                                Devastated.AnimateDisintegration(player);
+                                Devastated.DisintegratePlayer(player);
+                            }
                             return true;
                         }
                     }
