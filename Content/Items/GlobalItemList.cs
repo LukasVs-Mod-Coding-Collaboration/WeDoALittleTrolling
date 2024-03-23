@@ -1125,8 +1125,8 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TheHorsemansBlade)
             {
-                item.useTime = 12;
-                item.useAnimation = 12;
+                item.useTime = 15;
+                item.useAnimation = 15;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.BatScepter)
