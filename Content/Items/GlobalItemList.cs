@@ -560,18 +560,17 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine chaosStateLine = new TooltipLine(Mod, "ChaosState", "Causes the chaos state");
                 tooltips.Add(chaosStateLine);
             }
-            if (item.DamageType == DamageClass.Throwing)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
-                TooltipLine throwerClassExtraDmgLine = new TooltipLine(Mod, "WDALTPowerup", "+50% damage (From WeDoALittleTrolling)")
-                {
-                    IsModifier = true,
-                    IsModifierBad = false,
-                };
-                tooltips.Add(throwerClassExtraDmgLine);
-            }
-            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity && item.DamageType != null && item.DamageType.Mod != null && item.DamageType.Mod.Name != null)
-            {
-                if (item.DamageType.Mod.Name == WDALTModSystem.thoriumModName)
+                if
+                (
+                    item.DamageType == DamageClass.Throwing ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_BardDamage) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerDamage) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerTool) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerToolDamageHybrid) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_TrueDamage)
+                )
                 {
                     TooltipLine thoriumClassExtraDmgLine = new TooltipLine(Mod, "WDALTPowerup", "+50% damage (From WeDoALittleTrolling)")
                     {
@@ -586,13 +585,17 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
         {
-            if (item.DamageType == DamageClass.Throwing)
+            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
-                damage += 0.5f;
-            }
-            if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity && item.DamageType != null && item.DamageType.Mod != null && item.DamageType.Mod.Name != null)
-            {
-                if (item.DamageType.Mod.Name == WDALTModSystem.thoriumModName)
+                if
+                (
+                    item.DamageType == DamageClass.Throwing ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_BardDamage) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerDamage) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerTool) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerToolDamageHybrid) ||
+                    item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_TrueDamage)
+                )
                 {
                     damage += 0.5f;
                 }

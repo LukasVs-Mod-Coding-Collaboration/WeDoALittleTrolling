@@ -60,7 +60,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
             (
                 item.DamageType == DamageClass.Magic ||
                 item.DamageType == DamageClass.MagicSummonHybrid ||
-                item.DamageType == DamageClass.Ranged
+                item.DamageType == DamageClass.Ranged ||
+                item.DamageType == DamageClass.Throwing
             )
             {
                 return true;

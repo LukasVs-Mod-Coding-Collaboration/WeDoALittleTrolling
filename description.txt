@@ -14,14 +14,16 @@ List of additions and changes:
 -Changes to some of the bosses (Example: The destroyer's projectiles ignore walls)
 -Mechanics to slow down game progression with the intent of prolonging Hardmode
 -Buffs to fishing to make the mechanic genuinely useful
--Debuffs inflicted by powerful enemies and bosses to prevent cheesing
+-Debuffs inflicted by powerful enemies and bosses to prevent cheesing in master mode
 
 
 This Mod features compatibility/crossover features with Thorium Mod:
+- Increased damage for Thorium Classes
 - Increased health for Thorium Bosses
-- Thorium Hardmode Bosses inflict debuffs that prevent cheesing as well
-- Special adjustments to the Primordials to increase difficulty
+- Thorium Hardmode Bosses inflict debuffs that prevent cheesing in master mode as well
+- Special adjustments to the Primordials and Lich to increase difficulty
 - Exclusive Beam Laser Weapons that are only accessible when playing with Thorium Mod
+Before making any Thorium Mod bug reports, please always disable WeDoALittleTrolling first!
 
 
 Credits:

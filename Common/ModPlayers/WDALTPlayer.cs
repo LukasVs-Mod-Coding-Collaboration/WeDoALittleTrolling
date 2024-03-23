@@ -621,7 +621,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             (
                 modifiers.DamageType == DamageClass.Magic ||
                 modifiers.DamageType == DamageClass.MagicSummonHybrid ||
-                modifiers.DamageType == DamageClass.Ranged
+                modifiers.DamageType == DamageClass.Ranged ||
+                modifiers.DamageType == DamageClass.Throwing
             )
             {
                 if (player.HeldItem.prefix == ModContent.PrefixType<Supercritical>())
@@ -805,7 +806,16 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     hit.DamageType == DamageClass.MeleeNoSpeed ||
                     hit.DamageType == DamageClass.SummonMeleeSpeed ||
                     hit.DamageType == DamageClass.Magic ||
-                    hit.DamageType == DamageClass.MagicSummonHybrid
+                    hit.DamageType == DamageClass.MagicSummonHybrid ||
+                    (
+                        WDALTModSystem.isThoriumModPresent &&
+                        WDALTModSystem.MCIDIntegrity &&
+                        (
+                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerDamage) ||
+                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerTool) ||
+                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerToolDamageHybrid)
+                        )
+                    )
                 ) &&
                 (
                     (

@@ -25,6 +25,19 @@ namespace WeDoALittleTrolling.Common.ModSystems
     internal static class WDALTModContentID
     {
         //IDs for content from other mods to make cross-compatibility possible
+        public const int ThoriumDamageClass_BardDamage = 0;
+        public const int ThoriumDamageClass_HealerDamage = 1;
+        public const int ThoriumDamageClass_HealerTool = 2;
+        public const int ThoriumDamageClass_HealerToolDamageHybrid = 3;
+        public const int ThoriumDamageClass_TrueDamage = 4;
+        private static readonly string[] ThoriumDamageClassRegisterStrings =
+        {
+            "BardDamage",
+            "HealerDamage",
+            "HealerTool",
+            "HealerToolDamageHybrid",
+            "TrueDamage"
+        };
         public const int ThoriumBoss_GTB = 0;
         public const int ThoriumBoss_QJ = 1;
         public const int ThoriumBoss_VC = 2;
@@ -150,6 +163,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             "CelestialFragment",
             "ShootingStarFragment"
         };
+        private static DamageClass[] ThoriumDamageClass = new DamageClass[ThoriumDamageClassRegisterStrings.Length];
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
         private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(9 + 1)];
         private static int[] InflictWreckedResistance1in1Group_ThoriumBossProjectile = new int[(26 + 1)];
@@ -172,6 +186,21 @@ namespace WeDoALittleTrolling.Common.ModSystems
             catch
             {
                 WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetConsolariaNPCID() was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+
+        public static DamageClass GetThoriumDamageClass(int modContentID)
+        {
+            DamageClass i = null;
+            try
+            {
+                i = ThoriumDamageClass[modContentID];
+            }
+            catch
+            {
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumDamageClass() was called with an invalid ModContentID.");
+                return null;
             }
             return i;
         }
@@ -252,6 +281,17 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if (WDALTModSystem.TryGetThoriumMod(out Mod thoriumMod))
             {
+                for (int i = 0; i < ThoriumDamageClassRegisterStrings.Length; i++)
+                {
+                    if(thoriumMod.TryFind(ThoriumDamageClassRegisterStrings[i], out DamageClass c))
+                    {
+                        ThoriumDamageClass[i] = c;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
+                }
                 for (int i = 0; i < ThoriumBossRegisterStrings.Length; i++)
                 {
                     if (thoriumMod.TryFind(ThoriumBossRegisterStrings[i], out ModNPC bossNPC))
