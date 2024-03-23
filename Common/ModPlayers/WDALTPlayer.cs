@@ -807,12 +807,19 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     hit.DamageType == DamageClass.Magic ||
                     hit.DamageType == DamageClass.MagicSummonHybrid
                 ) &&
-                !target.friendly &&
-                !target.CountsAsACritter &&
-                !target.isLikeATownNPC &&
-                target.type != NPCID.TargetDummy &&
-                target.canGhostHeal &&
-                target.CanBeChasedBy()
+                (
+                    (
+                        !target.friendly &&
+                        !target.CountsAsACritter &&
+                        !target.isLikeATownNPC &&
+                        target.type != NPCID.TargetDummy &&
+                        target.canGhostHeal &&
+                        target.CanBeChasedBy()
+                    ) ||
+                    (
+                        !target.active //Make final hit heal as well.
+                    )
+                )
             )
             {
                 // 1 Base Heal + 5% of damage done

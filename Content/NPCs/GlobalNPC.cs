@@ -138,7 +138,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.SkeletronHand,
             NPCID.QueenSlimeBoss,
             NPCID.DukeFishron,
-            NPCID.Plantera,
             NPCID.PlanterasHook,
             NPCID.PlanterasTentacle,
             NPCID.Spore,
@@ -199,7 +198,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Mothron,
             NPCID.WyvernHead,
             NPCID.SolarCrawltipedeHead,
-            NPCID.StardustJellyfishSmall
+            NPCID.StardustJellyfishSmall,
+            NPCID.Golem,
+            NPCID.GolemHead,
+            NPCID.Plantera
         };
 
         public static readonly int[] ResistGloriousDemise50PercentGroup =
