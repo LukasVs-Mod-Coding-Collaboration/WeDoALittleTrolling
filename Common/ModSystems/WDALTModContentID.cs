@@ -154,6 +154,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public const int ThoriumItem_Fragment_WD = 3;
         public const int ThoriumItem_Fragment_C = 4;
         public const int ThoriumItem_Fragment_STS = 5;
+        public const int ThoriumItem_Crate_Abyssal = 6;
+        public const int ThoriumItem_Crate_AquaticDepths = 7;
+        public const int ThoriumItem_Crate_Scarlet = 8;
+        public const int ThoriumItem_Crate_Sinister = 9;
+        public const int ThoriumItem_Crate_Strange = 10;
+        public const int ThoriumItem_Crate_Wondrous = 11;
         private static readonly string[] ThoriumItemRegisterStrings =
         {
             "OceanEssence",
@@ -161,11 +167,18 @@ namespace WeDoALittleTrolling.Common.ModSystems
             "InfernoEssence",
             "WhiteDwarfFragment",
             "CelestialFragment",
-            "ShootingStarFragment"
+            "ShootingStarFragment",
+            "AbyssalCrate",
+            "AquaticDepthsCrate",
+            "ScarletCrate",
+            "SinisterCrate",
+            "StrangeCrate",
+            "WondrousCrate"
         };
         private static DamageClass[] ThoriumDamageClass = new DamageClass[ThoriumDamageClassRegisterStrings.Length];
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
         private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(9 + 1)];
+        private static int[] thoriumCrateTypes = new int[(6)];
         private static int[] InflictWreckedResistance1in1Group_ThoriumBossProjectile = new int[(26 + 1)];
         private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(2 + 1)];
         private static int[] InflictDevastated1in1Group_ThoriumBossProjectile = new int[(4 + 1)];
@@ -260,6 +273,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static int[] GetThoriumBossProjectileInflictDevastated1in1Group()
         {
             return InflictDevastated1in1Group_ThoriumBossProjectile;
+        }
+
+        public static int[] GetThoriumFishingCrateTypes()
+        {
+            return thoriumCrateTypes;
         }
 
         public static bool SetContentIDs()
@@ -373,6 +391,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V12);
                 InflictDevastated1in1Group_ThoriumBossProjectile[3] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V1);
                 InflictDevastated1in1Group_ThoriumBossProjectile[4] = GetThoriumBossProjectileID(ThoriumBossProjectile_OLD_V2);
+                thoriumCrateTypes[0] = GetThoriumItemID(ThoriumItem_Crate_Abyssal);
+                thoriumCrateTypes[1] = GetThoriumItemID(ThoriumItem_Crate_AquaticDepths);
+                thoriumCrateTypes[2] = GetThoriumItemID(ThoriumItem_Crate_Scarlet);
+                thoriumCrateTypes[3] = GetThoriumItemID(ThoriumItem_Crate_Sinister);
+                thoriumCrateTypes[4] = GetThoriumItemID(ThoriumItem_Crate_Strange);
+                thoriumCrateTypes[5] = GetThoriumItemID(ThoriumItem_Crate_Wondrous);
                 return true;
             }
             else

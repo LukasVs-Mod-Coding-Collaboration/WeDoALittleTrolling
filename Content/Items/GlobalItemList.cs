@@ -752,7 +752,15 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 amountGold = 10;
             }
-            if (biomeCrateTypes.Contains(item.type))
+            if
+            (
+                biomeCrateTypes.Contains(item.type) ||
+                (
+                    WDALTModSystem.isThoriumModPresent &&
+                    WDALTModSystem.MCIDIntegrity &&
+                    WDALTModContentID.GetThoriumFishingCrateTypes().Contains(item.type)
+                )
+            )
             {
                 amountGold = 12;
             }
@@ -764,13 +772,9 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 amountGold *= 2;
             }
-            if (NPC.downedPlantBoss)
-            {
-                amountGold *= 2;
-            }
             if (item.type == ItemID.OceanCrateHard && NPC.downedFishron && player.anglerQuestsFinished >= 100)
             {
-                amountGold = 4;
+                amountGold = 2;
                 goldItemID = ItemID.PlatinumCoin;
             }
             if
@@ -781,7 +785,12 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.IronCrateHard ||
                 item.type == ItemID.GoldenCrate ||
                 item.type == ItemID.GoldenCrateHard ||
-                biomeCrateTypes.Contains(item.type)
+                biomeCrateTypes.Contains(item.type) ||
+                (
+                    WDALTModSystem.isThoriumModPresent &&
+                    WDALTModSystem.MCIDIntegrity &&
+                    WDALTModContentID.GetThoriumFishingCrateTypes().Contains(item.type)
+                )
             )
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
