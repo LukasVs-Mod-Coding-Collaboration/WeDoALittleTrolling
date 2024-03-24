@@ -52,6 +52,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
+            Item.UseSound = SoundID.Item5;
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 35;
             Item.knockBack = 1.25f;
