@@ -44,11 +44,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.penetrate = -1;
             Projectile.timeLeft = 360;
             Projectile.ignoreWater = true;
-            Projectile.tileCollide = false;
+            Projectile.tileCollide = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 30;
             AIType = ProjectileID.Bullet;
             Projectile.extraUpdates = 6;
+            Projectile.light = 1.0f;
         }
 
         public override void AI()
@@ -113,6 +114,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
             }
 
+        }
+
+        public override bool PreKill(int timeLeft)
+        {
+            Projectile.NewProjectileDirect(Projectile.GetSource_Death(), Projectile.Center, Projectile.velocity, ProjectileID.Volcano, 0, 0f, Projectile.owner);
+            return base.PreKill(timeLeft);
         }
     }
 }
