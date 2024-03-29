@@ -59,7 +59,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.noMelee = true;
             Item.crit = 0;
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 10.0f;
+            Item.shootSpeed = 1.5f;
             Item.useAmmo = AmmoID.Arrow;
             Item.autoReuse = true;
 

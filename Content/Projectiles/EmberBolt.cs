@@ -24,16 +24,14 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class EmberBolt : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
-        }
+        public static UnifiedRandom rnd = new UnifiedRandom();
+        long ticksAlive = 0;
 
         public override void SetDefaults()
         {
@@ -44,17 +42,77 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 180;
+            Projectile.timeLeft = 360;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 30;
             AIType = ProjectileID.Bullet;
-            Projectile.extraUpdates = 1;
+            Projectile.extraUpdates = 6;
         }
 
         public override void AI()
         {
+            ticksAlive++;
+            Vector2 dustPosition = Projectile.Center;
+            Vector2 dustVelocityCenter = Vector2.Zero;
+
+            Vector2 dustVelocityMiddleUp = Projectile.velocity.RotatedBy(MathHelper.ToRadians(90));
+            Vector2 dustVelocityMiddleDown = Projectile.velocity.RotatedBy(MathHelper.ToRadians(270));
+            dustVelocityMiddleUp.Normalize();
+            dustVelocityMiddleUp *= 0.4f;
+            dustVelocityMiddleDown.Normalize();
+            dustVelocityMiddleDown *= 0.4f;
+
+            Vector2 dustVelocityOuterUp = Projectile.velocity.RotatedBy(MathHelper.ToRadians(90));
+            Vector2 dustVelocityOuterDown = Projectile.velocity.RotatedBy(MathHelper.ToRadians(270));
+            dustVelocityOuterUp.Normalize();
+            dustVelocityOuterUp *= 0.8f;
+            dustVelocityOuterDown.Normalize();
+            dustVelocityOuterDown *= 0.8f;
+
+            if (ticksAlive > 8)
+            {
+                Dust DustCenter = Dust.NewDustPerfect(dustPosition, DustID.Smoke, dustVelocityCenter, 0, Color.Yellow);
+                DustCenter.noGravity = true;
+            }
+            if (ticksAlive > 10)
+            {
+                Dust DustMiddleUp = Dust.NewDustPerfect(dustPosition, DustID.Smoke, dustVelocityMiddleUp, 0, Color.Orange, 0.8f);
+                Dust DustMiddleDown = Dust.NewDustPerfect(dustPosition, DustID.Smoke, dustVelocityMiddleDown, 0, Color.Orange, 0.8f);
+                DustMiddleUp.noGravity = true;
+                DustMiddleDown.noGravity = true;
+            }
+            if (ticksAlive > 12)
+            {
+                Dust DustOuterUp = Dust.NewDustPerfect(dustPosition, DustID.Smoke, dustVelocityOuterUp, 0, Color.Red, 0.6f);
+                Dust DustOuterDown = Dust.NewDustPerfect(dustPosition, DustID.Smoke, dustVelocityOuterDown, 0, Color.Red, 0.6f);
+                DustOuterUp.noGravity = true;
+                DustOuterDown.noGravity = true;
+            }
+
+            int turnIndex = 0;
+            if (rnd.NextBool(60))
+            {
+                if (rnd.NextBool(2))
+                {
+                    if (turnIndex < 4)
+                    {
+                        Projectile.velocity = Projectile.velocity.RotatedBy(MathHelper.ToRadians(8));
+                        turnIndex++;
+                    }
+                }
+                else
+                {
+                    if (turnIndex > -4)
+                    {
+                        Projectile.velocity = Projectile.velocity.RotatedBy(MathHelper.ToRadians(352));
+                        turnIndex--;
+                    }
+                }
+
+            }
+
         }
     }
 }
