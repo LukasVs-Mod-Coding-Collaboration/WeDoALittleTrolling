@@ -31,7 +31,6 @@ using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Buffs;
 using WeDoALittleTrolling.Content.Items.Accessories;
-using SteelSeries.GameSense;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.NPCs;
