@@ -521,11 +521,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     {
                         if (npc.type == NPCID.MoonLordHead && Main.masterMode)
                         {
-                            while(!player.dead)
-                            {
-                                Devastated.AnimateDisintegration(player);
-                                Devastated.DisintegratePlayer(player);
-                            }
+                            Devastated.DisintegratePlayer(player);
                             return true;
                         }
                     }
@@ -544,11 +540,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     {
                         if (npc.type == NPCID.MoonLordHead && Main.masterMode)
                         {
-                            while(!player.dead)
-                            {
-                                Devastated.AnimateDisintegration(player);
-                                Devastated.DisintegratePlayer(player);
-                            }
+                            Devastated.DisintegratePlayer(player);
                             return true;
                         }
                     }

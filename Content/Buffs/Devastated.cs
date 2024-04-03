@@ -101,7 +101,11 @@ namespace WeDoALittleTrolling.Content.Buffs
         {
             PlayerDeathReason reason = new PlayerDeathReason();
             reason.SourceCustomReason = player.name + " was disintegrated.";
-            player.KillMe(reason, 9999999, 0, default);
+            AnimateDisintegration(player);
+            for (int i = 0; !player.dead && i < 1024; i++) //Force player death, stop after 1024 attempts to prevent crashes.
+            {
+                player.KillMe(reason, 9999999, 0, default);
+            }
         }
     }
 }
