@@ -76,7 +76,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
                 cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.maxTilesY)));
                 cursor.GotoNext(i => i.MatchLdcI4(0));
-                cursor.Index++;
+                cursor.Index++; //move cursor to the local "flag2" variable.
                 intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx1); //fetch memory adress of local "flag2" variable.
                 byte idx1 = (byte)fetchedIdx1;
                 cursor.Index++;
@@ -93,9 +93,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         return !gravity;
                     }
                 );
-                cursor.Emit(OpCodes.Stloc_S, idx1); //write "true" into the local "flag2" variable.
+                cursor.Emit(OpCodes.Stloc_S, idx1); //write !gravity into the local "flag2" variable.
                 cursor.GotoNext(i => i.MatchCall<Main>(nameof(Main.IsItDay)));
-                cursor.Index--;
+                cursor.Index--; //move cursor to the local "num18" variable.
                 intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx2); //fetch memory adress of local "num18" variable.
                 byte idx2 = (byte)fetchedIdx2;
                 cursor.Index++;
@@ -112,10 +112,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         return maxSpeed;
                     }
                 );
-                cursor.Emit(OpCodes.Stloc_S, idx2); //write "true" into the local "num18" variable.
+                cursor.Emit(OpCodes.Stloc_S, idx2); //write maxSpeed into the local "num18" variable.
                 cursor.GotoNext(i => i.MatchStfld<Entity>(nameof(Entity.active)));
                 cursor.GotoNext(i => i.MatchLdcR4(out float dummy1));
-                cursor.Index++;
+                cursor.Index++; //move cursor to the local "num19" variable.
                 intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx3); //fetch memory adress of local "num19" variable.
                 byte idx3 = (byte)fetchedIdx3;
                 cursor.Index++;
@@ -132,8 +132,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         return maxAcc1;
                     }
                 );
-                cursor.Emit(OpCodes.Stloc_S, idx3); //write "true" into the local "num19" variable.
-                cursor.Index++;
+                cursor.Emit(OpCodes.Stloc_S, idx3); //write maxAcc1 into the local "num19" variable.
+                cursor.Index++; //move cursor to the local "num20" variable.
                 intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx4); //fetch memory adress of local "num20" variable.
                 byte idx4 = (byte)fetchedIdx4;
                 cursor.Index++;
@@ -150,7 +150,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         return maxAcc2;
                     }
                 );
-                cursor.Emit(OpCodes.Stloc_S, idx4); //write "true" into the local "num20" variable.
+                cursor.Emit(OpCodes.Stloc_S, idx4); //write maxAcc2 into the local "num20" variable.
             }
             catch
             {
@@ -171,9 +171,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
                 cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.getGoodWorld)));
-                cursor.Index++;
-                cursor.Emit(OpCodes.Pop);
-                cursor.Emit(OpCodes.Ldc_I4_0);
+                cursor.Index++; //move cursor to the "Main.getGoodWorld" if statement.
+                cursor.Emit(OpCodes.Pop); //Pop the value of Main.getGoodWorld off the stack.
+                cursor.Emit(OpCodes.Ldc_I4_0); //Push "false" onto the stack. This causes the if statement to never run the code inside.
             }
             catch
             {
