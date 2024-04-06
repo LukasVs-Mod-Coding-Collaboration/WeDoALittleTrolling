@@ -64,7 +64,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(successInjectInfectionSpreadHook)
             {
-                WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Infection Spread Hook via IL Editing.");
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Infection Spread Hook via IL Editing.");
             }
         }
 
@@ -160,7 +160,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(successInjectDestroyerAIHook)
             {
-                WeDoALittleTrolling.logger.Info("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
             }
         }
 
@@ -183,7 +183,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(successInjectGetGoodWorldLightingHook)
             {
-                WeDoALittleTrolling.logger.Info("WDALT: Successfully injected For The Worthy Lighting Hook via IL Editing.");
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected For The Worthy Lighting Hook via IL Editing.");
             }
         }
     }

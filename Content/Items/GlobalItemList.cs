@@ -934,6 +934,64 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void SetDefaults(Item item)
         {
+            // Make boss summoning items non-consumable
+            if
+            (
+                item.type == ItemID.SlimeCrown ||
+                item.type == ItemID.SuspiciousLookingEye ||
+                item.type == ItemID.WormFood ||
+                item.type == ItemID.BloodySpine ||
+                item.type == ItemID.Abeemination ||
+                item.type == ItemID.DeerThing ||
+                item.type == ItemID.MechanicalWorm ||
+                item.type == ItemID.MechanicalEye ||
+                item.type == ItemID.MechanicalSkull ||
+                item.type == ItemID.MechdusaSummon ||
+                item.type == ItemID.CelestialSigil ||
+                item.type == ItemID.PumpkinMoonMedallion ||
+                item.type == ItemID.NaughtyPresent ||
+                item.type == ItemID.GoblinBattleStandard ||
+                item.type == ItemID.PirateMap
+            )
+            {
+                item.consumable = false;
+                item.maxStack = 1;
+            }
+            //Make Buff Furniture give their Buffs when used
+            if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
+            {
+                item.buffTime = 108000;
+                switch (item.type)
+                {
+                    case ItemID.WarTable:
+                        item.buffType = BuffID.WarTable;
+                        break;
+                    case ItemID.BewitchingTable:
+                        item.buffType = BuffID.Bewitched;
+                        break;
+                    case ItemID.SharpeningStation:
+                        item.buffType = BuffID.Sharpened;
+                        break;
+                    case ItemID.CrystalBall:
+                        item.buffType = BuffID.Clairvoyance;
+                        break;
+                    case ItemID.AmmoBox:
+                        item.buffType = BuffID.AmmoBox;
+                        break;
+                    case ItemID.SliceOfCake:
+                        item.buffType = BuffID.SugarRush;
+                        item.buffTime = 7200;
+                        break;
+                    default:
+                        item.buffTime = 0;
+                        break;
+                }
+            }
+            if (WDALTModSystem.isCalamityModPresent)
+            {
+                base.SetDefaults(item);
+                return;
+            }
             if (item.type == ItemID.Phantasm)
             {
                 item.damage = 50;
@@ -1868,31 +1926,6 @@ namespace WeDoALittleTrolling.Content.Items
                 item.shootsEveryUse = true;
             }
 
-            // Make boss summoning items non-consumable
-
-            if
-            (
-                item.type == ItemID.SlimeCrown ||
-                item.type == ItemID.SuspiciousLookingEye ||
-                item.type == ItemID.WormFood ||
-                item.type == ItemID.BloodySpine ||
-                item.type == ItemID.Abeemination ||
-                item.type == ItemID.DeerThing ||
-                item.type == ItemID.MechanicalWorm ||
-                item.type == ItemID.MechanicalEye ||
-                item.type == ItemID.MechanicalSkull ||
-                item.type == ItemID.MechdusaSummon ||
-                item.type == ItemID.CelestialSigil ||
-                item.type == ItemID.PumpkinMoonMedallion ||
-                item.type == ItemID.NaughtyPresent ||
-                item.type == ItemID.GoblinBattleStandard ||
-                item.type == ItemID.PirateMap
-            )
-            {
-                item.consumable = false;
-                item.maxStack = 1;
-            }
-
             //Pre-Hardmode Ranger Rebalance
 
             if (item.type == ItemID.BeesKnees)
@@ -1957,37 +1990,6 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage += 4;
                 item.knockBack += 1.5f;
-            }
-
-            //Make Buff Furniture give their Buffs when used
-            if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
-            {
-                item.buffTime = 108000;
-                switch (item.type)
-                {
-                    case ItemID.WarTable:
-                        item.buffType = BuffID.WarTable;
-                        break;
-                    case ItemID.BewitchingTable:
-                        item.buffType = BuffID.Bewitched;
-                        break;
-                    case ItemID.SharpeningStation:
-                        item.buffType = BuffID.Sharpened;
-                        break;
-                    case ItemID.CrystalBall:
-                        item.buffType = BuffID.Clairvoyance;
-                        break;
-                    case ItemID.AmmoBox:
-                        item.buffType = BuffID.AmmoBox;
-                        break;
-                    case ItemID.SliceOfCake:
-                        item.buffType = BuffID.SugarRush;
-                        item.buffTime = 7200;
-                        break;
-                    default:
-                        item.buffTime = 0;
-                        break;
-                }
             }
         }
 

@@ -42,17 +42,26 @@ namespace WeDoALittleTrolling.Common.ModSystems
         
         public override void OnModLoad()
         {
-            if(ModLoader.HasMod(calamityModName))
+            if(ModLoader.HasMod(consolariaModName))
             {
-                isCalamityModPresent = true;
+                isConsolariaModPresent = true;
+                WeDoALittleTrolling.logger.Info("Consolaria Mod detected.");
+                WeDoALittleTrolling.logger.Info("Vampire Miners can now drop Yellow Crystals.");
             }
             if(ModLoader.HasMod(thoriumModName))
             {
                 isThoriumModPresent = true;
+                WeDoALittleTrolling.logger.Info("Thorium Mod detected.");
+                WeDoALittleTrolling.logger.Info("WeDoALittleTrolling has advanced compatibility features for Thorium Mod.");
+                WeDoALittleTrolling.logger.Info("For a list of changes this Mod does to Thorium Mod, please see this Mod's description.");
+                WeDoALittleTrolling.logger.Info("If you report any bugs to the Thorium Mod developers, make sure this Mod is disabled first.");
             }
-            if(ModLoader.HasMod(consolariaModName))
+            if(ModLoader.HasMod(calamityModName))
             {
-                isConsolariaModPresent = true;
+                isCalamityModPresent = true;
+                WeDoALittleTrolling.logger.Warn("Calamity Mod detected.");
+                WeDoALittleTrolling.logger.Warn("WeDoALittleTrolling is not intended to be used together with Calamity Mod.");
+                WeDoALittleTrolling.logger.Warn("Disabling most rebalancing features to avoid reactor meltdown...");
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             WDALTIntermediateLanguageEditing.RegisterILHooks();
