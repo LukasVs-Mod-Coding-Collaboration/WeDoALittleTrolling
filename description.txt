@@ -1,20 +1,21 @@
-This mod is a project my brother and I are working on whenever we feel like it.
-
+This mod is a project my brother and I work on whenever we feel like it, so... sorry if there's active maintainance.
 It mostly changes things we dislike about the game and and adds a few new features, small changes were made to most bosses as well.
-
-Please keep in mind that this mod was made just for fun and isn't meant to be too serious.
+Please keep in mind that this mod was made just for fun and might not be very balanced or serious at times.
 
 
 List of additions and changes:
--Four new weapons (Two melee weapons, one ranged weapon, one summon weapon)
--Searing armor, a classless tank set
+-A few new weapons (Including two new summons)
+-A classless tank armor set
 -A lot of reforges, some better, some worse
--Some new accessories (usually focused on one class)
+-Some new accessories with class-specific bonuses and mechanics
 -Tons of stat balance changes to both bosses and items
--Changes to some of the bosses (Example: The destroyer's projectiles ignore walls)
--Mechanics to slow down game progression with the intent of prolonging Hardmode
+-AI changes to some enemies to go along with this
+-Mechanics to slow down progression and encourage exploration to some degree
 -Buffs to fishing to make the mechanic genuinely useful
 -Debuffs inflicted by powerful enemies and bosses to prevent cheesing in master mode
+-Changes to the generation of the underground ice biome
+-Disabled wolrd evil creeping and non-consumable boss summon items
+-Rare absurd death messages which have a small chance to replace vanilla ones
 
 
 This Mod features compatibility/crossover features with Thorium Mod:
@@ -31,3 +32,5 @@ Credits:
 - Example Mod [tModLoader Team] (Code Examples, certain parts of code)
 - tModLoader [tModLoader Team] (Modding Framework and API)
 - Terraria [Re-Logic] (The game itself)
+
+(Rest in peace Alexander "Technoblade" you will be sincerely missed.)
