@@ -14,7 +14,7 @@ List of additions and changes:
 -Buffs to fishing to make the mechanic genuinely useful
 -Debuffs inflicted by powerful enemies and bosses to prevent cheesing in master mode
 -Changes to the generation of the underground ice biome
--Disabled wolrd evil creeping and non-consumable boss summon items
+-Disabled world evil creeping and non-consumable boss summon items
 -Rare absurd death messages which have a small chance to replace vanilla ones
 
 

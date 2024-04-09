@@ -214,7 +214,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " was ejected. " + player.name + " was not an impostor.",
                 player.name + " was ejected. " + player.name + " was an impostor.",
                 player.name + " has been tricked, " + player.name + " has been backstabbed and quite possibly bamboozled.",
-                "It was at that moment" + player.name + " knew they screwed up.",
+                "It was at that moment " + player.name + " knew they screwed up.",
                 "The corn has started to grow on " + player.name + ".",
                 "Is there a lore reason for why " + player.name + " died? Are they stupid?",
                 "All of " + player.name + "'s towers were pickled.",
