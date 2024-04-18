@@ -951,6 +951,9 @@ Mods: {
 			IceBiomeGloomMessage: Generating additional ice biome gloom
 		}
 
-		Keybinds.LifeforceEngine.DisplayName: Activate Lifeforce Engine
+		Keybinds: {
+			LifeforceEngine.DisplayName: Activate Lifeforce Engine
+			"Open Skill Tree.DisplayName": Open  Skill  Tree
+		}
 	}
 }

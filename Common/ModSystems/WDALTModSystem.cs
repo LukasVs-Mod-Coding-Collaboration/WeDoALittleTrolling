@@ -17,9 +17,12 @@
 */
 
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
+using WeDoALittleTrolling.Common.SkillTree;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.NPCs;
@@ -66,6 +69,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             WDALTIntermediateLanguageEditing.RegisterILHooks();
             RegisterHooks();
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
+            {
+                WDALTSkillTreeSystem.UIInit();
+            }
             base.OnModLoad();
         }
 
@@ -73,7 +80,29 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             WDALTIntermediateLanguageEditing.UnregisterILHooks();
             UnregisterHooks();
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
+            {
+                WDALTSkillTreeSystem.UIDestroy();
+            }
             base.OnModUnload();
+        }
+
+        public override void UpdateUI(GameTime gameTime)
+        {
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
+            {
+                WDALTSkillTreeSystem.UpdateUI(gameTime);
+            }
+            base.UpdateUI(gameTime);
+        }
+
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
+            {
+                WDALTSkillTreeSystem.ModifyInterfaceLayers(layers);
+            }
+            base.ModifyInterfaceLayers(layers);
         }
 
         public static void RegisterHooks()
