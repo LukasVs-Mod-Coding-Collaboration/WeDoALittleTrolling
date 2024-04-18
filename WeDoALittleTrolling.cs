@@ -28,6 +28,7 @@ namespace WeDoALittleTrolling
         public const string ASSET_PATH = "WeDoALittleTrolling/Assets/";
         internal static WDALTNetworkingSystem networkingSystem = new WDALTNetworkingSystem();
         public static ILog logger;
+        public static Mod instance;
         
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
@@ -38,6 +39,7 @@ namespace WeDoALittleTrolling
         public override void Load()
         {
             logger = this.Logger;
+            instance = this;
             base.Load();
         }
     }

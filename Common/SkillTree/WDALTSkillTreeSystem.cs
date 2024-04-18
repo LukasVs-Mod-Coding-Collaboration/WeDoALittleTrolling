@@ -38,20 +38,72 @@ using Terraria.GameInput;
 using System.Collections.Generic;
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
+using ReLogic.Content;
 
 namespace WeDoALittleTrolling.Common.SkillTree
 {
     internal class WDALTSkillTreeSystem : ModPlayer
     {
-        public WDALTSkillNode[] nodes = new WDALTSkillNode[2];
+        public const int amountNodes = 2;
+        public WDALTSkillNode[] nodes = new WDALTSkillNode[amountNodes];
         public const int Core = 0;
         public const int Basic = 1;
         public static UserInterface UI;
         public class UI_ST : UIState
         {
+            public Mod mod;
+            public UIImageButton[] nodeButtons = new UIImageButton[amountNodes];
+            public UIPanel panel;
+
+            public UI_ST()
+            {
+                OnInitialize();
+            }
+
+            protected override void DrawSelf(SpriteBatch spriteBatch)
+            {
+                base.DrawSelf(spriteBatch);
+                if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem system))
+                {
+                    if (ContainsPoint(Main.MouseScreen))
+                    {
+                        Main.LocalPlayer.mouseInterface = true;
+                    }
+                    if (panel.ContainsPoint(Main.MouseScreen))
+                    {
+                        Main.LocalPlayer.mouseInterface = true;
+                    }
+                    string displayText;
+                    for (int i = 0; i < nodeButtons.Length; i++)
+                    {
+                        switch (i)
+                        {
+                            case Core:
+                                displayText = "Core Node.\nDoes nothing yet.";
+                                break;
+                            case Basic:
+                                displayText = "Basic Node.\nDoes nothing yet.";
+                                if (!system.IsNodeEnabled(Core))
+                                {
+                                    displayText += "\nLocked: Requires Core Node.";
+                                }
+                                break;
+                            default:
+                                displayText = "Core Node.\nDoes nothing yet.";
+                                break;
+                        }
+                        if (nodeButtons[i].IsMouseHovering)
+                        {
+                            Main.hoverItemName = displayText;
+                        }
+                    }
+                }
+            }
+
             public override void OnInitialize()
             {
-                UIPanel panel = new UIPanel();
+                mod = WeDoALittleTrolling.instance;
+                panel = new UIPanel();
                 panel.Width.Set(512, 0);
                 panel.Height.Set(512, 0);
                 panel.HAlign = 0.5f;
@@ -61,8 +113,108 @@ namespace WeDoALittleTrolling.Common.SkillTree
                 header.HAlign = 0.5f;
                 header.Top.Set(16, 0);
                 panel.Append(header);
+                Asset<Texture2D> buttonTexture;
+                float buttonHAlign;
+                float buttonVAlign;
+                MouseEvent call;
+                for (int i = 0; i < nodeButtons.Length; i++)
+                {
+                    switch(i)
+                    {
+                        case Core:
+                            buttonHAlign = 0.5f;
+                            buttonVAlign = 0.5f;
+                            buttonTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
+                            call = OnClick_Node_Core;
+                            break;
+                        case Basic:
+                            buttonHAlign = 0.25f;
+                            buttonVAlign = 0.5f;
+                            buttonTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
+                            call = OnClick_Node_Basic;
+                            break;
+                        default:
+                            buttonHAlign = 0.5f;
+                            buttonVAlign = 0.5f;
+                            buttonTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
+                            call = OnClick_Node_Core;
+                            break;
+                    }
+                    nodeButtons[i] = new UIImageButton(buttonTexture);
+                    nodeButtons[i].SetImage(buttonTexture);
+                    nodeButtons[i].SetHoverImage(buttonTexture);
+                    nodeButtons[i].HAlign = buttonHAlign;
+                    nodeButtons[i].VAlign = buttonVAlign;
+                    nodeButtons[i].Width.Set(62, 0);
+                    nodeButtons[i].Height.Set(62, 0);
+                    nodeButtons[i].OnLeftClick += call;
+                    panel.Append(nodeButtons[i]);
+                }
+            }
+
+            public override void OnActivate()
+            {
+                if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem system))
+                {
+                    for (int i = 0; i < nodeButtons.Length; i++)
+                    {
+                        Asset<Texture2D> buttonTextureDisabled;
+                        Asset<Texture2D> buttonTextureEnabled;
+                        switch (i)
+                        {
+                            case Core:
+                                buttonTextureDisabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
+                                buttonTextureEnabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
+                                break;
+                            case Basic:
+                                buttonTextureDisabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
+                                buttonTextureEnabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
+                                break;
+                            default:
+                                buttonTextureDisabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
+                                buttonTextureEnabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
+                                break;
+                        }
+                        if (system.IsNodeEnabled(i))
+                        {
+                            nodeButtons[i].SetImage(buttonTextureEnabled);
+                            nodeButtons[i].SetHoverImage(buttonTextureEnabled);
+                            nodeButtons[i].Width.Set(62, 0);
+                            nodeButtons[i].Height.Set(62, 0);
+                        }
+                        else
+                        {
+                            nodeButtons[i].SetImage(buttonTextureDisabled);
+                            nodeButtons[i].SetHoverImage(buttonTextureDisabled);
+                            nodeButtons[i].Width.Set(62, 0);
+                            nodeButtons[i].Height.Set(62, 0);
+                        }
+                    }
+                }
+                base.OnActivate();
+            }
+
+            public void OnClick_Node_Core(UIMouseEvent evt, UIElement listeningElement)
+            {
+                if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem system))
+                {
+                    system.ToggleNode(Core);
+                    this.Deactivate();
+                    this.Activate();
+                }
+            }
+
+            public void OnClick_Node_Basic(UIMouseEvent evt, UIElement listeningElement)
+            {
+                if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem system))
+                {
+                    system.ToggleNode(Basic);
+                    this.Deactivate();
+                    this.Activate();
+                }
             }
         }
+
         public static UI_ST SkillUI;
         public static GameTime prevUIUpdateGameTime;
 
@@ -134,6 +286,38 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         break;
                 }
                 nodes[i] = new WDALTSkillNode(false, i, dependencies);
+            }
+        }
+
+        public bool IsNodeEnabled(int type)
+        {
+            if(nodes[type].enabled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void ToggleNode(int type)
+        {
+            if(nodes[type].enabled == false)
+            {
+                nodes[type].enabled = true;
+                if (!IsSkillTreeValid())
+                {
+                    nodes[type].enabled = false;
+                }
+            }
+            else
+            {
+                nodes[type].enabled = false;
+                if (!IsSkillTreeValid())
+                {
+                    nodes[type].enabled = true;
+                }
             }
         }
 
