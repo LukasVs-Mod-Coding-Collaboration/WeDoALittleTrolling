@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
         public class UI_ST : UIState
         {
             public Mod mod;
-            public UIImageButton[] nodeButtons = new UIImageButton[amountNodes];
+            public UIImage[] nodeButtons = new UIImage[amountNodes];
             public UIPanel panel;
 
             public UI_ST()
@@ -104,8 +104,8 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 mod = WeDoALittleTrolling.instance;
                 panel = new UIPanel();
-                panel.Width.Set(512, 0);
-                panel.Height.Set(512, 0);
+                panel.Width.Set(700, 0);
+                panel.Height.Set(700, 0);
                 panel.HAlign = 0.5f;
                 panel.VAlign = 0.5f;
                 Append(panel);
@@ -116,6 +116,8 @@ namespace WeDoALittleTrolling.Common.SkillTree
                 Asset<Texture2D> buttonTexture;
                 float buttonHAlign;
                 float buttonVAlign;
+                int textureWidth;
+                int textureHeight;
                 MouseEvent call;
                 for (int i = 0; i < nodeButtons.Length; i++)
                 {
@@ -124,29 +126,34 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         case Core:
                             buttonHAlign = 0.5f;
                             buttonVAlign = 0.5f;
+                            textureWidth = 62;
+                            textureHeight = 62;
                             buttonTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
                             call = OnClick_Node_Core;
                             break;
                         case Basic:
                             buttonHAlign = 0.25f;
                             buttonVAlign = 0.5f;
+                            textureWidth = 62;
+                            textureHeight = 62;
                             buttonTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
                             call = OnClick_Node_Basic;
                             break;
                         default:
                             buttonHAlign = 0.5f;
                             buttonVAlign = 0.5f;
+                            textureWidth = 62;
+                            textureHeight = 62;
                             buttonTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
                             call = OnClick_Node_Core;
                             break;
                     }
-                    nodeButtons[i] = new UIImageButton(buttonTexture);
+                    nodeButtons[i] = new UIImage(buttonTexture);
                     nodeButtons[i].SetImage(buttonTexture);
-                    nodeButtons[i].SetHoverImage(buttonTexture);
+                    nodeButtons[i].Width.Set(textureWidth, 0f);
+                    nodeButtons[i].Height.Set(textureHeight, 0f);
                     nodeButtons[i].HAlign = buttonHAlign;
                     nodeButtons[i].VAlign = buttonVAlign;
-                    nodeButtons[i].Width.Set(62, 0);
-                    nodeButtons[i].Height.Set(62, 0);
                     nodeButtons[i].OnLeftClick += call;
                     panel.Append(nodeButtons[i]);
                 }
@@ -160,34 +167,40 @@ namespace WeDoALittleTrolling.Common.SkillTree
                     {
                         Asset<Texture2D> buttonTextureDisabled;
                         Asset<Texture2D> buttonTextureEnabled;
+                        int textureWidth;
+                        int textureHeight;
                         switch (i)
                         {
                             case Core:
                                 buttonTextureDisabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
                                 buttonTextureEnabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
+                                textureWidth = 62;
+                                textureHeight = 62;
                                 break;
                             case Basic:
                                 buttonTextureDisabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
                                 buttonTextureEnabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
+                                textureWidth = 62;
+                                textureHeight = 62;
                                 break;
                             default:
                                 buttonTextureDisabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
                                 buttonTextureEnabled = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
+                                textureWidth = 62;
+                                textureHeight = 62;
                                 break;
                         }
                         if (system.IsNodeEnabled(i))
                         {
                             nodeButtons[i].SetImage(buttonTextureEnabled);
-                            nodeButtons[i].SetHoverImage(buttonTextureEnabled);
-                            nodeButtons[i].Width.Set(62, 0);
-                            nodeButtons[i].Height.Set(62, 0);
+                            nodeButtons[i].Width.Set(textureWidth, 0f);
+                            nodeButtons[i].Height.Set(textureHeight, 0f);
                         }
                         else
                         {
                             nodeButtons[i].SetImage(buttonTextureDisabled);
-                            nodeButtons[i].SetHoverImage(buttonTextureDisabled);
-                            nodeButtons[i].Width.Set(62, 0);
-                            nodeButtons[i].Height.Set(62, 0);
+                            nodeButtons[i].Width.Set(textureWidth, 0f);
+                            nodeButtons[i].Height.Set(textureHeight, 0f);
                         }
                     }
                 }
@@ -303,20 +316,33 @@ namespace WeDoALittleTrolling.Common.SkillTree
 
         public void ToggleNode(int type)
         {
-            if(nodes[type].enabled == false)
+            if (!Main.dedServ && Player.whoAmI == Main.myPlayer && Main.netMode != NetmodeID.Server)
             {
-                nodes[type].enabled = true;
-                if (!IsSkillTreeValid())
-                {
-                    nodes[type].enabled = false;
-                }
-            }
-            else
-            {
-                nodes[type].enabled = false;
-                if (!IsSkillTreeValid())
+                if (nodes[type].enabled == false)
                 {
                     nodes[type].enabled = true;
+                    if (!IsSkillTreeValid())
+                    {
+                        nodes[type].enabled = false;
+                        SoundEngine.PlaySound(SoundID.Item53, Player.Center);
+                    }
+                    else
+                    {
+                        SoundEngine.PlaySound(SoundID.Item90, Player.Center);
+                    }
+                }
+                else
+                {
+                    nodes[type].enabled = false;
+                    if (!IsSkillTreeValid())
+                    {
+                        nodes[type].enabled = true;
+                        SoundEngine.PlaySound(SoundID.Item53, Player.Center);
+                    }
+                    else
+                    {
+                        SoundEngine.PlaySound(SoundID.Item90, Player.Center);
+                    }
                 }
             }
         }
