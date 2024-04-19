@@ -34,11 +34,12 @@ namespace WeDoALittleTrolling.Common.SkillTree
 {
     internal class WDALTSkillTreeSystem : ModPlayer
     {
-        public const int amountNodes = 2;
+        public const int amountNodes = 3;
         public static WDALTSkillNode[] nodes = new WDALTSkillNode[amountNodes];
         public static bool nodesInitialized = false;
         public const int Core = 0;
-        public const int Basic = 1;
+        public const int Positive1 = 1;
+        public const int Negative1 = 2;
         public static UserInterface UI;
         public class UI_ST : UIState
         {
@@ -53,39 +54,35 @@ namespace WeDoALittleTrolling.Common.SkillTree
             protected override void DrawSelf(SpriteBatch spriteBatch)
             {
                 base.DrawSelf(spriteBatch);
-                if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length)
+                if (ContainsPoint(Main.MouseScreen))
                 {
-                    if (ContainsPoint(Main.MouseScreen))
+                    Main.LocalPlayer.mouseInterface = true;
+                }
+                if (panel.ContainsPoint(Main.MouseScreen))
+                {
+                    Main.LocalPlayer.mouseInterface = true;
+                }
+                string displayText;
+                for (int i = 0; i < nodeButtons.Length; i++)
+                {
+                    switch (i)
                     {
-                        Main.LocalPlayer.mouseInterface = true;
+                        case Core:
+                            displayText = "Core Node.\nDoes nothing yet.";
+                            break;
+                        case Positive1:
+                            displayText = "Positive Node.\nDoes nothing yet.";
+                            break;
+                        case Negative1:
+                            displayText = "Negative Node.\nDoes nothing yet.";
+                            break;
+                        default:
+                            displayText = "Core Node.\nDoes nothing yet.";
+                            break;
                     }
-                    if (panel.ContainsPoint(Main.MouseScreen))
+                    if (nodeButtons[i].IsMouseHovering)
                     {
-                        Main.LocalPlayer.mouseInterface = true;
-                    }
-                    string displayText;
-                    for (int i = 0; i < nodeButtons.Length; i++)
-                    {
-                        switch (i)
-                        {
-                            case Core:
-                                displayText = "Core Node.\nDoes nothing yet.";
-                                break;
-                            case Basic:
-                                displayText = "Basic Node.\nDoes nothing yet.";
-                                if (!IsNodeEnabled(Core))
-                                {
-                                    displayText += "\nLocked: Requires Core Node.";
-                                }
-                                break;
-                            default:
-                                displayText = "Core Node.\nDoes nothing yet.";
-                                break;
-                        }
-                        if (nodeButtons[i].IsMouseHovering)
-                        {
-                            Main.hoverItemName = displayText;
-                        }
+                        Main.hoverItemName = displayText;
                     }
                 }
             }
@@ -118,10 +115,15 @@ namespace WeDoALittleTrolling.Common.SkillTree
                             buttonVAlign = 0.5f;
                             call = OnClick_Node_Core;
                             break;
-                        case Basic:
+                        case Positive1:
                             buttonHAlign = 0.25f;
                             buttonVAlign = 0.5f;
-                            call = OnClick_Node_Basic;
+                            call = OnClick_Node_Positive1;
+                            break;
+                        case Negative1:
+                            buttonHAlign = 0.75f;
+                            buttonVAlign = 0.5f;
+                            call = OnClick_Node_Negative1;
                             break;
                         default:
                             buttonHAlign = 0.5f;
@@ -170,11 +172,21 @@ namespace WeDoALittleTrolling.Common.SkillTree
                 }
             }
 
-            public void OnClick_Node_Basic(UIMouseEvent evt, UIElement listeningElement)
+            public void OnClick_Node_Positive1(UIMouseEvent evt, UIElement listeningElement)
             {
                 if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem tree))
                 {
-                    tree.ToggleNode(Basic);
+                    tree.ToggleNode(Positive1);
+                    this.Deactivate();
+                    this.Activate();
+                }
+            }
+
+            public void OnClick_Node_Negative1(UIMouseEvent evt, UIElement listeningElement)
+            {
+                if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem tree))
+                {
+                    tree.ToggleNode(Negative1);
                     this.Deactivate();
                     this.Activate();
                 }
@@ -263,11 +275,20 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         depAmount = 0;
                         dependencies = new int[depAmount];
                         break;
-                    case Basic:
-                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
-                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNodeInactive");
-                        textureWidth = 62;
-                        textureHeight = 62;
+                    case Positive1:
+                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/PositiveNode");
+                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/PositiveNodeInactive");
+                        textureWidth = 34;
+                        textureHeight = 34;
+                        depAmount = 1;
+                        dependencies = new int[depAmount];
+                        dependencies[0] = Core;
+                        break;
+                    case Negative1:
+                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/NegativeNode");
+                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/NegativeNodeInactive");
+                        textureWidth = 34;
+                        textureHeight = 34;
                         depAmount = 1;
                         dependencies = new int[depAmount];
                         dependencies[0] = Core;
@@ -415,9 +436,13 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 (nodes[Core]).enabled = tag.GetBool("Core");
             }
-            if (tag.ContainsKey("Basic"))
+            if (tag.ContainsKey("Positive1"))
             {
-                (nodes[Basic]).enabled = tag.GetBool("Basic");
+                (nodes[Positive1]).enabled = tag.GetBool("Positive1");
+            }
+            if (tag.ContainsKey("Negative1"))
+            {
+                (nodes[Negative1]).enabled = tag.GetBool("Negative1");
             }
             if (!IsSkillTreeValid())
             {
@@ -439,9 +464,13 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 tag["Core"] = (nodes[Core]).enabled;
             }
-            if ((nodes[Basic]).enabled)
+            if ((nodes[Positive1]).enabled)
             {
-                tag["Basic"] = (nodes[Basic]).enabled;
+                tag["Positive1"] = (nodes[Positive1]).enabled;
+            }
+            if ((nodes[Negative1]).enabled)
+            {
+                tag["Negative1"] = (nodes[Negative1]).enabled;
             }
         }
     }
