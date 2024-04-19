@@ -16,6 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+
 namespace WeDoALittleTrolling.Common.SkillTree
 {
     internal class WDALTSkillNode
@@ -23,11 +26,20 @@ namespace WeDoALittleTrolling.Common.SkillTree
         public bool enabled;
         public int type;
         public int[] dependencies;
-        public WDALTSkillNode(bool enabled, int type, int[] dependencies)
+        public Asset<Texture2D> enabledTexture;
+        public Asset<Texture2D> disabledTexture;
+        public int textureWidth;
+        public int textureHeight;
+
+        public WDALTSkillNode(bool enabled, int type, int[] dependencies, Asset<Texture2D> enabledTexture, Asset<Texture2D> disabledTexture, int textureWidth, int textureHeight)
         {
             this.enabled = enabled;
             this.type = type;
             this.dependencies = dependencies;
+            this.enabledTexture = enabledTexture;
+            this.disabledTexture = disabledTexture;
+            this.textureWidth = textureWidth;
+            this.textureHeight = textureHeight;
         }
     }
 }
