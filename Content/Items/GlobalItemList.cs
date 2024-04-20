@@ -40,6 +40,7 @@ using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
 using WeDoALittleTrolling.Content.Tiles;
 using Terraria.GameContent.Items;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -572,11 +573,21 @@ namespace WeDoALittleTrolling.Content.Items
                     item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_TrueDamage)
                 )
                 {
-                    TooltipLine thoriumClassExtraDmgLine = new TooltipLine(Mod, "WDALTPowerup", "+50% damage (From WeDoALittleTrolling)")
-                    {
-                        IsModifier = true,
-                        IsModifierBad = false,
-                    };
+                    TooltipLine thoriumClassExtraDmgLine =
+                    (
+                        Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().skillTreeThoriumBuffNode ?
+                        new TooltipLine(Mod, "WDALTPowerup", "+75% damage (From WeDoALittleTrolling)")
+                        {
+                            IsModifier = true,
+                            IsModifierBad = false,
+                        }
+                        :
+                        new TooltipLine(Mod, "WDALTPowerup", "+50% damage (From WeDoALittleTrolling)")
+                        {
+                            IsModifier = true,
+                            IsModifierBad = false,
+                        }
+                    );
                     tooltips.Add(thoriumClassExtraDmgLine);
                 }
             }
@@ -598,6 +609,10 @@ namespace WeDoALittleTrolling.Content.Items
                 )
                 {
                     damage += 0.5f;
+                    if (player.GetModPlayer<WDALTPlayer>().skillTreeThoriumBuffNode)
+                    {
+                        damage += 0.25f;
+                    }
                 }
             }
             base.ModifyWeaponDamage(item, player, ref damage);

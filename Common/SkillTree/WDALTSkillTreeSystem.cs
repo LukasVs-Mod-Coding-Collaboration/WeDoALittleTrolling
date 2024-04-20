@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using ReLogic.Content;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Common.SkillTree
 {
@@ -36,12 +37,13 @@ namespace WeDoALittleTrolling.Common.SkillTree
     {
         public static int unlockedSkillPoints = 3;
         public static bool unlockedSkillPoint1 = false;
-        public const int amountNodes = 3;
+        public const int amountNodes = 4;
         public static WDALTSkillNode[] nodes = new WDALTSkillNode[amountNodes];
         public static bool nodesInitialized = false;
         public const int Core = 0;
         public const int Positive1 = 1;
-        public const int Negative1 = 2;
+        public const int Negative1Thorium = 2;
+        public const int ThoriumClassBooster = 3;
         public static UserInterface UI;
         public class UI_ST : UIState
         {
@@ -73,13 +75,16 @@ namespace WeDoALittleTrolling.Common.SkillTree
                     switch (i)
                     {
                         case Core:
-                            displayText = "Core Node.\n+5% attack damage\nReduces damage taken by 5%";
+                            displayText = "Core Node\n+5% attack damage\nReduces damage taken by 5%";
                             break;
                         case Positive1:
-                            displayText = "Positive Node.\n+2% attack damage";
+                            displayText = "Positive Node\n+2% attack damage";
                             break;
-                        case Negative1:
-                            displayText = "Negative Node.\n-2% attack damage";
+                        case Negative1Thorium:
+                            displayText = "Necessary Evil\nReduces damage done by\nall Vanilla classes by 25%";
+                            break;
+                        case ThoriumClassBooster:
+                            displayText = "Thorium Acclimatization\nIncreases the damage bonus applied to\nThorium weapons from 50% to 75%";
                             break;
                         default:
                             displayText = "Core Node.\n+5% attack damage\nReduces damage taken by 5%";
@@ -136,10 +141,15 @@ namespace WeDoALittleTrolling.Common.SkillTree
                                 buttonVAlign = 0.5f;
                                 call = OnClick_Node_Positive1;
                                 break;
-                            case Negative1:
-                                buttonHAlign = 0.75f;
-                                buttonVAlign = 0.5f;
-                                call = OnClick_Node_Negative1;
+                            case Negative1Thorium:
+                                buttonHAlign = 0.5f;
+                                buttonVAlign = 0.6f;
+                                call = OnClick_Node_Negative1Thorium;
+                                break;
+                            case ThoriumClassBooster:
+                                buttonHAlign = 0.5f;
+                                buttonVAlign = 0.75f;
+                                call = OnClick_Node_ThoriumClassBooster;
                                 break;
                             default:
                                 buttonHAlign = 0.5f;
@@ -199,11 +209,21 @@ namespace WeDoALittleTrolling.Common.SkillTree
                 }
             }
 
-            public void OnClick_Node_Negative1(UIMouseEvent evt, UIElement listeningElement)
+            public void OnClick_Node_Negative1Thorium(UIMouseEvent evt, UIElement listeningElement)
             {
                 if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem tree))
                 {
-                    tree.ToggleNode(Negative1);
+                    tree.ToggleNode(Negative1Thorium);
+                    this.Deactivate();
+                    this.Activate();
+                }
+            }
+
+            public void OnClick_Node_ThoriumClassBooster(UIMouseEvent evt, UIElement listeningElement)
+            {
+                if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem tree))
+                {
+                    tree.ToggleNode(ThoriumClassBooster);
                     this.Deactivate();
                     this.Activate();
                 }
@@ -304,7 +324,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         dependencies[0] = Core;
                         skillPointCost = 1;
                         break;
-                    case Negative1:
+                    case Negative1Thorium:
                         enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/NegativeNode");
                         disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/NegativeNodeInactive");
                         textureWidth = 34;
@@ -312,6 +332,16 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         depAmount = 1;
                         dependencies = new int[depAmount];
                         dependencies[0] = Core;
+                        skillPointCost = 1;
+                        break;
+                    case ThoriumClassBooster:
+                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/ThoriumNode");
+                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/ThoriumNodeInactive");
+                        textureWidth = 62;
+                        textureHeight = 62;
+                        depAmount = 1;
+                        dependencies = new int[depAmount];
+                        dependencies[0] = Negative1Thorium;
                         skillPointCost = 1;
                         break;
                     default:
@@ -478,9 +508,13 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 (nodes[Positive1]).enabled = tag.GetBool("Positive1");
             }
-            if (tag.ContainsKey("Negative1"))
+            if (tag.ContainsKey("Negative1Thorium"))
             {
-                (nodes[Negative1]).enabled = tag.GetBool("Negative1");
+                (nodes[Negative1Thorium]).enabled = tag.GetBool("Negative1Thorium");
+            }
+            if (tag.ContainsKey("ThoriumClassBooster"))
+            {
+                (nodes[Negative1Thorium]).enabled = tag.GetBool("ThoriumClassBooster");
             }
             if (!IsSkillTreeValid())
             {
@@ -501,7 +535,8 @@ namespace WeDoALittleTrolling.Common.SkillTree
             }
             tag["Core"] = (nodes[Core]).enabled;
             tag["Positive1"] = (nodes[Positive1]).enabled;
-            tag["Negative1"] = (nodes[Negative1]).enabled;
+            tag["Negative1Thorium"] = (nodes[Negative1Thorium]).enabled;
+            tag["ThoriumClassBooster"] = (nodes[ThoriumClassBooster]).enabled;
         }
 
         public override void UpdateEquips()
@@ -515,9 +550,16 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 Player.GetDamage(DamageClass.Generic) += 0.02f;
             }
-            if (IsNodeEnabled(Negative1))
+            if (IsNodeEnabled(Negative1Thorium))
             {
-                Player.GetDamage(DamageClass.Generic) -= 0.02f;
+                Player.GetDamage(DamageClass.Melee) -= 0.25f;
+                Player.GetDamage(DamageClass.Ranged) -= 0.25f;
+                Player.GetDamage(DamageClass.Magic) -= 0.25f;
+                Player.GetDamage(DamageClass.Summon) -= 0.25f;
+            }
+            if (IsNodeEnabled(ThoriumClassBooster))
+            {
+                Player.GetModPlayer<WDALTPlayer>().skillTreeThoriumBuffNode = true;
             }
             base.UpdateEquips();
         }

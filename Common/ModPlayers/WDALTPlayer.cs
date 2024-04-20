@@ -84,6 +84,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int lifeforceEngineCooldown;
         public bool hasLifeforceEngine;
         public bool cornEmblem;
+        public bool skillTreeThoriumBuffNode;
         public static UnifiedRandom random = new UnifiedRandom();
 
         public override void Initialize()
@@ -130,6 +131,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             lifeforceEngineCooldown = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
+            skillTreeThoriumBuffNode = false;
         }
 
         public override void UpdateDead()
@@ -226,6 +228,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             lifeforceEngineCooldown = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
+            skillTreeThoriumBuffNode = false;
         }
 
         public override void ResetEffects()
@@ -249,6 +252,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             acceleratedStack = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
+            skillTreeThoriumBuffNode = false;
             base.ResetEffects();
         }
 
