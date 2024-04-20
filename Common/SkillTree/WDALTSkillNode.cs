@@ -21,7 +21,7 @@ using ReLogic.Content;
 
 namespace WeDoALittleTrolling.Common.SkillTree
 {
-    internal class WDALTSkillNode
+    public class WDALTSkillNode
     {
         public bool enabled;
         public int type;
@@ -30,8 +30,9 @@ namespace WeDoALittleTrolling.Common.SkillTree
         public Asset<Texture2D> disabledTexture;
         public int textureWidth;
         public int textureHeight;
+        public int skillPointCost;
 
-        public WDALTSkillNode(bool enabled, int type, int[] dependencies, Asset<Texture2D> enabledTexture, Asset<Texture2D> disabledTexture, int textureWidth, int textureHeight)
+        public WDALTSkillNode(bool enabled, int type, int[] dependencies, Asset<Texture2D> enabledTexture, Asset<Texture2D> disabledTexture, int textureWidth, int textureHeight, int skillPointCost)
         {
             this.enabled = enabled;
             this.type = type;
@@ -40,6 +41,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
             this.disabledTexture = disabledTexture;
             this.textureWidth = textureWidth;
             this.textureHeight = textureHeight;
+            this.skillPointCost = skillPointCost;
         }
     }
 }

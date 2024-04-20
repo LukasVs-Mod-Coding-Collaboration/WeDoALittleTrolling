@@ -32,8 +32,10 @@ using ReLogic.Content;
 
 namespace WeDoALittleTrolling.Common.SkillTree
 {
-    internal class WDALTSkillTreeSystem : ModPlayer
+    public class WDALTSkillTreeSystem : ModPlayer
     {
+        public static int unlockedSkillPoints = 3;
+        public static bool unlockedSkillPoint1 = false;
         public const int amountNodes = 3;
         public static WDALTSkillNode[] nodes = new WDALTSkillNode[amountNodes];
         public static bool nodesInitialized = false;
@@ -45,6 +47,8 @@ namespace WeDoALittleTrolling.Common.SkillTree
         {
             public UIImage[] nodeButtons = new UIImage[amountNodes];
             public UIPanel panel;
+            public UIText skillPointDisplay;
+            public bool buttonsInit = false;
 
             public UI_ST()
             {
@@ -54,6 +58,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
             protected override void DrawSelf(SpriteBatch spriteBatch)
             {
                 base.DrawSelf(spriteBatch);
+                panel.Draw(spriteBatch);
                 if (ContainsPoint(Main.MouseScreen))
                 {
                     Main.LocalPlayer.mouseInterface = true;
@@ -68,16 +73,16 @@ namespace WeDoALittleTrolling.Common.SkillTree
                     switch (i)
                     {
                         case Core:
-                            displayText = "Core Node.\nDoes nothing yet.";
+                            displayText = "Core Node.\n+5% attack damage\nReduces damage taken by 5%";
                             break;
                         case Positive1:
-                            displayText = "Positive Node.\nDoes nothing yet.";
+                            displayText = "Positive Node.\n+2% attack damage";
                             break;
                         case Negative1:
-                            displayText = "Negative Node.\nDoes nothing yet.";
+                            displayText = "Negative Node.\n-2% attack damage";
                             break;
                         default:
-                            displayText = "Core Node.\nDoes nothing yet.";
+                            displayText = "Core Node.\n+5% attack damage\nReduces damage taken by 5%";
                             break;
                     }
                     if (nodeButtons[i].IsMouseHovering)
@@ -103,51 +108,62 @@ namespace WeDoALittleTrolling.Common.SkillTree
                 header.HAlign = 0.5f;
                 header.Top.Set(16, 0);
                 panel.Append(header);
-                float buttonHAlign;
-                float buttonVAlign;
-                MouseEvent call;
-                for (int i = 0; i < nodeButtons.Length; i++)
-                {
-                    switch(i)
-                    {
-                        case Core:
-                            buttonHAlign = 0.5f;
-                            buttonVAlign = 0.5f;
-                            call = OnClick_Node_Core;
-                            break;
-                        case Positive1:
-                            buttonHAlign = 0.25f;
-                            buttonVAlign = 0.5f;
-                            call = OnClick_Node_Positive1;
-                            break;
-                        case Negative1:
-                            buttonHAlign = 0.75f;
-                            buttonVAlign = 0.5f;
-                            call = OnClick_Node_Negative1;
-                            break;
-                        default:
-                            buttonHAlign = 0.5f;
-                            buttonVAlign = 0.5f;
-                            call = OnClick_Node_Core;
-                            break;
-                    }
-                    nodeButtons[i] = new UIImage(nodes[i].disabledTexture);
-                    nodeButtons[i].SetImage(nodes[i].disabledTexture);
-                    nodeButtons[i].Width.Set(nodes[i].textureWidth, 0f);
-                    nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
-                    nodeButtons[i].HAlign = buttonHAlign;
-                    nodeButtons[i].VAlign = buttonVAlign;
-                    nodeButtons[i].OnLeftClick += call;
-                    panel.Append(nodeButtons[i]);
-                }
+                buttonsInit = false;
             }
 
             public override void OnActivate()
             {
+                if (!buttonsInit)
+                {
+                    skillPointDisplay = new UIText("Skill Point Remaining: " + unlockedSkillPoints);
+                    skillPointDisplay.HAlign = 0.5f;
+                    skillPointDisplay.Top.Set(48, 0);
+                    panel.Append(skillPointDisplay);
+                    float buttonHAlign;
+                    float buttonVAlign;
+                    MouseEvent call;
+                    for (int i = 0; i < nodeButtons.Length; i++)
+                    {
+                        switch (i)
+                        {
+                            case Core:
+                                buttonHAlign = 0.5f;
+                                buttonVAlign = 0.5f;
+                                call = OnClick_Node_Core;
+                                break;
+                            case Positive1:
+                                buttonHAlign = 0.25f;
+                                buttonVAlign = 0.5f;
+                                call = OnClick_Node_Positive1;
+                                break;
+                            case Negative1:
+                                buttonHAlign = 0.75f;
+                                buttonVAlign = 0.5f;
+                                call = OnClick_Node_Negative1;
+                                break;
+                            default:
+                                buttonHAlign = 0.5f;
+                                buttonVAlign = 0.5f;
+                                call = OnClick_Node_Core;
+                                break;
+                        }
+                        nodeButtons[i] = new UIImage(nodes[i].disabledTexture);
+                        nodeButtons[i].SetImage(nodes[i].disabledTexture);
+                        nodeButtons[i].Width.Set(nodes[i].textureWidth, 0f);
+                        nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
+                        nodeButtons[i].HAlign = buttonHAlign;
+                        nodeButtons[i].VAlign = buttonVAlign;
+                        nodeButtons[i].OnLeftClick += call;
+                        panel.Append(nodeButtons[i]);
+                    }
+                    buttonsInit = true;
+                }
+                int currentSkillPoints = 0;
                 for (int i = 0; i < nodeButtons.Length; i++)
                 {
                     if (IsNodeEnabled(i))
                     {
+                        currentSkillPoints += nodes[i].skillPointCost;
                         nodeButtons[i].SetImage(nodes[i].enabledTexture);
                         nodeButtons[i].Width.Set(nodes[i].textureWidth, 0f);
                         nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
@@ -159,6 +175,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
                     }
                 }
+                skillPointDisplay.SetText("Skill Point Remaining: " + (unlockedSkillPoints - currentSkillPoints));
                 base.OnActivate();
             }
 
@@ -265,6 +282,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
                 Asset<Texture2D> disabledTexture;
                 int textureWidth;
                 int textureHeight;
+                int skillPointCost;
                 switch (i)
                 {
                     case Core:
@@ -274,6 +292,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         textureHeight = 62;
                         depAmount = 0;
                         dependencies = new int[depAmount];
+                        skillPointCost = 2;
                         break;
                     case Positive1:
                         enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/PositiveNode");
@@ -283,6 +302,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         depAmount = 1;
                         dependencies = new int[depAmount];
                         dependencies[0] = Core;
+                        skillPointCost = 1;
                         break;
                     case Negative1:
                         enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/NegativeNode");
@@ -292,6 +312,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         depAmount = 1;
                         dependencies = new int[depAmount];
                         dependencies[0] = Core;
+                        skillPointCost = 1;
                         break;
                     default:
                         enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Nodes/CoreNode");
@@ -300,9 +321,10 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         textureHeight = 62;
                         depAmount = 0;
                         dependencies = new int[depAmount];
+                        skillPointCost = 2;
                         break;
                 }
-                nodes[i] = new WDALTSkillNode(false, i, dependencies, enabledTexture, disabledTexture, textureWidth, textureHeight);
+                nodes[i] = new WDALTSkillNode(false, i, dependencies, enabledTexture, disabledTexture, textureWidth, textureHeight, skillPointCost);
             }
             nodesInitialized = true;
         }
@@ -382,10 +404,12 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 InitNodes();
             }
+            int currentSkillPoints = 0;
             for (int i = 0; i < nodes.Length; i++)
             {
                 if (nodes[i] != null && nodes[i].enabled && nodes[i].dependencies != null)
                 {
+                    currentSkillPoints += nodes[i].skillPointCost;
                     for (int j = 0; j < nodes[i].dependencies.Length; j++)
                     {
                         if(nodes[j] != null && !nodes[j].enabled)
@@ -394,6 +418,10 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         }
                     }
                 }
+            }
+            if (currentSkillPoints > unlockedSkillPoints)
+            {
+                return false;
             }
             return true;
         }
@@ -432,6 +460,16 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 return;
             }
+            unlockedSkillPoints = 3;
+            unlockedSkillPoint1 = false;
+            if (tag.ContainsKey("UnlockedSkillPoint1"))
+            {
+                unlockedSkillPoint1 = tag.GetBool("UnlockedSkillPoint1");
+                if (unlockedSkillPoint1)
+                {
+                    unlockedSkillPoints++;
+                }
+            }
             if (tag.ContainsKey("Core"))
             {
                 (nodes[Core]).enabled = tag.GetBool("Core");
@@ -456,22 +494,32 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 return;
             }
+            tag["UnlockedSkillPoint1"] = unlockedSkillPoint1;
             if (!IsSkillTreeValid())
             {
-                return;
+                InitNodes(reset: true);
             }
-            if ((nodes[Core]).enabled)
+            tag["Core"] = (nodes[Core]).enabled;
+            tag["Positive1"] = (nodes[Positive1]).enabled;
+            tag["Negative1"] = (nodes[Negative1]).enabled;
+        }
+
+        public override void UpdateEquips()
+        {
+            if (IsNodeEnabled(Core))
             {
-                tag["Core"] = (nodes[Core]).enabled;
+                Player.GetDamage(DamageClass.Generic) += 0.05f;
+                Player.endurance += 0.05f;
             }
-            if ((nodes[Positive1]).enabled)
+            if (IsNodeEnabled(Positive1))
             {
-                tag["Positive1"] = (nodes[Positive1]).enabled;
+                Player.GetDamage(DamageClass.Generic) += 0.02f;
             }
-            if ((nodes[Negative1]).enabled)
+            if (IsNodeEnabled(Negative1))
             {
-                tag["Negative1"] = (nodes[Negative1]).enabled;
+                Player.GetDamage(DamageClass.Generic) -= 0.02f;
             }
+            base.UpdateEquips();
         }
     }
 }

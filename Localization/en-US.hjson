@@ -564,6 +564,16 @@ Mods: {
 					Unfinished Item
 					'''
 			}
+
+			PermaSkillPointItemGive: {
+				DisplayName: Perma Skill Point Item Give
+				Tooltip: ""
+			}
+
+			PermaSkillPointItemRemove: {
+				DisplayName: Perma Skill Point Item Remove
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
