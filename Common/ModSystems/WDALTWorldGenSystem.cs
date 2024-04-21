@@ -486,7 +486,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             progress.Message = WDALTWorldGenSystem.IceBiomeGloomMessage.Value;
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.75); k++)
             {
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
@@ -536,7 +536,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     break;
                 }
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
@@ -574,7 +574,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.125); k++)
             {
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
@@ -608,7 +608,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.1875); k++)
             {
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
@@ -651,7 +651,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.01875); k++)
             {
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
@@ -693,7 +693,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             bool success = false;
             while (!success) //Spawn exactly 1 time.
             {
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
@@ -755,7 +755,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             progress.Message = WDALTWorldGenSystem.IceBiomeCustomCavesMessage.Value;
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.5); k++)
             {
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
@@ -771,7 +771,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.5); k++)
             {
-                int y = WorldGen.genRand.Next(GenVars.snowTop, GenVars.snowBottom);
+                int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
                 {
