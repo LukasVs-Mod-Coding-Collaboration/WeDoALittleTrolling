@@ -38,16 +38,22 @@ namespace WeDoALittleTrolling.Common.SkillTree
         public static int unlockedSkillPoints = 3;
         public static bool unlockedSkillPoint1 = false;
         public const int amountNodes = 4;
+        public const int amountConnectors = 3;
         public static WDALTSkillNode[] nodes = new WDALTSkillNode[amountNodes];
+        public static WDALTSkillConnector[] connectors = new WDALTSkillConnector[amountConnectors];
         public static bool nodesInitialized = false;
         public const int Core = 0;
         public const int Positive1 = 1;
         public const int Negative1Thorium = 2;
         public const int ThoriumClassBooster = 3;
+        public const int Connector_Core_Positive1 = 0;
+        public const int Connector_Core_Negative1Thorium = 1;
+        public const int Connector_Negative1Thorium_ThoriumClassBooster = 2;
         public static UserInterface UI;
         public class UI_ST : UIState
         {
             public UIImage[] nodeButtons = new UIImage[amountNodes];
+            public UIImage[] connectorButtons = new UIImage[amountConnectors];
             public UIPanel panel;
             public UIText skillPointDisplay;
             public bool buttonsInit = false;
@@ -120,7 +126,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 if (!buttonsInit)
                 {
-                    skillPointDisplay = new UIText("Skill Point Remaining: " + unlockedSkillPoints);
+                    skillPointDisplay = new UIText("Skill Points Remaining: " + unlockedSkillPoints);
                     skillPointDisplay.HAlign = 0.5f;
                     skillPointDisplay.Top.Set(48, 0);
                     panel.Append(skillPointDisplay);
@@ -143,12 +149,12 @@ namespace WeDoALittleTrolling.Common.SkillTree
                                 break;
                             case Negative1Thorium:
                                 buttonHAlign = 0.5f;
-                                buttonVAlign = 0.6f;
+                                buttonVAlign = 0.65f;
                                 call = OnClick_Node_Negative1Thorium;
                                 break;
                             case ThoriumClassBooster:
                                 buttonHAlign = 0.5f;
-                                buttonVAlign = 0.75f;
+                                buttonVAlign = 0.8f;
                                 call = OnClick_Node_ThoriumClassBooster;
                                 break;
                             default:
@@ -165,6 +171,35 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         nodeButtons[i].VAlign = buttonVAlign;
                         nodeButtons[i].OnLeftClick += call;
                         panel.Append(nodeButtons[i]);
+                    }
+                    for (int i = 0; i < connectorButtons.Length; i++)
+                    {
+                        switch (i)
+                        {
+                            case Connector_Core_Positive1:
+                                buttonHAlign = 0.375f;
+                                buttonVAlign = 0.5f;
+                                break;
+                            case Connector_Core_Negative1Thorium:
+                                buttonHAlign = 0.5f;
+                                buttonVAlign = 0.5875f;
+                                break;
+                            case Connector_Negative1Thorium_ThoriumClassBooster:
+                                buttonHAlign = 0.5f;
+                                buttonVAlign = 0.70625f;
+                                break;
+                            default:
+                                buttonHAlign = 0.375f;
+                                buttonVAlign = 0.5f;
+                                break;
+                        }
+                        connectorButtons[i] = new UIImage(connectors[i].disabledTexture);
+                        connectorButtons[i].SetImage(connectors[i].disabledTexture);
+                        connectorButtons[i].Width.Set(connectors[i].textureWidth, 0f);
+                        connectorButtons[i].Height.Set(connectors[i].textureHeight, 0f);
+                        connectorButtons[i].HAlign = buttonHAlign;
+                        connectorButtons[i].VAlign = buttonVAlign;
+                        panel.Append(connectorButtons[i]);
                     }
                     buttonsInit = true;
                 }
@@ -185,7 +220,22 @@ namespace WeDoALittleTrolling.Common.SkillTree
                         nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
                     }
                 }
-                skillPointDisplay.SetText("Skill Point Remaining: " + (unlockedSkillPoints - currentSkillPoints));
+                for (int i = 0; i < connectorButtons.Length; i++)
+                {
+                    if (IsConnectorEnabled(i))
+                    {
+                        connectorButtons[i].SetImage(connectors[i].enabledTexture);
+                        connectorButtons[i].Width.Set(connectors[i].textureWidth, 0f);
+                        connectorButtons[i].Height.Set(connectors[i].textureHeight, 0f);
+                    }
+                    else
+                    {
+                        connectorButtons[i].SetImage(connectors[i].disabledTexture);
+                        connectorButtons[i].Width.Set(connectors[i].textureWidth, 0f);
+                        connectorButtons[i].Height.Set(connectors[i].textureHeight, 0f);
+                    }
+                }
+                skillPointDisplay.SetText("Skill Points Remaining: " + (unlockedSkillPoints - currentSkillPoints));
                 base.OnActivate();
             }
 
@@ -356,6 +406,55 @@ namespace WeDoALittleTrolling.Common.SkillTree
                 }
                 nodes[i] = new WDALTSkillNode(false, i, dependencies, enabledTexture, disabledTexture, textureWidth, textureHeight, skillPointCost);
             }
+            for (int i = 0; i < connectors.Length; i++)
+            {
+                int[] dependencies;
+                int depAmount;
+                Asset<Texture2D> enabledTexture;
+                Asset<Texture2D> disabledTexture;
+                int textureWidth;
+                int textureHeight;
+                switch (i)
+                {
+                    case Connector_Core_Positive1:
+                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/HorizontalConnection");
+                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/HorizontalConnectionInactive");
+                        textureWidth = 26;
+                        textureHeight = 14;
+                        depAmount = 1;
+                        dependencies = new int[depAmount];
+                        dependencies[0] = Core;
+                        break;
+                    case Connector_Core_Negative1Thorium:
+                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/VerticalConnection");
+                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/VerticalConnectionInactive");
+                        textureWidth = 14;
+                        textureHeight = 26;
+                        depAmount = 1;
+                        dependencies = new int[depAmount];
+                        dependencies[0] = Core;
+                        break;
+                    case Connector_Negative1Thorium_ThoriumClassBooster:
+                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/VerticalConnection");
+                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/VerticalConnectionInactive");
+                        textureWidth = 14;
+                        textureHeight = 26;
+                        depAmount = 1;
+                        dependencies = new int[depAmount];
+                        dependencies[0] = Negative1Thorium;
+                        break;
+                    default:
+                        enabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/HorizontalConnection");
+                        disabledTexture = mod.Assets.Request<Texture2D>("Content/SkillTree/Connectors/HorizontalConnectionInactive");
+                        textureWidth = 26;
+                        textureHeight = 14;
+                        depAmount = 1;
+                        dependencies = new int[depAmount];
+                        dependencies[0] = Core;
+                        break;
+                }
+                connectors[i] = new WDALTSkillConnector(i, dependencies, enabledTexture, disabledTexture, textureWidth, textureHeight);
+            }
             nodesInitialized = true;
         }
 
@@ -373,7 +472,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
 
         public static bool IsNodeEnabled(int type)
         {
-            if (Main.dedServ || Main.netMode == NetmodeID.Server)
+            if (Main.dedServ || Main.netMode == NetmodeID.Server || type >= nodes.Length || type < 0)
             {
                 return false;
             }
@@ -391,9 +490,29 @@ namespace WeDoALittleTrolling.Common.SkillTree
             }
         }
 
+        public static bool IsConnectorEnabled(int type)
+        {
+            if (Main.dedServ || Main.netMode == NetmodeID.Server || type >= connectors.Length || type < 0)
+            {
+                return false;
+            }
+            if (!nodesInitialized)
+            {
+                InitNodes();
+            }
+            for (int i = 0; i < connectors[type].dependencies.Length; i++)
+            {
+                if (!nodes[connectors[type].dependencies[i]].enabled)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public void ToggleNode(int type)
         {
-            if (!Main.dedServ && Player.whoAmI == Main.myPlayer && Main.netMode != NetmodeID.Server)
+            if (!Main.dedServ && Player.whoAmI == Main.myPlayer && Main.netMode != NetmodeID.Server && type < nodes.Length && type >= 0)
             {
                 if (nodes[type].enabled == false)
                 {
@@ -442,7 +561,13 @@ namespace WeDoALittleTrolling.Common.SkillTree
                     currentSkillPoints += nodes[i].skillPointCost;
                     for (int j = 0; j < nodes[i].dependencies.Length; j++)
                     {
-                        if(nodes[j] != null && !nodes[j].enabled)
+                        if
+                        (
+                            nodes[i].dependencies[j] >= 0 &&
+                            nodes[i].dependencies[j] < nodes.Length &&
+                            nodes[nodes[i].dependencies[j]] != null &&
+                            !nodes[nodes[i].dependencies[j]].enabled
+                        )
                         {
                             return false;
                         }
@@ -528,6 +653,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 return;
             }
+            OpenSkillTreeGUI(forceClose: true);
             tag["UnlockedSkillPoint1"] = unlockedSkillPoint1;
             if (!IsSkillTreeValid())
             {
