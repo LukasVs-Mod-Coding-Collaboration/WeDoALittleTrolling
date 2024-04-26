@@ -2,6 +2,8 @@ This mod is a project my brother and I work on whenever we feel like it, so... s
 It mostly changes things we dislike about the game and and adds a few new features, small changes were made to most bosses as well.
 Please keep in mind that this mod was made just for fun and might not be very balanced or serious at times.
 
+Source Code available at: https://github.com/LukasVs-Mod-Coding-Collaboration/WeDoALittleTrolling
+
 
 List of additions and changes:
 -A few new weapons (Including two new summons)
