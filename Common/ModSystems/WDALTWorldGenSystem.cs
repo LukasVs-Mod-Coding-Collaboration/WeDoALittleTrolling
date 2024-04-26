@@ -414,9 +414,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     itemsToAdd.Add((specialItem, 1));
                 }
 
-                switch (Main.rand.Next(4))
+                switch (Main.rand.Next(5))
                 {
                     case 0:
+                    case 1:
                         itemsToAdd.Add((ItemID.FiberglassFishingPole, 1));
                         itemsToAdd.Add((ItemID.FrozenCrate, 1));
                         itemsToAdd.Add((ItemID.FishingPotion, 2));
@@ -424,7 +425,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         itemsToAdd.Add((ItemID.SonarPotion, 2));
                         itemsToAdd.Add((ItemID.MasterBait, Main.rand.Next(8, 17)));
                         break;
-                    case 1:
+                    case 2:
                         itemsToAdd.Add((ItemID.BonePickaxe, 1));
                         itemsToAdd.Add((ItemID.LeadBar, Main.rand.Next(4, 17)));
                         itemsToAdd.Add((ItemID.TungstenBar, Main.rand.Next(4, 17)));
@@ -432,7 +433,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         itemsToAdd.Add((ItemID.MiningPotion, 2));
                         itemsToAdd.Add((ItemID.SpelunkerPotion, 2));
                         break;
-                    case 2:
+                    case 3:
                         itemsToAdd.Add((ItemID.ManaPotion, Main.rand.Next(8, 17)));
                         itemsToAdd.Add((ItemID.ManaRegenerationPotion, 2));
                         itemsToAdd.Add((ItemID.MagicPowerPotion, 2));
@@ -440,13 +441,21 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         itemsToAdd.Add((ItemID.RegenerationPotion, 2));
                         itemsToAdd.Add((ItemID.LifeforcePotion, 2));
                         break;
-                    case 3:
+                    case 4:
                         itemsToAdd.Add((ItemID.RestorationPotion, Main.rand.Next(8, 17)));
                         itemsToAdd.Add((ItemID.CreativeWings, 1));
                         itemsToAdd.Add((ItemID.GoblinBattleStandard, 1));
                         itemsToAdd.Add((ItemID.SuspiciousLookingEye, 1));
                         itemsToAdd.Add((ItemID.FrostburnArrow, Main.rand.Next(200, 401)));
                         itemsToAdd.Add((ItemID.PartyBullet, Main.rand.Next(200, 401)));
+                        break;
+                    default:
+                        itemsToAdd.Add((ItemID.FiberglassFishingPole, 1));
+                        itemsToAdd.Add((ItemID.FrozenCrate, 1));
+                        itemsToAdd.Add((ItemID.FishingPotion, 2));
+                        itemsToAdd.Add((ItemID.CratePotion, 2));
+                        itemsToAdd.Add((ItemID.SonarPotion, 2));
+                        itemsToAdd.Add((ItemID.MasterBait, Main.rand.Next(8, 17)));
                         break;
                 }
 
@@ -649,7 +658,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     continue;
                 }
             }
-            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.01875); k++)
+            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.015625); k++)
             {
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
