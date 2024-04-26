@@ -43,16 +43,66 @@ namespace WeDoALittleTrolling.Common.Utilities
         public Player player;
         public static UnifiedRandom random = new UnifiedRandom();
         public long currentTick;
+        public int[] hitAmountInLastSecondRingBuffer = new int[60];
+        public int hitAmountInLastSecondRingBufferIndex = 0;
+        public int currentHitAmount;
         
         public override void Initialize()
         {
             player = this.Player;
             currentTick = 0;
+            currentHitAmount = 0;
+            hitAmountInLastSecondRingBufferIndex = 0;
+            for (int i = 0; i < hitAmountInLastSecondRingBuffer.Length; i++)
+            {
+                hitAmountInLastSecondRingBuffer[i] = 0;
+            }
         }
 
         public override void PreUpdate()
         {
             currentTick++;
+            if (hitAmountInLastSecondRingBufferIndex < (hitAmountInLastSecondRingBuffer.Length - 1))
+            {
+                hitAmountInLastSecondRingBufferIndex++;
+            }
+            else
+            {
+                hitAmountInLastSecondRingBufferIndex = 0;
+            }
+            hitAmountInLastSecondRingBuffer[hitAmountInLastSecondRingBufferIndex] = currentHitAmount;
+            currentHitAmount = 0;
+        }
+
+        public int GetHitAmountInLastSecond()
+        {
+            int ret = 0;
+            for (int i = 0; i < hitAmountInLastSecondRingBuffer.Length; i++)
+            {
+                ret += hitAmountInLastSecondRingBuffer[i];
+            }
+            return ret;
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if
+            (
+                (
+                    !target.friendly &&
+                    !target.CountsAsACritter &&
+                    !target.isLikeATownNPC &&
+                    target.type != NPCID.TargetDummy &&
+                    target.canGhostHeal &&
+                    target.CanBeChasedBy()
+                ) ||
+                (
+                    !target.active
+                )
+            )
+            {
+                currentHitAmount++;
+            }
         }
 
         //SmartPVP(TM) Technology: Display actual pvp damage to clients on non-lethal hits and sync health

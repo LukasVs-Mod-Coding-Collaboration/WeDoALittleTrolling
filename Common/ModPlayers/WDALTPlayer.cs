@@ -42,7 +42,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 {
     internal class WDALTPlayer : ModPlayer
     {
-        public long lastLeechingHealTick;
         public int spookyBonus;
         public int dodgeChancePercent;
         public int wreckedResistanceStack;
@@ -90,7 +89,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public override void Initialize()
         {
             player = this.Player;
-            lastLeechingHealTick = 0;
             spookyBonus = 0;
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
@@ -841,6 +839,17 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
                 }
+                int hitAmount = player.GetModPlayer<WDALTPlayerUtil>().GetHitAmountInLastSecond();
+                if ((player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan) && hitAmount > 3)
+                {
+                    float modifier = 1f;
+                    modifier -= (0.05f * Math.Abs(hitAmount - 3));
+                    if (modifier < 0f)
+                    {
+                        modifier = 0f;
+                    }
+                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * modifier);
+                }
                 // Chlorophyte Partisan go BRRRR!!!
                 if (player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
                 {
@@ -848,12 +857,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 }
                 if (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
                 {
-                    long ticksSinceLastHeal = Math.Abs(currentTick - lastLeechingHealTick);
-                    if (ticksSinceLastHeal >= player.itemAnimationMax) // Only heal player one time every item use
-                    {
-                        player.Heal(healingAmount);
-                        lastLeechingHealTick = currentTick;
-                    }
+                    player.Heal(healingAmount);
                 }
                 else if (player.HeldItem.prefix == ModContent.PrefixType<Siphoning>())
                 {

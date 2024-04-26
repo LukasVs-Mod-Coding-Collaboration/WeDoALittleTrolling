@@ -601,12 +601,22 @@ Mods: {
 
 			Leeching: {
 				DisplayName: Leeching
-				AdditionalTooltip: +5% of damage recovered as health
+				AdditionalTooltip:
+					'''
+					+5% of damage recovered as health
+					Heals up to 10 health per hit
+					Heals less health the faster
+					you strike enemies
+					'''
 			}
 
 			Siphoning: {
 				DisplayName: Siphoning
-				AdditionalTooltip: +5% of damage recovered as mana
+				AdditionalTooltip:
+					'''
+					+5% of damage recovered as mana
+					Recovers up to 10 mana per hit
+					'''
 			}
 
 			Angering: {
@@ -666,7 +676,7 @@ Mods: {
 			Focusing: {
 				DisplayName: Focusing
 				AdditionalTooltip: -4% ranged damage
-				AdditionalTooltip2: +8% ranged critical strike chance
+				AdditionalTooltip2: +10% ranged critical strike chance
 			}
 
 			Lunatic: {

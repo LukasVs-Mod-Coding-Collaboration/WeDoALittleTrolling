@@ -69,7 +69,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.GetDamage(DamageClass.Ranged) -= 0.04f;
-            player.GetCritChance(DamageClass.Ranged) += 8;
+            player.GetCritChance(DamageClass.Ranged) += 10;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
