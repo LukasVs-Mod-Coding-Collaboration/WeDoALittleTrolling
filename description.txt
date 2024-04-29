@@ -5,18 +5,16 @@ Please keep in mind that this mod was made just for fun and might not be very ba
 Source Code available at: https://github.com/LukasVs-Mod-Coding-Collaboration/WeDoALittleTrolling
 
 
-List of additions and changes:
--A few new weapons (Including two new summons)
--A classless tank armor set
--A lot of reforges, some better, some worse
--Some new accessories with class-specific bonuses and mechanics
--Tons of stat balance changes to both bosses and items
+List of additions and changes the mod might include:
+-A bunch of new items for combat and exploration
+-A lot of reforges (Varying degrees of usefulness)
+-Tons stat balance changes to bosses and Items
 -AI changes to some enemies to go along with this
--Mechanics to slow down progression and encourage exploration to some degree
--Buffs to fishing to make the mechanic genuinely useful
--Debuffs inflicted by powerful enemies and bosses to prevent cheesing in master mode
+-A few progression blockers to encourage exploration
+-Buffs to fishing
+-Debuffs inflicted by powerful enemies and bosses to prevent cheese
 -Changes to the generation of the underground ice biome
--Disabled world evil creeping and non-consumable boss summon items
+-Disabled world evil creeping and non-consumable boss summons
 -Rare absurd death messages which have a small chance to replace vanilla ones
 
 
@@ -34,5 +32,6 @@ Credits:
 - Example Mod [tModLoader Team] (Code Examples, certain parts of code)
 - tModLoader [tModLoader Team] (Modding Framework and API)
 - Terraria [Re-Logic] (The game itself)
+- Kiwi Alforde on Reddit (Concept/Idea for the Eater of Sticks)
 
 (Rest in peace Alexander "Technoblade" you will be sincerely missed.)

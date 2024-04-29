@@ -244,6 +244,17 @@ Mods: {
 					'''
 			}
 
+			EaterOfSticks: {
+				DisplayName: Eater of Sticks
+				Tooltip:
+					'''
+					"In their insatiable hunger, creatures
+					 of the corruption will attempt to eat
+					 almost anything, even if it appears
+					 to be completely inedible."
+					'''
+			}
+
 			PharaohsCurseblade: {
 				DisplayName: Pharaoh's Curseblade
 				Tooltip:
