@@ -51,6 +51,9 @@ namespace WeDoALittleTrolling.Content.NPCs
         public const double destroyerLiftoffLimit = 0.66;
         public const double destroyerAccelerationLimit = 0.33;
 
+        public static readonly int[] BuffGroup25Percent =
+        {
+        };
         public static readonly int[] NerfGroup25Percent =
         {
             NPCID.Antlion,
@@ -694,6 +697,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.netUpdate = true;
             }
             //Decreasing damage during SetDefaults() is unsafe, do it in OnSpawn() instead.
+            if (BuffGroup25Percent.Contains(npc.type))
+            {
+                npc.damage = (int)Math.Round(npc.damage * 1.25);
+                npc.netUpdate = true;
+            }
             if (NerfGroup25Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * 0.75);
@@ -722,6 +730,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (WDALTModSystem.isCalamityModPresent)
             {
                 return;
+            }
+            if (BuffGroup25Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 1.25);
+                projectile.netUpdate = true;
             }
             if (NerfGroup25Percent.Contains(npc.type))
             {
