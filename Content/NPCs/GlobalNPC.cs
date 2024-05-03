@@ -51,8 +51,16 @@ namespace WeDoALittleTrolling.Content.NPCs
         public const double destroyerLiftoffLimit = 0.66;
         public const double destroyerAccelerationLimit = 0.33;
 
+        public static readonly int[] BuffGroup100Percent =
+        {
+            NPCID.Pinky,
+            NPCID.SkeletonSniper
+        };
         public static readonly int[] BuffGroup25Percent =
         {
+            NPCID.SnowFlinx,
+            NPCID.IceBat,
+            NPCID.Wolf
         };
         public static readonly int[] NerfGroup25Percent =
         {
@@ -65,7 +73,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.BlackRecluse,
             NPCID.BlackRecluseWall,
             NPCID.IchorSticker,
-            NPCID.Wraith
+            NPCID.Wraith,
+            NPCID.SkeletonCommando,
+            NPCID.TacticalSkeleton,
+            NPCID.Eyezor,
+            NPCID.Nailhead
         };
         public static readonly int[] NerfGroup35Percent =
         {
@@ -76,7 +88,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.LittleMossHornet,
             NPCID.TinyMossHornet,
             NPCID.PossessedArmor,
-            NPCID.FireImp
+            NPCID.FireImp,
+            NPCID.Hellbat
         };
         public static readonly int[] NerfGroup50Percent =
         {
@@ -88,7 +101,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Lihzahrd,
             NPCID.LihzahrdCrawler,
             NPCID.PossessedArmor,
-            NPCID.RockGolem
+            NPCID.RockGolem,
+            NPCID.Wolf
         };
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
@@ -697,6 +711,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.netUpdate = true;
             }
             //Decreasing damage during SetDefaults() is unsafe, do it in OnSpawn() instead.
+            if (BuffGroup100Percent.Contains(npc.type))
+            {
+                npc.damage = (int)Math.Round(npc.damage * 2.0);
+                npc.netUpdate = true;
+            }
             if (BuffGroup25Percent.Contains(npc.type))
             {
                 npc.damage = (int)Math.Round(npc.damage * 1.25);
@@ -730,6 +749,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (WDALTModSystem.isCalamityModPresent)
             {
                 return;
+            }
+            if (BuffGroup100Percent.Contains(npc.type))
+            {
+                projectile.damage = (int)Math.Round(projectile.damage * 2.0);
+                projectile.netUpdate = true;
             }
             if (BuffGroup25Percent.Contains(npc.type))
             {
