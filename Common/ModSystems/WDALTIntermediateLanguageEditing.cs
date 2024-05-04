@@ -21,7 +21,7 @@ using Terraria.ModLoader;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using System;
-using WeDoALittleTrolling.Content.NPCs;
+using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -86,7 +86,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         bool gravity = true;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerLiftoffLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * WDALTBossAIUtil.destroyerLiftoffLimit))
                         {
                             gravity = false; //Disable gravity code.
                         }
@@ -105,7 +105,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         float maxSpeed = 16f;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * WDALTBossAIUtil.destroyerAccelerationLimit))
                         {
                             maxSpeed = 24f;
                         }
@@ -125,7 +125,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         float maxAcc1 = 0.1f;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * WDALTBossAIUtil.destroyerAccelerationLimit))
                         {
                             maxAcc1 = 0.2f;
                         }
@@ -143,7 +143,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     (npc) =>
                     {
                         float maxAcc2 = 0.15f;
-                        if(npc.life < (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
+                        if(npc.life < (int)Math.Round(npc.lifeMax * WDALTBossAIUtil.destroyerAccelerationLimit))
                         {
                             maxAcc2 = 0.3f;
                         }

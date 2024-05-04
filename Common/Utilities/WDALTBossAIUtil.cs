@@ -31,6 +31,9 @@ namespace WeDoALittleTrolling.Common.Utilities
     internal static class WDALTBossAIUtil
     {
         public const double rotationRoundingErrorGuard = 0.0325;
+        public const double destroyerLiftoffLimit = 0.66;
+        public const double destroyerAccelerationLimit = 0.33;
+
         public static void BossAI_CirclePlayer(NPC npc, Player target, float speed, bool clockwise = true)
         {
             npc.velocity = (target.Center - npc.Center).RotatedBy((clockwise ? (Math.PI * 1.5) + rotationRoundingErrorGuard : (Math.PI * 0.5) - rotationRoundingErrorGuard));
@@ -84,7 +87,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public static void BossAI_TheDestroyerExtras(NPC npc, ref UnifiedRandom random)
         {
             //Replicate vanilla behavior as good as possible.
-            if (random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient && npc.life >= (int)Math.Round(npc.lifeMax * GlobalNPCs.destroyerAccelerationLimit))
+            if (random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient && npc.life >= (int)Math.Round(npc.lifeMax * destroyerAccelerationLimit))
             {
                 npc.TargetClosest();
                 Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));

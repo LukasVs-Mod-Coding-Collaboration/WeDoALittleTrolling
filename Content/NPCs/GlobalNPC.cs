@@ -48,9 +48,6 @@ namespace WeDoALittleTrolling.Content.NPCs
     {
         public override bool InstancePerEntity => false;
         public static UnifiedRandom random = new UnifiedRandom();
-        public const double destroyerLiftoffLimit = 0.66;
-        public const double destroyerAccelerationLimit = 0.33;
-
         public static readonly int[] BuffGroup100Percent =
         {
             NPCID.Pinky,
