@@ -205,7 +205,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.UnholyTridentFriendly ||
                 projectile.type == ProjectileID.BookStaffShot ||
                 projectile.type == ProjectileID.LunarFlare ||
-                projectile.type == ProjectileID.Bubble
+                projectile.type == ProjectileID.Bubble ||
+                projectile.type == ProjectileID.Landmine
             )
             {
                 projectile.usesLocalNPCImmunity = true;
