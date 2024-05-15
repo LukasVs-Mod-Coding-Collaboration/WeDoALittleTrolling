@@ -32,6 +32,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_WorldGen.UpdateWorld_Inner += IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.UpdateBiomes += IL_Player_UpdateBiomes;
+            IL_Main.UpdateTime_SpawnTownNPCs += IL_Main_UpdateTime_SpawnTownNPCs;
         }
 
         public static void UnregisterILHooks()
@@ -39,6 +40,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_WorldGen.UpdateWorld_Inner -= IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.UpdateBiomes -= IL_Player_UpdateBiomes;
+            IL_Main.UpdateTime_SpawnTownNPCs -= IL_Main_UpdateTime_SpawnTownNPCs;
         }
 
         public static void IL_WorldGen_UpdateWorld(ILContext intermediateLanguageContext)
@@ -184,6 +186,29 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(successInjectGetGoodWorldLightingHook)
             {
                 WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected For The Worthy Lighting Hook via IL Editing.");
+            }
+        }
+
+        public static void IL_Main_UpdateTime_SpawnTownNPCs(ILContext intermediateLanguageContext)
+        {
+            bool successInjectTownNPCsRespawnTimeHook = true;
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdcR8(7200.0)); //move cursor towards the town NPC spawn time intervall (7200 / 60 = 120 seconds)
+                cursor.Index++; //move cursor after the town NPC spawn time intervall.
+                cursor.Emit(OpCodes.Pop); //Pop 7200 off the stack.
+                cursor.Emit(OpCodes.Ldc_R8, 900.0); //Push 900 onto the stack. This causes the town NPC spawn time intervall to reduce to 900 / 60 = 15 seconds.
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Town NPCs Respawn Time Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectTownNPCsRespawnTimeHook = false;
+            }
+            if(successInjectTownNPCsRespawnTimeHook)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Town NPCs Respawn Time Hook via IL Editing.");
             }
         }
     }
