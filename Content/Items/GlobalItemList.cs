@@ -403,6 +403,11 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"The harvest is bountiful this year\"");
                 tooltips.Add(extraLoreLine);
             }
+            if (item.type == ItemID.BoulderStatue)
+            {
+                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"We remember the Boulder.\"");
+                tooltips.Add(extraLoreLine);
+            }
             if (item.type == ItemID.ChlorophytePartisan)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recoveres 5% of damage as health");

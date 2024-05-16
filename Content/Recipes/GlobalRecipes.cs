@@ -41,6 +41,8 @@ namespace WeDoALittleTrolling.Content.Recipes
             AddShimmeringBetweenMimicItems_NormalMimics();
             AddShimmeringBetweenMimicItems_IceMimics();
 
+            AddShimmeringBetweenCounterweights();
+
             Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
 
             Recipe.Create(ItemID.VampireKnives, 1)
@@ -544,6 +546,35 @@ namespace WeDoALittleTrolling.Content.Recipes
             .Register();
             Recipe.Create(ItemID.FlowerofFrost, 1)
             .AddIngredient(ItemID.Frostbrand, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+        }
+
+        public static void AddShimmeringBetweenCounterweights()
+        {
+            Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
+            Recipe.Create(ItemID.BlueCounterweight, 1)
+            .AddIngredient(ItemID.GreenCounterweight, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.GreenCounterweight, 1)
+            .AddIngredient(ItemID.PurpleCounterweight, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.PurpleCounterweight, 1)
+            .AddIngredient(ItemID.RedCounterweight, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.RedCounterweight, 1)
+            .AddIngredient(ItemID.BlueCounterweight, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.BlackCounterweight, 1)
+            .AddIngredient(ItemID.YellowCounterweight, 1)
+            .AddCondition(ShimmerCondition)
+            .Register();
+            Recipe.Create(ItemID.YellowCounterweight, 1)
+            .AddIngredient(ItemID.BlackCounterweight, 1)
             .AddCondition(ShimmerCondition)
             .Register();
         }
