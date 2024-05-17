@@ -403,6 +403,11 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"The harvest is bountiful this year\"");
                 tooltips.Add(extraLoreLine);
             }
+            if (item.type == ItemID.Bananarang)
+            {
+                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"Oh, these are some pretty cool bananas!\"");
+                tooltips.Add(extraLoreLine);
+            }
             if (item.type == ItemID.BoulderStatue)
             {
                 TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"We remember the Boulder.\"");
@@ -1898,6 +1903,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 45;
                 item.mana = 12;
+            }
+            if (item.type == ItemID.Bananarang)
+            {
+                item.damage = 55;
             }
             if (item.type == ItemID.Uzi)
             {
