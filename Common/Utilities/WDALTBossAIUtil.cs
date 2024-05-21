@@ -199,16 +199,13 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             long timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
             int shotDelay = 120;
-            float dmg1 = 32f;
-            float dmg2 = 36f;
+            int damage = 40;
             if (npc.life < (npc.lifeMax / 4))
             {
                 shotDelay = 60;
             }
             if (Main.player[npc.target].teleportTime > 0f || !Main.player[npc.target].ZoneJungle || (double)Main.player[npc.target].position.Y < Main.worldSurface * 16.0 || Main.player[npc.target].position.Y > (double)(Main.UnderworldLayer * 16.0))
             {
-                dmg1 *= 2;
-                dmg2 *= 2;
                 shotDelay = 30;
             }
             if (timeSinceLastShot >= shotDelay && Main.netMode != NetmodeID.MultiplayerClient && (npc.life < (npc.lifeMax / 2)))
@@ -217,7 +214,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                 npc.TargetClosest();
                 if (Main.player[npc.target].active && !Main.player[npc.target].dead)
                 {
-                    int damage = npc.GetAttackDamage_ForProjectiles(dmg1, dmg2);
                     int amount = random.Next(4, 7);
                     float sprayIntensity = 16.0f; //Max Spraying in Tiles
                     for (int j = 0; j < amount; j++)

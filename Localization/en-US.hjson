@@ -618,6 +618,7 @@ Mods: {
 					Heals up to 10 health per hit
 					Heals less health the faster
 					you strike enemies
+					Heals 50% less while immune
 					'''
 			}
 

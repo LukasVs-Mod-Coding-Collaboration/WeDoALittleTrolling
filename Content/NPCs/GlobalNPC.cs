@@ -69,7 +69,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.JungleCreeperWall,
             NPCID.BlackRecluse,
             NPCID.BlackRecluseWall,
-            NPCID.IchorSticker,
             NPCID.Wraith,
             NPCID.SkeletonCommando,
             NPCID.TacticalSkeleton,
@@ -86,7 +85,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.TinyMossHornet,
             NPCID.PossessedArmor,
             NPCID.FireImp,
-            NPCID.Hellbat
+            NPCID.Hellbat,
+            NPCID.IchorSticker
         };
         public static readonly int[] NerfGroup50Percent =
         {
@@ -152,6 +152,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.SkeletronHand,
             NPCID.QueenSlimeBoss,
             NPCID.DukeFishron,
+            NPCID.Plantera,
             NPCID.PlanterasHook,
             NPCID.PlanterasTentacle,
             NPCID.Spore,
@@ -184,7 +185,12 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.GoblinShark,
             NPCID.IceGolem,
             NPCID.SandElemental,
-            NPCID.DetonatingBubble
+            NPCID.DetonatingBubble,
+            NPCID.Golem,
+            NPCID.GolemHead,
+            NPCID.GolemFistLeft,
+            NPCID.GolemFistRight,
+            NPCID.GolemHeadFree
         };
         public static readonly int[] InflictWreckedAccuracy1In1Group =
         {
@@ -212,10 +218,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.Mothron,
             NPCID.WyvernHead,
             NPCID.SolarCrawltipedeHead,
-            NPCID.StardustJellyfishSmall,
-            NPCID.Golem,
-            NPCID.GolemHead,
-            NPCID.Plantera
+            NPCID.StardustJellyfishSmall
         };
 
         public static readonly int[] ResistGloriousDemise50PercentGroup =
@@ -573,6 +576,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npc.type == NPCID.Splinterling ||
                 npc.type == NPCID.Hellhound ||
                 npc.type == NPCID.Poltergeist ||
+                npc.type == NPCID.HeadlessHorseman ||
                 ScarecrowGroup.Contains(npc.type)
             )
             {
@@ -581,8 +585,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             if
             (
                 npc.type == NPCID.Pumpking ||
-                npc.type == NPCID.PumpkingBlade ||
-                npc.type == NPCID.HeadlessHorseman
+                npc.type == NPCID.PumpkingBlade
             )
             {
                 npc.lifeMax = (int)Math.Round(npc.lifeMax * 2.5);

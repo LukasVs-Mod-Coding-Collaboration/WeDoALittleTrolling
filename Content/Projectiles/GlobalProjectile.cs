@@ -90,7 +90,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.GreekFire1,
             ProjectileID.GreekFire2,
             ProjectileID.GreekFire3,
-            ProjectileID.FlamingScythe,
             ProjectileID.FrostWave,
             ProjectileID.FrostShard,
             ProjectileID.Missile,
@@ -110,7 +109,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.SandnadoHostile,
             ProjectileID.SandnadoHostileMark,
             ProjectileID.Sharknado,
-            ProjectileID.SharknadoBolt
+            ProjectileID.SharknadoBolt,
+            ProjectileID.Cthulunado,
+            ProjectileID.ThornBall,
+            ProjectileID.EyeFire,
+            ProjectileID.BombSkeletronPrime,
+            ProjectileID.Fireball,
+            ProjectileID.EyeBeam
         };
         public static readonly int[] InflictWreckedAccuracy1In1Group =
         {
@@ -128,12 +133,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.UnholyTridentHostile,
             ProjectileID.AncientDoomProjectile,
             ProjectileID.SaucerDeathray,
-            ProjectileID.Cthulunado,
-            ProjectileID.BombSkeletronPrime,
-            ProjectileID.ThornBall,
-            ProjectileID.EyeFire,
             ProjectileID.HappyBomb,
-            ProjectileID.SniperBullet
+            ProjectileID.SniperBullet,
+            ProjectileID.FlamingScythe
         };
 
         public override void SetDefaults(Projectile projectile)
