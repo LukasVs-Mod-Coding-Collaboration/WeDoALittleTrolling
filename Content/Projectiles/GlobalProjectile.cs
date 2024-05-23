@@ -706,6 +706,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 target.AddBuff(BuffID.Poisoned, 240, false);
             }
+            if (projectile.type == ProjectileID.LeadShortswordStab)
+            {
+                target.AddBuff(BuffID.Poisoned, 1800, false);
+            }
             if (projectile.type == ProjectileID.DeathSickle)
             {
                 target.AddBuff(BuffID.ShadowFlame, 240, false);

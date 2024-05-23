@@ -186,6 +186,20 @@ namespace WeDoALittleTrolling.Content.Items
             return base.ConsumeItem(item, player);
         }
 
+        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if
+            (
+                item.type == ItemID.LeadAxe ||
+                item.type == ItemID.LeadBroadsword ||
+                item.type == ItemID.LeadHammer ||
+                item.type == ItemID.LeadPickaxe
+            )
+            {
+                target.AddBuff(BuffID.Poisoned, 1800, false);
+            }
+            base.OnHitNPC(item, player, target, hit, damageDone);
+        }
 
         //Revert damage reduction from Spectre Hood
         public override void UpdateEquip(Item item, Player player)
@@ -947,6 +961,13 @@ namespace WeDoALittleTrolling.Content.Items
                 if (type == ProjectileID.WoodenArrowFriendly)
                 {
                     type = ProjectileID.HolyArrow;
+                }
+            }
+            if (item.type == ItemID.LeadBow)
+            {
+                if (type == ProjectileID.WoodenArrowFriendly)
+                {
+                    type = ProjectileID.PoisonDartBlowgun;
                 }
             }
             base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
@@ -2001,6 +2022,19 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 35;
                 }
             }
+            if
+            (
+                item.type == ItemID.LeadAxe ||
+                item.type == ItemID.LeadBroadsword ||
+                item.type == ItemID.LeadHammer ||
+                item.type == ItemID.LeadPickaxe ||
+                item.type == ItemID.LeadBow
+            )
+            {
+                item.useTime = (int)Math.Round((double)item.useTime * 1.3);
+                item.useAnimation = (int)Math.Round((double)item.useAnimation * 1.3);
+                item.knockBack += 4f;
+            }
 
             //Buff Shortswords
             int[] shortSwordsToBuff =
@@ -2008,7 +2042,6 @@ namespace WeDoALittleTrolling.Content.Items
                 ItemID.CopperShortsword,
                 ItemID.TinShortsword,
                 ItemID.IronShortsword,
-                ItemID.LeadShortsword,
                 ItemID.SilverShortsword,
                 ItemID.TungstenShortsword,
                 ItemID.GoldShortsword,
@@ -2019,6 +2052,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage += 4;
                 item.knockBack += 1.5f;
+            }
+            if (item.type == ItemID.LeadShortsword)
+            {
+                item.knockBack += 4f;
             }
         }
 
