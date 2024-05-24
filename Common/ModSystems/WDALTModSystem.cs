@@ -114,6 +114,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             GlobalTiles.RegisterHooks();
             Accelerated.RegisterHooks();
             GlobalItemList.RegisterHooks();
+            WDALTImmunitySystem.RegisterHooks();
         }
 
         public static void UnregisterHooks()
@@ -125,6 +126,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             GlobalTiles.UnregisterHooks();
             Accelerated.UnregisterHooks();
             GlobalItemList.UnregisterHooks();
+            WDALTImmunitySystem.UnregisterHooks();
         }
 
         public override void PreUpdatePlayers()

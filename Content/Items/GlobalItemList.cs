@@ -429,7 +429,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChlorophytePartisan)
             {
-                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recovers 5% of damage as health\nHeals up to 10 health per hit\nHeals less health the faster\nyou strike enemies\nHeals 50% less while immune");
+                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recovers 5% of damage as health\nHeals up to 10 health per hit\nHeals less health the faster\nyou strike enemies\nHeals 75% less while immune");
                 tooltips.Add(extraManaLine);
             }
             if (item.type == ItemID.ThunderStaff)

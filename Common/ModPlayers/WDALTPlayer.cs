@@ -849,10 +849,18 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                     healingAmount = 1 + (int)Math.Round((healingAmount - 1) * modifier);
                 }
-                // Being Immune makes Leeching 50% less effective
-                if ((player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan) && player.immune)
+                // Being Immune makes Leeching 75% less effective
+                bool flag = player.immune;
+                for (int i = 0; i < player.hurtCooldowns.Length; i++)
                 {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.5);
+                    if (player.hurtCooldowns[i] > 0)
+                    {
+                        flag = true;
+                    }
+                }
+                if ((player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan) && flag)
+                {
+                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
                 }
                 // Chlorophyte Partisan go BRRRR!!!
                 if (player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())

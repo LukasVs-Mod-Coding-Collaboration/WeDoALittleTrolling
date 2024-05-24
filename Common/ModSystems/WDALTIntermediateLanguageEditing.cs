@@ -22,6 +22,7 @@ using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using System;
 using WeDoALittleTrolling.Common.Utilities;
+using Terraria.ID;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -32,6 +33,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_WorldGen.UpdateWorld_Inner += IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.UpdateBiomes += IL_Player_UpdateBiomes;
+            IL_Player.Update_NPCCollision += IL_Player_Update_NPCCollision;
             IL_Main.UpdateTime_SpawnTownNPCs += IL_Main_UpdateTime_SpawnTownNPCs;
         }
 
@@ -40,6 +42,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_WorldGen.UpdateWorld_Inner -= IL_WorldGen_UpdateWorld;
             IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.UpdateBiomes -= IL_Player_UpdateBiomes;
+            IL_Player.Update_NPCCollision -= IL_Player_Update_NPCCollision;
             IL_Main.UpdateTime_SpawnTownNPCs -= IL_Main_UpdateTime_SpawnTownNPCs;
         }
 
@@ -207,6 +210,50 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 successInjectTownNPCsRespawnTimeHook = false;
             }
             if(successInjectTownNPCsRespawnTimeHook)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Town NPCs Respawn Time Hook via IL Editing.");
+            }
+        }
+
+        public static void IL_Player_Update_NPCCollision(ILContext intermediateLanguageContext)
+        {
+            bool successInjectBossImmunityHook = true;
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.Match(OpCodes.Ldc_I4_M1)); //Move to the position where "specialHitSetter" is set to -1.
+                cursor.Index++; //Move beween the instruction that pushes -1 onto the stack and the instruction that write the value from stack into "specialHitSetter".
+                cursor.Emit(OpCodes.Pop); //Pop -1 off the stack.
+                cursor.Emit(OpCodes.Ldloc_1); //Push the current NPC index (variable i) onto the stack.
+                cursor.EmitDelegate<Func<int, int>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (index) =>
+                    {
+                        int specialHitSetter = -1; //-1 means normal enemy
+                        if (index >= 0 && index < Main.npc.Length)
+                        {
+                            if
+                            (
+                                Main.npc[index].boss ||
+                                Main.npc[index].type == NPCID.EaterofWorldsHead ||
+                                Main.npc[index].type == NPCID.EaterofWorldsBody ||
+                                Main.npc[index].type == NPCID.EaterofWorldsTail
+                            )
+                            {
+                                specialHitSetter = 1; //1 means normal enemy
+                            }
+                        }
+                        return specialHitSetter;
+                    }
+                );
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Boss Immunity Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectBossImmunityHook = false;
+            }
+            if(successInjectBossImmunityHook)
             {
                 WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Town NPCs Respawn Time Hook via IL Editing.");
             }
