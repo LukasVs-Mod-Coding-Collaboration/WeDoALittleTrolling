@@ -73,6 +73,8 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool speedyPlanteraPoisonSeedHasUpdated = false;
         public bool hostileGolemBoulder = false;
         public bool hostileGolemBoulderHasUpdated = false;
+        public bool undeadMinerGrenade = false;
+        public bool undeadMinerGrenadeHasUpdated = false;
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
@@ -152,6 +154,14 @@ namespace WeDoALittleTrolling.Common.Utilities
                     hostileGolemBoulderHasUpdated = true;
                 }
             }
+            if(projectile.type == ProjectileID.Grenade)
+            {
+                binaryWriter.Write(undeadMinerGrenade);
+                if(undeadMinerGrenade)
+                {
+                    undeadMinerGrenadeHasUpdated = true;
+                }
+            }
         }
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
@@ -213,6 +223,15 @@ namespace WeDoALittleTrolling.Common.Utilities
                     SoundEngine.PlaySound(SoundID.Item69, projectile.position);
                 }
             }
+            if(projectile.type == ProjectileID.Grenade)
+            {
+                undeadMinerGrenade = binaryReader.ReadBoolean();
+                if(undeadMinerGrenade)
+                {
+                    projectile.friendly = false;
+                    projectile.hostile = true;
+                }
+            }
         }
 
         public override bool PreAI(Projectile projectile)
@@ -246,6 +265,10 @@ namespace WeDoALittleTrolling.Common.Utilities
                 projectile.netUpdate = true;
             }
             if(projectile.type == ProjectileID.BoulderStaffOfEarth && hostileGolemBoulder && !hostileGolemBoulderHasUpdated)
+            {
+                projectile.netUpdate = true;
+            }
+            if(projectile.type == ProjectileID.Grenade && undeadMinerGrenade && !undeadMinerGrenadeHasUpdated)
             {
                 projectile.netUpdate = true;
             }

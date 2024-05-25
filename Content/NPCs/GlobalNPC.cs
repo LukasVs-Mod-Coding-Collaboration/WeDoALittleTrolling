@@ -950,7 +950,48 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 WDALTBossAIUtil.BossAI_PlanteraShotgun(npc, ref random);
             }
+            if (npc.type == NPCID.UndeadMiner)
+            {
+                GlobalNPCs.UndeadMinerThrowGrenade(npc, ref random);
+            }
             base.AI(npc);
+        }
+
+        public static void UndeadMinerThrowGrenade(NPC npc, ref UnifiedRandom random)
+        {
+            if 
+            (
+                npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive % 120 == 0 &&
+                Main.netMode != NetmodeID.MultiplayerClient &&
+                Main.player[npc.target] != null &&
+                Main.player[npc.target].active &&
+                !Main.player[npc.target].dead
+            )
+            {
+                if
+                (
+                    Collision.CanHitLine
+                    (
+                        npc.position,
+                        npc.width,
+                        npc.height,
+                        Main.player[npc.target].position,
+                        Main.player[npc.target].width,
+                        Main.player[npc.target].height
+                    )
+                )
+                {
+                    Vector2 vectorToTarget = Main.player[npc.target].Center - npc.Center;
+                    vectorToTarget.Normalize();
+                    vectorToTarget *= 6.0f;
+                    vectorToTarget = vectorToTarget.RotatedBy((MathHelper.ToRadians(30) * (double)npc.direction) * (-1.0));
+                    Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, vectorToTarget, ProjectileID.Grenade, npc.damage, 8f);
+                    proj.friendly = false;
+                    proj.hostile = true;
+                    proj.GetGlobalProjectile<WDALTProjectileUtil>().undeadMinerGrenade = true;
+                    proj.netUpdate = true;
+                }
+            }
         }
 
         public override void PostAI(NPC npc)

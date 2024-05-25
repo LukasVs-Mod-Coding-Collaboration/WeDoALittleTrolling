@@ -345,6 +345,19 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI(Projectile projectile)
         {
+            if (projectile.type == ProjectileID.Grenade && projectile.GetGlobalProjectile<WDALTProjectileUtil>().undeadMinerGrenade)
+            {
+                for (int i = 0; i < Main.player.Length; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].dead)
+                    {
+                        if (projectile.Hitbox.Intersects(Main.player[i].Hitbox))
+                        {
+                            projectile.Kill();
+                        }
+                    }
+                }
+            }
             if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
             {
                 if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive < 30)
