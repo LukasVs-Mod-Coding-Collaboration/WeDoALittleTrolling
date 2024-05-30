@@ -140,6 +140,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void SetDefaults(Projectile projectile)
         {
+            if (projectile.type == ProjectileID.FrostBlastFriendly)
+            {
+                projectile.penetrate = 1;
+            }
             if
             (
                 projectile.type == ProjectileID.Flare ||
@@ -161,7 +165,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if
             (
-                projectile.type == ProjectileID.InfluxWaver || projectile.type == ProjectileID.FlamingJack
+                projectile.type == ProjectileID.InfluxWaver ||
+                projectile.type == ProjectileID.FlamingJack ||
+                projectile.type == ProjectileID.DD2BallistraProj
             )
             {
                 projectile.extraUpdates = 1;
@@ -280,6 +286,22 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override bool PreAI(Projectile projectile)
         {
+            if
+            (
+                (
+                    projectile.type == ProjectileID.DD2BallistraTowerT1 ||
+                    projectile.type == ProjectileID.DD2BallistraTowerT2 ||
+                    projectile.type == ProjectileID.DD2BallistraTowerT3
+                )
+            )
+            {
+                int newShotDelay = Projectile.GetBallistraShotDelay(Main.player[projectile.owner]);
+                newShotDelay = (int)Math.Round((double)newShotDelay * 0.875);
+                if (projectile.ai[1] > newShotDelay)
+                {
+                    projectile.ai[1] = newShotDelay;
+                }
+            }
             if (projectile.type == ProjectileID.IceBoomerang)
             {
                 int baseSoundDelay = 8;
