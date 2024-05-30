@@ -1,0 +1,3 @@
+This mod is the Quality of Life content of WeDoALittleTrolling
+
+Source Code available at: https://github.com/LukasVs-Mod-Coding-Collaboration/WeDoALittleTrolling

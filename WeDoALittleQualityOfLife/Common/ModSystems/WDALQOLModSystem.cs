@@ -16,31 +16,29 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.IO;
-using log4net;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
-using WeDoALittleTrolling.Common.ModSystems;
+using Terraria.UI;
+using WeDoALittleQualityOfLife.Content.Recipes;
 
-namespace WeDoALittleTrolling
+namespace WeDoALittleQualityOfLife.Common.ModSystems
 {
-    public class WeDoALittleTrolling : Mod
+    internal class WDALQOLModSystem : ModSystem
     {
-        public const string ASSET_PATH = "WeDoALittleTrolling/Assets/";
-        internal static WDALTNetworkingSystem networkingSystem = new WDALTNetworkingSystem();
-        public static ILog logger;
-        public static Mod instance;
-        
-        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        public override void AddRecipes()
         {
-            networkingSystem.HandlePacket(reader, whoAmI, this);
-            base.HandlePacket(reader, whoAmI);
+            GlobalRecipes.AddRecipes();
+            base.AddRecipes();
         }
 
-        public override void Load()
+        public override void PostAddRecipes()
         {
-            logger = this.Logger;
-            instance = this;
-            base.Load();
+            GlobalRecipes.PostAddRecipes();
+            base.PostAddRecipes();
         }
     }
 }
+

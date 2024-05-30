@@ -147,45 +147,6 @@ namespace WeDoALittleTrolling.Content.Items
             orig.Invoke(self, sItem);
         }
 
-        public override bool ConsumeItem(Item item, Player player)
-        {
-            if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
-            {
-                SoundStyle buffActivateSoundStyle = SoundID.Item4;
-                bool playSound = true;
-                switch (item.type)
-                {
-                    case ItemID.WarTable:
-                        buffActivateSoundStyle = SoundID.Item4;
-                        break;
-                    case ItemID.BewitchingTable:
-                        buffActivateSoundStyle = SoundID.Item4;
-                        break;
-                    case ItemID.SharpeningStation:
-                        buffActivateSoundStyle = SoundID.Item37;
-                        break;
-                    case ItemID.CrystalBall:
-                        buffActivateSoundStyle = SoundID.Item4;
-                        break;
-                    case ItemID.AmmoBox:
-                        buffActivateSoundStyle = SoundID.Item149;
-                        break;
-                    case ItemID.SliceOfCake:
-                        buffActivateSoundStyle = SoundID.Item2;
-                        break;
-                    default:
-                        playSound = false;
-                        break;
-                }
-                if (playSound)
-                {
-                    SoundEngine.PlaySound(buffActivateSoundStyle, player.Center);
-                }
-                return false;
-            }
-            return base.ConsumeItem(item, player);
-        }
-
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if
@@ -980,59 +941,6 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void SetDefaults(Item item)
         {
-            // Make boss summoning items non-consumable
-            if
-            (
-                item.type == ItemID.SlimeCrown ||
-                item.type == ItemID.SuspiciousLookingEye ||
-                item.type == ItemID.WormFood ||
-                item.type == ItemID.BloodySpine ||
-                item.type == ItemID.Abeemination ||
-                item.type == ItemID.DeerThing ||
-                item.type == ItemID.MechanicalWorm ||
-                item.type == ItemID.MechanicalEye ||
-                item.type == ItemID.MechanicalSkull ||
-                item.type == ItemID.MechdusaSummon ||
-                item.type == ItemID.CelestialSigil ||
-                item.type == ItemID.PumpkinMoonMedallion ||
-                item.type == ItemID.NaughtyPresent ||
-                item.type == ItemID.GoblinBattleStandard ||
-                item.type == ItemID.PirateMap
-            )
-            {
-                item.consumable = false;
-                item.maxStack = 1;
-            }
-            //Make Buff Furniture give their Buffs when used
-            if (GlobalTiles.BuffTilesItemIDs.Contains(item.type))
-            {
-                item.buffTime = 108000;
-                switch (item.type)
-                {
-                    case ItemID.WarTable:
-                        item.buffType = BuffID.WarTable;
-                        break;
-                    case ItemID.BewitchingTable:
-                        item.buffType = BuffID.Bewitched;
-                        break;
-                    case ItemID.SharpeningStation:
-                        item.buffType = BuffID.Sharpened;
-                        break;
-                    case ItemID.CrystalBall:
-                        item.buffType = BuffID.Clairvoyance;
-                        break;
-                    case ItemID.AmmoBox:
-                        item.buffType = BuffID.AmmoBox;
-                        break;
-                    case ItemID.SliceOfCake:
-                        item.buffType = BuffID.SugarRush;
-                        item.buffTime = 7200;
-                        break;
-                    default:
-                        item.buffTime = 0;
-                        break;
-                }
-            }
             if (WDALTModSystem.isCalamityModPresent)
             {
                 base.SetDefaults(item);

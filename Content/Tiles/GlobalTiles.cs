@@ -32,16 +32,6 @@ namespace WeDoALittleTrolling.Content.Tiles
 {
     internal class GlobalTiles : GlobalTile
     {
-        public static readonly int[] BuffTilesItemIDs =
-        {
-            ItemID.BewitchingTable,
-            ItemID.WarTable,
-            ItemID.SharpeningStation,
-            ItemID.CrystalBall,
-            ItemID.AmmoBox,
-            ItemID.SliceOfCake
-        };
-
         public static void RegisterHooks()
         {
             On_Player.GetPickaxeDamage += On_Player_GetPickaxeDamage;
@@ -59,29 +49,6 @@ namespace WeDoALittleTrolling.Content.Tiles
                 return 100;
             }
             return orig.Invoke(self, x, y, pickPower, hitBufferIndex, tileTarget);
-        }
-
-        public override void PlaceInWorld(int i, int j, int type, Item item)
-        {
-            if (BuffTilesItemIDs.Contains(item.type))
-            {
-                ReduceStack(item);
-            }
-            base.PlaceInWorld(i, j, type, item);
-        }
-
-        public static void ReduceStack(Item item)
-        {
-            if (item.stack > 1)
-            {
-                item.stack--;
-            }
-            else
-            {
-                item.type = ItemID.None;
-                item.stack = 0;
-                item.active = false;
-            }
         }
 
         public override void RightClick(int i, int j, int type)

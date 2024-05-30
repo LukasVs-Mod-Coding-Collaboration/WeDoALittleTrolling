@@ -1,4 +1,5 @@
 displayName = We Do A Little Trolling
 author = LukasV-Coding
-version = 0.9.13
+version = 0.9.14
 sortAfter = ThoriumMod, CalamityMod, Consolaria
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, .vscode\*, WeDoALittleQualityOfLife\obj\*, WeDoALittleQualityOfLife\bin\*

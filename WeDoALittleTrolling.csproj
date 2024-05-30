@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\tModLoader.targets" />
+  <Import Project="..\tModLoader.targets"/>
   <PropertyGroup>
     <AssemblyName>WeDoALittleTrolling</AssemblyName>
     <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
+    <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\.vs\**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\.vscode\**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\bin\**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\obj\**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\WeDoALittleQualityOfLife.cs</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\WeDoALittleQualityOfLife.csproj</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\WeDoALittleQualityOfLife.sln</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Assets\Music\" />
-    <Folder Include="Assets\Textures\" />
-    <Folder Include="Assets\Sounds\" />
-    <Folder Include="Localisation\" />
-    <Folder Include="Common\" />
-    <Folder Include="OriginalArtwork\" />
+    <Folder Include="Assets\Music\"/>
+    <Folder Include="Assets\Textures\"/>
+    <Folder Include="Assets\Sounds\"/>
+    <Folder Include="Localisation\"/>
+    <Folder Include="Common\"/>
+    <Folder Include="WeDoALittleQualityOfLife\"/>
+    <Folder Include="OriginalArtwork\"/>
   </ItemGroup>
 </Project>

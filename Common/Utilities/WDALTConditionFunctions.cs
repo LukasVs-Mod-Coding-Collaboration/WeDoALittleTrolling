@@ -27,119 +27,6 @@ namespace WeDoALittleTrolling.Common.Utilities
 {
     internal static class WDALTConditionFunctions
     {
-        public static bool GetFalse()
-        {
-            return false;
-        }
-
-        public static bool HasAnkhShieldInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.AnkhShield))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasCellPhoneInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.CellPhone))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasTerrasparkBootsInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.TerrasparkBoots))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasArcticDivingGearInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.ArcticDivingGear))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasCelestialCuffsInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.CelestialCuffs))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasCelestialEmblemInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.CelestialEmblem))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasCelestialShellInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.CelestialShell))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasFireGauntletInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.FireGauntlet))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasFrogGearInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.FrogGear))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasLavaproofTackleBagInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.LavaproofTackleBag))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasSniperScopeInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.SniperScope))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasMasterNinjaGearInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.MasterNinjaGear))
-            {
-                return true;
-            }
-            return false;
-        }
-
         public static bool HasHolyCharmInInventory()
         {
             if (Main.player[Main.myPlayer].HasItem(ModContent.ItemType<HolyCharm>()))
@@ -149,54 +36,9 @@ namespace WeDoALittleTrolling.Common.Utilities
             return false;
         }
 
-        public static bool HasPiranhaGunInInventory()
+        public static bool DukeCrystal()
         {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.PiranhaGun))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasScourgeoftheCorruptorInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.ScourgeoftheCorruptor))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasVampireKnivesInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.VampireKnives))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasRainbowGunInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.RainbowGun))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasStaffoftheFrostHydraInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.StaffoftheFrostHydra))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool HasStormTigerStaffInInventory()
-        {
-            if (Main.player[Main.myPlayer].HasItem(ItemID.StormTigerStaff))
+            if(NPC.downedFishron && Main.player[Main.myPlayer].HasItem(ModContent.ItemType<GreenCrystal>()) && Main.player[Main.myPlayer].ZoneBeach)
             {
                 return true;
             }
@@ -224,15 +66,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         public static bool HasTier3FishingQuests()
         {
             if(Main.player[Main.myPlayer].anglerQuestsFinished >= 15 && Main.player[Main.myPlayer].ZoneBeach)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool DukeCrystal()
-        {
-            if(NPC.downedFishron && Main.player[Main.myPlayer].HasItem(ModContent.ItemType<GreenCrystal>()) && Main.player[Main.myPlayer].ZoneBeach)
             {
                 return true;
             }

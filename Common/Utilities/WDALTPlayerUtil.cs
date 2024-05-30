@@ -135,12 +135,6 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.OnHurt(info);
         }
 
-        public override void OnRespawn()
-        {
-            player.Heal(999999);
-            base.OnRespawn();
-        }
-
         public bool HasBlazingShield()
         {
             bool ret = false;
@@ -203,15 +197,6 @@ namespace WeDoALittleTrolling.Common.Utilities
             return false;
         }
 
-        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
-        {
-            if(!IsBossActive())
-            {
-                player.respawnTimer = 180;
-            }
-            base.Kill(damage, hitDirection, pvp, damageSource);
-        }
-
         public bool HasPlayerAcessoryEquipped(int itemID)
         {
             int offset = 3;
@@ -229,12 +214,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
             }
             return false;
-        }
-
-        public override void UpdateEquips()
-        {
-            player.arcticDivingGear = true;
-            base.UpdateEquips();
         }
 
         public int GetAmountOfEquippedAccessoriesWithPrefixFromPlayer(int prefixID) //Fancy name much smart, haha :P
