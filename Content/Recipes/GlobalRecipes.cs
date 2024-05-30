@@ -43,6 +43,8 @@ namespace WeDoALittleTrolling.Content.Recipes
 
             AddShimmeringBetweenCounterweights();
 
+            AddShimmeringBetweenDD2Gear();
+
             Condition ShimmerCondition = new Condition("Shimmer", WDALTConditionFunctions.GetFalse);
 
             Recipe.Create(ItemID.VampireKnives, 1)
@@ -416,6 +418,65 @@ namespace WeDoALittleTrolling.Content.Recipes
             .AddIngredient(ItemID.TungstenBar, 4)
             .AddTile(TileID.TinkerersWorkbench)
             .Register();
+        }
+
+        public static void AddShimmeringBetweenDD2Gear()
+        {
+            Action<KeyValuePair<int, int>> generateRecipe = (KeyValuePair<int, int> pair) =>
+            {
+                Recipe.Create(ItemID.DefenderMedal, pair.Value)
+                .AddIngredient(pair.Key, 1)
+                .AddTile(TileID.ShimmerMonolith)
+                .Register();
+            };
+
+            SortedDictionary<int, int> DD2GearRegisty = new SortedDictionary<int, int>();
+
+            //Armor
+            DD2GearRegisty.Add(ItemID.ApprenticeHat, 15);
+            DD2GearRegisty.Add(ItemID.ApprenticeRobe, 15);
+            DD2GearRegisty.Add(ItemID.ApprenticeTrousers, 15);
+            DD2GearRegisty.Add(ItemID.ApprenticeAltHead, 50);
+            DD2GearRegisty.Add(ItemID.ApprenticeAltShirt, 50);
+            DD2GearRegisty.Add(ItemID.ApprenticeAltPants, 50);
+            DD2GearRegisty.Add(ItemID.HuntressWig, 15);
+            DD2GearRegisty.Add(ItemID.HuntressJerkin, 15);
+            DD2GearRegisty.Add(ItemID.HuntressPants, 15);
+            DD2GearRegisty.Add(ItemID.HuntressAltHead, 50);
+            DD2GearRegisty.Add(ItemID.HuntressAltShirt, 50);
+            DD2GearRegisty.Add(ItemID.HuntressAltPants, 50);
+            DD2GearRegisty.Add(ItemID.MonkBrows, 15);
+            DD2GearRegisty.Add(ItemID.MonkShirt, 15);
+            DD2GearRegisty.Add(ItemID.MonkPants, 15);
+            DD2GearRegisty.Add(ItemID.MonkAltHead, 50);
+            DD2GearRegisty.Add(ItemID.MonkAltShirt, 50);
+            DD2GearRegisty.Add(ItemID.MonkAltPants, 50);
+            DD2GearRegisty.Add(ItemID.SquireGreatHelm, 15);
+            DD2GearRegisty.Add(ItemID.SquirePlating, 15);
+            DD2GearRegisty.Add(ItemID.SquireGreaves, 15);
+            DD2GearRegisty.Add(ItemID.SquireAltHead, 50);
+            DD2GearRegisty.Add(ItemID.SquireAltShirt, 50);
+            DD2GearRegisty.Add(ItemID.SquireAltPants, 50);
+
+            //Weapons
+            DD2GearRegisty.Add(ItemID.DD2BallistraTowerT1Popper, 5);
+            DD2GearRegisty.Add(ItemID.DD2BallistraTowerT2Popper, 15);
+            DD2GearRegisty.Add(ItemID.DD2BallistraTowerT3Popper, 60);
+            DD2GearRegisty.Add(ItemID.DD2ExplosiveTrapT1Popper, 5);
+            DD2GearRegisty.Add(ItemID.DD2ExplosiveTrapT2Popper, 15);
+            DD2GearRegisty.Add(ItemID.DD2ExplosiveTrapT3Popper, 60);
+            DD2GearRegisty.Add(ItemID.DD2FlameburstTowerT1Popper, 5);
+            DD2GearRegisty.Add(ItemID.DD2FlameburstTowerT2Popper, 15);
+            DD2GearRegisty.Add(ItemID.DD2FlameburstTowerT3Popper, 60);
+            DD2GearRegisty.Add(ItemID.DD2LightningAuraT1Popper, 5);
+            DD2GearRegisty.Add(ItemID.DD2LightningAuraT2Popper, 15);
+            DD2GearRegisty.Add(ItemID.DD2LightningAuraT3Popper, 60);
+
+            //Defender's Forge
+            DD2GearRegisty.Add(ItemID.DefendersForge, 50);
+
+            //Register all recipes
+            DD2GearRegisty.ToList().ForEach(generateRecipe);
         }
 
         public static void AddShimmeringBetweenMimicItems_MeleeWeapons()
