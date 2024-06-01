@@ -60,6 +60,19 @@ namespace WeDoALittleQualityOfLife.Content.Recipes
 
             AddArchitectGizmoPackRecipes();
 
+            Recipe.Create(ItemID.FamiliarWig)
+            .AddIngredient(ItemID.Silk, 5)
+            .AddTile(TileID.Loom)
+            .Register();
+            Recipe.Create(ItemID.FamiliarShirt)
+            .AddIngredient(ItemID.Silk, 10)
+            .AddTile(TileID.Loom)
+            .Register();
+            Recipe.Create(ItemID.FamiliarPants)
+            .AddIngredient(ItemID.Silk, 5)
+            .AddTile(TileID.Loom)
+            .Register();
+
             Recipe.Create(ItemID.ActuationAccessory, 1)
             .AddIngredient(ItemID.PlatinumBar, 5)
             .AddIngredient(ItemID.Wire, 5)
