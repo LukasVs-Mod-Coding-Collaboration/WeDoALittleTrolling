@@ -1,5 +1,11 @@
 displayName = We Do A Little Trolling
+homepage = https://github.com/LukasVs-Mod-Coding-Collaboration/WeDoALittleTrolling
+hideCode = false
+hideResources = false
+includeSource = true
+includePDB = true
 author = LukasV-Coding
 version = 0.9.14
 sortAfter = ThoriumMod, CalamityMod, Consolaria
-buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, .vscode\*, WeDoALittleQualityOfLife\obj\*, WeDoALittleQualityOfLife\bin\*
+side = Both
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, .vscode\*, WeDoALittleQualityOfLife\obj\*, WeDoALittleQualityOfLife\bin\*, WeDoALittleQualityOfLife\.vs\*, WeDoALittleQualityOfLife\.vscode\*

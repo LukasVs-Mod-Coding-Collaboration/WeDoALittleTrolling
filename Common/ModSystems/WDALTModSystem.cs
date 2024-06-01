@@ -64,7 +64,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 isCalamityModPresent = true;
                 WeDoALittleTrolling.logger.Warn("Calamity Mod detected.");
                 WeDoALittleTrolling.logger.Warn("WeDoALittleTrolling is not intended to be used together with Calamity Mod.");
-                WeDoALittleTrolling.logger.Warn("Disabling most rebalancing features to avoid reactor meltdown...");
+                WeDoALittleTrolling.logger.Warn("Most rebalancing features of WeDoALittleTrolling are not compatible with Calamity Mod.");
+                WeDoALittleTrolling.logger.Warn("Disabling most rebalancing features of WeDoALittleTrolling to ensure the game stays playable...");
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             WDALTIntermediateLanguageEditing.RegisterILHooks();
