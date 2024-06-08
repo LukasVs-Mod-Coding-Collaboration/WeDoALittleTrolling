@@ -50,7 +50,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.fireWalk = true;
-            float pickSpeedModifier = 0.25f;
+            float pickSpeedModifier = 0.20f;
             player.pickSpeed = player.pickSpeed - (player.pickSpeed * pickSpeedModifier);
 
         }

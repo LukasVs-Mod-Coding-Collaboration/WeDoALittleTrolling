@@ -51,7 +51,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<WDALTPlayer>().soulPoweredShield = true;
-            player.endurance += 0.17f; //Damage Reduction (originally 0.25)
             player.statDefense += 5; // (originally 6)
             player.noKnockback = true;
             player.lavaImmune = true; //Immunity to Lava and Fire blocks
@@ -81,33 +80,10 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
         }
 
-        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
-        {
-            if
-            (
-                (
-                    equippedItem.type == ItemID.WormScarf ||
-                    incomingItem.type == ItemID.WormScarf ||
-                    equippedItem.type == ModContent.ItemType<CrimsonAssassinGear>() ||
-                    incomingItem.type == ModContent.ItemType<CrimsonAssassinGear>() ||
-                    equippedItem.type == ItemID.BrainOfConfusion ||
-                    incomingItem.type == ItemID.BrainOfConfusion
-                )
-            )
-            {
-                return false;
-            }
-            else
-            {
-                return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem,player);
-            }
-        }
-
         public override void AddRecipes()
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.WormScarf, 1)
               .AddIngredient(ItemID.CobaltShield, 1)
               .AddIngredient(ItemID.SoulofMight, 5)
               .AddIngredient(ItemID.HallowedBar, 10)
@@ -117,7 +93,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
             CreateRecipe()
              .AddTile(TileID.MythrilAnvil)
-             .AddIngredient(ItemID.WormScarf, 1)
              .AddIngredient(ItemID.CobaltShield, 1)
              .AddIngredient(ItemID.SoulofMight, 5)
              .AddIngredient(ItemID.HallowedBar, 10)

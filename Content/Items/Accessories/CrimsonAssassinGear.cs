@@ -52,11 +52,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.noFallDmg = true;
-            player.dashType = 1;
+            player.noFallDmg = true;;
             player.longInvince = true;
             player.panic = true;
-            player.spikedBoots = 2;
             player.blackBelt = true;
             player.brainOfConfusionItem = Item;
         }
@@ -67,11 +65,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             (
                 (
                     equippedItem.type == ItemID.BrainOfConfusion ||
-                    incomingItem.type == ItemID.BrainOfConfusion ||
-                    equippedItem.type == ModContent.ItemType<SoulPoweredShield>() ||
-                    incomingItem.type == ModContent.ItemType<SoulPoweredShield>() ||
-                    equippedItem.type == ItemID.WormScarf ||
-                    incomingItem.type == ItemID.WormScarf
+                    incomingItem.type == ItemID.BrainOfConfusion
                 )
             )
             {
@@ -89,7 +83,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.SoulofFright, 5)
               .AddIngredient(ItemID.HallowedBar, 5)
-              .AddIngredient(ItemID.MasterNinjaGear, 1)
+              .AddIngredient(ItemID.BlackBelt, 1)
               .AddIngredient(ItemID.BrainOfConfusion, 1)
               .AddIngredient(ItemID.CrossNecklace, 1)
               .AddIngredient(ItemID.PanicNecklace, 1)

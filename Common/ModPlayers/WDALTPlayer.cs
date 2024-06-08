@@ -616,14 +616,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if (player.HeldItem.prefix == ModContent.PrefixType<Supercritical>())
                 {
-                    if (Supercritical.BuffGroup.Contains(player.HeldItem.type))
-                    {
-                        modifiers.CritDamage += 2.5f;
-                    }
-                    else
-                    {
-                        modifiers.CritDamage += 2.0f;
-                    }
+                    modifiers.CritDamage += 2.0f;
                 }
             }
             if
@@ -635,8 +628,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if (spookyEmblem)
                 {
-                    modifiers.ArmorPenetration += (spookyBonus * 3);
-                    if (random.Next(0, 100) < (spookyBonus * 3)) //(3 x <Player Minion Slots>)% Chance
+                    modifiers.ArmorPenetration += (spookyBonus * 4);
+                    if (random.Next(0, 100) < (spookyBonus * 2)) //(2 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }

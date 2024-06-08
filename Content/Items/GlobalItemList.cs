@@ -215,18 +215,14 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.GetAttackSpeed(DamageClass.Generic) += 0.06f;
             }
-            if (item.type == ItemID.DestroyerEmblem)
-            {
-                player.GetCritChance(DamageClass.Generic) += 2f;
-            }
             if (item.type == ItemID.SniperScope)
             {
                 player.GetDamage(DamageClass.Ranged) += 0.02f;
             }
             if (item.type == ItemID.ReconScope)
             {
-                player.GetDamage(DamageClass.Ranged) += 0.07f;
-                player.GetCritChance(DamageClass.Ranged) += 5f;
+                player.GetDamage(DamageClass.Ranged) += 0.02f;
+                player.GetCritChance(DamageClass.Ranged) += 2f;
             }
             if (item.type == ItemID.PygmyNecklace)
             {
@@ -236,6 +232,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.statDefense += 4;
                 player.DefenseEffectiveness *= 1.16f;
+            }
+            if (item.type == ItemID.WormScarf)
+            {
+                player.endurance += 0.03f;
             }
             base.UpdateAccessory(item, player, hideVisual);
         }
@@ -273,15 +273,11 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 (
-                    equippedItem.type == ItemID.WormScarf ||
                     equippedItem.type == ItemID.BrainOfConfusion ||
-                    equippedItem.type == ModContent.ItemType<SoulPoweredShield>() ||
                     equippedItem.type == ModContent.ItemType<CrimsonAssassinGear>()
                 ) &&
                 (
-                    incomingItem.type == ItemID.WormScarf ||
                     incomingItem.type == ItemID.BrainOfConfusion ||
-                    incomingItem.type == ModContent.ItemType<SoulPoweredShield>() ||
                     incomingItem.type == ModContent.ItemType<CrimsonAssassinGear>()
                 )
             )
@@ -508,14 +504,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if
             (
-                item.type == ItemID.DestroyerEmblem
-            )
-            {
-                List<TooltipLine> infoLine2 = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
-                infoLine2.ForEach(t => t.Text = "10% increased critical strike chance");
-            }
-            if
-            (
                 item.type == ItemID.SniperScope
             )
             {
@@ -528,7 +516,15 @@ namespace WeDoALittleTrolling.Content.Items
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip1") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "17% increased ranged damage\n15% increased ranged critical strike chance");
+                infoLine.ForEach(t => t.Text = "12% increased ranged damage\n12% increased ranged critical strike chance");
+            }
+            if
+            (
+                item.type == ItemID.ReconScope
+            )
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = t.Text.Replace("17", "20"));
             }
             if
             (
@@ -561,13 +557,13 @@ namespace WeDoALittleTrolling.Content.Items
                     TooltipLine thoriumClassExtraDmgLine =
                     (
                         Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().skillTreeThoriumBuffNode ?
-                        new TooltipLine(Mod, "WDALTPowerup", "+75% damage (From WeDoALittleTrolling)")
+                        new TooltipLine(Mod, "WDALTPowerup", "+30% damage (From WeDoALittleTrolling)")
                         {
                             IsModifier = true,
                             IsModifierBad = false,
                         }
                         :
-                        new TooltipLine(Mod, "WDALTPowerup", "+50% damage (From WeDoALittleTrolling)")
+                        new TooltipLine(Mod, "WDALTPowerup", "+20% damage (From WeDoALittleTrolling)")
                         {
                             IsModifier = true,
                             IsModifierBad = false,
@@ -593,10 +589,10 @@ namespace WeDoALittleTrolling.Content.Items
                     item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_TrueDamage)
                 )
                 {
-                    damage += 0.5f;
+                    damage += 0.2f;
                     if (player.GetModPlayer<WDALTPlayer>().skillTreeThoriumBuffNode)
                     {
-                        damage += 0.25f;
+                        damage += 0.1f;
                     }
                 }
             }

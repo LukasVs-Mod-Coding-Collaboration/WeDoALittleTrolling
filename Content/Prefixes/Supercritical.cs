@@ -37,17 +37,6 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
     public class Supercritical : ModPrefix
     {
-
-        public static readonly int[] BuffGroup =
-        {
-            ItemID.SkyFracture,
-            ItemID.InfernoFork,
-            ItemID.LastPrism,
-            ItemID.SniperRifle,
-            ItemID.Marrow,
-            ItemID.SDMG,
-            ModContent.ItemType<Rain_of_Decay>(),
-        };
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
         public override float RollChance(Item item)
         {
@@ -92,10 +81,6 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
             int critDamageBonus = 100;
-            if(BuffGroup.Contains(item.type))
-            {
-                critDamageBonus = 125;
-            }
             yield return new TooltipLine(Mod, "PrefixWeaponSupercriticalDescription", "+"+critDamageBonus+AdditionalTooltip.Value) {
                 IsModifier = true,
             };

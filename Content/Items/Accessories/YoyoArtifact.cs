@@ -53,7 +53,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<WDALTPlayer>().yoyoArtifact = true;
-            player.GetDamage(DamageClass.Melee) += 0.15f;
             base.UpdateAccessory(player, hideVisual);
         }
 
@@ -61,7 +60,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.WarriorEmblem, 1)
               .AddIngredient(ItemID.YoYoGlove, 1)
               .AddIngredient(ItemID.CyanHusk, 3)
               .AddIngredient(ItemID.RedHusk, 3)

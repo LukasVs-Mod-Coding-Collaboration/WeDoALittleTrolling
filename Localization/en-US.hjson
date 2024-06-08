@@ -63,7 +63,7 @@ Mods: {
 					Works differently with channelling weapons
 					Increases damage at the cost of attack speed
 					Increases ranged attack damage by 25%
-					Increases ranged critical strike chance by 10%
+					Increases ranged critical strike chance by 5%
 					Decreases ranged attack speed by 10%
 					'''
 			}
@@ -75,7 +75,7 @@ Mods: {
 					Works differently with channelling weapons
 					Increases attack speed at the cost of damage
 					Increases ranged attack speed by 25%
-					Increases ranged armor penetration by 25
+					Increases ranged armor penetration by 10
 					Decreases ranged attack damage by 10%
 					'''
 			}
@@ -94,8 +94,8 @@ Mods: {
 				DisplayName: Spooky Emblem
 				Tooltip:
 					'''
-					Grants 3% summon critical strike chance per minion slot
-					Grants 3 summon armor penetration per minion slot
+					Grants 2% summon critical strike chance per minion slot
+					Grants 4 summon armor penetration per minion slot
 					Increases your max number of minions by 1
 					Enemies are less likely to target you
 					'''
@@ -106,7 +106,7 @@ Mods: {
 				Tooltip:
 					'''
 					Reduces damage taken by 1.5% per minion slot
-					This is not affected by the Vulnerable debuff
+					This is unaffected by debuffs
 					3 defense per minion slot
 					Increases your max number of minions by 1
 					Enemies are more likely to target you
@@ -119,11 +119,9 @@ Mods: {
 					'''
 					"A highly dense shield, imbued with the souls of a
 					 tough mechanical creature in order to protect you"
-					Blocks usage of the Worm Scarf
 					Grants knockback immunity
 					5 Defense
-					Reduces 17% of damage taken
-					Additionally reduces up to 17% of damage taken based on how
+					Reduces up to 25% of damage taken based on how
 					close you are to the attacker, this is unaffected by debuffs
 					Grants immunity to most fire and frost effects
 					Also grants immunity to most other hazardous debuffs
@@ -137,7 +135,7 @@ Mods: {
 					'''
 					Combines the effects of:
 					Brain of Confusion
-					Master Ninja Gear
+					Black Belt
 					Cross Necklace
 					Panic Necklace
 					'''
@@ -389,7 +387,6 @@ Mods: {
 				DisplayName: Yoyo Artifact
 				Tooltip:
 					'''
-					15% increased melee damage
 					Striking an enemy with a yoyo
 					spawns 3 Magic Artifacts that
 					chase after your enemy and
@@ -658,19 +655,16 @@ Mods: {
 				DisplayName: Conjuring
 				AdditionalTooltip:
 					'''
-					+6% summon damage
-					+2 defense
-					+20 mana
+					+5% summon damage
+					+1 defense
+					+10 mana
 					'''
 			}
 
 			Watchful: {
 				DisplayName: Watchful
-				AdditionalTooltip:
-					'''
-					Increases your max number of sentries by 1,
-					but reduces your summon damage by 6%
-					'''
+				AdditionalTooltip: -3% damage
+				AdditionalTooltip2: Increases your max number of sentries by 1
 			}
 
 			Sandstepping: {
@@ -686,8 +680,8 @@ Mods: {
 
 			Focusing: {
 				DisplayName: Focusing
-				AdditionalTooltip: -4% ranged damage
-				AdditionalTooltip2: +10% ranged critical strike chance
+				AdditionalTooltip: -3% ranged damage
+				AdditionalTooltip2: +6% ranged critical strike chance
 			}
 
 			Lunatic: {
@@ -852,7 +846,7 @@ Mods: {
 
 			Indecisive: {
 				DisplayName: Indecisive
-				AdditionalTooltip: +2 to all "reforge stats"
+				AdditionalTooltip: +1 to all "reforge stats"
 			}
 
 			SunshineOf: {
@@ -916,7 +910,7 @@ Mods: {
 					You will dodge 1 in 4 attacks
 					Provides 2 life regeneration per second
 					Increase defense by 4
-					24% decreased damage
+					25% decreased damage
 					Enemies are less likely to target you
 					'''
 			}
@@ -949,7 +943,7 @@ Mods: {
 
 			Vulnerable: {
 				DisplayName: Vulnerable
-				Description: Damage reduction is decreased by
+				Description: Endurance is decreased by
 			}
 
 			WormCandleBuff: {

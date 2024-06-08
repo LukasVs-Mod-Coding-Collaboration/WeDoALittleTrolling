@@ -1072,11 +1072,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     distanceToTarget = 48f;
                 }
-                float rangeOffsetFactor = ((512f - 48f) / (1f - 0.83f));
-                float modifierSPS = Math.Abs(((distanceToTarget - 48f) / rangeOffsetFactor) + 0.83f);
-                if (modifierSPS < 0.83f)
+                float rangeOffsetFactor = ((512f - 48f) / (1f - 0.75f));
+                float modifierSPS = Math.Abs(((distanceToTarget - 48f) / rangeOffsetFactor) + 0.75f);
+                if (modifierSPS < 0.75f)
                 {
-                    modifierSPS = 0.83f;
+                    modifierSPS = 0.75f;
                 }
                 modifiers.FinalDamage *= modifierSPS;
             }
@@ -1355,10 +1355,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                 int dropAmountMin = 1;
                 int dropAmountMax = 1;
                 int chanceNumerator = 1;
-                int chanceDenominator = 25;
+                int chanceDenominator = 24;
                 if (npc.type == NPCID.UndeadMiner)
                 {
-                    chanceDenominator = 10;
+                    chanceDenominator = 12;
                 }
                 int itemID = ModContent.ItemType<YellowCrystal>();
                 CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
@@ -1372,7 +1372,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     int dropAmountMin = 1;
                     int dropAmountMax = 1;
                     int chanceNumerator = 1;
-                    int chanceDenominator = 10;
+                    int chanceDenominator = 12;
                     int itemID = ModContent.ItemType<YellowCrystal>();
                     CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
                     npcLoot.Add(drop);

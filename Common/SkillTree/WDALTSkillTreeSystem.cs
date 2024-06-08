@@ -90,7 +90,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
                             displayText = "Necessary Evil\nReduces damage done by\nall Vanilla classes by 25%";
                             break;
                         case ThoriumClassBooster:
-                            displayText = "Thorium Acclimatization\nIncreases the damage bonus applied to\nThorium weapons from 50% to 75%";
+                            displayText = "Thorium Acclimatization\nIncreases the damage bonus applied to\nThorium weapons from 20% to 30%";
                             break;
                         default:
                             displayText = "Core Node.\n+5% attack damage\nReduces damage taken by 5%";

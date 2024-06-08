@@ -74,7 +74,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 return;
             }
             //Replicate vanilla behavior as good as possible.
-            if (random.NextBool(300) && Main.netMode != NetmodeID.MultiplayerClient)
+            if (random.NextBool(400) && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.TargetClosest();
                 if (!Collision.CanHitLine(npc.Center, 1, 1, Main.player[npc.target].Center, 1, 1))
@@ -87,7 +87,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public static void BossAI_TheDestroyerExtras(NPC npc, ref UnifiedRandom random)
         {
             //Replicate vanilla behavior as good as possible.
-            if (random.NextBool(900) && Main.netMode != NetmodeID.MultiplayerClient && npc.life >= (int)Math.Round(npc.lifeMax * destroyerAccelerationLimit))
+            if (random.NextBool(1200) && Main.netMode != NetmodeID.MultiplayerClient && npc.life >= (int)Math.Round(npc.lifeMax * destroyerAccelerationLimit))
             {
                 npc.TargetClosest();
                 Vector2 posWithOffset = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)(npc.height / 2));

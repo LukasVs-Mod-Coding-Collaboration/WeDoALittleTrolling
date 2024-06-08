@@ -52,22 +52,30 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.maxTurrets += 1;
-            player.GetDamage(DamageClass.Summon) -= 0.06f;
+            player.GetDamage(DamageClass.Generic) -= 0.03f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
+        public LocalizedText AdditionalTooltip2 => this.GetLocalization(nameof(AdditionalTooltip2));
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            yield return new TooltipLine(Mod, "PrefixAccessoryWatchfulDescription", AdditionalTooltip.Value)
+            yield return new TooltipLine(Mod, "PrefixAccessoryWatchfulDescriptionNegative", AdditionalTooltip.Value)
             {
                 IsModifier = true,
+                IsModifierBad = true,
+            };
+            yield return new TooltipLine(Mod, "PrefixAccessoryWatchfulDescriptionPositive", AdditionalTooltip2.Value)
+            {
+                IsModifier = true,
+                IsModifierBad = false,
             };
         }
 
         public override void SetStaticDefaults()
         {
             _ = AdditionalTooltip;
+            _ = AdditionalTooltip2;
         }
 
     }
