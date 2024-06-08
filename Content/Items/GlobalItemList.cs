@@ -967,24 +967,20 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChlorophyteShotbow)
             {
-                if (item.damage <= 40)
-                {
-                    item.damage = 40;
-                }
                 item.useTime = 16;
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Megashark)
             {
-                item.damage = 30;
                 item.useTime = 6;
                 item.useAnimation = 6;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.DD2PhoenixBow)
             {
-                item.damage = 44;
+                item.damage = 35;
+                item.crit = 1;
             }
             if (item.type == ItemID.CactusBreastplate)
             {
@@ -999,24 +995,12 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BoneSword)
             {
-                if (item.damage <= 24)
-                {
-                    item.damage = 24;
-                }
-                item.useTime = 20;
-                item.useAnimation = 20;
                 item.shootsEveryUse = true;
                 item.shoot = ProjectileID.BoneGloveProj;
                 item.shootSpeed = 10f;
             }
             if (item.type == ItemID.EnchantedSword)
             {
-                if (item.damage <= 24)
-                {
-                    item.damage = 24;
-                }
-                item.useTime = 18;
-                item.useAnimation = 18;
                 item.shootsEveryUse = true;
                 item.knockBack = 5.25f;
             }
@@ -1026,29 +1010,29 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     item.damage = 20;
                 }
-                item.useTime = 24;
-                item.useAnimation = 24;
+                item.useTime = 28;
+                item.useAnimation = 28;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.FlamingMace)
             {
-                if (item.damage <= 24)
+                if (item.damage <= 20)
                 {
-                    item.damage = 24;
+                    item.damage = 20;
                 }
             }
             if (item.type == ItemID.BlueMoon)
             {
-                if (item.damage <= 64)
+                if (item.damage <= 60)
                 {
-                    item.damage = 64;
+                    item.damage = 60;
                 }
             }
             if (item.type == ItemID.Sunfury)
             {
-                if (item.damage <= 74)
+                if (item.damage <= 70)
                 {
-                    item.damage = 74;
+                    item.damage = 70;
                 }
             }
             if (item.type == ItemID.DarkLance)
@@ -1057,29 +1041,27 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     item.damage = 40;
                 }
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Gungnir)
-            {
-                if (item.damage <= 95)
-                {
-                    item.damage = 95;
-                }
-            }
-            if (item.type == ItemID.MonkStaffT1)
             {
                 if (item.damage <= 70)
                 {
                     item.damage = 70;
                 }
+                item.crit = 3;
+            }
+            if (item.type == ItemID.MonkStaffT1)
+            {
+                if (item.damage <= 55)
+                {
+                    item.damage = 55;
+                }
             }
             if (item.type == ItemID.MonkStaffT2)
             {
-                if (item.damage <= 90)
+                if (item.damage <= 55)
                 {
-                    item.damage = 90;
+                    item.damage = 55;
                 }
             }
             if (item.type == ItemID.MonkStaffT3)
@@ -1112,6 +1094,8 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.BeamSword)
             {
+                item.damage = 55;
+                item.crit = 1;
                 item.useTime = 30;
                 item.useAnimation = 15;
                 item.attackSpeedOnlyAffectsWeaponAnimation = false;
@@ -1119,18 +1103,18 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ClockworkAssaultRifle)
             {
-                item.damage = 24;
+                item.damage = 20;
             }
             if (item.type == ItemID.Marrow)
             {
-                if (item.damage <= 64)
+                if (item.damage <= 60)
                 {
-                    item.damage = 64;
+                    item.damage = 60;
                 }
-                item.useTime = 16;
-                item.useAnimation = 16;
+                item.useTime = 18;
+                item.useAnimation = 18;
                 item.shootsEveryUse = true;
-                item.crit = 4;
+                item.crit = 2;
             }
             if (item.type == ItemID.FlintlockPistol)
             {
@@ -1138,7 +1122,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.FlareGun)
             {
-                item.damage = 12;
+                item.damage = 8;
                 item.crit = 4;
                 item.knockBack = 2f;
                 item.DamageType = DamageClass.Ranged;
@@ -1149,8 +1133,8 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TheHorsemansBlade)
             {
-                item.useTime = 15;
-                item.useAnimation = 15;
+                item.useTime = 20;
+                item.useAnimation = 20;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.BatScepter)
@@ -1159,27 +1143,24 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.CandyCornRifle)
             {
-                item.ArmorPenetration = 40;
-                item.damage = 80;
-                item.useTime = 6;
-                item.useAnimation = 6;
+                item.ArmorPenetration = 48;
+                item.damage = 48;
+                item.useTime = 8;
+                item.useAnimation = 8;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.JackOLanternLauncher)
             {
-                item.damage = 80;
-                item.useTime = 24;
-                item.useAnimation = 24;
-                item.crit = 20;
-                item.shootsEveryUse = true;
+                item.damage = 70;
+                item.crit = 11;
             }
             if (item.type == ItemID.NailGun)
             {
-                item.damage = 100;
+                item.damage = 90;
             }
             if (item.type == ItemID.MagnetSphere)
             {
-                item.damage = 64;
+                item.damage = 55;
             }
             /*
             if (item.type == ItemID.ReaverShark)
@@ -1201,7 +1182,7 @@ namespace WeDoALittleTrolling.Content.Items
             */
             if (item.type == ItemID.LunarFlareBook)
             {
-                item.damage = 120;
+                item.damage = 110;
                 item.mana = 8;
             }
             if (item.type == ItemID.LastPrism)
@@ -1216,12 +1197,9 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.RazorbladeTyphoon)
             {
-                item.damage = 100;
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.shootsEveryUse = true;
-                item.ArmorPenetration = 20;
-                item.mana = 10;
+                item.damage = 90;
+                item.ArmorPenetration = 30;
+                item.mana = 15;
             }
             if (item.type == ItemID.BubbleGun)
             {
@@ -1229,12 +1207,12 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
-                item.ArmorPenetration = 20;
+                item.ArmorPenetration = 16;
                 item.mana = 4;
             }
             if (item.type == ItemID.OpticStaff)
             {
-                item.damage = 32;
+                item.damage = 28;
             }
             if
             (
@@ -1245,11 +1223,11 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.RavenStaff
             )
             {
-                item.damage += 10;
+                item.damage += 5;
             }
             if (item.type == ItemID.XenoStaff)
             {
-                item.damage = 42;
+                item.damage = 40;
             }
             if (item.type == ItemID.Xenopopper)
             {
@@ -1260,15 +1238,15 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StardustDragonStaff)
             {
-                item.damage = 50;
+                item.damage = 45;
             }
             if (item.type == ItemID.StardustCellStaff)
             {
-                item.damage = 75;
+                item.damage = 70;
             }
             if (item.type == ItemID.EmpressBlade) //Terraprisma
             {
-                item.damage = 125;
+                item.damage = 110;
             }
             if
             (
@@ -1394,19 +1372,19 @@ namespace WeDoALittleTrolling.Content.Items
 
             if (item.type == ItemID.FireWhip) //Firecracker
             {
-                item.damage += 10;
+                item.damage += 8;
             }
             if (item.type == ItemID.CoolWhip) 
             {
-                item.damage += 15;
+                item.damage += 10;
             }
             if (item.type == ItemID.SwordWhip) //Durendal
             {
-                item.damage += 20;
+                item.damage += 15;
             }
             if (item.type == ItemID.ScytheWhip) //Dark Harvest
             {
-                item.damage += 25;
+                item.damage += 10;
                 item.useTime = 25;
                 item.useAnimation = 25;
                 item.shootsEveryUse = true;
@@ -1429,12 +1407,12 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.StarWrath)
             {
-                item.damage = 110;
+                item.damage = 100;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Meowmere)
             {
-                item.damage = 300;
+                item.damage = 250;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Terrarian)
@@ -1443,14 +1421,14 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Seedler)
             {
-                item.damage = 80;
+                item.damage = 64;
                 item.useTime = 24;
                 item.useAnimation = 24;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.TrueExcalibur)
             {
-                item.damage = 125;
+                item.damage = 80;
                 item.useTime = 16;
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
@@ -1458,7 +1436,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Excalibur)
             {
-                item.damage = 115;
+                item.damage = 75;
             }
             if (item.type == ItemID.TrueNightsEdge)
             {
@@ -1472,12 +1450,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TerraBlade)
             {
-                item.damage = 90;
-            }
-            if (item.type == ItemID.DD2SquireBetsySword)
-            {
-                item.useTime = 16;
-                item.useAnimation = 16;
+                item.damage = 100;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.InfluxWaver)
@@ -1494,9 +1467,6 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.PaladinsHammer)
             {
                 item.damage = 100;
-                item.useTime = 12;
-                item.useAnimation = 12;
-                item.shootsEveryUse = true;
                 item.shootSpeed = 24f;
             }
             if (item.type == ItemID.DayBreak)
@@ -1533,18 +1503,15 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ThunderSpear)
             {
-                item.damage = 20;
+                item.damage = 18;
             }
             if (item.type == ItemID.ThunderStaff)
             {
-                item.damage = 24;
+                item.damage = 22;
             }
             if (item.type == ItemID.Starfury)
             {
-                item.damage = 18;
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.shootsEveryUse = true;
+                item.damage = 28;
             }
             if
             (
@@ -1572,9 +1539,9 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ChlorophytePartisan)
             {
-                if (item.damage <= 60)
+                if (item.damage <= 55)
                 {
-                    item.damage = 60;
+                    item.damage = 55;
                 }
             }
             if
@@ -1597,17 +1564,14 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Trimarang)
             {
-                item.damage = 28;
-                item.useTime = 15;
-                item.useAnimation = 15;
+                item.damage = 24;
+                item.useTime = 18;
+                item.useAnimation = 18;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.Flamarang)
             {
-                item.damage = 64;
-                item.useTime = 30;
-                item.useAnimation = 30;
-                item.shootsEveryUse = true;
+                item.damage = 55;
             }
             if (item.type == ItemID.DeathSickle)
             {
@@ -1619,20 +1583,20 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.TitaniumSword)
             {
-                item.damage = 100;
+                item.damage = 75;
             }
             if (item.type == ItemID.TitaniumTrident)
             {
-                item.damage = 90;
+                item.damage = 60;
             }
             if (item.type == ItemID.TitaniumWaraxe)
             {
-                item.damage = 140;
+                item.damage = 90;
             }
             if (item.type == ItemID.TitaniumRepeater)
             {
-                item.useTime = 12;
-                item.useAnimation = 12;
+                item.useTime = 15;
+                item.useAnimation = 15;
             }
             if (item.type == ItemID.TitaniumHelmet)
             {
@@ -1648,25 +1612,25 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.AdamantiteSword)
             {
-                item.damage = 100;
+                item.damage = 75;
             }
             if (item.type == ItemID.AdamantiteGlaive)
             {
-                item.damage = 90;
+                item.damage = 60;
             }
             if (item.type == ItemID.AdamantiteWaraxe)
             {
-                item.damage = 140;
+                item.damage = 90;
             }
             if (item.type == ItemID.AdamantiteRepeater)
             {
-                item.useTime = 13;
-                item.useAnimation = 13;
+                item.useTime = 16;
+                item.useAnimation = 16;
             }
             if (item.type == ItemID.HallowedRepeater)
             {
-                item.useTime = 12;
-                item.useAnimation = 12;
+                item.useTime = 14;
+                item.useAnimation = 14;
             }
             if (item.type == ItemID.FlowerofFire)
             {
@@ -1675,7 +1639,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.UnholyTrident)
             {
-                item.damage = 60;
+                item.damage = 55;
                 item.mana = 20;
                 item.autoReuse = true;
             }
@@ -1697,12 +1661,12 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.NebulaBlaze)
             {
-                item.damage = 160;
+                item.damage = 145;
                 item.mana = 8;
             }
             if (item.type == ItemID.NebulaArcanum)
             {
-                item.damage = 80;
+                item.damage = 90;
                 item.mana = 20;
             }
 
@@ -1719,7 +1683,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.type == ItemID.ImpStaff
             )
             {
-                item.damage += 4;
+                item.damage += 2;
             }
 
             // Buff Ice-Biome related stuff
@@ -1735,9 +1699,9 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.FrostStaff)
             {
-                if (item.damage <= 55)
+                if (item.damage <= 50)
                 {
-                    item.damage = 55;
+                    item.damage = 50;
                 }
                 item.autoReuse = true;
                 item.crit = 1;
@@ -1750,8 +1714,6 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 24;
                 }
                 item.autoReuse = true;
-                item.useTime = 15;
-                item.useAnimation = 15;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.IceBlade)
@@ -1761,16 +1723,13 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 18;
                 }
                 item.autoReuse = true;
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.SnowballCannon)
             {
-                item.damage = 15;
+                item.damage = 12;
                 item.autoReuse = true;
-                item.useTime = 15;
-                item.useAnimation = 15;
+                item.useTime = 16;
+                item.useAnimation = 16;
                 item.shootsEveryUse = true;
             }
             //Hardmode
@@ -1786,9 +1745,9 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.IceBow)
             {
-                if (item.damage <= 50)
+                if (item.damage <= 45)
                 {
-                    item.damage = 50;
+                    item.damage = 45;
                 }
             }
             if (item.type == ItemID.FlowerofFrost)
@@ -1802,11 +1761,11 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.QueenSpiderStaff)
             {
-                item.damage = 60;
+                item.damage = 45;
             }
             if (item.type == ItemID.HoundiusShootius)
             {
-                item.damage = 40;
+                item.damage = 35;
             }
             if (item.type == ItemID.RainbowCrystalStaff)
             {
@@ -1814,32 +1773,31 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.MoonlordTurretStaff)
             {
-                item.damage = 120;
+                item.damage = 110;
             }
             if (item.type == ItemID.SkyFracture)
             {
-                if (item.damage <= 45)
+                if (item.damage <= 40)
                 {
-                    item.damage = 45;
+                    item.damage = 40;
                 }
-                item.crit = 26;
             }
             if (item.type == ItemID.MeteorStaff)
             {
-                item.damage = 60;
+                item.damage = 55;
             }
             if (item.type == ItemID.BookStaff)
             {
-                item.damage = 45;
+                item.damage = 40;
                 item.mana = 12;
             }
             if (item.type == ItemID.Bananarang)
             {
-                item.damage = 55;
+                item.damage = 50;
             }
             if (item.type == ItemID.Uzi)
             {
-                item.damage = 36;
+                item.damage = 32;
                 item.useTime = 8;
                 item.useAnimation = 8;
                 item.shootsEveryUse = true;
@@ -1902,7 +1860,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.HellwingBow)
             {
-                item.damage = 24;
                 item.useTime = 12;
                 item.useAnimation = 12;
                 item.shootsEveryUse = true;
@@ -1911,16 +1868,13 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 32;
                 item.shootSpeed = 12f;
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.shootsEveryUse = true;
             }
 
             if (item.type == ItemID.Celeb2)
             {
-                if (item.damage <= 70)
+                if (item.damage <= 75)
                 {
-                    item.damage = 70;
+                    item.damage = 75;
                 }
             }
             if (item.type == ItemID.FireworksLauncher)

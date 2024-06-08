@@ -57,7 +57,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTurn = false;
             Item.UseSound = SoundID.Item60;
 
-            Item.damage = 28;
+            Item.damage = 24;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 5.5f;
             Item.shoot = ModContent.ProjectileType<PharaohsCursebladeBeam>();

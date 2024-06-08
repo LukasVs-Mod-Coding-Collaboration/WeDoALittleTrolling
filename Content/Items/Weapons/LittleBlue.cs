@@ -49,11 +49,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTurn = true;
             Item.UseSound = SoundID.Item1;
 
-            Item.buffType = BuffID.Endurance;
-            Item.buffTime = 200;
-
-
-            Item.damage = 1800;
+            Item.damage = 600;
             Item.DamageType = DamageClass.Melee; //Item damage type
             Item.knockBack = 8f;
             Item.crit = 16;
@@ -105,7 +101,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 Vector2 littleBlueBulletVelocity = new Vector2(target.Center.X - littleBlueBulletSpawnPos.X, target.Center.Y - littleBlueBulletSpawnPos.Y);
                 littleBlueBulletVelocity.Normalize();
                 littleBlueBulletVelocity *= 6f;
-                Projectile.NewProjectile(player.GetSource_FromThis(), littleBlueBulletSpawnPos, littleBlueBulletVelocity, ProjectileID.MagicMissile, damage = 900, knockBack = 6f, player.whoAmI);
+                Projectile.NewProjectile(player.GetSource_FromThis(), littleBlueBulletSpawnPos, littleBlueBulletVelocity, ProjectileID.MagicMissile, (int)Math.Round(Item.damage * 0.75), knockBack = 6f, player.whoAmI);
                 for (int j = 0; j < 20; j++)
                 {
                     Vector2 dustPosition = littleBlueBulletSpawnPos;

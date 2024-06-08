@@ -56,8 +56,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.DamageType = DamageClass.Ranged;
-            Item.ArmorPenetration = 36;
-            Item.damage = 36;
+            Item.ArmorPenetration = 30;
+            Item.damage = 30;
             Item.knockBack = 1.25f;
             Item.noMelee = true;
             Item.crit = 0;

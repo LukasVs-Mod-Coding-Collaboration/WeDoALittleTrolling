@@ -203,7 +203,7 @@ Mods: {
 				DisplayName: Rain of Decay
 				Tooltip:
 					'''
-					Ignores 36 points of enemy Defense
+					Ignores 30 points of enemy Defense
 					"The sky is only cursed flames to them."
 					Right-Click to switch between attack modes
 					Multishot mode fires 4 arrows at once

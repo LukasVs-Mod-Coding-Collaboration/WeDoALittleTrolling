@@ -100,6 +100,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void AddRecipes()
         {
+            /*
             CreateRecipe()
               .AddTile(TileID.CrystalBall)
               .AddIngredient(ItemID.SpellTome, 1)
@@ -107,6 +108,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
               .AddIngredient(ItemID.SoulofLight, 10)
               .AddIngredient(ItemID.SoulofNight, 10)
               .Register();
+            */
         }
     }
 }

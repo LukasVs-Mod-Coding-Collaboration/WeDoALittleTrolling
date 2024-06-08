@@ -626,14 +626,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if (projectile.type == ProjectileID.TrueNightsEdge)
             {
-                projectile.damage *= 2;
                 projectile.tileCollide = true;
                 projectile.light = 0.5f;
                 projectile.netUpdate = true;
             }
             if (projectile.type == ProjectileID.TerraBlade2Shot || projectile.type == ProjectileID.StarWrath)
             {
-                projectile.damage *= 2;
                 projectile.netUpdate = true;
             }
             if (projectile.type == ProjectileID.OrnamentFriendly)
