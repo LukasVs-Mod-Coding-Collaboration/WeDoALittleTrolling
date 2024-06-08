@@ -62,7 +62,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.Fireball,
             ProjectileID.EyeBeam
         };
-        public static readonly int[] InflictWreckedResistance1In1Group =
+        public static readonly int[] InflictVulnerable1In1Group =
         {
             ProjectileID.SeedPlantera,
             ProjectileID.PoisonSeedPlantera,
@@ -81,10 +81,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.CultistBossLightningOrbArc,
             ProjectileID.CultistBossFireBall,
             ProjectileID.CultistBossFireBallClone,
-            ProjectileID.DD2OgreStomp,
             ProjectileID.DD2OgreSpit,
-            ProjectileID.DD2OgreSmash,
-            ProjectileID.DD2BetsyFireball,
             ProjectileID.DD2BetsyFlameBreath,
             ProjectileID.FlamingWood,
             ProjectileID.GreekFire1,
@@ -92,9 +89,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.GreekFire3,
             ProjectileID.FrostWave,
             ProjectileID.FrostShard,
-            ProjectileID.Missile,
-            ProjectileID.Present,
-            ProjectileID.Spike,
             ProjectileID.PineNeedleHostile,
             ProjectileID.OrnamentHostile,
             ProjectileID.OrnamentHostileShrapnel,
@@ -111,13 +105,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.Sharknado,
             ProjectileID.SharknadoBolt,
             ProjectileID.Cthulunado,
-            ProjectileID.ThornBall,
             ProjectileID.EyeFire,
-            ProjectileID.BombSkeletronPrime,
             ProjectileID.Fireball,
             ProjectileID.EyeBeam
         };
-        public static readonly int[] InflictWreckedAccuracy1In1Group =
+        public static readonly int[] InflictWreckedResistance1In1Group =
         {
             ProjectileID.SniperBullet,
             ProjectileID.HappyBomb,
@@ -126,7 +118,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
             ProjectileID.RollingCactus,
             ProjectileID.MiniBoulder,
             ProjectileID.LifeCrystalBoulder,
-            ProjectileID.MoonBoulder
+            ProjectileID.MoonBoulder,
+            ProjectileID.SaucerMissile,
+            ProjectileID.RocketSkeleton,
+            ProjectileID.DD2OgreStomp,
+            ProjectileID.DD2OgreSmash,
+            ProjectileID.DD2BetsyFireball,
+            ProjectileID.BombSkeletronPrime,
+            ProjectileID.ThornBall,
+            ProjectileID.Missile,
+            ProjectileID.Present,
+            ProjectileID.Spike,
         };
         public static readonly int[] InflictDevastated1In1Group =
         {
@@ -816,11 +818,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
-            if (InflictWreckedAccuracy1In1Group.Contains(projectile.type))
+            if (InflictVulnerable1In1Group.Contains(projectile.type))
             {
                 if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
-                    target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if
@@ -831,7 +833,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 if ((attacker.type == NPCID.PrimeLaser || attacker.type == NPCID.SkeletronPrime || attacker.type == NPCID.Retinazer) && Main.masterMode)
                 {
-                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictDevastated1In1Group.Contains(projectile.type))
@@ -839,7 +841,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
-                    Devastated.AnimateDevastated(target);
+                    Devastated.DevastatePlayer(target);
                 }
             }
             if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
@@ -847,16 +849,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 if (Main.masterMode)
                 {
-                    target.AddBuff(ModContent.BuffType<WreckedAccuracy>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
-                if (WDALTModContentID.GetThoriumBossProjectileInflictWreckedResistance1in1Group().Contains(projectile.type))
+                if (WDALTModContentID.GetThoriumBossProjectileInflictVulnerable1in1Group().Contains(projectile.type))
                 {
                     if (random.Next(0, 1) == 0 && Main.masterMode)
                     {
-                        target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                        target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                     }
                 }
                 if (WDALTModContentID.GetThoriumBossProjectileInflictDevastated1in1Group().Contains(projectile.type))
@@ -864,7 +866,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     if (random.Next(0, 1) == 0 && Main.masterMode)
                     {
                         target.AddBuff(ModContent.BuffType<Devastated>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
-                        Devastated.AnimateDevastated(target);
+                        Devastated.DevastatePlayer(target);
                     }
                 }
             }

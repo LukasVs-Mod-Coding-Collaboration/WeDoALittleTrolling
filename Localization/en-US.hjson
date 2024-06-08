@@ -95,7 +95,6 @@ Mods: {
 				Tooltip:
 					'''
 					Grants 3% summon critical strike chance per minion slot
-					This is not affected by the Wrecked Accuracy debuff
 					Grants 3 summon armor penetration per minion slot
 					Increases your max number of minions by 1
 					Enemies are less likely to target you
@@ -107,7 +106,7 @@ Mods: {
 				Tooltip:
 					'''
 					Reduces damage taken by 1.5% per minion slot
-					This is not affected by the Wrecked Resistance debuff
+					This is not affected by the Vulnerable debuff
 					3 defense per minion slot
 					Increases your max number of minions by 1
 					Enemies are more likely to target you
@@ -351,7 +350,7 @@ Mods: {
 					Gives a 1 in 4 chance to dodge attacks
 					Regenerates 2 life per second
 					4 defense
-					24% decreased damage
+					25% decreased damage
 					Enemies are less likely to target you
 					Incompatible with the Mana Extraction Catalyst
 					'''
@@ -879,15 +878,14 @@ Mods: {
 				DisplayName: Devastated
 				Description:
 					'''
-					decreased max life and defense effectiveness
-					Cannot randomly dodge attacks
-					Length of invincibility cannot exceed base value
+					Recently got hit by a devastating attack
+					Cannot recover health lost to devastating attacks
 					'''
 			}
 
 			WreckedResistance: {
 				DisplayName: Wrecked Resistance
-				Description: Damage reduction is decreased by
+				Description: Defense effectiveness is decreased by
 			}
 
 			SearingInferno: {
@@ -949,9 +947,9 @@ Mods: {
 				Description: Provides life regeneration
 			}
 
-			WreckedAccuracy: {
-				DisplayName: Wrecked Accuracy
-				Description: Critical strike chance is decreased by
+			Vulnerable: {
+				DisplayName: Vulnerable
+				Description: Damage reduction is decreased by
 			}
 
 			WormCandleBuff: {

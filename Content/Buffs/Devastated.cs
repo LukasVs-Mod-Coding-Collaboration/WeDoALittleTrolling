@@ -40,21 +40,6 @@ namespace WeDoALittleTrolling.Content.Buffs
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
 
-        public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
-        {
-            tip = (10+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().devastatedStack * 10))+"% "+tip;
-            base.ModifyBuffText(ref buffName, ref tip, ref rare);
-        }
-        
-        public override bool ReApply(Player player, int time, int buffIndex)
-        {
-            if(player.GetModPlayer<WDALTPlayer>().devastatedStack < 3)
-            {
-                player.GetModPlayer<WDALTPlayer>().devastatedStack += 1;
-            }
-            return base.ReApply(player, time, buffIndex);
-        }
-
         public static void AnimateDevastated(Player player)
         {
             for (int i = 0; i < 60; i++)
@@ -74,6 +59,12 @@ namespace WeDoALittleTrolling.Content.Buffs
                 newDust.noGravity = true;
             }
             SoundEngine.PlaySound(SoundID.NPCHit43, player.Center);
+        }
+
+        public static void DevastatePlayer(Player player)
+        {
+            player.GetModPlayer<WDALTPlayer>().syncDevastated = true;
+            AnimateDevastated(player);
         }
 
         public static void AnimateDisintegration(Player player)

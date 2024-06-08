@@ -177,9 +177,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
         };
         private static DamageClass[] ThoriumDamageClass = new DamageClass[ThoriumDamageClassRegisterStrings.Length];
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
-        private static int[] InflictWreckedResistance1in1Group_ThoriumBoss = new int[(9 + 1)];
+        private static int[] InflictVulnerable1in1Group_ThoriumBoss = new int[(9 + 1)];
         private static int[] thoriumCrateTypes = new int[(6)];
-        private static int[] InflictWreckedResistance1in1Group_ThoriumBossProjectile = new int[(26 + 1)];
+        private static int[] InflictVulnerable1in1Group_ThoriumBossProjectile = new int[(26 + 1)];
         private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(2 + 1)];
         private static int[] InflictDevastated1in1Group_ThoriumBossProjectile = new int[(4 + 1)];
         public const int ConsolariaNPC_VM = 0;
@@ -258,13 +258,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
             return i;
         }
 
-        public static int[] GetThoriumBossInflictWreckedResistance1in1Group()
+        public static int[] GetThoriumBossInflictVulnerable1in1Group()
         {
-            return InflictWreckedResistance1in1Group_ThoriumBoss;
+            return InflictVulnerable1in1Group_ThoriumBoss;
         }
-        public static int[] GetThoriumBossProjectileInflictWreckedResistance1in1Group()
+        public static int[] GetThoriumBossProjectileInflictVulnerable1in1Group()
         {
-            return InflictWreckedResistance1in1Group_ThoriumBossProjectile;
+            return InflictVulnerable1in1Group_ThoriumBossProjectile;
         }
         public static int[] GetThoriumBossInflictDevastated1in1Group()
         {
@@ -346,46 +346,46 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if (integrity)
             {
-                InflictWreckedResistance1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_BS_V1);
-                InflictWreckedResistance1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_BS_V2);
-                InflictWreckedResistance1in1Group_ThoriumBoss[2] = GetThoriumBossNPCID(ThoriumBoss_FB_V1);
-                InflictWreckedResistance1in1Group_ThoriumBoss[3] = GetThoriumBossNPCID(ThoriumBoss_FB_V2);
-                InflictWreckedResistance1in1Group_ThoriumBoss[4] = GetThoriumBossNPCID(ThoriumBoss_LI_V1);
-                InflictWreckedResistance1in1Group_ThoriumBoss[5] = GetThoriumBossNPCID(ThoriumBoss_FO_V1);
-                InflictWreckedResistance1in1Group_ThoriumBoss[6] = GetThoriumBossNPCID(ThoriumBoss_FO_V2);
-                InflictWreckedResistance1in1Group_ThoriumBoss[7] = GetThoriumBossNPCID(ThoriumBoss_FO_V3);
-                InflictWreckedResistance1in1Group_ThoriumBoss[8] = GetThoriumBossNPCID(ThoriumBoss_AET);
-                InflictWreckedResistance1in1Group_ThoriumBoss[9] = GetThoriumBossNPCID(ThoriumBoss_SFF);
+                InflictVulnerable1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_BS_V1);
+                InflictVulnerable1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_BS_V2);
+                InflictVulnerable1in1Group_ThoriumBoss[2] = GetThoriumBossNPCID(ThoriumBoss_FB_V1);
+                InflictVulnerable1in1Group_ThoriumBoss[3] = GetThoriumBossNPCID(ThoriumBoss_FB_V2);
+                InflictVulnerable1in1Group_ThoriumBoss[4] = GetThoriumBossNPCID(ThoriumBoss_LI_V1);
+                InflictVulnerable1in1Group_ThoriumBoss[5] = GetThoriumBossNPCID(ThoriumBoss_FO_V1);
+                InflictVulnerable1in1Group_ThoriumBoss[6] = GetThoriumBossNPCID(ThoriumBoss_FO_V2);
+                InflictVulnerable1in1Group_ThoriumBoss[7] = GetThoriumBossNPCID(ThoriumBoss_FO_V3);
+                InflictVulnerable1in1Group_ThoriumBoss[8] = GetThoriumBossNPCID(ThoriumBoss_AET);
+                InflictVulnerable1in1Group_ThoriumBoss[9] = GetThoriumBossNPCID(ThoriumBoss_SFF);
                 InflictDevastated1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_LI_V2);
                 InflictDevastated1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_OLD);
                 InflictDevastated1in1Group_ThoriumBoss[2] = GetThoriumBossNPCID(ThoriumBoss_DE);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[0] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V1);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[1] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V2);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V3);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[3] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V4);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[4] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V1);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[5] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V2);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[6] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V3);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[7] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V4);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[8] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V5);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[9] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V1);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[10] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V2);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[11] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V3);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[12] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V4);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[13] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V5);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[14] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V6);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[15] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V7);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[16] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V8);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[17] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V9);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[18] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V10);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[19] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V11);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[20] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V3);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[21] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V4);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[22] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V5);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[23] = GetThoriumBossProjectileID(ThoriumBossProjectile_AET_V1);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[24] = GetThoriumBossProjectileID(ThoriumBossProjectile_SFF_V1);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[25] = GetThoriumBossProjectileID(ThoriumBossProjectile_SFF_V2);
-                InflictWreckedResistance1in1Group_ThoriumBossProjectile[26] = GetThoriumBossProjectileID(ThoriumBossProjectile_DE_V1);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[0] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V1);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[1] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V2);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V3);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[3] = GetThoriumBossProjectileID(ThoriumBossProjectile_BS_V4);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[4] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V1);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[5] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V2);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[6] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V3);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[7] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V4);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[8] = GetThoriumBossProjectileID(ThoriumBossProjectile_FB_V5);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[9] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V1);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[10] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V2);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[11] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V3);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[12] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V4);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[13] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V5);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[14] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V6);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[15] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V7);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[16] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V8);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[17] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V9);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[18] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V10);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[19] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V11);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[20] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V3);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[21] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V4);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[22] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V5);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[23] = GetThoriumBossProjectileID(ThoriumBossProjectile_AET_V1);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[24] = GetThoriumBossProjectileID(ThoriumBossProjectile_SFF_V1);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[25] = GetThoriumBossProjectileID(ThoriumBossProjectile_SFF_V2);
+                InflictVulnerable1in1Group_ThoriumBossProjectile[26] = GetThoriumBossProjectileID(ThoriumBossProjectile_DE_V1);
                 InflictDevastated1in1Group_ThoriumBossProjectile[0] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V1);
                 InflictDevastated1in1Group_ThoriumBossProjectile[1] = GetThoriumBossProjectileID(ThoriumBossProjectile_FO_V2);
                 InflictDevastated1in1Group_ThoriumBossProjectile[2] = GetThoriumBossProjectileID(ThoriumBossProjectile_LI_V12);

@@ -57,10 +57,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             {
                 bonus = "Yes";
             }
-            if(Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Devastated>()))
-            {
-                bonus = "No, you are devastated!";
-            }
             TooltipLine dodgeBonus0 = new TooltipLine(Mod, "DodgeBonus0", "Dodge chance active: "+bonus);
             tooltips.Add(dodgeBonus0);
             /*

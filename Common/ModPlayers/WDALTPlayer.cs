@@ -45,8 +45,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int spookyBonus;
         public int dodgeChancePercent;
         public int wreckedResistanceStack;
-        public int wreckedAccuracyStack;
-        public int devastatedStack;
+        public int vulnerableStack;
+        public bool syncDevastated;
+        public int statLifeDevastated;
         public int beekeeperStack;
         public bool spookyEmblem;
         public bool spookyShield;
@@ -92,8 +93,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             spookyBonus = 0;
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
-            wreckedAccuracyStack = 0;
-            devastatedStack = 0;
+            vulnerableStack = 0;
+            syncDevastated = false;
+            statLifeDevastated = player.statLifeMax2;
             beekeeperStack = 0;
             spookyEmblem = false;
             spookyShield = false;
@@ -151,15 +153,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if (tag.ContainsKey("DevastatedStack"))
             {
-                devastatedStack = tag.GetInt("DevastatedStack");
+                statLifeDevastated = tag.GetInt("DevastatedStack");
             }
             if (tag.ContainsKey("WreckedResistanceStack"))
             {
                 wreckedResistanceStack = tag.GetInt("WreckedResistanceStack");
             }
-            if (tag.ContainsKey("WreckedAccuracyStack"))
+            if (tag.ContainsKey("VulnerableStack"))
             {
-                wreckedAccuracyStack = tag.GetInt("WreckedAccuracyStack");
+                vulnerableStack = tag.GetInt("VulnerableStack");
             }
             base.LoadData(tag);
         }
@@ -174,17 +176,17 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 tag["HauntedDebuff"] = hauntedDebuffTicksLeft;
             }
-            if (devastatedStack > 0)
+            if (player.HasBuff(ModContent.BuffType<Devastated>()))
             {
-                tag["DevastatedStack"] = devastatedStack;
+                tag["DevastatedStack"] = statLifeDevastated;
             }
             if (wreckedResistanceStack > 0)
             {
                 tag["WreckedResistanceStack"] = wreckedResistanceStack;
             }
-            if (wreckedAccuracyStack > 0)
+            if (vulnerableStack > 0)
             {
-                tag["WreckedAccuracyStack"] = wreckedAccuracyStack;
+                tag["VulnerableStack"] = vulnerableStack;
             }
             base.SaveData(tag);
         }
@@ -194,8 +196,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             spookyBonus = 0;
             dodgeChancePercent = 0;
             wreckedResistanceStack = 0;
-            wreckedAccuracyStack = 0;
-            devastatedStack = 0;
+            vulnerableStack = 0;
+            syncDevastated = false;
+            statLifeDevastated = player.statLifeMax2;
             beekeeperStack = 0;
             spookyEmblem = false;
             spookyShield = false;
@@ -400,7 +403,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.aggro -= 400;
                 player.statDefense += 4;
                 player.lifeRegen += 4;
-                player.GetDamage(DamageClass.Generic) *= 0.76f;
                 player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 2, true);
             }
             else
@@ -416,42 +418,33 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (player.HasBuff(ModContent.BuffType<WreckedResistance>()))
             {
                 float modifierWR = (float)(90 - (wreckedResistanceStack * 10)) * 0.01f;
-                player.endurance *= modifierWR;
+                player.DefenseEffectiveness *= modifierWR;
             }
             else
             {
                 wreckedResistanceStack = 0;
             }
-            if (player.HasBuff(ModContent.BuffType<WreckedAccuracy>()))
+            if (player.HasBuff(ModContent.BuffType<Vulnerable>()))
             {
-                float modifierWA = (float)(90 - (wreckedAccuracyStack * 10)) * 0.01f;
-                for (int i = 0; i < DamageClassLoader.DamageClassCount; i++)
-                {
-                    DamageClass c = DamageClassLoader.GetDamageClass(i);
-                    if (c != null)
-                    {
-                        player.GetCritChance(c) *= modifierWA;
-                    }
-                }
-                player.GetCritChance(DamageClass.Generic) -= (float)player.HeldItem.crit * (1f - modifierWA);
+                float modifierV = (float)(90 - (vulnerableStack * 10)) * 0.01f;
+                player.endurance *= modifierV;
             }
             else
             {
-                wreckedAccuracyStack = 0;
+                vulnerableStack = 0;
             }
             if (player.HasBuff(ModContent.BuffType<Devastated>()))
             {
-                float modifierD = (float)(90 - (devastatedStack * 10)) * 0.01f;
-                player.statLifeMax2 = (int)Math.Round(player.statLifeMax2 * modifierD);
-                player.DefenseEffectiveness *= modifierD;
-                player.blackBelt = false;
-                player.brainOfConfusionItem = null;
-                player.longInvince = false;
-                dodgeChancePercent = 0;
+                if (syncDevastated && player.statLife < player.statLifeMax2 && player.statLife > 0)
+                {
+                    statLifeDevastated = player.statLife;
+                    syncDevastated = false;
+                }
+                player.statLifeMax2 = statLifeDevastated;
             }
             else
             {
-                devastatedStack = 0;
+                statLifeDevastated = player.statLifeMax2;
             }
             if (gnomedStonedDebuff)
             {
@@ -551,12 +544,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 return true;
             }
-            if (random.NextBool(4) && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic && !player.HasBuff(ModContent.BuffType<Devastated>())) // 1 in 4 chance
+            if (random.NextBool(4) && sorcerousMirror) // 1 in 4 chance
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;
             }
-            if (random.Next(0, 100) < dodgeChancePercent && dodgeChancePercent > 0 && !player.HasBuff(ModContent.BuffType<Devastated>()))
+            if (random.Next(0, 100) < dodgeChancePercent && dodgeChancePercent > 0)
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;
@@ -589,7 +582,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
             player.buffImmune[ModContent.BuffType<WreckedResistance>()] = false;
-            player.buffImmune[ModContent.BuffType<WreckedAccuracy>()] = false;
+            player.buffImmune[ModContent.BuffType<Vulnerable>()] = false;
             player.buffImmune[ModContent.BuffType<Devastated>()] = false;
             base.UpdateLifeRegen();
         }
@@ -608,6 +601,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (player.HasBuff(ModContent.BuffType<SearingInferno>()))
             {
                 modifiers.SourceDamage *= (1.0f - SearingInferno.damageNerfMultiplier);
+            }
+            if (sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic)
+            {
+                modifiers.SourceDamage *= 0.75f;
             }
             if
             (
