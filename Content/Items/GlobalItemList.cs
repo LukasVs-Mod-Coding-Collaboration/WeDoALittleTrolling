@@ -273,10 +273,12 @@ namespace WeDoALittleTrolling.Content.Items
             if
             (
                 (
+                    equippedItem.type == ItemID.WormScarf ||
                     equippedItem.type == ItemID.BrainOfConfusion ||
                     equippedItem.type == ModContent.ItemType<CrimsonAssassinGear>()
                 ) &&
                 (
+                    incomingItem.type == ItemID.WormScarf ||
                     incomingItem.type == ItemID.BrainOfConfusion ||
                     incomingItem.type == ModContent.ItemType<CrimsonAssassinGear>()
                 )
@@ -520,7 +522,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if
             (
-                item.type == ItemID.ReconScope
+                item.type == ItemID.WormScarf
             )
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));

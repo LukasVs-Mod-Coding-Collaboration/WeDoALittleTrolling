@@ -89,15 +89,22 @@ namespace WeDoALittleTrolling.Common.Utilities
             if
             (
                 (
-                    !target.friendly &&
-                    !target.CountsAsACritter &&
-                    !target.isLikeATownNPC &&
-                    target.type != NPCID.TargetDummy &&
-                    target.canGhostHeal &&
-                    target.CanBeChasedBy()
-                ) ||
+                    (
+                        !target.friendly &&
+                        !target.CountsAsACritter &&
+                        !target.isLikeATownNPC &&
+                        target.type != NPCID.TargetDummy &&
+                        target.canGhostHeal &&
+                        target.CanBeChasedBy()
+                    ) ||
+                    (
+                        !target.active
+                    )
+                ) &&
                 (
-                    !target.active
+                    hit.DamageType == DamageClass.Melee ||
+                    hit.DamageType == DamageClass.MeleeNoSpeed ||
+                    hit.DamageType == DamageClass.SummonMeleeSpeed
                 )
             )
             {
