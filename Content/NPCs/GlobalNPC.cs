@@ -869,15 +869,12 @@ namespace WeDoALittleTrolling.Content.NPCs
                         npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_DE)
                     ) &&
                     (
-                        projectile.type == ProjectileID.MoonlordArrow ||
-                        projectile.type == ProjectileID.MoonlordArrowTrail ||
                         projectile.type == ModContent.ProjectileType<PhantomStaffProjectile>() ||
-                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectileBullet>() ||
-                        projectile.type == ModContent.ProjectileType<GloriousDemiseProjectile>()
+                        projectile.type == ModContent.ProjectileType<PhantomStaffProjectileBullet>()
                     )
                 )
                 {
-                    modifiers.FinalDamage *= 0.75f; //The Primordials only take 75% damage from Luminte Arrows, LPS and GLD.
+                    modifiers.FinalDamage *= 0.75f; //The Primordials only take 75% damage from the Luminte Phantom Staff.
                 }
             }
             base.ModifyHitByProjectile(npc, projectile, ref modifiers);

@@ -189,6 +189,15 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if
             (
+                item.type == ItemID.VortexHelmet &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.VortexBreastplate) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.VortexLeggings)
+            )
+            {
+                player.GetArmorPenetration(DamageClass.Ranged) += (float)60.0;
+            }
+            if
+            (
                 item.type == ItemID.ChlorophyteMask ||
                 item.type == ItemID.ChlorophyteHelmet ||
                 item.type == ItemID.ChlorophyteHeadgear ||
@@ -302,27 +311,12 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if
             (
-                (
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedHelmet) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedHeadgear) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedMask) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.HallowedHood) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedHelmet) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedHeadgear) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedMask) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.AncientHallowedHood)
-                ) &&
-                (
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.HallowedPlateMail) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.AncientHallowedPlateMail)
-                ) &&
-                (
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.HallowedGreaves) ||
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.AncientHallowedGreaves)
-                )
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.VortexHelmet) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.VortexBreastplate) &&
+                player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.VortexLeggings)
             )
             {
-                player.setBonus += "\nThis works even when the Devastated debuff is active";
+                player.setBonus += "\nIncreases ranged armor penetration by 60";
             }
             if
             (
@@ -331,7 +325,7 @@ namespace WeDoALittleTrolling.Content.Items
                 player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.BeetleLeggings)
             )
             {
-                player.setBonus += "\nThis is not affected by the Wrecked Resistance debuff";
+                player.setBonus += "\nThis is not affected by the Vulnerable debuff";
             }
             if
             (
@@ -340,7 +334,7 @@ namespace WeDoALittleTrolling.Content.Items
                 player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.SolarFlareLeggings)
             )
             {
-                player.setBonus += "\nThis is not affected by the Wrecked Resistance debuff";
+                player.setBonus += "\nThis is not affected by the Vulnerable debuff";
             }
             if
             (
@@ -1412,6 +1406,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.damage = 250;
                 item.shootsEveryUse = true;
+            }
+            if (item.type == ItemID.SDMG)
+            {
+                item.damage = 120;
             }
             if (item.type == ItemID.Terrarian)
             {

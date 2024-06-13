@@ -57,7 +57,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             }
             else
             {
-                player.GetArmorPenetration(DamageClass.Ranged) += (float)100.0;
+                player.GetArmorPenetration(DamageClass.Ranged) += (float)60.0;
                 player.GetDamage(DamageClass.Ranged) *= (float)0.9;
             }
         }
