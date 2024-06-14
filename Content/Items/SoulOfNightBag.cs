@@ -39,6 +39,10 @@ namespace WeDoALittleTrolling.Content.Items
         public TableDropAmountsSoNBag()
         {
             this.Add(ItemID.SoulofNight, Tuple.Create(40, 60));
+            this.Add(ItemID.CursedBullet, Tuple.Create(1000, 3000));
+            this.Add(ItemID.IchorBullet, Tuple.Create(1000, 3000));
+            this.Add(ItemID.CursedArrow, Tuple.Create(1000, 3000));
+            this.Add(ItemID.IchorArrow, Tuple.Create(1000, 3000));
         }
     }
     internal class SoulOfNightBag : ModItem
@@ -47,7 +51,11 @@ namespace WeDoALittleTrolling.Content.Items
         
         public static WeightedRandom<int> lootTable = new WeightedRandom<int>
         (
-            Tuple.Create((int)ItemID.SoulofNight, 1.0)
+            Tuple.Create((int)ItemID.SoulofNight, 1.0),
+            Tuple.Create((int)ItemID.CursedBullet, 1.0),
+            Tuple.Create((int)ItemID.IchorBullet, 1.0),
+            Tuple.Create((int)ItemID.CursedArrow, 1.0),
+            Tuple.Create((int)ItemID.IchorArrow, 1.0)
         );
 
         public static int GetItemIDFromLootTable()
@@ -89,8 +97,8 @@ namespace WeDoALittleTrolling.Content.Items
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddTile(TileID.HeavyWorkBench)
-                .AddIngredient(ItemID.SoulofNight, 50)
+                .AddTile(TileID.ShimmerMonolith)
+                .AddIngredient(ItemID.SoulofNight, 150)
                 .Register();
         }
 
@@ -101,26 +109,29 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void RightClick(Player player)
         {
-            int itemToDrop = GetItemIDFromLootTable();
-            int amountToDrop = GetItemStackForItemID(itemToDrop);
-            if (amountToDrop < 1)
+            for (int i = 0; i < 3; i++)
             {
-                return;
-            }
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Item.NewItem(player.GetSource_OpenItem(itemToDrop), (int)player.position.X, (int)player.position.Y, player.width, player.height, itemToDrop, amountToDrop);
-            }
-            else if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                ModPacket spawnCrateItemPacket = Mod.GetPacket();
-                spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                spawnCrateItemPacket.Write((int)itemToDrop);
-                spawnCrateItemPacket.Write((int)player.width);
-                spawnCrateItemPacket.Write((int)player.height);
-                spawnCrateItemPacket.Write((int)amountToDrop);
-                spawnCrateItemPacket.WriteVector2(player.position);
-                spawnCrateItemPacket.Send();
+                int itemToDrop = GetItemIDFromLootTable();
+                int amountToDrop = GetItemStackForItemID(itemToDrop);
+                if (amountToDrop < 1)
+                {
+                    continue;
+                }
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Item.NewItem(player.GetSource_OpenItem(itemToDrop), (int)player.position.X, (int)player.position.Y, player.width, player.height, itemToDrop, amountToDrop);
+                }
+                else if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                    spawnCrateItemPacket.Write((int)itemToDrop);
+                    spawnCrateItemPacket.Write((int)player.width);
+                    spawnCrateItemPacket.Write((int)player.height);
+                    spawnCrateItemPacket.Write((int)amountToDrop);
+                    spawnCrateItemPacket.WriteVector2(player.position);
+                    spawnCrateItemPacket.Send();
+                }
             }
             base.RightClick(player);
         }

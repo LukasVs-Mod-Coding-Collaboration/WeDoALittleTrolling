@@ -89,8 +89,8 @@ namespace WeDoALittleTrolling.Content.Items
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddTile(TileID.HeavyWorkBench)
-                .AddIngredient(ItemID.SoulofLight, 50)
+                .AddTile(TileID.ShimmerMonolith)
+                .AddIngredient(ItemID.SoulofLight, 150)
                 .Register();
         }
 
@@ -101,26 +101,29 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void RightClick(Player player)
         {
-            int itemToDrop = GetItemIDFromLootTable();
-            int amountToDrop = GetItemStackForItemID(itemToDrop);
-            if (amountToDrop < 1)
+            for (int i = 0; i < 3; i++)
             {
-                return;
-            }
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Item.NewItem(player.GetSource_OpenItem(itemToDrop), (int)player.position.X, (int)player.position.Y, player.width, player.height, itemToDrop, amountToDrop);
-            }
-            else if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                ModPacket spawnCrateItemPacket = Mod.GetPacket();
-                spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                spawnCrateItemPacket.Write((int)itemToDrop);
-                spawnCrateItemPacket.Write((int)player.width);
-                spawnCrateItemPacket.Write((int)player.height);
-                spawnCrateItemPacket.Write((int)amountToDrop);
-                spawnCrateItemPacket.WriteVector2(player.position);
-                spawnCrateItemPacket.Send();
+                int itemToDrop = GetItemIDFromLootTable();
+                int amountToDrop = GetItemStackForItemID(itemToDrop);
+                if (amountToDrop < 1)
+                {
+                    continue;
+                }
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Item.NewItem(player.GetSource_OpenItem(itemToDrop), (int)player.position.X, (int)player.position.Y, player.width, player.height, itemToDrop, amountToDrop);
+                }
+                else if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket spawnCrateItemPacket = Mod.GetPacket();
+                    spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                    spawnCrateItemPacket.Write((int)itemToDrop);
+                    spawnCrateItemPacket.Write((int)player.width);
+                    spawnCrateItemPacket.Write((int)player.height);
+                    spawnCrateItemPacket.Write((int)amountToDrop);
+                    spawnCrateItemPacket.WriteVector2(player.position);
+                    spawnCrateItemPacket.Send();
+                }
             }
             base.RightClick(player);
         }

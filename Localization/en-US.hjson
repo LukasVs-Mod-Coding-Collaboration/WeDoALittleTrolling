@@ -584,12 +584,12 @@ Mods: {
 
 			SoulOfLightBag: {
 				DisplayName: Light Bundle
-				Tooltip: ""
+				Tooltip: Right Click to open
 			}
 
 			SoulOfNightBag: {
 				DisplayName: Night Bundle
-				Tooltip: ""
+				Tooltip: Right Click to open
 			}
 		}
 
