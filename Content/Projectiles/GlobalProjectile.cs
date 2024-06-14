@@ -174,7 +174,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.extraUpdates = 1;
             }
-            if (projectile.aiStyle == ProjAIStyleID.TerrarianBeam || projectile.aiStyle == ProjAIStyleID.Yoyo)
+            if
+            (
+                projectile.aiStyle == ProjAIStyleID.TerrarianBeam ||
+                projectile.aiStyle == ProjAIStyleID.Yoyo ||
+                projectile.type == ProjectileID.UnholyArrow ||
+                projectile.type == ProjectileID.JestersArrow ||
+                projectile.type == ProjectileID.HellfireArrow ||
+                projectile.type == ProjectileID.BoneArrowFromMerchant ||
+                projectile.type == ProjectileID.HallowStar
+            )
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;

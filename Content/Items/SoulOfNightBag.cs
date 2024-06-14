@@ -43,6 +43,17 @@ namespace WeDoALittleTrolling.Content.Items
             this.Add(ItemID.IchorBullet, Tuple.Create(1000, 3000));
             this.Add(ItemID.CursedArrow, Tuple.Create(1000, 3000));
             this.Add(ItemID.IchorArrow, Tuple.Create(1000, 3000));
+            this.Add(ItemID.UnholyArrow, Tuple.Create(1000, 3000));
+            this.Add(ItemID.CorruptionKey, Tuple.Create(1, 1));
+            this.Add(ItemID.CrimsonKey, Tuple.Create(1, 1));
+            this.Add(ItemID.PurpleSolution, Tuple.Create(500, 1500));
+            this.Add(ItemID.RedSolution, Tuple.Create(500, 1500));
+            this.Add(ItemID.SuperManaPotion, Tuple.Create(250, 750));
+            this.Add(ItemID.SuperHealingPotion, Tuple.Create(25, 75));
+            this.Add(ItemID.Blindfold, Tuple.Create(1, 1));
+            this.Add(ItemID.Vitamins, Tuple.Create(1, 1));
+            this.Add(ItemID.GoblinBattleStandard, Tuple.Create(1, 1));
+            this.Add(ItemID.BloodMoonStarter, Tuple.Create(1, 3));
         }
     }
     internal class SoulOfNightBag : ModItem
@@ -52,10 +63,21 @@ namespace WeDoALittleTrolling.Content.Items
         public static WeightedRandom<int> lootTable = new WeightedRandom<int>
         (
             Tuple.Create((int)ItemID.SoulofNight, 1.0),
-            Tuple.Create((int)ItemID.CursedBullet, 1.0),
-            Tuple.Create((int)ItemID.IchorBullet, 1.0),
-            Tuple.Create((int)ItemID.CursedArrow, 1.0),
-            Tuple.Create((int)ItemID.IchorArrow, 1.0)
+            Tuple.Create((int)ItemID.CursedBullet, 0.5),
+            Tuple.Create((int)ItemID.IchorBullet, 0.5),
+            Tuple.Create((int)ItemID.CursedArrow, 0.5),
+            Tuple.Create((int)ItemID.IchorArrow, 0.5),
+            Tuple.Create((int)ItemID.UnholyArrow, 0.1),
+            Tuple.Create((int)ItemID.CorruptionKey, 0.05),
+            Tuple.Create((int)ItemID.CrimsonKey, 0.05),
+            Tuple.Create((int)ItemID.PurpleSolution, 0.5),
+            Tuple.Create((int)ItemID.RedSolution, 0.5),
+            Tuple.Create((int)ItemID.SuperManaPotion, 0.5),
+            Tuple.Create((int)ItemID.SuperHealingPotion, 0.25),
+            Tuple.Create((int)ItemID.Blindfold, 0.1),
+            Tuple.Create((int)ItemID.Vitamins, 0.1),
+            Tuple.Create((int)ItemID.GoblinBattleStandard, 0.1),
+            Tuple.Create((int)ItemID.BloodMoonStarter, 0.1)
         );
 
         public static int GetItemIDFromLootTable()

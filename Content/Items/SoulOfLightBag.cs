@@ -39,6 +39,17 @@ namespace WeDoALittleTrolling.Content.Items
         public TableDropAmountsSoLBag()
         {
             this.Add(ItemID.SoulofLight, Tuple.Create(40, 60));
+            this.Add(ItemID.CrystalBullet, Tuple.Create(1000, 3000));
+            this.Add(ItemID.HolyArrow, Tuple.Create(1000, 3000));
+            this.Add(ItemID.JestersArrow, Tuple.Create(1000, 3000));
+            this.Add(ItemID.HallowedKey, Tuple.Create(1, 1));
+            this.Add(ItemID.BlueSolution, Tuple.Create(500, 1500));
+            this.Add(ItemID.SuperManaPotion, Tuple.Create(250, 750));
+            this.Add(ItemID.SuperHealingPotion, Tuple.Create(25, 75));
+            this.Add(ItemID.FastClock, Tuple.Create(1, 1));
+            this.Add(ItemID.Megaphone, Tuple.Create(1, 1));
+            this.Add(ItemID.PirateMap, Tuple.Create(1, 1));
+            this.Add(ItemID.SnowGlobe, Tuple.Create(1, 3));
         }
     }
     internal class SoulOfLightBag : ModItem
@@ -47,7 +58,18 @@ namespace WeDoALittleTrolling.Content.Items
         
         public static WeightedRandom<int> lootTable = new WeightedRandom<int>
         (
-            Tuple.Create((int)ItemID.SoulofLight, 1.0)
+            Tuple.Create((int)ItemID.SoulofLight, 1.0),
+            Tuple.Create((int)ItemID.HolyArrow, 1.0),
+            Tuple.Create((int)ItemID.CrystalBullet, 1.0),
+            Tuple.Create((int)ItemID.JestersArrow, 0.1),
+            Tuple.Create((int)ItemID.HallowedKey, 0.1),
+            Tuple.Create((int)ItemID.BlueSolution, 1.0),
+            Tuple.Create((int)ItemID.SuperManaPotion, 0.5),
+            Tuple.Create((int)ItemID.SuperHealingPotion, 0.25),
+            Tuple.Create((int)ItemID.FastClock, 0.1),
+            Tuple.Create((int)ItemID.Megaphone, 0.1),
+            Tuple.Create((int)ItemID.PirateMap, 0.1),
+            Tuple.Create((int)ItemID.SnowGlobe, 0.1)
         );
 
         public static int GetItemIDFromLootTable()
