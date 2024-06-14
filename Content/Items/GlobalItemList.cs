@@ -609,7 +609,7 @@ namespace WeDoALittleTrolling.Content.Items
                     {
                         ModPacket spawnCrateItemPacket = Mod.GetPacket();
                         spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                        spawnCrateItemPacket.Write((short)ItemID.Sundial);
+                        spawnCrateItemPacket.Write((int)ItemID.Sundial);
                         spawnCrateItemPacket.Write((int)player.width);
                         spawnCrateItemPacket.Write((int)player.height);
                         spawnCrateItemPacket.Write((int)1); //Drop amount
@@ -627,7 +627,7 @@ namespace WeDoALittleTrolling.Content.Items
                     {
                         ModPacket spawnCrateItemPacket = Mod.GetPacket();
                         spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                        spawnCrateItemPacket.Write((short)ItemID.LifeCrystal);
+                        spawnCrateItemPacket.Write((int)ItemID.LifeCrystal);
                         spawnCrateItemPacket.Write((int)player.width);
                         spawnCrateItemPacket.Write((int)player.height);
                         spawnCrateItemPacket.Write((int)1); //Drop amount
@@ -652,7 +652,7 @@ namespace WeDoALittleTrolling.Content.Items
                     {
                         ModPacket spawnCrateItemPacket = Mod.GetPacket();
                         spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                        spawnCrateItemPacket.Write((short)ItemID.Sundial);
+                        spawnCrateItemPacket.Write((int)ItemID.Sundial);
                         spawnCrateItemPacket.Write((int)player.width);
                         spawnCrateItemPacket.Write((int)player.height);
                         spawnCrateItemPacket.Write((int)1); //Drop amount
@@ -671,7 +671,7 @@ namespace WeDoALittleTrolling.Content.Items
                     {
                         ModPacket spawnCrateItemPacket = Mod.GetPacket();
                         spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                        spawnCrateItemPacket.Write((short)ItemID.LifeCrystal);
+                        spawnCrateItemPacket.Write((int)ItemID.LifeCrystal);
                         spawnCrateItemPacket.Write((int)player.width);
                         spawnCrateItemPacket.Write((int)player.height);
                         spawnCrateItemPacket.Write((int)1); //Drop amount
@@ -696,7 +696,7 @@ namespace WeDoALittleTrolling.Content.Items
                     {
                         ModPacket spawnCrateItemPacket = Mod.GetPacket();
                         spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                        spawnCrateItemPacket.Write((short)ItemID.WaterWalkingBoots);
+                        spawnCrateItemPacket.Write((int)ItemID.WaterWalkingBoots);
                         spawnCrateItemPacket.Write((int)player.width);
                         spawnCrateItemPacket.Write((int)player.height);
                         spawnCrateItemPacket.Write((int)1); //Drop amount
@@ -721,7 +721,7 @@ namespace WeDoALittleTrolling.Content.Items
                     {
                         ModPacket spawnCrateItemPacket = Mod.GetPacket();
                         spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                        spawnCrateItemPacket.Write((short)ItemID.SandstorminaBottle);
+                        spawnCrateItemPacket.Write((int)ItemID.SandstorminaBottle);
                         spawnCrateItemPacket.Write((int)player.width);
                         spawnCrateItemPacket.Write((int)player.height);
                         spawnCrateItemPacket.Write((int)1); //Drop amount
@@ -735,7 +735,7 @@ namespace WeDoALittleTrolling.Content.Items
                 }
             }
             int amountGold = 0;
-            short goldItemID = ItemID.GoldCoin;
+            int goldItemID = ItemID.GoldCoin;
             if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
             {
                 amountGold = 5;
@@ -789,7 +789,7 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     ModPacket spawnCrateItemPacket = Mod.GetPacket();
                     spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                    spawnCrateItemPacket.Write((short)goldItemID);
+                    spawnCrateItemPacket.Write((int)goldItemID);
                     spawnCrateItemPacket.Write((int)player.width);
                     spawnCrateItemPacket.Write((int)player.height);
                     spawnCrateItemPacket.Write((int)amountGold); //Drop amount
@@ -807,7 +807,7 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     ModPacket spawnCrateItemPacket = Mod.GetPacket();
                     spawnCrateItemPacket.Write(WDALTPacketTypeID.spawnCrateItem);
-                    spawnCrateItemPacket.Write((short)ItemID.LifeFruit);
+                    spawnCrateItemPacket.Write((int)ItemID.LifeFruit);
                     spawnCrateItemPacket.Write((int)player.width);
                     spawnCrateItemPacket.Write((int)player.height);
                     spawnCrateItemPacket.Write((int)1); //Drop amount

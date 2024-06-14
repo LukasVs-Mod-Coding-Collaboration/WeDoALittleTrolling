@@ -581,6 +581,16 @@ Mods: {
 				DisplayName: Perma Skill Point Item Remove
 				Tooltip: ""
 			}
+
+			SoulOfLightBag: {
+				DisplayName: Light Bundle
+				Tooltip: ""
+			}
+
+			SoulOfNightBag: {
+				DisplayName: Night Bundle
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {

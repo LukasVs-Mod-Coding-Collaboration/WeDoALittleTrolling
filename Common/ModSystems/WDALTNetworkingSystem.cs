@@ -37,7 +37,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             short type = reader.ReadInt16();
             float value = 0f;
             Vector2 RODCsoundPos = new Vector2(0f, 0f);
-            short itemType = 0;
+            int itemType = 0;
             int playerWidth = 0;
             int playerHeight = 0;
             int dropAmount = 0;
@@ -55,7 +55,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(type == WDALTPacketTypeID.spawnCrateItem)
             {
-                itemType = reader.ReadInt16();
+                itemType = reader.ReadInt32();
                 playerWidth = reader.ReadInt32();
                 playerHeight = reader.ReadInt32();
                 dropAmount = reader.ReadInt32();
