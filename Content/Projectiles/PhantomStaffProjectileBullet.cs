@@ -49,6 +49,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
+            this.DrawOffsetX = -2;
+            this.DrawOriginOffsetX = 0f;
+            this.DrawOriginOffsetY = -2;
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -56,11 +59,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Main.instance.LoadProjectile(Projectile.type);
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             // Redraw the projectile with the color not influenced by light
-            Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
+            float drawOriginX = (float)(TextureAssets.Projectile[Projectile.type].Width() - Projectile.width) * 0.5f + (float)Projectile.width * 0.5f + this.DrawOriginOffsetX;
+            Vector2 drawOrigin = new Vector2(drawOriginX, (float)((Projectile.height / 2) - this.DrawOriginOffsetY));
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                     Color drawLightColor = lightColor;
-                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition + new Vector2(drawOriginX + (float)this.DrawOffsetX, (float)(Projectile.height / 2) + Projectile.gfxOffY));
                     Color color = Projectile.GetAlpha(drawLightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
                     SpriteEffects effects = SpriteEffects.None;
                     if (Projectile.oldSpriteDirection[k] < 0)
@@ -84,7 +88,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AI_001_SimpleBullet()
         {
-            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
+            Projectile.spriteDirection = Projectile.direction = ((Projectile.velocity.X > 0f) ? 1 : -1); //Fix wrong shading when shooting to the left.
             float roatateOffset = (float)Math.PI / 2f;
             Projectile.rotation = Projectile.velocity.ToRotation() + roatateOffset;
         }

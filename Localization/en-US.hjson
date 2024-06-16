@@ -611,6 +611,7 @@ Mods: {
 			PharaohsCursebladeBeam.DisplayName: Pharaoh's Curse
 			BlazingShield.DisplayName: Blazing Shield
 			EmberBolt.DisplayName: Ember Bolt
+			ArtemissileProjectile.DisplayName: Artemis Missile
 		}
 
 		Prefixes: {

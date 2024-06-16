@@ -112,7 +112,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             Projectile.velocity.Y += gravityFactor;
             Projectile.rotation += (Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y)) * 0.03f * (float)Projectile.direction;
-            Projectile.spriteDirection = Projectile.direction; //Fix wrong shading when shooting to the left.
+            Projectile.spriteDirection = Projectile.direction = ((Projectile.velocity.X > 0f) ? 1 : -1); //Fix wrong shading when shooting to the left.
         }
     }
 }

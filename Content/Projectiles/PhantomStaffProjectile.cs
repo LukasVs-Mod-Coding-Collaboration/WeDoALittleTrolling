@@ -77,6 +77,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
             Projectile.light = 0.8f;
+            this.DrawOffsetX = -2;
+            this.DrawOriginOffsetX = 0f;
+            this.DrawOriginOffsetY = -2;
         }
 
         public override bool? CanCutTiles()

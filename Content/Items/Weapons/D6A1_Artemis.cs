@@ -40,9 +40,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 144;
-            Item.height = 57;
-            Item.scale = 0.75f;
+            Item.width = 54;
+            Item.height = 24;
+            Item.scale = 1.125f;
             Item.rare = ItemRarityID.Expert;
 
             Item.useTime = 120;
@@ -55,10 +55,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.knockBack = 5f;
             Item.noMelee = true;
             Item.crit = 0;
-            Item.shoot = ModContent.ProjectileType<Beamlaser1>();
-            Item.shootSpeed = 2.0f;
+            //Item.shoot = ModContent.ProjectileType<Beamlaser1>();
+            Item.shoot = ModContent.ProjectileType<ArtemissileProjectile>();
+            Item.shootSpeed = 10.0f;
             Item.autoReuse = true;
-       
+
 
         }
 
@@ -66,16 +67,15 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             Vector2 shootDirection = velocity;
             shootDirection.Normalize();
-            float xOffset = shootDirection.X * 84.0f;
-            float yOffset = shootDirection.Y * 84.0f;
-            position = new Vector2(position.X + xOffset, position.Y + yOffset - 10.0f);
+            float xOffset = shootDirection.X * 64.0f;
+            float yOffset = shootDirection.Y * 64.0f;
+            position = new Vector2(position.X + xOffset, position.Y + yOffset - 8.0f);
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
-        
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-36.5f, -5.0f);
+            return new Vector2(-14.0f, -4.0f);
         }
 
         public override void AddRecipes()
