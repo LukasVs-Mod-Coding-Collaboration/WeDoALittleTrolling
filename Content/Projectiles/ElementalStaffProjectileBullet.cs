@@ -44,6 +44,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.tileCollide = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 30;
+            this.DrawOffsetX = -2;
+            this.DrawOriginOffsetX = 0f;
+            this.DrawOriginOffsetY = -2;
         }
 
         public override void AI()
