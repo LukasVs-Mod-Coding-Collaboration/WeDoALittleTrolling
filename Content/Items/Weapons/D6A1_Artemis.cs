@@ -45,8 +45,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.scale = 1.125f;
             Item.rare = ItemRarityID.Expert;
 
-            Item.useTime = 120;
-            Item.useAnimation = 120;
+            Item.useTime = 60;
+            Item.useAnimation = 60;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item84;
 
