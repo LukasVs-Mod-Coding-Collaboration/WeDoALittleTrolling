@@ -67,6 +67,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 20;
+            Projectile.light = 2.0f;
             Projectile.ai[0] = 0f;
             this.DrawOffsetX = -4;
             this.DrawOriginOffsetY = -4;
@@ -151,7 +152,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             else
             {
-                if (Projectile.frameCounter >= 30 || (Projectile.frameCounter >= 6 && Projectile.frame > 0))
+                if (Projectile.frameCounter >= 20 || (Projectile.frameCounter >= 4 && Projectile.frame > 0))
                 {
                     Projectile.frameCounter = 0;
                     Projectile.frame++;
