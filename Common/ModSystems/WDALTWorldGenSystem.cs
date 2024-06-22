@@ -93,6 +93,104 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
         }
 
+        public static void GenMineshafts(int x, int y)
+        {
+            int limitY = -7;
+            Main.tile[(x), (y + 1)].ClearEverything();
+            for (int i = -1; i >= limitY; i--)
+            {
+                Main.tile[(x), (y + i)].ClearEverything();
+            }
+            for (int i = 0; i >= limitY + 1; i--)
+            {
+                int random1 = WorldGen.genRand.Next(10);
+                int wallType1 = WallID.IceBrick;
+                if (random1 <= 2)
+                {
+                    wallType1 = WallID.SnowBrick;
+                }
+                if (WorldGen.genRand.Next(5) < 3)
+                {
+                    WorldGen.PlaceWall((x), (y + i), wallType1, mute: true);
+                }
+            }
+            int random2 = WorldGen.genRand.Next(10);
+            int tileType1 = TileID.IceBrick;
+            if (random2 <= 2)
+            {
+                tileType1 = TileID.SnowBrick;
+            }
+            WorldGen.PlaceTile((x), (y + 1), tileType1, mute: true);
+            WorldGen.PlaceTile((x), (y + limitY), tileType1, mute: true);
+            if (Main.tile[x + 1, y].TileType != TileID.MinecartTrack && Main.tile[x - 1, y].TileType != TileID.MinecartTrack)
+            {
+                WorldGen.PlaceTile((x), (y + 2), tileType1, mute: true);
+                WorldGen.PlaceTile((x), (y + limitY - 1), tileType1, mute: true);
+                if (Main.tile[x + 1, y + 1].TileType == TileID.MinecartTrack && Main.tile[x - 1, y - 1].TileType == TileID.MinecartTrack)
+                {
+                    SlopeType slopeType = SlopeType.SlopeDownLeft;
+                    SlopeType slopeTypeInverse = SlopeType.SlopeUpRight;
+                    WorldGen.SlopeTile((x), (y + 1), (int)slopeType, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + limitY - 1), (int)slopeType, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + 2), (int)slopeTypeInverse, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + limitY), (int)slopeTypeInverse, noEffects: true);
+                }
+                else if (Main.tile[x + 1, y - 1].TileType == TileID.MinecartTrack && Main.tile[x - 1, y + 1].TileType == TileID.MinecartTrack)
+                {
+                    SlopeType slopeType = SlopeType.SlopeDownRight;
+                    SlopeType slopeTypeInverse = SlopeType.SlopeUpLeft;;
+                    WorldGen.SlopeTile((x), (y + 1), (int)slopeType, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + limitY - 1), (int)slopeType, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + 2), (int)slopeTypeInverse, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + limitY), (int)slopeTypeInverse, noEffects: true);
+                }
+            }
+            else if (Main.tile[x + 1, y].TileType != TileID.MinecartTrack && Main.tile[x - 1, y].TileType == TileID.MinecartTrack)
+            {
+                if (Main.tile[x + 1, y - 1].TileType == TileID.MinecartTrack)
+                {
+                    WorldGen.PlaceTile((x), (y + limitY - 1), tileType1, mute: true);
+                    WorldGen.SlopeTile((x), (y + limitY - 1), (int)SlopeType.SlopeDownRight, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + limitY), (int)SlopeType.SlopeUpLeft, noEffects: true);
+                }
+                else if (Main.tile[x + 1, y + 1].TileType == TileID.MinecartTrack)
+                {
+                    WorldGen.PlaceTile((x), (y + 2), tileType1, mute: true);
+                    WorldGen.SlopeTile((x), (y + 2), (int)SlopeType.SlopeUpRight, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + 1), (int)SlopeType.SlopeDownLeft, noEffects: true);
+                }
+            }
+            else if (Main.tile[x + 1, y].TileType == TileID.MinecartTrack && Main.tile[x - 1, y].TileType != TileID.MinecartTrack)
+            {
+                if (Main.tile[x - 1, y - 1].TileType == TileID.MinecartTrack)
+                {
+                    WorldGen.PlaceTile((x), (y + limitY - 1), tileType1, mute: true);
+                    WorldGen.SlopeTile((x), (y + limitY - 1), (int)SlopeType.SlopeDownLeft, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + limitY), (int)SlopeType.SlopeUpRight, noEffects: true);
+                }
+                else if (Main.tile[x - 1, y + 1].TileType == TileID.MinecartTrack)
+                {
+                    WorldGen.PlaceTile((x), (y + 2), tileType1, mute: true);
+                    WorldGen.SlopeTile((x), (y + 2), (int)SlopeType.SlopeUpLeft, noEffects: true);
+                    WorldGen.SlopeTile((x), (y + 1), (int)SlopeType.SlopeDownRight, noEffects: true);
+                }
+            }
+            if (x % 64 == 0)
+            {
+                WorldGen.Place1x2Top((x), (y + limitY + 1), TileID.HangingLanterns, 3);
+            }
+            else
+            {
+                for (int i = -1; i >= limitY + 1; i--)
+                {
+                    if (WorldGen.genRand.NextBool(5))
+                    {
+                        WorldGen.PlaceTile((x), (y + i), TileID.Cobweb, mute: true);
+                    }
+                }
+            }
+        }
+
         public static void GenWorkshop(int x, int y)
         {
             for (int i = 1; i >= -27; i--)
@@ -748,6 +846,29 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     success = false;
                     continue;
+                }
+            }
+            for (int y = GenVars.snowTop + (Main.drunkWorld ? 100 : 0); y <= GenVars.snowBottom; y++)
+            {
+                if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
+                {
+                    for (int x = GenVars.snowMinX[y]; x <= GenVars.snowMaxX[y]; x++)
+                    {
+                        if (Main.tile[x, y].TileType == TileID.MinecartTrack)
+                        {
+                            GenMineshafts(x, y);
+                        }
+                    }
+                }
+                else
+                {
+                    for (int x = GenVars.snowMinX[0]; x <= GenVars.snowMaxX[0]; x++)
+                    {
+                        if (Main.tile[x, y].TileType == TileID.MinecartTrack)
+                        {
+                            GenMineshafts(x, y);
+                        }
+                    }
                 }
             }
         }
