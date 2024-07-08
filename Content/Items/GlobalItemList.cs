@@ -1533,6 +1533,13 @@ namespace WeDoALittleTrolling.Content.Items
                     item.damage = 8;
                 }
             }
+            if (item.type == ItemID.CrystalVileShard)
+            {
+                if (item.damage <= 30)
+                {
+                    item.damage = 30;
+                }
+            }
             if (item.type == ItemID.ChlorophytePartisan)
             {
                 if (item.damage <= 55)
