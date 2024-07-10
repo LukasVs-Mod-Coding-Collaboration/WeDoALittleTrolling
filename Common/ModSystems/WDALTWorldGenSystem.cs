@@ -33,17 +33,24 @@ namespace WeDoALittleTrolling.Common.ModSystems
 {
     public class WDALTWorldGenSystem : ModSystem
     {
+        public static LocalizedText GeneralCustomCavesMessage { get; private set; }
         public static LocalizedText IceBiomeCustomCavesMessage { get; private set; }
         public static LocalizedText IceBiomeGloomMessage { get; private set; }
 
         public override void SetStaticDefaults()
         {
+            GeneralCustomCavesMessage = Language.GetOrRegister(Mod.GetLocalizationKey($"WorldGen.{nameof(GeneralCustomCavesMessage)}"));
             IceBiomeCustomCavesMessage = Language.GetOrRegister(Mod.GetLocalizationKey($"WorldGen.{nameof(IceBiomeCustomCavesMessage)}"));
             IceBiomeGloomMessage = Language.GetOrRegister(Mod.GetLocalizationKey($"WorldGen.{nameof(IceBiomeGloomMessage)}"));
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
+            int CavesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Wavy Caves"));
+            if (CavesIndex != -1)
+            {
+                tasks.Insert(CavesIndex + 1, new GeneralCustomCaves("Generate Additional Caves", 100f));
+            }
             int IceBiomeIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Generate Ice Biome"));
             if (IceBiomeIndex != -1)
             {
@@ -883,6 +890,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = WDALTWorldGenSystem.IceBiomeCustomCavesMessage.Value;
+            //Ice Biome Specific Caverer - Disabled because global caverer is enabled
+            /*
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.5); k++)
             {
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
@@ -898,7 +907,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 double dirX = (double)WorldGen.genRand.NextFloat(-1f, 1f);
                 double dirY = (double)WorldGen.genRand.NextFloat(-1f, 1f);
                 WorldGen.digTunnel((double)x, (double)y, dirX, dirY, 64, 3, false);
-            }
+            }*/
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.5); k++)
             {
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
@@ -965,6 +974,26 @@ namespace WeDoALittleTrolling.Common.ModSystems
                             break;
                     }
                 }
+            }
+        }
+    }
+
+    public class GeneralCustomCaves : GenPass
+    {
+        public GeneralCustomCaves(string name, float loadWeight) : base(name, loadWeight)
+        {
+        }
+
+        protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+        {
+            progress.Message = WDALTWorldGenSystem.GeneralCustomCavesMessage.Value;
+            for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 8.0); k++)
+            {
+                int y = WorldGen.genRand.Next((int)Main.worldSurface + (Main.drunkWorld ? 100 : 0), (int)Main.UnderworldLayer);
+                int x = WorldGen.genRand.Next(0, Main.maxTilesX);
+                double dirX = (double)WorldGen.genRand.NextFloat(-1f, 1f);
+                double dirY = (double)WorldGen.genRand.NextFloat(-1f, 1f);
+                WorldGen.digTunnel((double)x, (double)y, dirX, dirY, 64, 3, false);
             }
         }
     }
