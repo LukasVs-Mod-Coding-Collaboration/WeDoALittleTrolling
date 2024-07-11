@@ -979,6 +979,7 @@ Mods: {
 			NightmarePhantom.DisplayName: Nightmare Phantom
 			TestNPC.DisplayName: Test Temp Plate
 			BlazingShieldNPC.DisplayName: Blazing Shield
+			FrozenPhantom.DisplayName: Frozen Phantom
 		}
 
 		WorldGen: {

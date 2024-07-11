@@ -31,7 +31,7 @@ using WeDoALittleTrolling.Content.Items.Material;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
-    public class NightmarePhantom : ModNPC
+    public class FrozenPhantom : ModNPC
     {
         public long ticksAlive = 0;
 
@@ -56,69 +56,26 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.HitSound = SoundID.NPCHit36;
             NPC.DeathSound = SoundID.NPCDeath39;
             NPC.value = 1600f;
-            NPC.knockBackResist = 0f;
-            NPC.lifeMax = 240;
-            NPC.damage = 20;
-            NPC.defense = 10;
+            NPC.knockBackResist = 0.15f;
+            NPC.lifeMax = 600;
+            NPC.damage = 60;
+            NPC.defense = 30;
             NPC.scale = 1.45f;
-            if (Main.hardMode)
-            {
-                NPC.damage *= 2;
-                NPC.lifeMax *= 2;
-                NPC.defense *= 2;
-            }
-            if (NPC.downedPlantBoss)
-            {
-                NPC.damage *= 2;
-                NPC.lifeMax *= 2;
-                NPC.defense *= 2;
-            }
             AIType = NPCID.Ghost;
             AnimationType = NPCID.Ghost;
             NPC.GetGlobalNPC<WDALTNPCUtil>().nightmarePhantom = true;
         }
 
-        public static void RegisterHooks()
-        {
-            On_NPC.SetTargetTrackingValues += On_NPC_SetTargetTrackingValues;
-        }
-
-        public static void UnregisterHooks()
-        {
-            On_NPC.SetTargetTrackingValues -= On_NPC_SetTargetTrackingValues;
-        }
-
-        public static void On_NPC_SetTargetTrackingValues(On_NPC.orig_SetTargetTrackingValues orig, NPC self, bool faceTarget, float realDist, int tankTarget)
-        {
-            orig.Invoke(self, faceTarget, realDist, tankTarget);
-            if
-            (
-                self.GetGlobalNPC<WDALTNPCUtil>().nightmarePhantom &&
-                faceTarget &&
-                Main.player[self.target] != null &&
-                Main.player[self.target].active &&
-                !Main.player[self.target].dead
-            )
-            {
-                self.direction = 1;
-                if ((float)(self.targetRect.X + self.targetRect.Width / 2) < self.position.X + (float)(self.width / 2))
-                {
-                    self.direction = -1;
-                }
-                self.directionY = 1;
-                if ((float)(self.targetRect.Y + self.targetRect.Height / 2) < self.position.Y + (float)(self.height / 2))
-                {
-                    self.directionY = -1;
-                }
-            }
-        }
-
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            target.GetModPlayer<WDALTPlayer>().hauntedDebuffTicksLeft = 18000;
-            target.GetModPlayer<WDALTPlayer>().hauntedDebuff = true;
-            target.AddBuff(ModContent.BuffType<Haunted>(), 18000, true);
-            Haunted.AnimateHaunted(target);
+            if (Main.rand.NextBool(6))
+            {
+                target.AddBuff(BuffID.Frozen, 36, true); //0.6s, X2 in Expert Mode, X2.5 in Master Mode
+            }
+            else
+            {
+                target.AddBuff(BuffID.Chilled, 360, true); //6s, X2 in Expert Mode, X2.5 in Master Mode
+            }
             base.OnHitPlayer(target, hurtInfo);
         }
 
@@ -129,14 +86,26 @@ namespace WeDoALittleTrolling.Content.NPCs
                 new IBestiaryInfoElement[]
                 {
                     BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                    new FlavorTextBestiaryInfoElement("Even after death, the Nightmare Phantoms will still haunt their targets in the dark...")
+                    new FlavorTextBestiaryInfoElement("The aggressive Frozen Phantoms will haunt their targets through the endless ice...")
                 }
             );
         }
 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            int dropAmountMin = 1;
+            int dropAmountMax = 1;
+            int chanceNumerator = 60; // 60% chance
+            int chanceDenominator = 100;
+            int itemID = ModContent.ItemType<FrozenFossil>();
+            CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
+            npcLoot.Add(drop);
+            base.ModifyNPCLoot(npcLoot);
+        }
+
         public override bool PreAI()
         {
-            AI_013_NightmarePhantom();
+            AI_022_FrozenPhantom();
             if
             (
                 (ticksAlive % 75 < 15) &&
@@ -145,31 +114,18 @@ namespace WeDoALittleTrolling.Content.NPCs
                 !Main.player[NPC.target].dead
             )
             {
+                NPC.knockBackResist = 0f;
                 return false;
             }
+            NPC.knockBackResist = 0.15f;
             return base.PreAI();
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if
-            (
-                Main.dontStarveWorld &&
-                (
-                    spawnInfo.Player.ZoneGraveyard ||
-                    (
-                        !Main.IsItDay() &&
-                        !WDALTPlayerUtil.IsBossActive() &&
-                        !spawnInfo.Player.GetModPlayer<WDALTPlayerUtil>().IsBehindHousingWall() &&
-                        !spawnInfo.PlayerInTown &&
-                        spawnInfo.Player.ZoneOverworldHeight &&
-                        Main.moonPhase != 0 &&
-                        !Main.bloodMoon
-                    )
-                )
-            )
+            if(Main.hardMode && spawnInfo.Player.ZoneSnow && spawnInfo.Player.ZoneRockLayerHeight && !spawnInfo.PlayerInTown && !spawnInfo.Player.GetModPlayer<WDALTPlayerUtil>().IsBehindHousingWall() && NPC.downedPlantBoss)
             {
-                return 0.25f;
+                return 0.03f;
             }
             return base.SpawnChance(spawnInfo);
         }
@@ -195,11 +151,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             base.HitEffect(hit);
         }
 
-        private void AI_013_NightmarePhantom()
+        private void AI_022_FrozenPhantom()
         {
             ticksAlive++;
-            Lighting.AddLight(NPC.Center, Color.Red.ToVector3() * 0.45f);
-            if(ticksAlive % 75 == 0)
+            Lighting.AddLight(NPC.Center, Color.Cyan.ToVector3() * 0.45f);
+            if (ticksAlive % 75 == 0)
             {
                 if
                 (
@@ -226,7 +182,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                         Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
                         dustVelocity.Normalize();
                         dustVelocity *= 8f;
-                        Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.RedTorch, dustVelocity, 0, default);
+                        Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.IceTorch, dustVelocity, 0, default);
                         newDust.noGravity = true;
                     }
                     SoundEngine.PlaySound(SoundID.Zombie53, NPC.Center);
