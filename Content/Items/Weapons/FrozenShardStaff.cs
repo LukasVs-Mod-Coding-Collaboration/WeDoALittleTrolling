@@ -52,14 +52,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.autoReuse = true;
 
-            Item.useTime = 24;
-            Item.useAnimation = 24;
+            Item.useTime = 32;
+            Item.useAnimation = 32;
             Item.mana = 4;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item43;
 
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 64;
+            Item.damage = 56;
             Item.knockBack = 8f;
             Item.crit = 4;
             Item.scale = 1f;
