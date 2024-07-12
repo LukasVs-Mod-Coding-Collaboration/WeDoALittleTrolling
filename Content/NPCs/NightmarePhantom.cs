@@ -60,7 +60,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.lifeMax = 240;
             NPC.damage = 20;
             NPC.defense = 10;
-            NPC.scale = 1.45f;
+            NPC.scale = 1.5f;
             if (Main.hardMode)
             {
                 NPC.damage *= 2;
@@ -147,6 +147,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 return false;
             }
+            else if (Main.player[NPC.target] != null && Main.player[NPC.target].dead)
+            {
+                NPC.EncourageDespawn(15);
+            }
             return base.PreAI();
         }
 
@@ -198,7 +202,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         private void AI_013_NightmarePhantom()
         {
             ticksAlive++;
-            Lighting.AddLight(NPC.Center, Color.Red.ToVector3() * 0.45f);
+            Lighting.AddLight(NPC.Center, Color.Red.ToVector3() * 0.5f);
             if(ticksAlive % 75 == 0)
             {
                 if
@@ -210,8 +214,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;
                     vectorToTarget.Normalize();
-                    vectorToTarget *= 9f;
-                    vectorToTarget.Y *= 1.45f;
+                    vectorToTarget *= 8f;
+                    vectorToTarget.Y *= 1.375f;
                     NPC.velocity += vectorToTarget;
                     for (int i = 0; i < 128; i++)
                     {

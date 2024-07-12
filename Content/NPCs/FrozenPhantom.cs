@@ -56,11 +56,11 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.HitSound = SoundID.NPCHit36;
             NPC.DeathSound = SoundID.NPCDeath39;
             NPC.value = 1600f;
-            NPC.knockBackResist = 0.15f;
-            NPC.lifeMax = 600;
+            NPC.knockBackResist = 0.2f;
+            NPC.lifeMax = 450;
             NPC.damage = 60;
             NPC.defense = 30;
-            NPC.scale = 1.45f;
+            NPC.scale = 1.4f;
             AIType = NPCID.Ghost;
             AnimationType = NPCID.Ghost;
             NPC.GetGlobalNPC<WDALTNPCUtil>().nightmarePhantom = true;
@@ -108,7 +108,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             AI_022_FrozenPhantom();
             if
             (
-                (ticksAlive % 75 < 15) &&
+                (ticksAlive % 135 < 15) &&
                 Main.player[NPC.target] != null &&
                 Main.player[NPC.target].active &&
                 !Main.player[NPC.target].dead
@@ -117,7 +117,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 NPC.knockBackResist = 0f;
                 return false;
             }
-            NPC.knockBackResist = 0.15f;
+            else if (Main.player[NPC.target] != null && Main.player[NPC.target].dead)
+            {
+                NPC.EncourageDespawn(15);
+            }
+            NPC.knockBackResist = 0.2f;
             return base.PreAI();
         }
 
@@ -154,8 +158,8 @@ namespace WeDoALittleTrolling.Content.NPCs
         private void AI_022_FrozenPhantom()
         {
             ticksAlive++;
-            Lighting.AddLight(NPC.Center, Color.Cyan.ToVector3() * 0.45f);
-            if (ticksAlive % 75 == 0)
+            Lighting.AddLight(NPC.Center, Color.Cyan.ToVector3() * 0.6f);
+            if (ticksAlive % 135 == 0)
             {
                 if
                 (
@@ -166,8 +170,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 {
                     Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;
                     vectorToTarget.Normalize();
-                    vectorToTarget *= 9f;
-                    vectorToTarget.Y *= 1.45f;
+                    vectorToTarget *= 8f;
+                    vectorToTarget.Y *= 1.375f;
                     NPC.velocity += vectorToTarget;
                     for (int i = 0; i < 128; i++)
                     {
