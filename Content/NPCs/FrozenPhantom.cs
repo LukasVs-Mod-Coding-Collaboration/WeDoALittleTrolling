@@ -63,7 +63,6 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.scale = 1.4f;
             AIType = NPCID.Ghost;
             AnimationType = NPCID.Ghost;
-            NPC.GetGlobalNPC<WDALTNPCUtil>().nightmarePhantom = true;
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
@@ -97,7 +96,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             int dropAmountMax = 1;
             int chanceNumerator = 60; // 60% chance
             int chanceDenominator = 100;
-            int itemID = ModContent.ItemType<FrozenFossil>();
+            int itemID = ModContent.ItemType<FrozenEssence>();
             CommonDrop drop = new CommonDrop(itemID, chanceDenominator, dropAmountMin, dropAmountMax, chanceNumerator);
             npcLoot.Add(drop);
             base.ModifyNPCLoot(npcLoot);
@@ -111,13 +110,17 @@ namespace WeDoALittleTrolling.Content.NPCs
                 (ticksAlive % 135 < 15) &&
                 Main.player[NPC.target] != null &&
                 Main.player[NPC.target].active &&
-                !Main.player[NPC.target].dead
+                !Main.player[NPC.target].dead &&
+                (
+                    Main.player[NPC.target].itemAnimation > 0 ||
+                    Main.player[NPC.target].aggro >= 0
+                )
             )
             {
                 NPC.knockBackResist = 0f;
                 return false;
             }
-            else if (Main.player[NPC.target] != null && Main.player[NPC.target].dead)
+            else if (Main.player[NPC.target] != null && (Main.player[NPC.target].dead || (Main.player[NPC.target].aggro < 0 && Main.player[NPC.target].itemAnimation == 0)))
             {
                 NPC.EncourageDespawn(15);
             }
@@ -165,7 +168,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 (
                     Main.player[NPC.target] != null &&
                     Main.player[NPC.target].active &&
-                    !Main.player[NPC.target].dead
+                    !Main.player[NPC.target].dead &&
+                    (
+                        Main.player[NPC.target].itemAnimation > 0 ||
+                        Main.player[NPC.target].aggro >= 0 
+                    )
                 )
                 {
                     Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;

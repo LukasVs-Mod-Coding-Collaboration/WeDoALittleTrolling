@@ -543,8 +543,8 @@ Mods: {
 				Tooltip: '''"Infused with the power of the Underground"'''
 			}
 
-			FrozenFossil: {
-				DisplayName: Frozen Fossil
+			FrozenEssence: {
+				DisplayName: Frozen Essence
 				Tooltip: ""
 			}
 

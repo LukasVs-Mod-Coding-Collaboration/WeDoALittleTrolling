@@ -54,7 +54,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ItemID.HolyWater, 12)
               .AddIngredient(ModContent.ItemType<HellishFossil>(), 6)
               .AddIngredient(ModContent.ItemType<MushroomFossil>(), 6)
-              .AddIngredient(ModContent.ItemType<FrozenFossil>(), 6)
+              .AddIngredient(ModContent.ItemType<FrozenEssence>(), 6)
               .AddCustomShimmerResult(ItemID.PlatinumCoin, 1)
               .Register();
         }

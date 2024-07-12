@@ -105,7 +105,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             CreateRecipe()
               .AddTile(TileID.ShimmerMonolith)
-              .AddIngredient(ModContent.ItemType<FrozenFossil>(), 8)
+              .AddIngredient(ModContent.ItemType<FrozenEssence>(), 8)
               .AddIngredient(ItemID.HallowedBar, 8)
               .Register();
         }

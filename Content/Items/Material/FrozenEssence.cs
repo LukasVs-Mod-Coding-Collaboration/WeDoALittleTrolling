@@ -28,7 +28,7 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace WeDoALittleTrolling.Content.Items.Material
 {
-    internal class FrozenFossil : ModItem
+    internal class FrozenEssence : ModItem
     {
         public override void SetDefaults()
         {
