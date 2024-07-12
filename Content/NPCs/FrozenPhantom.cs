@@ -129,7 +129,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             if(Main.hardMode && spawnInfo.Player.ZoneSnow && spawnInfo.Player.ZoneRockLayerHeight && !spawnInfo.PlayerInTown && !spawnInfo.Player.GetModPlayer<WDALTPlayerUtil>().IsBehindHousingWall() && NPC.downedPlantBoss)
             {
-                return 0.03f;
+                return 0.025f;
             }
             return base.SpawnChance(spawnInfo);
         }
