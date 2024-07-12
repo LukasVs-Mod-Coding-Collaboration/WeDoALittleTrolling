@@ -591,6 +591,11 @@ Mods: {
 				DisplayName: Night Bundle
 				Tooltip: Right Click to open
 			}
+
+			FrozenShardStaff: {
+				DisplayName: Frozen Shard Staff
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -612,6 +617,7 @@ Mods: {
 			BlazingShield.DisplayName: Blazing Shield
 			EmberBolt.DisplayName: Ember Bolt
 			ArtemissileProjectile.DisplayName: Artemis Missile
+			FrozenShard.DisplayName: Frozen Shard
 		}
 
 		Prefixes: {
