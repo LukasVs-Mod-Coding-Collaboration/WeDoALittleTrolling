@@ -1036,11 +1036,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.Gungnir)
             {
-                if (item.damage <= 70)
-                {
-                    item.damage = 70;
-                }
-                item.crit = 3;
+                item.crit = 2;
             }
             if (item.type == ItemID.MonkStaffT1)
             {
@@ -1428,20 +1424,15 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useTime = 16;
                 item.useAnimation = 16;
                 item.shootsEveryUse = true;
-                item.knockBack = 14;
+                item.knockBack = 14f;
             }
             if (item.type == ItemID.Excalibur)
             {
-                item.damage = 75;
+                item.damage = 80;
+                item.shootsEveryUse = true;
             }
             if (item.type == ItemID.TrueNightsEdge)
             {
-                if (item.damage <= 75)
-                {
-                    item.damage = 75;
-                }
-                item.useTime = 32;
-                item.useAnimation = 32;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.TerraBlade)
@@ -1451,6 +1442,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.InfluxWaver)
             {
+                item.damage = 80;
                 item.shootsEveryUse = true;
             }
             if (item.type == ItemID.PossessedHatchet)
@@ -1539,6 +1531,21 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     item.damage = 30;
                 }
+            }
+            if (item.type == ItemID.Hammush)
+            {
+                if (item.damage <= 60)
+                {
+                    item.damage = 60;
+                }
+                item.useTime = 25;
+                item.useAnimation = 25;
+            }
+            if (item.type == ItemID.MushroomSpear)
+            {
+                item.crit = 8;
+                item.useTime = 35;
+                item.useAnimation = 35;
             }
             if (item.type == ItemID.ChlorophytePartisan)
             {

@@ -635,12 +635,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if (projectile.type == ProjectileID.TrueNightsEdge)
             {
+                projectile.damage = (int)Math.Round(projectile.damage * 1.5f);
                 projectile.tileCollide = true;
                 projectile.light = 0.5f;
                 projectile.netUpdate = true;
             }
             if (projectile.type == ProjectileID.TerraBlade2Shot || projectile.type == ProjectileID.StarWrath)
             {
+                projectile.damage = (int)Math.Round(projectile.damage * 1.5f);
                 projectile.netUpdate = true;
             }
             if (projectile.type == ProjectileID.OrnamentFriendly)
