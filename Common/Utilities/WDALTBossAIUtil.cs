@@ -166,7 +166,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                         pos1,
                         shootVector1,
                         ProjectileID.DeathLaser,
-                        (int)Math.Round(npc.damage * (0.175 + (0.025 * numArms))),
+                        (int)Math.Round(npc.damage * (0.25 - (0.05 * numArms))),
                         3.5f
                     );
                     Projectile.NewProjectileDirect
@@ -175,7 +175,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                         pos2,
                         shootVector2,
                         ProjectileID.DeathLaser,
-                        (int)Math.Round(npc.damage * (0.175 + (0.025 * numArms))),
+                        (int)Math.Round(npc.damage * (0.25 - (0.05 * numArms))),
                         3.5f
                     );
                     npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick = npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive;
