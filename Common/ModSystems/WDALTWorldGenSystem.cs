@@ -694,6 +694,29 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     continue;
                 }
             }
+            for (int y = GenVars.snowTop + (Main.drunkWorld ? 100 : 0); y <= GenVars.snowBottom; y++)
+            {
+                if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
+                {
+                    for (int x = GenVars.snowMinX[y]; x <= GenVars.snowMaxX[y]; x++)
+                    {
+                        if (Main.tile[x, y].TileType == TileID.MinecartTrack)
+                        {
+                            GenMineshafts(x, y);
+                        }
+                    }
+                }
+                else
+                {
+                    for (int x = GenVars.snowMinX[0]; x <= GenVars.snowMaxX[0]; x++)
+                    {
+                        if (Main.tile[x, y].TileType == TileID.MinecartTrack)
+                        {
+                            GenMineshafts(x, y);
+                        }
+                    }
+                }
+            }
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.125); k++)
             {
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
@@ -792,6 +815,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         (
                             WorldGen.TileType((x + j), (y + i)) == TileID.Campfire ||
                             WorldGen.TileType((x + j), (y + i)) == TileID.IceBrick ||
+                            WorldGen.TileType((x + j), (y + i)) == TileID.SnowBrick ||
                             WorldGen.TileType((x + j), (y + i)) == TileID.Containers
                         )
                         {
@@ -861,29 +885,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     success = false;
                     continue;
-                }
-            }
-            for (int y = GenVars.snowTop + (Main.drunkWorld ? 100 : 0); y <= GenVars.snowBottom; y++)
-            {
-                if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
-                {
-                    for (int x = GenVars.snowMinX[y]; x <= GenVars.snowMaxX[y]; x++)
-                    {
-                        if (Main.tile[x, y].TileType == TileID.MinecartTrack)
-                        {
-                            GenMineshafts(x, y);
-                        }
-                    }
-                }
-                else
-                {
-                    for (int x = GenVars.snowMinX[0]; x <= GenVars.snowMaxX[0]; x++)
-                    {
-                        if (Main.tile[x, y].TileType == TileID.MinecartTrack)
-                        {
-                            GenMineshafts(x, y);
-                        }
-                    }
                 }
             }
         }
