@@ -46,6 +46,7 @@ namespace WeDoALittleTrolling.Content.Recipes
                 Recipe recipe = Main.recipe[i];
 
                 //Progression Changes
+                /* This policy has beed diabled by your System Administrator (TM) !
                 if (recipe.TryGetResult(ItemID.NightmarePickaxe, out Item NightmarePickaxe))
                 {
                     recipe.AddIngredient(ItemID.FossilOre, 6);
@@ -56,6 +57,7 @@ namespace WeDoALittleTrolling.Content.Recipes
                     recipe.AddIngredient(ItemID.FossilOre, 6);
                     recipe.AddIngredient(ItemID.FlinxFur, 6);
                 }
+                */
                 if (recipe.TryGetResult(ItemID.MythrilAnvil, out Item MythrilAnvil))
                 {
                     if (!recipe.HasTile(TileID.MythrilAnvil) && !recipe.HasIngredient(ItemID.FrostCore))

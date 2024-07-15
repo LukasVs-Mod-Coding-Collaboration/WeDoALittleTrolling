@@ -519,14 +519,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     itemsToAdd.Add((specialItem, 1));
                 }
 
-                switch (Main.rand.Next(13))
+                switch (Main.rand.Next(5))
                 {
                     case 0:
                     case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
                         itemsToAdd.Add((ItemID.FiberglassFishingPole, 1));
                         itemsToAdd.Add((ItemID.FrozenCrate, 1));
                         itemsToAdd.Add((ItemID.FishingPotion, 2));
@@ -534,9 +530,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         itemsToAdd.Add((ItemID.SonarPotion, 2));
                         itemsToAdd.Add((ItemID.MasterBait, Main.rand.Next(8, 17)));
                         break;
-                    case 6:
-                    case 7:
-                    case 8:
+                    case 2:
                         itemsToAdd.Add((ItemID.BonePickaxe, 1));
                         itemsToAdd.Add((ItemID.LeadBar, Main.rand.Next(4, 17)));
                         itemsToAdd.Add((ItemID.TungstenBar, Main.rand.Next(4, 17)));
@@ -544,9 +538,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         itemsToAdd.Add((ItemID.MiningPotion, 2));
                         itemsToAdd.Add((ItemID.SpelunkerPotion, 2));
                         break;
-                    case 9:
-                    case 10:
-                    case 11:
+                    case 3:
                         itemsToAdd.Add((ItemID.ManaPotion, Main.rand.Next(8, 17)));
                         itemsToAdd.Add((ItemID.ManaRegenerationPotion, 2));
                         itemsToAdd.Add((ItemID.MagicPowerPotion, 2));
@@ -554,9 +546,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         itemsToAdd.Add((ItemID.RegenerationPotion, 2));
                         itemsToAdd.Add((ItemID.LifeforcePotion, 2));
                         break;
-                    case 12:
+                    case 4:
                         itemsToAdd.Add((ItemID.RestorationPotion, Main.rand.Next(8, 17)));
-                        itemsToAdd.Add((ItemID.CreativeWings, 1));
+                        itemsToAdd.Add((ItemID.MagicLantern, 1));
                         itemsToAdd.Add((ItemID.GoblinBattleStandard, 1));
                         itemsToAdd.Add((ItemID.SuspiciousLookingEye, 1));
                         itemsToAdd.Add((ItemID.FrostburnArrow, Main.rand.Next(200, 401)));

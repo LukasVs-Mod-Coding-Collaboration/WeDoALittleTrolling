@@ -60,6 +60,20 @@ namespace WeDoALittleQualityOfLife.Content.Recipes
 
             AddArchitectGizmoPackRecipes();
 
+            Recipe.Create(ItemID.CreativeWings)
+            .AddIngredient(ItemID.GoldBar, 12)
+            .AddIngredient(ItemID.Feather, 18)
+            .AddIngredient(ItemID.Cloud, 24)
+            .AddTile(TileID.SkyMill)
+            .Register();
+
+            Recipe.Create(ItemID.CreativeWings)
+            .AddIngredient(ItemID.PlatinumBar, 12)
+            .AddIngredient(ItemID.Feather, 18)
+            .AddIngredient(ItemID.Cloud, 24)
+            .AddTile(TileID.SkyMill)
+            .Register();
+
             Recipe.Create(ItemID.FamiliarWig)
             .AddIngredient(ItemID.Silk, 5)
             .AddTile(TileID.Loom)

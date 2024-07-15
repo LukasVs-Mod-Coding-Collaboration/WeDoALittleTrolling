@@ -58,7 +58,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             for (int i = 0; i < 30; i++)
             {
-                int rMax = (int)Projectile.width;
+                int rMax = (int)Projectile.width / 2;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));
@@ -77,7 +77,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if (Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive % 2 == 0)
             {
-                int rMax = (int)Projectile.width;
+                int rMax = (int)Projectile.width / 2;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));

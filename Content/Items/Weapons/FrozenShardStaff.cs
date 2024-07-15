@@ -55,6 +55,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTime = 32;
             Item.useAnimation = 32;
             Item.mana = 4;
+            Item.ArmorPenetration = 16;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item43;
 
@@ -63,7 +64,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.knockBack = 8f;
             Item.crit = 4;
             Item.scale = 1f;
-            Item.shoot = ModContent.ProjectileType<PortableSpiderBullet>();
+            Item.shoot = ModContent.ProjectileType<FrozenShard>();
             Item.shootSpeed = 16f;
             Item.autoReuse = true;
 

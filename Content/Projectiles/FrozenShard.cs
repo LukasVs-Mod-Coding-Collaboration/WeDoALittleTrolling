@@ -35,18 +35,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 12;
-            Projectile.height = 12;
+            Projectile.width = 14;
+            Projectile.height = 14;
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.penetrate = 2;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 480;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 30;
+            Projectile.localNPCHitCooldown = 6;
             this.DrawOffsetX = -2;
             this.DrawOriginOffsetX = 0f;
             this.DrawOriginOffsetY = -2;
@@ -54,14 +54,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void AI()
         {
-            AI_024_FrozenShard();
+            AI_001_SimpleBullet();
         }
 
         public override bool PreKill(int timeLeft)
         {
             for (int i = 0; i < 30; i++)
             {
-                int rMax = (int)Projectile.width;
+                int rMax = (int)Projectile.width / 2;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));
@@ -80,7 +80,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if (Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive % 2 == 0)
             {
-                int rMax = (int)Projectile.width;
+                int rMax = (int)Projectile.width / 2;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));
@@ -98,32 +98,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
             return Color.White;
         }
 
-        private void AI_024_FrozenShard()
+        private void AI_001_SimpleBullet()
         {
-            float origVelocityLength = Projectile.velocity.Length();
-            float lowestDistance = homingRange;
-            bool targetDetected = false;
-            Vector2 targetCenter = Vector2.Zero;
-            for (int i = 0; i < Main.npc.Length; i++)
-            {
-                NPC npc = Main.npc[i];
-                float distance = Vector2.Distance(Projectile.Center, npc.Center);
-                if ((distance < lowestDistance) && npc.CanBeChasedBy())
-                {
-                    targetCenter = npc.Center;
-                    targetDetected = true;
-                    lowestDistance = distance;
-                }
-            }
-            if (targetDetected)
-            {
-                Vector2 moveVector = (targetCenter - Projectile.Center);
-                moveVector.Normalize();
-                moveVector *= (origVelocityLength * correctionFactor);
-                Projectile.velocity += moveVector;
-                Projectile.velocity.Normalize();
-                Projectile.velocity *= origVelocityLength;
-            }
             Projectile.spriteDirection = Projectile.direction = ((Projectile.velocity.X > 0f) ? 1 : -1); //Fix wrong shading when shooting to the left.
             float roatateOffset = (float)Math.PI / 2f;
             Projectile.rotation = Projectile.velocity.ToRotation() + roatateOffset;
