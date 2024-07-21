@@ -297,7 +297,7 @@ namespace WeDoALittleQualityOfLife.Content.Recipes
             WDALT_OrichalcumAnvil_Duplicate.AddTile(TileID.MythrilAnvil);
             WDALT_OrichalcumAnvil_Duplicate.Register();
 
-            Recipe WDALT_MythrilAnvil_Alternate = Recipe.Create(ItemID.MythrilAnvil, 1);
+            /*Recipe WDALT_MythrilAnvil_Alternate = Recipe.Create(ItemID.MythrilAnvil, 1);
             WDALT_MythrilAnvil_Alternate.AddIngredient(ItemID.MythrilBar, 10);
             WDALT_MythrilAnvil_Alternate.AddIngredient(ItemID.FrostCore, 5);
             WDALT_MythrilAnvil_Alternate.AddIngredient(ItemID.AncientBattleArmorMaterial, 5);
@@ -308,7 +308,7 @@ namespace WeDoALittleQualityOfLife.Content.Recipes
             WDALT_OrichalcumAnvil_Alternate.AddIngredient(ItemID.FrostCore, 5);
             WDALT_OrichalcumAnvil_Alternate.AddIngredient(ItemID.AncientBattleArmorMaterial, 5);
             WDALT_OrichalcumAnvil_Alternate.AddTile(TileID.Anvils);
-            WDALT_OrichalcumAnvil_Alternate.Register();
+            WDALT_OrichalcumAnvil_Alternate.Register();*/
 
             Recipe WDALT_Soulconvert_V1 = Recipe.Create(ItemID.SoulofFright, 3);
             WDALT_Soulconvert_V1.AddIngredient(ItemID.SoulofFright, 1);

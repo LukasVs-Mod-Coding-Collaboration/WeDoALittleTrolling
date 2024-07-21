@@ -28,7 +28,7 @@ using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Tiles;
-using WeDoALittleTrolling.Content.Recipes;
+//using WeDoALittleTrolling.Content.Recipes;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -192,13 +192,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public override void AddRecipes()
         {
-            ProgressionRecipes.AddRecipes();
+            //ProgressionRecipes.AddRecipes();
             base.AddRecipes();
         }
 
         public override void PostAddRecipes()
         {
-            ProgressionRecipes.PostAddRecipes();
+            //ProgressionRecipes.PostAddRecipes();
             base.PostAddRecipes();
         }
     }

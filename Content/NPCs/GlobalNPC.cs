@@ -124,6 +124,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.PirateCorsair,
             NPCID.PirateGhost
         };
+        /*
         public static readonly int[] InflictSearingInferno1In1Group =
         {
             NPCID.Golem,
@@ -135,6 +136,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.LihzahrdCrawler,
             NPCID.FlyingSnake
         };
+        */
         public static readonly int[] InflictBrokenArmor1In1Group =
         {
             NPCID.PrimeSaw
@@ -1198,6 +1200,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
                 }
             }
+            /*
             if (InflictSearingInferno1In1Group.Contains(npcType))
             {
                 if (random.Next(0, 1) == 0)
@@ -1205,6 +1208,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 }
             }
+            */
             if (InflictBrokenArmor1In1Group.Contains(npcType))
             {
                 if (random.Next(0, 1) == 0)
