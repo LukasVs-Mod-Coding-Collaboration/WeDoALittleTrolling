@@ -57,13 +57,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly int[] InflictBleedingDebuff1In8Group =
         {
         };
-        /*
-        public static readonly int[] InflictSearingInferno1In1Group =
-        {
-            ProjectileID.Fireball,
-            ProjectileID.EyeBeam
-        };
-        */
+
         public static readonly int[] InflictVulnerable1In1Group =
         {
             ProjectileID.SeedPlantera,
@@ -815,15 +809,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
                 }
             }
-            /*
-            if (InflictSearingInferno1In1Group.Contains(projectile.type))
-            {
-                if (random.Next(0, 1) == 0)
-                {
-                    target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
-                }
-            }
-            */
             if (InflictWreckedResistance1In1Group.Contains(projectile.type))
             {
                 if (random.Next(0, 1) == 0 && Main.masterMode)
