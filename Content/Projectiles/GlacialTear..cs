@@ -28,15 +28,15 @@ using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
-    public class FrozenShard : ModProjectile
+    public class GlacialTear : ModProjectile
     {
         public const float homingRange = 512f;
         public const float correctionFactor = 0.30f;
 
         public override void SetDefaults()
         {
-            Projectile.width = 14;
-            Projectile.height = 14;
+            Projectile.width = 10;
+            Projectile.height = 10;
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;

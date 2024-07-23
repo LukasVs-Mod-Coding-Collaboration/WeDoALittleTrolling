@@ -592,8 +592,8 @@ Mods: {
 				Tooltip: Right Click to open
 			}
 
-			FrozenShardStaff: {
-				DisplayName: Frozen Shard Staff
+			GlacialStaff: {
+				DisplayName: Glacial Staff
 				Tooltip: ""
 			}
 		}
@@ -611,7 +611,8 @@ Mods: {
 			ThrowOfTheLunaticProjectileBeam.DisplayName: Lunatic Beam
 			ThrownCorncob.DisplayName: Golden Corncob
 			ElementalStaffProjectile.DisplayName: Frozen Elemental
-			ElementalStaffProjectileBullet.DisplayName: Frozen Elemental Shard
+			ElementalStaffProjectileBullet.DisplayName: Frozen Shard
+			GlacialTear.DisplayName: Glacial Tear
 			PortableSpiderBullet.DisplayName: Fangling
 			PharaohsCursebladeBeam.DisplayName: Pharaoh's Curse
 			BlazingShield.DisplayName: Blazing Shield

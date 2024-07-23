@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float idleDistance = 48f;
         public const float idleAccelerationFactor = 0.625f;
         public const float bulletSpeed = 24f;
-        public const float bulletOffsetMultiplier = 36f;
+        public const float bulletOffsetMultiplier = 28f;
         public static readonly Vector2 gfxShootOffset = new Vector2(0f, 0f);
         public long ticksAlive = 0;
         public long lastActionTick = 0;

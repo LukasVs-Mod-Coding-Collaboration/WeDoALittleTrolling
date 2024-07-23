@@ -32,7 +32,7 @@ using WeDoALittleTrolling.Content.Items.Material;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
-    internal class FrozenShardStaff : ModItem
+    internal class GlacialStaff : ModItem
     {
 
         public override void SetStaticDefaults()
@@ -42,8 +42,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 36;
-            Item.height = 36;
+            Item.width = 48;
+            Item.height = 48;
 
             Item.consumable = false;
 
@@ -64,7 +64,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.knockBack = 8f;
             Item.crit = 4;
             Item.scale = 1f;
-            Item.shoot = ModContent.ProjectileType<FrozenShard>();
+            Item.shoot = ModContent.ProjectileType<GlacialTear>();
             Item.shootSpeed = 16f;
             Item.autoReuse = true;
 
@@ -81,7 +81,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     player.GetSource_ItemUse(Item),
                     position,
                     velocity.RotatedBy(MathHelper.ToRadians(rotation)),
-                    ModContent.ProjectileType<FrozenShard>(),
+                    ModContent.ProjectileType<GlacialTear>(),
                     damage,
                     knockback,
                     player.whoAmI
