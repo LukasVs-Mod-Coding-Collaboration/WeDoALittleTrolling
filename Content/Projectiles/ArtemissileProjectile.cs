@@ -85,13 +85,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override bool PreKill(int timeLeft)
         {
-            bool stuckMode = (Projectile.ai[0] == 1f);
-            if (Projectile.owner == Main.myPlayer && stuckMode && NPCArrayIndex >= 0 && NPCArrayIndex < Main.npc.Length)
+            if (Projectile.owner == Main.myPlayer)
             {
-                if (Main.npc[NPCArrayIndex].active)
-                {
-                    Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ProjectileID.Volcano, Projectile.damage, Projectile.knockBack, Projectile.owner);
-                }
+                Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ProjectileID.Volcano, Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
             return base.PreKill(timeLeft);
         }
@@ -152,7 +148,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             else
             {
-                if (Projectile.frameCounter >= 20 || (Projectile.frameCounter >= 4 && Projectile.frame > 0))
+                if (Projectile.frameCounter >= 8 || (Projectile.frameCounter >= 4 && Projectile.frame > 0))
                 {
                     Projectile.frameCounter = 0;
                     Projectile.frame++;

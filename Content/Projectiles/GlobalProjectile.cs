@@ -178,7 +178,8 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 projectile.type == ProjectileID.JestersArrow ||
                 projectile.type == ProjectileID.HellfireArrow ||
                 projectile.type == ProjectileID.BoneArrowFromMerchant ||
-                projectile.type == ProjectileID.HallowStar
+                projectile.type == ProjectileID.HallowStar ||
+                projectile.type == ProjectileID.Volcano
             )
             {
                 projectile.usesLocalNPCImmunity = true;
