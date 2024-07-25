@@ -56,7 +56,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             for (int i = 0; i < 30; i++)
             {
-                int rMax = (int)Projectile.width;
+                int rMax = (int)Projectile.width / 2;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));
@@ -67,7 +67,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Dust newDust = Dust.NewDustPerfect(dustPosition, dustID, null, 0, default);
                 newDust.noGravity = true;
             }
-            SoundEngine.PlaySound(SoundID.NPCDeath32, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.NPCHit29, Projectile.Center);
             return base.PreKill(timeLeft);
         }
 
@@ -75,7 +75,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             if (Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive % 2 == 0)
             {
-                int rMax = (int)Projectile.width;
+                int rMax = (int)Projectile.width / 2;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));
