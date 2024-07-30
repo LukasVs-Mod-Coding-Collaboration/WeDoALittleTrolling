@@ -84,7 +84,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             (
                 new IBestiaryInfoElement[]
                 {
-                    BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+                    BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundSnow,
                     new FlavorTextBestiaryInfoElement("The aggressive Frozen Phantoms will haunt their targets through the endless ice...")
                 }
             );
