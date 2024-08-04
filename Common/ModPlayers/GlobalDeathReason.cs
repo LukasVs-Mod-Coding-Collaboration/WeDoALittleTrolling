@@ -220,8 +220,38 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "All of " + player.name + "'s towers were pickled.",
                 "Spoiler: " + player.name + " dies in Endgame.",
                 "Well well well, " + player.name + " appears to have fallen into a well.",
-                "What was " + player.name + " thinking?!"
-
+                "What was " + player.name + " thinking?!",
+                // Third Generation Or Random
+                player.name + " rolled a stone. It returned upon them.",
+                player.name + " dug a pit and fell therein.",
+                player.name + " is now the human equivalent of a participation award.",
+                player.name + " couldn't have just walked away...",
+                player.name + " was too devious, perhaps mischievous.",
+                player.name + "'s foolish ambitions were put to rest.",
+                player.name + " tried to get online therapy.",
+                "Ding dong, the wicked " + player.name + " is dead.",
+                "Oh how the turns have tabled on " + player.name + ".",
+                player.name + " is trolled, they should probably just fold.",
+                player.name + " is an individual of lesser talent.",
+                "That's right, " + player.name + " goes into the square hole.",
+                player.name + " found a cost too great.",
+                player.name + " participated in a Magic the Noah gameshow.",
+                player.name + " blundered all their health points.",
+                "How did " + player.name + " die to THAT of all things?",
+                "There was a zombie on " + player.name + "'s lawn.",
+                player.name + " got too close to the truth.", // Schmiddi!
+                player.name + " is projecting.",
+                player.name + " is dreaming of wells now.",
+                player.name + "'s only winning move is not to play.",
+                player.name + " got taken to a nice farm upstate.", // Schmiddi
+                player.name + " was forced to play League of Legends.",
+                "To solve this situation I simply kill " + player.name + ".",
+                player.name + " switched the babies at the hospital around.",
+                player.name + " died of death.",
+                player.name + " fell victim to the Pharaoh's curse.",
+                player.name + " should have aspired to the strength and certainty of steel.",
+                "The harvest of " + player.name + "'s deaths is very bountiful this year.",
+                player.name + " made a minor spelling mistake. The grim reaper wins."
             };
             if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
             {
@@ -231,7 +261,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " was informed of their skill issue by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " discovered that they were simply lacking the talent to overcome " + Main.npc[damageSource.SourceNPCIndex].FullName + "."
                 };
-                if (random.NextBool(50))
+                if (random.NextBool(25))
                 {
                     if(random.NextBool(5))
                     {
@@ -243,7 +273,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                 }
             }
-            else if (random.NextBool(50))
+            else if (random.NextBool(25))
             {
                 damageSource.SourceCustomReason = AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)];
             }
