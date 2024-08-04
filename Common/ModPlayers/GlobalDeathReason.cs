@@ -226,7 +226,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " dug a pit and fell therein.",
                 player.name + " is now the human equivalent of a participation award.",
                 player.name + " couldn't have just walked away...",
-                player.name + " was too devious, perhaps mischievous.",
+                player.name + " was too devious, perhaps too mischievous.",
                 player.name + "'s foolish ambitions were put to rest.",
                 player.name + " tried to get online therapy.",
                 "Ding dong, the wicked " + player.name + " is dead.",
@@ -251,7 +251,19 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " fell victim to the Pharaoh's curse.",
                 player.name + " should have aspired to the strength and certainty of steel.",
                 "The harvest of " + player.name + "'s deaths is very bountiful this year.",
-                player.name + " made a minor spelling mistake. The grim reaper wins."
+                player.name + " made a minor spelling mistake. I win.",
+                player.name + " discovered the meaning of a Backstab in Elden Ring.",
+                player.name + " has been foiled again.",
+                player.name + " lagged, trust me!",
+                "Surely there was nothing " + player.name + " could have done to avoid that.",
+                "The allegations against " + player.name + " turned out to be true.",
+                "Why did " + player.name + " cross the river Styx? Weed eater.",
+                player.name + " was ignorant to the Mind Goblin.",
+                player.name + " did not receive vital information from the Sugondese.",
+                player.name + "'s AC broke down in the middle of summer.",
+                "Hippity hoppity " + player.name + "'s soul is now my property."
+                
+
             };
             if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
             {
@@ -259,9 +271,23 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     player.name + " was reminded of the incident by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " was informed of their skill issue by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
-                    player.name + " discovered that they were simply lacking the talent to overcome " + Main.npc[damageSource.SourceNPCIndex].FullName + "."
+                    player.name + " discovered that they were simply lacking the talent to overcome " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + " made a minor grammatical error, " + Main.npc[damageSource.SourceNPCIndex].FullName + " wins.",
+                    player.name + "'s head was smashed in with a rock by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + " died after hearing the horrendous joke made by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + " rolled a Nat 1 on their saving throw against " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + " didn't expect the " + Main.npc[damageSource.SourceNPCIndex].FullName + " inquisition.",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " did not take " + player.name + " winning at Jenga lightly.",
+                    player.name + " ate the candy given to them by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " did not accept " + player.name + "'s takeback.",
+                    player.name + " believed " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s claim about gullible being written on the ceiling.",
+                    player.name + " pulled out the ukulele after being called out by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + " fell victim to " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s YouTube prank.",
+                    player.name + " was eliminated from a Mr. Beast challenge by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " just wanted to talk to " + player.name + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth.",
                 };
-                if (random.NextBool(25))
+                if (random.NextBool(15))
                 {
                     if(random.NextBool(5))
                     {
@@ -273,7 +299,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                 }
             }
-            else if (random.NextBool(25))
+            else if (random.NextBool(15))
             {
                 damageSource.SourceCustomReason = AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)];
             }
