@@ -285,7 +285,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " fell victim to " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s YouTube prank.",
                     player.name + " was eliminated from a Mr. Beast challenge by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " just wanted to talk to " + player.name + ".",
-                    Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth.",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth."
                 };
                 if (random.NextBool(15))
                 {
