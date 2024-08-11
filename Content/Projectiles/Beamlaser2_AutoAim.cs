@@ -150,7 +150,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Vector2 shootTo = new Vector2(shootToX, shootToY);
                 float distance = shootTo.Length();
                 Vector2 originalVector = Projectile.velocity;
-                originalVector.Normalize();
+                originalVector.SafeNormalize(Vector2.Zero);
                 float x = originalVector.X;
                 float y = originalVector.Y;
                 float a = Math.Abs(this.original_location.X - target.position.X);
@@ -192,7 +192,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 )
                 {
                     Vector2 newVelocity = shootTo;
-                    newVelocity.Normalize();
+                    newVelocity.SafeNormalize(Vector2.Zero);
                     newVelocity *= origVelocityLength;
                     Projectile.velocity = newVelocity;
                     lowest_distance = distance;

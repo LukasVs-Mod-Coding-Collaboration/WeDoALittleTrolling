@@ -161,7 +161,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (Projectile.owner == Main.myPlayer && distanceToIdlePos > (detectionRange * 2f))
             {
                 Projectile.position = idlePos;
-                Projectile.velocity.Normalize();
+                Projectile.velocity.SafeNormalize(Vector2.Zero);
                 Projectile.velocity *= idleMoveSpeed;
                 Projectile.netUpdate = true;
             }
@@ -252,12 +252,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (distanceToTarget > detectionRangeOffset)
             {
                 Vector2 moveVector = (targetCenter - Projectile.Center);
-                moveVector.Normalize();
+                moveVector.SafeNormalize(Vector2.Zero);
                 moveVector *= attackMoveSpeed;
                 Projectile.velocity += (moveVector / attackInertia);
                 if (Projectile.velocity.Length() > attackMoveSpeed)
                 {
-                    Projectile.velocity.Normalize();
+                    Projectile.velocity.SafeNormalize(Vector2.Zero);
                     Projectile.velocity *= attackMoveSpeed;
                 }
             }
@@ -268,7 +268,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     Vector2 moveVector = (targetCenter - Projectile.Center);
                     Projectile.velocity = moveVector;
-                    Projectile.velocity.Normalize();
+                    Projectile.velocity.SafeNormalize(Vector2.Zero);
                     Projectile.velocity *= currentSpeed;
                 }
                 if (Projectile.velocity == Vector2.Zero)
@@ -284,7 +284,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 else if (currentSpeed < minSpeed)
                 {
-                    Projectile.velocity.Normalize();
+                    Projectile.velocity.SafeNormalize(Vector2.Zero);
                     Projectile.velocity *= (idleMoveSpeed / idleInertia);
                 }
                 AI_012_FrozenElemental_CorrectOverlap(ref targetDetected);
@@ -299,7 +299,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                         Vector2 pos = Projectile.Center + gfxShootOffset;
                         Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
                         Vector2 shootVector = ((targetCenter + predictVelocity) - pos);
-                        shootVector.Normalize();
+                        shootVector.SafeNormalize(Vector2.Zero);
                         pos += (shootVector * bulletOffsetMultiplier);
                         shootVector *= bulletSpeed;
                         float rotation = -3f + (i * 3f);
@@ -330,17 +330,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     speedFactor = 1f;
                 }
-                vectorToIdlePos.Normalize();
+                vectorToIdlePos.SafeNormalize(Vector2.Zero);
                 vectorToIdlePos *= (idleMoveSpeed * speedFactor);
                 Projectile.velocity += (vectorToIdlePos / idleInertia);
                 if (Projectile.velocity.Length() > (idleMoveSpeed * speedFactor)) //Smoothly accelerate/decelerate based on distance to idle position
                 {
-                    Projectile.velocity.Normalize();
+                    Projectile.velocity.SafeNormalize(Vector2.Zero);
                     Projectile.velocity *= (idleMoveSpeed * speedFactor);
                 }
                 if (Projectile.velocity.Length() > attackMoveSpeed) //Cap movement speed at attack movement speed
                 {
-                    Projectile.velocity.Normalize();
+                    Projectile.velocity.SafeNormalize(Vector2.Zero);
                     Projectile.velocity *= attackMoveSpeed;
                 }
             }
@@ -357,7 +357,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             float minSpeed = (idleMoveSpeed / idleInertia) * 0.25f;
             if (currentSpeed < minSpeed && distanceToIdlePos <= idleDistance)
             {
-                Projectile.velocity.Normalize();
+                Projectile.velocity.SafeNormalize(Vector2.Zero);
                 Projectile.velocity *= (idleMoveSpeed / idleInertia);
             }
         }

@@ -33,15 +33,17 @@ namespace WeDoALittleTrolling.Content.NPCs
     {
         private const float detectionRange = 1920f + 1f; //One Screen Wide
         private Player target;
-        private float distanceToTarget;
-        private float maxSpeed = 7f;
         private bool hasTarget = false;
         private bool hover = true;
+        private float maxSpeed = 7f;
+        /*
+        private float distanceToTarget;
         private bool laser = false;
         private bool changedPhases = false;
         private bool charge = false;
         private bool chargeFast = false;
         private bool surpriseCharge = false;
+        */
 
         public override void SetDefaults()
         {
@@ -112,7 +114,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if (hover)
                 {
                     Vector2 hoverDirection = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y - 128);
-                    hoverDirection.SafeNormalize(hoverDirection);
+                    hoverDirection.SafeNormalize(Vector2.Zero);
                     hoverDirection *= 0.1f;
                     NPC.velocity.X += (hoverDirection.X * 0.5f);
                     NPC.velocity.Y += hoverDirection.Y;

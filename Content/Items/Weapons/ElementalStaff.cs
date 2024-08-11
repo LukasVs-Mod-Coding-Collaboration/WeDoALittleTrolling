@@ -87,7 +87,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             position = Main.MouseWorld;
             velocity.X = (Main.rand.NextFloat() - 0.5f);
             velocity.Y = (Main.rand.NextFloat() - 0.5f);
-            velocity.Normalize();
+            velocity.SafeNormalize(Vector2.Zero);
             velocity *= ElementalStaffProjectile.idleMoveSpeed;
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }

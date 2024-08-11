@@ -75,10 +75,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (targetDetected)
             {
                 Vector2 moveVector = (targetCenter - Projectile.Center);
-                moveVector.Normalize();
+                moveVector.SafeNormalize(Vector2.Zero);
                 moveVector *= (origVelocityLength * correctionFactor);
                 Projectile.velocity += moveVector;
-                Projectile.velocity.Normalize();
+                Projectile.velocity.SafeNormalize(Vector2.Zero);
                 Projectile.velocity *= origVelocityLength;
             }
             Projectile.spriteDirection = Projectile.direction = ((Projectile.velocity.X > 0f) ? 1 : -1); //Fix wrong shading when shooting to the left.

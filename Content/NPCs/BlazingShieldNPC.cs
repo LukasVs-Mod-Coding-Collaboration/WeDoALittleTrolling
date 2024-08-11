@@ -86,7 +86,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     (float)Math.Cos(MathHelper.ToRadians(currentDegree)),
                     (float)Math.Sin(MathHelper.ToRadians(currentDegree))
                 );
-                direction.Normalize();
+                direction.SafeNormalize(Vector2.Zero);
                 Vector2 position = shieldOwner.Center + (direction * distanceFromPlayer);
                 NPC.Center = position;
                 currentDegree = currentDegree + (rotationsPerSecond * baseDegreeMultiplier);

@@ -55,7 +55,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (Projectile.owner == Main.myPlayer && Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive % 20 == 0)
             {
                 Vector2 velocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
-                velocity.Normalize();
+                velocity.SafeNormalize(Vector2.Zero);
                 velocity *= Main.rand.Next(ThrowOfTheLunaticProjectileBeam.moveSpeed / 2, ThrowOfTheLunaticProjectileBeam.moveSpeed);
                 Projectile.NewProjectile
                 (

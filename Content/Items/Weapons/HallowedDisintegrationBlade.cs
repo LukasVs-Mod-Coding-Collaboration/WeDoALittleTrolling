@@ -86,7 +86,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 projPosition.X += xOffset;
                 projPosition.Y += yOffset;
                 Vector2 projVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
-                projVelocity.Normalize();
+                projVelocity.SafeNormalize(Vector2.Zero);
                 projVelocity *= 6f;
                 int dmg = (int)Math.Round(Item.damage * 0.5);
                 Projectile.NewProjectileDirect(player.GetSource_OnHit(target), projPosition, projVelocity, ProjectileID.CrystalStorm, dmg, Item.knockBack, player.whoAmI);

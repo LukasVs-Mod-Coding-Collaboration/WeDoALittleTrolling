@@ -86,7 +86,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
                 Vector2 dustVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
-                dustVelocity.Normalize();
+                dustVelocity.SafeNormalize(Vector2.Zero);
                 dustVelocity *= 8f;
                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Sandnado, dustVelocity, 0, default);
                 newDust.noGravity = true;

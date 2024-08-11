@@ -66,7 +66,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             Vector2 shootDirection = velocity;
-            shootDirection.Normalize();
+            shootDirection.SafeNormalize(Vector2.Zero);
             float xOffset = shootDirection.X * 64.0f;
             float yOffset = shootDirection.Y * 64.0f;
             position = new Vector2(position.X + xOffset, position.Y + yOffset - 8.0f);
