@@ -37,14 +37,14 @@ namespace WeDoALittleTrolling.Common.Utilities
         public static void BossAI_CirclePlayer(NPC npc, Player target, float speed, bool clockwise = true)
         {
             npc.velocity = (target.Center - npc.Center).RotatedBy((clockwise ? (Math.PI * 1.5) + rotationRoundingErrorGuard : (Math.PI * 0.5) - rotationRoundingErrorGuard));
-            npc.velocity.Normalize();
+            npc.velocity = npc.velocity.SafeNormalize(Vector2.Zero);
             npc.velocity *= speed;
         }
 
         public static void BossAI_DashToPlayer(NPC npc, Player target, float speed)
         {
             npc.velocity = (target.Center - npc.Center);
-            npc.velocity.Normalize();
+            npc.velocity = npc.velocity.SafeNormalize(Vector2.Zero);
             npc.velocity *= speed;
         }
 
@@ -154,10 +154,10 @@ namespace WeDoALittleTrolling.Common.Utilities
                     Vector2 predictVelocity = Main.player[npc.target].velocity * (Vector2.Distance(npc.Center, Main.player[npc.target].Center) / (12f * (float)3)); //Roughly Predict where the target is going to be when the Laser reaches it
                     Vector2 shootVector1 = ((Main.player[npc.target].Center + predictVelocity) - pos1);
                     Vector2 shootVector2 = ((Main.player[npc.target].Center + predictVelocity) - pos2);
-                    shootVector1.Normalize();
+                    shootVector1 = shootVector1.SafeNormalize(Vector2.Zero);
                     pos1 += shootVector1;
                     shootVector1 *= 12f;
-                    shootVector2.Normalize();
+                    shootVector2 = shootVector2.SafeNormalize(Vector2.Zero);
                     pos2 += shootVector2;
                     shootVector2 *= 12f;
                     Projectile.NewProjectileDirect
@@ -223,7 +223,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                         randomModifierX *= (sprayIntensity * 16.0f);
                         randomModifierY *= (sprayIntensity * 16.0f);
                         Vector2 vectorToTarget = new Vector2((Main.player[npc.target].Center.X + randomModifierX) - npc.Center.X, (Main.player[npc.target].Center.Y + randomModifierY) - npc.Center.Y);
-                        vectorToTarget.Normalize();
+                        vectorToTarget = vectorToTarget.SafeNormalize(Vector2.Zero);
                         Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromThis(), npc.Center, vectorToTarget, ProjectileID.PoisonSeedPlantera, damage, 0f, Main.myPlayer);
                         proj.timeLeft = 300;
                         proj.extraUpdates = 1;

@@ -166,7 +166,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     )
                     {
                         Vector2 vectorToTarget = Main.player[NPC.target].Center - NPC.Center;
-                        vectorToTarget.Normalize();
+                        vectorToTarget = vectorToTarget.SafeNormalize(Vector2.Zero);
                         vectorToTarget *= 1.75f;
                         if(distX >= (18 * 16) && !hitLine && Main.player[NPC.target].Center.Y <= NPC.Center.Y)
                         {
@@ -195,7 +195,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                                 dustPosition.X += xOffset;
                                 dustPosition.Y += yOffset;
                                 Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
-                                dustVelocity.Normalize();
+                                dustVelocity = dustVelocity.SafeNormalize(Vector2.Zero);
                                 dustVelocity *= 8f;
                                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Ice, dustVelocity, 0, default);
                                 newDust.noGravity = true;

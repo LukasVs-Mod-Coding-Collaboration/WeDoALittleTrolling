@@ -960,7 +960,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 )
                 {
                     Vector2 vectorToTarget = Main.player[npc.target].Center - npc.Center;
-                    vectorToTarget.Normalize();
+                    vectorToTarget = vectorToTarget.SafeNormalize(Vector2.Zero);
                     vectorToTarget *= 6.0f;
                     vectorToTarget = vectorToTarget.RotatedBy((MathHelper.ToRadians(30) * (double)npc.direction) * (-1.0));
                     Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, vectorToTarget, ProjectileID.Grenade, npc.damage, 8f);
