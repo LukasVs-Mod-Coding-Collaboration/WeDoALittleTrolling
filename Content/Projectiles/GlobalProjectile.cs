@@ -362,10 +362,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if (target != null)
                 {
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
-                    vectorToTarget.SafeNormalize(Vector2.Zero);
+                    vectorToTarget.Normalize();
                     projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
                     Vector2 normalizedVeloctiy = projectile.velocity;
-                    normalizedVeloctiy.SafeNormalize(Vector2.Zero);
+                    normalizedVeloctiy.Normalize();
                     projectile.velocity = normalizedVeloctiy * speed;
                     return false;
                 }
@@ -505,11 +505,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if (target != null)
                 {
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
-                    vectorToTarget.SafeNormalize(Vector2.Zero);
+                    vectorToTarget.Normalize();
                     float originalLength = projectile.velocity.Length();
                     projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
                     Vector2 normalizedVeloctiy = projectile.velocity;
-                    normalizedVeloctiy.SafeNormalize(Vector2.Zero);
+                    normalizedVeloctiy.Normalize();
                     projectile.velocity = normalizedVeloctiy * originalLength;
                 }
             }
@@ -568,11 +568,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if (target != null)
                 {
                     Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
-                    vectorToTarget.SafeNormalize(Vector2.Zero);
+                    vectorToTarget.Normalize();
                     float originalLength = projectile.velocity.Length();
                     projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
                     Vector2 normalizedVeloctiy = projectile.velocity;
-                    normalizedVeloctiy.SafeNormalize(Vector2.Zero);
+                    normalizedVeloctiy.Normalize();
                     projectile.velocity = normalizedVeloctiy * originalLength;
                 }
             }

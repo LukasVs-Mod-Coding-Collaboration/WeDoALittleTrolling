@@ -64,7 +64,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 90 : 60);
                 Vector2 chargeDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
-                chargeDirection.SafeNormalize(Vector2.Zero);
+                chargeDirection.Normalize();
                 chargeDirection *= 24f;
                 player.velocity = chargeDirection;
                 player.GetModPlayer<WDALTPlayer>().chargeAccelerationTicks += 25;
@@ -79,7 +79,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     dustPosition.X += xOffset;
                     dustPosition.Y += yOffset;
                     Vector2 dustVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
-                    dustVelocity.SafeNormalize(Vector2.Zero);
+                    dustVelocity.Normalize();
                     dustVelocity *= 8f;
                     Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Electric, dustVelocity, 0, default);
                     newDust.noGravity = true;
@@ -99,14 +99,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 Vector2 littleBlueBulletSpawnPos = new Vector2(target.position.X + rnd.Next(-240, 240), target.position.Y + rnd.Next(-240, 240));
                 Vector2 littleBlueBulletVelocity = new Vector2(target.Center.X - littleBlueBulletSpawnPos.X, target.Center.Y - littleBlueBulletSpawnPos.Y);
-                littleBlueBulletVelocity.SafeNormalize(Vector2.Zero);
+                littleBlueBulletVelocity.Normalize();
                 littleBlueBulletVelocity *= 6f;
                 Projectile.NewProjectile(player.GetSource_FromThis(), littleBlueBulletSpawnPos, littleBlueBulletVelocity, ProjectileID.MagicMissile, (int)Math.Round(Item.damage * 0.75), knockBack = 6f, player.whoAmI);
                 for (int j = 0; j < 20; j++)
                 {
                     Vector2 dustPosition = littleBlueBulletSpawnPos;
                     Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
-                    dustVelocity.SafeNormalize(Vector2.Zero);
+                    dustVelocity.Normalize();
                     dustVelocity *= 4f;
                     Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.HallowSpray, dustVelocity, 0, default);
                     newDust.noGravity = true;

@@ -485,7 +485,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         dustPosition.X += xOffset;
                         dustPosition.Y += yOffset;
                         Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
-                        dustVelocity.SafeNormalize(Vector2.Zero);
+                        dustVelocity.Normalize();
                         dustVelocity *= 16f;
                         Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Electric, dustVelocity, 0, default);
                         newDust.noGravity = true;
@@ -694,7 +694,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     projPosition.X += xOffset;
                     projPosition.Y += yOffset;
                     Vector2 projVelocity = new Vector2((random.NextFloat() - 0.5f), (random.NextFloat() - 0.5f));
-                    projVelocity.SafeNormalize(Vector2.Zero);
+                    projVelocity.Normalize();
                     projVelocity *= 12f;
                     int dmg = (int)Math.Round(proj.damage * 0.15);
                     Projectile.NewProjectileDirect(proj.GetSource_OnHit(target), projPosition, projVelocity, ModContent.ProjectileType<MagicArtifact>(), dmg, proj.knockBack, proj.owner);

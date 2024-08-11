@@ -65,7 +65,7 @@ namespace WeDoALittleTrolling.Content.Experimental
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 ShootDirection = new Vector2(Main.MouseWorld.X - player.position.X, Main.MouseWorld.Y - player.position.Y);
-            ShootDirection.SafeNormalize(Vector2.Zero);
+            ShootDirection.Normalize();
             ShootDirection *= 3;
 
             Projectile.NewProjectile(player.GetSource_FromThis(), new Vector2(player.position.X, player.position.Y), ShootDirection, ProjectileID.Electrosphere, damage = 100, knockback = 6f, Main.myPlayer);

@@ -60,16 +60,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
             Vector2 dustVelocityMiddleUp = Projectile.velocity.RotatedBy(MathHelper.ToRadians(90));
             Vector2 dustVelocityMiddleDown = Projectile.velocity.RotatedBy(MathHelper.ToRadians(270));
-            dustVelocityMiddleUp.SafeNormalize(Vector2.Zero);
+            dustVelocityMiddleUp.Normalize();
             dustVelocityMiddleUp *= 0.4f;
-            dustVelocityMiddleDown.SafeNormalize(Vector2.Zero);
+            dustVelocityMiddleDown.Normalize();
             dustVelocityMiddleDown *= 0.4f;
 
             Vector2 dustVelocityOuterUp = Projectile.velocity.RotatedBy(MathHelper.ToRadians(90));
             Vector2 dustVelocityOuterDown = Projectile.velocity.RotatedBy(MathHelper.ToRadians(270));
-            dustVelocityOuterUp.SafeNormalize(Vector2.Zero);
+            dustVelocityOuterUp.Normalize();
             dustVelocityOuterUp *= 0.8f;
-            dustVelocityOuterDown.SafeNormalize(Vector2.Zero);
+            dustVelocityOuterDown.Normalize();
             dustVelocityOuterDown *= 0.8f;
 
             if (ticksAlive > 8)

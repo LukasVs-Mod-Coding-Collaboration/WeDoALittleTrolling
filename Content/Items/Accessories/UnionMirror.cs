@@ -133,7 +133,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
                 Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
-                dustVelocity.SafeNormalize(Vector2.Zero);
+                dustVelocity.Normalize();
                 dustVelocity *= 3f;
                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.UltraBrightTorch, dustVelocity, 0, default);
                 newDust.noGravity = true;

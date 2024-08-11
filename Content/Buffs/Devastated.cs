@@ -53,7 +53,7 @@ namespace WeDoALittleTrolling.Content.Buffs
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
                 Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
-                dustVelocity.SafeNormalize(Vector2.Zero);
+                dustVelocity.Normalize();
                 dustVelocity *= 16f;
                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Shadowflame, dustVelocity, 0, default);
                 newDust.noGravity = true;
@@ -80,7 +80,7 @@ namespace WeDoALittleTrolling.Content.Buffs
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
                 Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
-                dustVelocity.SafeNormalize(Vector2.Zero);
+                dustVelocity.Normalize();
                 dustVelocity *= 16f;
                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Phantasmal, dustVelocity, 0, default);
                 newDust.noGravity = true;

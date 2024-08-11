@@ -162,7 +162,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (Projectile.owner == Main.myPlayer && distanceToIdlePos > (detectionRange * 2f))
             {
                 Projectile.position = idlePos;
-                Projectile.velocity.SafeNormalize(Vector2.Zero);
+                Projectile.velocity.Normalize();
                 Projectile.velocity *= idleMoveSpeed;
                 Projectile.netUpdate = true;
             }
@@ -257,12 +257,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     Projectile.velocity = Vector2.Zero;
                 }
-                moveVector.SafeNormalize(Vector2.Zero);
+                moveVector.Normalize();
                 moveVector *= attackMoveSpeed;
                 Projectile.velocity += (moveVector / attackInertia);
                 if (Projectile.velocity.Length() > attackMoveSpeed)
                 {
-                    Projectile.velocity.SafeNormalize(Vector2.Zero);
+                    Projectile.velocity.Normalize();
                     Projectile.velocity *= attackMoveSpeed;
                 }
             }
@@ -281,10 +281,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
                     Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
                     Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
-                    shootVector1.SafeNormalize(Vector2.Zero);
+                    shootVector1.Normalize();
                     pos1 += (shootVector1 * bulletOffsetMultiplier);
                     shootVector1 *= bulletSpeed;
-                    shootVector2.SafeNormalize(Vector2.Zero);
+                    shootVector2.Normalize();
                     pos2 += (shootVector2 * bulletOffsetMultiplier);
                     shootVector2 *= bulletSpeed;
                     Projectile.NewProjectileDirect
@@ -324,7 +324,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             float minSpeed = (attackMoveSpeed / attackInertia) * 0.25f;
             if (currentSpeed < minSpeed && distanceToTarget <= detectionRangeOffset)
             {
-                Projectile.velocity.SafeNormalize(Vector2.Zero);
+                Projectile.velocity.Normalize();
                 Projectile.velocity *= (attackMoveSpeed / attackInertia);
             }
         }
@@ -339,17 +339,17 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     speedFactor = 1f;
                 }
-                vectorToIdlePos.SafeNormalize(Vector2.Zero);
+                vectorToIdlePos.Normalize();
                 vectorToIdlePos *= (idleMoveSpeed * speedFactor);
                 Projectile.velocity += (vectorToIdlePos / idleInertia);
                 if (Projectile.velocity.Length() > (idleMoveSpeed * speedFactor)) //Smoothly accelerate/decelerate based on distance to idle position
                 {
-                    Projectile.velocity.SafeNormalize(Vector2.Zero);
+                    Projectile.velocity.Normalize();
                     Projectile.velocity *= (idleMoveSpeed * speedFactor);
                 }
                 if (Projectile.velocity.Length() > attackMoveSpeed) //Cap movement speed at attack movement speed
                 {
-                    Projectile.velocity.SafeNormalize(Vector2.Zero);
+                    Projectile.velocity.Normalize();
                     Projectile.velocity *= attackMoveSpeed;
                 }
             }
@@ -366,7 +366,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             float minSpeed = (idleMoveSpeed / idleInertia) * 0.25f;
             if (currentSpeed < minSpeed && distanceToIdlePos <= idleDistance)
             {
-                Projectile.velocity.SafeNormalize(Vector2.Zero);
+                Projectile.velocity.Normalize();
                 Projectile.velocity *= (idleMoveSpeed / idleInertia);
             }
         }

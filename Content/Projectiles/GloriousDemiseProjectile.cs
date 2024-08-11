@@ -127,7 +127,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Vector2 spawnPos = new Vector2((Projectile.Center.X), (Projectile.Center.Y - spawnYOffset));
                 //Vector2 spawnVelocity = new Vector2((random.NextFloat() - 0.5f), (random.NextFloat() - 0.5f));
                 Vector2 spawnVelocity = Projectile.velocity * (-1f);
-                spawnVelocity.SafeNormalize(Vector2.Zero);
+                spawnVelocity.Normalize();
                 spawnVelocity *= 8f;
                 Projectile.NewProjectileDirect(Projectile.GetSource_Death(), spawnPos, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, Projectile.damage, Projectile.knockBack, Projectile.owner);
                 Projectile.NewProjectileDirect(Projectile.GetSource_Death(), Projectile.Center, spawnVelocity, ProjectileID.Volcano, 0, 0f, Projectile.owner);
@@ -143,7 +143,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
                 Vector2 dustVelocity = new Vector2((random.NextFloat() - 0.5f), (random.NextFloat() - 0.5f));
-                dustVelocity.SafeNormalize(Vector2.Zero);
+                dustVelocity.Normalize();
                 dustVelocity *= 8f;
                 int dustTypeRandom = random.Next(0, 4);
                 int dustType = DustID.Confetti_Blue;
