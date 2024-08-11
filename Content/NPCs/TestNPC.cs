@@ -26,6 +26,7 @@ using WeDoALittleTrolling.Content.Buffs;
 using Terraria.Audio;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.DataStructures;
+using System.Formats.Tar;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -34,9 +35,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         private const float detectionRange = 1920f + 1f; //One Screen Wide
         private Player target;
         private float distanceToTarget;
-        //private int targetAggro;
-        //private bool hasTarget;
-        //Usable later but brick the NPC apparently
+        private bool hasTarget = false;
 
         public override void SetDefaults()
         {
@@ -62,38 +61,53 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void AI()
         {
+            if (target == null || target.dead || !target.active || Vector2.Distance(NPC.Center, target.Center) > detectionRange)
+            {
+                for (int i = 0; i < Main.player.Length; i++)
+                {
+                    if (Main.player[i] != null && !Main.player[i].dead && Main.player[i].active)
+                    {
+                        target = Main.player[i];
+                        hasTarget = true;
+                        break;  
+                    }   //Stop the loop as soon as we detect any viable Target
+                    else
+                    {
+                        hasTarget = false;
+                    }
+                    //If the loop runs without finding a Player, we want to not do anything.
+                    //If our hasTarget is false, Idle or despawn later in the AI code.
+                }
+            }
+            //Find A Sample Player
+            for (int i = 0; i < Main.player.Length; i++)
+            {
+                if
+                (
+                     (Main.player[i].aggro > target.aggro ||
+                     (Main.player[i].aggro == target.aggro && Vector2.Distance(NPC.Center, Main.player[i].Center) < Vector2.Distance(NPC.Center, target.Center)))
+                     && (Main.player[i] != null && !Main.player[i].dead && Main.player[i].active)
+                )
+                {
+                    target = Main.player[i];
+                    hasTarget = true;
+                }
+                
+            }
+            //Determine our Target based on aggro and distance
             TestNPCAI();
+            //Actually decide what we want to do
         }
 
         private void TestNPCAI()
         {
-            distanceToTarget = detectionRange;
-            for (int i = 0 ; i < Main.player.Length ; i++)
-            {
-                if
-                (
-                    Main.player[i] == null ||
-                    Main.player[i].dead ||
-                    !Main.player[i].active
-                )
-                {
-                    continue;
-                }
-                float TargetDistanceControl = Vector2.Distance(NPC.Center, Main.player[i].Center);
-                if (TargetDistanceControl < distanceToTarget)
-                {
-                    target = Main.player[i];
-                    distanceToTarget = TargetDistanceControl;
-                }
-            }
-
-            if (target != null && !target.dead && target.active)
+            if (hasTarget) //Act only if we have a target
             {
                     NPC.velocity = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y);
                     NPC.velocity.Normalize();
                     NPC.velocity *= 4f;
             }
-            else
+            else // Despawn without a target
             {
                 NPC.EncourageDespawn(10);
             }
