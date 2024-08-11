@@ -26,7 +26,6 @@ using WeDoALittleTrolling.Content.Buffs;
 using Terraria.Audio;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.DataStructures;
-using System.Formats.Tar;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -35,7 +34,14 @@ namespace WeDoALittleTrolling.Content.NPCs
         private const float detectionRange = 1920f + 1f; //One Screen Wide
         private Player target;
         private float distanceToTarget;
+        private float maxSpeed = 7f;
         private bool hasTarget = false;
+        private bool hover = true;
+        private bool laser = false;
+        private bool changedPhases = false;
+        private bool charge = false;
+        private bool chargeFast = false;
+        private bool surpriseCharge = false;
 
         public override void SetDefaults()
         {
@@ -100,12 +106,21 @@ namespace WeDoALittleTrolling.Content.NPCs
         }
 
         private void TestNPCAI()
-        {
+        {          
             if (hasTarget) //Act only if we have a target
             {
-                    NPC.velocity = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y);
-                    NPC.velocity.Normalize();
-                    NPC.velocity *= 4f;
+                if (hover)
+                {
+                    Vector2 hoverDirection = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y - 128);
+                    hoverDirection.SafeNormalize(hoverDirection);
+                    hoverDirection *= 0.1f;
+                    NPC.velocity.X += (hoverDirection.X * 0.5f);
+                    NPC.velocity.Y += hoverDirection.Y;
+                    if (NPC.velocity.Length() > maxSpeed)
+                    {
+                        NPC.velocity = NPC.velocity.SafeNormalize(NPC.velocity) * maxSpeed;
+                    }
+                }
             }
             else // Despawn without a target
             {
