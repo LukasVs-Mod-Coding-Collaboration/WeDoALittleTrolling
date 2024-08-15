@@ -28,9 +28,9 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Content.Tiles;
 
-namespace WeDoALittleTrolling.Content.Items
+namespace WeDoALittleTrolling.Content.Items.Placeable
 {
-    internal class WormCandle : ModItem
+    public class WormCandle : ModItem
     {
         public override void SetDefaults()
         {

@@ -596,6 +596,11 @@ Mods: {
 				DisplayName: Glacial Staff
 				Tooltip: ""
 			}
+
+			EmberfluxOreItem: {
+				DisplayName: Emberflux Ore
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -993,11 +998,14 @@ Mods: {
 			IceBiomeCustomCavesMessage: Generating additional ice biome caves... This may take a while...
 			IceBiomeGloomMessage: Generating additional ice biome gloom
 			GeneralCustomCavesMessage: Generating additional caves... This may take a while...
+			BlessedWithEmberfluxOreMessage: Your world has been blessed with Emberflux Ore!
 		}
 
 		Keybinds: {
 			LifeforceEngine.DisplayName: Activate Lifeforce Engine
-			"Open Skill Tree.DisplayName": Open  Skill  Tree
+			"Open Skill Tree.DisplayName": Open Skill Tree
 		}
+
+		Tiles.EmberfluxOre.MapEntry: Emberflux Ore
 	}
 }
