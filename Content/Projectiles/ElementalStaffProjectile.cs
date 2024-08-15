@@ -121,9 +121,9 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void PostDraw(Color lightColor)
         {
-            if (ticksAlive % 30 == 0)
+            if (Main.rand.NextBool(30))
             {
-                int rMax = (int)Projectile.width;
+                int rMax = (int)Projectile.width / 2;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));
