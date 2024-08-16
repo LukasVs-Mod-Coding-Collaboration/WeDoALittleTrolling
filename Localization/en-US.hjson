@@ -601,6 +601,11 @@ Mods: {
 				DisplayName: Emberflux Ore
 				Tooltip: ""
 			}
+
+			EmbersteelBarItem: {
+				DisplayName: Embersteel Bar
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -998,7 +1003,7 @@ Mods: {
 			IceBiomeCustomCavesMessage: Generating additional ice biome caves... This may take a while...
 			IceBiomeGloomMessage: Generating additional ice biome gloom
 			GeneralCustomCavesMessage: Generating additional caves... This may take a while...
-			BlessedWithEmberfluxOreMessage: Your world has been blessed with Emberflux Ore!
+			BlessedWithEmberfluxOreMessage: Your world has been blessed with Emberflux!
 		}
 
 		Keybinds: {
@@ -1006,6 +1011,9 @@ Mods: {
 			"Open Skill Tree.DisplayName": Open Skill Tree
 		}
 
-		Tiles.EmberfluxOre.MapEntry: Emberflux Ore
+		Tiles: {
+			EmberfluxOre.MapEntry: Emberflux Ore
+			EmbersteelBar.MapEntry: Embersteel Bar
+		}
 	}
 }

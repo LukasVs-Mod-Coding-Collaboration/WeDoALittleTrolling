@@ -41,6 +41,7 @@ using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Content.Items.Weapons;
 using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
+using WeDoALittleTrolling.Content.Tiles;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -1247,6 +1248,15 @@ namespace WeDoALittleTrolling.Content.NPCs
                     Devastated.DevastatePlayer(target);
                 }
             }
+        }
+
+        public override bool PreKill(NPC npc)
+        {
+            if (npc.type == NPCID.QueenSlimeBoss && !NPC.downedQueenSlime)
+            {
+                ModContent.GetInstance<EmberfluxOreSystem>().BlessWorldWithEmberfluxOre();
+            }
+            return base.PreKill(npc);
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
