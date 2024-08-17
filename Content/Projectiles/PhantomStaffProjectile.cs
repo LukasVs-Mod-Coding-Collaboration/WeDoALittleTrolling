@@ -27,6 +27,7 @@ using Terraria.Audio;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.DataStructures;
 using WeDoALittleTrolling.Common.ModPlayers;
+using System.IO;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -91,6 +92,20 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override bool MinionContactDamage()
         {
             return true;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((long)ticksAlive);
+            writer.Write((long)lastActionTick);
+            base.SendExtraAI(writer);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            ticksAlive = reader.ReadInt64();
+            lastActionTick = reader.ReadInt64();
+            base.ReceiveExtraAI(reader);
         }
 
         public override void AI()
@@ -317,10 +332,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AI_003_LuminitePhantom_AttackCorrectFreeze(ref float distanceToTarget)
         {
+            bool sync = false;
             if (Projectile.velocity == Vector2.Zero)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
+                sync = true;
             }
             float currentSpeed = Projectile.velocity.Length();
             float minSpeed = (attackMoveSpeed / attackInertia) * 0.25f;
@@ -328,6 +345,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero);;
                 Projectile.velocity *= (attackMoveSpeed / attackInertia);
+            }
+            if (sync && Projectile.owner == Main.myPlayer)
+            {
+                Projectile.netUpdate = true;
             }
         }
 
@@ -359,10 +380,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AI_003_LuminitePhantom_IdleCorrectFreeze(ref float distanceToIdlePos)
         {
+            bool sync = false;
             if (Projectile.velocity == Vector2.Zero)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
+                sync = true;
             }
             float currentSpeed = Projectile.velocity.Length();
             float minSpeed = (idleMoveSpeed / idleInertia) * 0.25f;
@@ -370,6 +393,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero);;
                 Projectile.velocity *= (idleMoveSpeed / idleInertia);
+            }
+            if (sync && Projectile.owner == Main.myPlayer)
+            {
+                Projectile.netUpdate = true;
             }
         }
 
