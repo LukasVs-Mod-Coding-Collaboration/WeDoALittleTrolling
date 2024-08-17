@@ -46,6 +46,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float idleAccelerationFactor = 0.625f;
         public const float bulletSpeed = 24f;
         public const float bulletOffsetMultiplier = 28f;
+        public const float zeroVectorMaxLen = 0.000015259f;
         public static readonly Vector2 gfxShootOffset = new Vector2(0f, 0f);
         public long ticksAlive = 0;
         public long lastActionTick = 0;
@@ -287,7 +288,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero);
                     Projectile.velocity *= currentSpeed;
                 }
-                if (Projectile.velocity == Vector2.Zero)
+                if (Projectile.velocity == Vector2.Zero || Projectile.velocity.Length() < zeroVectorMaxLen)
                 {
                     Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                     Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
@@ -370,7 +371,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         private void AI_012_FrozenElemental_IdleCorrectFreeze(ref float distanceToIdlePos)
         {
             bool sync = false;
-            if (Projectile.velocity == Vector2.Zero)
+            if (Projectile.velocity == Vector2.Zero || Projectile.velocity.Length() < zeroVectorMaxLen)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);

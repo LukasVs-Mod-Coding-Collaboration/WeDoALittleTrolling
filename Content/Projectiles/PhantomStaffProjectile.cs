@@ -45,6 +45,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public const float idleAccelerationFactor = 0.75f;
         public const float bulletSpeed = 32f;
         public const float bulletOffsetMultiplier = 36f;
+        public const float zeroVectorMaxLen = 0.000015259f;
         public const float tiltFactor = 0.015625f;
         public static readonly Vector2 gfxShootOffset1 = new Vector2(-9f, -12f);
         public static readonly Vector2 gfxShootOffset2 = new Vector2(10f, -12f);
@@ -333,7 +334,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         private void AI_003_LuminitePhantom_AttackCorrectFreeze(ref float distanceToTarget)
         {
             bool sync = false;
-            if (Projectile.velocity == Vector2.Zero)
+            if (Projectile.velocity == Vector2.Zero || Projectile.velocity.Length() < zeroVectorMaxLen)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
@@ -381,7 +382,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         private void AI_003_LuminitePhantom_IdleCorrectFreeze(ref float distanceToIdlePos)
         {
             bool sync = false;
-            if (Projectile.velocity == Vector2.Zero)
+            if (Projectile.velocity == Vector2.Zero || Projectile.velocity.Length() < zeroVectorMaxLen)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
