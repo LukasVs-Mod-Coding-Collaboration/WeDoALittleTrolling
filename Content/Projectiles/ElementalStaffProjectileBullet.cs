@@ -30,6 +30,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class ElementalStaffProjectileBullet : ModProjectile
     {
+
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.MinionShot[Projectile.type] = true;
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 10;
