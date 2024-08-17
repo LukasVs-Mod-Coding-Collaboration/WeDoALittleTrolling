@@ -27,6 +27,7 @@ using Terraria.Audio;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.DataStructures;
 using WeDoALittleTrolling.Common.ModPlayers;
+using System.IO;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -90,6 +91,20 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override bool MinionContactDamage()
         {
             return false;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((long)ticksAlive);
+            writer.Write((long)lastActionTick);
+            base.SendExtraAI(writer);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            ticksAlive = reader.ReadInt64();
+            lastActionTick = reader.ReadInt64();
+            base.ReceiveExtraAI(reader);
         }
 
         public override void AI()
@@ -249,6 +264,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AI_012_FrozenElemental_AttackAI(ref float distanceToTarget, ref Vector2 targetCenter, ref Vector2 targetVelocity, ref bool targetDetected)
         {
+            bool sync = false;
             if (distanceToTarget > detectionRangeOffset)
             {
                 Vector2 moveVector = (targetCenter - Projectile.Center);
@@ -275,6 +291,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                     Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
+                    sync = true;
                 }
                 currentSpeed = Projectile.velocity.Length();
                 float minSpeed = (idleMoveSpeed / idleInertia) * 0.25f;
@@ -318,6 +335,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 SoundEngine.PlaySound(SoundID.Item28, Projectile.Center);
                 lastActionTick = ticksAlive;
             }
+            if (sync && Projectile.owner == Main.myPlayer)
+            {
+                Projectile.netUpdate = true;
+            }
         }
 
         private void AI_012_FrozenElemental_IdleAI(ref float distanceToIdlePos, ref Vector2 vectorToIdlePos)
@@ -348,10 +369,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AI_012_FrozenElemental_IdleCorrectFreeze(ref float distanceToIdlePos)
         {
+            bool sync = false;
             if (Projectile.velocity == Vector2.Zero)
             {
                 Projectile.velocity.X = (Main.rand.NextFloat() - 0.5f);
                 Projectile.velocity.Y = (Main.rand.NextFloat() - 0.5f);
+                sync = true;
             }
             float currentSpeed = Projectile.velocity.Length();
             float minSpeed = (idleMoveSpeed / idleInertia) * 0.25f;
@@ -359,6 +382,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero);;
                 Projectile.velocity *= (idleMoveSpeed / idleInertia);
+            }
+            if (sync && Projectile.owner == Main.myPlayer)
+            {
+                Projectile.netUpdate = true;
             }
         }
 
