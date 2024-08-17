@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Content.NPCs
     {
         private const float detectionRange = 1920f + 1f; //One Screen Wide
         private Player target;
-        private float maxSpeed = 7f;
+        private float maxSpeed = 10f;
         private bool hasTarget = false;
         private bool hover = true;
         /*
@@ -113,14 +113,30 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 if (hover)
                 {
-                    Vector2 hoverDirection = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y - 128);
+                    Vector2 hoverDirection = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y - 192);
+                    Vector2 hoverPoint = hoverDirection;
                     hoverDirection = hoverDirection.SafeNormalize(Vector2.Zero);
-                    hoverDirection *= 0.1f;
-                    NPC.velocity.X += (hoverDirection.X * 0.5f);
-                    NPC.velocity.Y += hoverDirection.Y;
-                    if (NPC.velocity.Length() > maxSpeed)
+                    hoverDirection *= 0.45f;
+                    if (hoverPoint.Length() > 32)
                     {
-                        NPC.velocity = NPC.velocity.SafeNormalize(NPC.velocity) * maxSpeed;
+                        NPC.velocity.X += hoverDirection.X;
+                        NPC.velocity.Y += hoverDirection.Y * 0.75f;
+                        if (NPC.velocity.Length() > maxSpeed)
+                        {
+                            NPC.velocity = NPC.velocity.SafeNormalize(NPC.velocity) * maxSpeed;
+                        }
+                        if (NPC.Center.Y < target.Center.Y && NPC.velocity.Y > 0 && hoverPoint.Length() < 48)
+                        {
+                            NPC.velocity.Y *= 0.98f;
+                        }                        
+                    }
+                    else
+                    {
+                        NPC.velocity *= 0.96f;
+                        if (NPC.velocity.Length() < 0.05f)
+                        {
+                            NPC.velocity *= 0f;
+                        }
                     }
                 }
             }
