@@ -76,8 +76,15 @@ namespace WeDoALittleTrolling.Content.NPCs
                     if (Main.player[i] != null && !Main.player[i].dead && Main.player[i].active)
                     {
                         target = Main.player[i];
-                        hasTarget = true;
-                        break;  
+                        if (Vector2.Distance(NPC.Center, target.Center) < detectionRange)
+                        {
+                            hasTarget = true;
+                            break;
+                        }
+                        else
+                        {
+                            hasTarget = false;
+                        }
                     }   //Stop the loop as soon as we detect any viable Target
                     else
                     {
@@ -92,9 +99,16 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 if
                 (
-                     (Main.player[i].aggro > target.aggro ||
-                     (Main.player[i].aggro == target.aggro && Vector2.Distance(NPC.Center, Main.player[i].Center) < Vector2.Distance(NPC.Center, target.Center)))
-                     && (Main.player[i] != null && !Main.player[i].dead && Main.player[i].active)
+                    (
+                        Main.player[i].aggro > target.aggro ||
+                        (
+                            Main.player[i].aggro == target.aggro &&
+                            Vector2.Distance(NPC.Center, Main.player[i].Center) < Vector2.Distance(NPC.Center, target.Center)
+                        )
+                    ) &&
+                    (
+                        Main.player[i] != null && !Main.player[i].dead && Main.player[i].active
+                    )
                 )
                 {
                     target = Main.player[i];
