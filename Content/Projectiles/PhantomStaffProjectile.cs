@@ -172,6 +172,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         private void AI_003_LuminitePhantom_CoreTasks(ref Player ownerPlayer, out Vector2 idlePos, out Vector2 vectorToIdlePos, out float distanceToIdlePos)
         {
+            bool sync = false;
             idlePos = ownerPlayer.Center;
             idlePos.Y -= (Projectile.height * 3f);
             vectorToIdlePos = idlePos - Projectile.Center;
@@ -179,9 +180,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.rotation = Projectile.velocity.X * tiltFactor;
             if (Projectile.owner == Main.myPlayer && distanceToIdlePos > (detectionRange * 2f))
             {
-                Projectile.position = idlePos;
+                Projectile.Center = idlePos;
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero);;
                 Projectile.velocity *= idleMoveSpeed;
+                sync = true;
+            }
+            if (sync && Projectile.owner == Main.myPlayer)
+            {
                 Projectile.netUpdate = true;
             }
         }
@@ -235,7 +240,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             for (int i = 0; i < Main.projectile.Length; i++)
             {
                 Projectile otherMinion = Main.projectile[i];
-                bool proximity = ((Math.Abs(Projectile.position.X - otherMinion.position.X) + Math.Abs(Projectile.position.Y - otherMinion.position.Y)) < (Projectile.width));
+                bool proximity = ((Math.Abs(Projectile.Center.X - otherMinion.Center.X) + Math.Abs(Projectile.Center.Y - otherMinion.Center.Y)) < (Projectile.width));
                 if
                 (
                     (i != Projectile.whoAmI) &&
@@ -244,7 +249,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     (proximity)
                 )
                 {
-                    if (Projectile.position.X < otherMinion.position.X)
+                    if (Projectile.Center.X < otherMinion.Center.X)
                     {
                         Projectile.velocity.X -= cFactor;
                     }
@@ -252,7 +257,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     {
                         Projectile.velocity.X += cFactor;
                     }
-                    if (Projectile.position.Y < otherMinion.position.Y)
+                    if (Projectile.Center.Y < otherMinion.Center.Y)
                     {
                         Projectile.velocity.Y -= cFactor;
                     }
