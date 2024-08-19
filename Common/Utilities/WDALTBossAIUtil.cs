@@ -30,10 +30,11 @@ namespace WeDoALittleTrolling.Common.Utilities
 {
     internal static class WDALTBossAIUtil
     {
-        public const double rotationRoundingErrorGuard = 0.0325;
+        //public const double rotationRoundingErrorGuard = 0.0325;
         public const double destroyerLiftoffLimit = 0.66;
         public const double destroyerAccelerationLimit = 0.33;
 
+        /*
         public static void BossAI_CirclePlayer(NPC npc, Player target, float speed, bool clockwise = true)
         {
             npc.velocity = (target.Center - npc.Center).RotatedBy((clockwise ? (Math.PI * 1.5) + rotationRoundingErrorGuard : (Math.PI * 0.5) - rotationRoundingErrorGuard));
@@ -47,6 +48,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             npc.velocity = npc.velocity.SafeNormalize(Vector2.Zero);
             npc.velocity *= speed;
         }
+        */
 
         public static void BossAI_LunaticCultistExtras(NPC npc)
         {
