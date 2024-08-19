@@ -641,8 +641,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
                 if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS))
                 {
-                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
-                    npc.damage = (int)Math.Round(npc.damage * 1.5);
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.25);
+                    npc.damage = (int)Math.Round(npc.damage * 1.25);
                 }
                 if (npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BS_V1) || npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_BS_V2))
                 {
@@ -779,7 +779,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     npc.type == WDALTModContentID.GetThoriumBossNPCID(WDALTModContentID.ThoriumBoss_SCS)
                 )
                 {
-                    projectile.damage = (int)Math.Round(projectile.damage * 1.5);
+                    projectile.damage = (int)Math.Round(projectile.damage * 1.25);
                     projectile.netUpdate = true;
                 }
             }
