@@ -240,7 +240,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                                 Main.npc[index].type == NPCID.EaterofWorldsTail
                             )
                             {
-                                specialHitSetter = 1; //1 means normal enemy
+                                specialHitSetter = 1; //1 means moon lord / empress of light
                             }
                         }
                         return specialHitSetter;
