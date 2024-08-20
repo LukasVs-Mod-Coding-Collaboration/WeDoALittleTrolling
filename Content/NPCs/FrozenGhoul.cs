@@ -17,6 +17,7 @@
 */
 
 using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -82,6 +83,20 @@ namespace WeDoALittleTrolling.Content.NPCs
                     new FlavorTextBestiaryInfoElement("Ghouls frozen by the endless ice have obtained the ability to perform a powerful magic leap towards their victims.")
                 }
             );
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((long)ticksAlive);
+            writer.Write((bool)leapFlag);
+            base.SendExtraAI(writer);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            ticksAlive = reader.ReadInt64();
+            leapFlag = reader.ReadBoolean();
+            base.ReceiveExtraAI(reader);
         }
 
         public override void AI()
@@ -200,7 +215,14 @@ namespace WeDoALittleTrolling.Content.NPCs
                                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Ice, dustVelocity, 0, default);
                                 newDust.noGravity = true;
                             }
-                            SoundEngine.PlaySound(SoundID.Item27, NPC.Center);
+                            if (Main.dedServ && Main.netMode == NetmodeID.Server)
+                            {
+                                NPC.netUpdate = true;
+                            }
+                            else
+                            {
+                                SoundEngine.PlaySound(SoundID.Item27, NPC.Center);
+                            }
                         }
                     }
                 }

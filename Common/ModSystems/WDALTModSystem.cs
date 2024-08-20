@@ -38,13 +38,27 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static bool isCalamityModPresent = false;
         public static bool isThoriumModPresent = false;
         public static bool isConsolariaModPresent = false;
+        public static bool isSpiritModPresent = false;
+        public static bool isSpookyModPresent = false;
         public static readonly string calamityModName = "CalamityMod";
         public static readonly string thoriumModName = "ThoriumMod";
         public static readonly string consolariaModName = "Consolaria";
+        public static readonly string spiritModName = "SpiritMod";
+        public static readonly string spookyModName = "Spooky";
         public static bool MCIDIntegrity;
         
         public override void OnModLoad()
         {
+            if(ModLoader.HasMod(spookyModName))
+            {
+                isSpookyModPresent = true;
+                WeDoALittleTrolling.logger.Info("Spooky Mod detected.");
+            }
+            if(ModLoader.HasMod(spiritModName))
+            {
+                isSpiritModPresent = true;
+                WeDoALittleTrolling.logger.Info("Spirit Mod detected.");
+            }
             if(ModLoader.HasMod(consolariaModName))
             {
                 isConsolariaModPresent = true;
@@ -63,7 +77,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 isCalamityModPresent = true;
                 WeDoALittleTrolling.logger.Warn("Calamity Mod detected.");
-                WeDoALittleTrolling.logger.Warn("WeDoALittleTrolling is not intended to be used together with Calamity Mod.");
+                WeDoALittleTrolling.logger.Warn("WeDoALittleTrolling may not work well together with Calamity Mod.");
                 WeDoALittleTrolling.logger.Warn("Most rebalancing features of WeDoALittleTrolling are not compatible with Calamity Mod.");
                 WeDoALittleTrolling.logger.Warn("Disabling most rebalancing features of WeDoALittleTrolling to ensure the game stays playable...");
             }

@@ -17,6 +17,7 @@
 */
 
 using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -134,6 +135,18 @@ namespace WeDoALittleTrolling.Content.NPCs
             );
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((long)ticksAlive);
+            base.SendExtraAI(writer);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            ticksAlive = reader.ReadInt64();
+            base.ReceiveExtraAI(reader);
+        }
+
         public override bool PreAI()
         {
             AI_013_NightmarePhantom();
@@ -233,7 +246,14 @@ namespace WeDoALittleTrolling.Content.NPCs
                         Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.RedTorch, dustVelocity, 0, default);
                         newDust.noGravity = true;
                     }
-                    SoundEngine.PlaySound(SoundID.Zombie53, NPC.Center);
+                    if (Main.dedServ && Main.netMode == NetmodeID.Server)
+                    {
+                        NPC.netUpdate = true;
+                    }
+                    else
+                    {
+                        SoundEngine.PlaySound(SoundID.Zombie53, NPC.Center);
+                    }
                 }
             }
         }
