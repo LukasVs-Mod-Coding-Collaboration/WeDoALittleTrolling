@@ -16,24 +16,13 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
 using Terraria;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using WeDoALittleTrolling.Content.NPCs;
-using WeDoALittleTrolling.Common.Utilities;
-using Terraria.GameContent;
-using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Common.ModPlayers;
 
-namespace WeDoALittleTrolling.Content.Buffs
+namespace WeDoALittleTrolling.Content.Projectiles.Minions
 {
-    public class PhantomStaffBuff : ModBuff
+    public class ElementalStaffBuff : ModBuff
     {
         public override void SetStaticDefaults()
         {
@@ -43,11 +32,11 @@ namespace WeDoALittleTrolling.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<PhantomStaffProjectile>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<ElementalStaffProjectile>()] > 0)
             {
-                player.GetModPlayer<WDALTPlayer>().lumintePhantomMinion = true;
+                player.GetModPlayer<WDALTPlayer>().frozenElementalMinion = true;
             }
-            if (!player.GetModPlayer<WDALTPlayer>().lumintePhantomMinion)
+            if (!player.GetModPlayer<WDALTPlayer>().frozenElementalMinion)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

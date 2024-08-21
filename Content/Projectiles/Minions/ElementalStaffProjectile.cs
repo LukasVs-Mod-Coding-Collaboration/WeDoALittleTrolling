@@ -19,17 +19,13 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.Utilities;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WeDoALittleTrolling.Content.Buffs;
 using Terraria.Audio;
-using WeDoALittleTrolling.Common.Utilities;
-using Terraria.DataStructures;
 using WeDoALittleTrolling.Common.ModPlayers;
 using System.IO;
 
-namespace WeDoALittleTrolling.Content.Projectiles
+namespace WeDoALittleTrolling.Content.Projectiles.Minions
 {
     public class ElementalStaffProjectile : ModProjectile
     {

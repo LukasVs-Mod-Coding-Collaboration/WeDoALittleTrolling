@@ -19,32 +19,22 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Microsoft.Xna.Framework;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
-using System;
-using System.Linq;
-using Terraria.Utilities;
 
-namespace WeDoALittleTrolling.Content.Items
+namespace WeDoALittleTrolling.Content.Items.Ammo
 {
     internal class InfiniteRocketAmmo : ModItem
     {
 
-        public static UnifiedRandom FireworksColor = new UnifiedRandom();
-        public static readonly int[] CompatibleWeaponIDs = 
+        public override void SetStaticDefaults()
         {
-            ItemID.Celeb2,
-            ItemID.SnowmanCannon,
-            ItemID.FireworksLauncher,
-            ItemID.ElectrosphereLauncher,
-            ItemID.GrenadeLauncher,
-            ItemID.ProximityMineLauncher,
-            ItemID.RocketLauncher
-        };
+            AmmoID.Sets.IsSpecialist[Type] = true;
+
+            AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.RocketLauncher].Add(Type, ProjectileID.RocketI);
+            AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.ProximityMineLauncher].Add(Type, ProjectileID.ProximityMineI);
+            AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.GrenadeLauncher].Add(Type, ProjectileID.GrenadeI);
+            AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.SnowmanCannon].Add(Type, ProjectileID.RocketSnowmanI);
+            AmmoID.Sets.SpecificLauncherAmmoProjectileMatches[ItemID.Celeb2].Add(Type, ProjectileID.Celeb2Rocket);
+        }
 
         public override void SetDefaults()
         {
@@ -62,7 +52,32 @@ namespace WeDoALittleTrolling.Content.Items
             Item.shoot = ProjectileID.RocketI;
         }
 
-        //Set allowed weapons
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+              .AddTile(TileID.CrystalBall)
+              .AddIngredient(ItemID.RocketI, 3000)
+              .AddIngredient(ItemID.Ectoplasm, 15)
+              .Register();
+        }
+
+        //Define allowed weapons - deprecated - replaced by new Specialist API in SetStaticDefaults()
+        /*
+        public static UnifiedRandom FireworksColor = new UnifiedRandom();
+        public static readonly int[] CompatibleWeaponIDs = 
+        {
+            ItemID.Celeb2,
+            ItemID.SnowmanCannon,
+            ItemID.FireworksLauncher,
+            ItemID.ElectrosphereLauncher,
+            ItemID.GrenadeLauncher,
+            ItemID.ProximityMineLauncher,
+            ItemID.RocketLauncher
+        };
+        */
+
+        //Set allowed weapons - deprecated - replaced by new Specialist API in SetStaticDefaults()
+        /*
         public override bool? CanBeChosenAsAmmo(Item weapon, Player player)
         {
             if(CompatibleWeaponIDs.Contains(weapon.type))
@@ -74,8 +89,10 @@ namespace WeDoALittleTrolling.Content.Items
                 return false;
             }
         }
+        */
         
-        //Handle ammo conversions
+        //Handle ammo conversions - deprecated - replaced by new Specialist API in SetStaticDefaults()
+        /*
         public override void PickAmmo(Item weapon, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
             switch(weapon.type)
@@ -123,14 +140,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             base.PickAmmo(weapon, player, ref type, ref speed, ref damage, ref knockback);
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-              .AddTile(TileID.CrystalBall)
-              .AddIngredient(ItemID.RocketI, 3000)
-              .AddIngredient(ItemID.Ectoplasm, 15)
-              .Register();
-        }
+        */
     }
 }

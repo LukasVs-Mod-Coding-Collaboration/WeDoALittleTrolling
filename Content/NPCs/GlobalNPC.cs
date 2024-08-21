@@ -17,10 +17,7 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
@@ -30,15 +27,13 @@ using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Buffs;
-using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Items;
-using WeDoALittleTrolling.Content.Items.Armor;
 using WeDoALittleTrolling.Content.Items.Material;
-using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.Utilities;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Content.Projectiles.Minions;
 using WeDoALittleTrolling.Content.Items.Weapons;
 using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
 using WeDoALittleTrolling.Content.Tiles;

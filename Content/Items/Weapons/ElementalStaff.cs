@@ -17,18 +17,11 @@
 */
 
 using Terraria;
-using Terraria.Utilities;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
-using System;
-using WeDoALittleTrolling.Content.Buffs;
-using WeDoALittleTrolling.Content.Projectiles;
+using WeDoALittleTrolling.Content.Projectiles.Minions;
 using WeDoALittleTrolling.Content.Items.Material;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons

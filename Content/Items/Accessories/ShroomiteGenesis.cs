@@ -19,14 +19,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Microsoft.Xna.Framework;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
-using System;
-using WeDoALittleTrolling.Content.Items.Material;
+using WeDoALittleTrolling.Content.Items.Ammo;
 using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
