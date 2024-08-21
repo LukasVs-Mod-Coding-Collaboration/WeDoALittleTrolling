@@ -26,6 +26,14 @@ This Mod features compatibility/crossover features with Thorium Mod:
 - Exclusive Beam Laser Weapons that are only accessible when playing with Thorium Mod
 Before making any Thorium Mod bug reports, please always disable WeDoALittleTrolling first!
 
+This Mod features compatibility/crossover features with Consolaria Mod:
+- Vampire Miners can drop Yellow Crystals like regular Miner Skeletons can
+
+This Mod features compatibility/crossover features with Spirit Mod:
+- Spirit Hardmode Bosses inflict debuffs that prevent cheesing in master mode as well
+
+This Mod features compatibility/crossover features with Spooky Mod:
+- Spooky Hardmode Bosses inflict debuffs that prevent cheesing in master mode as well
 
 Credits:
 - Thorium Mod [DivermanSam] (Insipration for some weapon names, Cross Content/Compatibility)

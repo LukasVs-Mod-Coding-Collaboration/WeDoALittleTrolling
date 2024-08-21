@@ -1248,6 +1248,18 @@ namespace WeDoALittleTrolling.Content.NPCs
                     Devastated.DevastatePlayer(target);
                 }
             }
+            if (WDALTModSystem.isSpiritModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                //Buff Spirit Bosses Accordingly
+                if (WDALTModContentID.GetSpiritBossInflictVulnerable1in1Group().Contains(npcType) && Main.masterMode)
+                {
+                    target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+                if (WDALTModContentID.GetSpiritBossInflictWreckedResistance1in1Group().Contains(npcType) && Main.masterMode)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
             if (WDALTModSystem.isSpookyModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 //Buff Spooky Bosses Accordingly

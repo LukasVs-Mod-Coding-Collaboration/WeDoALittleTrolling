@@ -269,6 +269,61 @@ namespace WeDoALittleTrolling.Common.ModSystems
         private static int[] InflictVulnerable1in1Group_SpookyBoss = new int[(9 + 1)];
         private static int[] InflictVulnerable1in1Group_SpookyBossProjectile = new int[(21 + 1)];
         private static int[] InflictWreckedResistance1in1Group_SpookyBoss = new int[(2 + 1)];
+        public const int SpiritBoss_IF_V1 = 0;
+        public const int SpiritBoss_IF_V2 = 1;
+        public const int SpiritBoss_IF_V3 = 2;
+        public const int SpiritBoss_IF_V4 = 3;
+        public const int SpiritBoss_DU_V1 = 4;
+        public const int SpiritBoss_DU_V2 = 5;
+        public const int SpiritBoss_DU_V3 = 6;
+        public const int SpiritBoss_AL_V1 = 7;
+        public const int SpiritBoss_AL_V2 = 8;
+        public const int SpiritBoss_AL_V3 = 9;
+        public const int SpiritBoss_AL_V4 = 10;
+        public const int SpiritBoss_AL_V5 = 11;
+        public const int SpiritBoss_AL_V6 = 12;
+        private static readonly string[] SpiritBossRegisterStrings =
+        {
+            "Infernon",
+            "InfernonSkull",
+            "InfernonSkullMini",
+            "InfernoSkull",
+            "Dusking",
+            "ShadowBall",
+            "Shadowflamer",
+            "Atlas",
+            "AtlasArmLeft",
+            "AtlasArmRight",
+            "CobbledEye",
+            "CobbledEye2",
+            "CobbledEye3"
+        };
+        private static int[] SpiritBossNPCID = new int[SpiritBossRegisterStrings.Length];
+        public const int SpiritBossProjectile_IF_V1 = 0;
+        public const int SpiritBossProjectile_IF_V2 = 1;
+        public const int SpiritBossProjectile_IF_V3 = 2;
+        public const int SpiritBossProjectile_IF_V4 = 3;
+        public const int SpiritBossProjectile_IF_V5 = 4;
+        public const int SpiritBossProjectile_DU_V1 = 5;
+        public const int SpiritBossProjectile_DU_V2 = 6;
+        public const int SpiritBossProjectile_AL_V1 = 7;
+        public const int SpiritBossProjectile_AL_V2 = 8;
+        private static readonly string[] SpiritBossProjectileRegisterStrings =
+        {
+            "FireSpike",
+            "Fireball",
+            "InfernalBlastHostile",
+            "InfernalWave",
+            "SunBlast",
+            "CrystalShadow",
+            "ShadowPulse",
+            "MiracleBeam",
+            "PrismaticBoltHostile"
+        };
+        private static int[] SpiritBossProjectileID = new int[SpiritBossProjectileRegisterStrings.Length];
+        private static int[] InflictVulnerable1in1Group_SpiritBoss = new int[(9 + 1)];
+        private static int[] InflictVulnerable1in1Group_SpiritBossProjectile = new int[(8 + 1)];
+        private static int[] InflictWreckedResistance1in1Group_SpiritBoss = new int[(2 + 1)];
 
         public static int GetSpookyBossNPCID(int modContentID)
         {
@@ -292,7 +347,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             catch
             {
-                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetSpookyBossProjectileID was called with an invalid ModContentID.");
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetSpookyBossProjectileID() was called with an invalid ModContentID.");
             }
             return i;
         }
@@ -307,6 +362,45 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static int[] GetSpookyBossInflictWreckedResistance1in1Group()
         {
             return InflictWreckedResistance1in1Group_SpookyBoss;
+        }
+
+        public static int GetSpiritBossNPCID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = SpiritBossNPCID[modContentID];
+            }
+            catch
+            {
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetSpiritBossNPCID() was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+        public static int GetSpiritBossProjectileID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = SpiritBossProjectileID[modContentID];
+            }
+            catch
+            {
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetSpiritBossProjectileID() was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+        public static int[] GetSpiritBossInflictVulnerable1in1Group()
+        {
+            return InflictVulnerable1in1Group_SpiritBoss;
+        }
+        public static int[] GetSpiritBossProjectileInflictVulnerable1in1Group()
+        {
+            return InflictVulnerable1in1Group_SpiritBossProjectile;
+        }
+        public static int[] GetSpiritBossInflictWreckedResistance1in1Group()
+        {
+            return InflictWreckedResistance1in1Group_SpiritBoss;
         }
 
         public static int GetConsolariaNPCID(int modContentID)
@@ -360,7 +454,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             catch
             {
-                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumBossProjectileID was called with an invalid ModContentID.");
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumBossProjectileID() was called with an invalid ModContentID.");
             }
             return i;
         }
@@ -373,7 +467,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             catch
             {
-                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumItemID was called with an invalid ModContentID.");
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetThoriumItemID() was called with an invalid ModContentID.");
             }
             return i;
         }
@@ -421,6 +515,31 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     if (spookyMod.TryFind(SpookyBossProjectileRegisterStrings[i], out ModProjectile proj))
                     {
                         SpookyBossProjectileID[i] = proj.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
+                }
+            }
+            if (WDALTModSystem.TryGetSpiritMod(out Mod spiritMod))
+            {
+                for (int i = 0; i < SpiritBossRegisterStrings.Length; i++)
+                {
+                    if (spiritMod.TryFind(SpiritBossRegisterStrings[i], out ModNPC bossNPC))
+                    {
+                        SpiritBossNPCID[i] = bossNPC.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
+                }
+                for (int i = 0; i < SpiritBossProjectileRegisterStrings.Length; i++)
+                {
+                    if (spiritMod.TryFind(SpiritBossProjectileRegisterStrings[i], out ModProjectile proj))
+                    {
+                        SpiritBossProjectileID[i] = proj.Type;
                     }
                     else
                     {
@@ -526,6 +645,29 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 InflictVulnerable1in1Group_SpookyBossProjectile[19] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V9);
                 InflictVulnerable1in1Group_SpookyBossProjectile[20] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V10);
                 InflictVulnerable1in1Group_SpookyBossProjectile[21] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V11);
+
+                InflictVulnerable1in1Group_SpiritBoss[0] = GetSpiritBossNPCID(SpiritBoss_IF_V1);
+                InflictVulnerable1in1Group_SpiritBoss[1] = GetSpiritBossNPCID(SpiritBoss_IF_V2);
+                InflictVulnerable1in1Group_SpiritBoss[2] = GetSpiritBossNPCID(SpiritBoss_IF_V3);
+                InflictVulnerable1in1Group_SpiritBoss[3] = GetSpiritBossNPCID(SpiritBoss_IF_V4);
+                InflictVulnerable1in1Group_SpiritBoss[4] = GetSpiritBossNPCID(SpiritBoss_DU_V1);
+                InflictVulnerable1in1Group_SpiritBoss[5] = GetSpiritBossNPCID(SpiritBoss_DU_V2);
+                InflictVulnerable1in1Group_SpiritBoss[6] = GetSpiritBossNPCID(SpiritBoss_DU_V3);
+                InflictVulnerable1in1Group_SpiritBoss[7] = GetSpiritBossNPCID(SpiritBoss_AL_V4);
+                InflictVulnerable1in1Group_SpiritBoss[8] = GetSpiritBossNPCID(SpiritBoss_AL_V5);
+                InflictVulnerable1in1Group_SpiritBoss[9] = GetSpiritBossNPCID(SpiritBoss_AL_V6);
+                InflictWreckedResistance1in1Group_SpiritBoss[0] = GetSpiritBossNPCID(SpiritBoss_AL_V1);
+                InflictWreckedResistance1in1Group_SpiritBoss[1] = GetSpiritBossNPCID(SpiritBoss_AL_V2);
+                InflictWreckedResistance1in1Group_SpiritBoss[2] = GetSpiritBossNPCID(SpiritBoss_AL_V3);
+                InflictVulnerable1in1Group_SpiritBossProjectile[0] = GetSpiritBossProjectileID(SpiritBossProjectile_IF_V1);
+                InflictVulnerable1in1Group_SpiritBossProjectile[1] = GetSpiritBossProjectileID(SpiritBossProjectile_IF_V2);
+                InflictVulnerable1in1Group_SpiritBossProjectile[2] = GetSpiritBossProjectileID(SpiritBossProjectile_IF_V3);
+                InflictVulnerable1in1Group_SpiritBossProjectile[3] = GetSpiritBossProjectileID(SpiritBossProjectile_IF_V4);
+                InflictVulnerable1in1Group_SpiritBossProjectile[4] = GetSpiritBossProjectileID(SpiritBossProjectile_IF_V5);
+                InflictVulnerable1in1Group_SpiritBossProjectile[5] = GetSpiritBossProjectileID(SpiritBossProjectile_DU_V1);
+                InflictVulnerable1in1Group_SpiritBossProjectile[6] = GetSpiritBossProjectileID(SpiritBossProjectile_DU_V2);
+                InflictVulnerable1in1Group_SpiritBossProjectile[7] = GetSpiritBossProjectileID(SpiritBossProjectile_AL_V1);
+                InflictVulnerable1in1Group_SpiritBossProjectile[8] = GetSpiritBossProjectileID(SpiritBossProjectile_AL_V2);
 
                 InflictVulnerable1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_BS_V1);
                 InflictVulnerable1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_BS_V2);

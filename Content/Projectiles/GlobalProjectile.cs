@@ -869,6 +869,16 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                 }
             }
+            if (WDALTModSystem.isSpiritModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                if (WDALTModContentID.GetSpiritBossProjectileInflictVulnerable1in1Group().Contains(projectile.type))
+                {
+                    if (random.Next(0, 1) == 0 && Main.masterMode)
+                    {
+                        target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                    }
+                }
+            }
             if (WDALTModSystem.isSpookyModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if (WDALTModContentID.GetSpookyBossProjectileInflictVulnerable1in1Group().Contains(projectile.type))

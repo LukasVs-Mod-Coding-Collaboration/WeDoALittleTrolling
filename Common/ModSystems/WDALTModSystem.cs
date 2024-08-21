@@ -59,6 +59,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 isSpiritModPresent = true;
                 WeDoALittleTrolling.logger.Info("Spirit Mod detected.");
+                WeDoALittleTrolling.logger.Info("Spirit Mod Bosses can now inflict Vulnerable and Wrecked Resistance.");
             }
             if(ModLoader.HasMod(consolariaModName))
             {
@@ -83,6 +84,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 WeDoALittleTrolling.logger.Warn("Disabling most rebalancing features of WeDoALittleTrolling to ensure the game stays playable...");
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
+            if (!MCIDIntegrity)
+            {
+                WeDoALittleTrolling.logger.Error("ModContentID Integrity Check Failed! Please report this to the WeDoALittleTrolling developers.");
+                WeDoALittleTrolling.logger.Error("Disabling all Cross-Compatibilty related features...");
+            }
             WDALTIntermediateLanguageEditing.RegisterILHooks();
             RegisterHooks();
             if (!Main.dedServ && Main.netMode != NetmodeID.Server)
