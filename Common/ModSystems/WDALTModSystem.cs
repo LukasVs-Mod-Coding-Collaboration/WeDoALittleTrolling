@@ -53,6 +53,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 isSpookyModPresent = true;
                 WeDoALittleTrolling.logger.Info("Spooky Mod detected.");
+                WeDoALittleTrolling.logger.Info("Spooky Mod Bosses can now inflict Vulnerable and Wrecked Resistance.");
             }
             if(ModLoader.HasMod(spiritModName))
             {
@@ -188,6 +189,34 @@ namespace WeDoALittleTrolling.Common.ModSystems
             else
             {
                 consolariaMod = null;
+                return false;
+            }
+        }
+
+        public static bool TryGetSpiritMod(out Mod spiritMod)
+        {
+            if(ModLoader.TryGetMod(spiritModName, out Mod mod))
+            {
+                spiritMod = mod;
+                return true;
+            }
+            else
+            {
+                spiritMod = null;
+                return false;
+            }
+        }
+
+        public static bool TryGetSpookyMod(out Mod spookyMod)
+        {
+            if(ModLoader.TryGetMod(spookyModName, out Mod mod))
+            {
+                spookyMod = mod;
+                return true;
+            }
+            else
+            {
+                spookyMod = null;
                 return false;
             }
         }

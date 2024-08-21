@@ -177,8 +177,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
         };
         private static DamageClass[] ThoriumDamageClass = new DamageClass[ThoriumDamageClassRegisterStrings.Length];
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];
-        private static int[] InflictVulnerable1in1Group_ThoriumBoss = new int[(9 + 1)];
         private static int[] thoriumCrateTypes = new int[(6)];
+        private static int[] InflictVulnerable1in1Group_ThoriumBoss = new int[(9 + 1)];
         private static int[] InflictVulnerable1in1Group_ThoriumBossProjectile = new int[(26 + 1)];
         private static int[] InflictDevastated1in1Group_ThoriumBoss = new int[(2 + 1)];
         private static int[] InflictDevastated1in1Group_ThoriumBossProjectile = new int[(4 + 1)];
@@ -188,6 +188,126 @@ namespace WeDoALittleTrolling.Common.ModSystems
             "VampireMiner"
         };
         private static int[] ConsolariaNPCID = new int[ConsolariaNPCRegisterStrings.Length];
+        public const int SpookyBoss_OB_V1 = 0;
+        public const int SpookyBoss_OB_V2 = 1;
+        public const int SpookyBoss_OB_V3 = 2;
+        public const int SpookyBoss_OB_V4 = 3;
+        public const int SpookyBoss_OB_V5 = 4;
+        public const int SpookyBoss_OB_V6 = 5;
+        public const int SpookyBoss_OB_V7 = 6;
+        public const int SpookyBoss_OB_V8 = 7;
+        public const int SpookyBoss_DA_V1 = 8;
+        public const int SpookyBoss_DA_V2 = 9;
+        public const int SpookyBoss_DA_V3 = 10;
+        public const int SpookyBoss_DA_V4 = 11;
+        public const int SpookyBoss_BB = 12;
+        private static readonly string[] SpookyBossRegisterStrings =
+        {
+            "BoroHead",
+            "OrroHead",
+            "OrroHeadP1",
+            "BoroBody",
+            "BoroBodyConnect",
+            "BoroTail",
+            "OrroBody",
+            "OrroTail",
+            "DaffodilBody",
+            "DaffodilEye",
+            "DaffodilHandLeft",
+            "DaffodilHandRight",
+            "BigBone"
+        };
+        private static int[] SpookyBossNPCID = new int[SpookyBossRegisterStrings.Length];
+        public const int SpookyBossProjectile_OB_V1 = 0;
+        public const int SpookyBossProjectile_OB_V2 = 1;
+        public const int SpookyBossProjectile_OB_V3 = 2;
+        public const int SpookyBossProjectile_DA_V1 = 3;
+        public const int SpookyBossProjectile_DA_V2 = 4;
+        public const int SpookyBossProjectile_DA_V3 = 5;
+        public const int SpookyBossProjectile_DA_V4 = 6;
+        public const int SpookyBossProjectile_DA_V5 = 7;
+        public const int SpookyBossProjectile_DA_V6 = 8;
+        public const int SpookyBossProjectile_DA_V7 = 9;
+        public const int SpookyBossProjectile_DA_V8 = 10;
+        public const int SpookyBossProjectile_BB_V1 = 11;
+        public const int SpookyBossProjectile_BB_V2 = 12;
+        public const int SpookyBossProjectile_BB_V3 = 13;
+        public const int SpookyBossProjectile_BB_V4 = 14;
+        public const int SpookyBossProjectile_BB_V5 = 15;
+        public const int SpookyBossProjectile_BB_V6 = 16;
+        public const int SpookyBossProjectile_BB_V7 = 17;
+        public const int SpookyBossProjectile_BB_V8 = 18;
+        public const int SpookyBossProjectile_BB_V9 = 19;
+        public const int SpookyBossProjectile_BB_V10 = 20;
+        public const int SpookyBossProjectile_BB_V11 = 21;
+        private static readonly string[] SpookyBossProjectileRegisterStrings =
+        {
+            "EyeSpit",
+            "EyeSpit2",
+            "FleshPillar",
+            "ChlorophyllFlower",
+            "DaffodilFly",
+            "SolarLaser",
+            "ThornBall",
+            "ThornBallSpike",
+            "ThornPillar",
+            "ThornPillarBarrierFloor",
+            "ThornPillarBarrierSide",
+            "BigBoneThorn",
+            "BoneWisp",
+            "BouncingFlower",
+            "FlamingWisp",
+            "FlowerSpore",
+            "GiantFlameBall",
+            "HomingFlower",
+            "MassiveFlameBall",
+            "RazorRose",
+            "RazorRoseOrange",
+            "SolarThorn"
+        };
+        private static int[] SpookyBossProjectileID = new int[SpookyBossProjectileRegisterStrings.Length];
+        private static int[] InflictVulnerable1in1Group_SpookyBoss = new int[(9 + 1)];
+        private static int[] InflictVulnerable1in1Group_SpookyBossProjectile = new int[(21 + 1)];
+        private static int[] InflictWreckedResistance1in1Group_SpookyBoss = new int[(2 + 1)];
+
+        public static int GetSpookyBossNPCID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = SpookyBossNPCID[modContentID];
+            }
+            catch
+            {
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetSpookyBossNPCID() was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+        public static int GetSpookyBossProjectileID(int modContentID)
+        {
+            int i = 0;
+            try
+            {
+                i = SpookyBossProjectileID[modContentID];
+            }
+            catch
+            {
+                WeDoALittleTrolling.logger.Fatal("WDALT: ERROR: GetSpookyBossProjectileID was called with an invalid ModContentID.");
+            }
+            return i;
+        }
+        public static int[] GetSpookyBossInflictVulnerable1in1Group()
+        {
+            return InflictVulnerable1in1Group_SpookyBoss;
+        }
+        public static int[] GetSpookyBossProjectileInflictVulnerable1in1Group()
+        {
+            return InflictVulnerable1in1Group_SpookyBossProjectile;
+        }
+        public static int[] GetSpookyBossInflictWreckedResistance1in1Group()
+        {
+            return InflictWreckedResistance1in1Group_SpookyBoss;
+        }
 
         public static int GetConsolariaNPCID(int modContentID)
         {
@@ -283,6 +403,31 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static bool SetContentIDs()
         {
             bool integrity = true;
+            if (WDALTModSystem.TryGetSpookyMod(out Mod spookyMod))
+            {
+                for (int i = 0; i < SpookyBossRegisterStrings.Length; i++)
+                {
+                    if (spookyMod.TryFind(SpookyBossRegisterStrings[i], out ModNPC bossNPC))
+                    {
+                        SpookyBossNPCID[i] = bossNPC.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
+                }
+                for (int i = 0; i < SpookyBossProjectileRegisterStrings.Length; i++)
+                {
+                    if (spookyMod.TryFind(SpookyBossProjectileRegisterStrings[i], out ModProjectile proj))
+                    {
+                        SpookyBossProjectileID[i] = proj.Type;
+                    }
+                    else
+                    {
+                        integrity = false;
+                    }
+                }
+            }
             if (WDALTModSystem.TryGetConsolariaMod(out Mod consolariaMod))
             {
                 for (int i = 0; i < ConsolariaNPCRegisterStrings.Length; i++)
@@ -346,6 +491,42 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if (integrity)
             {
+                InflictVulnerable1in1Group_SpookyBoss[0] = GetSpookyBossNPCID(SpookyBoss_OB_V4);
+                InflictVulnerable1in1Group_SpookyBoss[1] = GetSpookyBossNPCID(SpookyBoss_OB_V5);
+                InflictVulnerable1in1Group_SpookyBoss[2] = GetSpookyBossNPCID(SpookyBoss_OB_V6);
+                InflictVulnerable1in1Group_SpookyBoss[3] = GetSpookyBossNPCID(SpookyBoss_OB_V7);
+                InflictVulnerable1in1Group_SpookyBoss[4] = GetSpookyBossNPCID(SpookyBoss_OB_V8);
+                InflictVulnerable1in1Group_SpookyBoss[5] = GetSpookyBossNPCID(SpookyBoss_DA_V1);
+                InflictVulnerable1in1Group_SpookyBoss[6] = GetSpookyBossNPCID(SpookyBoss_DA_V2);
+                InflictVulnerable1in1Group_SpookyBoss[7] = GetSpookyBossNPCID(SpookyBoss_DA_V3);
+                InflictVulnerable1in1Group_SpookyBoss[8] = GetSpookyBossNPCID(SpookyBoss_DA_V4);
+                InflictVulnerable1in1Group_SpookyBoss[9] = GetSpookyBossNPCID(SpookyBoss_BB);
+                InflictWreckedResistance1in1Group_SpookyBoss[0] = GetSpookyBossNPCID(SpookyBoss_OB_V1);
+                InflictWreckedResistance1in1Group_SpookyBoss[1] = GetSpookyBossNPCID(SpookyBoss_OB_V2);
+                InflictWreckedResistance1in1Group_SpookyBoss[2] = GetSpookyBossNPCID(SpookyBoss_OB_V3);
+                InflictVulnerable1in1Group_SpookyBossProjectile[0] = GetSpookyBossProjectileID(SpookyBossProjectile_OB_V1);
+                InflictVulnerable1in1Group_SpookyBossProjectile[1] = GetSpookyBossProjectileID(SpookyBossProjectile_OB_V2);
+                InflictVulnerable1in1Group_SpookyBossProjectile[2] = GetSpookyBossProjectileID(SpookyBossProjectile_OB_V3);
+                InflictVulnerable1in1Group_SpookyBossProjectile[3] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V1);
+                InflictVulnerable1in1Group_SpookyBossProjectile[4] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V2);
+                InflictVulnerable1in1Group_SpookyBossProjectile[5] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V3);
+                InflictVulnerable1in1Group_SpookyBossProjectile[6] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V4);
+                InflictVulnerable1in1Group_SpookyBossProjectile[7] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V5);
+                InflictVulnerable1in1Group_SpookyBossProjectile[8] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V6);
+                InflictVulnerable1in1Group_SpookyBossProjectile[9] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V7);
+                InflictVulnerable1in1Group_SpookyBossProjectile[10] = GetSpookyBossProjectileID(SpookyBossProjectile_DA_V8);
+                InflictVulnerable1in1Group_SpookyBossProjectile[11] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V1);
+                InflictVulnerable1in1Group_SpookyBossProjectile[12] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V2);
+                InflictVulnerable1in1Group_SpookyBossProjectile[13] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V3);
+                InflictVulnerable1in1Group_SpookyBossProjectile[14] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V4);
+                InflictVulnerable1in1Group_SpookyBossProjectile[15] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V5);
+                InflictVulnerable1in1Group_SpookyBossProjectile[16] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V6);
+                InflictVulnerable1in1Group_SpookyBossProjectile[17] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V7);
+                InflictVulnerable1in1Group_SpookyBossProjectile[18] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V8);
+                InflictVulnerable1in1Group_SpookyBossProjectile[19] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V9);
+                InflictVulnerable1in1Group_SpookyBossProjectile[20] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V10);
+                InflictVulnerable1in1Group_SpookyBossProjectile[21] = GetSpookyBossProjectileID(SpookyBossProjectile_BB_V11);
+
                 InflictVulnerable1in1Group_ThoriumBoss[0] = GetThoriumBossNPCID(ThoriumBoss_BS_V1);
                 InflictVulnerable1in1Group_ThoriumBoss[1] = GetThoriumBossNPCID(ThoriumBoss_BS_V2);
                 InflictVulnerable1in1Group_ThoriumBoss[2] = GetThoriumBossNPCID(ThoriumBoss_FB_V1);

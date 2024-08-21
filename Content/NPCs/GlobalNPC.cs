@@ -1248,6 +1248,18 @@ namespace WeDoALittleTrolling.Content.NPCs
                     Devastated.DevastatePlayer(target);
                 }
             }
+            if (WDALTModSystem.isSpookyModPresent && WDALTModSystem.MCIDIntegrity)
+            {
+                //Buff Spooky Bosses Accordingly
+                if (WDALTModContentID.GetSpookyBossInflictVulnerable1in1Group().Contains(npcType) && Main.masterMode)
+                {
+                    target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+                if (WDALTModContentID.GetSpookyBossInflictWreckedResistance1in1Group().Contains(npcType) && Main.masterMode)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
         }
 
         public override bool PreKill(NPC npc)
