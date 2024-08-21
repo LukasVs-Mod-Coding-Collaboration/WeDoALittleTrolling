@@ -69,6 +69,13 @@ namespace WeDoALittleTrolling.Content.Items.Tools
               .AddIngredient(ModContent.ItemType<EmbersteelBarItem>(), 10)
               .AddIngredient(ItemID.Picksaw)
               .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.AdamantiteBar, 15)
+              .AddIngredient(ModContent.ItemType<EmbersteelBarItem>(), 10)
+              .AddIngredient(ItemID.Picksaw)
+              .Register();
         }
     }
 }
