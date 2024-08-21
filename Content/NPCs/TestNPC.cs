@@ -36,6 +36,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         private float maxSpeed = 10f;
         private bool hasTarget = false;
         private bool hover = true;
+        private int hoverTimer;
         /*
         private float distanceToTarget;
         private bool laser = false;
@@ -126,8 +127,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             if (hasTarget) //Act only if we have a target
             {
                 if (hover)
-                {
-                    Vector2 hoverDirection = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y - 192);
+                {                    
+                    Vector2 hoverDirection = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y - 256);
                     Vector2 hoverPoint = hoverDirection;
                     hoverDirection = hoverDirection.SafeNormalize(Vector2.Zero);
                     hoverDirection *= 0.45f;
@@ -139,19 +140,26 @@ namespace WeDoALittleTrolling.Content.NPCs
                         {
                             NPC.velocity = NPC.velocity.SafeNormalize(NPC.velocity) * maxSpeed;
                         }
-                        if (NPC.Center.Y < target.Center.Y && NPC.velocity.Y > 0 && hoverPoint.Length() < 48)
+                        if (NPC.Center.Y < target.Center.Y && NPC.velocity.Y > 0 && hoverPoint.Length() < 64)
                         {
-                            NPC.velocity.Y *= 0.98f;
+                            NPC.velocity.Y *= 0.96f;
                         }                        
                     }
                     else
                     {
-                        NPC.velocity *= 0.96f;
+                        NPC.velocity.X *= 0.96f;
+                        if (NPC.velocity.Y > 0)
+                        {
+                            NPC.velocity.Y *= 0.96f;
+                        }
                         if (NPC.velocity.Length() < 0.05f)
                         {
                             NPC.velocity *= 0f;
                         }
                     }
+                    Vector2 hoverRotation = new Vector2(target.Center.X - NPC.Center.X, target.Center.Y - NPC.Center.Y);
+                    NPC.rotation = hoverRotation.ToRotation();
+                    hoverTimer++;
                 }
             }
             else // Despawn without a target

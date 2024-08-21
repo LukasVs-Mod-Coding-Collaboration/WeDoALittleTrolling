@@ -404,6 +404,20 @@ Mods: {
 					'''
 			}
 
+			BedrockBreaker: {
+				DisplayName: Bedrock Breaker
+				Tooltip:
+					'''
+					Capable of destroying anything and everything
+					as long as only high pickaxe power is required.
+					Be very careful at high mining speed boost
+					values due to the destructive potential of this.
+
+					"No wall too hard to break,
+					 No stone too hard to shatter."
+					'''
+			}
+
 			WallCreeperFang: {
 				DisplayName: Wall Creeper Fang
 				Tooltip: ""
