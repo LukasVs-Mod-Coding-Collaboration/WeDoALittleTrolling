@@ -56,7 +56,7 @@ namespace WeDoALittleTrolling.Content.Items.Tools
             Item.knockBack = 6.0f;
             Item.rare = ItemRarityID.Orange;
 
-            Item.pick = int.MaxValue;
+            Item.pick = 1395864255;
             Item.crit = 6;
             Item.tileBoost = 5;
         }
