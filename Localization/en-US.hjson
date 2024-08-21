@@ -408,11 +408,8 @@ Mods: {
 				DisplayName: Bedrock Breaker
 				Tooltip:
 					'''
-					Capable of destroying anything and everything
-					as long as only high pickaxe power is required.
-					Be very careful at high mining speed boost
-					values due to the destructive potential of this.
-
+					Capable of destroying almost
+					anything and everything.
 					"No wall too hard to break,
 					 No stone too hard to shatter."
 					'''

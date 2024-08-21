@@ -27,6 +27,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using WeDoALittleTrolling.Common.ModSystems;
+using WeDoALittleTrolling.Content.Items.Tools;
 
 namespace WeDoALittleTrolling.Content.Tiles
 {
@@ -45,6 +46,10 @@ namespace WeDoALittleTrolling.Content.Tiles
         public static int On_Player_GetPickaxeDamage(On_Player.orig_GetPickaxeDamage orig, Player self, int x, int y, int pickPower, int hitBufferIndex, Tile tileTarget)
         {
             if (tileTarget.TileType == TileID.LihzahrdAltar)
+            {
+                return 100;
+            }
+            if (self.HeldItem.type == ModContent.ItemType<BedrockBreaker>())
             {
                 return 100;
             }

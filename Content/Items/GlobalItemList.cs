@@ -41,6 +41,7 @@ using Microsoft.Xna.Framework.Graphics;
 using WeDoALittleTrolling.Content.Tiles;
 using Terraria.GameContent.Items;
 using WeDoALittleTrolling.Common.ModPlayers;
+using WeDoALittleTrolling.Content.Items.Tools;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -121,11 +122,15 @@ namespace WeDoALittleTrolling.Content.Items
         public static void RegisterHooks()
         {
             On_Player.ItemCheck_UseTeleportRod += On_Player_ItemCheck_UseTeleportRod;
+            On_Player.ItemCheck_CheckCanUse += toolUseBypass;
         }
+
+
 
         public static void UnregisterHooks()
         {
             On_Player.ItemCheck_UseTeleportRod -= On_Player_ItemCheck_UseTeleportRod;
+            On_Player.ItemCheck_CheckCanUse -= toolUseBypass;
         }
 
         public static void On_Player_ItemCheck_UseTeleportRod(On_Player.orig_ItemCheck_UseTeleportRod orig, Player self, Item sItem)
@@ -145,6 +150,19 @@ namespace WeDoALittleTrolling.Content.Items
                 }
             }
             orig.Invoke(self, sItem);
+        }
+
+        private static bool toolUseBypass(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item sItem)
+        {
+            bool canUse = orig(self, sItem);
+            if (self.HeldItem.type == ModContent.ItemType<BedrockBreaker>())
+            {
+                return true;
+            }
+            else
+            {
+                return canUse;
+            }
         }
 
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
