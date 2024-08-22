@@ -101,7 +101,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 Vector2 littleBlueBulletVelocity = new Vector2(target.Center.X - littleBlueBulletSpawnPos.X, target.Center.Y - littleBlueBulletSpawnPos.Y);
                 littleBlueBulletVelocity = littleBlueBulletVelocity.SafeNormalize(Vector2.Zero);
                 littleBlueBulletVelocity *= 6f;
-                Projectile.NewProjectile(player.GetSource_FromThis(), littleBlueBulletSpawnPos, littleBlueBulletVelocity, ProjectileID.MagicMissile, (int)Math.Round(Item.damage * 0.75), knockBack = 6f, player.whoAmI);
+                Projectile.NewProjectile(player.GetSource_FromThis(), littleBlueBulletSpawnPos, littleBlueBulletVelocity, ProjectileID.MagicMissile, (int)Math.Round(damageDone * 0.75), knockBack = 6f, player.whoAmI);
                 for (int j = 0; j < 20; j++)
                 {
                     Vector2 dustPosition = littleBlueBulletSpawnPos;

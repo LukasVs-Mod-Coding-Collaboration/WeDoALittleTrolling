@@ -261,6 +261,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " was ignorant to the Mind Goblin.",
                 player.name + " did not receive vital information from the Sugondese.",
                 player.name + "'s AC broke down in the middle of summer.",
+                "The curse seeped to " + player.name + "'s very soul.",
+                "Thank you, " + player.name + ", for participating in this Aperture Science computer-aided Enrichment Center activity. Goodbye",
                 "Hippity hoppity " + player.name + "'s soul is now my property."
                 
 
@@ -285,6 +287,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " fell victim to " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s YouTube prank.",
                     player.name + " was eliminated from a Mr. Beast challenge by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " just wanted to talk to " + player.name + ".",
+                    player.name + " had it writ upon their meagre grave: Felled by" + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
+                    player.name + " has been hit by, " + player.name + " has been struck by " + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
+                    player.name + " was defeated by " + Main.npc[damageSource.SourceNPCIndex].FullName + ", blade of Moon Lord.",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth."
                 };
                 if (random.NextBool(15))

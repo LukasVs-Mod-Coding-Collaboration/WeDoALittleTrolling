@@ -43,12 +43,14 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = false;
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 142;
+            Item.width = 18;
+            Item.height = 60;
             Item.rare = ItemRarityID.Expert;
             Item.value = Item.sellPrice(gold: 8);
 
@@ -192,10 +194,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
               .AddIngredient(ItemID.Marrow)
               .AddIngredient(ItemID.CursedFlame, 25)
               .AddIngredient(ItemID.AshWood, 20)
-              .AddRecipeGroup(RecipeGroupID.IronBar, 15)
-              .AddIngredient(ItemID.SoulofNight, 10)
               .AddIngredient(ItemID.SoulofSight, 5)
-              .AddIngredient(ItemID.JungleSpores, 5)
               .AddIngredient(ItemID.WhiteString, 1)
               .Register();
 
@@ -205,10 +204,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
              .AddIngredient(ItemID.Marrow)
              .AddIngredient(ItemID.Ichor, 25)
              .AddIngredient(ItemID.AshWood, 20)
-             .AddRecipeGroup(RecipeGroupID.IronBar, 15)
-             .AddIngredient(ItemID.SoulofNight, 10)
              .AddIngredient(ItemID.SoulofSight, 5)
-             .AddIngredient(ItemID.JungleSpores, 5)
              .AddIngredient(ItemID.WhiteString, 1)
              .Register();
 
