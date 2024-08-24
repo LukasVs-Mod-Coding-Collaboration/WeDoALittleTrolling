@@ -209,7 +209,5 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
              .Register();
 
         }
-        
-
     }
 }
