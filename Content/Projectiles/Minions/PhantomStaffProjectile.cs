@@ -41,8 +41,8 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
         public const float idleAccelerationFactor = 0.75f;
         public const float bulletSpeed = 32f;
         public const float bulletOffsetMultiplier = 36f;
-        public const float zeroVectorMaxLen = 0.000015259f;
-        public const float tiltFactor = 0.015625f;
+        public const float zeroVectorMaxLen = 0.0000152587890625f; // 2^-16 / Binary: 0.0000000000000001
+        public const float tiltFactor = 0.015625f; // 2^-6 / Binary: 0.000001
         public static readonly Vector2 gfxShootOffset1 = new Vector2(-9f, -12f);
         public static readonly Vector2 gfxShootOffset2 = new Vector2(10f, -12f);
         public long ticksAlive = 0;
