@@ -141,27 +141,27 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void LoadData(TagCompound tag)
         {
-            if (tag.ContainsKey("GnomedDebuff"))
+            if (tag.ContainsKey("WDALTGnomedDebuff"))
             {
                 gnomedDebuff = true;
-                gnomedDebuffTicksLeft = tag.GetInt("GnomedDebuff");
+                gnomedDebuffTicksLeft = tag.GetInt("WDALTGnomedDebuff");
             }
-            if (tag.ContainsKey("HauntedDebuff"))
+            if (tag.ContainsKey("WDALTHauntedDebuff"))
             {
                 hauntedDebuff = true;
-                hauntedDebuffTicksLeft = tag.GetInt("HauntedDebuff");
+                hauntedDebuffTicksLeft = tag.GetInt("WDALTHauntedDebuff");
             }
-            if (tag.ContainsKey("DevastatedStack"))
+            if (tag.ContainsKey("WDALTDevastatedStack"))
             {
-                statLifeDevastated = tag.GetInt("DevastatedStack");
+                statLifeDevastated = tag.GetInt("WDALTDevastatedStack");
             }
-            if (tag.ContainsKey("WreckedResistanceStack"))
+            if (tag.ContainsKey("WDALTWreckedResistanceStack"))
             {
-                wreckedResistanceStack = tag.GetInt("WreckedResistanceStack");
+                wreckedResistanceStack = tag.GetInt("WDALTWreckedResistanceStack");
             }
-            if (tag.ContainsKey("VulnerableStack"))
+            if (tag.ContainsKey("WDALTVulnerableStack"))
             {
-                vulnerableStack = tag.GetInt("VulnerableStack");
+                vulnerableStack = tag.GetInt("WDALTVulnerableStack");
             }
             base.LoadData(tag);
         }
@@ -170,23 +170,23 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if (gnomedDebuff)
             {
-                tag["GnomedDebuff"] = gnomedDebuffTicksLeft;
+                tag["WDALTGnomedDebuff"] = gnomedDebuffTicksLeft;
             }
             if (hauntedDebuff)
             {
-                tag["HauntedDebuff"] = hauntedDebuffTicksLeft;
+                tag["WDALTHauntedDebuff"] = hauntedDebuffTicksLeft;
             }
             if (player.HasBuff(ModContent.BuffType<Devastated>()))
             {
-                tag["DevastatedStack"] = statLifeDevastated;
+                tag["WDALTDevastatedStack"] = statLifeDevastated;
             }
             if (wreckedResistanceStack > 0)
             {
-                tag["WreckedResistanceStack"] = wreckedResistanceStack;
+                tag["WDALTWreckedResistanceStack"] = wreckedResistanceStack;
             }
             if (vulnerableStack > 0)
             {
-                tag["VulnerableStack"] = vulnerableStack;
+                tag["WDALTVulnerableStack"] = vulnerableStack;
             }
             base.SaveData(tag);
         }

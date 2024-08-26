@@ -57,10 +57,10 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 return;
             }
-            if (!WDALTSkillTreeSystem.unlockedSkillPoint1)
+            if (!player.GetModPlayer<WDALTSkillTreeSystem>().unlockedSkillPoint1)
             {
-                WDALTSkillTreeSystem.unlockedSkillPoint1 = true;
-                WDALTSkillTreeSystem.unlockedSkillPoints++;
+                player.GetModPlayer<WDALTSkillTreeSystem>().unlockedSkillPoint1 = true;
+                player.GetModPlayer<WDALTSkillTreeSystem>().unlockedSkillPoints++;
             }
             base.UseAnimation(player);
         }

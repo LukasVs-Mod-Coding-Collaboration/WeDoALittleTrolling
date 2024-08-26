@@ -35,13 +35,13 @@ namespace WeDoALittleTrolling.Common.SkillTree
 {
     public class WDALTSkillTreeSystem : ModPlayer
     {
-        public static int unlockedSkillPoints = 3;
-        public static bool unlockedSkillPoint1 = false;
+        public int unlockedSkillPoints = 3;
+        public bool unlockedSkillPoint1 = false;
         public const int amountNodes = 4;
         public const int amountConnectors = 3;
-        public static WDALTSkillNode[] nodes = new WDALTSkillNode[amountNodes];
-        public static WDALTSkillConnector[] connectors = new WDALTSkillConnector[amountConnectors];
-        public static bool nodesInitialized = false;
+        public WDALTSkillNode[] nodes = new WDALTSkillNode[amountNodes];
+        public WDALTSkillConnector[] connectors = new WDALTSkillConnector[amountConnectors];
+        public bool nodesInitialized = false;
         public const int Core = 0;
         public const int Positive1 = 1;
         public const int Negative1Thorium = 2;
@@ -105,10 +105,6 @@ namespace WeDoALittleTrolling.Common.SkillTree
 
             public override void OnInitialize()
             {
-                if (!nodesInitialized)
-                {
-                    InitNodes();
-                }
                 panel = new UIPanel();
                 panel.Width.Set(700, 0);
                 panel.Height.Set(700, 0);
@@ -124,9 +120,9 @@ namespace WeDoALittleTrolling.Common.SkillTree
 
             public override void OnActivate()
             {
-                if (!buttonsInit)
+                if (!buttonsInit && Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem sys1))
                 {
-                    skillPointDisplay = new UIText("Skill Points Remaining: " + unlockedSkillPoints);
+                    skillPointDisplay = new UIText("Skill Points Remaining: " + sys1.unlockedSkillPoints);
                     skillPointDisplay.HAlign = 0.5f;
                     skillPointDisplay.Top.Set(48, 0);
                     panel.Append(skillPointDisplay);
@@ -163,10 +159,10 @@ namespace WeDoALittleTrolling.Common.SkillTree
                                 call = OnClick_Node_Core;
                                 break;
                         }
-                        nodeButtons[i] = new UIImage(nodes[i].disabledTexture);
-                        nodeButtons[i].SetImage(nodes[i].disabledTexture);
-                        nodeButtons[i].Width.Set(nodes[i].textureWidth, 0f);
-                        nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
+                        nodeButtons[i] = new UIImage(sys1.nodes[i].disabledTexture);
+                        nodeButtons[i].SetImage(sys1.nodes[i].disabledTexture);
+                        nodeButtons[i].Width.Set(sys1.nodes[i].textureWidth, 0f);
+                        nodeButtons[i].Height.Set(sys1.nodes[i].textureHeight, 0f);
                         nodeButtons[i].HAlign = buttonHAlign;
                         nodeButtons[i].VAlign = buttonVAlign;
                         nodeButtons[i].OnLeftClick += call;
@@ -193,49 +189,52 @@ namespace WeDoALittleTrolling.Common.SkillTree
                                 buttonVAlign = 0.5f;
                                 break;
                         }
-                        connectorButtons[i] = new UIImage(connectors[i].disabledTexture);
-                        connectorButtons[i].SetImage(connectors[i].disabledTexture);
-                        connectorButtons[i].Width.Set(connectors[i].textureWidth, 0f);
-                        connectorButtons[i].Height.Set(connectors[i].textureHeight, 0f);
+                        connectorButtons[i] = new UIImage(sys1.connectors[i].disabledTexture);
+                        connectorButtons[i].SetImage(sys1.connectors[i].disabledTexture);
+                        connectorButtons[i].Width.Set(sys1.connectors[i].textureWidth, 0f);
+                        connectorButtons[i].Height.Set(sys1.connectors[i].textureHeight, 0f);
                         connectorButtons[i].HAlign = buttonHAlign;
                         connectorButtons[i].VAlign = buttonVAlign;
                         panel.Append(connectorButtons[i]);
                     }
                     buttonsInit = true;
                 }
-                int currentSkillPoints = 0;
-                for (int i = 0; i < nodeButtons.Length; i++)
+                if (Main.player[Main.myPlayer].TryGetModPlayer<WDALTSkillTreeSystem>(out WDALTSkillTreeSystem sys2))
                 {
-                    if (IsNodeEnabled(i))
+                    int currentSkillPoints = 0;
+                    for (int i = 0; i < nodeButtons.Length; i++)
                     {
-                        currentSkillPoints += nodes[i].skillPointCost;
-                        nodeButtons[i].SetImage(nodes[i].enabledTexture);
-                        nodeButtons[i].Width.Set(nodes[i].textureWidth, 0f);
-                        nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
+                        if (sys2.IsNodeEnabled(i))
+                        {
+                            currentSkillPoints += sys2.nodes[i].skillPointCost;
+                            nodeButtons[i].SetImage(sys2.nodes[i].enabledTexture);
+                            nodeButtons[i].Width.Set(sys2.nodes[i].textureWidth, 0f);
+                            nodeButtons[i].Height.Set(sys2.nodes[i].textureHeight, 0f);
+                        }
+                        else
+                        {
+                            nodeButtons[i].SetImage(sys2.nodes[i].disabledTexture);
+                            nodeButtons[i].Width.Set(sys2.nodes[i].textureWidth, 0f);
+                            nodeButtons[i].Height.Set(sys2.nodes[i].textureHeight, 0f);
+                        }
                     }
-                    else
+                    for (int i = 0; i < connectorButtons.Length; i++)
                     {
-                        nodeButtons[i].SetImage(nodes[i].disabledTexture);
-                        nodeButtons[i].Width.Set(nodes[i].textureWidth, 0f);
-                        nodeButtons[i].Height.Set(nodes[i].textureHeight, 0f);
+                        if (sys2.IsConnectorEnabled(i))
+                        {
+                            connectorButtons[i].SetImage(sys2.connectors[i].enabledTexture);
+                            connectorButtons[i].Width.Set(sys2.connectors[i].textureWidth, 0f);
+                            connectorButtons[i].Height.Set(sys2.connectors[i].textureHeight, 0f);
+                        }
+                        else
+                        {
+                            connectorButtons[i].SetImage(sys2.connectors[i].disabledTexture);
+                            connectorButtons[i].Width.Set(sys2.connectors[i].textureWidth, 0f);
+                            connectorButtons[i].Height.Set(sys2.connectors[i].textureHeight, 0f);
+                        }
                     }
+                    skillPointDisplay.SetText("Skill Points Remaining: " + (sys2.unlockedSkillPoints - currentSkillPoints));
                 }
-                for (int i = 0; i < connectorButtons.Length; i++)
-                {
-                    if (IsConnectorEnabled(i))
-                    {
-                        connectorButtons[i].SetImage(connectors[i].enabledTexture);
-                        connectorButtons[i].Width.Set(connectors[i].textureWidth, 0f);
-                        connectorButtons[i].Height.Set(connectors[i].textureHeight, 0f);
-                    }
-                    else
-                    {
-                        connectorButtons[i].SetImage(connectors[i].disabledTexture);
-                        connectorButtons[i].Width.Set(connectors[i].textureWidth, 0f);
-                        connectorButtons[i].Height.Set(connectors[i].textureHeight, 0f);
-                    }
-                }
-                skillPointDisplay.SetText("Skill Points Remaining: " + (unlockedSkillPoints - currentSkillPoints));
                 base.OnActivate();
             }
 
@@ -329,7 +328,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
             }
         }
 
-        public static void InitNodes(bool reset = false)
+        public void InitNodes(bool reset = false)
         {
             if (nodesInitialized)
             {
@@ -468,9 +467,10 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 InitNodes();
             }
+            InitNodes(reset: true);
         }
 
-        public static bool IsNodeEnabled(int type)
+        public bool IsNodeEnabled(int type)
         {
             if (Main.dedServ || Main.netMode == NetmodeID.Server || type >= nodes.Length || type < 0)
             {
@@ -490,7 +490,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
             }
         }
 
-        public static bool IsConnectorEnabled(int type)
+        public bool IsConnectorEnabled(int type)
         {
             if (Main.dedServ || Main.netMode == NetmodeID.Server || type >= connectors.Length || type < 0)
             {
@@ -543,7 +543,7 @@ namespace WeDoALittleTrolling.Common.SkillTree
             }
         }
 
-        public static bool IsSkillTreeValid()
+        public bool IsSkillTreeValid()
         {
             if (Main.dedServ || Main.netMode == NetmodeID.Server)
             {
@@ -615,33 +615,39 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 return;
             }
-            unlockedSkillPoints = 3;
-            unlockedSkillPoint1 = false;
-            if (tag.ContainsKey("UnlockedSkillPoint1"))
+            if (!nodesInitialized)
             {
-                unlockedSkillPoint1 = tag.GetBool("UnlockedSkillPoint1");
+                InitNodes();
+            }
+            bool loadedData = false;
+            if (tag.ContainsKey("WDALTUnlockedSkillPoint1"))
+            {
+                unlockedSkillPoints = 3;
+                unlockedSkillPoint1 = false;
+                unlockedSkillPoint1 = tag.GetBool("WDALTUnlockedSkillPoint1");
                 if (unlockedSkillPoint1)
                 {
                     unlockedSkillPoints++;
                 }
+                loadedData = true;
             }
-            if (tag.ContainsKey("Core"))
+            if (tag.ContainsKey("WDALTCore"))
             {
-                (nodes[Core]).enabled = tag.GetBool("Core");
+                (nodes[Core]).enabled = tag.GetBool("WDALTCore");
             }
-            if (tag.ContainsKey("Positive1"))
+            if (tag.ContainsKey("WDALTPositive1"))
             {
-                (nodes[Positive1]).enabled = tag.GetBool("Positive1");
+                (nodes[Positive1]).enabled = tag.GetBool("WDALTPositive1");
             }
-            if (tag.ContainsKey("Negative1Thorium"))
+            if (tag.ContainsKey("WDALTNegative1Thorium"))
             {
-                (nodes[Negative1Thorium]).enabled = tag.GetBool("Negative1Thorium");
+                (nodes[Negative1Thorium]).enabled = tag.GetBool("WDALTNegative1Thorium");
             }
-            if (tag.ContainsKey("ThoriumClassBooster"))
+            if (tag.ContainsKey("WDALTThoriumClassBooster"))
             {
-                (nodes[Negative1Thorium]).enabled = tag.GetBool("ThoriumClassBooster");
+                (nodes[ThoriumClassBooster]).enabled = tag.GetBool("WDALTThoriumClassBooster");
             }
-            if (!IsSkillTreeValid())
+            if (!IsSkillTreeValid() && loadedData)
             {
                 InitNodes(reset: true);
             }
@@ -653,16 +659,20 @@ namespace WeDoALittleTrolling.Common.SkillTree
             {
                 return;
             }
+            if (!nodesInitialized)
+            {
+                InitNodes();
+            }
             OpenSkillTreeGUI(forceClose: true);
-            tag["UnlockedSkillPoint1"] = unlockedSkillPoint1;
+            tag["WDALTUnlockedSkillPoint1"] = unlockedSkillPoint1;
             if (!IsSkillTreeValid())
             {
                 InitNodes(reset: true);
             }
-            tag["Core"] = (nodes[Core]).enabled;
-            tag["Positive1"] = (nodes[Positive1]).enabled;
-            tag["Negative1Thorium"] = (nodes[Negative1Thorium]).enabled;
-            tag["ThoriumClassBooster"] = (nodes[ThoriumClassBooster]).enabled;
+            tag["WDALTCore"] = (nodes[Core]).enabled;
+            tag["WDALTPositive1"] = (nodes[Positive1]).enabled;
+            tag["WDALTNegative1Thorium"] = (nodes[Negative1Thorium]).enabled;
+            tag["WDALTThoriumClassBooster"] = (nodes[ThoriumClassBooster]).enabled;
         }
 
         public override void UpdateEquips()
