@@ -1509,7 +1509,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.ThunderSpear)
             {
-                item.damage = 18;
+                item.damage = 16;
             }
             if (item.type == ItemID.ThunderStaff)
             {
