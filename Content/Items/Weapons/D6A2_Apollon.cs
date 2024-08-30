@@ -41,8 +41,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 96;
-            Item.height = 38;
+            Item.width = 56;
+            Item.height = 28;
             Item.scale = 0.875f;
             Item.rare = ItemRarityID.Expert;
 
@@ -101,7 +101,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-18.5f, -6.0f);
+            return new Vector2(-10.0f, -4.5f);
         }
 
         public override void AddRecipes()

@@ -175,16 +175,22 @@ Mods: {
 			}
 
 			D6A1_Artemis: {
-				DisplayName: Artemis Smite
-				Tooltip: Fires a Laser powerful enough to eliminate most enemies
+				DisplayName: Artemis' Bolt
+				Tooltip:
+					'''
+					Fires a missile that will stick to targets and
+					explode, dealing double weapon damage in total.
+					'''
 			}
 
 			D6A2_Apollon: {
-				DisplayName: D6A2 - Apollon
+				DisplayName: Apollon's Dart
 				Tooltip:
 					'''
-					Fires a Laser powerful enough to vaporise a spaceship
-					Right-Click to toggle the Aim-Assist system
+					Fires a laser powerful enough to vaporise a spaceship
+					Rightclick to toggle the aim-assist system
+					"I am going to commit various unforgivable war crimes!
+					 I'll be wanted in EVERY country!"
 					'''
 			}
 
