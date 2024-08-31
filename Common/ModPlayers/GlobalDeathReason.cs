@@ -48,12 +48,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             player = this.Player;
         }
 
-        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        int[] LeFisheIDs =
         {
-            if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
-            {
-                int[] LeFisheIDs =
-                {
                     NPCID.FungoFish,
                     NPCID.Piranha,
                     NPCID.AnglerFish,
@@ -62,36 +58,42 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     NPCID.CorruptGoldfish,
                     NPCID.CrimsonGoldfish,
                     NPCID.Arapaima
-                };
+        };
 
-                int[] BeeIDs =
-                {
+        int[] BeeIDs =
+        {
                     NPCID.Bee,
                     NPCID.BeeSmall,
                     NPCID.QueenBee
-                };
+        };
 
-                int[] BoCIDs =
-                {
+        int[] BoCIDs =
+        {
                     NPCID.BrainofCthulhu,
                     NPCID.Creeper
-                };
+        };
 
-                int[] BlubbyIDs =
-                {
+        int[] BlubbyIDs =
+        {
                     NPCID.Plantera,
                     NPCID.PlanterasHook,
                     NPCID.PlanterasTentacle
-                };
+        };
 
-                int[] SansIDs =
-                {
+        int[] SansIDs =
+        {
                     NPCID.SkeletronHead,
                     NPCID.SkeletronHand,
                     NPCID.Skeleton,
                     NPCID.PrimeSaw,
                     NPCID.PrimeVice
-                };
+        };
+
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
+            {
+               
 
                 if (LeFisheIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
@@ -179,8 +181,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "Monday left " + player.name + " broken.",               
                 // First Generation Third Party Suggestions
                 player.name + " was morbed to death.",
-                player.name + " was not that guy.",                
-                player.name + " didn't pay their taxes and was caught by the IRS.",               
+                player.name + " was not that guy.",
+                player.name + " didn't pay their taxes and was caught by the IRS.",
                 player.name + " entered the void.",
                 player.name + " turned out to be a low intelligence specimen.",
                 // Second Generation
@@ -251,8 +253,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " fell victim to the Pharaoh's curse.",
                 player.name + " should have aspired to the strength and certainty of steel.",
                 "The harvest of " + player.name + "'s deaths is very bountiful this year.",
+                "Well, " + player.name + " is not of passing skill.",
+                "For some reason " + player.name + " did not have legs in the proximity of their home.",
                 player.name + " made a minor spelling mistake. I win.",
-                player.name + " discovered the meaning of a Backstab in Elden Ring.",
+                player.name + " got Elden Ring-style backstabbed.",
                 player.name + " has been foiled again.",
                 player.name + " lagged, trust me!",
                 "Surely there was nothing " + player.name + " could have done to avoid that.",
@@ -262,15 +266,20 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " did not receive vital information from the Sugondese.",
                 player.name + "'s AC broke down in the middle of summer.",
                 "The curse seeped to " + player.name + "'s very soul.",
+                "Okay but... " + player.name + " thought it would be funny!",
+                "It's a shame " + player.name + " didn't die 87 years ago.",
+                player.name + " fell off the lobter copter.",
                 "Thank you, " + player.name + ", for participating in this Aperture Science computer-aided Enrichment Center activity. Goodbye",
                 "Hippity hoppity " + player.name + "'s soul is now my property."
-                
+
 
             };
-            if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
+
+            if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
             {
+
                 string[] AbsurdDeathsByNPC =
-                {
+{
                     player.name + " was reminded of the incident by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " was informed of their skill issue by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " discovered that they were simply lacking the talent to overcome " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
@@ -287,14 +296,22 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " fell victim to " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s YouTube prank.",
                     player.name + " was eliminated from a Mr. Beast challenge by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " just wanted to talk to " + player.name + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " was the second worst thing to ever happen to " + player.name + ".",
                     player.name + " had it writ upon their meagre grave: Felled by" + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
                     player.name + " has been hit by, " + player.name + " has been struck by " + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
                     player.name + " was defeated by " + Main.npc[damageSource.SourceNPCIndex].FullName + ", blade of Moon Lord.",
+                    player.name + " is" + Main.npc[damageSource.SourceNPCIndex].FullName + "'s and " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s alone!",
+                    "Jingle jongie, it's time for " + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " explodes violently.",
+                    "Who would win? " + player.name + " or one lowly little " + Main.npc[damageSource.SourceNPCIndex].FullName + "? That's right, it's the " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "Curse you," + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " hereby vows: You will rue this day!",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " can see it as clear as day; The death of " + player.name + "!",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " found " + player.name + "'s joke pretty funny. " + player.name + " dies \"accidentally\".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth."
                 };
+
                 if (random.NextBool(15))
                 {
-                    if(random.NextBool(5))
+                    if(random.NextBool(4))
                     {
                         damageSource.SourceCustomReason = AbsurdDeathsByNPC[random.Next(0, AbsurdDeathsByNPC.Length)];
                     }
