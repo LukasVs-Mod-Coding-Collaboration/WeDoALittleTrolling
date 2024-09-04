@@ -265,6 +265,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " was ignorant to the Mind Goblin.",
                 player.name + " did not receive vital information from the Sugondese.",
                 player.name + "'s AC broke down in the middle of summer.",
+                player.name + " got cancelled out of Waterfowl Dance.",
+                player.name + " went to the store to get milk.",
                 "The curse seeped to " + player.name + "'s very soul.",
                 "Okay but... " + player.name + " thought it would be funny!",
                 "It's a shame " + player.name + " didn't die 87 years ago.",
@@ -301,6 +303,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " has been hit by, " + player.name + " has been struck by " + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
                     player.name + " was defeated by " + Main.npc[damageSource.SourceNPCIndex].FullName + ", blade of Moon Lord.",
                     player.name + " is" + Main.npc[damageSource.SourceNPCIndex].FullName + "'s and " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s alone!",
+                    player.name + " died. Or did they? Hey VSauce, " + Main.npc[damageSource.SourceNPCIndex].FullName + " here!",
                     "Jingle jongie, it's time for " + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " explodes violently.",
                     "Who would win? " + player.name + " or one lowly little " + Main.npc[damageSource.SourceNPCIndex].FullName + "? That's right, it's the " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     "Curse you," + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " hereby vows: You will rue this day!",
@@ -311,7 +314,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
                 if (random.NextBool(15))
                 {
-                    if(random.NextBool(4))
+                    if(random.NextBool(3))
                     {
                         damageSource.SourceCustomReason = AbsurdDeathsByNPC[random.Next(0, AbsurdDeathsByNPC.Length)];
                     }
