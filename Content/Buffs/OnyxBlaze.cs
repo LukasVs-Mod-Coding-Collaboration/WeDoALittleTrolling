@@ -33,7 +33,7 @@ namespace WeDoALittleTrolling.Content.Buffs
     public class OnyxBlaze : ModBuff
     {
 
-        public static float dmgTakenMult = 1.15f;
+        public const float dmgTakenMult = 1.15f;
         public static int dps = 30; // HPR every 2S. Set to -30 to achieve -15.
 
         public override void SetStaticDefaults()
