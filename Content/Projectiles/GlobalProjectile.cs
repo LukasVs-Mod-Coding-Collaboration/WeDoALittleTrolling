@@ -238,6 +238,13 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 projectile.timeLeft = 80;
             }
+            if
+            (
+                projectile.type == ProjectileID.BlackBolt
+            )
+            {
+                projectile.timeLeft = 60;
+            }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if
@@ -846,6 +853,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
             if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
             {
                 target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
+                if (Main.masterMode)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
+            if (projectile.type == ProjectileID.BlackBolt)
+            {
+                target.AddBuff(ModContent.BuffType<OnyxBlaze>(), 240, true); //4s, X2 in Expert, X2.5 in Master
                 if (Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master

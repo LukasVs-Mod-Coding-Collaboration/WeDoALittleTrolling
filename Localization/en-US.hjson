@@ -1005,6 +1005,11 @@ Mods: {
 				DisplayName: Haunted
 				Description: You are afraid of darkness...
 			}
+
+			OnyxBlaze: {
+				DisplayName: Onyx Blaze
+				Description: Burning with a strange, dark fire. Take 15% more damage.
+			}
 		}
 
 		NPCs: {

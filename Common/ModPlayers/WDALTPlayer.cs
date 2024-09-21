@@ -37,6 +37,7 @@ using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
+using Terraria.WorldBuilding;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -593,6 +594,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 modifiers.FinalDamage *= (1f - (((float)spookyBonus * 1.5f) * 0.01f));
             }
+            if (player.HasBuff(ModContent.BuffType<SearingInferno>()))
+            {
+                modifiers.SourceDamage *= OnyxBlaze.dmgTakenMult;
+            }
             base.ModifyHurt(ref modifiers);
         }
 
@@ -699,6 +704,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     int dmg = (int)Math.Round(proj.damage * 0.15);
                     Projectile.NewProjectileDirect(proj.GetSource_OnHit(target), projPosition, projVelocity, ModContent.ProjectileType<MagicArtifact>(), dmg, proj.knockBack, proj.owner);
                 }
+            }
+            if (proj.type == ProjectileID.BlackBolt)
+            {
+                target.AddBuff(ModContent.BuffType<OnyxBlaze>(), 240, false);
             }
             base.OnHitNPCWithProj(proj, target, hit, damageDone);
         }

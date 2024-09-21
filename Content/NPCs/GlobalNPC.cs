@@ -823,6 +823,10 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 modifiers.SourceDamage *= 0.25f;
             }
+            if (npc.HasBuff(ModContent.BuffType<OnyxBlaze>()))
+            {
+                modifiers.SourceDamage *= OnyxBlaze.dmgTakenMult;
+            }
             if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
                 if
@@ -1038,6 +1042,31 @@ namespace WeDoALittleTrolling.Content.NPCs
                 }
 
             }
+
+            if (npc.HasBuff(ModContent.BuffType<OnyxBlaze>()))
+            {
+                int xOffset = random.Next(-(npc.width / 2), (npc.width / 2));
+                int yOffset = random.Next(-(npc.height / 2), (npc.height / 2));
+                Vector2 dustPosition = npc.Center;
+                dustPosition.X += xOffset;
+                dustPosition.Y += yOffset;
+                int dustType = random.Next(0, 2);
+                switch (dustType)
+                {
+                    case 0:
+                        Dust newDust1 = Dust.NewDustPerfect(dustPosition, 109);
+                        newDust1.noGravity = true;
+                        break;
+                    case 1:
+                        Dust newDust2 = Dust.NewDustPerfect(dustPosition, 65);
+                        newDust2.noGravity = true;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
             base.DrawEffects(npc, ref drawColor);
         }
 
