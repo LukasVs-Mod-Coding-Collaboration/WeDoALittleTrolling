@@ -995,17 +995,19 @@ namespace WeDoALittleTrolling.Content.NPCs
                 )
                 {
                     npc.buffImmune[ModContent.BuffType<SearingInferno>()] = true;
+                    npc.buffImmune[ModContent.BuffType<OnyxBlaze>()] = true;
                 }
                 else
                 {
                     npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+                    npc.buffImmune[ModContent.BuffType<OnyxBlaze>()] = false;
                 }
             }
             else
             {
                 npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
+                npc.buffImmune[ModContent.BuffType<OnyxBlaze>()] = false;
             }
-            npc.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             base.UpdateLifeRegen(npc, ref damage);
         }
 
