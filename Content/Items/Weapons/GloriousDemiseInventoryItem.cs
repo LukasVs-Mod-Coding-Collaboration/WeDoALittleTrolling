@@ -41,8 +41,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.rare = ItemRarityID.LightPurple;
             Item.value = Item.sellPrice(gold: 5);
 
-            Item.width = 66;
-            Item.height = 66;
+            Item.width = 50;
+            Item.height = 50;
             Item.scale = 1f;
 
             Item.useStyle = ItemUseStyleID.Swing;
