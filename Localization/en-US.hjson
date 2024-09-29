@@ -646,6 +646,7 @@ Mods: {
 			EmberBolt.DisplayName: Ember Bolt
 			ArtemissileProjectile.DisplayName: Artemis Missile
 			FrozenShard.DisplayName: Frozen Shard
+			Kernel.DisplayName: Kernel
 		}
 
 		Prefixes: {

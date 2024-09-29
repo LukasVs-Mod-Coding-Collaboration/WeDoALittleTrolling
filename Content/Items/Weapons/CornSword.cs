@@ -18,9 +18,12 @@
 
 using System;
 using Microsoft.Xna.Framework;
+using Mono.Cecil;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Projectiles;
@@ -29,15 +32,13 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     public class CornSword : ModItem
     {
+        public static UnifiedRandom rnd = new UnifiedRandom();
         public override void SetDefaults()
         {
-            Item.damage = 20;
+            Item.damage = 15;
             Item.DamageType = DamageClass.Melee;
-            Item.shoot = ModContent.ProjectileType<ThrownCorncob>();
-            Item.shootSpeed = 10f;
-            Item.shootsEveryUse = true;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 24;
+            Item.useAnimation = 24;
             Item.knockBack = 5.25f;
             Item.scale = 1.25f;
             Item.width = 40;
@@ -48,40 +49,30 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(silver: 2);
             Item.maxStack = 1;
+            Item.useTurn = true;
         }
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            damage = (int)Math.Round(((double)damage) * 0.75);
-        }
-
-        public override bool CanShoot(Player player)
-        {
-            if (player.GetModPlayer<WDALTPlayer>().cornEmblem)
+            int kernelCount = 3;
+            for (int i = 0; i < kernelCount; i++)
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                Vector2 kernelVelocity = new Vector2((rnd.NextFloat() - 0.5f), rnd.NextFloat());
+                kernelVelocity = kernelVelocity.SafeNormalize(Vector2.Zero);
+                kernelVelocity.X *= 3 + rnd.Next(0, 3);
+                kernelVelocity.Y *= -5 + rnd.Next(-2, 1);
+                Projectile.NewProjectileDirect(player.GetSource_OnHit(target), target.Center, kernelVelocity, ModContent.ProjectileType<Kernel>(), (int)(damageDone * 0.2f), 4f, player.whoAmI);
             }
         }
 
         public override void AddRecipes()
         {
-            /*
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<Corncob>(), 10);
-            recipe.AddIngredient(ItemID.DemoniteBar, 5);
-            recipe.AddTile(TileID.ShimmerMonolith);
-            recipe.Register();
-
-            Recipe recipe2 = CreateRecipe();
-            recipe2.AddIngredient(ModContent.ItemType<Corncob>(), 10);
-            recipe2.AddIngredient(ItemID.CrimtaneBar, 5);
-            recipe2.AddTile(TileID.ShimmerMonolith);
-            recipe2.Register();
-            */
+            CreateRecipe()
+                .AddTile(TileID.ShimmerMonolith)
+                .AddIngredient(ItemID.WoodenSword)
+                .AddIngredient(ItemID.Sunflower, 5)
+                .AddIngredient(ItemID.Pumpkin, 10)
+                .Register();
         }
     }
 }
