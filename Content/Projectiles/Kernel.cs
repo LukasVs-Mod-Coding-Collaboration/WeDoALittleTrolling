@@ -81,6 +81,18 @@ namespace WeDoALittleTrolling.Content.Projectiles
             return base.PreKill(timeLeft);
         }
 
+        public override bool? CanHitNPC(NPC target)
+        {
+            if (Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive > 30)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public override void AI()
         {
             if (Projectile.timeLeft < 240 && Projectile.velocity.Length() < 0.2f)

@@ -35,6 +35,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     internal class Boulderspell : ModItem
     {
         public static UnifiedRandom rnd = new UnifiedRandom(); //Introduce random Values
+        int damageModifier;
 
         public override void SetDefaults()
         {
@@ -63,10 +64,44 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.shoot = ProjectileID.Boulder;
             Item.shootSpeed = 8f;
+            Item.noMelee = true;
         }
 
         public override bool AltFunctionUse(Player player) // Boulder Rain
         {
+            if (player.statMana > 300)
+            {
+                if (!Main.expertMode)
+                {
+                    damageModifier = 1;
+                }
+                if (Main.expertMode)
+                {
+                    damageModifier = 2;
+                }
+                if (Main.masterMode)
+                {
+                    damageModifier = 3;
+                }
+
+                while (player.statMana > 50)
+                {
+                    player.statMana -= 50;
+                    Vector2 boulderRainRndLocation = new Vector2(Main.MouseWorld.X + rnd.Next(321) - 160, Main.MouseWorld.Y + rnd.Next(321) - 160);
+                    Vector2 boulderRainMomentumDown= new Vector2(0f, 12.0f);
+                    Projectile.NewProjectile(player.GetSource_FromThis(), boulderRainRndLocation, boulderRainMomentumDown, Item.shoot, Item.damage * damageModifier, Item.knockBack, player.whoAmI);
+                    for (int j = 0; j < 24; j++)
+                    {
+                        Vector2 dustPosition = boulderRainRndLocation;
+                        Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
+                        dustVelocity = dustVelocity.SafeNormalize(Vector2.Zero);
+                        dustVelocity *= 4f;
+                        Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Stone, dustVelocity, 0, default);
+                        newDust.noGravity = true;
+                    }
+
+                }
+            }
             return false;
         }
 
@@ -86,29 +121,46 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Vector2 testspawnpos = new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y);
-            //this works
+            Vector2 spawnpos = new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y);
+            Vector2 momentumdown = new Vector2(0f, 16.3f);
+            if (!Main.expertMode)
+            {
+                damageModifier = 1;
+            }
+            if (Main.expertMode)
+            {
+                damageModifier = 2;
+            }
+            if (Main.masterMode)
+            {
+                damageModifier = 3;
+            }
 
-            Vector2 testmomentumdown = new Vector2(0f, 16.3f);
-            //This does not work, the boulder just explodes.
-
-            position = testspawnpos;
-            velocity = testmomentumdown;
-            Projectile.NewProjectile(source, position, velocity, Item.shoot, Item.damage, Item.knockBack, player.whoAmI);
+            position = spawnpos;
+            velocity = momentumdown;
+            Projectile.NewProjectile(source, position, velocity, Item.shoot, Item.damage * damageModifier, Item.knockBack, player.whoAmI);
+            for (int k = 0; k < 20; k++)
+            {
+                Vector2 dustPosition = Main.MouseWorld;
+                Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
+                dustVelocity = dustVelocity.SafeNormalize(Vector2.Zero);
+                dustVelocity *= 4f;
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Stone, dustVelocity, 0, default);
+                newDust.noGravity = true;
+            }
             return false;
         }
 
         public override void AddRecipes()
-        {
-            /*
+        {            
             CreateRecipe()
               .AddTile(TileID.CrystalBall)
               .AddIngredient(ItemID.SpellTome, 1)
-              .AddIngredient(ItemID.Boulder, 50)
+              .AddIngredient(ItemID.Boulder, 9999)
               .AddIngredient(ItemID.SoulofLight, 10)
               .AddIngredient(ItemID.SoulofNight, 10)
-              .Register();
-            */
+              .AddIngredient(ItemID.LunarBar, 5)
+              .Register();            
         }
     }
 }
