@@ -15,9 +15,6 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);WeDoALittleQualityOfLife\WeDoALittleQualityOfLife.sln</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Content\Projectiles\Kernel.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Assets\Music\" />
     <Folder Include="Assets\Textures\" />
     <Folder Include="Assets\Sounds\" />
