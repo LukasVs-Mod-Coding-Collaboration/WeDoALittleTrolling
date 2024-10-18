@@ -904,7 +904,11 @@ Mods: {
 
 			Accelerated: {
 				DisplayName: Accelerated
-				AdditionalTooltip: +10% horizontal flight speed
+				AdditionalTooltip:
+					'''
+					+10% maximum horizontal flight speed
+					+10% acceleration
+					'''
 			}
 
 			Weighted: {

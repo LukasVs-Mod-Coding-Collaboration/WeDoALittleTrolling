@@ -75,6 +75,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.GetModPlayer<WDALTPlayer>().acceleratedStack++;
+            player.moveSpeed += 0.1f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
