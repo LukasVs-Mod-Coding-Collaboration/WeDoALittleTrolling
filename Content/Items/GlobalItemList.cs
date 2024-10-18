@@ -245,6 +245,7 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.prefix == PrefixID.Violent)
             {
                 player.GetArmorPenetration(DamageClass.Melee) += 4f;
+                player.GetArmorPenetration(DamageClass.MeleeNoSpeed) += 4f;
                 player.GetArmorPenetration(DamageClass.SummonMeleeSpeed) += 4f;
             }
             if (item.type == ItemID.AvengerEmblem)
