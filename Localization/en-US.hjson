@@ -13,11 +13,9 @@ Mods: {
 				DisplayName: Lifeforce Engine
 				Tooltip:
 					'''
-					Activate the engine to temporarily transform
-					all your defence into health regeneration
-					for five seconds. This synergises best with
-					the melee class due to its high base defence.
-					This has a 2 minute cooldown.
+					Transform all defense into health
+					regeneration for 5 seconds. Has a
+					two minute cooldown.
 					'''
 			}
 
@@ -25,7 +23,7 @@ Mods: {
 				DisplayName: Magmaflux Core
 				Tooltip:
 					'''
-					Makes the player immune to fire blocks
+					Grants immunity to fire blocks and lava
 					Melee attacks inflict fire damage
 					Slowly regenerates life
 					"It emits a pleasant warmth."
@@ -36,10 +34,10 @@ Mods: {
 				DisplayName: Mana extraction Catalyst
 				Tooltip:
 					'''
-					"The power of unlimited magic energy at
-					 the cost of some of your life force..."
-					You no longer gain mana sickness, however,
-					your maximal Health points are reduced by 100
+					"The power of unlimited magic
+					 energy at your fingertips... "
+					Grants immunity to Mana Sickness
+					Reduces maximal health points by 100
 					Automatically use mana potions when needed
 					Incompatible with the Sorcerous Mirror
 					'''
@@ -49,9 +47,8 @@ Mods: {
 				DisplayName: Miner Emblem
 				Tooltip:
 					'''
-					Moving around the Underground
-					can be slow sometimes.
-					This accessory makes it faster.
+					Increases mining speed
+					Grants immunity to fire blocks
 					"Miner Inconvenience"
 					'''
 			}
@@ -86,7 +83,7 @@ Mods: {
 					'''
 					You do not consume ammo
 					"How? ... Don't ask."
-					Might have unforeseen drawbacks
+					Weapons sometimes overheat
 					'''
 			}
 
@@ -119,13 +116,12 @@ Mods: {
 					'''
 					"A highly dense shield, imbued with the souls of a
 					 tough mechanical creature in order to protect you"
-					Grants knockback immunity
+					Grants immunity to knockback
 					5 Defense
-					Reduces up to 25% of damage taken based on how
-					close you are to the attacker, this is unaffected by debuffs
-					Grants immunity to most fire and frost effects
-					Also grants immunity to most other hazardous debuffs
-					which are not blocked by the Ankh Shield
+					You take up to 25% less damage based
+					on proximity to the attacker
+					Grants immunity to many hazardous
+					debuffs not blocked by the Ankh Shield
 					'''
 			}
 
@@ -146,7 +142,7 @@ Mods: {
 				Tooltip:
 					'''
 					Your magic damage increases as you lose health
-					Grants 1% magic damage for every 5 health you have lost
+					Grants 1% magic damage for every 5 health lost
 					"As death approaches, the heart is filled with
 					 anger that can fuel every single desperate strike..."
 					'''
@@ -189,17 +185,6 @@ Mods: {
 					'''
 					Fires a laser powerful enough to vaporise a spaceship
 					Rightclick to toggle the aim-assist system
-					"I am going to commit various unforgivable war crimes!
-					 I'll be wanted in EVERY country!"
-					'''
-			}
-
-			Electrocution: {
-				DisplayName: Electrocution Beta
-				Tooltip:
-					'''
-					A test item made to test basic vector mechanics and potentially all sorts of projectile AI
-					Experimental Item
 					'''
 			}
 
@@ -207,16 +192,10 @@ Mods: {
 				DisplayName: Rain of Decay
 				Tooltip:
 					'''
-					Ignores 30 points of enemy Defense
+					Ignores some Defense
 					"The sky is only cursed flames to them."
-					Right-Click to switch between attack modes
-					Multishot mode fires 4 arrows at once
-					Rapidfire mode fires 1 arrow and:
-					- fires 100% faster
-					- deals 50% more damage
-					- has 25% higher critical strike chance
-					- inflicts 500% more knockback
-					- has a 50% chance to save ammo
+					Right-Click to switch between attack
+					modes to trade damage for accuracy
 					'''
 			}
 
@@ -224,13 +203,8 @@ Mods: {
 				DisplayName: Ember Ray
 				Tooltip:
 					'''
-					"Melts just about anything, no matter
-					 how heat resistant it might be"
+					"Melts just about anything"
 					Converts wooden arrows into Ember Bolts
-					Striking an enemy with Ember Bolts will
-					build up Blazing Fuel, an invisible buff
-					which gradually increases the weapon's 
-					critical strike chance and damage
 					'''
 			}
 
@@ -240,10 +214,8 @@ Mods: {
 					'''
 					"Look up to the sky and
 					 see an Ocean of Stars"
-					Right click to dash in the direction
-					you are pointing, becoming invulnerable
-					for a short time. Cooldown: 2 Seconds
-					Grants Endurance when swung
+					Right click to dash, granting invulnerability
+					for a short time. Has a two second cooldown.
 					'''
 			}
 
@@ -264,13 +236,9 @@ Mods: {
 					'''
 					"An ancient sword once wielded by the
 					 great ruler of the wind and the sands"
-					Shoots sharp Sapphire Blades that deal
-					90% of the weapon's damage
+					Shoots Sapphire Blades
 					Right click to charge a tornado
-					The Tornado will do more damage
-					depending on how long it is charged,
-					up to a maximum of 120% of the
-					weapon's damage
+					The tornado will be released when attacking
 					'''
 			}
 
@@ -279,9 +247,8 @@ Mods: {
 				Tooltip:
 					'''
 					"I CAST BOULDERSPELL! ALL OF IT! BEHOLD!!"
-					Fires a boulder that deals more damage dependent on the world difficulty
-					Right click to convert all your mana into a fatal rain of boulders,
-					this activates near your cursor but with low accuracy
+					Boulders deal damage accurate to world difficulty
+					Right click to convert all your mana into a fatal rain of boulders
 					'''
 			}
 
@@ -341,8 +308,8 @@ Mods: {
 					'''
 					Keep this item in your inventory to
 					become immune to Searing Inferno
-					"This charm looks like it might be
-					 able to to extinguish the Golem's fire."
+					"It might be able to extinguish
+					 that horrid fire."
 					'''
 			}
 
@@ -404,7 +371,7 @@ Mods: {
 				DisplayName: Glorious Demise
 				Tooltip:
 					'''
-					This item's power increases as you defeat more bosses.
+					Increases in power as bosses are defeated
 					"The grim reaper takes many different forms
 					 and arrives in many different shades and colours!"
 					'''
@@ -442,14 +409,18 @@ Mods: {
 				DisplayName: Throw Of The Lunatic
 				Tooltip:
 					'''
-					"Stolen from a Cultist as obsessed
-					 with yoyos as with the moon..."
+					"Stolen from a mad Cultist
+					 obsessed with the moon..."
 					'''
 			}
 
 			CornSword: {
 				DisplayName: Corn Sword
-				Tooltip: Unfinished Item
+				Tooltip:
+					'''
+					"From earth I rise and to the
+					 earth I one day will return"
+					'''
 			}
 
 			Corncob: {
@@ -580,15 +551,6 @@ Mods: {
 				Tooltip: Attempting to get the Blazing Shield to spawn
 			}
 
-			CornEmblem: {
-				DisplayName: Corn Emblem
-				Tooltip:
-					'''
-					Makes Corn Swords throw Golden Corncobs
-					Unfinished Item
-					'''
-			}
-
 			PermaSkillPointItemGive: {
 				DisplayName: Perma Skill Point Item Give
 				Tooltip: ""
@@ -621,7 +583,7 @@ Mods: {
 
 			EmbersteelBarItem: {
 				DisplayName: Embersteel Bar
-				Tooltip: ""
+				Tooltip: "It glows with an inner flame"
 			}
 		}
 
@@ -719,8 +681,7 @@ Mods: {
 					'''
 					Allows you to run slightly faster
 					You also run much faster on sand and
-					you are not affected by the wind
-					during a Sandstorm
+					you are not affected by strong winds
 					'''
 			}
 
@@ -728,16 +689,6 @@ Mods: {
 				DisplayName: Focusing
 				AdditionalTooltip: -3% ranged damage
 				AdditionalTooltip2: +6% ranged critical strike chance
-			}
-
-			Lunatic: {
-				DisplayName: Lunatic's
-				AdditionalTooltip:
-					'''
-					Damages the player above 250 Health
-					Increases player damage by 1% for every 25 health lost
-					Currently unobtainable
-					'''
 			}
 
 			Beekeeping: {
@@ -895,11 +846,6 @@ Mods: {
 				AdditionalTooltip: +1 to all "reforge stats"
 			}
 
-			SunshineOf: {
-				DisplayName: Sunshine of
-				AdditionalTooltip: WHAT IN THE NAME OF ISRAPONY IS HAPPENING
-			}
-
 			Overloaded.DisplayName: Overloaded
 
 			Accelerated: {
@@ -913,7 +859,7 @@ Mods: {
 
 			Weighted: {
 				DisplayName: Weighted
-				AdditionalTooltip: +20% max fall speed
+				AdditionalTooltip: +20% maximum fall speed
 			}
 		}
 
@@ -937,19 +883,7 @@ Mods: {
 				Description:
 					'''
 					Damage reduced by 30% and losing life
-					"If only there was a way to suppress this...
-					 Pherhaps I should check the Underground Ice Biome,
-					 the Underworld and the Glowing Mushroom Biome."
-					'''
-			}
-
-			Phasing: {
-				DisplayName: Phasing
-				Description:
-					'''
-					Cannot consume anymore healing items
-					20% chance to ignore enemy attacks
-					20% increased running speed
+					"If only there was a way to suppress this..."
 					'''
 			}
 
@@ -979,10 +913,7 @@ Mods: {
 					 I'm gnot a gnoblin.
 					 I'm a GNOME!
 					 And you've been GNOMED!"
-					"If you don't happen to have
-					 a Pocket Mirror, Reflective Shades,
-					 an Ankh Charm or an Ankh Shield equipped,
-					 you should probably avoid sunlight..."
+					"If I were you I would avoid sunlight..."
 					'''
 			}
 
@@ -1018,7 +949,6 @@ Mods: {
 		}
 
 		NPCs: {
-			HighEnergyTestDevice.DisplayName: High Energy Test Device
 			FrozenGhoul.DisplayName: Frozen Ghoul
 			NightmarePhantom.DisplayName: Nightmare Phantom
 			TestNPC.DisplayName: Test Temp Plate

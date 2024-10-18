@@ -45,7 +45,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.height = 40;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
-            Item.autoReuse = true;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(silver: 2);
             Item.maxStack = 1;
