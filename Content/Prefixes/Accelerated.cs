@@ -49,7 +49,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult *= 1.15f;
+            valueMult = 1.3f;
         }
 
         public static void RegisterHooks()

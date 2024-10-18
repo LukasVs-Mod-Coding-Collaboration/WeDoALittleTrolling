@@ -583,7 +583,7 @@ Mods: {
 
 			EmbersteelBarItem: {
 				DisplayName: Embersteel Bar
-				Tooltip: "It glows with an inner flame"
+				Tooltip: It glows with an inner flame
 			}
 		}
 

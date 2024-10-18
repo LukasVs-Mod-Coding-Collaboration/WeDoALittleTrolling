@@ -197,7 +197,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
             {
                 NPC target = Main.npc[ownerPlayer.MinionAttackTargetNPC];
                 float currentDistance = Vector2.Distance(target.Center, Projectile.Center);
-                if (currentDistance < (detectionRange * 2f))
+                if (currentDistance < (detectionRange * 2f) && target.CanBeChasedBy())
                 {
                     distanceToTarget = Vector2.Distance(target.Center, Projectile.Center);
                     targetCenter = target.Center;

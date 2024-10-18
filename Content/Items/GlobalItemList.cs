@@ -238,6 +238,15 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 player.endurance += 0.02f;
             }
+            if (item.prefix == PrefixID.Quick2)
+            {
+                player.GetAttackSpeed(DamageClass.Generic) += 0.04f;
+            }
+            if (item.prefix == PrefixID.Violent)
+            {
+                player.GetArmorPenetration(DamageClass.Melee) += 4f;
+                player.GetArmorPenetration(DamageClass.SummonMeleeSpeed) += 4f;
+            }
             if (item.type == ItemID.AvengerEmblem)
             {
                 player.GetAttackSpeed(DamageClass.Generic) += 0.06f;
@@ -377,6 +386,16 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccDefense") && (t.Mod == "Terraria"));
                 infoLine.ForEach(t => t.Text = "+4 defense\n+2% reduced damage taken");
+            }
+            if (item.prefix == PrefixID.Quick2)
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMoveSpeed") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = t.Text + "\n+4% attack speed");
+            }
+            if (item.prefix == PrefixID.Violent)
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMeleeSpeed") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = t.Text + "\n+4 melee armor penetration");
             }
             if (item.type == ItemID.SpectreHood)
             {
