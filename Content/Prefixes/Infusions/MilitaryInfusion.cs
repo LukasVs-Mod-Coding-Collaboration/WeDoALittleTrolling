@@ -29,7 +29,6 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using System.Linq;
-using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
 using Terraria.Localization;
 using System.Collections.Generic;
 
@@ -48,14 +47,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Ranged;
         public override float RollChance(Item item)
         {
-            if (Main.player[Main.myPlayer].HasItem(ModContent.ItemType<LimeCrystal>()) == true)
-            {
-                return 1f;
-            }
-            else
-            {
-                return 0f;
-            }
+            return 1f;
         }
 
         public override bool CanRoll(Item item)

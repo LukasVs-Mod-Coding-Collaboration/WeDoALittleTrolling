@@ -25,7 +25,6 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria;
 using Terraria.ID;
-using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
@@ -36,7 +35,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override PrefixCategory Category => PrefixCategory.Accessory;
         public override float RollChance(Item item)
         {
-            if (Main.noTrapsWorld && Main.player[Main.myPlayer].HasItem(ModContent.ItemType<OrangeCrystal>()) == true)
+            if (Main.noTrapsWorld)
             {
                 return 0.2f;
             }

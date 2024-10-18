@@ -35,7 +35,6 @@ using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Content.Projectiles.Minions;
 using WeDoALittleTrolling.Content.Items.Weapons;
-using WeDoALittleTrolling.Content.Items.ProgressionCrystals;
 using WeDoALittleTrolling.Content.Tiles;
 
 namespace WeDoALittleTrolling.Content.NPCs
@@ -780,6 +779,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
         }
 
+        /*
         public override void ModifyShop(NPCShop shop)
         {
             if (shop.NpcType == NPCID.Stylist || shop.NpcType == NPCID.Pirate)
@@ -797,6 +797,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             base.ModifyShop(shop);
         }
+        */
 
         public override bool? CanCollideWithPlayerMeleeAttack(NPC npc, Player player, Item item, Rectangle meleeAttackHitbox)
         {
@@ -1385,6 +1386,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 npcLoot.Add(drop);
             }
             */
+            /*
             if
             (
                 npc.type == NPCID.RockGolem ||
@@ -1417,6 +1419,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     npcLoot.Add(drop);
                 }
             }
+            */
 
             //Icy fossil drops
 
