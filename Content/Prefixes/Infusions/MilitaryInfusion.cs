@@ -37,22 +37,22 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
     public class MilitaryInfusion : ModPrefix
     {
-        public static readonly int[] CompatibleItemIDs =
+        /*public static readonly int[] CompatibleItemIDs =
         {
             ItemID.TacticalShotgun,
             ItemID.SniperRifle,
             ItemID.RocketLauncher
-        };
+        };*/
 
         public override PrefixCategory Category => PrefixCategory.Ranged;
         public override float RollChance(Item item)
         {
-            return 1f;
+            return 0.5f;
         }
 
         public override bool CanRoll(Item item)
         {
-            if(CompatibleItemIDs.Contains(item.type))
+            if(/*CompatibleItemIDs.Contains(item.type) || */item.useAmmo == AmmoID.Bullet || item.useAmmo == AmmoID.Rocket)
             {
                 return true;
             }
