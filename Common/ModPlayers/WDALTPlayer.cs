@@ -410,9 +410,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 player.ClearBuff(ModContent.BuffType<SorcerousMirrorBuff>());
             }
-            if (searingSetBonus)
+            if (searingSetBonusValue > 0)
             {
-                searingSetBonusValue = ((int)player.statDefense) / (int)4;
                 float modifierSAR = (1f + (searingSetBonusValue * 0.01f));
                 player.DefenseEffectiveness *= modifierSAR;
             }
@@ -594,7 +593,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 modifiers.FinalDamage *= (1f - (((float)spookyBonus * 1.5f) * 0.01f));
             }
-            if (player.HasBuff(ModContent.BuffType<SearingInferno>()))
+            if (player.HasBuff(ModContent.BuffType<OnyxBlaze>()))
             {
                 modifiers.SourceDamage *= OnyxBlaze.dmgTakenMult;
             }

@@ -20,6 +20,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Items.Material;
 
 namespace WeDoALittleTrolling.Content.Items.Armor
@@ -33,11 +34,13 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 4);
             Item.rare = ItemRarityID.Yellow;
-            Item.defense = 20;
+            Item.defense = 25;
         }
 
         public override void UpdateEquip(Player player)
         {
+            player.GetModPlayer<WDALTPlayer>().searingSetBonusValue += 10;
+            player.GetCritChance(DamageClass.Generic) += 6.0f;
         }
 
         public override void AddRecipes()

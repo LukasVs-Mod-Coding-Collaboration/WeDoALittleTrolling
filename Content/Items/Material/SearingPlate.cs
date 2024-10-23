@@ -25,6 +25,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
+using WeDoALittleTrolling.Content.Items.Placeable;
 
 namespace WeDoALittleTrolling.Content.Items.Material
 {
@@ -49,12 +50,16 @@ namespace WeDoALittleTrolling.Content.Items.Material
         {
             CreateRecipe()
               .AddTile(TileID.AdamantiteForge)
-              .AddIngredient(ItemID.BeetleHusk, 1)
-              .AddIngredient(ItemID.LunarTabletFragment, 2)
-              .AddIngredient(ItemID.HellstoneBar, 3)
-              .AddIngredient(ModContent.ItemType<HellishFossil>(), 4)
-              .AddIngredient(ItemID.AshBlock, 5)
-              .AddIngredient(ItemID.StoneBlock, 5)
+              .AddIngredient(ItemID.TitaniumBar, 2)
+              .AddIngredient(ItemID.HellstoneBar, 2)
+              .AddIngredient(ModContent.ItemType<EmbersteelBarItem>(), 2)
+              .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.AdamantiteForge)
+              .AddIngredient(ItemID.AdamantiteBar, 2)
+              .AddIngredient(ItemID.HellstoneBar, 2)
+              .AddIngredient(ModContent.ItemType<EmbersteelBarItem>(), 2)
               .Register();
         }
     }

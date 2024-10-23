@@ -284,17 +284,29 @@ Mods: {
 
 			SearingBreastplate: {
 				DisplayName: Searing Breastplate
-				Tooltip: ""
+				Tooltip:
+					'''
+					10% increased defense effectiveness
+					6% increased critical strike chance
+					'''
 			}
 
 			SearingHelmet: {
 				DisplayName: Searing Helmet
-				Tooltip: ""
+				Tooltip:
+					'''
+					4% increased defense effectiveness
+					Slowly regenerates life
+					'''
 			}
 
 			SearingLeggings: {
 				DisplayName: Searing Leggings
-				Tooltip: ""
+				Tooltip:
+					'''
+					6% increased defense effectiveness
+					Reduces damage taken by 4%
+					'''
 			}
 
 			HellishFossil: {

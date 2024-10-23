@@ -33,7 +33,13 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             Item.height = 24;
             Item.value = Item.sellPrice(gold: 4);
             Item.rare = ItemRarityID.Yellow;
-            Item.defense = 16;
+            Item.defense = 15;
+        }
+
+        public override void UpdateEquip(Player player)
+        {
+            player.GetModPlayer<WDALTPlayer>().searingSetBonusValue += 4;
+            player.lifeRegen += 6;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -44,7 +50,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.GetModPlayer<WDALTPlayer>().searingSetBonus = true;
-            player.setBonus = "Attackers deal 30% reduced damage and lose life\nGrants immunity to Searing Inferno\nIncreases defense effectiveness\nby 1% for every 4 defense you have\nCurrent bonus: "+player.GetModPlayer<WDALTPlayer>().searingSetBonusValue+"%";
+            player.setBonus = "Sears attackers, greatly reducing damage\nGrants immunity to Searing Inferno";
         }
 
         public override void AddRecipes()
