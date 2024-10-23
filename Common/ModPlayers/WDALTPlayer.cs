@@ -59,7 +59,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool blazingShieldPrev;
         public bool blazingShield;
         public bool searingSetBonus;
-        public int searingSetBonusValue;
+        public int searingValue;
         public bool sandStepping;
         public bool gnomedStonedDebuff;
         public bool gnomedDebuff;
@@ -107,7 +107,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             blazingShieldPrev = false;
             blazingShield = false;
             searingSetBonus = false;
-            searingSetBonusValue = 0;
+            searingValue = 0;
             sandStepping = false;
             gnomedStonedDebuff = false;
             gnomedDebuff = false;
@@ -210,7 +210,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             blazingShieldPrev = false;
             blazingShield = false;
             searingSetBonus = false;
-            searingSetBonusValue = 0;
+            searingValue = 0;
             sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
@@ -244,7 +244,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             soulPoweredShield = false;
             blazingShield = false;
             searingSetBonus = false;
-            searingSetBonusValue = 0;
+            searingValue = 0;
             sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
@@ -411,9 +411,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 player.ClearBuff(ModContent.BuffType<SorcerousMirrorBuff>());
             }
-            if (searingSetBonus)
+            if (searingValue > 0)
             {
-                float modifierSAR = (1f + (searingSetBonusValue * 0.01f));
+                float modifierSAR = (1f + (searingValue * 0.01f));
                 player.DefenseEffectiveness *= modifierSAR;
             }
             if (player.HasBuff(ModContent.BuffType<WreckedResistance>()))

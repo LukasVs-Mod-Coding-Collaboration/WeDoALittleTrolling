@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<WDALTPlayer>().searingSetBonusValue += 6;
+            player.GetModPlayer<WDALTPlayer>().searingValue += 6;
             player.endurance += 0.04f;
         }
 
