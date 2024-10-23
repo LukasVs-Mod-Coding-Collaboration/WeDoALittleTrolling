@@ -244,6 +244,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             soulPoweredShield = false;
             blazingShield = false;
             searingSetBonus = false;
+            searingSetBonusValue = 0;
             sandStepping = false;
             gnomedStonedDebuff = false;
             yoyoArtifact = false;
@@ -410,7 +411,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 player.ClearBuff(ModContent.BuffType<SorcerousMirrorBuff>());
             }
-            if (searingSetBonusValue > 0)
+            if (searingSetBonus)
             {
                 float modifierSAR = (1f + (searingSetBonusValue * 0.01f));
                 player.DefenseEffectiveness *= modifierSAR;
