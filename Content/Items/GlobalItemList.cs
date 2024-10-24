@@ -590,14 +590,7 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     TooltipLine thoriumClassExtraDmgLine =
                     (
-                        Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().skillTreeThoriumBuffNode ?
-                        new TooltipLine(Mod, "WDALTPowerup", "+30% damage (From WeDoALittleTrolling)")
-                        {
-                            IsModifier = true,
-                            IsModifierBad = false,
-                        }
-                        :
-                        new TooltipLine(Mod, "WDALTPowerup", "+20% damage (From WeDoALittleTrolling)")
+                        new TooltipLine(Mod, "WDALTPowerup", "+25% damage (From WeDoALittleTrolling)")
                         {
                             IsModifier = true,
                             IsModifierBad = false,
@@ -623,11 +616,7 @@ namespace WeDoALittleTrolling.Content.Items
                     item.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_TrueDamage)
                 )
                 {
-                    damage += 0.2f;
-                    if (player.GetModPlayer<WDALTPlayer>().skillTreeThoriumBuffNode)
-                    {
-                        damage += 0.1f;
-                    }
+                    damage += 0.25f;
                 }
             }
             base.ModifyWeaponDamage(item, player, ref damage);
