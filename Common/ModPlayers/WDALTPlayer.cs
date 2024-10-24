@@ -541,7 +541,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 return true;
             }
-            if (random.NextBool(4) && sorcerousMirror) // 1 in 4 chance
+            if (random.NextBool(4) && sorcerousMirror && player.HeldItem.DamageType == DamageClass.Magic) // 1 in 4 chance
             {
                 player.SetImmuneTimeForAllTypes(player.longInvince ? 120 : 80);
                 return true;

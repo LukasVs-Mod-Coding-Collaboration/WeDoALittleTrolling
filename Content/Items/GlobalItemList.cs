@@ -977,6 +977,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.type == ItemID.FetidBaghnakhs)
             {
+                item.damage = 70;
                 item.useTime = 7;
                 item.useAnimation = 7;
             }
@@ -996,7 +997,7 @@ namespace WeDoALittleTrolling.Content.Items
                 item.useAnimation = 6;
                 item.shootsEveryUse = true;
             }
-            if (item.type == ItemID.DD2PhoenixBow)
+            if (item.type == ItemID.DD2PhoenixBow) //Phantom Phoenix
             {
                 item.damage = 35;
                 item.crit = 1;
@@ -1433,10 +1434,6 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.type == ItemID.SDMG)
             {
                 item.damage = 120;
-            }
-            if (item.type == ItemID.Terrarian)
-            {
-                item.damage = 165;
             }
             if (item.type == ItemID.Seedler)
             {
