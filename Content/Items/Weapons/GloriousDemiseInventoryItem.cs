@@ -51,7 +51,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
 
-            Item.damage = 4;
+            Item.damage = 2;
             Item.knockBack = 10f;
             Item.ArmorPenetration = 333;
             Item.noUseGraphic = true;
@@ -70,85 +70,127 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
-            float modifier = 1f;
-            if(NPC.downedBoss1)
+            int additionalDamage = 0;
+            float modifier = 1;
+            if (NPC.downedSlimeKing)
             {
-                modifier += 0.25f;
+                additionalDamage += 1; // 3
             }
-            if(NPC.downedBoss2)
+            if (NPC.downedBoss1)
             {
-                modifier += 0.25f;
+                additionalDamage += 1; // 4
             }
-            if(NPC.downedBoss3)
+            if (NPC.downedBoss2)
             {
-                modifier += 0.5f;
+                additionalDamage += 2; // 6
             }
-            if(Main.hardMode)
+            if (NPC.downedQueenBee)
             {
-                modifier += 1.0f;
+                additionalDamage += 1; // 7
             }
-            if(NPC.downedMechBoss2)
+            if (NPC.downedDeerclops)
             {
-                modifier += 0.25f;
+                additionalDamage += 1; // 8
             }
-            if(NPC.downedMechBoss1)
+            if (NPC.downedBoss3)
             {
-                modifier += 0.25f;
+                additionalDamage += 2; // 10
             }
-            if(NPC.downedMechBoss3)
+            if (player.downedDD2EventAnyDifficulty)
             {
-                modifier += 0.5f;
+                additionalDamage += 1; // 11
             }
-            if(NPC.downedChristmasIceQueen)
+            if (Main.hardMode)
             {
-                modifier += 0.25f;
+                additionalDamage += 2; // 13
             }
-            if(NPC.downedChristmasSantank)
+            if (NPC.downedMechBoss1)
             {
-                modifier += 0.25f;
+                additionalDamage += 1; // 15
             }
-            if(NPC.downedChristmasTree)
+            if (NPC.downedMechBoss2)
             {
-                modifier += 0.25f;
+                additionalDamage += 2; // 17
             }
-            if(NPC.downedHalloweenKing)
+            if (NPC.downedMechBoss3)
             {
-                modifier += 0.5f;
+                additionalDamage += 2; // 19
             }
-            if(NPC.downedHalloweenTree)
+            if (NPC.downedQueenSlime)
             {
-                modifier += 0.25f;
+                additionalDamage += 1; // 20
             }
-            if(NPC.downedPlantBoss)
+            if (NPC.downedPlantBoss)
             {
-                modifier *= 1.25f;
+                additionalDamage += 3; // 23
             }
-            if(NPC.downedGolemBoss)
+            if (NPC.downedHalloweenKing)
             {
-                modifier *= 1.25f;
+                additionalDamage += 1; // 24
             }
-            if(NPC.downedAncientCultist)
+            if (NPC.downedHalloweenTree)
             {
-                modifier *= 1.25f;
+                additionalDamage += 1; // 25
             }
-            if(NPC.downedEmpressOfLight)
+            if (NPC.downedChristmasIceQueen)
             {
-                modifier *= 1.25f;
+                additionalDamage += 1; // 26
             }
-            if(NPC.downedFishron)
+            if (NPC.downedChristmasSantank)
             {
-                modifier *= 1.25f;
+                additionalDamage += 1; // 27
+            }
+            if (NPC.downedChristmasTree)
+            {
+                additionalDamage += 1; // 28
+            }
+            if (NPC.downedPirates)
+            {
+                additionalDamage += 1; // 29
+            }
+            if (NPC.downedGoblins)
+            {
+                additionalDamage += 1; // 30
+            }
+            if (NPC.downedGolemBoss)
+            {
+                additionalDamage += 3; // 33
+            }
+            if (NPC.downedMartians)
+            {
+                additionalDamage += 2; // 35
+            }
+            if (NPC.downedEmpressOfLight)
+            {
+                additionalDamage += 3; // 38
+            }
+            if (NPC.downedAncientCultist)
+            {
+                additionalDamage += 2; // 40
+            }
+            if (NPC.downedTowerNebula)
+            {
+                additionalDamage += 1; // 41
+            }
+            if (NPC.downedTowerVortex)
+            {
+                additionalDamage += 1; // 42
+            }
+            if (NPC.downedTowerSolar)
+            {
+                additionalDamage += 1; // 43
+            }
+            if (NPC.downedTowerStardust)
+            {
+                additionalDamage += 1; // 44
             }
             if (NPC.downedMoonlord)
             {
-                modifier *= 3f;
+                additionalDamage += 6; // 50
             }
-            if (player.shimmerImmune)
-            {
-                modifier *= 1.25f;
-            }
+
+            modifier = (additionalDamage + 2) / Item.damage;
             damage *= modifier;
-            base.ModifyWeaponDamage(player, ref damage);
         }
 
         public override void AddRecipes()
