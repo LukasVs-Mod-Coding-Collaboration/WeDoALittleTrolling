@@ -51,7 +51,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
 
-            Item.damage = 2;
+            Item.damage = 4;
             Item.knockBack = 10f;
             Item.ArmorPenetration = 333;
             Item.noUseGraphic = true;
@@ -66,6 +66,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 		{
             SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
             return null;
+        }
+
+        public override float UseSpeedMultiplier(Player player)
+        {
+            return (1f / player.GetAttackSpeed(DamageClass.Generic));
         }
 
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
@@ -187,8 +192,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 additionalDamage += 6; // 50
             }
-
-            damage.Flat += additionalDamage;
+            damage.Flat += (additionalDamage - 2);
         }
 
         public override void AddRecipes()
