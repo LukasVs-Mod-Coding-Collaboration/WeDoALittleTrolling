@@ -71,7 +71,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             int additionalDamage = 0;
-            float modifier = 1;
             if (NPC.downedSlimeKing)
             {
                 additionalDamage += 1; // 3
@@ -189,8 +188,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 additionalDamage += 6; // 50
             }
 
-            modifier = (additionalDamage + 2) / Item.damage;
-            damage *= modifier;
+            damage.Flat += additionalDamage;
         }
 
         public override void AddRecipes()
