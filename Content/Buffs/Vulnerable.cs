@@ -48,7 +48,7 @@ namespace WeDoALittleTrolling.Content.Buffs
         
         public override bool ReApply(Player player, int time, int buffIndex)
         {
-            if(player.GetModPlayer<WDALTPlayer>().vulnerableStack < 5)
+            if(player.GetModPlayer<WDALTPlayer>().vulnerableStack < 3)
             {
                 player.GetModPlayer<WDALTPlayer>().vulnerableStack += 1;
             }

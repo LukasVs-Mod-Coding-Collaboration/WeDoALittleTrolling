@@ -236,7 +236,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             if (item.prefix == PrefixID.Warding)
             {
-                player.endurance += 0.02f;
+                player.endurance += 0.01f;
             }
             if (item.prefix == PrefixID.Quick2)
             {
@@ -386,7 +386,7 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.prefix == PrefixID.Warding)
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccDefense") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = "+4 defense\n+2% reduced damage taken");
+                infoLine.ForEach(t => t.Text = "+4 defense\n+1% reduced damage taken");
             }
             if (item.prefix == PrefixID.Quick2)
             {
