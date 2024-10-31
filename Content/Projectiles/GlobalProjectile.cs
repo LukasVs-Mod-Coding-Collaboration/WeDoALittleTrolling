@@ -61,7 +61,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public static readonly int[] InflictVulnerable1In1Group =
         {
             ProjectileID.SeedPlantera,
-            ProjectileID.PoisonSeedPlantera,
             ProjectileID.HallowBossDeathAurora,
             ProjectileID.HallowBossLastingRainbow,
             ProjectileID.HallowBossRainbowStreak,
@@ -829,6 +828,14 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if (random.Next(0, 1) == 0 && Main.masterMode)
                 {
                     target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                }
+            }
+            if (projectile.type == ProjectileID.PoisonSeedPlantera && Main.masterMode)
+            {
+                target.AddBuff(ModContent.BuffType<Vulnerable>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
+                if (projectile.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed)
+                {
+                    target.AddBuff(ModContent.BuffType<WreckedResistance>(), 3600, true); //1m, X2 in Expert, X2.5 in Master
                 }
             }
             if

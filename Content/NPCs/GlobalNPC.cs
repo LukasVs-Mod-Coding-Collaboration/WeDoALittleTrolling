@@ -179,6 +179,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.SkeletonSniper,
             NPCID.SkeletonCommando,
             NPCID.Clown,
+            NPCID.Plantera,
             NPCID.Poltergeist,
             NPCID.GolemFistLeft,
             NPCID.GolemFistRight

@@ -873,6 +873,8 @@ Mods: {
 				DisplayName: Weighted
 				AdditionalTooltip: +20% maximum fall speed
 			}
+
+			Accurate.DisplayName: Accurate
 		}
 
 		Buffs: {
