@@ -37,7 +37,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasTier1FishingQuests()
         {
-            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 5 && Main.player[Main.myPlayer].ZoneBeach)
+            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 5)
             {
                 return true;
             }
@@ -46,7 +46,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasTier2FishingQuests()
         {
-            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 10 && Main.player[Main.myPlayer].ZoneBeach)
+            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 10)
             {
                 return true;
             }
@@ -55,7 +55,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static bool HasTier3FishingQuests()
         {
-            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 15 && Main.player[Main.myPlayer].ZoneBeach)
+            if(Main.player[Main.myPlayer].anglerQuestsFinished >= 15)
             {
                 return true;
             }
