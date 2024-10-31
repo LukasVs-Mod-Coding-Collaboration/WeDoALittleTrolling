@@ -1291,6 +1291,18 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.shopCustomPrice = 300000;
             }
+            if (item.type == ItemID.FishingPotion)
+            {
+                item.shopCustomPrice = Item.buyPrice(gold: 20);
+            }
+            if (item.type == ItemID.CratePotion)
+            {
+                item.shopCustomPrice = Item.buyPrice(gold: 40);
+            }
+            if (item.type == ItemID.SonarPotion)
+            {
+                item.shopCustomPrice = Item.buyPrice(gold: 60);
+            }
             if
             (
                 item.type == ItemID.SpookyHelmet ||
