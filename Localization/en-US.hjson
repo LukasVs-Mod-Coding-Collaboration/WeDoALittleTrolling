@@ -400,6 +400,17 @@ Mods: {
 					'''
 			}
 
+			GloriousDemocracy: {
+				DisplayName: Glorious Democracy
+				Tooltip:
+					'''
+					"I cast gun, prepare to meet god!"
+					Gives enemies freedom wether they
+					want it or not, slowly increasing
+					damage dealt by freedom rounds.
+					'''
+			}
+
 			WallCreeperFang: {
 				DisplayName: Wall Creeper Fang
 				Tooltip: ""
@@ -621,6 +632,7 @@ Mods: {
 			ArtemissileProjectile.DisplayName: Artemis Missile
 			FrozenShard.DisplayName: Frozen Shard
 			Kernel.DisplayName: Kernel
+			FreedomRound.DisplayName: Freedom Round
 		}
 
 		Prefixes: {
