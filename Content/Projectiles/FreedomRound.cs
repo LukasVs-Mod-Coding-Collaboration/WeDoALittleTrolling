@@ -41,7 +41,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void SetDefaults()
         {
             Projectile.width = 2;
-            Projectile.height = 56;
+            Projectile.height = 2;
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;

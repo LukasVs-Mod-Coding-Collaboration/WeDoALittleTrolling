@@ -66,8 +66,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             Vector2 shootDirection = velocity;
             shootDirection = shootDirection.SafeNormalize(Vector2.Zero);
-            float xOffset = shootDirection.X * 64.0f;
-            float yOffset = shootDirection.Y * 64.0f;
+            float xOffset = shootDirection.X * 32.0f;
+            float yOffset = shootDirection.Y * 32.0f;
             position = new Vector2(position.X + xOffset, position.Y + yOffset - 8.0f);
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
