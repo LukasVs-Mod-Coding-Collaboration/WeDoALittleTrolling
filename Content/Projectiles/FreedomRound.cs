@@ -26,12 +26,14 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using WeDoALittleTrolling.Common.ModPlayers;
+using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class FreedomRound : ModProjectile
     {
-        public const int trailDistance = 4;
+        public const int trailDistance = 5;
         public static UnifiedRandom random = new UnifiedRandom();
         public override void SetStaticDefaults()
         {
@@ -45,6 +47,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
+            Projectile.scale = 1.16f;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 600;
@@ -52,11 +55,35 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 7;
-            Projectile.scale = 1.2f;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 1;
             Projectile.knockBack = 8f;
             AIType = ProjectileID.Bullet;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Main.instance.LoadProjectile(Projectile.type);
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+            // Redraw the projectile with the color not influenced by light
+            Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                if (((k % trailDistance) == 0)) //efficiency: Only paint projectile for every fourth cahched position
+                {
+                    int index = (k / trailDistance);
+                    Color drawLightColor = lightColor;
+                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                    Color color = Projectile.GetAlpha(drawLightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                    SpriteEffects effects = SpriteEffects.None;
+                    if (Projectile.oldSpriteDirection[k] < 0)
+                    {
+                        effects = SpriteEffects.FlipHorizontally;
+                    }
+                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.oldRot[k], drawOrigin, Projectile.scale, effects, 0);
+                }
+            }
+            return true;
         }
 
         public override bool PreKill(int timeLeft)
