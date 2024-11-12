@@ -255,7 +255,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(successInjectBossImmunityHook)
             {
-                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Town NPCs Respawn Time Hook via IL Editing.");
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Boss Immunity Hook via IL Editing.");
             }
         }
     }
