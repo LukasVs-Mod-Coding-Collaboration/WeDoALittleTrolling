@@ -24,6 +24,7 @@ using System.IO;
 using WeDoALittleTrolling.Common.ModPlayers;
 using System.Collections.Generic;
 using Terraria.ID;
+using WeDoALittleTrolling.Content.Projectiles;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -38,6 +39,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int golemBoulderIteration = 0;
         public int BlazingShieldOwnerIndex = -1;
         public Vector2 golemBoulderStartPosition;
+        public int freedomRoundDamageStack = 0;
 
         public override void ResetEffects(NPC npc)
         {
@@ -64,6 +66,22 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             ticksAlive++;
             base.PostAI(npc);
+        }
+
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if (projectile.type == ModContent.ProjectileType<FreedomRound>())
+            {
+                modifiers.FlatBonusDamage += (3 * freedomRoundDamageStack);
+                if (npc.lifeMax > 100000)
+                {
+                    modifiers.FlatBonusDamage += (2 * freedomRoundDamageStack);
+                }
+            }
+            else
+            {
+                base.ModifyHitByProjectile(npc, projectile, ref modifiers);
+            }
         }
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)

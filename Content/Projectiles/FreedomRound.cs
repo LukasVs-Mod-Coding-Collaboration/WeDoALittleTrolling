@@ -86,6 +86,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
             return true;
         }
 
+        public override void AI()
+        {
+            if (Projectile.damage < 1)
+            {
+                Projectile.damage = 1;
+            }
+            base.AI();
+        }
+
         public override bool PreKill(int timeLeft)
         {
             if (Projectile.owner == Main.myPlayer)
