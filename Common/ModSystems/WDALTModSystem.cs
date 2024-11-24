@@ -110,6 +110,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             Accelerated.RegisterHooks();
             GlobalItemList.RegisterHooks();
             WDALTImmunitySystem.RegisterHooks();
+            WDALTHitFreezeSystemNPC.RegisterHooks();
+            WDALTHitFreezeSystemPlayer.RegisterHooks();
         }
 
         public static void UnregisterHooks()
@@ -122,6 +124,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             Accelerated.UnregisterHooks();
             GlobalItemList.UnregisterHooks();
             WDALTImmunitySystem.UnregisterHooks();
+            WDALTHitFreezeSystemNPC.UnregisterHooks();
+            WDALTHitFreezeSystemPlayer.UnregisterHooks();
         }
 
         public override void PreUpdatePlayers()

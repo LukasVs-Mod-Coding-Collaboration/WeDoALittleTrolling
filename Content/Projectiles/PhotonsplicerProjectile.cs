@@ -23,6 +23,8 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.ModSystems;
+using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Content.Buffs;
 
 namespace WeDoALittleTrolling.Content.Projectiles
@@ -61,6 +63,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<SearingInferno>(), 600, false);
+            WDALTHitFreezeSystemNPC.FreezeNPCForTicks(target, 60);
+            if (Projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player))
+            {
+                WDALTHitFreezeSystemPlayer.FreezePlayerForTicks(player, 60);
+            }
             base.OnHitNPC(target, hit, damageDone);
         }
 
