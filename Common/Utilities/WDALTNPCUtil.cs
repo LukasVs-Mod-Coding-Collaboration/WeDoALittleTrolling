@@ -40,8 +40,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int BlazingShieldOwnerIndex = -1;
         public Vector2 golemBoulderStartPosition;
         public int freedomRoundDamageStack = 0;
-        private bool __AI_IS_FROZEN = false;
-        private int __AI_FROZEN_TICKS = 0;
 
         public override void ResetEffects(NPC npc)
         {
@@ -53,8 +51,6 @@ namespace WeDoALittleTrolling.Common.Utilities
             binaryWriter.Write((int)npc.damage);
             binaryWriter.Write((int)VileSpitTimeLeft);
             binaryWriter.Write((int)BlazingShieldOwnerIndex);
-            binaryWriter.Write((bool)__AI_IS_FROZEN);
-            binaryWriter.Write((int)__AI_FROZEN_TICKS);
             base.SendExtraAI(npc, bitWriter, binaryWriter);
         }
 
@@ -63,17 +59,6 @@ namespace WeDoALittleTrolling.Common.Utilities
             npc.damage = binaryReader.ReadInt32();
             VileSpitTimeLeft = binaryReader.ReadInt32();
             BlazingShieldOwnerIndex = binaryReader.ReadInt32();
-            bool ___TMP__AI_IS_FROZEN = binaryReader.ReadBoolean();
-            __AI_FROZEN_TICKS = binaryReader.ReadInt32();
-            if (__AI_IS_FROZEN != ___TMP__AI_IS_FROZEN)
-            {
-                if (___TMP__AI_IS_FROZEN)
-                {
-                    npc.velocity = Vector2.Zero;
-                }
-                npc.netUpdate = true;
-            }
-            __AI_IS_FROZEN = ___TMP__AI_IS_FROZEN;
             base.ReceiveExtraAI(npc, bitReader, binaryReader);
         }
 
@@ -164,50 +149,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                     pool[NPCID.EnchantedNightcrawler] = 2.5f;
                 }
             }
-        }
-
-        public static void FreezeNPCForTicks(NPC npc, int ticks)
-        {
-            if (npc.dontCountMe || !npc.CanBeChasedBy())
-            {
-                return;
-            }
-            if (npc.GetGlobalNPC<WDALTNPCUtil>().__AI_FROZEN_TICKS <= 0)
-            {
-                npc.GetGlobalNPC<WDALTNPCUtil>().__AI_FROZEN_TICKS = ticks;
-            }
-            __AI_SYNC_SET_FROZEN(npc);
-        }
-
-        private static void __AI_SYNC_SET_FROZEN(NPC npc)
-        {
-            npc.GetGlobalNPC<WDALTNPCUtil>().__AI_IS_FROZEN = true;
-            npc.velocity = Vector2.Zero;
-            npc.netUpdate = true;
-        }
-
-        private static void __AI_SYNC_UNSET_FROZEN(NPC npc)
-        {
-            npc.GetGlobalNPC<WDALTNPCUtil>().__AI_IS_FROZEN = false;
-            npc.netUpdate = true;
-        }
-
-        public override bool PreAI(NPC npc)
-        {
-            if (__AI_IS_FROZEN)
-            {
-                if (__AI_FROZEN_TICKS > 0)
-                {
-                    npc.velocity = Vector2.Zero;
-                    __AI_FROZEN_TICKS--;
-                }
-                else
-                {
-                    __AI_SYNC_UNSET_FROZEN(npc);
-                }
-                return false;
-            }
-            return base.PreAI(npc);
         }
     }
 }
