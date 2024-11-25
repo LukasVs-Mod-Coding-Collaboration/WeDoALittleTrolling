@@ -31,8 +31,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
 {
     internal class WDALTHitFreezeSystemPlayer : ModPlayer
     {
-        private bool __AI_IS_FROZEN = false;
-        private int __AI_FROZEN_TICKS = 0;
+        public bool __AI_IS_FROZEN = false;
+        public int __AI_FROZEN_TICKS = 0;
 
         public static void On_Player_Update(Terraria.On_Player.orig_Update orig, Terraria.Player self, int i)
         {
@@ -71,12 +71,21 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 player.GetModPlayer<WDALTHitFreezeSystemPlayer>().__AI_FROZEN_TICKS = ticks;
             }
-            __AI_SYNC_SET_FROZEN(player);
+            __AI_SYNC_SET_FROZEN(player, ticks);
         }
 
-        private static void __AI_SYNC_SET_FROZEN(Player player)
+        private static void __AI_SYNC_SET_FROZEN(Player player, int ticks)
         {
             player.GetModPlayer<WDALTHitFreezeSystemPlayer>().__AI_IS_FROZEN = true;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                ModPacket syncHitFreezePacket = WeDoALittleTrolling.instance.GetPacket();
+                syncHitFreezePacket.Write(WDALTPacketTypeID.syncHitFreeze);
+                syncHitFreezePacket.Write((bool)true);
+                syncHitFreezePacket.Write((int)player.whoAmI);
+                syncHitFreezePacket.Write((int)ticks);
+                syncHitFreezePacket.Send();
+            }
         }
 
         private static void __AI_SYNC_UNSET_FROZEN(Player player)

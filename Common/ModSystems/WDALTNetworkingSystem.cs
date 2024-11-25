@@ -44,6 +44,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
             int netLifePvP = 100;
             int netLifePvPPlayerIndex = 255;
             int blazingShieldOwner = -1;
+            bool isFreezePlr = false;
+            int npcIdx = -1;
+            int freezeTicks = -1;
             Vector2 itemSpawnPos = new Vector2(0f, 0f);
             if(type == WDALTPacketTypeID.updateWindSpeedTarget)
             {
@@ -74,6 +77,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(type == WDALTPacketTypeID.spawnBlazingShield || type == WDALTPacketTypeID.clearBlazingShield)
             {
                 blazingShieldOwner = reader.ReadInt32();
+            }
+            if(type == WDALTPacketTypeID.syncHitFreeze || type == WDALTPacketTypeID.broadcastHitFreeze)
+            {
+                isFreezePlr = reader.ReadBoolean();
+                npcIdx = reader.ReadInt32();
+                freezeTicks = reader.ReadInt32();
             }
             if(Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -106,6 +115,22 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         Main.player[netLifePvPPlayerIndex].statLife = netLifePvP;
                     }
                 }
+                if(type == WDALTPacketTypeID.broadcastHitFreeze && !isFreezePlr)
+                {
+                    if(Main.npc[npcIdx].TryGetGlobalNPC<WDALTHitFreezeSystemNPC>(out WDALTHitFreezeSystemNPC sys))
+                    {
+                        sys.__AI_FROZEN_TICKS = freezeTicks;
+                        sys.__AI_IS_FROZEN = true;
+                    }
+                }
+                if(type == WDALTPacketTypeID.broadcastHitFreeze && isFreezePlr)
+                {
+                    if(Main.player[npcIdx].TryGetModPlayer<WDALTHitFreezeSystemPlayer>(out WDALTHitFreezeSystemPlayer sys))
+                    {
+                        sys.__AI_FROZEN_TICKS = freezeTicks;
+                        sys.__AI_IS_FROZEN = true;
+                    }
+                }
             }
             if(Main.netMode == NetmodeID.Server)
             {
@@ -116,6 +141,34 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     broadcastNetFinalDamagePacket.Write(netLifePvP);
                     broadcastNetFinalDamagePacket.Write(netLifePvPPlayerIndex);
                     broadcastNetFinalDamagePacket.Send();
+                }
+                if(type == WDALTPacketTypeID.syncHitFreeze && !isFreezePlr)
+                {
+                    if(Main.npc[npcIdx].TryGetGlobalNPC<WDALTHitFreezeSystemNPC>(out WDALTHitFreezeSystemNPC sys))
+                    {
+                        sys.__AI_FROZEN_TICKS = freezeTicks;
+                        sys.__AI_IS_FROZEN = true;
+                    }
+                    ModPacket broadcastHitFreezePacket = WeDoALittleTrolling.instance.GetPacket();
+                    broadcastHitFreezePacket.Write(WDALTPacketTypeID.broadcastHitFreeze);
+                    broadcastHitFreezePacket.Write((bool)false);
+                    broadcastHitFreezePacket.Write((int)npcIdx);
+                    broadcastHitFreezePacket.Write((int)freezeTicks);
+                    broadcastHitFreezePacket.Send();
+                }
+                if(type == WDALTPacketTypeID.syncHitFreeze && isFreezePlr)
+                {
+                    if(Main.player[npcIdx].TryGetModPlayer<WDALTHitFreezeSystemPlayer>(out WDALTHitFreezeSystemPlayer sys))
+                    {
+                        sys.__AI_FROZEN_TICKS = freezeTicks;
+                        sys.__AI_IS_FROZEN = true;
+                    }
+                    ModPacket broadcastHitFreezePacket = WeDoALittleTrolling.instance.GetPacket();
+                    broadcastHitFreezePacket.Write(WDALTPacketTypeID.broadcastHitFreeze);
+                    broadcastHitFreezePacket.Write((bool)true);
+                    broadcastHitFreezePacket.Write((int)npcIdx);
+                    broadcastHitFreezePacket.Write((int)freezeTicks);
+                    broadcastHitFreezePacket.Send();
                 }
                 if(type == WDALTPacketTypeID.spawnBlazingShield)
                 {

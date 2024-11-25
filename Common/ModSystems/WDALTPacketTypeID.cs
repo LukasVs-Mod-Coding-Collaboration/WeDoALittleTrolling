@@ -35,5 +35,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public const short broadcastNetFinalDamage   = 10;
         public const short spawnBlazingShield        = 11;
         public const short clearBlazingShield        = 12;
+        public const short syncHitFreeze             = 13;
+        public const short broadcastHitFreeze        = 14;
     }
 }

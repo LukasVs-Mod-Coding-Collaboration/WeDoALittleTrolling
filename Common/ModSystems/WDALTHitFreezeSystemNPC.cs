@@ -34,8 +34,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
     {
         public override bool InstancePerEntity => true;
 
-        private bool __AI_IS_FROZEN = false;
-        private int __AI_FROZEN_TICKS = 0;
+        public bool __AI_IS_FROZEN = false;
+        public int __AI_FROZEN_TICKS = 0;
 
         public static void On_NPC_UpdateNPC(Terraria.On_NPC.orig_UpdateNPC orig, Terraria.NPC self, int i)
         {
@@ -74,12 +74,21 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 npc.GetGlobalNPC<WDALTHitFreezeSystemNPC>().__AI_FROZEN_TICKS = ticks;
             }
-            __AI_SYNC_SET_FROZEN(npc);
+            __AI_SYNC_SET_FROZEN(npc, ticks);
         }
 
-        private static void __AI_SYNC_SET_FROZEN(NPC npc)
+        private static void __AI_SYNC_SET_FROZEN(NPC npc, int ticks)
         {
             npc.GetGlobalNPC<WDALTHitFreezeSystemNPC>().__AI_IS_FROZEN = true;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                ModPacket syncHitFreezePacket = WeDoALittleTrolling.instance.GetPacket();
+                syncHitFreezePacket.Write(WDALTPacketTypeID.syncHitFreeze);
+                syncHitFreezePacket.Write((bool)false);
+                syncHitFreezePacket.Write((int)npc.whoAmI);
+                syncHitFreezePacket.Write((int)ticks);
+                syncHitFreezePacket.Send();
+            }
         }
 
         private static void __AI_SYNC_UNSET_FROZEN(NPC npc)
