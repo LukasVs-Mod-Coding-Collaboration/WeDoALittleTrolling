@@ -115,7 +115,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         Main.player[netLifePvPPlayerIndex].statLife = netLifePvP;
                     }
                 }
-                if(type == WDALTPacketTypeID.broadcastHitFreeze && !isFreezePlr)
+                if(type == WDALTPacketTypeID.broadcastHitFreeze && !isFreezePlr && npcIdx >= 0 && npcIdx < Main.npc.Length)
                 {
                     if(Main.npc[npcIdx].TryGetGlobalNPC<WDALTHitFreezeSystemNPC>(out WDALTHitFreezeSystemNPC sys))
                     {
@@ -123,7 +123,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         sys.__AI_IS_FROZEN = true;
                     }
                 }
-                if(type == WDALTPacketTypeID.broadcastHitFreeze && isFreezePlr)
+                if(type == WDALTPacketTypeID.broadcastHitFreeze && isFreezePlr && npcIdx >= 0 && npcIdx < Main.player.Length)
                 {
                     if(Main.player[npcIdx].TryGetModPlayer<WDALTHitFreezeSystemPlayer>(out WDALTHitFreezeSystemPlayer sys))
                     {
@@ -142,7 +142,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     broadcastNetFinalDamagePacket.Write(netLifePvPPlayerIndex);
                     broadcastNetFinalDamagePacket.Send();
                 }
-                if(type == WDALTPacketTypeID.syncHitFreeze && !isFreezePlr)
+                if(type == WDALTPacketTypeID.syncHitFreeze && !isFreezePlr && npcIdx >= 0 && npcIdx < Main.npc.Length)
                 {
                     if(Main.npc[npcIdx].TryGetGlobalNPC<WDALTHitFreezeSystemNPC>(out WDALTHitFreezeSystemNPC sys))
                     {
@@ -156,7 +156,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     broadcastHitFreezePacket.Write((int)freezeTicks);
                     broadcastHitFreezePacket.Send();
                 }
-                if(type == WDALTPacketTypeID.syncHitFreeze && isFreezePlr)
+                if(type == WDALTPacketTypeID.syncHitFreeze && isFreezePlr && npcIdx >= 0 && npcIdx < Main.player.Length)
                 {
                     if(Main.player[npcIdx].TryGetModPlayer<WDALTHitFreezeSystemPlayer>(out WDALTHitFreezeSystemPlayer sys))
                     {
