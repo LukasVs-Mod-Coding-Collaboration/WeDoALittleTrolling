@@ -89,6 +89,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 syncHitFreezePacket.Write((int)ticks);
                 syncHitFreezePacket.Send();
             }
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ModPacket syncHitFreezePacket = WeDoALittleTrolling.instance.GetPacket();
+                syncHitFreezePacket.Write(WDALTPacketTypeID.broadcastHitFreeze);
+                syncHitFreezePacket.Write((bool)false);
+                syncHitFreezePacket.Write((int)npc.whoAmI);
+                syncHitFreezePacket.Write((int)ticks);
+                syncHitFreezePacket.Send();
+            }
         }
 
         private static void __AI_SYNC_UNSET_FROZEN(NPC npc)
