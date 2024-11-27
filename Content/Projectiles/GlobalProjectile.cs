@@ -751,6 +751,21 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                 }
             }
+            if (projectile.type == ProjectileID.Arkhalis || projectile.type == ProjectileID.Terragrim)
+            {
+                if
+                (
+                    projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player) &&
+                    !target.dontCountMe &&
+                    target.CanBeChasedBy() &&
+                    player.active &&
+                    !player.dead
+                )
+                {
+                    WDALTHitFreezeSystemNPC.FreezeNPCForTicks(target, 4);
+                    WDALTHitFreezeSystemPlayer.FreezePlayerForTicks(player, 4);
+                }
+            }
             if (projectile.type == ProjectileID.SporeCloud)
             {
                 target.AddBuff(BuffID.Poisoned, 240, false);
@@ -788,6 +803,21 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
+            if (projectile.type == ProjectileID.Arkhalis || projectile.type == ProjectileID.Terragrim)
+            {
+                if
+                (
+                    projectile.GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentPlayer(out Player player) &&
+                    !target.active &&
+                    target.dead &&
+                    player.active &&
+                    !player.dead
+                )
+                {
+                    WDALTHitFreezeSystemPlayer.FreezePlayerForTicks(target, 4);
+                    WDALTHitFreezeSystemPlayer.FreezePlayerForTicks(player, 4);
+                }
+            }
             if (InflictVenomDebuff1In1Group.Contains(projectile.type))
             {
                 if (random.Next(0, 1) == 0) //1 in 1 Chance

@@ -445,6 +445,11 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into chlorophyte arrows");
                 tooltips.Add(extraManaLine);
             }
+            if (item.type == ItemID.Terragrim || item.type == ItemID.Arkhalis)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponHitFreezeDescription", "Briefly freezes both yourself and your target upon impact");
+                tooltips.Add(extraManaLine);
+            }
             if (item.type == ItemID.MoltenFury)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into hellfire arrows");
