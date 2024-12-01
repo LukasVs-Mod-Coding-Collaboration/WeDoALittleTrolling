@@ -460,6 +460,11 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponArrowConversionDescription", "Converts wooden arrows into holy arrows");
                 tooltips.Add(extraManaLine);
             }
+            if (item.type == ItemID.BetsyWings)
+            {
+                TooltipLine acceleratedBoostLine = new TooltipLine(Mod, "AcceleratedBoostDescription", "Scales 100% better with the 'Accelerated' reforge");
+                tooltips.Add(acceleratedBoostLine);
+            }
             if (item.type == ItemID.Moondial)
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));

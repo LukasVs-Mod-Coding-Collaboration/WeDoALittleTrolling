@@ -499,6 +499,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.lifeRegen += Math.Abs(player.statDefense);
                 player.statDefense -= Math.Abs(player.statDefense);
             }
+            if (acceleratedStack > 0)
+            {
+                float factor = 0.1f;
+                if (player.wingsLogic == ArmorIDs.Wing.BetsyWings)
+                {
+                    factor = 0.2f;
+                }
+                player.moveSpeed += (factor * (float)acceleratedStack);
+            }
             base.PostUpdateEquips();
         }
 

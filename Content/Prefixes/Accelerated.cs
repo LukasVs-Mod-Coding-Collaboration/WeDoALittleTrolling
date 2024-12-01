@@ -26,6 +26,7 @@ using Terraria.Localization;
 using Terraria;
 using WeDoALittleTrolling.Common.ModPlayers;
 using Terraria.ID;
+using Terraria.DataStructures;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
@@ -67,7 +68,12 @@ namespace WeDoALittleTrolling.Content.Prefixes
             orig.Invoke(self);
             if (self.GetModPlayer<WDALTPlayer>().acceleratedStack > 0)
             {
-                float modifierAccelerated = 0.1f * self.accRunSpeed * self.GetModPlayer<WDALTPlayer>().acceleratedStack;
+                float factor = 0.1f;
+                if (self.wingsLogic == ArmorIDs.Wing.BetsyWings)
+                {
+                    factor = 0.2f;
+                }
+                float modifierAccelerated = factor * self.accRunSpeed * self.GetModPlayer<WDALTPlayer>().acceleratedStack;
                 self.accRunSpeed += modifierAccelerated;
             }
         }
@@ -75,7 +81,6 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.GetModPlayer<WDALTPlayer>().acceleratedStack++;
-            player.moveSpeed += 0.1f;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
