@@ -887,6 +887,11 @@ Mods: {
 			}
 
 			Accurate.DisplayName: Accurate
+
+			Minute: {
+				DisplayName: Minute
+				AdditionalTooltip: -2 range
+			}
 		}
 
 		Buffs: {
