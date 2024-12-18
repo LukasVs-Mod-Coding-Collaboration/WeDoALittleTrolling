@@ -35,7 +35,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public void HandlePacket(BinaryReader reader, int whoAmI, Mod mod)
         {
             short type = reader.ReadInt16();
-            float value = 0f;
             Vector2 RODCsoundPos = new Vector2(0f, 0f);
             int itemType = 0;
             int playerWidth = 0;
@@ -48,10 +47,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             int npcIdx = -1;
             int freezeTicks = -1;
             Vector2 itemSpawnPos = new Vector2(0f, 0f);
-            if(type == WDALTPacketTypeID.updateWindSpeedTarget)
-            {
-                value = reader.ReadSingle();
-            }
             if(type == WDALTPacketTypeID.soundBroadcastRainOfDecay || type == WDALTPacketTypeID.soundPlayRainOfDecay)
             {
                 RODCsoundPos = reader.ReadVector2();
@@ -86,10 +81,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(Main.netMode == NetmodeID.MultiplayerClient)
             {
-                if (type == WDALTPacketTypeID.updateWindSpeedTarget)
-                {
-                    Main.windSpeedTarget = value;
-                }
                 if (type == WDALTPacketTypeID.soundBroadcastRainOfDecay)
                 {
                     SoundEngine.PlaySound(SoundID.Item5, RODCsoundPos);
@@ -202,105 +193,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     soundBroadcastRainOfDecayPacket.Write(WDALTPacketTypeID.soundBroadcastRainOfDecay);
                     soundBroadcastRainOfDecayPacket.WriteVector2(RODCsoundPos);
                     soundBroadcastRainOfDecayPacket.Send();
-                }
-                if(type == WDALTPacketTypeID.moondial)
-                {
-                    if (Main.moondialCooldown > 2)
-                    {
-                        Main.moondialCooldown = 2;
-                    }
-                }
-                if(type == WDALTPacketTypeID.sundial)
-                {
-                    if(!Main.dontStarveWorld && Main.sundialCooldown > 2)
-                    {
-                        Main.sundialCooldown = 2;
-                    }
-                }
-                if(type == WDALTPacketTypeID.weatherVane)
-                {
-                    if (Main.IsItRaining)
-                    {
-                        if (Main.maxRaining < 0.2f)
-                        {
-                            Main.maxRaining = 0.4f;
-                        }
-                        else if (Main.maxRaining < 0.6f)
-                        {
-                            Main.maxRaining = 0.8f;
-                        }
-                        else if (!Main.dontStarveWorld)
-                        {
-                            Main.StopRain();
-                        }
-                    }
-                    else
-                    {
-                        Main.StartRain();
-                        Main.maxRaining = 0.1f;
-                    }
-                }
-                if(type == WDALTPacketTypeID.djinnLamp)
-                {
-                    float windSpeedPerMph = ((1.0f)/(50.0f));
-                    float windSign = 1.0f;
-                    if (Main.windSpeedTarget >= 0)
-                    {
-                        windSign = 1;
-                    }
-                    else
-                    {
-                        windSign = -1;
-                    }
-                    if (Sandstorm.Happening)
-                    {
-                        Sandstorm.StopSandstorm();
-                    }
-                    else
-                    {
-                        Sandstorm.StartSandstorm();
-                        if (Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 30.0f)
-                        {
-                            if (Main.windSpeedTarget > 0)
-                            {
-                                Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
-
-                            }
-                            else
-                            {
-                                Main.windSpeedTarget = windSign * windSpeedPerMph * 35.0f;
-                            }
-                        }
-                    }
-                    ModPacket updateWindSpeedTargetPacket = mod.GetPacket();
-                    updateWindSpeedTargetPacket.Write(WDALTPacketTypeID.updateWindSpeedTarget);
-                    updateWindSpeedTargetPacket.Write((float)Main.windSpeedTarget);
-                    updateWindSpeedTargetPacket.Send();
-                }
-                if(type == WDALTPacketTypeID.skyMill)
-                {
-                    float windSpeedPerMph = ((1.0f)/(50.0f));
-                    float windSign = 1.0f;
-                    if (Main.windSpeedTarget >= 0)
-                    {
-                        windSign = 1;
-                    }
-                    else
-                    {
-                        windSign = -1;
-                    }
-                    if (Math.Abs(Main.windSpeedTarget) < windSpeedPerMph * 39.0f)
-                    {
-                        Main.windSpeedTarget += windSign * windSpeedPerMph * 10.0f;
-                    }
-                    else if (Math.Abs(Main.windSpeedTarget) >= windSpeedPerMph * 39.0f)
-                    {
-                        Main.windSpeedTarget = (-windSign) * windSpeedPerMph * 5.0f;
-                    }
-                    ModPacket updateWindSpeedTargetPacket = mod.GetPacket();
-                    updateWindSpeedTargetPacket.Write(WDALTPacketTypeID.updateWindSpeedTarget);
-                    updateWindSpeedTargetPacket.Write((float)Main.windSpeedTarget);
-                    updateWindSpeedTargetPacket.Send();
                 }
             }
         }

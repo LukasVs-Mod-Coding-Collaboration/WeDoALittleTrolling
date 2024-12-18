@@ -22,12 +22,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
 {
     internal static class WDALTPacketTypeID
     {
-        public const short moondial                  = 0;
-        public const short sundial                   = 1;
-        public const short weatherVane               = 2;
-        public const short djinnLamp                 = 3;
-        public const short skyMill                   = 4;
-        public const short updateWindSpeedTarget     = 5;
         public const short soundPlayRainOfDecay      = 6;
         public const short soundBroadcastRainOfDecay = 7;
         public const short spawnCrateItem            = 8;
