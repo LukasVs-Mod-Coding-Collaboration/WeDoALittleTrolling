@@ -265,7 +265,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void PostUpdate()
         {
-            GlobalItemList.ModifySetBonus(player);
             currentTick++;
             if (shroomiteGenesisOverheatTimer > 0)
             {
