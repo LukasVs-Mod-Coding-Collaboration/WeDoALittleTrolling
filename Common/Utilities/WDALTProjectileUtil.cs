@@ -45,7 +45,6 @@ namespace WeDoALittleTrolling.Common.Utilities
     {
         public override bool InstancePerEntity => true;
 
-        public readonly int extraUpdatesIceBoomerang = 1;
         //If you have perfect code this shouldn't be necessary, however, errare humanum est.
         //I just don't want another catastrophic crash bug like on 2023/06/28!
         public readonly int maxSourceDetectionRecursions = 8;
@@ -325,24 +324,6 @@ namespace WeDoALittleTrolling.Common.Utilities
                     }
                 }
             }
-        }
-
-        public bool HasRecentlyPassedSoundDelay(int projectileID)
-        {
-            if(projectileID == ProjectileID.IceBoomerang)
-            {
-                if(!recentlyPassedIceBoomerangSoundDelay)
-                {
-                    recentlyPassedIceBoomerangSoundDelay = true;
-                    return false;
-                }
-                if(recentlyPassedIceBoomerangSoundDelay)
-                {
-                    recentlyPassedIceBoomerangSoundDelay = false;
-                    return true;
-                }
-            }
-            return false;
         }
 
         public bool TryGetParentEntity(out Entity entity)

@@ -45,10 +45,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
     {
         public int spookyBonus;
         public int dodgeChancePercent;
-        public int wreckedResistanceStack;
-        public int vulnerableStack;
-        public bool syncDevastated;
-        public int statLifeDevastated;
         public int beekeeperStack;
         public bool spookyEmblem;
         public bool spookyShield;
@@ -92,10 +88,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             player = this.Player;
             spookyBonus = 0;
             dodgeChancePercent = 0;
-            wreckedResistanceStack = 0;
-            vulnerableStack = 0;
-            syncDevastated = false;
-            statLifeDevastated = player.statLifeMax2;
             beekeeperStack = 0;
             spookyEmblem = false;
             spookyShield = false;
@@ -150,18 +142,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 hauntedDebuff = true;
                 hauntedDebuffTicksLeft = tag.GetInt("WDALTHauntedDebuff");
             }
-            if (tag.ContainsKey("WDALTDevastatedStack"))
-            {
-                statLifeDevastated = tag.GetInt("WDALTDevastatedStack");
-            }
-            if (tag.ContainsKey("WDALTWreckedResistanceStack"))
-            {
-                wreckedResistanceStack = tag.GetInt("WDALTWreckedResistanceStack");
-            }
-            if (tag.ContainsKey("WDALTVulnerableStack"))
-            {
-                vulnerableStack = tag.GetInt("WDALTVulnerableStack");
-            }
             base.LoadData(tag);
         }
 
@@ -175,18 +155,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 tag["WDALTHauntedDebuff"] = hauntedDebuffTicksLeft;
             }
-            if (player.HasBuff(ModContent.BuffType<Devastated>()))
-            {
-                tag["WDALTDevastatedStack"] = statLifeDevastated;
-            }
-            if (wreckedResistanceStack > 0)
-            {
-                tag["WDALTWreckedResistanceStack"] = wreckedResistanceStack;
-            }
-            if (vulnerableStack > 0)
-            {
-                tag["WDALTVulnerableStack"] = vulnerableStack;
-            }
             base.SaveData(tag);
         }
 
@@ -194,10 +162,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             spookyBonus = 0;
             dodgeChancePercent = 0;
-            wreckedResistanceStack = 0;
-            vulnerableStack = 0;
-            syncDevastated = false;
-            statLifeDevastated = player.statLifeMax2;
             beekeeperStack = 0;
             spookyEmblem = false;
             spookyShield = false;
@@ -411,37 +375,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 float modifierSAR = (1f + (searingValue * 0.01f));
                 player.DefenseEffectiveness *= modifierSAR;
             }
-            if (player.HasBuff(ModContent.BuffType<WreckedResistance>()))
-            {
-                float modifierWR = (float)(90 - (wreckedResistanceStack * 10)) * 0.01f;
-                player.DefenseEffectiveness *= modifierWR;
-            }
-            else
-            {
-                wreckedResistanceStack = 0;
-            }
-            if (player.HasBuff(ModContent.BuffType<Vulnerable>()))
-            {
-                float modifierV = (float)(90 - (vulnerableStack * 10)) * 0.01f;
-                player.endurance *= modifierV;
-            }
-            else
-            {
-                vulnerableStack = 0;
-            }
-            if (player.HasBuff(ModContent.BuffType<Devastated>()))
-            {
-                if (syncDevastated && player.statLife < player.statLifeMax2 && player.statLife > 0)
-                {
-                    statLifeDevastated = player.statLife;
-                    syncDevastated = false;
-                }
-                player.statLifeMax2 = statLifeDevastated;
-            }
-            else
-            {
-                statLifeDevastated = player.statLifeMax2;
-            }
             if (gnomedStonedDebuff)
             {
                 if (!player.buffImmune[BuffID.Stoned])
@@ -510,41 +443,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.PostUpdateEquips();
         }
 
-        public override bool ConsumableDodge(Player.HurtInfo info)
-        {
-            if (info.DamageSource.SourceProjectileType == ProjectileID.PhantasmalDeathray)
-            {
-                if (info.DamageSource.SourceProjectileLocalIndex >= 0 && info.DamageSource.SourceProjectileLocalIndex < Main.projectile.Length)
-                {
-                    if (Main.projectile[info.DamageSource.SourceProjectileLocalIndex].GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
-                    {
-                        if (npc.type == NPCID.MoonLordHead && Main.masterMode)
-                        {
-                            Devastated.DisintegratePlayer(player);
-                            return true;
-                        }
-                    }
-                }
-            }
-            return base.ConsumableDodge(info);
-        }
-
         public override bool FreeDodge(Player.HurtInfo info)
         {
-            if (info.DamageSource.SourceProjectileType == ProjectileID.PhantasmalDeathray)
-            {
-                if (info.DamageSource.SourceProjectileLocalIndex >= 0 && info.DamageSource.SourceProjectileLocalIndex < Main.projectile.Length)
-                {
-                    if (Main.projectile[info.DamageSource.SourceProjectileLocalIndex].GetGlobalProjectile<WDALTProjectileUtil>().TryGetParentNPC(out NPC npc))
-                    {
-                        if (npc.type == NPCID.MoonLordHead && Main.masterMode)
-                        {
-                            Devastated.DisintegratePlayer(player);
-                            return true;
-                        }
-                    }
-                }
-            }
             if (info.DamageSource.SourceProjectileType == ProjectileID.Landmine) //Prevent Landmines from damaging players.
             {
                 return true;
@@ -586,9 +486,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 player.buffImmune[ModContent.BuffType<SearingInferno>()] = false;
             }
-            player.buffImmune[ModContent.BuffType<WreckedResistance>()] = false;
-            player.buffImmune[ModContent.BuffType<Vulnerable>()] = false;
-            player.buffImmune[ModContent.BuffType<Devastated>()] = false;
             base.UpdateLifeRegen();
         }
 
