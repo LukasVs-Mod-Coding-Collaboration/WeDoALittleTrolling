@@ -166,6 +166,12 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            if (projectile.type == ProjectileID.TrueNightsEdge)
+            {
+                projectile.tileCollide = true;
+                projectile.light = 0.5f;
+                projectile.netUpdate = true;
+            }
             if
             (
                 projectile.type == ProjectileID.GiantBee &&
