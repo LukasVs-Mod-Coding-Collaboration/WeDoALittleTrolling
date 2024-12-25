@@ -668,7 +668,7 @@ Mods: {
 				DisplayName: Rejuvenating
 				AdditionalTooltip:
 					'''
-					+20 mana
+					+10 mana
 					Your mana regenerates slightly faster
 					Your health regenerates slightly faster
 					'''
@@ -694,7 +694,7 @@ Mods: {
 
 			Watchful: {
 				DisplayName: Watchful
-				AdditionalTooltip: -3% damage
+				AdditionalTooltip: -4% damage
 				AdditionalTooltip2: Increases your max number of sentries by 1
 			}
 

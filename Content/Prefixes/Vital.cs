@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.statLifeMax2 += 20;
-            player.lifeRegen += 2;
+            player.lifeRegen += 1;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
