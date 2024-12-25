@@ -75,6 +75,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool frozenElementalMinion;
         public int unionMirrorTicks;
         public int weightedStack;
+        public int conjuringStack;
         public int acceleratedStack;
         public bool lifeforceEngineActivated;
         public int lifeforceEngineTicks;
@@ -117,6 +118,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             frozenElementalMinion = false;
             unionMirrorTicks = 0;
             weightedStack = 0;
+            conjuringStack = 0;
             acceleratedStack = 0;
             lifeforceEngineActivated = false;
             lifeforceEngineTicks = 0;
@@ -186,6 +188,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             frozenElementalMinion = false;
             unionMirrorTicks = 0;
             weightedStack = 0;
+            conjuringStack = 0;
             acceleratedStack = 0;
             lifeforceEngineActivated = false;
             lifeforceEngineTicks = 0;
@@ -213,6 +216,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
             weightedStack = 0;
+            conjuringStack = 0;
             acceleratedStack = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
@@ -433,10 +437,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if (acceleratedStack > 0)
             {
-                float factor = 0.1f;
+                float factor = 0.04f;
                 if (player.wingsLogic == ArmorIDs.Wing.BetsyWings)
                 {
-                    factor = 0.2f;
+                    factor = 0.08f;
                 }
                 player.moveSpeed += (factor * (float)acceleratedStack);
             }
@@ -471,7 +475,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             else if (weightedStack > 0)
             {
-                float modifierWeighted = 2f * weightedStack;
+                float modifierWeighted = 0.8f * weightedStack;
                 player.maxFallSpeed += modifierWeighted;
             }
         }
@@ -534,11 +538,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if (spookyEmblem)
                 {
-                    modifiers.ArmorPenetration += (spookyBonus * 4);
+                    modifiers.ScalingArmorPenetration += (0.04f * spookyBonus);
                     if (random.Next(0, 100) < (spookyBonus * 2)) //(2 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
                     }
+                }
+                if (conjuringStack > 0)
+                {
+                    modifiers.ScalingArmorPenetration += (0.08f * conjuringStack);
                 }
             }
             base.ModifyHitNPC(target, ref modifiers);

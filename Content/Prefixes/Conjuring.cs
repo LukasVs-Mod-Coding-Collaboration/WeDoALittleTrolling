@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
@@ -51,8 +52,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += 0.05f;
-            player.statDefense += 1;
+            player.GetModPlayer<WDALTPlayer>().conjuringStack++;
             player.statManaMax2 += 10;
         }
 

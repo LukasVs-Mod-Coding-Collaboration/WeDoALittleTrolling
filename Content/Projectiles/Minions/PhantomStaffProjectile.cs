@@ -74,7 +74,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
             Projectile.timeLeft = 8;
             Projectile.netImportant = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 10;
+            Projectile.localNPCHitCooldown = 15;
             Projectile.light = 0.8f;
             this.DrawOffsetX = -2;
             this.DrawOriginOffsetX = 0f;

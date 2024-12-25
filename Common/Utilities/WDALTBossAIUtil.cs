@@ -201,7 +201,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             long timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
             int shotDelay = 120;
-            int damage = 40;
+            int damage = 32;
             if (npc.life < (npc.lifeMax / 4))
             {
                 shotDelay = 60;

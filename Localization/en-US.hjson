@@ -92,7 +92,7 @@ Mods: {
 				Tooltip:
 					'''
 					Grants 2% summon critical strike chance per minion slot
-					Grants 4 summon armor penetration per minion slot
+					Grants 4% summon armor penetration per minion slot
 					Increases your max number of minions by 1
 					Enemies are less likely to target you
 					'''
@@ -687,8 +687,7 @@ Mods: {
 				DisplayName: Conjuring
 				AdditionalTooltip:
 					'''
-					+5% summon damage
-					+1 defense
+					+8% summon armor penetration
 					+10 mana
 					'''
 			}
@@ -876,14 +875,14 @@ Mods: {
 				DisplayName: Accelerated
 				AdditionalTooltip:
 					'''
-					+10% maximum horizontal flight speed
-					+10% acceleration
+					+4% maximum horizontal flight speed
+					+4% acceleration
 					'''
 			}
 
 			Weighted: {
 				DisplayName: Weighted
-				AdditionalTooltip: +20% maximum fall speed
+				AdditionalTooltip: +8% maximum fall speed
 			}
 
 			Accurate.DisplayName: Accurate
