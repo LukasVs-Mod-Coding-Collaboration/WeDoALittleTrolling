@@ -57,7 +57,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPC.value = 1200f;
             NPC.knockBackResist = 0f;
             NPC.lifeMax = 900;
-            NPC.damage = 80;
+            NPC.damage = 60;
             NPC.defense = 40;
             NPC.scale = 1f;
 

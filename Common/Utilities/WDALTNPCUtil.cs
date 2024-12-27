@@ -78,10 +78,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                     modifiers.FlatBonusDamage += (2 * freedomRoundDamageStack);
                 }
             }
-            else
-            {
-                base.ModifyHitByProjectile(npc, projectile, ref modifiers);
-            }
+            freedomRoundDamageStack++;
+            base.ModifyHitByProjectile(npc, projectile, ref modifiers);
         }
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)

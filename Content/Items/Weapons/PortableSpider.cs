@@ -44,9 +44,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.value = Item.sellPrice(gold: 3);
             Item.maxStack = 1;
 
-            Item.useTime = 24;
-            Item.useAnimation = 24;
-            Item.mana = 8;
+            Item.useTime = 16;
+            Item.useAnimation = 16;
+            Item.mana = 6;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.NPCHit29;
 
