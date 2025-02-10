@@ -298,7 +298,19 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
                 {
                     Vector2 pos1 = Projectile.Center + gfxShootOffset1;
                     Vector2 pos2 = Projectile.Center + gfxShootOffset2;
-                    Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
+                    // Roughly Predict where the target is going to be when the Laser reaches it
+                    //
+                    // <Distance to target - offset> == (distanceToTarget - bulletOffsetMultiplier)
+                    // <distance the bullet travels per tick> == bulletSpeed
+                    // <distance the target travels per tick> == targetVelocity
+                    //
+                    // => <Distance to target - offset> = <Number of ticks until the laser hits the entity> * <distance the bullet travels per tick>
+                    // => <Number of ticks until the laser hits the entity> = <Distance to target - offset> / <distance the bullet travels per tick>
+                    // => <Distance the entity will have travelled on bullet impact> = <distance the target travels per tick> * <Number of ticks until the laser hits the entity>
+                    //
+                    // <Number of ticks until the laser hits the entity> == ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed)
+                    // <Distance the entity will have travelled on bullet impact> == targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed)
+                    Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed);
                     Vector2 shootVector1 = ((targetCenter + predictVelocity) - pos1);
                     Vector2 shootVector2 = ((targetCenter + predictVelocity) - pos2);
                     shootVector1 = shootVector1.SafeNormalize(Vector2.Zero);

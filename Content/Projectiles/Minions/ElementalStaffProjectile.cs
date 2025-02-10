@@ -317,7 +317,19 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
                     for (int i = 0; i < 3; i++)
                     {
                         Vector2 pos = Projectile.Center + gfxShootOffset;
-                        Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed); //Roughly Predict where the target is going to be when the Laser reaches it
+                        // Roughly Predict where the target is going to be when the Laser reaches it
+                        //
+                        // <Distance to target - offset> == (distanceToTarget - bulletOffsetMultiplier)
+                        // <distance the bullet travels per tick> == bulletSpeed
+                        // <distance the target travels per tick> == targetVelocity
+                        //
+                        // => <Distance to target - offset> = <Number of ticks until the laser hits the entity> * <distance the bullet travels per tick>
+                        // => <Number of ticks until the laser hits the entity> = <Distance to target - offset> / <distance the bullet travels per tick>
+                        // => <Distance the entity will have travelled on bullet impact> = <distance the target travels per tick> * <Number of ticks until the laser hits the entity>
+                        //
+                        // <Number of ticks until the laser hits the entity> == ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed)
+                        // <Distance the entity will have travelled on bullet impact> == targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed)
+                        Vector2 predictVelocity = targetVelocity * ((distanceToTarget - bulletOffsetMultiplier) / bulletSpeed);
                         Vector2 shootVector = ((targetCenter + predictVelocity) - pos);
                         shootVector = shootVector.SafeNormalize(Vector2.Zero);
                         pos += (shootVector * bulletOffsetMultiplier);
