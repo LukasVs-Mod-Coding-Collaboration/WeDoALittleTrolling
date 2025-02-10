@@ -242,6 +242,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
                     (i != Projectile.whoAmI) &&
                     (otherMinion.active) &&
                     (otherMinion.owner == Projectile.owner) &&
+                    (otherMinion.minion) &&
                     (proximity)
                 )
                 {
