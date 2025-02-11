@@ -73,6 +73,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int shroomiteGenesisOverheatTimer;
         public bool lumintePhantomMinion;
         public bool frozenElementalMinion;
+        public bool wretchMinion;
         public int unionMirrorTicks;
         public int weightedStack;
         public int conjuringStack;
@@ -116,6 +117,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverheatTimer = 0;
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
+            wretchMinion = false;
             unionMirrorTicks = 0;
             weightedStack = 0;
             conjuringStack = 0;
@@ -186,6 +188,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesisOverheatTimer = 0;
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
+            wretchMinion = false;
             unionMirrorTicks = 0;
             weightedStack = 0;
             conjuringStack = 0;
@@ -215,6 +218,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             shroomiteGenesis = false;
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
+            wretchMinion = false;
             weightedStack = 0;
             conjuringStack = 0;
             acceleratedStack = 0;

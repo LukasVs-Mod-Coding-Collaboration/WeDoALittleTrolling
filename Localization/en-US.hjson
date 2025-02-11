@@ -608,6 +608,11 @@ Mods: {
 				DisplayName: Embersteel Bar
 				Tooltip: It glows with an inner flame
 			}
+
+			AdamantiteWretchStaff: {
+				DisplayName: Adamantite Wretch Staff
+				Tooltip: Summons an Adamantite Wretch to fight for you
+			}
 		}
 
 		Projectiles: {
@@ -633,6 +638,7 @@ Mods: {
 			FrozenShard.DisplayName: Frozen Shard
 			Kernel.DisplayName: Kernel
 			FreedomRound.DisplayName: Freedom Round
+			WretchStaffProjectile.DisplayName: Adamantite Wretch
 		}
 
 		Prefixes: {
@@ -975,6 +981,11 @@ Mods: {
 			OnyxBlaze: {
 				DisplayName: Onyx Blaze
 				Description: Burning with a strange, dark fire. Take 15% more damage.
+			}
+
+			WretchStaffBuff: {
+				DisplayName: Wretch Staff Buff
+				Description: The Adamantite Wretch will fight for you
 			}
 		}
 
