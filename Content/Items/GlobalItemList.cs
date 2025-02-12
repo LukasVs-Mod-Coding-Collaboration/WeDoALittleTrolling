@@ -511,5 +511,21 @@ namespace WeDoALittleTrolling.Content.Items
                 item.SetNameOverride("Ancient Battle Treads");
             }
         }
+
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemID.FishingPotion)
+            {
+                item.shopCustomPrice = Item.buyPrice(gold: 20);
+            }
+            if (item.type == ItemID.CratePotion)
+            {
+                item.shopCustomPrice = Item.buyPrice(gold: 40);
+            }
+            if (item.type == ItemID.SonarPotion)
+            {
+                item.shopCustomPrice = Item.buyPrice(gold: 60);
+            }
+        }
     }
 }
