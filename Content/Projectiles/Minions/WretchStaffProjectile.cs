@@ -343,7 +343,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
         private void AI_023_Wretch_UpdateFrames()
         {
             Projectile.frameCounter++;
-            if (Projectile.frameCounter >= 20)
+            if (Projectile.frameCounter >= 10)
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;

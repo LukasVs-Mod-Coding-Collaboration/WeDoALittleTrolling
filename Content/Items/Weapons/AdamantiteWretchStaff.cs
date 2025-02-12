@@ -56,7 +56,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.buffType = ModContent.BuffType<WretchStaffBuff>();
             Item.shoot = ModContent.ProjectileType<WretchStaffProjectile>();
 
-            Item.damage = 24;
+            Item.damage = 20;
             Item.mana = 12;
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;
