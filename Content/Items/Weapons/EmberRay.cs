@@ -20,17 +20,9 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Terraria.Audio;
 using Terraria.Utilities;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
-using WeDoALittleTrolling.Common.Utilities;
-using WeDoALittleTrolling.Common.ModSystems;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
-using System;
-using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
