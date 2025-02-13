@@ -613,6 +613,11 @@ Mods: {
 				DisplayName: Adamantite Wretch Staff
 				Tooltip: Summons an Adamantite Wretch to fight for you
 			}
+
+			RaccoonLaser: {
+				DisplayName: Raccoon Laser
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -639,6 +644,7 @@ Mods: {
 			Kernel.DisplayName: Kernel
 			FreedomRound.DisplayName: Freedom Round
 			WretchStaffProjectile.DisplayName: Adamantite Wretch
+			HomingBeamLaser.DisplayName: Homing Beam Laser
 		}
 
 		Prefixes: {
