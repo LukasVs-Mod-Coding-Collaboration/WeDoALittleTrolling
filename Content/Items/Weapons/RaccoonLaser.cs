@@ -33,6 +33,8 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class RaccoonLaser : ModItem
     {
+        public const float screenBoundX = 1920f; //In-Game resolution: 1920*1080
+        public const float screenBoundY = 1080f; //In-Game resolution: 1920*1080
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -84,7 +86,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                     Vector2 playerToThis = new Vector2(Main.npc[i].Center.X - player.Center.X, Main.npc[i].Center.Y - player.Center.Y); // Vector from player to potential target
                     Vector2 cursorToThis = new Vector2(Main.npc[i].Center.X - Main.MouseWorld.X, Main.npc[i].Center.Y - Main.MouseWorld.Y); // Vector from cursor to potential target
                     float trigonometricAngle = MathHelper.ToDegrees((float)Math.Acos(Vector2.Dot(playerToThis, velocity) / (playerToThis.Length() * velocity.Length()))); //Correction Angle in Degrees
-                    if (Math.Abs(trigonometricAngle) < 30 ) // If where we're aiming deviates less than 15 degrees from where our npc is relative to us
+                    if (Math.Abs(trigonometricAngle) < 30 && Math.Abs(playerToThis.X) <= screenBoundX && Math.Abs(playerToThis.Y) <= screenBoundY) // If where we're aiming deviates less than 15 degrees from where our npc is relative to us
                     {
                         if (!hasTarget) // We don't compare anything if we don't have anything to compare to yet
                         {
