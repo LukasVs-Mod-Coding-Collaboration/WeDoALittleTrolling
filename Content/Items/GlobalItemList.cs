@@ -211,6 +211,31 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine acceleratedBoostLine = new TooltipLine(Mod, "AcceleratedBoostDescription", "Scales 100% better with the 'Accelerated' reforge");
                 tooltips.Add(acceleratedBoostLine);
             }
+            if (item.type == ItemID.ChlorophytePartisan)
+            {
+                TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recovers 5% of damage as health\nHeals up to 10 health per hit\nHeals less health the faster\nyou strike enemies\nHeals 75% less while immune");
+                tooltips.Add(extraManaLine);
+            }
+            if (item.type == ItemID.ScytheWhip) //Dark Harvest
+            {
+                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"The harvest is bountiful this year\"");
+                tooltips.Add(extraLoreLine);
+            }
+            if (item.type == ItemID.Bananarang)
+            {
+                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"Oh, these are some pretty cool bananas!\"");
+                tooltips.Add(extraLoreLine);
+            }
+            if (item.type == ItemID.BoulderStatue)
+            {
+                TooltipLine extraLoreLine = new TooltipLine(Mod, "Lore", "\"We remember the Boulder.\"");
+                tooltips.Add(extraLoreLine);
+            }
+            if (item.type == ItemID.ThunderStaff)
+            {
+                TooltipLine extraThunderspellLine = new TooltipLine(Mod, "WeaponLeechingDescription", "\"I CAST THUNDERSPELL!!\"");
+                tooltips.Add(extraThunderspellLine);
+            }
             base.ModifyTooltips(item, tooltips);
         }
 
