@@ -887,8 +887,8 @@ Mods: {
 				DisplayName: Accelerated
 				AdditionalTooltip:
 					'''
-					+4% maximum horizontal flight speed
-					+4% acceleration
+					+8% maximum horizontal flight speed
+					+8% acceleration
 					'''
 			}
 

@@ -441,11 +441,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if (acceleratedStack > 0)
             {
-                float factor = 0.04f;
-                if (player.wingsLogic == ArmorIDs.Wing.BetsyWings)
-                {
-                    factor = 0.08f;
-                }
+                float factor = 0.08f;
                 player.moveSpeed += (factor * (float)acceleratedStack);
             }
             base.PostUpdateEquips();

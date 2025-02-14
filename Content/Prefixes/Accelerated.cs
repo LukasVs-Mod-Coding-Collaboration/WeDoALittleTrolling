@@ -68,11 +68,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
             orig.Invoke(self);
             if (self.GetModPlayer<WDALTPlayer>().acceleratedStack > 0)
             {
-                float factor = 0.04f;
-                if (self.wingsLogic == ArmorIDs.Wing.BetsyWings)
-                {
-                    factor = 0.08f;
-                }
+                float factor = 0.08f;
                 float modifierAccelerated = factor * self.accRunSpeed * self.GetModPlayer<WDALTPlayer>().acceleratedStack;
                 self.accRunSpeed += modifierAccelerated;
             }
