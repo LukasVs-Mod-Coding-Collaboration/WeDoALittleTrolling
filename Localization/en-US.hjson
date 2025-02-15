@@ -990,7 +990,7 @@ Mods: {
 			}
 
 			WretchStaffBuff: {
-				DisplayName: Wretch Staff Buff
+				DisplayName: Adamantite Wretch
 				Description: The Adamantite Wretch will fight for you
 			}
 		}

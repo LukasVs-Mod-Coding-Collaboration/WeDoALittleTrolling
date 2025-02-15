@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
         public override void SetStaticDefaults()
         {
             Main.projPet[Projectile.type] = true;
-            Main.projFrames[Projectile.type] = 3;
+            Main.projFrames[Projectile.type] = 2;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
