@@ -31,57 +31,92 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class HomingBeamLaser : ModProjectile
     {
-        public Vector2 original_location;
-        public bool location_is_locked = false;
+        NPC target;
+        Vector2 laserDrawOffset;
+        bool isAHit;
+        bool hasDealtDamage;
+
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 9999; // The length of old position to be recorded
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 10; // The width of projectile hitbox
-            Projectile.height = 10; // The height of projectile hitbox
-            Projectile.aiStyle = 1; // The ai style of the projectile, please reference the source code of Terraria
-            Projectile.friendly = true; // Can the projectile deal damage to enemies?
-            Projectile.hostile = false; // Can the projectile deal damage to the player?
-            Projectile.DamageType = DamageClass.Ranged; // Is the projectile shoot by a ranged weapon?
-            Projectile.penetrate = -1; // How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
-            Projectile.timeLeft = 9999; // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
-            Projectile.alpha = 255; // The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in) Make sure to delete this if you aren't using an aiStyle that fades in. You'll wonder why your projectile is invisible.
+            Projectile.width = 10;
+            Projectile.height = 10;
+            Projectile.aiStyle = 0;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 90; 
+            Projectile.alpha = 0; // The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in) Make sure to delete this if you aren't using an aiStyle that fades in. You'll wonder why your projectile is invisible.
             Projectile.light = 1.0f; // How much light emit around the projectile
-            Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
-            Projectile.tileCollide = false; // Can the projectile collide with tiles?
-            Projectile.extraUpdates = 200; // Set to above 0 if you want the projectile to update multiple time in a frame
-            Projectile.ArmorPenetration = 250;
-
+            Projectile.ignoreWater = true; 
+            Projectile.tileCollide = false; 
+            Projectile.ArmorPenetration = 999;
             AIType = ProjectileID.Bullet; // Act exactly like default Bullet
         }
 
-        public override bool PreDraw(ref Color lightColor)
+        public void TransferNecessaryInformation(NPC determinedTarget, Vector2 velocityGiven, bool didProjectileHit)
         {
-            Main.instance.LoadProjectile(Projectile.type);
-            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
-
-            // Redraw the projectile with the color not influenced by light
-            Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
-            for (int k = 0; k < Projectile.oldPos.Length; k++)
-            {
-                if (((k % 4) == 0)) //efficiency: Only render every 4th Projectile Trail Position
-                {
-                    Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-                    Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-                    Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
-                }
-            }
-            Vector2 drawPosOrig = (this.original_location - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-            Color colorOrig = Projectile.GetAlpha(lightColor);
-            Main.EntitySpriteDraw(texture, drawPosOrig, null, colorOrig, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
-            return true;
+            target = determinedTarget;
+            velocityGiven.SafeNormalize(Vector2.Zero);
+            laserDrawOffset = velocityGiven;
+            isAHit = didProjectileHit;
         }
 
-        public override void OnSpawn(IEntitySource source)
+        public override void AI()
+        {
+            Player ownerOfThis = Main.player[Projectile.owner];
+            if (isAHit)
+            {
+                if
+                (
+                target != null &&
+                !target.friendly &&
+                !target.CountsAsACritter &&
+                !target.isLikeATownNPC &&
+                !target.dontTakeDamage &&
+                target.active &&
+                target.CanBeChasedBy()
+                )
+                {
+                    Projectile.Center = target.Center;
+                }
+            }
+            else
+            {
+                Vector2 rayEndLocation = laserDrawOffset * 256;
+                rayEndLocation.Y -= 6;
+                Projectile.Center = ownerOfThis.Center + rayEndLocation;
+            }
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            hasDealtDamage = true;
+            base.OnHitNPC(target, hit, damageDone);
+        }
+
+        public override bool? CanHitNPC(NPC target)
+        {
+            if (hasDealtDamage || !isAHit)
+            {
+                return false;
+            }
+            else
+            { 
+                return base.CanHitNPC(target);
+            }
+            
+        }
+
+
+
+
+        /*
+        public override void OnSpawn(IEntitySource source
         {
             this.original_location = Projectile.position;
             Projectile.netUpdate = true;
@@ -97,32 +132,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             this.original_location = reader.ReadVector2();
         }
-
-        public override bool ShouldUpdatePosition()
-        {
-            float maxBeamTravelX = Main.screenWidth / 2;
-            float maxBeamTravelY = Main.screenHeight / 2;
-            if (maxBeamTravelX > 1920 / 2)
-            {
-                maxBeamTravelX = 1920 / 2;
-            }
-            if (maxBeamTravelY > 1080 / 2)
-            {
-                maxBeamTravelY = 1080 / 2;
-            }
-            if (Math.Abs(this.Projectile.position.X - this.original_location.X) > maxBeamTravelX || //Configure max lengh of beam in x coords
-               Math.Abs(this.Projectile.position.Y - this.original_location.Y) > maxBeamTravelY || //Configure max lengh of beam in y coords
-               this.location_is_locked)
-            {
-                this.location_is_locked = true;
-                this.Projectile.damage = 0;
-                this.Projectile.position = this.original_location;
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        */
     }
 }

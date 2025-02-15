@@ -115,11 +115,13 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             */
             if (hasTarget && Main.myPlayer == player.whoAmI)
             {
-                Projectile targetShot = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), target.Center, Vector2.Zero, ProjectileID.WoodenArrowFriendly, damage, knockback, player.whoAmI);
+                Projectile targetShot = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), target.Center, Vector2.Zero, ModContent.ProjectileType<HomingBeamLaser>(), damage, knockback, player.whoAmI);
+                ((HomingBeamLaser)targetShot.ModProjectile).TransferNecessaryInformation(target, velocity, true);
             }
             else if (!hasTarget && Main.myPlayer == player.whoAmI)
             {
-                Projectile missedShot = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), Main.MouseWorld, Vector2.Zero, ProjectileID.WoodenArrowFriendly, damage, knockback, player.whoAmI);
+                Projectile missedShot = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<HomingBeamLaser>(), damage, knockback, player.whoAmI);
+                ((HomingBeamLaser)missedShot.ModProjectile).TransferNecessaryInformation(null, velocity, false);
             }
             return false;
         }
