@@ -25,7 +25,7 @@ using WeDoALittleTrolling.Content.Projectiles.Minions;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
-    internal class AdamantiteWretchStaff : ModItem
+    internal class WretchStaff : ModItem
     {
         public override void SetStaticDefaults()
         {

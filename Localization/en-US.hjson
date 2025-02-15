@@ -609,7 +609,7 @@ Mods: {
 				Tooltip: It glows with an inner flame
 			}
 
-			AdamantiteWretchStaff: {
+			WretchStaff: {
 				DisplayName: Adamantite Wretch Staff
 				Tooltip: Summons an Adamantite Wretch to fight for you
 			}
