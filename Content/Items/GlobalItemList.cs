@@ -206,11 +206,6 @@ namespace WeDoALittleTrolling.Content.Items
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponHitFreezeDescription", "Briefly freezes both yourself and your target upon impact");
                 tooltips.Add(extraManaLine);
             }
-            if (item.type == ItemID.BetsyWings)
-            {
-                TooltipLine acceleratedBoostLine = new TooltipLine(Mod, "AcceleratedBoostDescription", "Scales 100% better with the 'Accelerated' reforge");
-                tooltips.Add(acceleratedBoostLine);
-            }
             if (item.type == ItemID.ChlorophytePartisan)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponLeechingDescription", "Recovers 5% of damage as health\nHeals up to 10 health per hit\nHeals less health the faster\nyou strike enemies\nHeals 75% less while immune");
