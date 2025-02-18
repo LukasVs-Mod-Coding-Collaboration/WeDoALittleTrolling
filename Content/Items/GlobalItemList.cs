@@ -474,6 +474,11 @@ namespace WeDoALittleTrolling.Content.Items
             {
                 item.shopCustomPrice = Item.buyPrice(gold: 60);
             }
+            //Fix vaniall drill tool speed rounding error
+            if (ItemID.Sets.IsDrill[item.type] && item.useTime > 1)
+            {
+                item.useTime--;
+            }
         }
     }
 }
