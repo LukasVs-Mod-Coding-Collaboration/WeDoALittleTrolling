@@ -53,7 +53,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override void ApplyAccessoryEffects(Player player)
         {
             player.GetModPlayer<WDALTPlayer>().conjuringStack++;
-            player.statManaMax2 += 10;
+            player.statManaMax2 += 20;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

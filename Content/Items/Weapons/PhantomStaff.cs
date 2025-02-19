@@ -58,7 +58,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.damage = 120;
             Item.mana = 24;
-            Item.ArmorPenetration = 60;
+            Item.ArmorPenetration = 30;
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;
 

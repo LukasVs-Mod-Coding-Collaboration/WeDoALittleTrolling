@@ -401,7 +401,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             spookyBonus = player.maxMinions;
             if (spookyShield)
             {
-                player.statDefense += (spookyBonus * 3);
+                player.statDefense += (spookyBonus * 2);
             }
             heartOfDespairDamageBonus = (player.statLifeMax2 - player.statLife) / 5;
             if (lifeforceEngineActivated)
@@ -497,7 +497,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if (spookyShield)
             {
-                modifiers.FinalDamage *= (1f - (((float)spookyBonus * 1.5f) * 0.01f));
+                modifiers.FinalDamage *= (1f - (((float)spookyBonus * 1.0f) * 0.01f));
             }
             if (player.HasBuff(ModContent.BuffType<OnyxBlaze>()))
             {
@@ -538,7 +538,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if (spookyEmblem)
                 {
-                    modifiers.ScalingArmorPenetration += (0.04f * spookyBonus);
+                    modifiers.ArmorPenetration += (4f * spookyBonus);
                     if (random.Next(0, 100) < (spookyBonus * 2)) //(2 x <Player Minion Slots>)% Chance
                     {
                         modifiers.SetCrit();
@@ -546,7 +546,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 }
                 if (conjuringStack > 0)
                 {
-                    modifiers.ScalingArmorPenetration += (0.08f * conjuringStack);
+                    modifiers.ArmorPenetration += (6f * conjuringStack);
                 }
             }
             base.ModifyHitNPC(target, ref modifiers);

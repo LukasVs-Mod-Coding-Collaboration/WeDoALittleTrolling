@@ -92,7 +92,7 @@ Mods: {
 				Tooltip:
 					'''
 					Grants 2% summon critical strike chance per minion slot
-					Grants 4% summon armor penetration per minion slot
+					Grants 4 summon armor penetration per minion slot
 					Increases your max number of minions by 1
 					Enemies are less likely to target you
 					'''
@@ -102,9 +102,9 @@ Mods: {
 				DisplayName: Spooky Shield
 				Tooltip:
 					'''
-					Reduces damage taken by 1.5% per minion slot
+					Reduces damage taken by 1% per minion slot
 					This is unaffected by debuffs
-					3 defense per minion slot
+					2 defense per minion slot
 					Increases your max number of minions by 1
 					Enemies are more likely to target you
 					'''
@@ -699,8 +699,8 @@ Mods: {
 				DisplayName: Conjuring
 				AdditionalTooltip:
 					'''
-					+8% summon armor penetration
-					+10 mana
+					+6 summon armor penetration
+					+20 mana
 					'''
 			}
 
