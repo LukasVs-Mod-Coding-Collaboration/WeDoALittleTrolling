@@ -906,20 +906,6 @@ Mods: {
 		}
 
 		Buffs: {
-			Devastated: {
-				DisplayName: Devastated
-				Description:
-					'''
-					Recently got hit by a devastating attack
-					Cannot recover health lost to devastating attacks
-					'''
-			}
-
-			WreckedResistance: {
-				DisplayName: Wrecked Resistance
-				Description: Defense effectiveness is decreased by
-			}
-
 			SearingInferno: {
 				DisplayName: Searing Inferno
 				Description:
@@ -962,11 +948,6 @@ Mods: {
 			EternalPower: {
 				DisplayName: Eternal Power
 				Description: Provides life regeneration
-			}
-
-			Vulnerable: {
-				DisplayName: Vulnerable
-				Description: Endurance is decreased by
 			}
 
 			WormCandleBuff: {
