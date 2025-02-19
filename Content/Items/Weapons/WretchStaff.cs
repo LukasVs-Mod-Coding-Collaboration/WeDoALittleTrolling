@@ -100,6 +100,21 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
               .AddIngredient(ItemID.SoulofNight, 4)
               .AddIngredient(ItemID.SoulofLight, 4)
               .AddIngredient(ItemID.SoulofFlight, 4)
+              .AddIngredient(ItemID.CursedFlame, 4)
+              .AddIngredient(ItemID.PixieDust, 4)
+              .AddIngredient(ItemID.DarkShard, 1)
+              .AddIngredient(ItemID.LightShard, 1)
+              .Register();
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.AdamantiteBar, 12)
+              .AddIngredient(ItemID.SoulofNight, 4)
+              .AddIngredient(ItemID.SoulofLight, 4)
+              .AddIngredient(ItemID.SoulofFlight, 4)
+              .AddIngredient(ItemID.Ichor, 4)
+              .AddIngredient(ItemID.PixieDust, 4)
+              .AddIngredient(ItemID.DarkShard, 1)
+              .AddIngredient(ItemID.LightShard, 1)
               .Register();
         }
     }
