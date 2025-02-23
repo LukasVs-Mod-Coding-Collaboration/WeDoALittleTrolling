@@ -99,25 +99,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             try
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
-                //cursor.GotoNext(i => i.MatchLdsfld<WorldGen>(nameof(WorldGen.noTrapsWorldGen))); //Move to the position before "Main.noTrapsWorld" is set to "WorldGen.noTrapsWorldGen".
-                /*cursor.EmitDelegate<Func<int>> //Emit a function that sets Drunk World Gen when we want it to happen.
-                (
-                    () =>
-                    {
-                        if (Main.ActiveWorldFileData.SeedText.Contains("WDALTMixup"))
-                        {
-                            WorldGen.drunkWorldGen = true;
-                            WorldGen.drunkWorldGenText = true;
-                            Main.drunkWorld = true;
-                            if (!Main.dayTime)
-                            {
-                                Main.time = 0.0;
-                            }
-                        }
-                        return 0;
-                    }
-                );
-                cursor.Emit(OpCodes.Pop);*/
                 cursor.GotoNext(i => i.MatchLdsfld<WorldGen>(nameof(WorldGen.everythingWorldGen))); //Go to the position where the Get Fixed Boi check is for the drunk world
                 cursor.Index++; //Go behind it now
                 cursor.Emit(OpCodes.Pop); //Pop the original value of "WorldGen.everythingWorldGen" off the stack
