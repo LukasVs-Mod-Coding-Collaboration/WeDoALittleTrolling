@@ -775,11 +775,38 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     healingAmount *= 2;
                 }
-                if (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan)
+                if
+                (
+                    (
+                        player.HeldItem.prefix == ModContent.PrefixType<Leeching>() ||
+                        player.HeldItem.type == ItemID.ChlorophytePartisan
+                    ) &&
+                    (
+                        hit.DamageType == DamageClass.Melee ||
+                        hit.DamageType == DamageClass.MeleeNoSpeed ||
+                        hit.DamageType == DamageClass.SummonMeleeSpeed
+                    )
+                )
                 {
                     player.Heal(healingAmount);
                 }
-                else if (player.HeldItem.prefix == ModContent.PrefixType<Siphoning>())
+                else if
+                (
+                    player.HeldItem.prefix == ModContent.PrefixType<Siphoning>() &&
+                    (
+                        hit.DamageType == DamageClass.Magic ||
+                        hit.DamageType == DamageClass.MagicSummonHybrid ||
+                        (
+                            WDALTModSystem.isThoriumModPresent &&
+                            WDALTModSystem.MCIDIntegrity &&
+                            (
+                                hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerDamage) ||
+                                hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerTool) ||
+                                hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerToolDamageHybrid)
+                            )
+                        )
+                    ) 
+                )
                 {
                     if (player.statMana <= (player.statManaMax2 - healingAmount))
                     {
