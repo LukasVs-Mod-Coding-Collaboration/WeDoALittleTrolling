@@ -35,6 +35,8 @@ using SteelSeries.GameSense;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.NPCs;
+using log4net.Core;
+using Terraria.ModLoader.Core;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -47,18 +49,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             player = this.Player;
         }
-
-        int[] LeFisheIDs =
-        {
-                    NPCID.FungoFish,
-                    NPCID.Piranha,
-                    NPCID.AnglerFish,
-                    NPCID.DukeFishron,
-                    NPCID.FlyingFish,
-                    NPCID.CorruptGoldfish,
-                    NPCID.CrimsonGoldfish,
-                    NPCID.Arapaima
-        };
 
         int[] BeeIDs =
         {
@@ -93,12 +83,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
             {
-               
-
-                if (LeFisheIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
-                {
-                    damageSource.SourceCustomReason = player.name + " was tragically slain by le fishe.";
-                }
                 if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.TheDestroyer && random.NextBool(4))
                 {
                     damageSource.SourceCustomReason = player.name + " was eated.";
@@ -134,7 +118,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if (damageSource.SourceProjectileType == ProjectileID.SniperBullet && random.NextBool(5))
             {
-                damageSource.SourceCustomReason = player.name + " discovered the meaning of stream sniping.";
+                damageSource.SourceCustomReason = player.name + " got 360 noscoped.";
             }
             if (damageSource.SourceProjectileType == ProjectileID.Boulder && random.NextBool(5))
             {
@@ -150,7 +134,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " died. Must have been the wind.",
                 player.name + " mysteriously vanished.",
                 player.name + " accepted candy from the man in the white van.",
-                player.name + " noclipped into the backrooms.",
                 player.name + " is gone, reduced to atoms.",
                 player.name + " was not forgiven for their sins.",
                 player.name + " died of natural causes.",
@@ -160,34 +143,25 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " was finally arrested for their war crimes.",
                 player.name + " experienced the consequences of banana overdose.",
                 player.name + " didn't know what happened on July Second.",
-                player.name + " decided to wear a paladin's shield during the daylight Empress of Light fight.",
                 player.name + " ate the tasty uranium-235.",
                 player.name + " tried to run Path of Exile on hitpower's PC.",
                 player.name + " took an arrow to the knee.",
                 player.name + " was unfortunate enough to fall victim to our clever little trap of social teasing.",
                 player.name + " is probably breaking their keyboard right now.",
-                player.name + " forgot about timezones.",
                 player.name + " told the truth to the psychiatrist.",
                 player.name + " made a severe and continuous lapse in their judgement.",
                 player.name + "'s honest reaction:",
                 player.name + " is trolled.",
                 player.name + "'s free trial of life expired.",
                 player.name + " was- actually, nevermind.",
-                player.name + " got cancelled on the internet.",
-                player.name + " got ratioed.",
                 player.name + " went to find their absent father.",
                 "According to all known laws of aviation, " + player.name + " is not able to fly.",
-                "The voices in " + player.name + "'s head got too loud.",
-                "Monday left " + player.name + " broken.",               
+                "The voices in " + player.name + "'s head got too loud.",             
                 // First Generation Third Party Suggestions
-                player.name + " was morbed to death.",
-                player.name + " was not that guy.",
                 player.name + " didn't pay their taxes and was caught by the IRS.",
-                player.name + " entered the void.",
                 player.name + " turned out to be a low intelligence specimen.",
                 // Second Generation
-                player.name + " was unable to operate a calculator.",
-                player.name + " couldn't endure the harshest punishment.",
+                player.name + " attempted to witness secrets sealed.",
                 player.name + " had never seen such bullshit before.",
                 player.name + " discovered the fire in the hole.",
                 player.name + " did not follow the 57 precepts.",
@@ -199,11 +173,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " spontaneously imploded.",
                 player.name + " couldn't imagine Sisyphus happy.",
                 player.name + " attempted to witness secrets sealed.",
-                player.name + " was lost in the fire.",
                 player.name + " will never financially recover from this.",
                 player.name + " just got incredibly lucky! Unfortunately, they're dead.",
                 player.name + " drank the funny juice under the sink.",
-                player.name + " found out about the truth.",
                 player.name + " googled en passant.",
                 player.name + " was in fact not too young to die.",
                 player.name + " forgot to bring cheese to the mines.",
@@ -268,13 +240,28 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " got cancelled out of Waterfowl Dance.",
                 player.name + " went to the store to get milk.",
                 "The curse seeped to " + player.name + "'s very soul.",
+                player.name + "'s part in this shall not be forgiven.",
                 "Okay but... " + player.name + " thought it would be funny!",
                 "It's a shame " + player.name + " didn't die 87 years ago.",
                 player.name + " fell off the lobter copter.",
                 "Thank you, " + player.name + ", for participating in this Aperture Science computer-aided Enrichment Center activity. Goodbye",
-                "Hippity hoppity " + player.name + "'s soul is now my property."
-
-
+                "Hippity hoppity " + player.name + "'s soul is now my property.",
+                // Fourth Generation
+                "And then the " + player.name + " says:",
+                "Is " + player.name + " serious right meow :3",
+                "Solid of scale you might be, foul " + player.name + ", but riddled with holes is your rotten hide!",
+                player.name + " alerted the frog /!\\",
+                "Where didst thou flee, my " + player.name + "? Come out from whence you hide!",
+                "Joker, It's a " + player.name + ", Joker, you can't!",
+                "THERE'S NO LAWS AGAINST THE " + player.name + ", BATMAN!",
+                "Noo, " + player.name + ", don’t leave me here!",
+                player.name + " hasn't a clue, no secrets lie with them, not a one!",
+                player.name + " clearly doesn't own an air fryer.",
+                player.name + " has left the game.",
+                player.name + " will remember that.",
+                player.name + " accepted the definition of a word as some letters surrounded by a gap.",
+                player.name + " isn't the sharpest tool in the shed.",
+                "Holy mother of bananas, " + player.name + " has died!"
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
@@ -299,7 +286,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " was eliminated from a Mr. Beast challenge by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " just wanted to talk to " + player.name + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " was the second worst thing to ever happen to " + player.name + ".",
-                    player.name + " had it writ upon their meagre grave: Felled by" + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
+                    player.name + " had it writ upon their meagre grave: Felled by " + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
                     player.name + " has been hit by, " + player.name + " has been struck by " + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
                     player.name + " was defeated by " + Main.npc[damageSource.SourceNPCIndex].FullName + ", blade of Moon Lord.",
                     player.name + " is" + Main.npc[damageSource.SourceNPCIndex].FullName + "'s and " + Main.npc[damageSource.SourceNPCIndex].FullName + "'s alone!",
@@ -309,7 +296,16 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "Curse you," + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " hereby vows: You will rue this day!",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " can see it as clear as day; The death of " + player.name + "!",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " found " + player.name + "'s joke pretty funny. " + player.name + " dies \"accidentally\".",
-                    Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth."
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth.",
+                    player.name + ", Watch out! " + Main.npc[damageSource.SourceNPCIndex].FullName + "!",
+                    player.name + "us *extremely loud " + Main.npc[damageSource.SourceNPCIndex].FullName + " music*",
+                    "I don't mean to alarm " + player.name + ", but the leading cause of death over 40 is " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "Hand of " + Main.npc[damageSource.SourceNPCIndex].FullName + " has struck the " + player.name + ".",
+                    "*tips " + player.name + "* M'" + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "Would you rather have unlimited " + Main.npc[damageSource.SourceNPCIndex].FullName + ", but no more " + player.name + ", or " + player.name + ", UNLIMITED " + player.name + ", but no more " + player.name + "?",
+                    "Whatever. Go, my " + Main.npc[damageSource.SourceNPCIndex].FullName,
+                    "But the lord laughs at the " + player.name + ", for he knows their " + Main.npc[damageSource.SourceNPCIndex].FullName +" is coming.",
+                    "Blessed is the " + Main.npc[damageSource.SourceNPCIndex].FullName + " who seizes your " + player.name + " and smashes them against the rock."
                 };
 
                 if (random.NextBool(15))
