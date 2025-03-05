@@ -172,7 +172,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " spontaneously combusted.",
                 player.name + " spontaneously imploded.",
                 player.name + " couldn't imagine Sisyphus happy.",
-                player.name + " attempted to witness secrets sealed.",
                 player.name + " will never financially recover from this.",
                 player.name + " just got incredibly lucky! Unfortunately, they're dead.",
                 player.name + " drank the funny juice under the sink.",
