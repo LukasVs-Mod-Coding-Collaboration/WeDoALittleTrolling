@@ -31,13 +31,13 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
     {
         public const float idleOverlapCorrectionFactor = 0.04f;
         public const float attackOverlapCorrectionFactor = 0.02f;
-        public const float detectionRange = 1024f;
-        public const float detectionRangeOffset = 48f;
+        public const float detectionRange = 768f;
+        public const float detectionRangeOffset = 36f;
         public const float idleMoveSpeed = 3f;
         public const float attackMoveSpeed = 12f;
         public const float idleInertia = 12f;
         public const float attackInertia = 6f;
-        public const float idleDistance = 64f;
+        public const float idleDistance = 48f;
         public const float idleAccelerationFactor = 0.75f;
         public const float zeroVectorMaxLen = 0.0000152587890625f; // 2^-16 / Binary: 0.0000000000000001
 

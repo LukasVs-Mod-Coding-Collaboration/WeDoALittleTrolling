@@ -561,7 +561,11 @@ Mods: {
 
 			ElementalStaff: {
 				DisplayName: Frozen Elemental Staff
-				Tooltip: The Frozen Elemental will fight for you
+				Tooltip:
+					'''
+					Ignores a substantial amount of enemy defense
+					Summons a Frozen Elemental to fight for you
+					'''
 			}
 
 			PortableSpider: {

@@ -314,7 +314,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
             {
                 if (Projectile.owner == Main.myPlayer)
                 {
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 2; i++)
                     {
                         Vector2 pos = Projectile.Center + gfxShootOffset;
                         // Roughly Predict where the target is going to be when the Laser reaches it
@@ -334,7 +334,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
                         shootVector = shootVector.SafeNormalize(Vector2.Zero);
                         pos += (shootVector * bulletOffsetMultiplier);
                         shootVector *= bulletSpeed;
-                        float rotation = -3f + (i * 3f);
+                        float rotation = -1.5f + (i * 3f);
                         Projectile.NewProjectileDirect
                         (
                             Projectile.GetSource_FromAI(),
