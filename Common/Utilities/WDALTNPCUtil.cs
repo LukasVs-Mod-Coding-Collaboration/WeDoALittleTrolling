@@ -51,6 +51,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             binaryWriter.Write((int)npc.damage);
             binaryWriter.Write((int)VileSpitTimeLeft);
             binaryWriter.Write((int)BlazingShieldOwnerIndex);
+            binaryWriter.Write((int)freedomRoundDamageStack);
             base.SendExtraAI(npc, bitWriter, binaryWriter);
         }
 
@@ -59,6 +60,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             npc.damage = binaryReader.ReadInt32();
             VileSpitTimeLeft = binaryReader.ReadInt32();
             BlazingShieldOwnerIndex = binaryReader.ReadInt32();
+            freedomRoundDamageStack = binaryReader.ReadInt32();
             base.ReceiveExtraAI(npc, bitReader, binaryReader);
         }
 
