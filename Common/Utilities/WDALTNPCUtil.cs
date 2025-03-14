@@ -79,8 +79,9 @@ namespace WeDoALittleTrolling.Common.Utilities
                 {
                     modifiers.FlatBonusDamage += (2 * freedomRoundDamageStack);
                 }
+                freedomRoundDamageStack++;
+                projectile.netUpdate = true;
             }
-            freedomRoundDamageStack++;
             base.ModifyHitByProjectile(npc, projectile, ref modifiers);
         }
 
