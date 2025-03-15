@@ -128,12 +128,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
 
         public override Color? GetAlpha(Color lightColor)
         {
-            byte maxVal = (byte)Math.Max(Math.Max(lightColor.R, lightColor.G), lightColor.B);
-            double mult = 255.0 / (double)maxVal;
-            lightColor.R = (byte)Math.Floor((double)lightColor.R * mult);
-            lightColor.G = (byte)Math.Floor((double)lightColor.G * mult);
-            lightColor.B = (byte)Math.Floor((double)lightColor.B * mult);
-            return lightColor;
+            return Color.White;
         }
 
         public override void PostDraw(Color lightColor)
