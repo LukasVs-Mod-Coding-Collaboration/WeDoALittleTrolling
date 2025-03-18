@@ -23,6 +23,7 @@ using Mono.Cecil.Cil;
 using System;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.ID;
+using System.Linq;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -156,9 +157,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                             if
                             (
                                 Main.npc[index].boss ||
-                                Main.npc[index].type == NPCID.EaterofWorldsHead ||
-                                Main.npc[index].type == NPCID.EaterofWorldsBody ||
-                                Main.npc[index].type == NPCID.EaterofWorldsTail
+                                WDALTImmunitySystem.BossNPCIDWhitelist.Contains(Main.npc[index].type)
                             )
                             {
                                 specialHitSetter = 1; //1 means moon lord / empress of light

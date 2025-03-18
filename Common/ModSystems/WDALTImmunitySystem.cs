@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Linq;
 using SteelSeries.GameSense;
 using Terraria;
 using Terraria.DataStructures;
@@ -28,6 +29,67 @@ namespace WeDoALittleTrolling.Common.ModSystems
     {
 
         //This class is an advanced patch to block the crab cheese from working against any boss.
+
+        public static readonly int[] BossNPCIDWhitelist =
+        {
+            NPCID.EaterofWorldsHead,
+            NPCID.EaterofWorldsBody,
+            NPCID.EaterofWorldsTail,
+            NPCID.VileSpitEaterOfWorlds,
+            NPCID.AncientCultistSquidhead,
+            NPCID.AncientDoom,
+            NPCID.AncientLight,
+            NPCID.CultistDragonHead,
+            NPCID.CultistDragonBody1,
+            NPCID.CultistDragonBody2,
+            NPCID.CultistDragonBody3,
+            NPCID.CultistDragonBody4,
+            NPCID.CultistDragonTail,
+            NPCID.Probe,
+            NPCID.WallofFleshEye,
+            NPCID.TheHungry,
+            NPCID.TheHungryII,
+            NPCID.SkeletronHand,
+            NPCID.TheDestroyerBody,
+            NPCID.TheDestroyerTail,
+            NPCID.PrimeCannon,
+            NPCID.PrimeSaw,
+            NPCID.PrimeVice,
+            NPCID.PrimeLaser,
+            NPCID.PlanterasHook,
+            NPCID.PlanterasTentacle,
+            NPCID.Spore,
+            NPCID.GolemHead,
+            NPCID.GolemFistLeft,
+            NPCID.GolemFistRight,
+            NPCID.GolemHeadFree,
+            NPCID.DetonatingBubble,
+            NPCID.Sharkron,
+            NPCID.Sharkron2,
+            NPCID.MoonLordFreeEye,
+            NPCID.MoonLordLeechBlob,
+            NPCID.DD2DarkMageT1,
+            NPCID.DD2DarkMageT3,
+            NPCID.DD2OgreT2,
+            NPCID.DD2OgreT3,
+            NPCID.DD2Betsy,
+            NPCID.PirateShip,
+            NPCID.PirateShipCannon,
+            NPCID.MourningWood,
+            NPCID.Pumpking,
+            NPCID.PumpkingBlade,
+            NPCID.Everscream,
+            NPCID.IceQueen,
+            NPCID.SantaNK1,
+            NPCID.MartianSaucer,
+            NPCID.MartianSaucerTurret,
+            NPCID.MartianSaucerCannon,
+            NPCID.MartianSaucerCore,
+            NPCID.LunarTowerVortex,
+            NPCID.LunarTowerStardust,
+            NPCID.LunarTowerNebula,
+            NPCID.LunarTowerSolar
+        };
         
         public static int GetNewCooldownCounter(PlayerDeathReason reason, int cooldownCounter)
         {
@@ -37,9 +99,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 if
                 (
                     Main.npc[reason.SourceNPCIndex].boss ||
-                    Main.npc[reason.SourceNPCIndex].type == NPCID.EaterofWorldsHead ||
-                    Main.npc[reason.SourceNPCIndex].type == NPCID.EaterofWorldsBody ||
-                    Main.npc[reason.SourceNPCIndex].type == NPCID.EaterofWorldsTail
+                    BossNPCIDWhitelist.Contains(Main.npc[reason.SourceNPCIndex].type)
                 )
                 {
                     newCooldownCounter = 1;
@@ -54,9 +114,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         if
                         (
                             npc.boss ||
-                            npc.type == NPCID.EaterofWorldsHead ||
-                            npc.type == NPCID.EaterofWorldsBody ||
-                            npc.type == NPCID.EaterofWorldsTail
+                            BossNPCIDWhitelist.Contains(npc.type)
                         )
                         {
                             newCooldownCounter = 1;
