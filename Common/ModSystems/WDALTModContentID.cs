@@ -160,6 +160,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public const int ThoriumItem_Crate_Sinister = 9;
         public const int ThoriumItem_Crate_Strange = 10;
         public const int ThoriumItem_Crate_Wondrous = 11;
+        public const int ThoriumItem_RocketCart = 12;
         private static readonly string[] ThoriumItemRegisterStrings =
         {
             "OceanEssence",
@@ -173,7 +174,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             "ScarletCrate",
             "SinisterCrate",
             "StrangeCrate",
-            "WondrousCrate"
+            "WondrousCrate",
+            "RocketCart"
         };
         private static DamageClass[] ThoriumDamageClass = new DamageClass[ThoriumDamageClassRegisterStrings.Length];
         private static int[] ThoriumItemItemID = new int[ThoriumItemRegisterStrings.Length];

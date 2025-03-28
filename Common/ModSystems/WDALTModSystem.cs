@@ -218,6 +218,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public override void AddRecipes()
         {
             //ProgressionRecipes.AddRecipes();
+            if (isThoriumModPresent && MCIDIntegrity)
+            {
+                Recipe.Create(WDALTModContentID.GetThoriumItemID(WDALTModContentID.ThoriumItem_RocketCart), 1)
+                .AddIngredient(ItemID.Minecart, 1)
+                .AddIngredient(ItemID.ChlorophyteBar, 10)
+                .AddIngredient(ItemID.BoosterTrack, 100)
+                .AddTile(TileID.HeavyWorkBench)
+                .Register();
+            }
             base.AddRecipes();
         }
 
