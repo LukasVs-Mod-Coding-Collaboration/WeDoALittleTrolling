@@ -248,7 +248,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (shroomiteGenesis && player.channel && player.HeldItem.DamageType == DamageClass.Ranged)
             {
                 shroomiteGenesisOverchannelTicks++;
-                if (shroomiteGenesisOverchannelTicks >= 1200)
+                if (shroomiteGenesisOverchannelTicks >= 1800)
                 {
                     CombatText.NewText
                     (
@@ -262,7 +262,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         new Color(255, 0, 0),
                         "Overheated!"
                     );
-                    shroomiteGenesisOverheatTimer = 120;
+                    shroomiteGenesisOverheatTimer = 90;
                     shroomiteGenesisOverchannelTicks = 0;
                     player.channel = false;
                 }
@@ -672,7 +672,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     limit = item.useAnimation;
                 }
-                if (shroomiteGenesisOverheatTicks >= 60 * (float)((float)20 / (float)limit))
+                if (shroomiteGenesisOverheatTicks >= 90 * (float)((float)20 / (float)limit))
                 {
                     CombatText.NewText
                     (
@@ -686,7 +686,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         new Color(255, 0, 0),
                         "Overheated!"
                     );
-                    shroomiteGenesisOverheatTimer = 120;
+                    shroomiteGenesisOverheatTimer = 90;
                     shroomiteGenesisOverheatTicks = 0;
                     return false;
                 }
