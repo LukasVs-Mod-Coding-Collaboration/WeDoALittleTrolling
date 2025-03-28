@@ -622,6 +622,17 @@ Mods: {
 				DisplayName: Raccoon Laser
 				Tooltip: ""
 			}
+
+			MirrorOfRecollection: {
+				DisplayName: Mirror of Recollection
+				Tooltip:
+					'''
+					Gaze in the mirror to return home and create a portal
+					Use portal to return when you are done
+					Teleports you to a party member
+					Click their head on the fullscreen map
+					'''
+			}
 		}
 
 		Projectiles: {

@@ -75,6 +75,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool frozenElementalMinion;
         public bool wretchMinion;
         public int unionMirrorTicks;
+        public int mirrorOfRecollectionTicks;
         public int weightedStack;
         public int conjuringStack;
         public int acceleratedStack;
@@ -119,6 +120,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             frozenElementalMinion = false;
             wretchMinion = false;
             unionMirrorTicks = 0;
+            mirrorOfRecollectionTicks = 0;
             weightedStack = 0;
             conjuringStack = 0;
             acceleratedStack = 0;
@@ -190,6 +192,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             frozenElementalMinion = false;
             wretchMinion = false;
             unionMirrorTicks = 0;
+            mirrorOfRecollectionTicks = 0;
             weightedStack = 0;
             conjuringStack = 0;
             acceleratedStack = 0;
@@ -271,6 +274,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     UnionMirror.TeleportHome(player);
                 }
                 unionMirrorTicks--;
+            }
+            if (mirrorOfRecollectionTicks > 0)
+            {
+                if (mirrorOfRecollectionTicks == 1)
+                {
+                    MirrorOfRecollection.TeleportHome(player);
+                }
+                mirrorOfRecollectionTicks--;
             }
             if (lifeforceEngineTicks > 0)
             {

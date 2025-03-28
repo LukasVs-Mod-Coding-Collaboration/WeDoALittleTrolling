@@ -103,6 +103,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             WDALTSceneMetrics.RegisterHooks();
             UnionMirror.RegisterHooks();
+            MirrorOfRecollection.RegisterHooks();
             WDALTSeedSystem.RegisterHooks();
             NightmarePhantom.RegisterHooks();
             GlobalTiles.RegisterHooks();
@@ -117,6 +118,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             WDALTSceneMetrics.UnregisterHooks();
             UnionMirror.UnregisterHooks();
+            MirrorOfRecollection.UnregisterHooks();
             WDALTSeedSystem.UnregisterHooks();
             NightmarePhantom.UnregisterHooks();
             GlobalTiles.UnregisterHooks();
