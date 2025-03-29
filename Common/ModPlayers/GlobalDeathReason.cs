@@ -52,31 +52,31 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         int[] BeeIDs =
         {
-                    NPCID.Bee,
-                    NPCID.BeeSmall,
-                    NPCID.QueenBee
+            NPCID.Bee,
+            NPCID.BeeSmall,
+            NPCID.QueenBee
         };
 
         int[] BoCIDs =
         {
-                    NPCID.BrainofCthulhu,
-                    NPCID.Creeper
+            NPCID.BrainofCthulhu,
+            NPCID.Creeper
         };
 
         int[] BlubbyIDs =
         {
-                    NPCID.Plantera,
-                    NPCID.PlanterasHook,
-                    NPCID.PlanterasTentacle
+            NPCID.Plantera,
+            NPCID.PlanterasHook,
+            NPCID.PlanterasTentacle
         };
 
         int[] SansIDs =
         {
-                    NPCID.SkeletronHead,
-                    NPCID.SkeletronHand,
-                    NPCID.Skeleton,
-                    NPCID.PrimeSaw,
-                    NPCID.PrimeVice
+            NPCID.SkeletronHead,
+            NPCID.SkeletronHand,
+            NPCID.Skeleton,
+            NPCID.PrimeSaw,
+            NPCID.PrimeVice
         };
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
