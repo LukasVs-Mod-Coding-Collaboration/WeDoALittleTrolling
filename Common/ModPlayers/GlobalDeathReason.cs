@@ -37,6 +37,7 @@ using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.NPCs;
 using log4net.Core;
 using Terraria.ModLoader.Core;
+using Terraria.Localization;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -85,44 +86,44 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.TheDestroyer && random.NextBool(4))
                 {
-                    damageSource.SourceCustomReason = player.name + " was eated.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " was eated.");
                 }
                 if (BeeIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(100))
                 {
-                    damageSource.SourceCustomReason = player.name + " does not prefer their bees roasted.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " does not prefer their bees roasted.");
                 }
                 if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.Gnome && random.NextBool(3))
                 {
-                    damageSource.SourceCustomReason = player.name + " was gnomed.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " was gnomed.");
                 }
                 if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.SkeletonSniper && random.NextBool(5))
                 {
-                    damageSource.SourceCustomReason = player.name + " discovered the meaning of stream sniping.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " discovered the meaning of stream sniping.");
                 }
                 if (BoCIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
-                    damageSource.SourceCustomReason = player.name + " had a seizure and passed away.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " had a seizure and passed away.");
                 }
                 if (BlubbyIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
-                    damageSource.SourceCustomReason = player.name + " tried to touch grass.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " tried to touch grass.");
                 }
                 if (SansIDs.Contains(Main.npc[damageSource.SourceNPCIndex].type) && random.NextBool(5))
                 {
-                    damageSource.SourceCustomReason = player.name + " had a bad time.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " had a bad time.");
                 }
                 if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.SkeletronPrime && random.NextBool(5))
                 {
-                    damageSource.SourceCustomReason = player.name + " was forced to work at amazon.";
+                    damageSource.CustomReason = NetworkText.FromLiteral(player.name + " was forced to work at amazon.");
                 }
             }
             if (damageSource.SourceProjectileType == ProjectileID.SniperBullet && random.NextBool(5))
             {
-                damageSource.SourceCustomReason = player.name + " got 360 noscoped.";
+                damageSource.CustomReason = NetworkText.FromLiteral(player.name + " got 360 noscoped.");
             }
             if (damageSource.SourceProjectileType == ProjectileID.Boulder && random.NextBool(5))
             {
-                damageSource.SourceCustomReason = player.name + " was mistaken for a bowling pin by a Boulder.";
+                damageSource.CustomReason = NetworkText.FromLiteral(player.name + " was mistaken for a bowling pin by a Boulder.");
             }
 
             //very rare, absurd death reasons
@@ -311,17 +312,17 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     if(random.NextBool(3))
                     {
-                        damageSource.SourceCustomReason = AbsurdDeathsByNPC[random.Next(0, AbsurdDeathsByNPC.Length)];
+                        damageSource.CustomReason = NetworkText.FromLiteral(AbsurdDeathsByNPC[random.Next(0, AbsurdDeathsByNPC.Length)]);
                     }
                     else
                     {
-                        damageSource.SourceCustomReason = AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)];
+                        damageSource.CustomReason = NetworkText.FromLiteral(AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)]);
                     }
                 }
             }
             else if (random.NextBool(15))
             {
-                damageSource.SourceCustomReason = AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)];
+                damageSource.CustomReason = NetworkText.FromLiteral(AbsurdDeathsUnspecific[random.Next(0, AbsurdDeathsUnspecific.Length)]);
             }
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
