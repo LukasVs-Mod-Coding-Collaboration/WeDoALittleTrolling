@@ -84,6 +84,8 @@ Mods: {
 					You do not consume ammo
 					"How? ... Don't ask."
 					Weapons sometimes overheat
+					Can be equipped into a
+					dedicated accessory slot
 					'''
 			}
 
@@ -1015,5 +1017,7 @@ Mods: {
 			EmberfluxOre.MapEntry: Emberflux Ore
 			EmbersteelBar.MapEntry: Embersteel Bar
 		}
+
+		ShroomiteGenesisSlot.ShroomiteGenesisDescription: Dedicated Shroomite Genesis Slot
 	}
 }

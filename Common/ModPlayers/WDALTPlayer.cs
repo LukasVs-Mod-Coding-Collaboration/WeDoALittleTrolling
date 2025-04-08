@@ -248,7 +248,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (shroomiteGenesis && player.channel && player.HeldItem.DamageType == DamageClass.Ranged)
             {
                 shroomiteGenesisOverchannelTicks++;
-                if (shroomiteGenesisOverchannelTicks >= 1200)
+                if (shroomiteGenesisOverchannelTicks >= 840)
                 {
                     CombatText.NewText
                     (
@@ -672,7 +672,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     limit = item.useAnimation;
                 }
-                if (shroomiteGenesisOverheatTicks >= 60 * (float)((float)20 / (float)limit))
+                if (shroomiteGenesisOverheatTicks >= 42 * (float)((float)20 / (float)limit))
                 {
                     CombatText.NewText
                     (

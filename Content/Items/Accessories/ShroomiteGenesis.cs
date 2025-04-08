@@ -21,9 +21,75 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using WeDoALittleTrolling.Content.Items.Ammo;
 using WeDoALittleTrolling.Common.ModPlayers;
+using Terraria.Localization;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
+    public class ShroomiteGenesisSlot : ModAccessorySlot
+    {
+        public override bool DrawVanitySlot => false;
+        public override bool DrawDyeSlot => false;
+        public override string FunctionalBackgroundTexture => "Terraria/Images/Inventory_Back4";
+        public override string FunctionalTexture => "WeDoALittleTrolling/Content/Items/Accessories/ShroomiteGenesis";
+
+        public override bool IsEnabled()
+        {
+            if
+            (
+                (
+                    Main.netMode == NetmodeID.SinglePlayer ||
+                    Main.netMode == NetmodeID.MultiplayerClient
+                ) &&
+                !Main.dedServ &&
+                Player.active &&
+                Player.whoAmI >= 0 &&
+                Player.whoAmI < Main.player.Length
+            )
+            {
+                return
+                (
+                    Player.HeldItem.type == ModContent.ItemType<ShroomiteGenesis>() ||
+                    Player.HasItem(ModContent.ItemType<ShroomiteGenesis>()) ||
+                    FunctionalItem.type != ItemID.None
+                );
+            }
+            return false;
+        }
+
+        public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo)
+        {
+            return (item.type == ModContent.ItemType<ShroomiteGenesis>());
+        }
+
+        public override bool IsVisibleWhenNotEnabled()
+        {
+            return false;
+        }
+
+        public static LocalizedText GenesisText { get; private set; }
+
+        public override void SetupContent()
+        {
+            GenesisText = Mod.GetLocalization($"{nameof(ShroomiteGenesisSlot)}.ShroomiteGenesisDescription");
+        }
+
+        public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
+        {
+            return (checkItem.type == ModContent.ItemType<ShroomiteGenesis>());
+        }
+
+        public override void OnMouseHover(AccessorySlotType context) {
+            switch (context)
+            {
+                case AccessorySlotType.FunctionalSlot:
+                    Main.hoverItemName = GenesisText.Value;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     internal class ShroomiteGenesis : ModItem
     {
 
