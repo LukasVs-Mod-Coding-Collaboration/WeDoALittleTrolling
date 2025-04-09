@@ -113,6 +113,16 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             player.GetModPlayer<WDALTPlayer>().shroomiteGenesis = true;
         }
 
+        public override bool AllowPrefix(int pre)
+        {
+            return false;
+        }
+
+        public override bool CanReforge()
+        {
+            return false;
+        }
+
         /*
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {

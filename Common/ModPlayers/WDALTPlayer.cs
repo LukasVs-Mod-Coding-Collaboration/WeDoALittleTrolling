@@ -248,7 +248,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (shroomiteGenesis && player.channel && player.HeldItem.DamageType == DamageClass.Ranged)
             {
                 shroomiteGenesisOverchannelTicks++;
-                if (shroomiteGenesisOverchannelTicks >= 840)
+                if (shroomiteGenesisOverchannelTicks >= 1200)
                 {
                     CombatText.NewText
                     (
@@ -262,7 +262,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         new Color(255, 0, 0),
                         "Overheated!"
                     );
-                    shroomiteGenesisOverheatTimer = 120;
+                    shroomiteGenesisOverheatTimer = 180;
                     shroomiteGenesisOverchannelTicks = 0;
                     player.channel = false;
                 }
@@ -672,7 +672,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     limit = item.useAnimation;
                 }
-                if (shroomiteGenesisOverheatTicks >= 42 * (float)((float)20 / (float)limit))
+                if (shroomiteGenesisOverheatTicks >= 60 * (float)((float)20 / (float)limit))
                 {
                     CombatText.NewText
                     (
@@ -686,9 +686,46 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         new Color(255, 0, 0),
                         "Overheated!"
                     );
-                    shroomiteGenesisOverheatTimer = 120;
+                    shroomiteGenesisOverheatTimer = 180;
                     shroomiteGenesisOverheatTicks = 0;
                     return false;
+                }
+                else if (item.type == ItemID.CoinGun)
+                {
+                    int chance = 1000;
+                    if (source.AmmoItemIdUsed == ItemID.CopperCoin)
+                    {
+                        chance = 1;
+                    }
+                    if (source.AmmoItemIdUsed == ItemID.SilverCoin)
+                    {
+                        chance = 10;
+                    }
+                    if (source.AmmoItemIdUsed == ItemID.GoldCoin)
+                    {
+                        chance = 100;
+                    }
+                    if (source.AmmoItemIdUsed == ItemID.PlatinumCoin)
+                    {
+                        chance = 1000;
+                    }
+                    if (random.Next(0, 10000) < chance)
+                    {
+                        CombatText.NewText
+                        (
+                            new Rectangle
+                            (
+                                (int)player.position.X,
+                                (int)player.position.Y,
+                                player.width,
+                                player.height
+                            ),
+                            new Color(255, 127, 0),
+                            "Jammed!"
+                        );
+                        shroomiteGenesisOverheatTimer = 60;
+                        return false;
+                    }
                 }
             }
             return base.Shoot(item, source, position, velocity, type, damage, knockback);
