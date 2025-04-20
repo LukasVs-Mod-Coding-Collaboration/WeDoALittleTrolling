@@ -79,6 +79,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int weightedStack;
         public int conjuringStack;
         public int acceleratedStack;
+        public int arcaneStack;
         public bool lifeforceEngineActivated;
         public int lifeforceEngineTicks;
         public int lifeforceEngineCooldown;
@@ -124,6 +125,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             weightedStack = 0;
             conjuringStack = 0;
             acceleratedStack = 0;
+            arcaneStack = 0;
             lifeforceEngineActivated = false;
             lifeforceEngineTicks = 0;
             lifeforceEngineCooldown = 0;
@@ -196,6 +198,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             weightedStack = 0;
             conjuringStack = 0;
             acceleratedStack = 0;
+            arcaneStack = 0;
             lifeforceEngineActivated = false;
             lifeforceEngineTicks = 0;
             lifeforceEngineCooldown = 0;
@@ -225,6 +228,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             weightedStack = 0;
             conjuringStack = 0;
             acceleratedStack = 0;
+            arcaneStack = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
             base.ResetEffects();
@@ -745,102 +749,78 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if
             (
                 (
-                    player.HeldItem.prefix == ModContent.PrefixType<Leeching>() ||
-                    player.HeldItem.prefix == ModContent.PrefixType<Siphoning>() ||
-                    player.HeldItem.type == ItemID.ChlorophytePartisan
-                ) &&
+                    !target.friendly &&
+                    !target.CountsAsACritter &&
+                    !target.isLikeATownNPC &&
+                    target.type != NPCID.TargetDummy &&
+                    target.canGhostHeal &&
+                    target.CanBeChasedBy()
+                ) ||
                 (
-                    hit.DamageType == DamageClass.Melee ||
-                    hit.DamageType == DamageClass.MeleeNoSpeed ||
-                    hit.DamageType == DamageClass.SummonMeleeSpeed ||
-                    hit.DamageType == DamageClass.Magic ||
-                    hit.DamageType == DamageClass.MagicSummonHybrid ||
-                    (
-                        WDALTModSystem.isThoriumModPresent &&
-                        WDALTModSystem.MCIDIntegrity &&
-                        (
-                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerDamage) ||
-                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerTool) ||
-                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerToolDamageHybrid)
-                        )
-                    )
-                ) &&
-                (
-                    (
-                        !target.friendly &&
-                        !target.CountsAsACritter &&
-                        !target.isLikeATownNPC &&
-                        target.type != NPCID.TargetDummy &&
-                        target.canGhostHeal &&
-                        target.CanBeChasedBy()
-                    ) ||
-                    (
-                        !target.active //Make final hit heal as well.
-                    )
+                    !target.active //Make final hit heal as well.
                 )
             )
             {
-                // 1 Base Heal + 5% of damage done
-                int healingAmount = 1 + (int)Math.Round(damageDone * 0.05);
-                // Stop Sacling at ~200 Damage
-                if (healingAmount > 10)
-                {
-                    healingAmount = 10;
-                }
-                // Having Moon Bite means the effect still works, however,
-                // it will be 90% less effective
-                // 1 Base Heal is still guaranteed
-                if (player.HasBuff(BuffID.MoonLeech) && (player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan))
-                {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
-                }
-                int hitAmount = player.GetModPlayer<WDALTPlayerUtil>().GetHitAmountInLastSecond();
-                if ((player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan) && hitAmount > 3)
-                {
-                    float modifier = 1f;
-                    modifier -= (0.05f * Math.Abs(hitAmount - 3));
-                    if (modifier < 0f)
-                    {
-                        modifier = 0f;
-                    }
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * modifier);
-                }
-                // Being Immune makes Leeching 75% less effective
-                bool flag = player.immune;
-                for (int i = 0; i < player.hurtCooldowns.Length; i++)
-                {
-                    if (player.hurtCooldowns[i] > 0)
-                    {
-                        flag = true;
-                    }
-                }
-                if ((player.HeldItem.prefix == ModContent.PrefixType<Leeching>() || player.HeldItem.type == ItemID.ChlorophytePartisan) && flag)
-                {
-                    healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
-                }
-                // Chlorophyte Partisan go BRRRR!!!
-                if (player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
-                {
-                    healingAmount *= 2;
-                }
                 if
                 (
-                    (
-                        player.HeldItem.prefix == ModContent.PrefixType<Leeching>() ||
-                        player.HeldItem.type == ItemID.ChlorophytePartisan
-                    ) &&
                     (
                         hit.DamageType == DamageClass.Melee ||
                         hit.DamageType == DamageClass.MeleeNoSpeed ||
                         hit.DamageType == DamageClass.SummonMeleeSpeed
+                    ) &&
+                    (
+                        player.HeldItem.prefix == ModContent.PrefixType<Leeching>() ||
+                        player.HeldItem.type == ItemID.ChlorophytePartisan
                     )
-                )
+                ) //Leeching
                 {
+                    // 1 Base Heal + 5% of damage done
+                    int healingAmount = 1 + (int)Math.Round(damageDone * 0.05);
+                    // Stop Sacling at ~200 Damage
+                    if (healingAmount > 10)
+                    {
+                        healingAmount = 10;
+                    }
+                    // Having Moon Bite means the effect still works, however,
+                    // it will be 90% less effective
+                    // 1 Base Heal is still guaranteed
+                    if (player.HasBuff(BuffID.MoonLeech))
+                    {
+                        healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.1);
+                    }
+                    int hitAmount = player.GetModPlayer<WDALTPlayerUtil>().GetHitAmountInLastSecond();
+                    if (hitAmount > 3)
+                    {
+                        float modifier = 1f;
+                        modifier -= (0.05f * Math.Abs(hitAmount - 3));
+                        if (modifier < 0f)
+                        {
+                            modifier = 0f;
+                        }
+                        healingAmount = 1 + (int)Math.Round((healingAmount - 1) * modifier);
+                    }
+                    // Being Immune makes Leeching 75% less effective
+                    bool flag = player.immune;
+                    for (int i = 0; i < player.hurtCooldowns.Length; i++)
+                    {
+                        if (player.hurtCooldowns[i] > 0)
+                        {
+                            flag = true;
+                        }
+                    }
+                    if (flag)
+                    {
+                        healingAmount = 1 + (int)Math.Round((healingAmount - 1) * 0.25);
+                    }
+                    // Chlorophyte Partisan go BRRRR!!!
+                    if (player.HeldItem.type == ItemID.ChlorophytePartisan && player.HeldItem.prefix == ModContent.PrefixType<Leeching>())
+                    {
+                        healingAmount *= 2;
+                    }
                     player.Heal(healingAmount);
                 }
                 else if
                 (
-                    player.HeldItem.prefix == ModContent.PrefixType<Siphoning>() &&
                     (
                         hit.DamageType == DamageClass.Magic ||
                         hit.DamageType == DamageClass.MagicSummonHybrid ||
@@ -853,14 +833,43 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                 hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerToolDamageHybrid)
                             )
                         )
-                    ) 
-                )
+                    ) &&
+                    (
+                        player.HeldItem.prefix == ModContent.PrefixType<Siphoning>() &&
+                        player.HeldItem.mana > 0
+                    )
+                ) //Siphoning
                 {
-                    if (player.statMana <= (player.statManaMax2 - healingAmount))
+                    // 1 Base Siphon + 5% of damage done
+                    int manaSiphonAmount = 1 + (int)Math.Round(damageDone * 0.05);
+                    // Stop Sacling at ~120% current weapon mana cost
+                    int maxSiphon = (int)Math.Ceiling((double)player.GetManaCost(player.HeldItem) * 1.2);
+                    if (manaSiphonAmount > maxSiphon && maxSiphon > 0)
                     {
-                        player.statMana += healingAmount;
+                        manaSiphonAmount = maxSiphon;
                     }
-                    player.ManaEffect(healingAmount);
+                    int hitAmount = player.GetModPlayer<WDALTPlayerUtil>().GetHitAmountInLastSecond();
+                    int useTime = player.itemAnimationMax;
+                    float ratio = 1f / (((float)hitAmount / 60f) * (float)useTime);
+                    if (ratio < 0f)
+                    {
+                        ratio = 0f;
+                    }
+                    if (ratio > 1f)
+                    {
+                        ratio = 1f;
+                    }
+                    manaSiphonAmount = 1 + (int)Math.Round((manaSiphonAmount - 1) * ratio);
+                    //player.chatOverhead.NewMessage("Use Time: " + useTime + ", maxSiphon: " + maxSiphon + ", hitAmount: " + hitAmount + ", Ratio: " + ratio, 60);
+                    if (player.statMana <= (player.statManaMax2 - manaSiphonAmount))
+                    {
+                        player.statMana += manaSiphonAmount;
+                    }
+                    else
+                    {
+                        player.statMana = player.statManaMax2;
+                    }
+                    player.ManaEffect(manaSiphonAmount);
                 }
             }
             base.OnHitNPC(target, hit, damageDone);
@@ -877,6 +886,24 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 return base.CanConsumeAmmo(weapon, ammo);
             }
 
+        }
+
+        public override void ModifyManaCost(Item item, ref float reduce, ref float mult)
+        {
+            if (arcaneStack > 0)
+            {
+                float factor = 1f - (arcaneStack * 0.05f);
+                if (factor < 0f)
+                {
+                    factor = 0f;
+                }
+                if (factor > 1f)
+                {
+                    factor = 1f;
+                }
+                mult *= factor;
+            }
+            base.ModifyManaCost(item, ref reduce, ref mult);
         }
     }
 }

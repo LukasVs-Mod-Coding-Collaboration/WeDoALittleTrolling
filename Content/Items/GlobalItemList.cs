@@ -165,6 +165,15 @@ namespace WeDoALittleTrolling.Content.Items
             }
         }
 
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            if (item.prefix == PrefixID.Arcane)
+            {
+                player.GetModPlayer<WDALTPlayer>().arcaneStack++;
+            }
+            base.UpdateAccessory(item, player, hideVisual);
+        }
+
         /* No Wings Challenge Code
         public override bool CanEquipAccessory(Item item, Player player, int slot, bool modded)
         {
@@ -201,6 +210,11 @@ namespace WeDoALittleTrolling.Content.Items
         //Adjust Tooltips accordingly
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (item.prefix == PrefixID.Arcane)
+            {
+                List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMaxMana") && (t.Mod == "Terraria"));
+                infoLine.ForEach(t => t.Text = t.Text + "\n5% reduced mana cost");
+            }
             if (item.type == ItemID.Terragrim || item.type == ItemID.Arkhalis)
             {
                 TooltipLine extraManaLine = new TooltipLine(Mod, "WeaponHitFreezeDescription", "Briefly freezes both yourself and your target upon impact");
