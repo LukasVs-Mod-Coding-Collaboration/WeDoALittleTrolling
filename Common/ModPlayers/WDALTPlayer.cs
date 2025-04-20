@@ -80,6 +80,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int conjuringStack;
         public int acceleratedStack;
         public int arcaneStack;
+        public int siphonStack;
         public bool lifeforceEngineActivated;
         public int lifeforceEngineTicks;
         public int lifeforceEngineCooldown;
@@ -126,6 +127,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             conjuringStack = 0;
             acceleratedStack = 0;
             arcaneStack = 0;
+            siphonStack = 0;
             lifeforceEngineActivated = false;
             lifeforceEngineTicks = 0;
             lifeforceEngineCooldown = 0;
@@ -199,6 +201,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             conjuringStack = 0;
             acceleratedStack = 0;
             arcaneStack = 0;
+            siphonStack = 0;
             lifeforceEngineActivated = false;
             lifeforceEngineTicks = 0;
             lifeforceEngineCooldown = 0;
@@ -840,17 +843,13 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     )
                 ) //Siphoning
                 {
-                    // 1 Base Siphon + 5% of damage done
-                    int manaSiphonAmount = 1 + (int)Math.Round(damageDone * 0.05);
-                    // Stop Sacling at ~120% current weapon mana cost
-                    int maxSiphon = (int)Math.Ceiling((double)player.GetManaCost(player.HeldItem) * 1.2);
-                    if (manaSiphonAmount > maxSiphon && maxSiphon > 0)
+                    // 1 Base Siphon, 120% of mana cost
+                    int manaSiphonAmount = (int)Math.Ceiling((double)player.GetManaCost(player.HeldItem) * 1.2);
+                    if (manaSiphonAmount < 1)
                     {
-                        manaSiphonAmount = maxSiphon;
+                        manaSiphonAmount = 1;
                     }
-                    int hitAmount = player.GetModPlayer<WDALTPlayerUtil>().GetHitAmountInLastSecond();
-                    int useTime = player.itemAnimationMax;
-                    float ratio = 1f / (((float)hitAmount / 60f) * (float)useTime);
+                    float ratio = 1f / (1f + (float)siphonStack);
                     if (ratio < 0f)
                     {
                         ratio = 0f;
@@ -860,7 +859,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         ratio = 1f;
                     }
                     manaSiphonAmount = 1 + (int)Math.Round((manaSiphonAmount - 1) * ratio);
-                    //player.chatOverhead.NewMessage("Use Time: " + useTime + ", maxSiphon: " + maxSiphon + ", hitAmount: " + hitAmount + ", Ratio: " + ratio, 60);
                     if (player.statMana <= (player.statManaMax2 - manaSiphonAmount))
                     {
                         player.statMana += manaSiphonAmount;
@@ -870,6 +868,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         player.statMana = player.statManaMax2;
                     }
                     player.ManaEffect(manaSiphonAmount);
+                    siphonStack++;
                 }
             }
             base.OnHitNPC(target, hit, damageDone);
@@ -904,6 +903,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 mult *= factor;
             }
             base.ModifyManaCost(item, ref reduce, ref mult);
+        }
+
+        public override void OnConsumeMana(Item item, int manaConsumed)
+        {
+            siphonStack = 0;
+            base.OnConsumeMana(item, manaConsumed);
         }
     }
 }

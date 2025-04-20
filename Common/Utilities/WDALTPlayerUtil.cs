@@ -104,18 +104,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                 (
                     hit.DamageType == DamageClass.Melee ||
                     hit.DamageType == DamageClass.MeleeNoSpeed ||
-                    hit.DamageType == DamageClass.SummonMeleeSpeed ||
-                    hit.DamageType == DamageClass.Magic ||
-                    hit.DamageType == DamageClass.MagicSummonHybrid ||
-                    (
-                        WDALTModSystem.isThoriumModPresent &&
-                        WDALTModSystem.MCIDIntegrity &&
-                        (
-                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerDamage) ||
-                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerTool) ||
-                            hit.DamageType == WDALTModContentID.GetThoriumDamageClass(WDALTModContentID.ThoriumDamageClass_HealerToolDamageHybrid)
-                        )
-                    )
+                    hit.DamageType == DamageClass.SummonMeleeSpeed
                 )
             )
             {
