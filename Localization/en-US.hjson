@@ -683,8 +683,8 @@ Mods: {
 				DisplayName: Siphoning
 				AdditionalTooltip:
 					'''
-					+5% of damage recovered as mana
-					Recovers up to 10 mana per hit
+					Steals slightly more mana than invested
+					Has diminishing returns as hit rate exceeds attack rate
 					'''
 			}
 

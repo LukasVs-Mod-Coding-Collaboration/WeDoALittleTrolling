@@ -756,10 +756,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     !target.CountsAsACritter &&
                     !target.isLikeATownNPC &&
                     target.type != NPCID.TargetDummy &&
-                    target.canGhostHeal &&
-                    target.CanBeChasedBy()
-                ) ||
+                    target.canGhostHeal
+                ) &&
                 (
+                    target.CanBeChasedBy() ||
                     !target.active //Make final hit heal as well.
                 )
             )
@@ -843,8 +843,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     )
                 ) //Siphoning
                 {
-                    // 1 Base Siphon, 120% of mana cost
-                    int manaSiphonAmount = (int)Math.Ceiling((double)player.GetManaCost(player.HeldItem) * 1.2);
+                    // 1 Base Siphon, 110% of mana cost
+                    int manaSiphonAmount = (int)Math.Ceiling((double)player.GetManaCost(player.HeldItem) * 1.1);
                     if (manaSiphonAmount < 1)
                     {
                         manaSiphonAmount = 1;
