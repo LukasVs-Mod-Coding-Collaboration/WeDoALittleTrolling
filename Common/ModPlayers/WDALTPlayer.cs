@@ -891,7 +891,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if (arcaneStack > 0)
             {
-                float factor = 1f - (arcaneStack * 0.05f);
+                float factor = (arcaneStack * 0.05f);
                 if (factor < 0f)
                 {
                     factor = 0f;
@@ -900,7 +900,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     factor = 1f;
                 }
-                mult *= factor;
+                reduce -= factor;
             }
             base.ModifyManaCost(item, ref reduce, ref mult);
         }
