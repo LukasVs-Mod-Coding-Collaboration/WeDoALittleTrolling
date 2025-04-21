@@ -31,8 +31,6 @@ using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-
-    [AutoloadEquip(EquipType.Shield)]
     public class SpookyShield : ModItem
     {
         public override void SetDefaults()
