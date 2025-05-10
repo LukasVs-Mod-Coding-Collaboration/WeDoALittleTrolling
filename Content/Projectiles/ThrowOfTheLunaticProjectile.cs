@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.penetrate = -1;
             Projectile.scale = 1.15f;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 20;
+            Projectile.localNPCHitCooldown = 30;
             Projectile.usesIDStaticNPCImmunity = false;
             Projectile.idStaticNPCHitCooldown = -1;
             Projectile.light = 0.8f;
