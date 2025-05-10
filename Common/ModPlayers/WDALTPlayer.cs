@@ -62,7 +62,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int gnomedDebuffTicksLeft;
         public bool hauntedDebuff;
         public int hauntedDebuffTicksLeft;
-        public bool yoyoArtifact;
+        //public bool yoyoArtifact;
         public Player player;
         public long currentTick;
         public int chargeAccelerationTicks;
@@ -110,7 +110,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             gnomedDebuffTicksLeft = 0;
             hauntedDebuff = false;
             hauntedDebuffTicksLeft = 0;
-            yoyoArtifact = false;
+            //yoyoArtifact = false;
             currentTick = 0;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
@@ -185,7 +185,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             searingValue = 0;
             sandStepping = false;
             gnomedStonedDebuff = false;
-            yoyoArtifact = false;
+            //yoyoArtifact = false;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
             shroomiteGenesis = false;
@@ -223,7 +223,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             searingValue = 0;
             sandStepping = false;
             gnomedStonedDebuff = false;
-            yoyoArtifact = false;
+            //yoyoArtifact = false;
             shroomiteGenesis = false;
             lumintePhantomMinion = false;
             frozenElementalMinion = false;
@@ -605,7 +605,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 spawnBees(target);
             }
-            if
+            /*if
             (
                 yoyoArtifact &&
                 target.CanBeChasedBy() &&
@@ -631,7 +631,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     int dmg = (int)Math.Round(proj.damage * 0.15);
                     Projectile.NewProjectileDirect(proj.GetSource_OnHit(target), projPosition, projVelocity, ModContent.ProjectileType<MagicArtifact>(), dmg, proj.knockBack, proj.owner);
                 }
-            }
+            }*/
             if (proj.type == ProjectileID.BlackBolt)
             {
                 target.AddBuff(ModContent.BuffType<OnyxBlaze>(), 240, false);
