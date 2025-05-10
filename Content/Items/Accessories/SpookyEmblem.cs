@@ -51,10 +51,13 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current critical strike chance bonus: "+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().spookyBonus * 2)+"%");
-            TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", "Current armor penetration bonus: "+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().spookyBonus * 4));
-            tooltips.Add(spookyBonus0);
-            tooltips.Add(spookyBonus1);
+            if (Main.myPlayer >= 0 && Main.myPlayer < Main.player.Length && Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().spookyEmblem)
+            {
+                TooltipLine spookyBonus0 = new TooltipLine(Mod, "SpookyBonus0", "Current critical strike chance bonus: "+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().spookyBonus * 2)+"%");
+                TooltipLine spookyBonus1 = new TooltipLine(Mod, "SpookyBonus1", "Current armor penetration bonus: "+(Main.player[Main.myPlayer].GetModPlayer<WDALTPlayer>().spookyBonus * 4));
+                tooltips.Add(spookyBonus0);
+                tooltips.Add(spookyBonus1);
+            }
             base.ModifyTooltips(tooltips);
         }
 
