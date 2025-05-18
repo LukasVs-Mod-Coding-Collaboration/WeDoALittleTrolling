@@ -58,7 +58,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item45;
 
-            Item.damage = 24;
+            Item.damage = 28;
             Item.DamageType = DamageClass.Magic;
             Item.knockBack = 8f;
 
