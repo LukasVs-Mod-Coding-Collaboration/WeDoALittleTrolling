@@ -298,7 +298,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " died. Or did they? Hey VSauce, " + Main.npc[damageSource.SourceNPCIndex].FullName + " here!",
                     "Jingle jongie, it's time for " + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " explodes violently.",
                     "Who would win? " + player.name + " or one lowly little " + Main.npc[damageSource.SourceNPCIndex].FullName + "? That's right, it's the " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
-                    "Curse you," + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " hereby vows: You will rue this day!",
+                    "Curse you, " + Main.npc[damageSource.SourceNPCIndex].FullName + "! " + player.name + " hereby vows: You will rue this day!",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " can see it as clear as day; The death of " + player.name + "!",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " found " + player.name + "'s joke pretty funny. " + player.name + " dies \"accidentally\".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " slid to the left, onto " + player.name + "'s location. Cha cha real smooth.",
