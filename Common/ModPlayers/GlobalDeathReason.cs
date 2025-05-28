@@ -38,6 +38,7 @@ using WeDoALittleTrolling.Content.NPCs;
 using log4net.Core;
 using Terraria.ModLoader.Core;
 using Terraria.Localization;
+using System.Reflection;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -261,7 +262,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " will remember that.",
                 player.name + " accepted the definition of a word as some letters surrounded by a gap.",
                 player.name + " isn't the sharpest tool in the shed.",
-                "Holy mother of bananas, " + player.name + " has died!"
+                "Holy mother of bananas, " + player.name + " has died!",
+                player.name + " accidentaly sent themselves to the fungal wastes.",
+                player.name + " MISSED THEIR CHANCE TO BE A [Big Shot].",
+                "Hello? Is anybody there? Someone who might be interested in rescuing the great " + player.name + "?",
+                player.name + " !!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!"
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
@@ -305,7 +310,13 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "Would you rather have unlimited " + Main.npc[damageSource.SourceNPCIndex].FullName + ", but no more " + player.name + ", or " + player.name + ", UNLIMITED " + player.name + ", but no more " + player.name + "?",
                     "Whatever. Go, my " + Main.npc[damageSource.SourceNPCIndex].FullName,
                     "But the lord laughs at the " + player.name + ", for he knows their " + Main.npc[damageSource.SourceNPCIndex].FullName +" is coming.",
-                    "Blessed is the " + Main.npc[damageSource.SourceNPCIndex].FullName + " who seizes your " + player.name + " and smashes them against the rock."
+                    "Blessed is the " + Main.npc[damageSource.SourceNPCIndex].FullName + " who seizes your " + player.name + " and smashes them against the rock.",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s joined the battle against " + player.name + ", fighting only with bare hands and dictionaries.",
+                    "Noo, " + Main.npc[damageSource.SourceNPCIndex].FullName + ", don't leave me with " + player.name + "! " + Main.npc[damageSource.SourceNPCIndex].FullName + "... " + Main.npc[damageSource.SourceNPCIndex].FullName + " HELP ME! NOO!",
+                    "[c/FFFFFF:" + player.name + ", I remember you're] [c/FF0000:" + Main.npc[damageSource.SourceNPCIndex].FullName + "s.]",
+                    "Making the mother of all omelettes here, " + Main.npc[damageSource.SourceNPCIndex].FullName + ", can't fret over every " + player.name + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " knew they'd been had, so it shot at the " + player.name + " with a gun.",
+                    "These [c/FFF014:" + player.name + "s] are pissing me off. I'm the original        [c/FFF014:" + Main.npc[damageSource.SourceNPCIndex].FullName + "].",
                 };
 
                 if (random.NextBool(15))
