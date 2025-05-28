@@ -313,7 +313,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "Blessed is the " + Main.npc[damageSource.SourceNPCIndex].FullName + " who seizes your " + player.name + " and smashes them against the rock.",
                     "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s joined the battle against " + player.name + ", fighting only with bare hands and dictionaries.",
                     "Noo, " + Main.npc[damageSource.SourceNPCIndex].FullName + ", don't leave me with " + player.name + "! " + Main.npc[damageSource.SourceNPCIndex].FullName + "... " + Main.npc[damageSource.SourceNPCIndex].FullName + " HELP ME! NOO!",
-                    "[c/FFFFFF:" + player.name + ", I remember you're] [c/FF0000:" + Main.npc[damageSource.SourceNPCIndex].FullName + "s.]",
+                    "[c/FFFFFF:" + player.name + "... I remember you're] [c/FF0000:" + Main.npc[damageSource.SourceNPCIndex].FullName + "s.]",
                     "Making the mother of all omelettes here, " + Main.npc[damageSource.SourceNPCIndex].FullName + ", can't fret over every " + player.name + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " knew they'd been had, so it shot at the " + player.name + " with a gun.",
                     "These [c/FFF014:" + player.name + "s] are pissing me off. I'm the original        [c/FFF014:" + Main.npc[damageSource.SourceNPCIndex].FullName + "].",
