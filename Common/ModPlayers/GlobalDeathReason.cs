@@ -266,7 +266,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " accidentaly sent themselves to the fungal wastes.",
                 player.name + " MISSED THEIR CHANCE TO BE A [Big Shot].",
                 "Hello? Is anybody there? Someone who might be interested in rescuing the great " + player.name + "?",
-                player.name + " !!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!"
+                "[" + player.name + "]!!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!"
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
