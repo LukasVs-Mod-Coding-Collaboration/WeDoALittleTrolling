@@ -45,7 +45,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
     {
         public int spookyBonus;
         public int dodgeChancePercent;
-        public int beekeeperStack;
         public bool spookyEmblem;
         public bool spookyShield;
         public bool sorcerousMirror;
@@ -86,6 +85,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int lifeforceEngineCooldown;
         public bool hasLifeforceEngine;
         public bool cornEmblem;
+        public bool heartSeekerCharm;
         public static UnifiedRandom random = new UnifiedRandom();
 
         public override void Initialize()
@@ -93,7 +93,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             player = this.Player;
             spookyBonus = 0;
             dodgeChancePercent = 0;
-            beekeeperStack = 0;
             spookyEmblem = false;
             spookyShield = false;
             sorcerousMirror = false;
@@ -133,6 +132,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             lifeforceEngineCooldown = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
+            heartSeekerCharm = false;
         }
 
         public override void UpdateDead()
@@ -172,7 +172,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             spookyBonus = 0;
             dodgeChancePercent = 0;
-            beekeeperStack = 0;
             spookyEmblem = false;
             spookyShield = false;
             sorcerousMirror = false;
@@ -207,12 +206,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             lifeforceEngineCooldown = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
+            heartSeekerCharm = false;
         }
 
         public override void ResetEffects()
         {
             dodgeChancePercent = 0;
-            beekeeperStack = 0;
             spookyEmblem = false;
             spookyShield = false;
             sorcerousMirror = false;
@@ -234,6 +233,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             arcaneStack = 0;
             hasLifeforceEngine = false;
             cornEmblem = false;
+            heartSeekerCharm = false;
             base.ResetEffects();
         }
 
@@ -521,7 +521,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 modifiers.SourceDamage *= OnyxBlaze.dmgTakenMult;
             }
-            base.ModifyHurt(ref modifiers);
+            if (heartSeekerCharm && random.Next(0, 100) < DetermineHighestCrit())
+            {
+                modifiers.SourceDamage *= 2;
+            }
+            base.ModifyHurt(ref modifiers);          
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -567,16 +571,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     modifiers.ArmorPenetration += (6f * conjuringStack);
                 }
             }
-            base.ModifyHitNPC(target, ref modifiers);
-        }
-
-        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            if (beekeeperStack > 0)
+            if (heartSeekerCharm && random.Next(0, 100) < DetermineHighestCrit())
             {
-                spawnBees(target);
+                modifiers.SetCrit();
             }
-            base.OnHitNPCWithItem(item, target, hit, damageDone);
+            base.ModifyHitNPC(target, ref modifiers);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
@@ -601,10 +600,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (proj.type != ProjectileID.Bee && proj.type != ProjectileID.GiantBee && beekeeperStack > 0)
-            {
-                spawnBees(target);
-            }
             /*if
             (
                 yoyoArtifact &&
@@ -639,34 +634,23 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.OnHitNPCWithProj(proj, target, hit, damageDone);
         }
 
-        public void spawnBees(NPC target)
+        public float DetermineHighestCrit()
         {
-            int beeType = ProjectileID.Bee;
-            int beeDamage = 10;
-
-            for (int j = 0; j < beekeeperStack; j++)
+            float highestCrit = player.GetCritChance(DamageClass.Melee);
+            if(player.GetCritChance(DamageClass.Ranged) > highestCrit)
             {
-
-                if (random.NextBool(21) && player.strongBees)
-                {
-                    beeType = ProjectileID.GiantBee;
-                    beeDamage = 20;
-                }
-
-                Projectile beekeeperStackBee = Projectile.NewProjectileDirect
-                    (
-                    player.GetSource_FromThis(),
-                    new Vector2(target.Center.X, target.Center.Y),
-                    new Vector2(random.NextFloat(-1f, 1f), random.NextFloat(-1f, 1f)),
-                    beeType,
-                    2 * beekeeperStack + beeDamage,
-                    0,
-                    player.whoAmI
-                    );
-
-                beekeeperStackBee.timeLeft = 300;
-                beekeeperStackBee.penetrate = -1;
+                highestCrit = player.GetCritChance(DamageClass.Ranged);
             }
+            if (player.GetCritChance(DamageClass.Magic) > highestCrit)
+            {
+                highestCrit = player.GetCritChance(DamageClass.Magic);
+            }
+            if (player.GetCritChance(DamageClass.Summon) > highestCrit)
+            {
+                highestCrit = player.GetCritChance(DamageClass.Summon);
+            }
+
+            return highestCrit;
         }
 
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

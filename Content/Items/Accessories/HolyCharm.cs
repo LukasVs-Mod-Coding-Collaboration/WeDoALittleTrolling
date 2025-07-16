@@ -16,17 +16,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using WeDoALittleTrolling.Content.Items.Material;
+using WeDoALittleTrolling.Content.Items.Weapons;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
-using WeDoALittleTrolling.Content.Items.Material;
-using System.Collections.Generic;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -51,11 +52,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.HallowedBar, 12)
-              .AddIngredient(ItemID.HolyWater, 12)
-              .AddIngredient(ModContent.ItemType<IcyFossil>(), 3)
-              .AddIngredient(ModContent.ItemType<DustyFossil>(), 3)
-              .AddIngredient(ModContent.ItemType<HellishFossil>(), 3)
-              .AddIngredient(ModContent.ItemType<MushroomFossil>(), 3)
+              .AddIngredient(ItemID.HolyWater, 10)
+              .AddIngredient(ItemID.Ectoplasm, 10)
               .AddIngredient(ModContent.ItemType<FrozenEssence>(), 3)
               .AddCustomShimmerResult(ItemID.PlatinumCoin, 1)
               .Register();

@@ -122,8 +122,7 @@ Mods: {
 					5 Defense
 					You take up to 25% less damage based
 					on proximity to the attacker
-					Grants immunity to many hazardous
-					debuffs not blocked by the Ankh Shield
+					Grants immunity to many hazardous debuffs
 					'''
 			}
 
@@ -145,30 +144,7 @@ Mods: {
 					'''
 					Your magic damage increases as you lose health
 					Grants 1% magic damage for every 5 health lost
-					"As death approaches, the heart is filled with
-					 anger that can fuel every single desperate strike..."
-					'''
-			}
-
-			CorruptedGemcutter: {
-				DisplayName: Corrupted Gemcutter
-				Tooltip:
-					'''
-					Using the power of a fallen star,
-					the edge of the pickaxe blazes
-					with a layer of writhing energy.
-					Legacy Item
-					'''
-			}
-
-			CrimsonSilversmelter: {
-				DisplayName: Crimson Silversmelter
-				Tooltip:
-					'''
-					Constantly heated by power of a fallen star,
-					the edge of the pickaxe blazes
-					with a layer of glowing hot magma.
-					Legacy Item
+					"As you fall, you are filled with fury."
 					'''
 			}
 
@@ -223,13 +199,7 @@ Mods: {
 
 			EaterOfSticks: {
 				DisplayName: Eater of Sticks
-				Tooltip:
-					'''
-					"In their insatiable hunger, creatures
-					 of the corruption will attempt to eat
-					 almost anything, even if it appears
-					 to be completely inedible."
-					'''
+				Tooltip: '''"I'm so hungry I could eat a..."'''
 			}
 
 			PharaohsCurseblade: {
@@ -269,16 +239,6 @@ Mods: {
 				Tooltip: Unfinished Item
 			}
 
-			DustyFossil: {
-				DisplayName: Dusty Fossil
-				Tooltip: ""
-			}
-
-			IcyFossil: {
-				DisplayName: Icy Fossil
-				Tooltip: ""
-			}
-
 			SearingPlate: {
 				DisplayName: Searing Plate
 				Tooltip: A heavy plate used for making armor
@@ -309,11 +269,6 @@ Mods: {
 					6% increased defense effectiveness
 					Reduces damage taken by 4%
 					'''
-			}
-
-			HellishFossil: {
-				DisplayName: Hellish Fossil
-				Tooltip: ""
 			}
 
 			HolyCharm: {
@@ -358,16 +313,6 @@ Mods: {
 					Sometimes grants invulnerability for a
 					short time when striking an enemy
 					'''
-			}
-
-			FrostCrystal: {
-				DisplayName: Frost Crystal
-				Tooltip: ""
-			}
-
-			MushroomFossil: {
-				DisplayName: Mushroom Fossil
-				Tooltip: ""
 			}
 
 			YoyoArtifact: {
@@ -416,18 +361,6 @@ Mods: {
 			WallCreeperFang: {
 				DisplayName: Wall Creeper Fang
 				Tooltip: ""
-			}
-
-			EternalMask: {
-				DisplayName: Eternal Mask
-				Tooltip:
-					'''
-					Increases maximum health by 250
-					Increases life regen by 50%
-					50% decreased damage
-					Provides life regeneration to
-					nearby allies within 128 tiles
-					'''
 			}
 
 			ThrowOfTheLunatic: {
@@ -481,81 +414,6 @@ Mods: {
 					'''
 			}
 
-			GrayCrystal: {
-				DisplayName: Gray Crystal
-				Tooltip: '''"Infused with the power of Skeletron"'''
-			}
-
-			WhiteCrystal: {
-				DisplayName: White Crystal
-				Tooltip: '''"Infused with the power of the Mechanical Bosses"'''
-			}
-
-			RedCrystal: {
-				DisplayName: Red Crystal
-				Tooltip: '''"Infused with the power of the Wall of Flesh"'''
-			}
-
-			PurpleCrystal: {
-				DisplayName: Purple Crystal
-				Tooltip: '''"Infused with the power of the World Evils"'''
-			}
-
-			PinkCrystal: {
-				DisplayName: Pink Crystal
-				Tooltip: '''"Infused with the power of Queen Slime"'''
-			}
-
-			OrangeCrystal: {
-				DisplayName: Orange Crystal
-				Tooltip: '''"Infused with the power of Queen Bee"'''
-			}
-
-			LimeCrystal: {
-				DisplayName: Lime Crystal
-				Tooltip: '''"Infused with the power of Plantera"'''
-			}
-
-			LightRedCrystal: {
-				DisplayName: Light Red Crystal
-				Tooltip: '''"Infused with the power of the Eye of Cuthulu"'''
-			}
-
-			LightPurpleCrystalTier1: {
-				DisplayName: Light Purple Crystal I
-				Tooltip: '''"Infused with the power of the Ocean"'''
-			}
-
-			LightPurpleCrystalTier2: {
-				DisplayName: Light Purple Crystal II
-				Tooltip: '''"Infused with the power of the Ocean"'''
-			}
-
-			LightPurpleCrystalTier3: {
-				DisplayName: Light Purple Crystal III
-				Tooltip: '''"Infused with the power of the Ocean"'''
-			}
-
-			GreenCrystal: {
-				DisplayName: Green Crystal
-				Tooltip: '''"Infused with the power of Duke Fishron"'''
-			}
-
-			CyanCrystal: {
-				DisplayName: Cyan Crystal
-				Tooltip: '''"Infused with the power of Deerclops"'''
-			}
-
-			BlueCrystal: {
-				DisplayName: Blue Crystal
-				Tooltip: '''"Infused with the power of King Slime"'''
-			}
-
-			YellowCrystal: {
-				DisplayName: Yellow Crystal
-				Tooltip: '''"Infused with the power of the Underground"'''
-			}
-
 			FrozenEssence: {
 				DisplayName: Frozen Essence
 				Tooltip: ""
@@ -592,12 +450,22 @@ Mods: {
 
 			SoulOfLightBag: {
 				DisplayName: Light Bundle
-				Tooltip: Right Click to open
+				Tooltip:
+					'''
+					Right click to open
+					"Let's go gambling!
+					 Aw dangit! Aw dangit!"
+					'''
 			}
 
 			SoulOfNightBag: {
 				DisplayName: Night Bundle
-				Tooltip: Right Click to open
+				Tooltip:
+					'''
+					Right click to open
+					"Let's go gambling!
+					 Aw dangit! Aw dangit!"
+					'''
 			}
 
 			GlacialStaff: {
@@ -633,6 +501,18 @@ Mods: {
 					Use portal to return when you are done
 					Teleports you to a party member
 					Click their head on the fullscreen map
+					'''
+			}
+
+			HeartseekerCharm: {
+				DisplayName: Heartseeker Charm
+				Tooltip:
+					'''
+					The critical strike chance of the weapon class
+					you have the highest critical strike chance for
+					is used to re-roll failed critical strikes
+					That same critical strike chance is also used
+					against you by enemies
 					'''
 			}
 		}
@@ -741,16 +621,6 @@ Mods: {
 				DisplayName: Focusing
 				AdditionalTooltip: -3% ranged damage
 				AdditionalTooltip2: +6% ranged critical strike chance
-			}
-
-			Beekeeping: {
-				DisplayName: Beekeeping
-				AdditionalTooltip:
-					'''
-					Enemies struck by you will release bees
-					Several accessories with this reforge 
-					also increase the damage done by the bees
-					'''
 			}
 
 			InfernoInfusion: {
