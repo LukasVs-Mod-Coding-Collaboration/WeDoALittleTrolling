@@ -324,7 +324,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.name + " inquireth: What's a mind goblin, " + Main.npc[damageSource.SourceNPCIndex].FullName + "?",
                     Main.npc[damageSource.SourceNPCIndex].FullName + ", may I have some " + player.name + "s? I am STARVING, " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s demand repentance! Cough up your " + player.name + ", all of it!",
-                    "Would you rather fight 10 " + Main.npc[damageSource.SourceNPCIndex].FullName + "sized " + player.name + "s or 50 " + player.name + "sized " + Main.npc[damageSource.SourceNPCIndex].FullName + "s?"
+                    "Would you rather fight 10 " + Main.npc[damageSource.SourceNPCIndex].FullName + "sized " + player.name + "s or 50 " + player.name + "sized " + Main.npc[damageSource.SourceNPCIndex].FullName + "s?",
                     player.name + " understands, mechanical " + Main.npc[damageSource.SourceNPCIndex].FullName + "s are the ruler of everything in the end."
 
 
