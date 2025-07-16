@@ -256,7 +256,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "Joker, It's a " + player.name + ", Joker, you can't!",
                 "THERE'S NO LAWS AGAINST THE " + player.name + ", BATMAN!",
                 "Noo, " + player.name + ", don’t leave me here!",
-                "Please no dear me! I haven't a clue, no " + player.name + "s lie with me, not a one!",
+                "Please no, dear me! I haven't a clue, no " + player.name + "s lie with me, not a one!",
                 player.name + " clearly doesn't own an air fryer.",
                 player.name + " has left the game.",
                 player.name + " will remember that.",
@@ -267,7 +267,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " MISSED THEIR CHANCE TO BE A [Big Shot].",
                 "Hello? Is anybody there? Someone who might be interested in rescuing the great " + player.name + "?",
                 "[" + player.name + "]!!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!",
-                player.name + " was enlightened to the lies of Big Oxygen",
+                player.name + " was enlightened to the lies of Big Oxygen.",
                 "I caught a little "+ player.name + ", Batman, I caught a little " + player.name + "!"
             };
 
