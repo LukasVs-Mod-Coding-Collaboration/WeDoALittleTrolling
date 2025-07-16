@@ -256,7 +256,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "Joker, It's a " + player.name + ", Joker, you can't!",
                 "THERE'S NO LAWS AGAINST THE " + player.name + ", BATMAN!",
                 "Noo, " + player.name + ", don’t leave me here!",
-                player.name + " hasn't a clue, no secrets lie with them, not a one!",
+                "Please no dear me! I haven't a clue, no " + player.name + "s lie with me, not a one!",
                 player.name + " clearly doesn't own an air fryer.",
                 player.name + " has left the game.",
                 player.name + " will remember that.",
@@ -266,7 +266,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " accidentaly sent themselves to the fungal wastes.",
                 player.name + " MISSED THEIR CHANCE TO BE A [Big Shot].",
                 "Hello? Is anybody there? Someone who might be interested in rescuing the great " + player.name + "?",
-                "[" + player.name + "]!!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!"
+                "[" + player.name + "]!!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!",
+                player.name + " was enlightened to the lies of Big Oxygen",
+                "I caught a little "+ player.name + ", Batman, I caught a little " + player.name + "!"
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
@@ -317,6 +319,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "Making the mother of all omelettes here, " + Main.npc[damageSource.SourceNPCIndex].FullName + ", can't fret over every " + player.name + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " knew they'd been had, so it shot at the " + player.name + " with a gun.",
                     "These " + player.name + "s are pissing me off. I'm the original        " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + ", welcome! The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s have aligned, the festival is nigh!",
+                    player.name + ", pauseth? Pauseth for a second? So I haveth a " + Main.npc[damageSource.SourceNPCIndex].FullName + "e.",
+                    player.name + " inquireth: What's a mind goblin, " + Main.npc[damageSource.SourceNPCIndex].FullName + "?",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + ", may I have some " + player.name + "s? I am STARVING, " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s demand repentance! Cough up your " + player.name + ", all of it!",
+                    "Would you rather fight 10 " + Main.npc[damageSource.SourceNPCIndex].FullName + "sized " + player.name + "s or 50 " + player.name + "sized " + Main.npc[damageSource.SourceNPCIndex].FullName + "s?"
+                    player.name + " understands, mechanical " + Main.npc[damageSource.SourceNPCIndex].FullName + "s are the ruler of everything in the end."
+
+
                 };
 
                 if (random.NextBool(15))
