@@ -430,7 +430,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if (!target.HeldItem.IsAir)
                 {
                     Item itemToDrop = target.HeldItem;
-                    target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
+                    target.TryDroppingSingleItem(target.GetSource_FromThis(), itemToDrop);
                     SoundEngine.PlaySound(SoundID.Item71, target.position);
                 }
                 else
@@ -451,7 +451,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     if (j >= 0)
                     {
                         Item itemToDrop = target.armor[j];
-                        target.DropItem(target.GetSource_FromThis(), target.position, ref itemToDrop);
+                        target.TryDroppingSingleItem(target.GetSource_FromThis(), itemToDrop);
                         SoundEngine.PlaySound(SoundID.Item71, target.position);
                     }
                 }

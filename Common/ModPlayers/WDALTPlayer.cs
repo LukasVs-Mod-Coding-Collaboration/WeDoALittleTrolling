@@ -571,7 +571,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     modifiers.ArmorPenetration += (6f * conjuringStack);
                 }
             }
-            if (heartSeekerCharm && random.Next(0, 100) < DetermineHighestCrit())
+            if (heartSeekerCharm && modifiers.DamageType.UseStandardCritCalcs && random.Next(0, 100) < DetermineHighestCrit())
             {
                 modifiers.SetCrit();
             }
@@ -636,20 +636,19 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public float DetermineHighestCrit()
         {
-            float highestCrit = player.GetCritChance(DamageClass.Melee);
-            if(player.GetCritChance(DamageClass.Ranged) > highestCrit)
+            float highestCrit = 0.0f;
+            for (int i = 0; i < DamageClassLoader.DamageClassCount; i++)
             {
-                highestCrit = player.GetCritChance(DamageClass.Ranged);
+                DamageClass dClass = DamageClassLoader.GetDamageClass(i);
+                if (dClass != null && dClass.UseStandardCritCalcs)
+                {
+                    float crit = player.GetCritChance(dClass);
+                    if (crit > highestCrit)
+                    {
+                        highestCrit = crit;
+                    }
+                }
             }
-            if (player.GetCritChance(DamageClass.Magic) > highestCrit)
-            {
-                highestCrit = player.GetCritChance(DamageClass.Magic);
-            }
-            if (player.GetCritChance(DamageClass.Summon) > highestCrit)
-            {
-                highestCrit = player.GetCritChance(DamageClass.Summon);
-            }
-
             return highestCrit;
         }
 
