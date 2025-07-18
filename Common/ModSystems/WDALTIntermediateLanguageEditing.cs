@@ -100,7 +100,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         float maxAcc1 = 0.1f;
                         if(npc.life < (int)Math.Round(npc.lifeMax * WDALTBossAIUtil.destroyerAccelerationLimit))
                         {
-                            maxAcc1 = 0.2f;
+                            maxAcc1 = 0.15f;
                         }
                         return maxAcc1;
                     }
@@ -118,7 +118,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         float maxAcc2 = 0.15f;
                         if(npc.life < (int)Math.Round(npc.lifeMax * WDALTBossAIUtil.destroyerAccelerationLimit))
                         {
-                            maxAcc2 = 0.3f;
+                            maxAcc2 = 0.225f;
                         }
                         return maxAcc2;
                     }
