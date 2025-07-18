@@ -80,7 +80,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         float maxSpeed = 16f;
                         if(npc.life < (int)Math.Round(npc.lifeMax * WDALTBossAIUtil.destroyerAccelerationLimit))
                         {
-                            maxSpeed = 24f;
+                            maxSpeed = 20f;
                         }
                         return maxSpeed;
                     }
