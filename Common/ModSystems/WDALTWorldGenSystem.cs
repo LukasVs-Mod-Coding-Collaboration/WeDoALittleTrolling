@@ -70,7 +70,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             Tuple.Create((int)ItemID.IceBoomerang, 1.0),
             Tuple.Create((int)ItemID.IceBlade, 1.0),
             Tuple.Create((int)ItemID.IceSkates, 1.0),
-            Tuple.Create((int)ItemID.BlizzardinaBottle, 2.0),
+            Tuple.Create((int)ItemID.BlizzardinaBottle, 1.0),
             Tuple.Create((int)ItemID.FlurryBoots, 1.0),
             Tuple.Create((int)ItemID.IceMirror, 1.0),
             Tuple.Create((int)ItemID.IceMachine, 1.0),
@@ -511,7 +511,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 Chest chest = Main.chest[idx];
                 List<(int type, int stack)> itemsToAdd = new List<(int type, int stack)>();
-                wRandom.random.SetSeed(Main.rand.Next(0, 10000));
+                wRandom.random.SetSeed(Main.rand.Next(int.MinValue, (int.MaxValue - 10000)) + idx);
                 wRandom.needsRefresh = true;
                 int specialItem = wRandom.Get();
                 if (specialItem != ItemID.None)
