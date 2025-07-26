@@ -427,7 +427,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.PrimeVice)
             {
-                if (!target.HeldItem.IsAir)
+                /*if (!target.HeldItem.IsAir)
                 {
                     Item itemToDrop = target.HeldItem;
                     target.TryDroppingSingleItem(target.GetSource_FromThis(), itemToDrop);
@@ -454,7 +454,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                         target.TryDroppingSingleItem(target.GetSource_FromThis(), itemToDrop);
                         SoundEngine.PlaySound(SoundID.Item71, target.position);
                     }
-                }
+                }*/
+                SoundEngine.PlaySound(SoundID.Item71, target.position);
             }
             if (npc.type == NPCID.PrimeSaw)
             {
