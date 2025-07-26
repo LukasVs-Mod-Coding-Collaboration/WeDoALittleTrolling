@@ -27,7 +27,7 @@ using Terraria;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
-    public class Overloaded : ModPrefix
+    public class Overstrained : ModPrefix
     {
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
         public override float RollChance(Item item)
@@ -49,10 +49,10 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            damageMult *= 1.25f;
-            knockbackMult *= 1.25f;
-            useTimeMult *= 0.75f;
-            manaMult *= 0.75f;
+            damageMult *= 1.15f;
+            knockbackMult *= 1.15f;
+            useTimeMult *= 0.4f;
+            manaMult *= 0.7f;
         }
 
         public override void ModifyValue(ref float valueMult)

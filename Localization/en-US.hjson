@@ -790,6 +790,8 @@ Mods: {
 				DisplayName: Minute
 				AdditionalTooltip: -2 range
 			}
+
+			Overstrained.DisplayName: Overstrained
 		}
 
 		Buffs: {
