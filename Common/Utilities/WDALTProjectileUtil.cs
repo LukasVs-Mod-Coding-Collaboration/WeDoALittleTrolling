@@ -137,7 +137,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 binaryWriter.Write(colossalSolarWhip);
             }
-            if(projectile.type == ProjectileID.PoisonSeedPlantera)
+            if(projectile.type == ProjectileID.SeedPlantera)
             {
                 binaryWriter.Write(speedyPlanteraPoisonSeed);
                 if(speedyPlanteraPoisonSeed)
@@ -201,7 +201,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                     projectile.extraUpdates = 1;
                 }
             }
-            if(projectile.type == ProjectileID.PoisonSeedPlantera)
+            if(projectile.type == ProjectileID.SeedPlantera)
             {
                 speedyPlanteraPoisonSeed = binaryReader.ReadBoolean();
                 if(speedyPlanteraPoisonSeed)
@@ -259,7 +259,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override bool ShouldUpdatePosition(Projectile projectile)
         {
-            if(projectile.type == ProjectileID.PoisonSeedPlantera && speedyPlanteraPoisonSeed && !speedyPlanteraPoisonSeedHasUpdated)
+            if(projectile.type == ProjectileID.SeedPlantera && speedyPlanteraPoisonSeed && !speedyPlanteraPoisonSeedHasUpdated)
             {
                 projectile.netUpdate = true;
             }

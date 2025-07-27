@@ -330,6 +330,10 @@ namespace WeDoALittleTrolling.Content.Projectiles
             {
                 target.AddBuff(ModContent.BuffType<OnyxBlaze>(), 240, true); //4s, X2 in Expert, X2.5 in Master
             }
+            if (projectile.type == ProjectileID.SeedPlantera && projectile.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed)
+            {
+                target.AddBuff(BuffID.Venom, 120, true); //4s, X2 in Expert, X2.5 in Master
+            }
             base.OnHitPlayer(projectile, target, info);
         }
 

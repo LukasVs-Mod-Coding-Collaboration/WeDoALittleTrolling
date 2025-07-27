@@ -201,7 +201,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             long timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
             int shotDelay = 120;
-            int damage = 32;
+            int damage = 28;
             if (npc.life < (npc.lifeMax / 4))
             {
                 shotDelay = 60;
@@ -226,7 +226,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                         randomModifierY *= (sprayIntensity * 16.0f);
                         Vector2 vectorToTarget = new Vector2((Main.player[npc.target].Center.X + randomModifierX) - npc.Center.X, (Main.player[npc.target].Center.Y + randomModifierY) - npc.Center.Y);
                         vectorToTarget = vectorToTarget.SafeNormalize(Vector2.Zero);
-                        Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromThis(), npc.Center, vectorToTarget, ProjectileID.PoisonSeedPlantera, damage, 0f, Main.myPlayer);
+                        Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromThis(), npc.Center, vectorToTarget, ProjectileID.SeedPlantera, damage, 0f, Main.myPlayer);
                         proj.timeLeft = 300;
                         proj.extraUpdates = 1;
                         proj.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed = true;
