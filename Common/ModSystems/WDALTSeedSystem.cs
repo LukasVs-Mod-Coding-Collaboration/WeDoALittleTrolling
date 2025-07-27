@@ -91,6 +91,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 WorldGen.noTrapsWorldGen = true;
                 WorldGen.getGoodWorldGen = true;
             }
+            else if (processedSeed.Contains("WDALTDrunkBees"))
+            {
+                WorldGen.notTheBees = true;
+            }
         }
 
         public static void IL_WorldGen_GenerateWorld(ILContext intermediateLanguageContext)
@@ -107,7 +111,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     () =>
                     {
                         bool flag = WorldGen.everythingWorldGen;
-                        if (WorldGen.currentWorldSeed.Contains("WDALTMixup"))
+                        if (WorldGen.currentWorldSeed.Contains("WDALTMixup") || WorldGen.currentWorldSeed.Contains("WDALTDrunkBees"))
                         {
                             flag = true;
                         }
