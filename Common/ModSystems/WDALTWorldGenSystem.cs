@@ -603,8 +603,14 @@ namespace WeDoALittleTrolling.Common.ModSystems
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = WDALTWorldGenSystem.IceBiomeGloomMessage.Value;
+            int br = 0;
+            int br_max = 10000000;  //Max. 10000000 failed attempts
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.75); k++)
             {
+                if (br > br_max)
+                {
+                    break;
+                }
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
@@ -630,6 +636,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 );
                 if (cond)
                 {
+                    br = 0;
                     WorldGen.PlaceAlch(x, y, 6);
                     if (Main.tile[x, y].HasTile)
                     {
@@ -640,6 +647,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 else
                 {
+                    br++;
                     if (k >= 0)
                     {
                         k--;
@@ -647,11 +655,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     continue;
                 }
             }
-            int br = 0;
+            br = 0;
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 5.0); k++)
             {
-                
-                if (br > 10000) //Max. 10000 attempts
+                if (br > br_max)
                 {
                     break;
                 }
@@ -714,8 +721,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     }
                 }
             }
+            br = 0;
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.125); k++)
             {
+                if (br > br_max)
+                {
+                    break;
+                }
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
@@ -737,10 +749,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 );
                 if (cond)
                 {
+                    br = 0;
                     WorldGen.Place1x2Top(x, y, TileID.LightningBuginaBottle, 0);
                 }
                 else
                 {
+                    br++;
                     if (k >= 0)
                     {
                         k--;
@@ -748,8 +762,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     continue;
                 }
             }
+            br = 0;
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.1875); k++)
             {
+                if (br > br_max)
+                {
+                    break;
+                }
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
@@ -780,10 +799,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 );
                 if (cond)
                 {
+                    br = 0;
                     WorldGen.Place3x2(x, y, TileID.Campfire, 3);
                 }
                 else
                 {
+                    br++;
                     if (k >= 0)
                     {
                         k--;
@@ -791,8 +812,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     continue;
                 }
             }
+            br = 0;
             for (int k = 0; k < (int)((Main.maxTilesX * Main.maxTilesY) * 6E-05 * 0.0078125); k++)
             {
+                if (br > br_max)
+                {
+                    break;
+                }
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
@@ -822,10 +848,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 if (cond)
                 {
+                    br = 0;
                     GenIceHut(x, y);
                 }
                 else
                 {
+                    br++;
                     if (k >= 0)
                     {
                         k--;
@@ -834,8 +862,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
             }
             bool success = false;
+            br = 0;
             while (!success) //Spawn exactly 1 time.
             {
+                if (br > br_max)
+                {
+                    break;
+                }
                 int y = WorldGen.genRand.Next(GenVars.snowTop + (Main.drunkWorld ? 100 : 0), GenVars.snowBottom);
                 int x = 0;
                 if (y >= 0 && y < GenVars.snowMinX.Length && y < GenVars.snowMaxX.Length)
@@ -875,11 +908,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 if (cond)
                 {
+                    br = 0;
                     GenWorkshop(x, y);
                     success = true;
                 }
                 else
                 {
+                    br++;
                     success = false;
                     continue;
                 }
