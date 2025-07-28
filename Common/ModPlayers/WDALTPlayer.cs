@@ -821,8 +821,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                         )
                     ) &&
                     (
-                        player.HeldItem.prefix == ModContent.PrefixType<Siphoning>() &&
-                        player.HeldItem.mana > 0
+                        player.HeldItem.prefix == ModContent.PrefixType<Siphoning>()
                     )
                 ) //Siphoning
                 {
