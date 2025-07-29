@@ -515,6 +515,21 @@ Mods: {
 					against you by enemies
 					'''
 			}
+
+			TungstenThornNecklace: {
+				DisplayName: Tungsten Thorn Necklace
+				Tooltip:
+					'''
+					Attacks pierce all armor
+					Reduces attack speed by 10%
+					Reduces movement speed by 20%
+					Works with Melee, Ranged,
+					Whip and Throwing damage
+					Will not work with Melee weapons
+					which are not affected by
+					attack speed
+					'''
+			}
 		}
 
 		Projectiles: {

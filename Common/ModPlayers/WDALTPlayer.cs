@@ -86,6 +86,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool hasLifeforceEngine;
         public bool cornEmblem;
         public bool heartSeekerCharm;
+        public bool tungstenThornNecklace;
         public static UnifiedRandom random = new UnifiedRandom();
 
         public override void Initialize()
@@ -133,6 +134,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             hasLifeforceEngine = false;
             cornEmblem = false;
             heartSeekerCharm = false;
+            tungstenThornNecklace = false;
         }
 
         public override void UpdateDead()
@@ -207,6 +209,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             hasLifeforceEngine = false;
             cornEmblem = false;
             heartSeekerCharm = false;
+            tungstenThornNecklace = false;
         }
 
         public override void ResetEffects()
@@ -234,6 +237,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             hasLifeforceEngine = false;
             cornEmblem = false;
             heartSeekerCharm = false;
+            tungstenThornNecklace = false;
             base.ResetEffects();
         }
 
@@ -465,6 +469,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.PostUpdateEquips();
         }
 
+        public override void UpdateBadLifeRegen()
+        {
+            if (tungstenThornNecklace && player.HeldItem != null && player.HeldItem.DamageType != null && TungstenThornNecklace.supportedDamageClasses.Contains(player.HeldItem.DamageType))
+            {
+                player.moveSpeed *= 0.8f;
+            }
+            base.UpdateBadLifeRegen();
+        }
         public override bool FreeDodge(Player.HurtInfo info)
         {
             if (info.DamageSource.SourceProjectileType == ProjectileID.Landmine) //Prevent Landmines from damaging players.
@@ -574,6 +586,14 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (heartSeekerCharm && modifiers.DamageType.UseStandardCritCalcs && random.Next(0, 100) < DetermineHighestCrit())
             {
                 modifiers.SetCrit();
+            }
+            if
+            (
+                tungstenThornNecklace &&
+                TungstenThornNecklace.supportedDamageClasses.Contains(modifiers.DamageType)
+            )
+            {
+                modifiers.ScalingArmorPenetration += 1f;
             }
             base.ModifyHitNPC(target, ref modifiers);
         }
