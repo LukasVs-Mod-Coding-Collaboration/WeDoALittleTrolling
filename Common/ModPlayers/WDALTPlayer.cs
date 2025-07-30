@@ -471,7 +471,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void UpdateBadLifeRegen()
         {
-            if (tungstenThornNecklace && player.HeldItem != null && player.HeldItem.DamageType != null && TungstenThornNecklace.supportedDamageClasses.Contains(player.HeldItem.DamageType))
+            if (tungstenThornNecklace && player.HeldItem != null && player.HeldItem.DamageType != null && TungstenThornRing.supportedDamageClasses.Contains(player.HeldItem.DamageType))
             {
                 player.moveSpeed *= 0.8f;
             }
@@ -590,7 +590,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if
             (
                 tungstenThornNecklace &&
-                TungstenThornNecklace.supportedDamageClasses.Contains(modifiers.DamageType)
+                TungstenThornRing.supportedDamageClasses.Contains(modifiers.DamageType)
             )
             {
                 modifiers.ScalingArmorPenetration += 1f;

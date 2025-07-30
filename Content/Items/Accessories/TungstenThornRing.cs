@@ -33,20 +33,21 @@ using Terraria.Localization;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
-    internal class TungstenThornNecklace : ModItem
+    internal class TungstenThornRing : ModItem
     {
         public static readonly DamageClass[] supportedDamageClasses =
         {
             DamageClass.Melee,
             DamageClass.Ranged,
             DamageClass.SummonMeleeSpeed,
-            DamageClass.Throwing
+            DamageClass.Throwing,
+            DamageClass.Magic
         };
 
         public override void SetDefaults()
         {
-            Item.width = 28;
-            Item.height = 30;
+            Item.width = 30;
+            Item.height = 34;
 
             Item.consumable = false;
 
@@ -71,11 +72,11 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-              .AddTile(TileID.Anvils)
-              .AddIngredient(ItemID.TungstenBar, 16)
-              .AddIngredient(ItemID.Spike, 16)
-              .AddIngredient(ItemID.Chain, 8)
-              .AddIngredient(ItemID.Diamond, 4)
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.SharkToothNecklace, 1)
+              .AddIngredient(ItemID.SoulofFright, 5)
+              .AddIngredient(ItemID.TungstenBar, 10)
+              .AddIngredient(ItemID.TitaniumBar, 10)
               .Register();
         }
     }
