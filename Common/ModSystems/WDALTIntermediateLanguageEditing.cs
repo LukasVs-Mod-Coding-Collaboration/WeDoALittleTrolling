@@ -189,11 +189,18 @@ namespace WeDoALittleTrolling.Common.ModSystems
             try
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdcI4(3000));
+                cursor.Index++;
+                cursor.GotoNext(i => i.MatchLdcI4(3000)); //Move to the position where the number 3000 is pushed onto the stack for RNG.
+                cursor.Index++; //Move after it now.
+                cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
+                int rngDenominator1 = 2; //Set 2 as the denominator for RNG. 1 in 2 chance = 50%
+                cursor.Emit(OpCodes.Ldc_I4, rngDenominator1); //Finally, push our denominator onto the stack instead.
                 cursor.GotoNext(i => i.MatchLdcI4(15000)); //Move to the position where the number 15000 is pushed onto the stack for RNG.
                 cursor.Index++; //Move after it now.
                 cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
-                int rngDenominator = 1; //Set 1 as the denominator for RNG. 1 in 1 chance = 100%
-                cursor.Emit(OpCodes.Ldc_I4, rngDenominator); //Finally, push our denominator onto the stack instead.
+                int rngDenominator2 = 1; //Set 1 as the denominator for RNG. 1 in 1 chance = 100%
+                cursor.Emit(OpCodes.Ldc_I4, rngDenominator2); //Finally, push our denominator onto the stack instead.
             }
             catch
             {
@@ -213,11 +220,16 @@ namespace WeDoALittleTrolling.Common.ModSystems
             try
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdcI4(2500)); //Move to the position where the number 2500 is pushed onto the stack for RNG.
+                cursor.Index++; //Move after it now.
+                cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
+                int rngDenominator1 = 2; //Set 2 as the denominator for RNG. 1 in 2 chance = 50%
+                cursor.Emit(OpCodes.Ldc_I4, rngDenominator1); //Finally, push our denominator onto the stack instead.
                 cursor.GotoNext(i => i.MatchLdcI4(10000)); //Move to the position where the number 10000 is pushed onto the stack for RNG.
                 cursor.Index++; //Move after it now.
                 cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
-                int rngDenominator = 1; //Set 1 as the denominator for RNG. 1 in 1 chance = 100%
-                cursor.Emit(OpCodes.Ldc_I4, rngDenominator); //Finally, push our denominator onto the stack instead.
+                int rngDenominator2 = 1; //Set 1 as the denominator for RNG. 1 in 1 chance = 100%
+                cursor.Emit(OpCodes.Ldc_I4, rngDenominator2); //Finally, push our denominator onto the stack instead.
             }
             catch
             {
