@@ -213,7 +213,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             try
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
-                cursor.GotoNext(i => i.MatchLdcI4(10000)); //Move to the position where the number 15000 is pushed onto the stack for RNG.
+                cursor.GotoNext(i => i.MatchLdcI4(10000)); //Move to the position where the number 10000 is pushed onto the stack for RNG.
                 cursor.Index++; //Move after it now.
                 cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
                 int rngDenominator = 1; //Set 1 as the denominator for RNG. 1 in 1 chance = 100%
