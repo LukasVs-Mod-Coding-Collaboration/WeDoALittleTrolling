@@ -894,7 +894,7 @@ Mods: {
 
 		Keybinds: {
 			LifeforceEngine.DisplayName: Activate Lifeforce Engine
-			"Open Skill Tree.DisplayName": Open Skill Tree
+			Dash.DisplayName: Quick Dash
 		}
 
 		Tiles: {

@@ -1,18 +1,43 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
     public class WDALTKeybindSystem : ModSystem
     {
         public static ModKeybind LifeforceEngineKeybind { get; private set; }
-        public static ModKeybind SkillTreeKeybind { get; private set; }
+        public static ModKeybind DashKeybind { get; private set; }
+        // public static ModKeybind SkillTreeKeybind { get; private set; }
+
+        public static void RegisterHooks()
+        {
+            On_Player.DoCommonDashHandle += On_Player_DoCommonDashHandle;
+        }
+
+        public static void UnregisterHooks()
+        {
+            On_Player.DoCommonDashHandle -= On_Player_DoCommonDashHandle;
+        }
+
+        public static void On_Player_DoCommonDashHandle(On_Player.orig_DoCommonDashHandle orig, Player self, out int dir, out bool dashing, Player.DashStartAction dashStartAction)
+        {
+            orig.Invoke(self, out dir, out dashing, dashStartAction);
+            if (DashKeybind.JustPressed && self.active && !self.dead && self.whoAmI == Main.myPlayer)
+            {
+                dashing = true;
+                dir = self.direction;
+                self.timeSinceLastDashStarted = 0;
+                dashStartAction?.Invoke(dir);
+            }
+        }
 
         public override void Load()
         {
             // Registers a new keybind
             // Localize keybind by adding a Mods.{ModName}.Keybind.{KeybindName} entry to localization file. The actual text displayed to English users is in en-US.hjson
             LifeforceEngineKeybind = KeybindLoader.RegisterKeybind(Mod, "LifeforceEngine", "L");
-            SkillTreeKeybind = KeybindLoader.RegisterKeybind(Mod, "Open Skill Tree", "K");
+            // SkillTreeKeybind = KeybindLoader.RegisterKeybind(Mod, "Open Skill Tree", "K");
+            DashKeybind = KeybindLoader.RegisterKeybind(Mod, "Dash", "C");
         }
 
         // Please see ExampleMod.cs' Unload() method for a detailed explanation of the unloading process.
@@ -20,7 +45,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             // Not required if your AssemblyLoadContext is unloading properly, but nulling out static fields can help you figure out what's keeping it loaded.
             LifeforceEngineKeybind = null;
-            SkillTreeKeybind = null;
+            DashKeybind = null;
+            // SkillTreeKeybind = null;
         }
     }
 }
