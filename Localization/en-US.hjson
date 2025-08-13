@@ -903,5 +903,17 @@ Mods: {
 		}
 
 		ShroomiteGenesisSlot.ShroomiteGenesisDescription: Dedicated Shroomite Genesis Slot
+
+		Configs: {
+			WDALTClientConfig: {
+				DisplayName: Client Configuration
+				Headers.Movement: Movement
+
+				DisableDoubleTapDashing: {
+					Label: Disable Double-Tap Dashing
+					Tooltip: Disables dashes like the Shield of Cuthulu Dash by double-tapping movement keys.
+				}
+			}
+		}
 	}
 }

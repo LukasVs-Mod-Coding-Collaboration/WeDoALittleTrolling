@@ -1,5 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -21,7 +23,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static void On_Player_DoCommonDashHandle(On_Player.orig_DoCommonDashHandle orig, Player self, out int dir, out bool dashing, Player.DashStartAction dashStartAction)
         {
-            orig.Invoke(self, out dir, out dashing, dashStartAction);
+            if (ModContent.GetInstance<WDALTClientConfig>().DisableDoubleTapDashing && self.active && !self.dead && self.whoAmI == Main.myPlayer)
+            {
+                dir = 0;
+                dashing = false;
+            }
+            else
+            {
+                orig.Invoke(self, out dir, out dashing, dashStartAction);
+            }
             if (DashKeybind.JustPressed && self.active && !self.dead && self.whoAmI == Main.myPlayer)
             {
                 dashing = true;
