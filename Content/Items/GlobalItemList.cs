@@ -187,6 +187,18 @@ namespace WeDoALittleTrolling.Content.Items
         //Adjust Tooltips accordingly
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (ModContent.GetInstance<WDALTServerConfig>().NoWingsChallenge && item.wingSlot > -1 && item.wingSlot < ArmorIDs.Wing.Sets.Stats.Length)
+            {
+                if (ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime > 0)
+                {
+                    List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Equipable") && (t.Mod == "Terraria"));
+                    infoLine.ForEach((TooltipLine t) =>
+                    {
+                        t.OverrideColor = Color.DarkRed;
+                        t.Text = "This item cannot be equipped during a No Wings Challenge";
+                    });
+                }
+            }
             if (item.prefix == PrefixID.Arcane)
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMaxMana") && (t.Mod == "Terraria"));
