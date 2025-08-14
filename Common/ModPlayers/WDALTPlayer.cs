@@ -38,6 +38,7 @@ using WeDoALittleTrolling.Common.Utilities;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
 using Terraria.WorldBuilding;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -465,6 +466,11 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 float factor = 0.08f;
                 player.moveSpeed += (factor * (float)acceleratedStack);
+            }
+            if (ModContent.GetInstance<WDALTServerConfig>().NoWingsChallenge)
+            {
+                player.wings = 0;
+                player.wingsLogic = 0;
             }
             base.PostUpdateEquips();
         }
