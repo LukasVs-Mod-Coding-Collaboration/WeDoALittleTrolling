@@ -57,13 +57,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.LifeFruit, 5)
               .AddIngredient(ItemID.MartianConduitPlating, 10)
               .AddIngredient(ItemID.ChlorophyteBar, 10)
-              .AddRecipeGroup(RecipeGroupID.IronBar, 10)
               .AddIngredient(ItemID.Wire, 50)
-              .AddIngredient(ItemID.Switch, 1)
-              .AddIngredient(ItemID.Timer5Second, 24)
               .Register();
         }
     }

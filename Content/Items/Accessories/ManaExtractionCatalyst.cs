@@ -75,11 +75,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe() //Recipe
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.ManaCrystal, 5)
               .AddIngredient(ItemID.ManaFlower, 1)
               .AddIngredient(ItemID.SoulofMight, 5)
-              .AddIngredient(ItemID.SoulofNight, 10)
-              .AddIngredient(ItemID.Obsidian, 15)
+              .AddIngredient(ItemID.SoulofNight, 5)
               .Register();
         }
     }

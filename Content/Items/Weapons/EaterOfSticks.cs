@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/*
 using Terraria;
 using Terraria.Utilities;
 using Terraria.ModLoader;
@@ -66,3 +67,4 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         }
     }
 }
+*/

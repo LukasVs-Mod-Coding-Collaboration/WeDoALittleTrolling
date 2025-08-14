@@ -82,7 +82,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.SoulofFright, 5)
-              .AddIngredient(ItemID.HallowedBar, 5)
               .AddIngredient(ItemID.BlackBelt, 1)
               .AddIngredient(ItemID.BrainOfConfusion, 1)
               .AddIngredient(ItemID.CrossNecklace, 1)

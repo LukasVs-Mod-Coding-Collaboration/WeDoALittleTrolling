@@ -86,7 +86,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.MythrilAnvil)
               .AddIngredient(ItemID.CobaltShield, 1)
               .AddIngredient(ItemID.SoulofMight, 5)
-              .AddIngredient(ItemID.HallowedBar, 10)
               .AddIngredient(ItemID.TitaniumBar, 10)
               .AddIngredient(ItemID.Lens, 1)
               .Register();
@@ -95,7 +94,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
              .AddTile(TileID.MythrilAnvil)
              .AddIngredient(ItemID.CobaltShield, 1)
              .AddIngredient(ItemID.SoulofMight, 5)
-             .AddIngredient(ItemID.HallowedBar, 10)
              .AddIngredient(ItemID.AdamantiteBar, 10)
              .AddIngredient(ItemID.Lens, 1)
              .Register();

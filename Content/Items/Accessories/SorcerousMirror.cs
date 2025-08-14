@@ -103,11 +103,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.LifeCrystal, 5)
+              .AddIngredient(ItemID.Glass, 10)
               .AddIngredient(ItemID.SoulofSight, 5)
-              .AddIngredient(ItemID.SoulofLight, 10)
-              .AddIngredient(ItemID.Obsidian, 15)
-              .AddIngredient(ItemID.HallowedBar, 3)
+              .AddIngredient(ItemID.SoulofLight, 5)
               .Register();
         }
     }

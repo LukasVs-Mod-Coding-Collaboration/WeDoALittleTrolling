@@ -35,8 +35,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
     {
         public override void SetDefaults()
         {
-            Item.width = 42;
-            Item.height = 42;
+            Item.width = 30;
+            Item.height = 36;
 
             Item.consumable = false;
 
@@ -88,20 +88,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe()
               .AddTile(TileID.DemonAltar)
-              .AddIngredient(ItemID.DemoniteBar, 5)
-              .AddIngredient(ItemID.SoulofFright, 1)
-              .AddIngredient(ItemID.HellstoneBar, 3)
-              .AddIngredient(ItemID.VilePowder, 3)
-              .AddIngredient(ItemID.AshBlock, 3)
-              .Register();
-
-            CreateRecipe()
-              .AddTile(TileID.DemonAltar)
-              .AddIngredient(ItemID.CrimtaneBar, 5)
-              .AddIngredient(ItemID.SoulofFright, 1)
-              .AddIngredient(ItemID.HellstoneBar, 3)
-              .AddIngredient(ItemID.VilePowder, 3)
-              .AddIngredient(ItemID.AshBlock, 3)
+              .AddIngredient(ItemID.SoulofFright, 5)
+              .AddIngredient(ItemID.LifeFruit, 1)
+              .AddIngredient(ItemID.SorcererEmblem, 1)
               .Register();
         }
     }

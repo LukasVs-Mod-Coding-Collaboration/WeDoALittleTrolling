@@ -32,8 +32,8 @@ namespace WeDoALittleTrolling.Content.Items.Material
     {
         public override void SetDefaults()
         {
-            Item.width = 18;
-            Item.height = 16;
+            Item.width = 24;
+            Item.height = 24;
 
             Item.material = true;
             Item.consumable = false;

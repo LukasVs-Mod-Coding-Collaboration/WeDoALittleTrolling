@@ -57,12 +57,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe()
               .AddTile(TileID.Furnaces)
-              .AddIngredient(ItemID.Obsidian, 25)
-              .AddIngredient(ItemID.LavaBucket, 3)
-              .AddIngredient(ItemID.LifeCrystal, 1)
+              .AddIngredient(ItemID.HellstoneBar, 5)
               .AddIngredient(ItemID.BandofRegeneration, 1)
-              .AddIngredient(ItemID.ObsidianSkinPotion, 1)
-              .AddRecipeGroup(RecipeGroupID.IronBar, 15)
+              .AddIngredient(ItemID.Ruby, 5)
               .Register();
         }
     }

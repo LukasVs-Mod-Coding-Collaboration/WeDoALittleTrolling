@@ -128,14 +128,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             CreateRecipe()
               .AddTile(TileID.LunarCraftingStation)
-              .AddIngredient(ItemID.CobaltSword, 1)
-              .AddIngredient(ItemID.MythrilSword,1)
-              .AddIngredient(ItemID.Diamond, 10)
-              .AddIngredient(ItemID.Sapphire, 10)
-              .AddIngredient(ItemID.Emerald, 10)
-              .AddIngredient(ItemID.LunarBar, 5)
-              .AddIngredient(ItemID.FragmentStardust, 15)
-              .AddIngredient(ItemID.FragmentVortex, 5)
+              .AddIngredient(ItemID.LunarBar, 12)
+              .AddIngredient(ItemID.FragmentStardust, 8)
+              .AddIngredient(ItemID.FragmentVortex, 8)
               .Register();
         }
     }

@@ -78,6 +78,30 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddIngredient(ItemID.TungstenBar, 10)
               .AddIngredient(ItemID.TitaniumBar, 10)
               .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.SharkToothNecklace, 1)
+              .AddIngredient(ItemID.SoulofFright, 5)
+              .AddIngredient(ItemID.TungstenBar, 10)
+              .AddIngredient(ItemID.AdamantiteBar, 10)
+              .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.SharkToothNecklace, 1)
+              .AddIngredient(ItemID.SoulofFright, 5)
+              .AddIngredient(ItemID.SilverBar, 10)
+              .AddIngredient(ItemID.TitaniumBar, 10)
+              .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.SharkToothNecklace, 1)
+              .AddIngredient(ItemID.SoulofFright, 5)
+              .AddIngredient(ItemID.SilverBar, 10)
+              .AddIngredient(ItemID.AdamantiteBar, 10)
+              .Register();
         }
     }
 }

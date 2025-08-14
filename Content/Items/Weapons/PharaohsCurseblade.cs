@@ -166,9 +166,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
               .AddIngredient(ItemID.NightsEdge, 1)
               .AddIngredient(ItemID.SandstorminaBottle, 1)
               .AddIngredient(ItemID.Amber, 10)
-              .AddIngredient(ItemID.Sapphire, 10)
-              .AddIngredient(ItemID.GoldBar, 10)
-              .AddIngredient(ItemID.SilverBar, 10)
               .Register();
         }
     }

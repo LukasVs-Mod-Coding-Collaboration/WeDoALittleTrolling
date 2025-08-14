@@ -91,7 +91,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 int dmg = (int)Math.Round(Item.damage * 0.5);
                 Projectile.NewProjectileDirect(player.GetSource_OnHit(target), projPosition, projVelocity, ProjectileID.CrystalStorm, dmg, Item.knockBack, player.whoAmI);
             }
-            base.OnHitNPC(player, target, hit, damageDone);    
+            base.OnHitNPC(player, target, hit, damageDone);
         }
 
 
@@ -99,9 +99,15 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.HallowedBar, 4)
-              .AddIngredient(ItemID.OrichalcumBar, 12)
-              .AddIngredient(ItemID.SoulofLight, 8)
+              .AddIngredient(ItemID.HallowedBar, 8)
+              .AddIngredient(ItemID.OrichalcumBar, 8)
+              .AddIngredient(ItemID.CrystalShard, 8)
+              .Register();
+
+            CreateRecipe()
+              .AddTile(TileID.MythrilAnvil)
+              .AddIngredient(ItemID.HallowedBar, 8)
+              .AddIngredient(ItemID.MythrilBar, 8)
               .AddIngredient(ItemID.CrystalShard, 8)
               .Register();
         }
