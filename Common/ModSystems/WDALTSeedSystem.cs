@@ -86,10 +86,13 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void On_UIWorldCreation_ProcessSpecialWorldSeeds(Terraria.GameContent.UI.States.On_UIWorldCreation.orig_ProcessSpecialWorldSeeds orig, string processedSeed)
         {
             orig.Invoke(processedSeed);
-            if (processedSeed.Contains("WDALTMixup"))
+            if (processedSeed.Contains("WDALTMixup") || processedSeed.Contains("WDALTDrunkFTW"))
             {
-                WorldGen.noTrapsWorldGen = true;
                 WorldGen.getGoodWorldGen = true;
+                if (processedSeed.Contains("WDALTMixup"))
+                {
+                    WorldGen.noTrapsWorldGen = true;
+                }
             }
             else if (processedSeed.Contains("WDALTDrunkBees"))
             {
@@ -111,7 +114,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     () =>
                     {
                         bool flag = WorldGen.everythingWorldGen;
-                        if (WorldGen.currentWorldSeed.Contains("WDALTMixup") || WorldGen.currentWorldSeed.Contains("WDALTDrunkBees"))
+                        if (WorldGen.currentWorldSeed.Contains("WDALTMixup") || WorldGen.currentWorldSeed.Contains("WDALTDrunkBees") || WorldGen.currentWorldSeed.Contains("WDALTDrunkFTW"))
                         {
                             flag = true;
                         }
