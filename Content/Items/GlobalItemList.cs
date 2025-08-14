@@ -42,6 +42,7 @@ using WeDoALittleTrolling.Content.Tiles;
 using Terraria.GameContent.Items;
 using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Items.Tools;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Content.Items
 {
@@ -151,10 +152,10 @@ namespace WeDoALittleTrolling.Content.Items
             base.UpdateAccessory(item, player, hideVisual);
         }
 
-        /* No Wings Challenge Code
+        // No Wings Challenge Code
         public override bool CanEquipAccessory(Item item, Player player, int slot, bool modded)
         {
-            if(item.wingSlot > -1 && item.wingSlot < ArmorIDs.Wing.Sets.Stats.Length)
+            if(ModContent.GetInstance<WDALTServerConfig>().NoWingsChallenge && item.wingSlot > -1 && item.wingSlot < ArmorIDs.Wing.Sets.Stats.Length)
             {
                 if(ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime > 0)
                 {
@@ -163,7 +164,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             return base.CanEquipAccessory(item, player, slot, modded);
         }
-        */
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {

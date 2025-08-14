@@ -914,6 +914,16 @@ Mods: {
 					Tooltip: Disables dashes like the Shield of Cuthulu Dash by double-tapping movement keys.
 				}
 			}
+
+			WDALTServerConfig: {
+				DisplayName: Server Configuration
+				Headers.Items: Items
+
+				NoWingsChallenge: {
+					Label: Enable No Wings Challenge
+					Tooltip: Disables all players' ability to equip wings.
+				}
+			}
 		}
 	}
 }
