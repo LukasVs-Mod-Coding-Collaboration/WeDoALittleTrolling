@@ -184,6 +184,36 @@ namespace WeDoALittleTrolling.Content.Items
             return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
         }
 
+        public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
+        {
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableFishronSkipNerf && fishronWeapons.Contains(item.type))
+            {
+                float mult = 1f;
+                if
+                (
+                    !NPC.downedMechBoss1 ||
+                    !NPC.downedMechBoss2 ||
+                    !NPC.downedMechBoss3
+                )
+                {
+                    mult -= 0.15f;
+                }
+                if (!NPC.downedPlantBoss)
+                {
+                    mult -= 0.15f;
+                }
+                if (!NPC.downedGolemBoss)
+                {
+                    mult -= 0.15f;
+                }
+                if (mult < 0.95f)
+                {
+                    damage *= mult;
+                }
+            }
+            base.ModifyWeaponDamage(item, player, ref damage);
+        }
+
         //Adjust Tooltips accordingly
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
@@ -197,6 +227,29 @@ namespace WeDoALittleTrolling.Content.Items
                         t.OverrideColor = Color.DarkRed;
                         t.Text = "This item cannot be equipped during a No Wings Challenge";
                     });
+                }
+            }
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableFishronSkipNerf && fishronWeapons.Contains(item.type))
+            {
+                float mult = 1f;
+                if
+                (
+                    !NPC.downedMechBoss1 ||
+                    !NPC.downedMechBoss2 ||
+                    !NPC.downedMechBoss3
+                )
+                {
+                    mult -= 0.2f;
+                }
+                if (!NPC.downedPlantBoss)
+                {
+                    mult -= 0.2f;
+                }
+                if (mult < 0.95f)
+                {
+                    TooltipLine nerfLine = new TooltipLine(Mod, "WeaponProgressionStageNerfDescription", "Weapon damage is reduced by " + (int)Math.Round(((1f - mult) * 100f)) + "% due to having skipped mandatory bosses");
+                    nerfLine.OverrideColor = Color.DarkRed;
+                    tooltips.Add(nerfLine);
                 }
             }
             if (item.prefix == PrefixID.Arcane)

@@ -923,6 +923,11 @@ Mods: {
 					Label: Enable No Wings Challenge
 					Tooltip: Disables all players' ability to equip wings.
 				}
+
+				DisableFishronSkipNerf: {
+					Label: Disable Fishron Skip Nerf
+					Tooltip: Disables nerfing Duke Fishron Weapons if the appropriate progression stage is not yet reached.
+				}
 			}
 		}
 	}

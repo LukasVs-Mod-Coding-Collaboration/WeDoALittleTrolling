@@ -9,8 +9,13 @@ namespace WeDoALittleTrolling.Common.Configs
 
 
         [Header("Items")]
+
         [DefaultValue(false)]
         [ReloadRequired]
         public bool NoWingsChallenge;
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableFishronSkipNerf;
     }
 }
