@@ -347,7 +347,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
                         );
                     }
                 }
-                SoundEngine.PlaySound(SoundID.Item42, Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item28, Projectile.Center);
                 lastActionTick = ticksAlive;
             }
             if (sync && Projectile.owner == Main.myPlayer)
