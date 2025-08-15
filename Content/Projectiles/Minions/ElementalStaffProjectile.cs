@@ -41,7 +41,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
         public const float idleDistance = 48f;
         public const float idleAccelerationFactor = 0.625f;
         public const float bulletSpeed = 24f;
-        public const float bulletOffsetMultiplier = 28f;
+        public const float bulletOffsetMultiplier = 24f;
         public const float zeroVectorMaxLen = 0.0000152587890625f; // 2^-16 / Binary: 0.0000000000000001
         public static readonly Vector2 gfxShootOffset = new Vector2(0f, 0f);
         public long ticksAlive = 0;
@@ -58,8 +58,8 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
 
         public override void SetDefaults()
         {
-            Projectile.width = 22;
-            Projectile.height = 46;
+            Projectile.width = 32;
+            Projectile.height = 32;
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -347,7 +347,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
                         );
                     }
                 }
-                SoundEngine.PlaySound(SoundID.Item28, Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item42, Projectile.Center);
                 lastActionTick = ticksAlive;
             }
             if (sync && Projectile.owner == Main.myPlayer)

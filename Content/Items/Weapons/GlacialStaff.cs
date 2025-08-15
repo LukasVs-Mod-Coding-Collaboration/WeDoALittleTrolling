@@ -55,12 +55,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useTime = 32;
             Item.useAnimation = 32;
             Item.mana = 4;
-            Item.ArmorPenetration = 16;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item43;
 
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 56;
+            Item.damage = 64;
             Item.knockBack = 8f;
             Item.crit = 4;
             Item.scale = 1f;
@@ -73,9 +72,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
-                float rotation = -3f + (i * 3f);
+                float rotation = -3f + (i * 2f);
                 Projectile.NewProjectileDirect
                 (
                     player.GetSource_ItemUse(Item),

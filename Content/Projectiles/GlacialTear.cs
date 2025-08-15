@@ -46,7 +46,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 6;
+            Projectile.localNPCHitCooldown = 4;
             this.DrawOffsetX = -2;
             this.DrawOriginOffsetX = 0f;
             this.DrawOriginOffsetY = -2;

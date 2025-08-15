@@ -37,8 +37,8 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
 
         public override void SetDefaults()
         {
-            Projectile.width = 10;
-            Projectile.height = 10;
+            Projectile.width = 8;
+            Projectile.height = 8;
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
             Projectile.hostile = false;

@@ -36,6 +36,22 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 dashing = true;
                 dir = self.direction;
+                if (self.controlRight)
+                {
+                    dir = 1;
+                }
+                else if (self.controlLeft)
+                {
+                    dir = -1;
+                }
+                else if (self.velocity.X > 0.01f)
+                {
+                    dir = 1;
+                }
+                else if (self.velocity.X < -0.01f)
+                {
+                    dir = -1;
+                }
                 self.timeSinceLastDashStarted = 0;
                 dashStartAction?.Invoke(dir);
             }
