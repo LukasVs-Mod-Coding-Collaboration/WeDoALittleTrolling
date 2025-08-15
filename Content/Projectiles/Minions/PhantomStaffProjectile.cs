@@ -40,7 +40,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
         public const float idleDistance = 64f;
         public const float idleAccelerationFactor = 0.75f;
         public const float bulletSpeed = 32f;
-        public const float bulletOffsetMultiplier = 36f;
+        public const float bulletOffsetMultiplier = 36f; // Actual height of Projectile (48) - Hixbox height of Projectile (12) = 36
         public const float zeroVectorMaxLen = 0.0000152587890625f; // 2^-16 / Binary: 0.0000000000000001
         public const float tiltFactor = 0.015625f; // 2^-6 / Binary: 0.000001
         public static readonly Vector2 gfxShootOffset1 = new Vector2(-9f, -12f);
