@@ -17,5 +17,11 @@ namespace WeDoALittleTrolling.Common.Configs
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DisableFishronSkipNerf;
+
+        [Header("Enemies")]
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableBurningSphereNerf;
     }
 }

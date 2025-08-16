@@ -36,6 +36,7 @@ using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Content.Projectiles.Minions;
 using WeDoALittleTrolling.Content.Items.Weapons;
 using WeDoALittleTrolling.Content.Tiles;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Content.NPCs
 {
@@ -209,7 +210,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             if (Main.getGoodWorld)
             {
-                if (npc.type == NPCID.BurningSphere && npc.dontTakeDamage)
+                if (npc.type == NPCID.BurningSphere && npc.dontTakeDamage && !ModContent.GetInstance<WDALTServerConfig>().DisableBurningSphereNerf)
                 {
                     npc.dontTakeDamage = false;
                 }

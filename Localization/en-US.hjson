@@ -917,7 +917,11 @@ Mods: {
 
 			WDALTServerConfig: {
 				DisplayName: Server Configuration
-				Headers.Items: Items
+
+				Headers: {
+					Items: Items
+					Enemies: Enemies
+				}
 
 				NoWingsChallenge: {
 					Label: Enable No Wings Challenge
@@ -927,6 +931,11 @@ Mods: {
 				DisableFishronSkipNerf: {
 					Label: Disable Fishron Skip Nerf
 					Tooltip: Disables nerfing Duke Fishron Weapons if the appropriate progression stage is not yet reached.
+				}
+
+				DisableBurningSphereNerf: {
+					Label: Disable Burning Sphere Nerf
+					Tooltip: Disables making Burning Spheres destroyable in "for the worthy" worlds.
 				}
 			}
 		}
