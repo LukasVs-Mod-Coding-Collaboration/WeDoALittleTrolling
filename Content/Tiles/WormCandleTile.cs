@@ -20,6 +20,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -38,7 +39,13 @@ namespace WeDoALittleTrolling.Content.Tiles
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             AddToArray(ref TileID.Sets.DrawFlipMode);
             TileID.Sets.InteractibleByNPCs[Type] = true;
-            TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.ShadowCandle, 0));
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
+            TileObjectData.newTile.DrawFlipHorizontal = true; // Unlike vanilla lamps, this lamp alternates direction, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs for more information.
+            //TileObjectData.newTile.StyleLineSkip = 2;
+            TileObjectData.newTile.DrawYOffset = 2;
+            TileObjectData.newTile.WaterDeath = true;
+            TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
+            TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
         }
 
