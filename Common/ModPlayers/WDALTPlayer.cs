@@ -432,8 +432,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 if (hasLifeforceEngine && lifeforceEngineCooldown <= 0 && player.statLife < player.statLifeMax2)
                 {
                     lifeforceEngineTicks = 300;
-                    lifeforceEngineCooldown = 7500;
+                    lifeforceEngineCooldown = 5400;
                     lifeforceEngineActivated = false;
+                    player.AddBuff(ModContent.BuffType<LifeforceEngineBuff>(), 300, true);
                     for (int i = 0; i < 60; i++)
                     {
                         int rMax = (int)player.width;
@@ -459,8 +460,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             }
             if (lifeforceEngineTicks > 0)
             {
-                player.lifeRegen += Math.Abs(player.statDefense);
-                player.statDefense -= Math.Abs(player.statDefense);
+                player.lifeRegen += Math.Abs(player.statDefense) * 2;
+                player.statDefense -= Math.Abs(player.statDefense);               
             }
             if (acceleratedStack > 0)
             {

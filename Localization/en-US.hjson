@@ -15,7 +15,7 @@ Mods: {
 					'''
 					Transform all defense into health
 					regeneration for 5 seconds. Has a
-					two minute cooldown.
+					one and a half minute cooldown.
 					'''
 			}
 
@@ -814,6 +814,11 @@ Mods: {
 					Damage reduced by 30% and losing life
 					"If only there was a way to suppress this..."
 					'''
+			}
+
+			LifeforceEngineBuff: {
+				DisplayName: Lifeforce Engine
+				Description: Defense is converted to regeneration.
 			}
 
 			SorcerousMirrorBuff: {

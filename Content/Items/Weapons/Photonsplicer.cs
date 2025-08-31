@@ -16,6 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+/*
+
 using WeDoALittleTrolling.Content.Projectiles;
 using System;
 using Terraria;
@@ -66,12 +68,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
             return null;
         }
-
-        /*
-        public override void AddRecipes() {
-            CreateRecipe()
-                .Register();
-        }
-        */
     }
 }
+
+*/

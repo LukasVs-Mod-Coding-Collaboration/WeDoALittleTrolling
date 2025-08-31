@@ -48,7 +48,7 @@ namespace WeDoALittleTrolling.Content.Items
             Item.UseSound = SoundID.Item2;
 
             Item.buffType = BuffID.WellFed2; //Buff type on use
-            Item.buffTime = 18000; //60 value = 1 Second
+            Item.buffTime = 10800; //60 value = 1 Second
 
             Item.rare = ItemRarityID.Blue;
         }
