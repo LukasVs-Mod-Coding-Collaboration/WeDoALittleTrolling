@@ -51,7 +51,10 @@ namespace WeDoALittleTrolling.Content.Tiles
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            WDALTSceneMetrics.HasWormCandle = true;
+            if (!closer)
+            {
+                WDALTSceneMetrics.HasWormCandle = true;
+            }
         }
     }
 }
