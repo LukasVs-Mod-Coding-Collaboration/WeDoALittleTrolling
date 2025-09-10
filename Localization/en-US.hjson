@@ -527,6 +527,16 @@ Mods: {
 					affected by attack speed
 					'''
 			}
+
+			EmbersteelBlade: {
+				DisplayName: Embersteel Blade
+				Tooltip:
+					'''
+					Attacks charge up a powerful recursive cluster explosion
+					Attacks against bosses add twice as many charges
+					Right click to unleash an explosion once you gained 4 charges
+					'''
+			}
 		}
 
 		Projectiles: {
@@ -554,6 +564,7 @@ Mods: {
 			FreedomRound.DisplayName: Freedom Round
 			WretchStaffProjectile.DisplayName: Adamantite Wretch
 			HomingBeamLaser.DisplayName: Homing Beam Laser
+			EmbersteelExplosion.DisplayName: Embersteel Explosion
 		}
 
 		Prefixes: {
