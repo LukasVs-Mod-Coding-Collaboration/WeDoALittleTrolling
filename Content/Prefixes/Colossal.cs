@@ -147,8 +147,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
             ItemID.TitaniumWaraxe,
             ItemID.AdamantiteWaraxe,
             ModContent.ItemType<HallowedDisintegrationBlade>(),
-            ModContent.ItemType<LittleBlue>()
-        };
+            ModContent.ItemType<LittleBlue>(),
+            ModContent.ItemType<EmbersteelBlade>()
+    };
         public static readonly int[] CompatibleProjectileIDs =
         {
             ProjectileID.EnchantedBeam,

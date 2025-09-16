@@ -533,8 +533,7 @@ Mods: {
 				Tooltip:
 					'''
 					Attacks charge up a powerful recursive cluster explosion
-					Attacks against bosses add twice as many charges
-					Right click to unleash an explosion once you gained 4 charges
+					Right click to unleash an explosion once you gained 5 charges
 					'''
 			}
 		}
@@ -565,6 +564,7 @@ Mods: {
 			WretchStaffProjectile.DisplayName: Adamantite Wretch
 			HomingBeamLaser.DisplayName: Homing Beam Laser
 			EmbersteelExplosion.DisplayName: Embersteel Explosion
+			EmbersteelShockwave.DisplayName: Embersteel Shockwave
 		}
 
 		Prefixes: {

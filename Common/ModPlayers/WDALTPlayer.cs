@@ -88,6 +88,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public bool cornEmblem;
         public bool heartSeekerCharm;
         public bool tungstenThornNecklace;
+        public bool isEmbersteelExplosionActive;
+        public int embersteelBladeCharges;
+        public int embersteelExplosionTicks;
+        public Item embersteelExplosionSourceItem;
+        public int embersteelExplosionDamage;
+        public float embersteelExplosionKnockback;
         public static UnifiedRandom random = new UnifiedRandom();
 
         public override void Initialize()
@@ -136,6 +142,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             cornEmblem = false;
             heartSeekerCharm = false;
             tungstenThornNecklace = false;
+            isEmbersteelExplosionActive = false;
+            embersteelBladeCharges = 0;
+            embersteelExplosionTicks = 0;
+            embersteelExplosionSourceItem = null;
+            embersteelExplosionDamage = 0;
+            embersteelExplosionKnockback = 0f;
         }
 
         public override void UpdateDead()
@@ -211,6 +223,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             cornEmblem = false;
             heartSeekerCharm = false;
             tungstenThornNecklace = false;
+            isEmbersteelExplosionActive = false;
+            embersteelBladeCharges = 0;
+            embersteelExplosionTicks = 0;
+            embersteelExplosionSourceItem = null;
+            embersteelExplosionDamage = 0;
+            embersteelExplosionKnockback = 0f;
         }
 
         public override void ResetEffects()
@@ -302,6 +320,177 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             if (lifeforceEngineCooldown > 0)
             {
                 lifeforceEngineCooldown--;
+            }
+            if (isEmbersteelExplosionActive)
+            {
+                if (embersteelExplosionTicks > 0)
+                {
+                    if (player.whoAmI == Main.myPlayer && embersteelExplosionSourceItem != null)
+                    {
+                        if (embersteelExplosionTicks == 60)
+                        {
+                            Projectile.NewProjectileDirect
+                            (
+                                new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                player.Center,
+                                Vector2.Zero,
+                                ModContent.ProjectileType<EmbersteelExplosion>(),
+                                (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                            );
+                        }
+                        if (embersteelExplosionTicks == 54)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 45f, player.Center.Y);
+                            for (int i = 0; i < 8; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 4.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 48)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 90f, player.Center.Y);
+                            for (int i = 0; i < 8; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 4.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 42)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 135f, player.Center.Y);
+                            for (int i = 0; i < 8; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 4.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 36)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 180f, player.Center.Y);
+                            for (int i = 0; i < 16; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 8.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 30)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 225f, player.Center.Y);
+                            for (int i = 0; i < 16; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 8.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 24)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 270f, player.Center.Y);
+                            for (int i = 0; i < 16; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 8.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 18)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 315f, player.Center.Y);
+                            for (int i = 0; i < 32; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 16.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 12)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 360f, player.Center.Y);
+                            for (int i = 0; i < 32; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 16.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        if (embersteelExplosionTicks == 6)
+                        {
+                            Vector2 pos = new Vector2(player.Center.X + 405f, player.Center.Y);
+                            for (int i = 0; i < 32; i++)
+                            {
+                                Projectile.NewProjectileDirect
+                                (
+                                    new EntitySource_ItemUse(player, embersteelExplosionSourceItem),
+                                    pos.RotatedBy((double)i * Math.PI / 16.0, player.Center),
+                                    Vector2.Zero,
+                                    ModContent.ProjectileType<EmbersteelExplosion>(),
+                                    (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                );
+                            }
+                        }
+                        embersteelExplosionTicks--;
+                    }
+                }
+                else
+                {
+                    embersteelExplosionTicks = 0;
+                    isEmbersteelExplosionActive = false;
+                }
             }
             base.PostUpdate();
         }

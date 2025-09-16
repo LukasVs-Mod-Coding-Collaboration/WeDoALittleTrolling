@@ -28,15 +28,14 @@ using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Content.Items.Placeable;
 using WeDoALittleTrolling.Common.ModSystems;
 using System.Linq;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class EmbersteelBlade : ModItem
     {
-        public const int maxCharges = 4;
+        public const int maxCharges = 5;
         public static UnifiedRandom rnd = new UnifiedRandom();
-        public int charges = 0;
-        public bool isExploding = false;
 
         public override void SetStaticDefaults()
         {
@@ -53,231 +52,45 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.value = Item.buyPrice(gold: 25);
             Item.maxStack = 1;
 
-            Item.useTime = 15;
-            Item.useAnimation = 15;
-            Item.scale = 2.5f;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.scale = 1f;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTurn = false;
             Item.UseSound = SoundID.Item1;
 
             Item.damage = 75;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 8f;
+            Item.shoot = ModContent.ProjectileType<EmbersteelShockwave>();
+            Item.noMelee = true;
+            Item.shootsEveryUse = true;
+            Item.autoReuse = true;
 
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.LightPurple;
+        }
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float adjustedItemScale = player.GetAdjustedItemScale(Item);
+            Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale);
+            NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
+
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
 
         public override bool AltFunctionUse(Player player) // Woohoo Tornado Launch! (not yet implemented)
         {
-            if (charges >= maxCharges && !isExploding)
+            WDALTPlayer p = player.GetModPlayer<WDALTPlayer>();
+            if (p.embersteelBladeCharges >= maxCharges && !p.isEmbersteelExplosionActive)
             {
-                Projectile.NewProjectileDirect
-                (
-                    new EntitySource_ItemUse(player, Item),
-                    player.Center,
-                    Vector2.Zero,
-                    ModContent.ProjectileType<EmbersteelExplosion>(),
-                    Item.damage,
-                    Item.knockBack
-                );
-                charges = 60;
-                isExploding = true;
+                p.embersteelBladeCharges = 0;
+                p.embersteelExplosionSourceItem = Item;
+                p.embersteelExplosionDamage = Item.damage;
+                p.embersteelExplosionKnockback = Item.knockBack;
+                p.embersteelExplosionTicks = 60;
+                p.isEmbersteelExplosionActive = true;
             }
             return false;
-        }
-
-        public override void UpdateInventory(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (isExploding && charges > 0)
-                {
-                    if (charges == 54)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 45f, player.Center.Y);
-                        for (int i = 0; i < 8; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 4.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 48)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 90f, player.Center.Y);
-                        for (int i = 0; i < 8; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 4.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 42)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 135f, player.Center.Y);
-                        for (int i = 0; i < 8; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 4.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 36)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 180f, player.Center.Y);
-                        for (int i = 0; i < 16; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 8.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 30)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 225f, player.Center.Y);
-                        for (int i = 0; i < 16; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 8.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 24)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 270f, player.Center.Y);
-                        for (int i = 0; i < 16; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 8.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 18)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 315f, player.Center.Y);
-                        for (int i = 0; i < 32; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 16.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 12)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 360f, player.Center.Y);
-                        for (int i = 0; i < 32; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 16.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    if (charges == 6)
-                    {
-                        Vector2 pos = new Vector2(player.Center.X + 405f, player.Center.Y);
-                        for (int i = 0; i < 32; i++)
-                        {
-                            Projectile.NewProjectileDirect
-                            (
-                                new EntitySource_ItemUse(player, Item),
-                                pos.RotatedBy((double)i * Math.PI / 16.0, player.Center),
-                                Vector2.Zero,
-                                ModContent.ProjectileType<EmbersteelExplosion>(),
-                                Item.damage,
-                                Item.knockBack
-                            );
-                        }
-                    }
-                    charges--;
-                }
-                if (isExploding && charges <= 0)
-                {
-                    isExploding = false;
-                    charges = 0;
-                }
-            }
-            base.UpdateInventory(player);
-        }
-
-        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            if (charges < maxCharges && !isExploding && (!target.active || target.CanBeChasedBy()))
-            {
-                charges++;
-                if (target.boss || WDALTImmunitySystem.BossNPCIDWhitelist.Contains(target.type))
-                {
-                    charges++;
-                }
-                if (charges >= maxCharges)
-                {
-                    for (int i = 0; i < 120; i++)
-                    {
-                        int rMax = (int)player.width;
-                        double r = rMax * Math.Sqrt(rnd.NextDouble());
-                        double angle = rnd.NextDouble() * 2 * Math.PI;
-                        int xOffset = (int)Math.Round(r * Math.Cos(angle));
-                        int yOffset = (int)Math.Round(r * Math.Sin(angle));
-                        Vector2 dustPosition = player.Center;
-                        dustPosition.X += xOffset;
-                        dustPosition.Y += yOffset;
-                        Vector2 dustVelocity = new Vector2((rnd.NextFloat() - 0.5f), (rnd.NextFloat() - 0.5f));
-                        dustVelocity = dustVelocity.SafeNormalize(Vector2.Zero);
-                        dustVelocity *= 15f;
-                        Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Lava, dustVelocity, 0, default);
-                        newDust.noGravity = true;
-                    }
-                    SoundEngine.PlaySound(SoundID.Item74, player.Center);
-                }
-            }
-            base.OnHitNPC(player, target, hit, damageDone);
         }
 
         public override void AddRecipes()

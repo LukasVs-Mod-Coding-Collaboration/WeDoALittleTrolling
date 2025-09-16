@@ -46,24 +46,20 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.hostile = false;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 28;
+            Projectile.usesLocalNPCImmunity = false;
+            Projectile.localNPCHitCooldown = -2;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 28;
             Projectile.light = 0.9f;
             this.DrawOffsetX = -4;
             this.DrawOriginOffsetX = 0f;
             this.DrawOriginOffsetY = -4;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            Projectile.damage = Projectile.damage / 5;
-            base.OnHitNPC(target, hit, damageDone);
-        }
-
         public override void AI()
         {
             AI_001_SimpleBullet();
-            if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient) && Projectile.timeLeft % 30 == 28)
+            if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient) && Projectile.timeLeft == 28)
             {
                 SoundEngine.PlaySound(SoundID.Item62, Projectile.Center);
             }
