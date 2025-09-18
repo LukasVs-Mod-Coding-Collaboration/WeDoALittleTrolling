@@ -261,7 +261,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "Bungalay, bungalow make up your " + player.name + " and tell me no.",
                 "Well it's nine o'clock and it's getting dark and the " + player.name + " is falling from the sky.",
                 player.name + " left the stage of time with no answers to no questions.",
-                player.name + "was wished a bad odding."      
+                player.name + "was wished a bad odding.",
+                "If this mirror were clear, " + player.name + " would be standing so tall."
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
@@ -347,7 +348,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "Does " + Main.npc[damageSource.SourceNPCIndex].FullName + " want a " + player.name + "? Peel it down and go \"Mm-mmm mm-mmm\".",
                     "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s seem to know where " + player.name + " wants them to go, igniting a spark in their mind. So they circle and fly.",
                     "You told me to buy a " + Main.npc[damageSource.SourceNPCIndex].FullName + ", but all I wanted was " + player.name + ".",
-                    Main.npc[damageSource.SourceNPCIndex].FullName + " undercover, " + player.name + "'s health points obscene."
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " undercover, " + player.name + "'s health points obscene.",
+                    player.name + " practices their " + Main.npc[damageSource.SourceNPCIndex] + "isms into the wall."
                 };
 
                 if (random.NextBool(15))
