@@ -16,29 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 using Terraria;
-using Terraria.Utilities;
-using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
-using WeDoALittleTrolling.Content.Prefixes;
-using WeDoALittleTrolling.Content.Items;
-using WeDoALittleTrolling.Content.Buffs;
-using WeDoALittleTrolling.Content.Items.Accessories;
-using SteelSeries.GameSense;
-using WeDoALittleTrolling.Content.Projectiles;
-using WeDoALittleTrolling.Common.ModSystems;
-using WeDoALittleTrolling.Content.NPCs;
-using log4net.Core;
-using Terraria.ModLoader.Core;
 using Terraria.Localization;
-using System.Reflection;
+using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -231,7 +216,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " made a minor spelling mistake. I win.",
                 player.name + " got Elden Ring-style backstabbed.",
                 player.name + " has been foiled again.",
-                player.name + " lagged, trust me!",
                 "Surely there was nothing " + player.name + " could have done to avoid that.",
                 "The allegations against " + player.name + " turned out to be true.",
                 "Why did " + player.name + " cross the river Styx? Weed eater.",
@@ -268,7 +252,16 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "Hello? Is anybody there? Someone who might be interested in rescuing the great " + player.name + "?",
                 "[" + player.name + "]!!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!",
                 player.name + " was enlightened to the lies of Big Oxygen.",
-                "I caught a little "+ player.name + ", Batman, I caught a little " + player.name + "!"
+                "I caught a little "+ player.name + ", Batman, I caught a little " + player.name + "!",
+                player.name + " has a good heart, albeit insane; Condemn them to the infirmary.",
+                player.name + " was paid their monthly salary of 27.6 wells.",
+                player.name + " must away!",
+                player.name + " has been living a lie, a metamorphical scheme.",
+                player.name + " did not resist the temptation of Michael.",
+                "Bungalay, bungalow make up your " + player.name + " and tell me no.",
+                "Well it's nine o'clock and it's getting dark and the " + player.name + " is falling from the sky.",
+                player.name + " left the stage of time with no answers to no questions.",
+                player.name + "was wished a bad odding."      
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
@@ -325,9 +318,36 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     Main.npc[damageSource.SourceNPCIndex].FullName + ", may I have some " + player.name + "s? I am STARVING, " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s demand repentance! Cough up your " + player.name + ", all of it!",
                     "Would you rather fight 10 " + Main.npc[damageSource.SourceNPCIndex].FullName + " sized " + player.name + "s or 50 " + player.name + " sized " + Main.npc[damageSource.SourceNPCIndex].FullName + "s?",
-                    player.name + " understands, mechanical " + Main.npc[damageSource.SourceNPCIndex].FullName + "s are the ruler of everything in the end."
-
-
+                    player.name + " understands, mechanical " + Main.npc[damageSource.SourceNPCIndex].FullName + "s are the ruler of everything in the end.",
+                    "If " + player.name + " wishes to defeat " + Main.npc[damageSource.SourceNPCIndex].FullName + ", they will need to train for another " + player.numberOfDeathsPVE + " years.",
+                    "All the " + Main.npc[damageSource.SourceNPCIndex].FullName + "s in the tree, chant a tune to let " + player.name + " free.",
+                    player.name + " danced around the flame and got to play the " + Main.npc[damageSource.SourceNPCIndex].FullName + " game.",
+                    "Inside " + player.name + " there are two " + Main.npc[damageSource.SourceNPCIndex].FullName + "s.",
+                    "The " + player.name + " is gone, taken for a ride. Far away from " + Main.npc[damageSource.SourceNPCIndex].FullName + ", no longer left inside.",
+                    "Welcome to punch the " + player.name + ", this game is sponsored by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + " has come to the conclusion that they love and the hate " + Main.npc[damageSource.SourceNPCIndex].FullName + " and they cannot change it, so they must replace it.",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " was the second worst thing to ever happen to " + player.name + ".",
+                    "Like a bumbling dragon " + Main.npc[damageSource.SourceNPCIndex].FullName + " flies, scraping " + player.name + " on the skies.",
+                    "Kill all its " + player.name + "s, wonder about no things, circles and " + Main.npc[damageSource.SourceNPCIndex].FullName + "s in mind.",
+                    "Do you want a " + Main.npc[damageSource.SourceNPCIndex].FullName + "? This " + Main.npc[damageSource.SourceNPCIndex].FullName + " for " + player.name + ".",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "didn't start the bonfire of the vanities, but it's throwing in our " + player.name + "s and our humanities.",
+                    player.name + " has another word to sell, another story to tell, another " + Main.npc[damageSource.SourceNPCIndex].FullName + " ringing the bell.",
+                    "You either die a " + player.name + " or live long enough to see yourself become the " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "I can’t wait, when are they gonna open up that door? " + player.name + " is going (yes they’re) going, really going to the " + Main.npc[damageSource.SourceNPCIndex].FullName + " store!",
+                    player.name + " happens to have died next to three " + Main.npc[damageSource.SourceNPCIndex].FullName + "s in a trenchoat.",
+                    "What a sight, a " + Main.npc[damageSource.SourceNPCIndex].FullName + " true if ever one there was! A fellow " + player.name + " warrior!",
+                    "If special " + player.name + " then only " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " deniers be like: Must have been the uhhh um the uhh...",
+                    "One secondary " + Main.npc[damageSource.SourceNPCIndex].FullName + ", to go that extra mile, to make " + player.name + " feel today, to make them go away.",
+                    "Without a " + Main.npc[damageSource.SourceNPCIndex].FullName + " or a rhyme, " + player.name + " does not banana all the time.",
+                    "Tomorrow morning on the plane, " + Main.npc[damageSource.SourceNPCIndex].FullName + " makes " + player.name + " go insane.",
+                    "Of course " + Main.npc[damageSource.SourceNPCIndex].FullName + " would deal 2 masks of damage to " + player.name + ".",
+                    "I wonder whether "+ player.name + " wonders if " + Main.npc[damageSource.SourceNPCIndex].FullName + " ever wonders, ever wonders.",
+                    player.name + "thinks their answer isn't real, it's just a picture, of a " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "Does " + Main.npc[damageSource.SourceNPCIndex].FullName + " want a " + player.name + "? Peel it down and go \"Mm-mmm mm-mmm\".",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s seem to know where " + player.name + " wants them to go, igniting a spark in their mind. So they circle and fly.",
+                    "You told me to buy a " + Main.npc[damageSource.SourceNPCIndex].FullName + ", but all I wanted was " + player.name + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " undercover, " + player.name + "'s health points obscene."
                 };
 
                 if (random.NextBool(15))
