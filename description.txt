@@ -1,45 +1,30 @@
-This mod is a project my brother and I work on whenever we feel like it, so... sorry if there's active maintainance.
-It mostly changes things we dislike about the game and and adds a few new features, small changes were made to most bosses as well.
-Please keep in mind that this mod was made just for fun and might not be very balanced or serious at times.
+Mod created by my brother and I to add a few silly things and make some minor tweaks to the vanilla game. 
+As this is purely a passion project, it will not be updated and worked on consistently,
+and its sense of humor is not tailored to mainstream or in some cases conventionally sane audiences. 
+Cinfu and affiliates are not liable for anyone possibly offended or perplexed by the death messages. 
 
 Source Code available at: https://github.com/LukasVs-Mod-Coding-Collaboration/WeDoALittleTrolling
 
 
 List of additions and changes the mod might include:
--A bunch of new items for combat and exploration
--A lot of reforges (Varying degrees of usefulness)
--Tons stat balance changes to bosses and Items
+-A few new accessories and weapons
+-A classless set of defense focused armor
+-Various reforges with sometimes unique effects
+-Minor balance changes to some items and bosses
 -AI changes to some enemies to go along with this
--A few progression blockers to encourage exploration
 -Buffs to fishing
--Debuffs inflicted by powerful enemies and bosses to prevent cheese
--Changes to the generation of the underground ice biome
+-Changes to the generation of the underground for better caving
 -Disabled world evil creeping and non-consumable boss summons
--Rare absurd death messages which have a small chance to replace vanilla ones
+-A set of absurd death messages that I should add a config for
 
-
-This Mod features compatibility/crossover features with Thorium Mod:
-- Increased damage for Thorium Classes
-- Increased health for Thorium Bosses
-- Thorium Hardmode Bosses inflict debuffs that prevent cheesing in master mode as well
-- Special adjustments to the Primordials and Lich to increase difficulty
-- Exclusive Beam Laser Weapons that are only accessible when playing with Thorium Mod
-Before making any Thorium Mod bug reports, please always disable WeDoALittleTrolling first!
-
-This Mod features compatibility/crossover features with Consolaria Mod:
-- Vampire Miners can drop Yellow Crystals like regular Miner Skeletons can
-
-This Mod features compatibility/crossover features with Spirit Mod:
-- Spirit Hardmode Bosses inflict debuffs that prevent cheesing in master mode as well
-
-This Mod features compatibility/crossover features with Spooky Mod:
-- Spooky Hardmode Bosses inflict debuffs that prevent cheesing in master mode as well
+Thanks to DarkWav there are also some minor adjustments to and compatibility with Thorium content,
+which are, however, not remarkable enough to elaborate on here. 
 
 Credits:
 - Thorium Mod [DivermanSam] (Insipration for some weapon names, Cross Content/Compatibility)
 - Example Mod [tModLoader Team] (Code Examples, certain parts of code)
 - tModLoader [tModLoader Team] (Modding Framework and API)
 - Terraria [Re-Logic] (The game itself)
-- Kiwi Alforde on Reddit (Concept/Idea for the Eater of Sticks)
 
-(Rest in peace Alexander "Technoblade" you will be sincerely missed.)
+
+(Cinfu's note: Rest in peace Alexander "Technoblade", you will be missed sincerely.)
