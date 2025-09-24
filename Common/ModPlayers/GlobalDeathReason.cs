@@ -259,9 +259,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " has been living a lie, a metamorphical scheme.",
                 player.name + " did not resist the temptation of Michael.",
                 "Bungalay, bungalow make up your " + player.name + " and tell me no.",
-                "Well it's nine o'clock and it's getting dark and the " + player.name + " is falling from the sky.",
+                "Well it's nine o'clock and it's getting dark and " + player.name + " is falling from the sky.",
                 player.name + " left the stage of time with no answers to no questions.",
-                player.name + "was wished a bad odding.",
+                player.name + " was wished a bad odding.",
                 "If this mirror were clear, " + player.name + " would be standing so tall."
             };
 
@@ -331,7 +331,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "Like a bumbling dragon " + Main.npc[damageSource.SourceNPCIndex].FullName + " flies, scraping " + player.name + " on the skies.",
                     "Kill all its " + player.name + "s, wonder about no things, circles and " + Main.npc[damageSource.SourceNPCIndex].FullName + "s in mind.",
                     "Do you want a " + Main.npc[damageSource.SourceNPCIndex].FullName + "? This " + Main.npc[damageSource.SourceNPCIndex].FullName + " for " + player.name + ".",
-                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "didn't start the bonfire of the vanities, but it's throwing in our " + player.name + "s and our humanities.",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + " didn't start the bonfire of the vanities, but it's throwing in our " + player.name + "s and our humanities.",
                     player.name + " has another word to sell, another story to tell, another " + Main.npc[damageSource.SourceNPCIndex].FullName + " ringing the bell.",
                     "You either die a " + player.name + " or live long enough to see yourself become the " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     "I can’t wait, when are they gonna open up that door? " + player.name + " is going (yes they’re) going, really going to the " + Main.npc[damageSource.SourceNPCIndex].FullName + " store!",
@@ -346,7 +346,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "I wonder whether "+ player.name + " wonders if " + Main.npc[damageSource.SourceNPCIndex].FullName + " ever wonders, ever wonders.",
                     player.name + "thinks their answer isn't real, it's just a picture, of a " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     "Does " + Main.npc[damageSource.SourceNPCIndex].FullName + " want a " + player.name + "? Peel it down and go \"Mm-mmm mm-mmm\".",
-                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s seem to know where " + player.name + " wants them to go, igniting a spark in their mind. So they circle and fly.",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s seem to know where " + player.name + " needs them to go, igniting a spark in their mind, so they circle and fly.",
                     "You told me to buy a " + Main.npc[damageSource.SourceNPCIndex].FullName + ", but all I wanted was " + player.name + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " undercover, " + player.name + "'s health points obscene.",
                     player.name + " practices their " + Main.npc[damageSource.SourceNPCIndex] + "isms into the wall."
