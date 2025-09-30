@@ -34,16 +34,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision += IL_Player_Update_NPCCollision;
-            IL_WorldGen.UpdateWorld_OvergroundTile += IL_WorldGen_UpdateWorld_OvergroundTile;
-            IL_WorldGen.UpdateWorld_UndergroundTile += IL_WorldGen_UpdateWorld_UndergroundTile;
         }
 
         public static void UnregisterILHooks()
         {
             IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision -= IL_Player_Update_NPCCollision;
-            IL_WorldGen.UpdateWorld_OvergroundTile -= IL_WorldGen_UpdateWorld_OvergroundTile;
-            IL_WorldGen.UpdateWorld_UndergroundTile -= IL_WorldGen_UpdateWorld_UndergroundTile;
         }
 
         public static void IL_NPC_AI_037_Destroyer(ILContext intermediateLanguageContext)
@@ -191,66 +187,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(successInjectBossImmunityHook)
             {
                 WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Boss Immunity Hook via IL Editing.");
-            }
-        }
-
-        public static void IL_WorldGen_UpdateWorld_OvergroundTile(ILContext intermediateLanguageContext)
-        {
-            bool successInjectPlantOvergroundHook = true;
-            try
-            {
-                ILCursor cursor = new ILCursor(intermediateLanguageContext);
-                cursor.GotoNext(i => i.MatchLdcI4(3000));
-                cursor.Index++;
-                cursor.GotoNext(i => i.MatchLdcI4(3000)); //Move to the position where the number 3000 is pushed onto the stack for RNG.
-                cursor.Index++; //Move after it now.
-                cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
-                int rngDenominator1 = 2; //Set 2 as the denominator for RNG. 1 in 2 chance = 50%
-                cursor.Emit(OpCodes.Ldc_I4, rngDenominator1); //Finally, push our denominator onto the stack instead.
-                cursor.GotoNext(i => i.MatchLdcI4(15000)); //Move to the position where the number 15000 is pushed onto the stack for RNG.
-                cursor.Index++; //Move after it now.
-                cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
-                int rngDenominator2 = 1; //Set 1 as the denominator for RNG. 1 in 1 chance = 100%
-                cursor.Emit(OpCodes.Ldc_I4, rngDenominator2); //Finally, push our denominator onto the stack instead.
-            }
-            catch
-            {
-                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
-                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Strange Plant Overground Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
-                successInjectPlantOvergroundHook = false;
-            }
-            if(successInjectPlantOvergroundHook)
-            {
-                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Strange Plant Overground Hook via IL Editing.");
-            }
-        }
-
-        public static void IL_WorldGen_UpdateWorld_UndergroundTile(ILContext intermediateLanguageContext)
-        {
-            bool successInjectPlantUndergroundHook = true;
-            try
-            {
-                ILCursor cursor = new ILCursor(intermediateLanguageContext);
-                cursor.GotoNext(i => i.MatchLdcI4(2500)); //Move to the position where the number 2500 is pushed onto the stack for RNG.
-                cursor.Index++; //Move after it now.
-                cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
-                int rngDenominator1 = 2; //Set 2 as the denominator for RNG. 1 in 2 chance = 50%
-                cursor.Emit(OpCodes.Ldc_I4, rngDenominator1); //Finally, push our denominator onto the stack instead.
-                cursor.GotoNext(i => i.MatchLdcI4(10000)); //Move to the position where the number 10000 is pushed onto the stack for RNG.
-                cursor.Index++; //Move after it now.
-                cursor.Emit(OpCodes.Pop); //Pop Terrarias RNG chance denominator 15000 off the stack.
-                int rngDenominator2 = 1; //Set 1 as the denominator for RNG. 1 in 1 chance = 100%
-                cursor.Emit(OpCodes.Ldc_I4, rngDenominator2); //Finally, push our denominator onto the stack instead.
-            }
-            catch
-            {
-                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
-                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Strange Plant Underground Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
-                successInjectPlantUndergroundHook = false;
-            }
-            if(successInjectPlantUndergroundHook)
-            {
-                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Strange Plant Underground Hook via IL Editing.");
             }
         }
     }
