@@ -1011,6 +1011,11 @@ Mods: {
 					Label: Disable Skeletron Prime Item Stealing
 					Tooltip: Prevents Skeletron Prime's Vice from stealing items when hitting players.
 				}
+
+				DisableForTheWorthyDefenseEffectivenessIncrease: {
+					Label: Disable Legendary Mode Defense Effectiveness Increase
+					Tooltip: Reduces base defense effectiveness from 125% back to 100% in "Legendary Mode" worlds.
+				}
 			}
 		}
 	}

@@ -56,7 +56,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 On_DontStarveDarknessDamageDealer.Update += On_DontStarveDarknessDamageDealer_Update;
             }
-            On_Player.VanillaBaseDefenseEffectiveness += On_Player_VanillaBaseDefenseEffectiveness;
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableForTheWorthyDefenseEffectivenessIncrease)
+            {
+                On_Player.VanillaBaseDefenseEffectiveness += On_Player_VanillaBaseDefenseEffectiveness;
+            }
             On_UIWorldCreation.ProcessSpecialWorldSeeds += On_UIWorldCreation_ProcessSpecialWorldSeeds;
             IL_WorldGen.GenerateWorld += IL_WorldGen_GenerateWorld;
         }
@@ -67,7 +70,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 On_DontStarveDarknessDamageDealer.Update -= On_DontStarveDarknessDamageDealer_Update;
             }
-            On_Player.VanillaBaseDefenseEffectiveness -= On_Player_VanillaBaseDefenseEffectiveness;
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableForTheWorthyDefenseEffectivenessIncrease)
+            {
+                On_Player.VanillaBaseDefenseEffectiveness -= On_Player_VanillaBaseDefenseEffectiveness;
+            }
             On_UIWorldCreation.ProcessSpecialWorldSeeds -= On_UIWorldCreation_ProcessSpecialWorldSeeds;
             IL_WorldGen.GenerateWorld -= IL_WorldGen_GenerateWorld;
         }

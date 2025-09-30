@@ -59,6 +59,9 @@ namespace WeDoALittleTrolling.Common.Configs
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DisableBossImmunityPatch;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableForTheWorthyDefenseEffectivenessIncrease;
 
         [Header("CustomSeeds")]
 
