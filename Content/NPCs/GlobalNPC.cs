@@ -428,35 +428,38 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.PrimeVice)
             {
-                /*if (!target.HeldItem.IsAir)
+                if (!ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeExtraAI)
                 {
-                    Item itemToDrop = target.HeldItem;
-                    target.TryDroppingSingleItem(target.GetSource_FromThis(), itemToDrop);
-                    SoundEngine.PlaySound(SoundID.Item71, target.position);
-                }
-                else
-                {
-                    int j = -1;
-                    if (!target.armor[0].IsAir)
+                    if (!target.HeldItem.IsAir)
                     {
-                        j = 0;
-                    }
-                    else if (!target.armor[1].IsAir)
-                    {
-                        j = 1;
-                    }
-                    else if (!target.armor[2].IsAir)
-                    {
-                        j = 2;
-                    }
-                    if (j >= 0)
-                    {
-                        Item itemToDrop = target.armor[j];
+                        Item itemToDrop = target.HeldItem;
                         target.TryDroppingSingleItem(target.GetSource_FromThis(), itemToDrop);
                         SoundEngine.PlaySound(SoundID.Item71, target.position);
                     }
-                }*/
-                SoundEngine.PlaySound(SoundID.Item71, target.position);
+                    else
+                    {
+                        int j = -1;
+                        if (!target.armor[0].IsAir)
+                        {
+                            j = 0;
+                        }
+                        else if (!target.armor[1].IsAir)
+                        {
+                            j = 1;
+                        }
+                        else if (!target.armor[2].IsAir)
+                        {
+                            j = 2;
+                        }
+                        if (j >= 0)
+                        {
+                            Item itemToDrop = target.armor[j];
+                            target.TryDroppingSingleItem(target.GetSource_FromThis(), itemToDrop);
+                            SoundEngine.PlaySound(SoundID.Item71, target.position);
+                        }
+                    }
+                    SoundEngine.PlaySound(SoundID.Item71, target.position);
+                }
             }
             if (npc.type == NPCID.PrimeSaw)
             {

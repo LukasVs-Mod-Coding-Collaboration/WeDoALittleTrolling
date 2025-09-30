@@ -24,6 +24,7 @@ using System;
 using WeDoALittleTrolling.Common.Utilities;
 using Terraria.ID;
 using System.Linq;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -48,6 +49,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void IL_NPC_AI_037_Destroyer(ILContext intermediateLanguageContext)
         {
             bool successInjectDestroyerAIHook = true;
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableTheDestroyerExtraAI)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Destroyer AI Hook is disabled in the server configuration, skipping injection...");
+                return;
+            }
             try
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
@@ -144,6 +150,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void IL_Player_Update_NPCCollision(ILContext intermediateLanguageContext)
         {
             bool successInjectBossImmunityHook = true;
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableBossImmunityPatch)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Boss Immunity Hook is disabled in the server configuration, skipping injection...");
+                return;
+            }
             try
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);

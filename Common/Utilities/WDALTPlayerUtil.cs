@@ -35,6 +35,7 @@ using SteelSeries.GameSense;
 using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.NPCs;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -116,7 +117,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         //Other relevent code is found in WDALTNetworkingSystem
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            if(Main.netMode == NetmodeID.MultiplayerClient && modifiers.PvP)
+            if(!ModContent.GetInstance<WDALTServerConfig>().DisableSmartPvP && Main.netMode == NetmodeID.MultiplayerClient && modifiers.PvP)
             {
                 if(player.whoAmI != Main.myPlayer)
                 {
@@ -128,7 +129,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         
         public override void PostHurt(Player.HurtInfo info)
         {
-            if(Main.netMode == NetmodeID.MultiplayerClient && info.PvP)
+            if(!ModContent.GetInstance<WDALTServerConfig>().DisableSmartPvP && Main.netMode == NetmodeID.MultiplayerClient && info.PvP)
             {
                 if(player.whoAmI == Main.myPlayer)
                 {

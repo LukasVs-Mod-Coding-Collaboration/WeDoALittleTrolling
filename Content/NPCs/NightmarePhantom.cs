@@ -25,6 +25,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.Configs;
 using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Content.Buffs;
@@ -169,6 +170,10 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableCustomTheConstant)
+            {
+                return base.SpawnChance(spawnInfo);
+            }
             if
             (
                 Main.dontStarveWorld &&
@@ -177,7 +182,8 @@ namespace WeDoALittleTrolling.Content.NPCs
                     (
                         !Main.IsItDay() &&
                         !WDALTPlayerUtil.IsBossActive() &&
-                        !spawnInfo.Player.GetModPlayer<WDALTPlayerUtil>().IsBehindHousingWall() &&
+                        spawnInfo.Player.TryGetModPlayer<WDALTPlayerUtil>(out WDALTPlayerUtil util) &&
+                        !util.IsBehindHousingWall() &&
                         !spawnInfo.PlayerInTown &&
                         spawnInfo.Player.ZoneOverworldHeight &&
                         Main.moonPhase != 0 &&

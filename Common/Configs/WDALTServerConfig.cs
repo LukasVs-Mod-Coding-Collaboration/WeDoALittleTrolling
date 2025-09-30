@@ -8,6 +8,12 @@ namespace WeDoALittleTrolling.Common.Configs
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
 
+        [Header("Chat")]
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableCustomDeathMessages;
+
         [Header("Items")]
 
         [DefaultValue(false)]
@@ -23,5 +29,38 @@ namespace WeDoALittleTrolling.Common.Configs
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DisableBurningSphereNerf;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableTheDestroyerExtraAI;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableSkeletronPrimeExtraAI;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisablePlanteraExtraAI;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableGolemExtraAI;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableEaterOfWorldsExtraAI;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableLunaticCultistExtraAI;
+
+        [Header("Combat")]
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableSmartPvP;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableBossImmunityPatch;
+
+        [Header("CustomSeeds")]
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableCustomTheConstant;
     }
 }

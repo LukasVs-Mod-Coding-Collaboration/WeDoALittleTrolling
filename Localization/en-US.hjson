@@ -937,6 +937,9 @@ Mods: {
 				Headers: {
 					Items: Items
 					Enemies: Enemies
+					Combat: Combat
+					CustomSeeds: Custom Seeds
+					Chat: Chat
 				}
 
 				NoWingsChallenge: {
@@ -952,6 +955,56 @@ Mods: {
 				DisableBurningSphereNerf: {
 					Label: Disable Burning Sphere Nerf
 					Tooltip: Disables making Burning Spheres destroyable in "for the worthy" worlds.
+				}
+
+				DisableTheDestroyerExtraAI: {
+					Label: Disable The Destroyer Extra AI
+					Tooltip: Disables extra projectiles and flight capabilities for The Destroyer.
+				}
+
+				DisableSkeletronPrimeExtraAI: {
+					Label: Disable Skeletron Prime Extra AI
+					Tooltip: Disables extra projectiles shooting from the Skull of Skeletron Prime as well as item stealing capabilities.
+				}
+
+				DisablePlanteraExtraAI: {
+					Label: Disable Plantera Extra AI
+					Tooltip: Prevents Plantera from shooting her "shotgun" in her second phase.
+				}
+
+				DisableGolemExtraAI: {
+					Label: Disable Golem Extra AI
+					Tooltip: Prevents Golem from spawning searing boulder waves when landing on the floor.
+				}
+
+				DisableEaterOfWorldsExtraAI: {
+					Label: Disable Eater Of Worlds Extra AI
+					Tooltip: Disables extra projectiles for the Eater Of Worlds.
+				}
+
+				DisableLunaticCultistExtraAI: {
+					Label: Disable Lunatic Cultist Extra AI
+					Tooltip: Prevents the Lunatic Cultist from spawning an extra Ancient Vision upon spawning clones regardless of the player's actions.
+				}
+
+				DisableSmartPvP: {
+					Label: Disable SmartPvP
+					Tooltip: Disables fetching actual damage dealt from the opponent's client during PvP.
+				}
+
+				DisableBossImmunityPatch: {
+					Label: Disable Boss Immunity Patch
+					Tooltip: Disables using the Moon Lord / Empress Of Light NPC Immunity Counter for all bosses.
+				}
+
+				DisableCustomTheConstant: {
+					Label: Disable Custom The Constant
+					Tooltip: Disables Nightmare Phantom spawning and re-enables darkness damage permanently.
+				}
+
+				DisableCustomDeathMessages: {
+					Label: Disable Custom Death Messages
+					Tooltip: Disables all custom death messages in chat.
 				}
 			}
 		}

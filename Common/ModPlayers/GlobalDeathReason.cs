@@ -24,6 +24,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -68,6 +69,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableCustomDeathMessages)
+            {
+                return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+            }
             if(damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
             {
                 if (Main.npc[damageSource.SourceNPCIndex].type == NPCID.TheDestroyer && random.NextBool(4))
@@ -269,7 +274,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
 
                 string[] AbsurdDeathsByNPC =
-{
+                {
                     player.name + " was reminded of the incident by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " was informed of their skill issue by " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " discovered that they were simply lacking the talent to overcome " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",

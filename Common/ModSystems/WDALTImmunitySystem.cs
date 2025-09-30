@@ -21,6 +21,8 @@ using SteelSeries.GameSense;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.Configs;
 using WeDoALittleTrolling.Common.Utilities;
 
 namespace WeDoALittleTrolling.Common.ModSystems
@@ -127,6 +129,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
         
         public static void RegisterHooks()
         {
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableBossImmunityPatch)
+            {
+                return;
+            }
             On_Player.Hurt_HurtInfo_bool += On_Player_Hurt_HurtInfo_bool;
             On_Player.Hurt_PlayerDeathReason_int_int_bool_bool_bool_int_bool_float += On_Player_Hurt_PlayerDeathReason_int_int_bool_bool_bool_int_bool_float;
             On_Player.Hurt_PlayerDeathReason_int_int_bool_bool_int_bool_float_float_float += On_Player_Hurt_PlayerDeathReason_int_int_bool_bool_int_bool_float_float_float;
@@ -135,6 +141,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static void UnregisterHooks()
         {
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableBossImmunityPatch)
+            {
+                return;
+            }
             On_Player.Hurt_HurtInfo_bool -= On_Player_Hurt_HurtInfo_bool;
             On_Player.Hurt_PlayerDeathReason_int_int_bool_bool_bool_int_bool_float -= On_Player_Hurt_PlayerDeathReason_int_int_bool_bool_bool_int_bool_float;
             On_Player.Hurt_PlayerDeathReason_int_int_bool_bool_int_bool_float_float_float -= On_Player_Hurt_PlayerDeathReason_int_int_bool_bool_int_bool_float_float_float;

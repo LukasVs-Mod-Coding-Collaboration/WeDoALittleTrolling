@@ -23,6 +23,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.States;
 using Terraria.ModLoader;
+using WeDoALittleTrolling.Common.Configs;
 using WeDoALittleTrolling.Content.Buffs;
 
 namespace WeDoALittleTrolling.Common.ModSystems
@@ -51,7 +52,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static void RegisterHooks()
         {
-            On_DontStarveDarknessDamageDealer.Update += On_DontStarveDarknessDamageDealer_Update;
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableCustomTheConstant)
+            {
+                On_DontStarveDarknessDamageDealer.Update += On_DontStarveDarknessDamageDealer_Update;
+            }
             On_Player.VanillaBaseDefenseEffectiveness += On_Player_VanillaBaseDefenseEffectiveness;
             On_UIWorldCreation.ProcessSpecialWorldSeeds += On_UIWorldCreation_ProcessSpecialWorldSeeds;
             IL_WorldGen.GenerateWorld += IL_WorldGen_GenerateWorld;
@@ -59,7 +63,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static void UnregisterHooks()
         {
-            On_DontStarveDarknessDamageDealer.Update -= On_DontStarveDarknessDamageDealer_Update;
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableCustomTheConstant)
+            {
+                On_DontStarveDarknessDamageDealer.Update -= On_DontStarveDarknessDamageDealer_Update;
+            }
             On_Player.VanillaBaseDefenseEffectiveness -= On_Player_VanillaBaseDefenseEffectiveness;
             On_UIWorldCreation.ProcessSpecialWorldSeeds -= On_UIWorldCreation_ProcessSpecialWorldSeeds;
             IL_WorldGen.GenerateWorld -= IL_WorldGen_GenerateWorld;

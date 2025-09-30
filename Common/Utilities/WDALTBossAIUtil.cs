@@ -25,6 +25,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using WeDoALittleTrolling.Content.NPCs;
 using Terraria.Utilities;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Common.Utilities
 {
@@ -52,6 +53,10 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_LunaticCultistExtras(NPC npc)
         {
+            if (!Main.expertMode || ModContent.GetInstance<WDALTServerConfig>().DisableLunaticCultistExtraAI)
+            {
+                return;
+            }
             if(npc.ai[0] == 5f && npc.ai[1] == 30f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int avCount = 0;
@@ -71,7 +76,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_EaterofWorldsExtras(NPC npc, ref UnifiedRandom random)
         {
-            if (!Main.expertMode)
+            if (!Main.expertMode || ModContent.GetInstance<WDALTServerConfig>().DisableEaterOfWorldsExtraAI)
             {
                 return;
             }
@@ -88,6 +93,10 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_TheDestroyerExtras(NPC npc, ref UnifiedRandom random)
         {
+            if (!Main.expertMode || ModContent.GetInstance<WDALTServerConfig>().DisableTheDestroyerExtraAI)
+            {
+                return;
+            }
             //Replicate vanilla behavior as good as possible.
             if (random.NextBool(2400) && Main.netMode != NetmodeID.MultiplayerClient && npc.life >= (int)Math.Round(npc.lifeMax * destroyerAccelerationLimit))
             {
@@ -109,7 +118,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_SkeletronPrimeExtras(NPC npc)
         {
-            if (!Main.expertMode)
+            if (!Main.expertMode || ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeExtraAI)
             {
                 return;
             }
@@ -191,7 +200,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_PlanteraShotgun(NPC npc, ref UnifiedRandom random)
         {
-            if (!Main.expertMode)
+            if (!Main.expertMode || ModContent.GetInstance<WDALTServerConfig>().DisablePlanteraExtraAI)
             {
                 return;
             }
@@ -237,7 +246,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public static void BossAI_GolemExtras(NPC npc)
         {
-            if (!Main.expertMode)
+            if (!Main.expertMode || ModContent.GetInstance<WDALTServerConfig>().DisableGolemExtraAI)
             {
                 return;
             }
