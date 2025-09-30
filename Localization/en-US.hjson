@@ -964,7 +964,7 @@ Mods: {
 
 				DisableSkeletronPrimeExtraAI: {
 					Label: Disable Skeletron Prime Extra AI
-					Tooltip: Disables extra projectiles shooting from the Skull of Skeletron Prime as well as item stealing capabilities.
+					Tooltip: Disables extra projectiles shooting from the skull of Skeletron Prime.
 				}
 
 				DisablePlanteraExtraAI: {
@@ -1005,6 +1005,11 @@ Mods: {
 				DisableCustomDeathMessages: {
 					Label: Disable Custom Death Messages
 					Tooltip: Disables all custom death messages in chat.
+				}
+
+				DisableSkeletronPrimeItemStealing: {
+					Label: Disable Skeletron Prime Item Stealing
+					Tooltip: Prevents Skeletron Prime's Vice from stealing items when hitting players.
 				}
 			}
 		}

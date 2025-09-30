@@ -428,7 +428,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }
             if (npc.type == NPCID.PrimeVice)
             {
-                if (!ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeExtraAI)
+                if (!ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeItemStealing)
                 {
                     if (!target.HeldItem.IsAir)
                     {

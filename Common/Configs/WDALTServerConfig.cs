@@ -37,6 +37,9 @@ namespace WeDoALittleTrolling.Common.Configs
         public bool DisableSkeletronPrimeExtraAI;
         [DefaultValue(false)]
         [ReloadRequired]
+        public bool DisableSkeletronPrimeItemStealing;
+        [DefaultValue(false)]
+        [ReloadRequired]
         public bool DisablePlanteraExtraAI;
         [DefaultValue(false)]
         [ReloadRequired]
