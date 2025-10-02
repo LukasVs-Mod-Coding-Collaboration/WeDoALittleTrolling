@@ -90,6 +90,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             if (player.GetModPlayer<WDALTPlayer>().zoneWormCandle)
             {
                 spawnRate = (int)((double)spawnRate * 0.25);
+                maxSpawns *= 2;
             }
         }
 
