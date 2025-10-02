@@ -30,7 +30,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
 {
     public class PortableSpiderBullet : ModProjectile
     {
-        public const int dustID = 191;
         public override void SetDefaults()
         {
             Projectile.width = 16;
@@ -64,7 +63,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Vector2 dustPosition = Projectile.Center;
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, dustID, null, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.SpookyWood, null, 0, default);
                 newDust.noGravity = true;
             }
             SoundEngine.PlaySound(SoundID.NPCHit29, Projectile.Center);
@@ -83,7 +82,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 Vector2 dustPosition = Projectile.Center;
                 dustPosition.X += xOffset;
                 dustPosition.Y += yOffset;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, dustID, null, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.SpookyWood, null, 0, default);
                 newDust.noGravity = true;
             }
         }

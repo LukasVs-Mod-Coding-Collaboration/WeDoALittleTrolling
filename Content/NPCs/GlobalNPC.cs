@@ -336,11 +336,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                 switch (dustType)
                 {
                     case 0:
-                        Dust newDust1 = Dust.NewDustPerfect(dustPosition, 109);
+                        Dust newDust1 = Dust.NewDustPerfect(dustPosition, DustID.Asphalt);
                         newDust1.noGravity = true;
                         break;
                     case 1:
-                        Dust newDust2 = Dust.NewDustPerfect(dustPosition, 65);
+                        Dust newDust2 = Dust.NewDustPerfect(dustPosition, DustID.DemonTorch);
                         newDust2.noGravity = true;
                         break;
                     default:

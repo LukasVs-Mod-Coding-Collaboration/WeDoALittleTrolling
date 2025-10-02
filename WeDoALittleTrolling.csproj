@@ -15,4 +15,7 @@
     <Folder Include="Common\" />
     <Folder Include="OriginalArtwork\" />
   </ItemGroup>
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);AD0001</NoWarn>
+  </PropertyGroup>
 </Project>

@@ -212,7 +212,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
                 dustVelocity = dustVelocity.SafeNormalize(Vector2.Zero);
                 dustVelocity *= 8f;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, 54, dustVelocity, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Wraith, dustVelocity, 0, default);
                 newDust.noGravity = true;
             }
             base.HitEffect(hit);

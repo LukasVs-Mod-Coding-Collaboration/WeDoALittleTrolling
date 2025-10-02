@@ -131,7 +131,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
                 Vector2 dustVelocity = new Vector2((Main.rand.NextFloat() - 0.5f), (Main.rand.NextFloat() - 0.5f));
                 dustVelocity = dustVelocity.SafeNormalize(Vector2.Zero);
                 dustVelocity *= 3f;
-                Dust newDust = Dust.NewDustPerfect(dustPosition, 181, dustVelocity, 0, default);
+                Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.GiantCursedSkullBolt, dustVelocity, 0, default);
                 newDust.noGravity = true;
             }
         }
