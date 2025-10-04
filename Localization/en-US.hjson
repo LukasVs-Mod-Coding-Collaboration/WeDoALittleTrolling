@@ -940,6 +940,7 @@ Mods: {
 					Combat: Combat
 					CustomSeeds: Custom Seeds
 					Chat: Chat
+					Balancing: Balancing
 				}
 
 				NoWingsChallenge: {
@@ -1015,6 +1016,21 @@ Mods: {
 				DisableForTheWorthyDefenseEffectivenessIncrease: {
 					Label: Disable Legendary Mode Defense Effectiveness Increase
 					Tooltip: Reduces base defense effectiveness from 125% back to 100% in "Legendary Mode" worlds.
+				}
+
+				DisableRodOfHarmonyCooldown: {
+					Label: Disable Rod Of Harmony Cooldown
+					Tooltip: Prevents the Rod Of Harmony from giving players the "Chaos State" debuff upon use.
+				}
+
+				DisableCalamityCompatibilityMode: {
+					Label: Disable Calamity Compatibility Mode
+					Tooltip: Force-enables all balancing features even when Calamity Mod is detected. This is NOT recommended.
+				}
+
+				DisableRebalancing: {
+					Label: Disable Rebalancing
+					Tooltip: Disables most vanilla rebalancing features.
 				}
 			}
 		}

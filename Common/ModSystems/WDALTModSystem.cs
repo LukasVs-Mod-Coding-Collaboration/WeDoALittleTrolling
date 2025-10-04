@@ -22,6 +22,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using WeDoALittleTrolling.Common.Configs;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.NPCs;
@@ -78,8 +79,16 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 isCalamityModPresent = true;
                 WeDoALittleTrolling.logger.Warn("Calamity Mod detected.");
-                WeDoALittleTrolling.logger.Warn("WeDoALittleTrolling will work together with Calamity Mod, but WeDoALittleBalancing likely won't.");
-                WeDoALittleTrolling.logger.Warn("We recommend disabling WeDoALittleBalancing when playing with Calamity mod.");
+                WeDoALittleTrolling.logger.Warn("Most rebalancing features of WeDoALittleTrolling are not compatible with Calamity Mod.");
+                if (!ModContent.GetInstance<WDALTServerConfig>().DisableCalamityCompatibilityMode)
+                {
+                    WeDoALittleTrolling.logger.Warn("To force-enable most rebalancing features anyways, please check the config.");
+                    WeDoALittleTrolling.logger.Warn("Disabling most rebalancing features of WeDoALittleTrolling to ensure the game stays playable...");
+                }
+                else
+                {
+                    WeDoALittleTrolling.logger.Warn("Keeping all rebalancing features of WeDoALittleTrolling enabled anyways because of server configuration...");
+                }
             }
             MCIDIntegrity = WDALTModContentID.SetContentIDs();
             if (!MCIDIntegrity)
@@ -113,6 +122,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTHitFreezeSystemNPC.RegisterHooks();
             WDALTHitFreezeSystemPlayer.RegisterHooks();
             WDALTKeybindSystem.RegisterHooks();
+            BalancingItemList.RegisterHooks();
         }
 
         public static void UnregisterHooks()
@@ -129,6 +139,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTHitFreezeSystemNPC.UnregisterHooks();
             WDALTHitFreezeSystemPlayer.UnregisterHooks();
             WDALTKeybindSystem.UnregisterHooks();
+            BalancingItemList.UnregisterHooks();
         }
 
         public override void PreUpdatePlayers()

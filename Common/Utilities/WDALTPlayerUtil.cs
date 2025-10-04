@@ -47,6 +47,12 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int[] hitAmountInLastSecondRingBuffer = new int[60];
         public int hitAmountInLastSecondRingBufferIndex = 0;
         public int currentHitAmount;
+        /*
+        public int wreckedResistanceStack;
+        public int vulnerableStack;
+        public bool syncDevastated;
+        public int statLifeDevastated;
+        */
         
         public override void Initialize()
         {
@@ -58,6 +64,12 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 hitAmountInLastSecondRingBuffer[i] = 0;
             }
+            /*
+            wreckedResistanceStack = 0;
+            vulnerableStack = 0;
+            syncDevastated = false;
+            statLifeDevastated = player.statLifeMax2;
+            */
         }
 
         public override void PreUpdate()
@@ -73,6 +85,11 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             hitAmountInLastSecondRingBuffer[hitAmountInLastSecondRingBufferIndex] = currentHitAmount;
             currentHitAmount = 0;
+        }
+
+        public override void PostUpdate()
+        {
+            BalancingItemList.ModifySetBonus(player);
         }
 
         public int GetHitAmountInLastSecond()
@@ -273,5 +290,134 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             return false;
         }
+
+        /*
+        // Legacy Debuff backend, currently disabled.
+        private void ResetVariables()
+        {
+            wreckedResistanceStack = 0;
+            vulnerableStack = 0;
+            syncDevastated = false;
+            statLifeDevastated = player.statLifeMax2;
+        }
+
+        public override void UpdateDead()
+        {
+            ResetVariables();
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.ContainsKey("WDALTDevastatedStack"))
+            {
+                statLifeDevastated = tag.GetInt("WDALTDevastatedStack");
+            }
+            if (tag.ContainsKey("WDALTWreckedResistanceStack"))
+            {
+                wreckedResistanceStack = tag.GetInt("WDALTWreckedResistanceStack");
+            }
+            if (tag.ContainsKey("WDALTVulnerableStack"))
+            {
+                vulnerableStack = tag.GetInt("WDALTVulnerableStack");
+            }
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            if (player.HasBuff(ModContent.BuffType<Devastated>()))
+            {
+                tag["WDALTDevastatedStack"] = statLifeDevastated;
+            }
+            if (wreckedResistanceStack > 0)
+            {
+                tag["WDALTWreckedResistanceStack"] = wreckedResistanceStack;
+            }
+            if (vulnerableStack > 0)
+            {
+                tag["WDALTVulnerableStack"] = vulnerableStack;
+            }
+        }
+
+        public override void PostUpdateEquips()
+        {
+            if (player.HasBuff(ModContent.BuffType<WreckedResistance>()))
+            {
+                float modifierWR = (float)(90 - (wreckedResistanceStack * 10)) * 0.01f;
+                player.DefenseEffectiveness *= modifierWR;
+            }
+            else
+            {
+                wreckedResistanceStack = 0;
+            }
+            if (player.HasBuff(ModContent.BuffType<Vulnerable>()))
+            {
+                float modifierV = (float)(90 - (vulnerableStack * 10)) * 0.01f;
+                player.endurance *= modifierV;
+            }
+            else
+            {
+                vulnerableStack = 0;
+            }
+            if (player.HasBuff(ModContent.BuffType<Devastated>()))
+            {
+                if (syncDevastated && player.statLife < player.statLifeMax2 && player.statLife > 0)
+                {
+                    statLifeDevastated = player.statLife;
+                    syncDevastated = false;
+                }
+                player.statLifeMax2 = statLifeDevastated;
+            }
+            else
+            {
+                statLifeDevastated = player.statLifeMax2;
+            }
+        }
+
+        public override bool ConsumableDodge(Player.HurtInfo info)
+        {
+            if (info.DamageSource.SourceProjectileType == ProjectileID.PhantasmalDeathray)
+            {
+                if (info.DamageSource.SourceProjectileLocalIndex >= 0 && info.DamageSource.SourceProjectileLocalIndex < Main.projectile.Length)
+                {
+                    if (Main.projectile[info.DamageSource.SourceProjectileLocalIndex].GetGlobalProjectile<WDALBProjectileUtil>().TryGetParentNPC(out NPC npc))
+                    {
+                        if (npc.type == NPCID.MoonLordHead && Main.masterMode)
+                        {
+                            Devastated.DisintegratePlayer(player);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return base.ConsumableDodge(info);
+        }
+
+        public override bool FreeDodge(Player.HurtInfo info)
+        {
+            if (info.DamageSource.SourceProjectileType == ProjectileID.PhantasmalDeathray)
+            {
+                if (info.DamageSource.SourceProjectileLocalIndex >= 0 && info.DamageSource.SourceProjectileLocalIndex < Main.projectile.Length)
+                {
+                    if (Main.projectile[info.DamageSource.SourceProjectileLocalIndex].GetGlobalProjectile<WDALBProjectileUtil>().TryGetParentNPC(out NPC npc))
+                    {
+                        if (npc.type == NPCID.MoonLordHead && Main.masterMode)
+                        {
+                            Devastated.DisintegratePlayer(player);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return base.FreeDodge(info);
+        }
+
+        public override void UpdateLifeRegen()
+        {
+            player.buffImmune[ModContent.BuffType<WreckedResistance>()] = false;
+            player.buffImmune[ModContent.BuffType<Vulnerable>()] = false;
+            player.buffImmune[ModContent.BuffType<Devastated>()] = false;
+            base.UpdateLifeRegen();
+        }
+        */
     }
 }

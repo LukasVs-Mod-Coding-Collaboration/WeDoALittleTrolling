@@ -68,5 +68,17 @@ namespace WeDoALittleTrolling.Common.Configs
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DisableCustomTheConstant;
+
+        [Header("Balancing")]
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableRebalancing;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableRodOfHarmonyCooldown;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableCalamityCompatibilityMode;
     }
 }
