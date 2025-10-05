@@ -276,6 +276,11 @@ namespace WeDoALittleTrolling.Content.NPCs
                         npc.knockBackResist = 2.5f;
                     }
                 }
+                if (npc.type == NPCID.PrimeVice)
+                {
+                    npc.defense += 14;
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.35);
+                }
                 if
                 (
                     npc.type == NPCID.Plantera

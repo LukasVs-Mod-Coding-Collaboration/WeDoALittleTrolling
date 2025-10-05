@@ -47,13 +47,17 @@ namespace WeDoALittleTrolling.Common.Utilities
         public int[] hitAmountInLastSecondRingBuffer = new int[60];
         public int hitAmountInLastSecondRingBufferIndex = 0;
         public int currentHitAmount;
+        public bool primeViceIsGrappled;
+        public NPC primeViceThatIsGrapplingPlayer;
+        public int primeViceGrappleTicksRemaining;
+        public int primeViceGrappleImmuneTicks;
         /*
         public int wreckedResistanceStack;
         public int vulnerableStack;
         public bool syncDevastated;
         public int statLifeDevastated;
         */
-        
+
         public override void Initialize()
         {
             player = this.Player;
@@ -64,12 +68,105 @@ namespace WeDoALittleTrolling.Common.Utilities
             {
                 hitAmountInLastSecondRingBuffer[i] = 0;
             }
+            primeViceGrappleTicksRemaining = 0;
+            primeViceIsGrappled = false;
+            primeViceThatIsGrapplingPlayer = null;
+            primeViceGrappleImmuneTicks = 0;
             /*
             wreckedResistanceStack = 0;
             vulnerableStack = 0;
             syncDevastated = false;
             statLifeDevastated = player.statLifeMax2;
             */
+        }
+
+        private void ResetVariables()
+        {
+            currentHitAmount = 0;
+            hitAmountInLastSecondRingBufferIndex = 0;
+            for (int i = 0; i < hitAmountInLastSecondRingBuffer.Length; i++)
+            {
+                hitAmountInLastSecondRingBuffer[i] = 0;
+            }
+            primeViceGrappleTicksRemaining = 0;
+            primeViceIsGrappled = false;
+            primeViceThatIsGrapplingPlayer = null;
+            primeViceGrappleImmuneTicks = 0;
+            /*
+            wreckedResistanceStack = 0;
+            vulnerableStack = 0;
+            syncDevastated = false;
+            statLifeDevastated = player.statLifeMax2;
+            */
+        }
+
+        public override void UpdateDead()
+        {
+            ResetVariables();
+        }
+
+        public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
+        {
+            if (npc.type == NPCID.PrimeVice && primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceThatIsGrapplingPlayer.type == NPCID.PrimeVice)
+            {
+                modifiers.IncomingDamageMultiplier *= 0.25f;
+            }
+            base.ModifyHitByNPC(npc, ref modifiers);
+        }
+        public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
+        {
+            if (Main.expertMode && !primeViceIsGrappled && primeViceGrappleImmuneTicks <= 0 && !ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeExtraAI && npc != null && npc.active && npc.type == NPCID.PrimeVice)
+            {
+                primeViceIsGrappled = true;
+                primeViceThatIsGrapplingPlayer = npc;
+                primeViceGrappleTicksRemaining = 180;
+                SoundEngine.PlaySound(SoundID.Item71, npc.position);
+            }
+            base.OnHitByNPC(npc, hurtInfo);
+        }
+
+        public override void PreUpdateMovement()
+        {
+            if (primeViceGrappleImmuneTicks > 0 && player.whoAmI == Main.myPlayer)
+            {
+                primeViceGrappleImmuneTicks--;
+                if (primeViceGrappleImmuneTicks <= 0)
+                {
+                    primeViceGrappleImmuneTicks = 0;
+                }
+            }
+            if (primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceThatIsGrapplingPlayer.type == NPCID.PrimeVice && player.whoAmI == Main.myPlayer)
+            {
+                if (Collision.SolidTiles(primeViceThatIsGrapplingPlayer.position, player.width, player.height))
+                {
+                    primeViceGrappleImmuneTicks = 90;
+                    primeViceGrappleTicksRemaining = 0;
+                    primeViceIsGrappled = false;
+                    if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient))
+                    {
+                        SoundEngine.PlaySound(SoundID.Item71, primeViceThatIsGrapplingPlayer.position);
+                    }
+                    primeViceThatIsGrapplingPlayer = null;
+                }
+                else
+                {
+                    player.Center = primeViceThatIsGrapplingPlayer.Center;
+                    player.velocity = primeViceThatIsGrapplingPlayer.velocity;
+                    primeViceGrappleTicksRemaining--;
+                    if (primeViceGrappleTicksRemaining <= 0)
+                    {
+                        primeViceGrappleImmuneTicks = 90;
+                        primeViceGrappleTicksRemaining = 0;
+                        primeViceIsGrappled = false;
+                        if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient))
+                        {
+                            SoundEngine.PlaySound(SoundID.Item71, primeViceThatIsGrapplingPlayer.position);
+                        }
+                        primeViceThatIsGrapplingPlayer = null;
+                    }
+                }
+            }
+            base.PreUpdateMovement();
         }
 
         public override void PreUpdate()
@@ -293,18 +390,6 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         /*
         // Legacy Debuff backend, currently disabled.
-        private void ResetVariables()
-        {
-            wreckedResistanceStack = 0;
-            vulnerableStack = 0;
-            syncDevastated = false;
-            statLifeDevastated = player.statLifeMax2;
-        }
-
-        public override void UpdateDead()
-        {
-            ResetVariables();
-        }
 
         public override void LoadData(TagCompound tag)
         {

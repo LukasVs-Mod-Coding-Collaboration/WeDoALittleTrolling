@@ -36,6 +36,7 @@ using WeDoALittleTrolling.Content.Items.Weapons;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.Utilities;
+using WeDoALittleTrolling.Common.Configs;
 
 namespace WeDoALittleTrolling.Content.Projectiles
 {
@@ -45,9 +46,88 @@ namespace WeDoALittleTrolling.Content.Projectiles
 
         public static UnifiedRandom random = new UnifiedRandom();
 
+        public override bool PreAI(Projectile projectile)
+        {
+            if (projectile.type == ProjectileID.BombSkeletronPrime && !ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeExtraAI)
+            {
+                if (projectile.TryGetGlobalProjectile<WDALTProjectileUtil>(out WDALTProjectileUtil util) && util.ticksAlive > 30)
+                {
+                    float lowest_distance = 1024f;
+                    float correction_factor = 0.5f;
+                    Player target = null;
+                    for (int i = 0; i < Main.player.Length; i++)
+                    {
+                        Player currentTarget = Main.player[i];
+                        if
+                        (
+                            currentTarget != null &&
+                            !currentTarget.dead &&
+                            currentTarget.active &&
+                            Collision.CanHitLine
+                            (
+                                projectile.position,
+                                projectile.width,
+                                projectile.height,
+                                currentTarget.position,
+                                currentTarget.width,
+                                currentTarget.height
+                            )
+                        )
+                        {
+                            Vector2 vectorToTarget = new Vector2(currentTarget.Center.X - projectile.Center.X, currentTarget.Center.Y - projectile.Center.Y);
+                            if (vectorToTarget.Length() < lowest_distance)
+                            {
+                                lowest_distance = vectorToTarget.Length();
+                                target = currentTarget;
+                            }
+                        }
+                    }
+                    if (target != null)
+                    {
+                        Vector2 vectorToTarget = new Vector2(target.Center.X - projectile.Center.X, target.Center.Y - projectile.Center.Y);
+                        vectorToTarget = vectorToTarget.SafeNormalize(Vector2.Zero);
+                        float originalLength = 16f;
+                        projectile.velocity = projectile.velocity + (vectorToTarget * correction_factor);
+                        Vector2 normalizedVeloctiy = projectile.velocity;
+                        normalizedVeloctiy = normalizedVeloctiy.SafeNormalize(Vector2.Zero);
+                        projectile.velocity = normalizedVeloctiy * originalLength;
+                        if (util.ticksAlive == 31)
+                        {
+                            Vector2 predictVelocity = target.velocity * (Vector2.Distance(projectile.Center, target.Center) / (20f)); //Roughly Predict where the target is going to be when the Laser reaches it
+                            Vector2 shootVector = (target.Center + predictVelocity) - projectile.Center;
+                            shootVector = shootVector.SafeNormalize(Vector2.Zero);
+                            projectile.velocity = shootVector * originalLength;
+                        }
+                    }
+                    if
+                    (
+                        projectile.type == ProjectileID.BombSkeletronPrime &&
+                        !ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeExtraAI
+                    )
+                    {
+                        for (int i = 0; i < Main.player.Length; i++)
+                        {
+                            if (Main.player[i].active && !Main.player[i].dead)
+                            {
+                                if (projectile.Hitbox.Intersects(Main.player[i].Hitbox))
+                                {
+                                    projectile.Kill();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return base.PreAI(projectile);
+        }
+
         public override void AI(Projectile projectile)
         {
-            if (projectile.type == ProjectileID.Grenade && projectile.GetGlobalProjectile<WDALTProjectileUtil>().undeadMinerGrenade)
+            if
+            (
+                projectile.type == ProjectileID.Grenade && 
+                projectile.GetGlobalProjectile<WDALTProjectileUtil>().undeadMinerGrenade
+            )
             {
                 for (int i = 0; i < Main.player.Length; i++)
                 {

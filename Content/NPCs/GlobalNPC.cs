@@ -426,6 +426,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 target.buffImmune[BuffID.Frozen] = true;
                 target.buffImmune[BuffID.Slow] = true;
             }
+            /*
             if (npc.type == NPCID.PrimeVice)
             {
                 if (!ModContent.GetInstance<WDALTServerConfig>().DisableSkeletronPrimeItemStealing)
@@ -461,6 +462,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     SoundEngine.PlaySound(SoundID.Item71, target.position);
                 }
             }
+            */
             if (npc.type == NPCID.PrimeSaw)
             {
                 SoundEngine.PlaySound(SoundID.Item22, target.position);
