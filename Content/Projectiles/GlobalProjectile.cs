@@ -97,6 +97,25 @@ namespace WeDoALittleTrolling.Content.Projectiles
                             Vector2 shootVector = (target.Center + predictVelocity) - projectile.Center;
                             shootVector = shootVector.SafeNormalize(Vector2.Zero);
                             projectile.velocity = shootVector * originalLength;
+                            if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient))
+                            {
+                                for (int i = 0; i < 60; i++)
+                                {
+                                    int rMax = (int)projectile.width;
+                                    double r = rMax * Math.Sqrt(random.NextDouble());
+                                    double angle = random.NextDouble() * 2 * Math.PI;
+                                    int xOffset = (int)Math.Round(r * Math.Cos(angle));
+                                    int yOffset = (int)Math.Round(r * Math.Sin(angle));
+                                    Vector2 dustPosition = projectile.Center;
+                                    dustPosition.X += xOffset;
+                                    dustPosition.Y += yOffset;
+                                    Vector2 dustVelocity = new Vector2((random.NextFloat() - 0.5f), (random.NextFloat() - 0.5f));
+                                    dustVelocity = dustVelocity.SafeNormalize(Vector2.Zero);
+                                    dustVelocity *= 8f;
+                                    Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Smoke, dustVelocity, 0, default);
+                                    newDust.noGravity = true;
+                                }
+                            }
                         }
                     }
                     if
