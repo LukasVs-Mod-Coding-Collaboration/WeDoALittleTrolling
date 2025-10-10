@@ -281,6 +281,10 @@ namespace WeDoALittleTrolling.Content.NPCs
                     npc.defense += 14;
                     npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.35);
                 }
+                if (npc.type == NPCID.PrimeSaw)
+                {
+                    npc.damage += 34;
+                }
                 if
                 (
                     npc.type == NPCID.Plantera
