@@ -51,6 +51,12 @@ namespace WeDoALittleTrolling.Common.Utilities
         public NPC primeViceThatIsGrapplingPlayer;
         public int primeViceGrappleTicksRemaining;
         public int primeViceGrappleImmuneTicks;
+        public static readonly int[] primeViceSupportedNPCIDs =
+        {
+            NPCID.PrimeVice,
+            NPCID.GolemFistLeft,
+            NPCID.GolemFistRight
+        };
         /*
         public int wreckedResistanceStack;
         public int vulnerableStack;
@@ -107,7 +113,7 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
         {
-            if (npc.type == NPCID.PrimeVice && primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceThatIsGrapplingPlayer.type == NPCID.PrimeVice)
+            if (primeViceSupportedNPCIDs.Contains(npc.type) && primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceSupportedNPCIDs.Contains(primeViceThatIsGrapplingPlayer.type))
             {
                 modifiers.IncomingDamageMultiplier *= 0.25f;
             }
@@ -122,6 +128,13 @@ namespace WeDoALittleTrolling.Common.Utilities
                 primeViceGrappleTicksRemaining = 180;
                 SoundEngine.PlaySound(SoundID.Item71, npc.position);
             }
+            if (Main.expertMode && !primeViceIsGrappled && primeViceGrappleImmuneTicks <= 0 && !ModContent.GetInstance<WDALTServerConfig>().DisableGolemExtraAI && npc != null && npc.active && (npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight))
+            {
+                primeViceIsGrappled = true;
+                primeViceThatIsGrapplingPlayer = npc;
+                primeViceGrappleTicksRemaining = 180;
+                SoundEngine.PlaySound(SoundID.Item88, npc.position);
+            }
             base.OnHitByNPC(npc, hurtInfo);
         }
 
@@ -135,7 +148,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                     primeViceGrappleImmuneTicks = 0;
                 }
             }
-            if (primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceThatIsGrapplingPlayer.type == NPCID.PrimeVice && player.whoAmI == Main.myPlayer)
+            if (primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceSupportedNPCIDs.Contains(primeViceThatIsGrapplingPlayer.type) && player.whoAmI == Main.myPlayer)
             {
                 if (Collision.SolidTiles(primeViceThatIsGrapplingPlayer.position, player.width, player.height))
                 {
@@ -144,7 +157,32 @@ namespace WeDoALittleTrolling.Common.Utilities
                     primeViceIsGrappled = false;
                     if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient))
                     {
-                        SoundEngine.PlaySound(SoundID.Item71, primeViceThatIsGrapplingPlayer.position);
+                        if (primeViceThatIsGrapplingPlayer.type == NPCID.PrimeVice)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item71, primeViceThatIsGrapplingPlayer.position);
+                        }
+                        else if (primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistLeft || primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistRight)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item88, primeViceThatIsGrapplingPlayer.position);
+                        }
+                    }
+                    primeViceThatIsGrapplingPlayer = null;
+                }
+                else if ((primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistLeft || primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistRight) && primeViceThatIsGrapplingPlayer.ai[0] == 1f)
+                {
+                    primeViceGrappleImmuneTicks = 90;
+                    primeViceGrappleTicksRemaining = 0;
+                    primeViceIsGrappled = false;
+                    if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient))
+                    {
+                        if (primeViceThatIsGrapplingPlayer.type == NPCID.PrimeVice)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item71, primeViceThatIsGrapplingPlayer.position);
+                        }
+                        else if (primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistLeft || primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistRight)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item88, primeViceThatIsGrapplingPlayer.position);
+                        }
                     }
                     primeViceThatIsGrapplingPlayer = null;
                 }
@@ -160,7 +198,14 @@ namespace WeDoALittleTrolling.Common.Utilities
                         primeViceIsGrappled = false;
                         if (!Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient))
                         {
-                            SoundEngine.PlaySound(SoundID.Item71, primeViceThatIsGrapplingPlayer.position);
+                            if (primeViceThatIsGrapplingPlayer.type == NPCID.PrimeVice)
+                            {
+                                SoundEngine.PlaySound(SoundID.Item71, primeViceThatIsGrapplingPlayer.position);
+                            }
+                            else if (primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistLeft || primeViceThatIsGrapplingPlayer.type == NPCID.GolemFistRight)
+                            {
+                                SoundEngine.PlaySound(SoundID.Item88, primeViceThatIsGrapplingPlayer.position);
+                            }
                         }
                         primeViceThatIsGrapplingPlayer = null;
                     }
