@@ -55,6 +55,15 @@ namespace WeDoALittleTrolling.Content.Tiles
             }
             return orig.Invoke(self, x, y, pickPower, hitBufferIndex, tileTarget);
         }
+
+        public override void NearbyEffects(int i, int j, int type, bool closer)
+        {
+            if (!closer && type == TileID.BrazierSuspended)
+            {
+                WDALTSceneMetrics.HasBrazier = true;
+            }
+            base.NearbyEffects(i, j, type, closer);
+        }
         /*
         //Code to Modify Tile Wire Activation
         public override void HitWire(int i, int j, int type)

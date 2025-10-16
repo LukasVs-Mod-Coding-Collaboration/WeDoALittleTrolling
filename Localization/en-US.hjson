@@ -891,6 +891,21 @@ Mods: {
 				DisplayName: Adamantite Wretch
 				Description: The Adamantite Wretch will fight for you
 			}
+
+			BotanicalFire: {
+				DisplayName: Botanical Fire
+				Description:
+					'''
+					Provides a wonderous assortment of benefits:
+					- Provides life regeneration
+					- Increase defense by 4
+					- Reduces damage taken by 4%
+					- Increased mana regeneration
+					- 8% increased movement speed
+					- 4% increased critical strike chance
+					- Increases fishing power by 8
+					'''
+			}
 		}
 
 		NPCs: {

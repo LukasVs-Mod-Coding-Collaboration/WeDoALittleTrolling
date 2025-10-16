@@ -67,6 +67,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public long currentTick;
         public int chargeAccelerationTicks;
         public bool zoneWormCandle;
+        public bool zoneBrazier;
         public bool shroomiteGenesis;
         public int shroomiteGenesisOverheatTicks;
         public int shroomiteGenesisOverchannelTicks;
@@ -121,6 +122,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             currentTick = 0;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
+            zoneBrazier = false;
             shroomiteGenesis = false;
             shroomiteGenesisOverheatTicks = 0;
             shroomiteGenesisOverchannelTicks = 0;
@@ -202,6 +204,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             //yoyoArtifact = false;
             chargeAccelerationTicks = 0;
             zoneWormCandle = false;
+            zoneBrazier = false;
             shroomiteGenesis = false;
             shroomiteGenesisOverheatTicks = 0;
             shroomiteGenesisOverchannelTicks = 0;
@@ -497,7 +500,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public override void PreUpdateBuffs()
         {
-            if (player.whoAmI == Main.myPlayer)
+            if (player.whoAmI == Main.myPlayer && !Main.dedServ && (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient))
             {
                 if (WDALTSceneMetrics.HasWormCandle)
                 {
@@ -507,6 +510,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 else
                 {
                     zoneWormCandle = false;
+                }
+                if (WDALTSceneMetrics.HasBrazier)
+                {
+                    zoneBrazier = true;
+                    player.AddBuff(ModContent.BuffType<BotanicalFire>(), 2);
+                }
+                else
+                {
+                    zoneBrazier = false;
                 }
                 if (player.HeldItem.prefix == ModContent.PrefixType<MilitaryInfusion>())
                 {

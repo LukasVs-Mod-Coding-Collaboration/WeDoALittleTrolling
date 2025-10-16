@@ -24,6 +24,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
     internal static class WDALTSceneMetrics
     {
         public static bool HasWormCandle = false;
+        public static bool HasBrazier = false;
 
         public static void RegisterHooks()
         {
@@ -38,6 +39,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void On_SceneMetrics_Reset(On_SceneMetrics.orig_Reset orig, SceneMetrics self)
         {
             HasWormCandle = false;
+            HasBrazier = false;
             orig.Invoke(self);
         }
     }
