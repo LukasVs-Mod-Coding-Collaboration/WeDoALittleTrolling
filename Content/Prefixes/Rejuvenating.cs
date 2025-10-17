@@ -49,8 +49,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             player.manaRegenDelayBonus += 4f;
             player.manaRegenBonus += 8;
-            player.lifeRegen += 1;
-            player.statManaMax2 += 10;
+            player.statManaMax2 += 20;
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));

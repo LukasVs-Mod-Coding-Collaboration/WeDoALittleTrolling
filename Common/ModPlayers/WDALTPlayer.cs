@@ -975,6 +975,28 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 )
             )
             {
+                if (arcaneStack > 0 && !Main.dedServ) //Arcane
+                {
+                    int percentChance = arcaneStack * 2; //2% chance per arcane accessory
+                    if (random.Next(0, 100) < percentChance)
+                    {
+                        if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
+                            Item.NewItem(new EntitySource_SpawnNPC(), (int)target.position.X, (int)target.position.Y, target.width, target.height, ItemID.Star, 1);
+                        }
+                        else if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            ModPacket spawnManaStarPacket = Mod.GetPacket();
+                            spawnManaStarPacket.Write(WDALTPacketTypeID.spawnCrateItem);
+                            spawnManaStarPacket.Write((int)ItemID.Star);
+                            spawnManaStarPacket.Write((int)target.width);
+                            spawnManaStarPacket.Write((int)target.height);
+                            spawnManaStarPacket.Write((int)1); //Drop amount
+                            spawnManaStarPacket.WriteVector2(target.position);
+                            spawnManaStarPacket.Send();
+                        }
+                    }
+                }
                 if
                 (
                     (
@@ -1101,7 +1123,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             if (arcaneStack > 0)
             {
-                float factor = (arcaneStack * 0.05f);
+                float factor = (arcaneStack * 0.04f);
                 if (factor < 0f)
                 {
                     factor = 0f;

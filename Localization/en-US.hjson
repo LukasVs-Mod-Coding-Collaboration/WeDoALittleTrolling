@@ -600,9 +600,8 @@ Mods: {
 				DisplayName: Rejuvenating
 				AdditionalTooltip:
 					'''
-					+10 mana
+					+20 mana
 					Your mana regenerates slightly faster
-					Your health regenerates slightly faster
 					'''
 			}
 

@@ -159,9 +159,9 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     player.maxMinions += 1;
                 }
-                if (item.type == ItemID.AnkhShield)
+                if (player.hasPaladinShield)
                 {
-                    player.DefenseEffectiveness *= 1.08f;
+                    player.DefenseEffectiveness *= 1.125f;
                 }
             }
             base.UpdateAccessory(item, player, hideVisual);
@@ -259,11 +259,13 @@ namespace WeDoALittleTrolling.Content.Items
                 }
                 if
                 (
-                    item.type == ItemID.AnkhShield
+                    item.type == ItemID.PaladinsShield ||
+                    item.type == ItemID.FrozenShield ||
+                    item.type == ItemID.HeroShield
                 )
                 {
-                    List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Defense") && (t.Mod == "Terraria"));
-                    infoLine.ForEach(t => t.Text = t.Text + "\n8% increased defense effectiveness");
+                    List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Tooltip0") && (t.Mod == "Terraria"));
+                    infoLine.ForEach(t => t.Text = t.Text + "\n12.5% increased defense effectiveness");
                 }
                 if
                 (
