@@ -977,8 +977,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 if (arcaneStack > 0 && !Main.dedServ) //Arcane
                 {
-                    int percentChance = arcaneStack * 2; //2% chance per arcane accessory
-                    if (random.Next(0, 100) < percentChance)
+                    int percentChance = arcaneStack * 8; //0.8% chance per arcane accessory
+                    if (random.Next(0, 1000) < percentChance)
                     {
                         if (Main.netMode == NetmodeID.SinglePlayer)
                         {
