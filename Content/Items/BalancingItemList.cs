@@ -339,11 +339,6 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     item.value = Item.buyPrice(silver: 50);
                 }
-                if (item.type == ItemID.DD2PhoenixBow) //Phantom Phoenix
-                {
-                    item.damage = 35;
-                    item.crit = 1;
-                }
                 if (item.type == ItemID.CactusBreastplate)
                 {
                     item.defense += 2;
