@@ -255,7 +255,7 @@ namespace WeDoALittleTrolling.Content.Items
             if (item.prefix == PrefixID.Arcane)
             {
                 List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "PrefixAccMaxMana") && (t.Mod == "Terraria"));
-                infoLine.ForEach(t => t.Text = t.Text + "\n+0.8% chance to spawn a mana star on hit\n4% reduced mana cost");
+                infoLine.ForEach(t => t.Text = t.Text + "\n+1% chance to spawn a mana star on hit\n4% reduced mana cost");
             }
             if (item.type == ItemID.Terragrim || item.type == ItemID.Arkhalis)
             {
