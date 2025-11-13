@@ -51,7 +51,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             NPC.width = 24;
             NPC.height = 44;
-            NPC.aiStyle = 3;
+            NPC.aiStyle = NPCAIStyleID.Fighter;
             NPC.HitSound = SoundID.NPCHit27;
             NPC.DeathSound = SoundID.NPCDeath30;
             NPC.value = 1200f;

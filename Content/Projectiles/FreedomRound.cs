@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
         {
             Projectile.width = 2;
             Projectile.height = 2;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = ProjAIStyleID.Arrow;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.scale = 1.16f;
