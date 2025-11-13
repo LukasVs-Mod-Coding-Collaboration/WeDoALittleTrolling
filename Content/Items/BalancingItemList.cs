@@ -515,6 +515,10 @@ namespace WeDoALittleTrolling.Content.Items
                     item.shootsEveryUse = true;
                     item.ArmorPenetration = 16;
                     item.mana = 4;
+                    if (item.Variant == ItemVariants.WeakerVariant)
+                    {
+                        item.damage = 8;
+                    }
                 }
                 if
                 (
@@ -661,12 +665,21 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     item.mana = 8;
                     item.autoReuse = true;
+                    if (item.Variant == ItemVariants.StrongerVariant)
+                    {
+                        item.mana = 10;
+                    }
                 }
                 if (item.type == ItemID.UnholyTrident)
                 {
                     item.damage = 44;
                     item.mana = 20;
                     item.autoReuse = true;
+                    if (item.Variant == ItemVariants.WeakerVariant)
+                    {
+                        item.damage = 22;
+                        item.mana = 10;
+                    }
                 }
                 if
                 (
@@ -730,6 +743,12 @@ namespace WeDoALittleTrolling.Content.Items
                     item.useTime = 16;
                     item.useAnimation = 16;
                     item.shootsEveryUse = true;
+                    if (item.Variant == ItemVariants.StrongerVariant)
+                    {
+                        item.damage = 24;
+                        item.useTime = 6;
+                        item.useAnimation = 6;
+                    }
                 }
                 //Hardmode
                 if (item.type == ItemID.Frostbrand)
@@ -742,6 +761,10 @@ namespace WeDoALittleTrolling.Content.Items
                 if (item.type == ItemID.IceBow)
                 {
                     item.damage = 42;
+                    if (item.Variant == ItemVariants.WeakerVariant)
+                    {
+                        item.damage = 10;
+                    }
                 }
                 if (item.type == ItemID.FlowerofFrost)
                 {
