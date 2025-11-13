@@ -178,9 +178,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             (
                 Main.dontStarveWorld &&
                 (
-                    spawnInfo.Player.ZoneGraveyard ||
                     (
-                        !Main.IsItDay() &&
+                        (!Main.IsItDay() || spawnInfo.Player.ZoneGraveyard) &&
                         !WDALTPlayerUtil.IsBossActive() &&
                         spawnInfo.Player.TryGetModPlayer<WDALTPlayerUtil>(out WDALTPlayerUtil util) &&
                         !util.IsBehindHousingWall() &&
@@ -192,7 +191,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 )
             )
             {
-                return 0.25f;
+                return 0.0625f;
             }
             return base.SpawnChance(spawnInfo);
         }
