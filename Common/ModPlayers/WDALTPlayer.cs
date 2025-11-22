@@ -300,6 +300,10 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     player.channel = false;
                 }
             }
+            if (player.shroomiteStealth && player.stealth > 0.5f)
+            {
+                player.stealth = 0.5f;
+            }
             if (unionMirrorTicks > 0)
             {
                 if (unionMirrorTicks == 1)
