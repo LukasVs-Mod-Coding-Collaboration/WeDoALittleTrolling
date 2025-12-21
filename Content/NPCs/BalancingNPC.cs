@@ -84,7 +84,8 @@ namespace WeDoALittleTrolling.Content.NPCs
             NPCID.AngryTrapper,
             NPCID.Mothron,
             NPCID.PossessedArmor,
-            NPCID.RockGolem
+            NPCID.RockGolem,
+            NPCID.Herpling
         };
         public static readonly int[] InflictVenomDebuff1In1Group =
         {
@@ -210,6 +211,13 @@ namespace WeDoALittleTrolling.Content.NPCs
                 if (KnockbackResistanceGroup.Contains(npc.type))
                 {
                     npc.knockBackResist = 0f;
+                }
+                if
+                (
+                    npc.type == NPCID.Derpling
+                )
+                {
+                    npc.knockBackResist = 0.75f;
                 }
                 if
                 (
