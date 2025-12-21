@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using WeDoALittleTrolling.Common.Configs;
@@ -13,11 +14,19 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static void RegisterHooks()
         {
+            if (Main.dedServ || Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
             On_Player.DoCommonDashHandle += On_Player_DoCommonDashHandle;
         }
 
         public static void UnregisterHooks()
         {
+            if (Main.dedServ || Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
             On_Player.DoCommonDashHandle -= On_Player_DoCommonDashHandle;
         }
 
@@ -59,6 +68,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public override void Load()
         {
+            if (Main.dedServ || Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
             // Registers a new keybind
             // Localize keybind by adding a Mods.{ModName}.Keybind.{KeybindName} entry to localization file. The actual text displayed to English users is in en-US.hjson
             LifeforceEngineKeybind = KeybindLoader.RegisterKeybind(Mod, "LifeforceEngine", "L");
@@ -69,6 +82,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
         // Please see ExampleMod.cs' Unload() method for a detailed explanation of the unloading process.
         public override void Unload()
         {
+            if (Main.dedServ || Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
             // Not required if your AssemblyLoadContext is unloading properly, but nulling out static fields can help you figure out what's keeping it loaded.
             LifeforceEngineKeybind = null;
             DashKeybind = null;
