@@ -60,7 +60,11 @@ namespace WeDoALittleTrolling.Common.Utilities
             npc.damage = binaryReader.ReadInt32();
             VileSpitTimeLeft = binaryReader.ReadInt32();
             BlazingShieldOwnerIndex = binaryReader.ReadInt32();
-            freedomRoundDamageStack = binaryReader.ReadInt32();
+            int tmp = binaryReader.ReadInt32();
+            if (tmp > freedomRoundDamageStack)
+            {
+                freedomRoundDamageStack = tmp;
+            }
             base.ReceiveExtraAI(npc, bitReader, binaryReader);
         }
 
@@ -74,11 +78,6 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             if (projectile.type == ModContent.ProjectileType<FreedomRound>())
             {
-                modifiers.FlatBonusDamage += (3 * freedomRoundDamageStack);
-                if (npc.lifeMax > 100000)
-                {
-                    modifiers.FlatBonusDamage += (2 * freedomRoundDamageStack);
-                }
                 freedomRoundDamageStack++;
                 npc.netUpdate = true;
             }

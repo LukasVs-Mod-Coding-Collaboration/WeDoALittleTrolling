@@ -828,6 +828,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     proj.damage
                 );
             }
+            if (proj.type == ModContent.ProjectileType<FreedomRound>() && target.TryGetGlobalNPC<WDALTNPCUtil>(out WDALTNPCUtil npcUtil))
+            {
+                modifiers.FlatBonusDamage += (3 * npcUtil.freedomRoundDamageStack);
+                if (target.lifeMax > 100000)
+                {
+                    modifiers.FlatBonusDamage += (2 * npcUtil.freedomRoundDamageStack);
+                }
+                player.chatOverhead.NewMessage("Phase 2 Entered! Stack: " + npcUtil.freedomRoundDamageStack, 60);
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
