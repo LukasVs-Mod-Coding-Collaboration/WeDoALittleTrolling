@@ -835,7 +835,6 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 {
                     modifiers.FlatBonusDamage += (2 * npcUtil.freedomRoundDamageStack);
                 }
-                player.chatOverhead.NewMessage("Phase 2 Entered! Stack: " + npcUtil.freedomRoundDamageStack, 60);
             }
         }
 
