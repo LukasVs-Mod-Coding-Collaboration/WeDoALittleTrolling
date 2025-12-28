@@ -160,37 +160,41 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 additionalDamage += 3; // 33
             }
+            if (NPC.downedFishron)
+            {
+                additionalDamage += 3; // 36
+            }
             if (NPC.downedMartians)
             {
-                additionalDamage += 2; // 35
+                additionalDamage += 2; // 38
             }
             if (NPC.downedEmpressOfLight)
             {
-                additionalDamage += 3; // 38
+                additionalDamage += 3; // 41
             }
             if (NPC.downedAncientCultist)
             {
-                additionalDamage += 2; // 40
+                additionalDamage += 2; // 43
             }
             if (NPC.downedTowerNebula)
             {
-                additionalDamage += 1; // 41
+                additionalDamage += 1; // 44
             }
             if (NPC.downedTowerVortex)
             {
-                additionalDamage += 1; // 42
+                additionalDamage += 1; // 45
             }
             if (NPC.downedTowerSolar)
             {
-                additionalDamage += 1; // 43
+                additionalDamage += 1; // 46
             }
             if (NPC.downedTowerStardust)
             {
-                additionalDamage += 1; // 44
+                additionalDamage += 1; // 47
             }
             if (NPC.downedMoonlord)
             {
-                additionalDamage += 6; // 50
+                additionalDamage += 8; // 55
             }
             damage.Flat += (additionalDamage - 2);
         }
