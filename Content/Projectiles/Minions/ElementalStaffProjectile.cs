@@ -54,6 +54,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
+            ProjectileID.Sets.MinionCannotBeFreed[Projectile.type] = false;
         }
 
         public override void SetDefaults()
