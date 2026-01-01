@@ -46,6 +46,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             bool isFreezePlr = false;
             int npcIdx = -1;
             int freezeTicks = -1;
+            int dashingPlayerIdx = -1;
             Vector2 itemSpawnPos = new Vector2(0f, 0f);
             if(type == WDALTPacketTypeID.soundBroadcastRainOfDecay || type == WDALTPacketTypeID.soundPlayRainOfDecay)
             {
@@ -78,6 +79,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 isFreezePlr = reader.ReadBoolean();
                 npcIdx = reader.ReadInt32();
                 freezeTicks = reader.ReadInt32();
+            }
+            if(type == WDALTPacketTypeID.syncDash || type == WDALTPacketTypeID.broadcastDash)
+            {
+                dashingPlayerIdx = reader.ReadInt32();
             }
             if(Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -122,9 +127,33 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         sys.__AI_IS_FROZEN = true;
                     }
                 }
+                if(type == WDALTPacketTypeID.broadcastDash)
+                {
+                    if(dashingPlayerIdx >= 0 && dashingPlayerIdx < Main.player.Length && dashingPlayerIdx != Main.myPlayer)
+                    {
+                        if (Main.player[dashingPlayerIdx].TryGetModPlayer<WDALTPlayerUtil>(out WDALTPlayerUtil util))
+                        {
+                            util.isDashing = true;
+                        }
+                    }
+                }
             }
             if(Main.netMode == NetmodeID.Server)
             {
+                if(type == WDALTPacketTypeID.syncDash)
+                {
+                    if(dashingPlayerIdx >= 0 && dashingPlayerIdx < Main.player.Length && dashingPlayerIdx != Main.myPlayer)
+                    {
+                        if (Main.player[dashingPlayerIdx].TryGetModPlayer<WDALTPlayerUtil>(out WDALTPlayerUtil util))
+                        {
+                            util.isDashing = true;
+                        }
+                    }
+                    ModPacket broadcastDashPacket = mod.GetPacket();
+                    broadcastDashPacket.Write(WDALTPacketTypeID.broadcastDash);
+                    broadcastDashPacket.Write((int)dashingPlayerIdx);
+                    broadcastDashPacket.Send();
+                }
                 if(type == WDALTPacketTypeID.syncNetFinalDamage)
                 {
                     ModPacket broadcastNetFinalDamagePacket = mod.GetPacket();

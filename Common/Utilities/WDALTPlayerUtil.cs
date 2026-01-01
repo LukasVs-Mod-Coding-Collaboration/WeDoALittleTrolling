@@ -51,6 +51,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public NPC primeViceThatIsGrapplingPlayer;
         public int primeViceGrappleTicksRemaining;
         public int primeViceGrappleImmuneTicks;
+        public bool isDashing;
         public static readonly int[] primeViceSupportedNPCIDs =
         {
             NPCID.PrimeVice,
@@ -78,6 +79,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             primeViceIsGrappled = false;
             primeViceThatIsGrapplingPlayer = null;
             primeViceGrappleImmuneTicks = 0;
+            isDashing = false;
             /*
             wreckedResistanceStack = 0;
             vulnerableStack = 0;
@@ -98,6 +100,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             primeViceIsGrappled = false;
             primeViceThatIsGrapplingPlayer = null;
             primeViceGrappleImmuneTicks = 0;
+            isDashing = false;
             /*
             wreckedResistanceStack = 0;
             vulnerableStack = 0;
