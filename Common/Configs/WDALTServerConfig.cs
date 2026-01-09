@@ -52,6 +52,9 @@ namespace WeDoALittleTrolling.Common.Configs
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DisableLunaticCultistExtraAI;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableDukeFishronExtraAI;
 
         [Header("Combat")]
 

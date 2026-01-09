@@ -1047,6 +1047,11 @@ Mods: {
 					Label: Disable Rebalancing
 					Tooltip: Disables most vanilla rebalancing features.
 				}
+
+				DisableDukeFishronExtraAI: {
+					Label: Disable Duke Fishron Extra AI
+					Tooltip: Prevents Duke Fishron from using high-precision dashing.
+				}
 			}
 		}
 	}

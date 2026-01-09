@@ -25,6 +25,7 @@ using WeDoALittleTrolling.Common.Utilities;
 using Terraria.ID;
 using System.Linq;
 using WeDoALittleTrolling.Common.Configs;
+using Microsoft.Xna.Framework;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -32,14 +33,97 @@ namespace WeDoALittleTrolling.Common.ModSystems
     {
         public static void RegisterILHooks()
         {
+            IL_NPC.AI_069_DukeFishron += IL_NPC_AI_069_DukeFishron;
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision += IL_Player_Update_NPCCollision;
         }
 
         public static void UnregisterILHooks()
         {
+            IL_NPC.AI_069_DukeFishron -= IL_NPC_AI_069_DukeFishron;
             IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision -= IL_Player_Update_NPCCollision;
+        }
+
+        public static void IL_NPC_AI_069_DukeFishron(ILContext intermediateLanguageContext)
+        {
+            bool successInjectDukeFishronAIHook = true;
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableDukeFishronExtraAI)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Duke Fishron AI Hook is disabled in the server configuration, skipping injection...");
+                return;
+            }
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdsfld<Main>(nameof(Main.maxTilesX))); //go to the surface check
+                cursor.GotoNext(i => i.MatchLdcR4(6f)); //move cursor to instruction setting the local "num6" variable.
+                cursor.Index++;
+                cursor.Index++; 
+                intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx1); //fetch memory adress of local "num6" variable.
+                byte idx1 = (byte)fetchedIdx1;
+                cursor.Index++;
+                cursor.Index++;
+                cursor.Index++; //move cursor after the "flag7" variable setup phase.
+                cursor.Emit(OpCodes.Ldarg_0); //push the NPC instance onto the stack.
+                cursor.Emit(OpCodes.Ldloc_S, idx1); //push the NPC instance onto the stack.
+                cursor.EmitDelegate<Func<NPC, float, float>> //code to return the desired speed value for duke fishron
+                (
+                    (NPC npc, float orig_speed) =>
+                    {
+                        float speed = orig_speed;
+                        if (npc != null && npc.active && npc.lifeMax > 0 && npc.life > 0)
+                        {
+                            speed = speed +
+                            (
+                                speed * ((float)npc.lifeMax / ((float)npc.lifeMax + (float)npc.lifeMax + (float)npc.life + (float)npc.life)) //Give fishron more dash speed, tapering from 25% at full life to 50% at 1 hp.
+                            );
+                        }
+                        return speed;
+                    }
+                );
+                cursor.Emit(OpCodes.Stloc_S, idx1);
+                for (int i = 0; i < 3; i++) //Patch all dash code instances (3 instances currently in game)
+                {
+                    cursor.GotoNext(i => i.MatchLdloc(idx1)); //go to the dash vector computation code.
+                    cursor.GotoNext(i => i.MatchStfld<Entity>(nameof(Entity.velocity)));
+                    cursor.Emit(OpCodes.Ldarg_0); //push the NPC instance onto the stack.
+                    cursor.Emit(OpCodes.Ldloc_S, idx1);
+                    cursor.EmitDelegate<Func<Microsoft.Xna.Framework.Vector2, NPC, float, Microsoft.Xna.Framework.Vector2>> //code to return the desired speed value for duke fishron
+                    (
+                        (Microsoft.Xna.Framework.Vector2 orig_velocity, NPC npc, float dashSpeed) =>
+                        {
+                            Microsoft.Xna.Framework.Vector2 velocity = orig_velocity;
+                            if (npc != null && npc.target >= 0 && npc.target < Main.player.Length)
+                            {
+                                //Recompute a more accurate dash vector
+                                Player player = Main.player[npc.target];
+                                float moveSpeed = velocity.Length();
+                                if (player.active && !player.dead && moveSpeed > 0f)
+                                {
+                                    Microsoft.Xna.Framework.Vector2 predictVelocity = player.velocity * (Vector2.Distance(npc.Center, player.Center) / moveSpeed); //Roughly Predict where the target is going to be when Duke Fishron reaches it
+                                    Microsoft.Xna.Framework.Vector2 dashVector = (player.Center + predictVelocity) - npc.Center;
+                                    dashVector = dashVector.SafeNormalize(Microsoft.Xna.Framework.Vector2.Zero);
+                                    velocity = dashVector * dashSpeed;
+                                }
+                            }
+                            return velocity;
+                        }
+                    );
+                    cursor.Index++;
+                    cursor.Index++; //Move after the instruction to correctly switch to the next occurence of the dash code.
+                }
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Duke Fishron AI Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectDukeFishronAIHook = false;
+            }
+            if(successInjectDukeFishronAIHook)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Duke Fishron AI Hook via IL Editing.");
+            }
         }
 
         public static void IL_NPC_AI_037_Destroyer(ILContext intermediateLanguageContext)
