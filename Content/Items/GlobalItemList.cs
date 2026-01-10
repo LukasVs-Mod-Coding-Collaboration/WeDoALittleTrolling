@@ -229,7 +229,7 @@ namespace WeDoALittleTrolling.Content.Items
                     });
                 }
             }
-            if (!ModContent.GetInstance<WDALTServerConfig>().DisableFishronSkipNerf && fishronWeapons.Contains(item.type))
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableFishronSkipNerf && (fishronWeapons.Contains(item.type) || item.type == ItemID.FishronWings || item.type == ItemID.ShrimpyTruffle))
             {
                 float mult = 1f;
                 if
@@ -239,17 +239,30 @@ namespace WeDoALittleTrolling.Content.Items
                     !NPC.downedMechBoss3
                 )
                 {
-                    mult -= 0.2f;
+                    mult -= 0.15f;
                 }
                 if (!NPC.downedPlantBoss)
                 {
-                    mult -= 0.2f;
+                    mult -= 0.15f;
+                }
+                if (!NPC.downedGolemBoss)
+                {
+                    mult -= 0.15f;
                 }
                 if (mult < 0.95f)
                 {
-                    TooltipLine nerfLine = new TooltipLine(Mod, "WeaponProgressionStageNerfDescription", "Weapon damage is reduced by " + (int)Math.Round(((1f - mult) * 100f)) + "% due to having skipped mandatory bosses");
-                    nerfLine.OverrideColor = Color.DarkRed;
-                    tooltips.Add(nerfLine);
+                    if (fishronWeapons.Contains(item.type))
+                    {
+                        TooltipLine nerfLine = new TooltipLine(Mod, "WeaponProgressionStageNerfDescription", "Weapon damage is reduced by " + (int)Math.Round(((1f - mult) * 100f)) + "% due to having skipped mandatory bosses");
+                        nerfLine.OverrideColor = Color.DarkRed;
+                        tooltips.Add(nerfLine);
+                    }
+                    else if (item.type == ItemID.FishronWings || item.type == ItemID.ShrimpyTruffle)
+                    {
+                        TooltipLine nerfLine = new TooltipLine(Mod, "MovementProgressionStageNerfDescription", "Movement speed is reduced by " + (int)Math.Round(((1f - mult) * 100f)) + "% due to having skipped mandatory bosses");
+                        nerfLine.OverrideColor = Color.DarkRed;
+                        tooltips.Add(nerfLine);
+                    }
                 }
             }
             if (item.prefix == PrefixID.Arcane)

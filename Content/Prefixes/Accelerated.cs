@@ -27,6 +27,8 @@ using Terraria;
 using WeDoALittleTrolling.Common.ModPlayers;
 using Terraria.ID;
 using Terraria.DataStructures;
+using WeDoALittleTrolling.Common.Configs;
+using Humanizer;
 
 namespace WeDoALittleTrolling.Content.Prefixes
 {
@@ -56,11 +58,45 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public static void RegisterHooks()
         {
             On_Player.WingAirLogicTweaks += On_Player_WingAirLogicTweaks;
+            On_Player.HorizontalMovement += On_Player_HorizontalMovement;
         }
 
         public static void UnregisterHooks()
         {
             On_Player.WingAirLogicTweaks -= On_Player_WingAirLogicTweaks;
+            On_Player.HorizontalMovement -= On_Player_HorizontalMovement;
+        }
+
+        public static void On_Player_HorizontalMovement(On_Player.orig_HorizontalMovement orig, Player self)
+        {
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableFishronSkipNerf && self.mount != null && self.mount.Active && self.mount.Type == MountID.CuteFishron)
+            {
+                float factor = 1f;
+                if
+                (
+                    !NPC.downedMechBoss1 ||
+                    !NPC.downedMechBoss2 ||
+                    !NPC.downedMechBoss3
+                )
+                {
+                    factor -= 0.15f;
+                }
+                if (!NPC.downedPlantBoss)
+                {
+                    factor -= 0.15f;
+                }
+                if (!NPC.downedGolemBoss)
+                {
+                    factor -= 0.15f;
+                }
+                if (factor < 0.95f)
+                {
+                    self.accRunSpeed *= factor;
+                    self.maxRunSpeed *= factor;
+                    self.runAcceleration  *= factor;
+                }
+            }
+            orig.Invoke(self);
         }
 
         public static void On_Player_WingAirLogicTweaks(On_Player.orig_WingAirLogicTweaks orig, Player self)
@@ -71,6 +107,31 @@ namespace WeDoALittleTrolling.Content.Prefixes
                 float factor = 0.08f;
                 float modifierAccelerated = factor * self.accRunSpeed * self.GetModPlayer<WDALTPlayer>().acceleratedStack;
                 self.accRunSpeed += modifierAccelerated;
+            }
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableFishronSkipNerf && self.wingsLogic == ArmorIDs.Wing.FishronWings)
+            {
+                float factor = 1f;
+                if
+                (
+                    !NPC.downedMechBoss1 ||
+                    !NPC.downedMechBoss2 ||
+                    !NPC.downedMechBoss3
+                )
+                {
+                    factor -= 0.15f;
+                }
+                if (!NPC.downedPlantBoss)
+                {
+                    factor -= 0.15f;
+                }
+                if (!NPC.downedGolemBoss)
+                {
+                    factor -= 0.15f;
+                }
+                if (factor < 0.95f)
+                {
+                    self.accRunSpeed *= factor;
+                }
             }
         }
 

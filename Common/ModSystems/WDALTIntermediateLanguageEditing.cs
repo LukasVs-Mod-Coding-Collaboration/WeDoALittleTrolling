@@ -76,7 +76,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         {
                             speed = speed +
                             (
-                                speed * ((float)npc.lifeMax / ((float)npc.lifeMax + (float)npc.lifeMax + (float)npc.life + (float)npc.life)) //Give fishron more dash speed, tapering from 25% at full life to 50% at 1 hp.
+                                speed * (((float)npc.lifeMax + (float)npc.life) / ((float)npc.lifeMax * 8.0f)) //Give fishron more dash speed, tapering from 25% at full life to 12.5% at 1 hp.
                             );
                         }
                         return speed;
