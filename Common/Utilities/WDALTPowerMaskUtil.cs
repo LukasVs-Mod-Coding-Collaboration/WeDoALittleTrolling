@@ -40,6 +40,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         public bool PhasingMask;
         public bool HeroicMask;
         public bool FragmentedMask;
+        public bool BalancedMask;
         public static UnifiedRandom random = new UnifiedRandom();
         
         public override void Initialize()
@@ -53,6 +54,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             PhasingMask = false;
             HeroicMask = false;
             FragmentedMask = false;
+            BalancedMask = false;
         }
 
         public override void UpdateDead()
@@ -70,6 +72,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             PhasingMask = false;
             HeroicMask = false;
             FragmentedMask = false;
+            BalancedMask = false;
         }
 
         public override void ResetEffects()
@@ -82,6 +85,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             PhasingMask = false;
             HeroicMask = false;
             FragmentedMask = false;
+            BalancedMask = false;
             base.ResetEffects();
         }
 
@@ -95,6 +99,11 @@ namespace WeDoALittleTrolling.Common.Utilities
                 {
                     player.lifeRegen = (int)Math.Round(player.lifeRegen * 1.5);
                 }
+            }
+            if (BalancedMask)
+            {
+                player.statLifeMax2 += 20;
+                player.GetDamage(DamageClass.Generic) += 0.1f;
             }
             base.PostUpdateEquips();
         }

@@ -549,6 +549,16 @@ Mods: {
 					You attacks deal 50% less damage against enemies
 					'''
 			}
+
+			BalancedMask: {
+				DisplayName: Balanced Mask
+				Tooltip:
+					'''
+					Equip the Balanced Mask, providing you with the following benefits:
+					+20 max life
+					+10% damage
+					'''
+			}
 		}
 
 		Projectiles: {
