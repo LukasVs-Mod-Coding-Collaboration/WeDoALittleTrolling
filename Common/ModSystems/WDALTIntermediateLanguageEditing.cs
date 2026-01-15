@@ -48,7 +48,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void IL_NPC_AI_069_DukeFishron(ILContext intermediateLanguageContext)
         {
             bool successInjectDukeFishronAIHook = true;
-            if (ModContent.GetInstance<WDALTServerConfig>().DisableDukeFishronExtraAI)
+            if (!ModContent.GetInstance<WDALTServerConfig>().EnableDukeFishronExtraAI)
             {
                 WeDoALittleTrolling.logger.Debug("WDALT: Duke Fishron AI Hook is disabled in the server configuration, skipping injection...");
                 return;
