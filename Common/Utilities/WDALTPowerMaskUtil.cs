@@ -112,7 +112,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             if(EternalMask)
             {
-                modifiers.FinalDamage *= 0.5f;
+                modifiers.SourceDamage *= 0.5f;
             }
             base.ModifyHitNPC(target, ref modifiers);
         }

@@ -27,7 +27,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.NPCs;
 
-
+/*
 namespace WeDoALittleTrolling.Content.Buffs.PowerMasks
 {
     public class EternalPower : ModBuff
@@ -47,3 +47,4 @@ namespace WeDoALittleTrolling.Content.Buffs.PowerMasks
         }
     }
 }
+*/

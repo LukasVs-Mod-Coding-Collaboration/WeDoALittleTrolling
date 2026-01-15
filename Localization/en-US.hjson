@@ -536,6 +536,19 @@ Mods: {
 					Right click to unleash an explosion once you gained 5 charges
 					'''
 			}
+
+			EternalMask: {
+				DisplayName: Eternal Mask
+				Tooltip:
+					'''
+					Equip the Eternal Mask, providing you with the following benefits:
+					+250 max life
+					+50% healing effectiveness
+					However, you will suffer from the following drawbacks:
+					You have no endurance
+					You attacks deal 50% less damage against enemies
+					'''
+			}
 		}
 
 		Projectiles: {
