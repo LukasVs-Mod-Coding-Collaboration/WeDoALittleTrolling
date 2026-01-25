@@ -383,7 +383,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "Can you believe it, " + Main.npc[damageSource.SourceNPCIndex].FullName + "? " + player.name + ", just a week away! Oh wow, I am so happy about this information. " + player.name + ", just a week away!",
                     "Precept fifteen: One " + player.name + ", one " + Main.npc[damageSource.SourceNPCIndex].FullName + ". You should only use a single " + Main.npc[damageSource.SourceNPCIndex].FullName + " to defeat a " + player.name + ". any more is a waste.",
                     "What would " + player.name + " prefer, would they like to fight for civil rights or tweet a " + Main.npc[damageSource.SourceNPCIndex].FullName + " slur?",
-                    player.name + "cannot have roots and branches, so that the first adverse " + Main.npc[damageSource.SourceNPCIndex].FullName + " eliminates them.",
+                    player.name + " cannot have roots and branches, so that the first adverse " + Main.npc[damageSource.SourceNPCIndex].FullName + " eliminates them.",
                     "\"Where's " + player.name + "?\" Suspiciously " + player.name + " shaped " + Main.npc[damageSource.SourceNPCIndex].FullName + ":",
                     "The offense done to " + player.name + " was such that " + Main.npc[damageSource.SourceNPCIndex].FullName + " did not have to fear revenge for it.",
                     "And truly it is a very natural and ordinary thing to kill " + player.name + ", and always, when " + Main.npc[damageSource.SourceNPCIndex].FullName + "s do it who can, they will be praised or not blamed.",
