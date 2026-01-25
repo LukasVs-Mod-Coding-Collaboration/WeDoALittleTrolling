@@ -400,7 +400,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     Main.npc[damageSource.SourceNPCIndex].FullName + "work ahead? " + player.name + " sure hopes it doesn't!",
                     "Nice opinion, " + player.name + ". One small issue: " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " can't believe the news today, oh they can't close their eyes and make " + Main.npc[damageSource.SourceNPCIndex].FullName + " go away.",
-                    player.name + " was converted to " + Main.npc[damageSource.SourceNPCIndex].FullName + " ism.",
+                    player.name + " was converted to " + Main.npc[damageSource.SourceNPCIndex].FullName + "ism.",
                     "Give " + player.name + " an " + Main.npc[damageSource.SourceNPCIndex].FullName + " and you kill them once, teach " + player.name + " to " + Main.npc[damageSource.SourceNPCIndex].FullName + " and they'll die for a lifetime.",
                     Main.npc[damageSource.SourceNPCIndex].FullName + "s can kill " + player.name + ", but if they don't they make them stronger.",
                     "Now, " + player.name + " was a murderer who had a problem with the " + Main.npc[damageSource.SourceNPCIndex].FullName + "s and as someone who is a " + Main.npc[damageSource.SourceNPCIndex].FullName + " you find the whole thing quite offensive.",
