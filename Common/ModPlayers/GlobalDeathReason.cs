@@ -25,6 +25,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using WeDoALittleTrolling.Common.Configs;
+using WeDoALittleTrolling.Content.Prefixes;
 
 namespace WeDoALittleTrolling.Common.ModPlayers
 {
@@ -267,7 +268,16 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "Well it's nine o'clock and it's getting dark and " + player.name + " is falling from the sky.",
                 player.name + " left the stage of time with no answers to no questions.",
                 player.name + " was wished a bad odding.",
-                "If this mirror were clear, " + player.name + " would be standing so tall."
+                "If this mirror were clear, " + player.name + " would be standing so tall.",
+                player.name + " is as weak as a kitten and as thick as two planks.",
+                player.name + " played Sudoku to restore their honor.",
+                "I want to play a game, " + player.name + ". In your inventory there is a pipe bomb disguised as another item. I hope you have a very good memory.",
+                "The loathsome " + player.name + " eater!",
+                "But I was saving " + player.name + " for the grand finale!",
+                "Okay, cut! " + player.name + ", have you even read the script? Let's take that back.",
+                "Would " + player.name + " please stop complaining? I'm playing a song.",
+                "It feels like flying, but maybe " + player.name + " is dying.",
+                player.name + " returned to obscure, or wherever they were before they were."
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
@@ -354,9 +364,53 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "The " + Main.npc[damageSource.SourceNPCIndex].FullName + "s seem to know where " + player.name + " needs them to go, igniting a spark in their mind, so they circle and fly.",
                     "You told me to buy a " + Main.npc[damageSource.SourceNPCIndex].FullName + ", but all I wanted was " + player.name + ".",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " undercover, " + player.name + "'s health points obscene.",
-                    player.name + " practices their " + Main.npc[damageSource.SourceNPCIndex] + "isms into the wall."
+                    player.name + " practices their " + Main.npc[damageSource.SourceNPCIndex] + "isms into the wall.",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " to " + player.name + " " + ((player.numberOfDeathsPVE % 8) + 1) + " #.",
+                    "Having enjoyed all the " + player.name + " from the " + Main.worldName + " is perfectly equal to being " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "Just a little bit of " + Main.npc[damageSource.SourceNPCIndex].FullName + "s to end " + Main.worldName + ", does it even matter to " + player.name + "?",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + " are bountiful this time of " + Main.worldName + ".",
+                    "Your " + player.name + " just ran into a " + Main.npc[damageSource.SourceNPCIndex].FullName + " and needs to respawn. We're just collecting some info and then we'll revive it for you.",
+                    "Can " + player.name + " feel their heart burning? Can they feel the struggle within? The fear within is beyond anything their soul can make. They cannot kill " + Main.npc[damageSource.SourceNPCIndex].FullName + " in a way that matters.",
+                    player.name + " is done living; " + Main.npc[damageSource.SourceNPCIndex].FullName + " has eaten.",
+                    "POV - " + player.name + "'s " + Main.npc[damageSource.SourceNPCIndex].FullName + " is a " + Main.worldName + "ian spy:",
+                    "Oh how the " + player.name + "s have " + Main.npc[damageSource.SourceNPCIndex].FullName + "ed.",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + " came down that day and it drained " + player.name + "'s soul away.",
+                    "Then the Lord gave " + player.name + " the ability to speak. \"What have I done to you that deserves your beating me three times?\" it asked " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + "s, " + player.name + ", the DNA of the soul!",
+                    "The " + Main.npc[damageSource.SourceNPCIndex].FullName + " knows where it is at all times. It knows this because it knows where it isn't. By subtracting where it is, from where it isn't, or where it isn't, from where it is, whichever is greater, it obtains a difference, or " + player.name + ".",
+                    "And because " + player.name + " cannot remain unarmed, they must turn to a " + Main.npc[damageSource.SourceNPCIndex].FullName + " military, which is of the quality described above.",
+                    player.name + " hates them with perfect hatred; They count them their " + Main.npc[damageSource.SourceNPCIndex].FullName + "s.",
+                    "Can you believe it, " + Main.npc[damageSource.SourceNPCIndex].FullName + "? " + player.name + ", just a week away! Oh wow, I am so happy about this information. " + player.name + ", just a week away!",
+                    "Precept fifteen: One " + player.name + ", one " + Main.npc[damageSource.SourceNPCIndex].FullName + ". You should only use a single " + Main.npc[damageSource.SourceNPCIndex].FullName + " to defeat a " + player.name + ". any more is a waste.",
+                    "What would " + player.name + " prefer, would they like to fight for civil rights or tweet a " + Main.npc[damageSource.SourceNPCIndex].FullName + " slur?",
+                    player.name + "cannot have roots and branches, so that the first adverse " + Main.npc[damageSource.SourceNPCIndex].FullName + " eliminates them.",
+                    "\"Where's " + player.name + "?\" Suspiciously " + player.name + " shaped " + Main.npc[damageSource.SourceNPCIndex].FullName + ":",
+                    "The offense done to " + player.name + " was such that " + Main.npc[damageSource.SourceNPCIndex].FullName + " did not have to fear revenge for it.",
+                    "And truly it is a very natural and ordinary thing to kill " + player.name + ", and always, when " + Main.npc[damageSource.SourceNPCIndex].FullName + "s do it who can, they will be praised or not blamed.",
+                    "Once " + Main.npc[damageSource.SourceNPCIndex].FullName + " had won the war, there was nothing left to do except celebrate its victory with grace and humility: \"Watch me dance, " + player.name + ", you lose!",
+                    "Are you telling me a " + Main.npc[damageSource.SourceNPCIndex].FullName + " fried this " + player.name + "?",
+                    player.name + " would indeed get older, if " + Main.npc[damageSource.SourceNPCIndex].FullName + " didn't roll a boulder.",
+                    "Did " + player.name + " hear about the " + Main.npc[damageSource.SourceNPCIndex].FullName + " that escaped the zoo? No? Well that's because it was a very quiet " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    "I don't know why " + Main.npc[damageSource.SourceNPCIndex].FullName + " even tries. " + player.name + " will be back in three seconds anyways.",
+                    player.name + " challenged tender " + Main.npc[damageSource.SourceNPCIndex].FullName + ", only to have their own heart rather artfully stolen.",
+                    "All I require is your greatest " + Main.npc[damageSource.SourceNPCIndex].FullName + ". Which one, you ask? The one " + player.name + " hates the most.", 
+                    "We are sorry about the issue regarding " + player.name + "s delivery. " + Main.npc[damageSource.SourceNPCIndex].FullName + " Inc. does not take warranty for any potential pipe bombs packages may have been replaced with.",
+                    "Does " + player.name + " feel like a... little giggle... when I say the name 'Sussus " + Main.npc[damageSource.SourceNPCIndex].FullName + "us'?",
+                    "Your " + Main.npc[damageSource.SourceNPCIndex].FullName + " tricks " + player.name + " into thinking.",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + "work ahead? " + player.name + " sure hopes it doesn't!",
+                    "Nice opinion, " + player.name + ". One small issue: " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
+                    player.name + " can't believe the news today, oh they can't close their eyes and make " + Main.npc[damageSource.SourceNPCIndex].FullName + " go away.",
+                    player.name + " was converted to " + Main.npc[damageSource.SourceNPCIndex].FullName + " ism.",
+                    "Give " + player.name + " an " + Main.npc[damageSource.SourceNPCIndex].FullName + " and you kill them once, teach " + player.name + " to " + Main.npc[damageSource.SourceNPCIndex].FullName + " and they'll die for a lifetime.",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + "s can kill " + player.name + ", but if they don't they make them stronger.",
+                    "Now, " + player.name + " was a murderer who had a problem with the " + Main.npc[damageSource.SourceNPCIndex].FullName + "s and as someone who is a " + Main.npc[damageSource.SourceNPCIndex].FullName + " you find the whole thing quite offensive.",
+                    "As you know, " + player.name + ", " + Main.npc[damageSource.SourceNPCIndex].FullName + " is very homophobic.",
+                    player.name + " remained oblivious to two " + Main.npc[damageSource.SourceNPCIndex].FullName + "s disguised as chairs.",
+                    player.name + " " + Main.npc[damageSource.SourceNPCIndex].FullName + "ed.",
+                    "Even the " + Main.npc[damageSource.SourceNPCIndex].FullName + "s know " + player.name + " is brewing and they're all cooing.",
+                    Main.npc[damageSource.SourceNPCIndex].FullName + " [i:1254] " + player.name
                 };
-
+         
                 if (random.NextBool(15))
                 {
                     if(random.NextBool(3))
