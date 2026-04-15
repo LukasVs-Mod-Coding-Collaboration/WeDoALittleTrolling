@@ -1,6 +1,6 @@
 ﻿/*
     WeDoALittleTrolling is a Terraria Mod made with tModLoader.
-    Copyright (C) 2022-2025 LukasV-Coding
+    Copyright (C) 2022-2026 LukasV-Coding
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,10 +17,7 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -29,11 +26,7 @@ using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.Utilities;
 using WeDoALittleTrolling.Common.ModSystems;
 using WeDoALittleTrolling.Content.Buffs;
-using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Prefixes;
-using WeDoALittleTrolling.Content.Items;
-using WeDoALittleTrolling.Content.Items.Weapons;
-using WeDoALittleTrolling.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.Utilities;
 using WeDoALittleTrolling.Common.Configs;
