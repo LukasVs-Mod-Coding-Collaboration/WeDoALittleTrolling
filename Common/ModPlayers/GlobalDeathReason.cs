@@ -254,7 +254,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " isn't the sharpest tool in the shed.",
                 "Holy mother of bananas, " + player.name + " has died!",
                 player.name + " accidentaly sent themselves to the fungal wastes.",
-                player.name + " MISSED THEIR CHANCE TO BE A [Big Shot].",
+                "[" + player.name + "] MISSED THEIR CHANCE TO BE A [Big Shot].",
                 "Hello? Is anybody there? Someone who might be interested in rescuing the great " + player.name + "?",
                 "[" + player.name + "]!!! YOU [Little Sponge]! I KNEW YOU'D COME HERE [[On A Saturday Night]]!",
                 player.name + " was enlightened to the lies of Big Oxygen.",
@@ -291,7 +291,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.name + " witnessed the unfathomable horrors of GlobalDeathReason.cs.",
                 "I suppose " + player.name + " is quite content in their respawn screen. All you recently deceased are the same.",
                 "Is this really the hill " + player.name + " wants to die on?",
-                "The Caligulas claim " + player.name + "."
+                "The Caligulas claim " + player.name + ".",
+                "Exacration of the names of the unworthy " + player.name + "s!",
+                "Does " + player.name + " really think?"
             };
 
             if (damageSource.SourceNPCIndex > -1 && damageSource.SourceNPCIndex < Main.npc.Length) //Check if PlayerDeathEvent was triggered by a NPC
@@ -454,7 +456,16 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     "The square of " + player.name + "'s deaths is equal to the product of its projection to the hypotenuse and its " + Main.npc[damageSource.SourceNPCIndex].FullName + ".",
                     player.name + " was among the one third of those who suffer from " + Main.npc[damageSource.SourceNPCIndex].FullName + "-pattern baldness.",
                     Main.npc[damageSource.SourceNPCIndex].FullName + " is the " + Main.worldName + " conditioning man, and it's keeping " + player.name + " dead with its giant fan.",
-                    Main.npc[damageSource.SourceNPCIndex].FullName + ", quick! Grab " + player.name + "! Don't let this kraken be a squidnapper!"
+                    Main.npc[damageSource.SourceNPCIndex].FullName + ", quick! Grab " + player.name + "! Don't let this kraken be a squidnapper!",
+                    "Ooh, live the dream with a " + Main.npc[damageSource.SourceNPCIndex].FullName + " machine, " + player.name + " has been waiting forever.",
+                    "Crazy? " + player.name + " was crazy once. They locked " + player.name + " in a room. A rubber room. A rubber room with " + Main.npc[damageSource.SourceNPCIndex].FullName + "s. And " + Main.npc[damageSource.SourceNPCIndex].FullName + "s make " + player.name + " crazy.",
+                    "99% of " + Main.npc[damageSource.SourceNPCIndex].FullName + "s quit right before they manage to kill " + player.name + ".",
+                    player.name + "! Your " + Main.npc[damageSource.SourceNPCIndex].FullName + " has returned! It brings the destruction of " + Main.worldName + ".",
+                    "Why did murderous " + Main.npc[damageSource.SourceNPCIndex].FullName + "s survive? Why did " + player.name + " deserve to be revived?",
+                    player.name + " was sent home by " + Main.npc[damageSource.SourceNPCIndex].FullName + ", Host of " + Main.worldName + ". Returning to their world.",
+                    player.name + " was in " + Main.worldName + ", wearying of the " + Main.npc[damageSource.SourceNPCIndex].FullName + "s, hate me not. Wait, they forgot. Woe, oh the rot.",
+                    "The foul "  + Main.npc[damageSource.SourceNPCIndex].FullName + " is devouring its wretched " + player.name + ".",
+                    "Meanwhile " + Main.npc[damageSource.SourceNPCIndex].FullName + "? It's going back to " + Main.worldName + ", it's been eating mush all week and it's time for " + player.name + "!"
                 };
          
                 if (random.NextBool(15))
