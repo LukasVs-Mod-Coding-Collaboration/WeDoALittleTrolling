@@ -86,6 +86,8 @@ namespace WeDoALittleTrolling.Common.Utilities
             syncDevastated = false;
             statLifeDevastated = player.statLifeMax2;
             */
+            //Terraria 1.4.5.8 has a bug where chatOverhead.color is NULL when a player object is initialized, explicitly initialize it so we can use chatOverhead right away.
+            player.chatOverhead.color = Color.White;
         }
 
         private void ResetVariables()
