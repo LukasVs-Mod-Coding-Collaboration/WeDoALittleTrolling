@@ -234,10 +234,12 @@ namespace WeDoALittleTrolling.Common.Utilities
             currentHitAmount = 0;
         }
 
+        /* TAPI_1.4.5.8: DEPRECATED
         public override void PostUpdate()
         {
             BalancingItemList.ModifySetBonus(player);
         }
+        */
 
         public int GetHitAmountInLastSecond()
         {

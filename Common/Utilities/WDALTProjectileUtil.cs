@@ -83,9 +83,9 @@ namespace WeDoALittleTrolling.Common.Utilities
             ticksAlive = 0;
             projectile.netUpdate = true;
             spawnSource = source;
-            if(source is EntitySource_Parent parentSource)
+            if(source is EntitySource_Parent parentSource && parentSource.Entity is Entity entityObject)
             {
-                parentEntity = parentSource.Entity;
+                parentEntity = entityObject;
                 parentEntityExists = true;
             }
             else

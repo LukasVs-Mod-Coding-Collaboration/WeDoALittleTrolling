@@ -17,6 +17,7 @@
 */
 
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.ModPlayers;
@@ -27,6 +28,29 @@ namespace WeDoALittleTrolling.Content.Items.Armor
     [AutoloadEquip(EquipType.Head)]
     public class SearingHelmet : ModItem
     {
+        public static void AddArmorSetBonus()
+        {
+            /* TAPI_1.4.5.8: Use new ArmorSetBonuses engine */
+            ArmorSetBonuses.Add
+            (
+                SearingBonus,
+                "Sears attackers, greatly reducing damage\nGrants immunity to Searing Inferno",
+                ModContent.ItemType<SearingHelmet>(),
+                ModContent.ItemType<SearingBreastplate>(),
+                ModContent.ItemType<SearingLeggings>()
+            );
+        }
+
+        public static void RemoveArmorSetBonus()
+        {
+            ArmorSetBonuses.All.RemoveAll((ArmorSetBonus b) => {
+                return b != null &&
+                b.Head == ModContent.ItemType<SearingHelmet>() &&
+                b.Body == ModContent.ItemType<SearingBreastplate>() &&
+                b.Legs ==  ModContent.ItemType<SearingLeggings>();
+            });
+        }
+
         public override void SetDefaults()
         {
             Item.width = 32;
@@ -42,16 +66,22 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             player.lifeRegen += 6;
         }
 
+        public static void SearingBonus(Player player)
+        {
+            player.GetModPlayer<WDALTPlayer>().searingSetBonus = true;
+        }
+
+        /* TAPI_1.4.5.8: DEPRECATED
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == ModContent.ItemType<SearingBreastplate>() && legs.type == ModContent.ItemType<SearingLeggings>();
+            return head.type == ModContent.ItemType<SearingHelmet>() && body.type == ModContent.ItemType<SearingBreastplate>() && legs.type == ModContent.ItemType<SearingLeggings>();
         }
 
         public override void UpdateArmorSet(Player player)
         {
             player.GetModPlayer<WDALTPlayer>().searingSetBonus = true;
             player.setBonus = "Sears attackers, greatly reducing damage\nGrants immunity to Searing Inferno";
-        }
+        }*/
 
         public override void AddRecipes()
         {

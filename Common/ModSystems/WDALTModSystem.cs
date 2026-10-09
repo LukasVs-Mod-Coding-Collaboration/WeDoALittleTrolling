@@ -25,6 +25,7 @@ using Terraria.UI;
 using WeDoALittleTrolling.Common.Configs;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
+using WeDoALittleTrolling.Content.Items.Armor;
 using WeDoALittleTrolling.Content.NPCs;
 using WeDoALittleTrolling.Content.Prefixes;
 using WeDoALittleTrolling.Content.Tiles;
@@ -98,6 +99,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             WDALTIntermediateLanguageEditing.RegisterILHooks();
             RegisterHooks();
+            SearingHelmet.AddArmorSetBonus();
             base.OnModLoad();
         }
 
@@ -105,6 +107,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         {
             WDALTIntermediateLanguageEditing.UnregisterILHooks();
             UnregisterHooks();
+            SearingHelmet.RemoveArmorSetBonus();
             base.OnModUnload();
         }
 

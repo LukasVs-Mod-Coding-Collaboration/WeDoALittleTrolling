@@ -20,8 +20,10 @@ using System;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.States;
+using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.Configs;
 using WeDoALittleTrolling.Content.Buffs;
@@ -60,8 +62,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 On_Player.VanillaBaseDefenseEffectiveness += On_Player_VanillaBaseDefenseEffectiveness;
             }
-            On_UIWorldCreation.ProcessSpecialWorldSeeds += On_UIWorldCreation_ProcessSpecialWorldSeeds;
-            IL_WorldGen.GenerateWorld += IL_WorldGen_GenerateWorld;
         }
 
         public static void UnregisterHooks()
@@ -74,8 +74,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 On_Player.VanillaBaseDefenseEffectiveness -= On_Player_VanillaBaseDefenseEffectiveness;
             }
-            On_UIWorldCreation.ProcessSpecialWorldSeeds -= On_UIWorldCreation_ProcessSpecialWorldSeeds;
-            IL_WorldGen.GenerateWorld -= IL_WorldGen_GenerateWorld;
         }
 
         public static void On_DontStarveDarknessDamageDealer_Update(On_DontStarveDarknessDamageDealer.orig_Update orig, Player player)
@@ -89,62 +87,11 @@ namespace WeDoALittleTrolling.Common.ModSystems
 
         public static float On_Player_VanillaBaseDefenseEffectiveness(On_Player.orig_VanillaBaseDefenseEffectiveness orig)
         {
-            if (Main.getGoodWorld && Main.GameModeInfo.IsMasterMode)
+            if (Main.Difficulty >= GameDifficultyLevel.Legendary)
             {
                 return 1.25f;
             }
             return orig.Invoke();
-        }
-
-        public static void On_UIWorldCreation_ProcessSpecialWorldSeeds(Terraria.GameContent.UI.States.On_UIWorldCreation.orig_ProcessSpecialWorldSeeds orig, string processedSeed)
-        {
-            orig.Invoke(processedSeed);
-            if (processedSeed.Contains("WDALTMixup") || processedSeed.Contains("WDALTDrunkFTW"))
-            {
-                WorldGen.getGoodWorldGen = true;
-                if (processedSeed.Contains("WDALTMixup"))
-                {
-                    WorldGen.noTrapsWorldGen = true;
-                }
-            }
-            else if (processedSeed.Contains("WDALTDrunkBees"))
-            {
-                WorldGen.notTheBees = true;
-            }
-        }
-
-        public static void IL_WorldGen_GenerateWorld(ILContext intermediateLanguageContext)
-        {
-            bool successInjectDrunkSeedHook = true;
-            try
-            {
-                ILCursor cursor = new ILCursor(intermediateLanguageContext);
-                cursor.GotoNext(i => i.MatchLdsfld<WorldGen>(nameof(WorldGen.everythingWorldGen))); //Go to the position where the Get Fixed Boi check is for the drunk world
-                cursor.Index++; //Go behind it now
-                cursor.Emit(OpCodes.Pop); //Pop the original value of "WorldGen.everythingWorldGen" off the stack
-                cursor.EmitDelegate<Func<bool>>
-                (
-                    () =>
-                    {
-                        bool flag = WorldGen.everythingWorldGen;
-                        if (WorldGen.currentWorldSeed.Contains("WDALTMixup") || WorldGen.currentWorldSeed.Contains("WDALTDrunkBees") || WorldGen.currentWorldSeed.Contains("WDALTDrunkFTW"))
-                        {
-                            flag = true;
-                        }
-                        return flag;
-                    }
-                ); //Instead, push the original value of "WorldGen.everythingWorldGen" onto the stack but also push "true" onto the stack when our special seed is detected.
-            }
-            catch
-            {
-                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
-                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Drunk Seed Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
-                successInjectDrunkSeedHook = false;
-            }
-            if(successInjectDrunkSeedHook)
-            {
-                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Drunk Seed Hook via IL Editing.");
-            }
         }
     }
 }
