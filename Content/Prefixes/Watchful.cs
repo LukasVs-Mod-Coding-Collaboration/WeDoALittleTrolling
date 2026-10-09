@@ -62,13 +62,13 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             yield return new TooltipLine(Mod, "PrefixAccessoryWatchfulDescriptionNegative", AdditionalTooltip.Value)
             {
-                IsModifier = true,
-                IsModifierBad = true,
+                IsModifier/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixGood instead */ = true,
+                IsModifierBad/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixBad instead */ = true,
             };
             yield return new TooltipLine(Mod, "PrefixAccessoryWatchfulDescriptionPositive", AdditionalTooltip2.Value)
             {
-                IsModifier = true,
-                IsModifierBad = false,
+                IsModifier/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixGood instead */ = true,
+                IsModifierBad/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixBad instead */ = false,
             };
         }
 

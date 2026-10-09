@@ -214,7 +214,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 }
                 if(type == WDALTPacketTypeID.spawnCrateItem)
                 {
-                    Item.NewItem(new EntitySource_SpawnNPC(), (int)itemSpawnPos.X, (int)itemSpawnPos.Y, playerWidth, playerHeight, itemType, dropAmount);
+                    Item.NewItem(new EntitySource_SpawnNPC(), new Vector2(itemSpawnPos.X + playerWidth / 2, itemSpawnPos.Y + playerHeight / 2), itemType, dropAmount);
                 }
                 if (type == WDALTPacketTypeID.soundPlayRainOfDecay)
                 {

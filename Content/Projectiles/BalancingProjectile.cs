@@ -555,28 +555,28 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 {
                     if (random.Next(0, 1) == 0) //1 in 1 Chance
                     {
-                        target.AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
+                        target.AddBuff(BuffID.Venom, 240); //4s, X2 in Expert, X2.5 in Master
                     }
                 }
                 if (InflictPoisonDebuff1In1Group.Contains(projectile.type))
                 {
                     if (random.Next(0, 1) == 0) //1 in 1 Chance
                     {
-                        target.AddBuff(BuffID.Poisoned, 240, true); //4s, X2 in Expert, X2.5 in Master
+                        target.AddBuff(BuffID.Poisoned, 240); //4s, X2 in Expert, X2.5 in Master
                     }
                 }
                 if (InflictBleedingDebuff1In1Group.Contains(projectile.type))
                 {
                     if (random.Next(0, 1) == 0) //1 in 1 Chance
                     {
-                        target.AddBuff(BuffID.Bleeding, 960, true); //16s, X2 in Expert, X2.5 in Master
+                        target.AddBuff(BuffID.Bleeding, 960); //16s, X2 in Expert, X2.5 in Master
                     }
                 }
                 if (InflictBleedingDebuff1In8Group.Contains(projectile.type))
                 {
                     if (random.Next(0, 8) == 0) //1 in 8 Chance
                     {
-                        target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
+                        target.AddBuff(BuffID.Bleeding, 480); //8s, X2 in Expert, X2.5 in Master
                     }
                 }
                 /*if (InflictWreckedResistance1In1Group.Contains(projectile.type))

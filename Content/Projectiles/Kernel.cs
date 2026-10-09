@@ -43,7 +43,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.localNPCHitCooldown = 20;
         }
 
-        public override void PostDraw(Color lightColor)
+        public override void PostDraw(Player player, Color lightColor)/* tModPorter Replace 'Main.player[Projectile.owner]' with 'player'. */
         {
             if (Projectile.GetGlobalProjectile<WDALTProjectileUtil>().ticksAlive % 12 == 0)
             {

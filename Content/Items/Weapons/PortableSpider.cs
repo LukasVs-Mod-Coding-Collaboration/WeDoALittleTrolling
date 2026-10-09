@@ -65,7 +65,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             CreateRecipe()
                 .AddTile(TileID.HeavyWorkBench)
                 .AddIngredient(ModContent.ItemType<WallCreeperFang>(), 16)
-                .AddRecipeGroup(RecipeGroupID.Wood, 4)
+                .AddRecipeGroup(RecipeGroups.Wood, 4)
                 .Register();
         }
 

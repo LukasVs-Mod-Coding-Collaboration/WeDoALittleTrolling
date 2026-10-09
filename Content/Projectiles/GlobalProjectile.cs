@@ -375,7 +375,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     }
                     if(!player.HasBuff(BuffID.Regeneration) || player.buffTime[player.FindBuffIndex(BuffID.Regeneration)] < 180)
                     {
-                        player.AddBuff(BuffID.Regeneration, 180, true);
+                        player.AddBuff(BuffID.Regeneration, 180);
                     }
                 }
             }
@@ -416,15 +416,15 @@ namespace WeDoALittleTrolling.Content.Projectiles
             }
             if (projectile.type == ProjectileID.BoulderStaffOfEarth && projectile.GetGlobalProjectile<WDALTProjectileUtil>().hostileGolemBoulder)
             {
-                target.AddBuff(ModContent.BuffType<SearingInferno>(), 240, true); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(ModContent.BuffType<SearingInferno>(), 240); //4s, X2 in Expert, X2.5 in Master
             }
             if (projectile.type == ProjectileID.BlackBolt)
             {
-                target.AddBuff(ModContent.BuffType<OnyxBlaze>(), 240, true); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(ModContent.BuffType<OnyxBlaze>(), 240); //4s, X2 in Expert, X2.5 in Master
             }
             if (projectile.type == ProjectileID.SeedPlantera && projectile.GetGlobalProjectile<WDALTProjectileUtil>().speedyPlanteraPoisonSeed)
             {
-                target.AddBuff(BuffID.Venom, 120, true); //4s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.Venom, 120); //4s, X2 in Expert, X2.5 in Master
             }
             base.OnHitPlayer(projectile, target, info);
         }

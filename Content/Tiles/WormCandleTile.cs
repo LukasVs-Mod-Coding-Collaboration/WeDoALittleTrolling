@@ -36,9 +36,9 @@ namespace WeDoALittleTrolling.Content.Tiles
             Main.tileFrameImportant[Type] = true;
             Main.tileWaterDeath[Type] = true;
             Main.tileLavaDeath[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+            TileID.Sets.RoomNeeds.CountsAsTorch[Type] = true;
             AddToArray(ref TileID.Sets.DrawFlipMode);
-            TileID.Sets.InteractibleByNPCs[Type] = true;
+            TileID.Sets.InteractableByNPCs[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.DrawFlipHorizontal = true; // Unlike vanilla lamps, this lamp alternates direction, see SetSpriteEffects below and the TileObjectData.DrawFlipHorizontal docs for more information.
             //TileObjectData.newTile.StyleLineSkip = 2;

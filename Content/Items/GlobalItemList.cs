@@ -224,7 +224,7 @@ namespace WeDoALittleTrolling.Content.Items
                     List<TooltipLine> infoLine = tooltips.FindAll(t => (t.Name == "Equipable") && (t.Mod == "Terraria"));
                     infoLine.ForEach((TooltipLine t) =>
                     {
-                        t.OverrideColor = Color.DarkRed;
+                        t.Color = Color.DarkRed;
                         t.Text = "This item cannot be equipped during a No Wings Challenge";
                     });
                 }
@@ -254,13 +254,13 @@ namespace WeDoALittleTrolling.Content.Items
                     if (fishronWeapons.Contains(item.type))
                     {
                         TooltipLine nerfLine = new TooltipLine(Mod, "WeaponProgressionStageNerfDescription", "Weapon damage is reduced by " + (int)Math.Round(((1f - mult) * 100f)) + "% due to having skipped mandatory bosses");
-                        nerfLine.OverrideColor = Color.DarkRed;
+                        nerfLine.Color = Color.DarkRed;
                         tooltips.Add(nerfLine);
                     }
                     else if (item.type == ItemID.FishronWings || item.type == ItemID.ShrimpyTruffle)
                     {
                         TooltipLine nerfLine = new TooltipLine(Mod, "MovementProgressionStageNerfDescription", "Movement speed is reduced by " + (int)Math.Round(((1f - mult) * 100f)) + "% due to having skipped mandatory bosses");
-                        nerfLine.OverrideColor = Color.DarkRed;
+                        nerfLine.Color = Color.DarkRed;
                         tooltips.Add(nerfLine);
                     }
                 }
@@ -326,7 +326,7 @@ namespace WeDoALittleTrolling.Content.Items
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial, 1);
+                        Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, ItemID.Sundial, 1);
                     }
                 }
                 if (random.Next(0, 8) == 0)
@@ -344,7 +344,7 @@ namespace WeDoALittleTrolling.Content.Items
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeCrystal, 1);
+                        Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, ItemID.LifeCrystal, 1);
                     }
                 }
             }
@@ -369,7 +369,7 @@ namespace WeDoALittleTrolling.Content.Items
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Sundial, 1);
+                        Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, ItemID.Sundial, 1);
                     }
                 }
                 if
@@ -388,7 +388,7 @@ namespace WeDoALittleTrolling.Content.Items
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeCrystal, 1);
+                        Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, ItemID.LifeCrystal, 1);
                     }
                 }
             }
@@ -413,7 +413,7 @@ namespace WeDoALittleTrolling.Content.Items
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.WaterWalkingBoots, 1);
+                        Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, ItemID.WaterWalkingBoots, 1);
                     }
                 }
             }
@@ -438,7 +438,7 @@ namespace WeDoALittleTrolling.Content.Items
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.SandstorminaBottle, 1);
+                        Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, ItemID.SandstorminaBottle, 1);
                     }
                 }
             }
@@ -506,7 +506,7 @@ namespace WeDoALittleTrolling.Content.Items
                 }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, goldItemID, amountGold);
+                    Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, goldItemID, amountGold);
                 }
             }
             if (item.type == ItemID.JungleFishingCrateHard && NPC.downedMechBossAny)
@@ -524,7 +524,7 @@ namespace WeDoALittleTrolling.Content.Items
                 }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Item.NewItem(player.GetSource_OpenItem(item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.LifeFruit, 1);
+                    Item.NewItem(player.GetSource_OpenItem(item.type), player.Center, ItemID.LifeFruit, 1);
                 }
             }
         }

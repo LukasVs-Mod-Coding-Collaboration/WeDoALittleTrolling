@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IceBiomeGloomMessage = Language.GetOrRegister(Mod.GetLocalizationKey($"WorldGen.{nameof(IceBiomeGloomMessage)}"));
         }
 
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks)
         {
             int CavesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Wavy Caves"));
             if (CavesIndex != -1)

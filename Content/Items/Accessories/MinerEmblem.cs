@@ -61,7 +61,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
               .AddTile(TileID.Anvils)
               .AddIngredient(ItemID.GoldPickaxe, 1)
               .AddIngredient(ItemID.StoneBlock, 75)
-              .AddRecipeGroup(RecipeGroupID.IronBar, 15)
+              .AddRecipeGroup(RecipeGroups.IronBar, 15)
               .AddIngredient(ItemID.FallenStar, 3)
               .Register();
 
@@ -69,7 +69,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
              .AddTile(TileID.Anvils)
              .AddIngredient(ItemID.PlatinumPickaxe, 1)
              .AddIngredient(ItemID.StoneBlock, 75)
-             .AddRecipeGroup(RecipeGroupID.IronBar, 15)
+             .AddRecipeGroup(RecipeGroups.IronBar, 15)
              .AddIngredient(ItemID.FallenStar, 3)
              .Register();
         }

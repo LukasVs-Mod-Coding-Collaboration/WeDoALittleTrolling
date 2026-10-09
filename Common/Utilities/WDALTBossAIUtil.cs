@@ -206,7 +206,7 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
             if (Main.player[npc.target].teleportTime > 0f)
             {
-                Main.player[npc.target].AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
+                Main.player[npc.target].AddBuff(BuffID.Venom, 240); //4s, X2 in Expert, X2.5 in Master
             }
             long timeSinceLastShot = (npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive - npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick);
             int shotDelay = 120;

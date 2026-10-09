@@ -52,7 +52,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
         {
             Main.projPet[Projectile.type] = true;
             Main.projFrames[Projectile.type] = 15;
-            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+            ProjectileID.Sets.MinionTargetingFeature[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
             ProjectileID.Sets.MinionCannotBeFreed[Projectile.type] = false;
@@ -134,7 +134,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
             return Color.White;
         }
 
-        public override void PostDraw(Color lightColor)
+        public override void PostDraw(Player player, Color lightColor)/* tModPorter Replace 'Main.player[Projectile.owner]' with 'player'. */
         {
             if (Main.rand.NextBool(30))
             {

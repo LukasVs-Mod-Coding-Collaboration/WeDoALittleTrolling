@@ -107,9 +107,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     newCooldownCounter = 1;
                 }
             }
-            if (reason.SourceProjectileLocalIndex >= 0 && reason.SourceProjectileLocalIndex < Main.projectile.Length)
+            if (reason.SourceProjectileKey/* tModPorter See Projectile.key */ >= 0 && reason.SourceProjectileKey/* tModPorter See Projectile.key */ < Main.projectile.Length)
             {
-                if (Main.projectile[reason.SourceProjectileLocalIndex].TryGetGlobalProjectile<WDALTProjectileUtil>(out WDALTProjectileUtil util))
+                if (Main.projectile[reason.SourceProjectileKey/* tModPorter See Projectile.key */].TryGetGlobalProjectile<WDALTProjectileUtil>(out WDALTProjectileUtil util))
                 {
                     if (util.TryGetParentNPC(out NPC npc))
                     {

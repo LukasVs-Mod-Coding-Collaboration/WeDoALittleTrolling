@@ -82,7 +82,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             int critDamageBonus = 100;
             yield return new TooltipLine(Mod, "PrefixWeaponSupercriticalDescription", "+"+critDamageBonus+AdditionalTooltip.Value) {
-                IsModifier = true,
+                IsModifier/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixGood instead */ = true,
             };
         }
 

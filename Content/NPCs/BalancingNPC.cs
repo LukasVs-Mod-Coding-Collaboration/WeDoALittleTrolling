@@ -535,49 +535,49 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
-                    target.AddBuff(BuffID.Venom, 240, true); //4s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Venom, 240); //4s, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictPoisonDebuff1In1Group.Contains(npcType))
             {
                 if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
-                    target.AddBuff(BuffID.Poisoned, 240, true); //4s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Poisoned, 240); //4s, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictBleedingDebuff1In1Group.Contains(npcType))
             {
                 if (random.Next(0, 1) == 0) //1 in 1 Chance
                 {
-                    target.AddBuff(BuffID.Bleeding, 960, true); //16s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Bleeding, 960); //16s, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictBleedingDebuff1In8Group.Contains(npcType))
             {
                 if (random.Next(0, 8) == 0) //1 in 8 Chance
                 {
-                    target.AddBuff(BuffID.Bleeding, 480, true); //8s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Bleeding, 480); //8s, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictBrokenArmor1In1Group.Contains(npcType))
             {
                 if (random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(BuffID.BrokenArmor, 960, true); //16s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.BrokenArmor, 960); //16s, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictSlowness1In1Group.Contains(npcType))
             {
                 if (random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(BuffID.Slow, 960, true); //16s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Slow, 960); //16s, X2 in Expert, X2.5 in Master
                 }
             }
             if (InflictCursed1In1Group.Contains(npcType))
             {
                 if (random.Next(0, 1) == 0)
                 {
-                    target.AddBuff(BuffID.Cursed, 240, true); //4s, X2 in Expert, X2.5 in Master
+                    target.AddBuff(BuffID.Cursed, 240); //4s, X2 in Expert, X2.5 in Master
                 }
             }
             /*if (InflictWreckedResistance1In1Group.Contains(npcType))
@@ -604,7 +604,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             }*/
             if (npcType == NPCID.PossessedArmor)
             {
-                target.AddBuff(BuffID.Blackout, 900, true); //15s, X2 in Expert, X2.5 in Master
+                target.AddBuff(BuffID.Blackout, 900); //15s, X2 in Expert, X2.5 in Master
             }
             /*if (WDALTModSystem.isThoriumModPresent && WDALTModSystem.MCIDIntegrity)
             {
