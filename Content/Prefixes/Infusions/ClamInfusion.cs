@@ -49,7 +49,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.AddBuff(BuffID.Calm, 1, true, false);
+            player.AddBuff(BuffID.Calm, 1);
         }
 
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
@@ -57,7 +57,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
             yield return new TooltipLine(Mod, "PrefixAcessoryClamInfusionDescription", AdditionalTooltip.Value) {
-                IsModifier = true,
+                IsModifier/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixGood instead */ = true,
             };
         }
 

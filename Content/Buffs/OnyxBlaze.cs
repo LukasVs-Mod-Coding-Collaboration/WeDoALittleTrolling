@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Buffs
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
-            BuffID.Sets.LongerExpertDebuff[Type] = true;
+            BuffID.Sets.BuffTimeIsExtendedWithGameDifficulty[Type] = true;
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
 

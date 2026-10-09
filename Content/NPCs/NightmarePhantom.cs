@@ -47,7 +47,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
-            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
+            NPCID.Sets.ImmuneToRegularBuffs[Type]/* tModPorter NPCID.Sets.ImmuneToAllBuffs was removed. If immunity to whip tag effects are desired, also set NPCID.Sets.ImmuneToWhipTags to true. */ = true;
         }
 
         public override void SetDefaults()
@@ -119,7 +119,7 @@ namespace WeDoALittleTrolling.Content.NPCs
         {
             target.GetModPlayer<WDALTPlayer>().hauntedDebuffTicksLeft = 18000;
             target.GetModPlayer<WDALTPlayer>().hauntedDebuff = true;
-            target.AddBuff(ModContent.BuffType<Haunted>(), 18000, true);
+            target.AddBuff(ModContent.BuffType<Haunted>(), 18000);
             Haunted.AnimateHaunted(target);
             base.OnHitPlayer(target, hurtInfo);
         }
@@ -168,23 +168,23 @@ namespace WeDoALittleTrolling.Content.NPCs
             return base.PreAI();
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override float SpawnChance(NPC.Spawner spawner)
         {
             if (ModContent.GetInstance<WDALTServerConfig>().DisableCustomTheConstant)
             {
-                return base.SpawnChance(spawnInfo);
+                return base.SpawnChance(spawner);
             }
             if
             (
                 Main.dontStarveWorld &&
                 (
                     (
-                        (!Main.IsItDay() || spawnInfo.Player.ZoneGraveyard) &&
+                        (!Main.IsItDay() || spawner.Player.ZoneGraveyard) &&
                         !WDALTPlayerUtil.IsBossActive() &&
-                        spawnInfo.Player.TryGetModPlayer<WDALTPlayerUtil>(out WDALTPlayerUtil util) &&
+                        spawner.Player.TryGetModPlayer<WDALTPlayerUtil>(out WDALTPlayerUtil util) &&
                         !util.IsBehindHousingWall() &&
-                        !spawnInfo.PlayerInTown &&
-                        spawnInfo.Player.ZoneOverworldHeight &&
+                        !spawner.spawnFriendly &&
+                        spawner.Player.ZoneOverworldHeight &&
                         Main.moonPhase != 0 &&
                         !Main.bloodMoon
                     )
@@ -193,7 +193,7 @@ namespace WeDoALittleTrolling.Content.NPCs
             {
                 return 0.0625f;
             }
-            return base.SpawnChance(spawnInfo);
+            return base.SpawnChance(spawner);
         }
 
         public override void HitEffect(NPC.HitInfo hit)

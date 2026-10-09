@@ -141,7 +141,7 @@ namespace WeDoALittleTrolling.Content.Items
                 }
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Item.NewItem(player.GetSource_OpenItem(itemToDrop), (int)player.position.X, (int)player.position.Y, player.width, player.height, itemToDrop, amountToDrop);
+                    Item.NewItem(player.GetSource_OpenItem(itemToDrop), player.Center, itemToDrop, amountToDrop);
                 }
                 else if (Main.netMode == NetmodeID.MultiplayerClient)
                 {

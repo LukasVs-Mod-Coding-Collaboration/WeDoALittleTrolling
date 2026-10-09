@@ -63,7 +63,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             yield return new TooltipLine(Mod, "PrefixAccessoryWeightedDescription", AdditionalTooltip.Value)
             {
-                IsModifier = true,
+                IsModifier/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixGood instead */ = true,
             };
         }
 

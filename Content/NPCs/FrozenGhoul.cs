@@ -21,6 +21,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -63,13 +64,13 @@ namespace WeDoALittleTrolling.Content.NPCs
 
             AIType = NPCID.DesertGhoul;
             AnimationType = NPCID.DesertGhoul;
-            Banner = Item.NPCtoBanner(NPCID.DesertGhoul);
-            BannerItem = Item.BannerToItem(Banner);
+            Banner = BannerSystem.NPCtoBanner(NPCID.DesertGhoul);
+            BannerItem = BannerSystem.BannerToItem(Banner);
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            target.AddBuff(BuffID.Frostburn, 480, true); //8s, X2 in Expert Mode, X2.5 in Master Mode
+            target.AddBuff(BuffID.Frostburn, 480); //8s, X2 in Expert Mode, X2.5 in Master Mode
             base.OnHitPlayer(target, hurtInfo);
         }
 
@@ -104,13 +105,13 @@ namespace WeDoALittleTrolling.Content.NPCs
             AI_009_GhoulicLeaper();
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override float SpawnChance(NPC.Spawner spawner)
         {
-            if(Main.hardMode && spawnInfo.Player.ZoneSnow && spawnInfo.Player.ZoneRockLayerHeight && !spawnInfo.PlayerInTown && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+            if(Main.hardMode && spawner.Player.ZoneSnow && spawner.Player.ZoneRockLayerHeight && !spawner.spawnFriendly && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
             {
                 return 0.2f;
             }
-            return base.SpawnChance(spawnInfo);
+            return base.SpawnChance(spawner);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

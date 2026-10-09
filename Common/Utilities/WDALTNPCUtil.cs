@@ -93,20 +93,20 @@ namespace WeDoALittleTrolling.Common.Utilities
             }
         }
 
-        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPC.Spawner spawner)
         {
-            if (spawnInfo.Player.GetModPlayer<WDALTPlayer>().zoneWormCandle)
+            if (spawner.Player.GetModPlayer<WDALTPlayer>().zoneWormCandle)
             {
-                if ((Main.IsItRaining && spawnInfo.Player.ZoneForest) || spawnInfo.Player.ZoneNormalUnderground || spawnInfo.Player.ZoneNormalCaverns)
+                if ((Main.IsItRaining && spawner.Player.ZoneForest) || spawner.Player.ZoneNormalUnderground || spawner.Player.ZoneNormalCaverns)
                 {
                     pool[NPCID.Worm] = 5f;
                     pool[NPCID.GoldWorm] = 0.25f;
                 }
-                if (spawnInfo.Player.ZoneGlowshroom)
+                if (spawner.Player.ZoneGlowshroom)
                 {
                     pool[NPCID.TruffleWorm] = 2.5f;
                 }
-                if (spawnInfo.Player.ZoneUndergroundDesert)
+                if (spawner.Player.ZoneUndergroundDesert)
                 {
                     pool[NPCID.TombCrawlerHead] = 5f;
                     if (Main.hardMode)
@@ -116,13 +116,13 @@ namespace WeDoALittleTrolling.Common.Utilities
                 }
                 if
                 (
-                    spawnInfo.Player.ZoneNormalUnderground ||
-                    spawnInfo.Player.ZoneNormalCaverns ||
+                    spawner.Player.ZoneNormalUnderground ||
+                    spawner.Player.ZoneNormalCaverns ||
                     (
-                        spawnInfo.Player.ZoneJungle &&
+                        spawner.Player.ZoneJungle &&
                         (
-                            spawnInfo.Player.ZoneDirtLayerHeight ||
-                            spawnInfo.Player.ZoneRockLayerHeight
+                            spawner.Player.ZoneDirtLayerHeight ||
+                            spawner.Player.ZoneRockLayerHeight
                         )
                     )
                 )
@@ -133,7 +133,7 @@ namespace WeDoALittleTrolling.Common.Utilities
                         pool[NPCID.DiggerHead] = 5f;
                     }
                 }
-                if (spawnInfo.Player.ZoneCorrupt)
+                if (spawner.Player.ZoneCorrupt)
                 {
                     pool[NPCID.DevourerHead] = 5f;
                     if (Main.hardMode)
@@ -141,11 +141,11 @@ namespace WeDoALittleTrolling.Common.Utilities
                         pool[NPCID.SeekerHead] = 5f;
                     }
                 }
-                if (spawnInfo.Player.ZoneUnderworldHeight)
+                if (spawner.Player.ZoneUnderworldHeight)
                 {
                     pool[NPCID.BoneSerpentHead] = 5f;
                 }
-                if (!Main.IsItDay() && !Main.IsItRaining && spawnInfo.Player.ZoneOverworldHeight)
+                if (!Main.IsItDay() && !Main.IsItRaining && spawner.Player.ZoneOverworldHeight)
                 {
                     pool[NPCID.EnchantedNightcrawler] = 2.5f;
                 }

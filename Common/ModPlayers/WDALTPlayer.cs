@@ -526,17 +526,17 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 }
                 if (player.HeldItem.prefix == ModContent.PrefixType<MilitaryInfusion>())
                 {
-                    player.AddBuff(BuffID.Dangersense, 2, true);
-                    player.AddBuff(BuffID.Hunter, 2, true);
-                    player.AddBuff(BuffID.NightOwl, 2, true);
+                    player.AddBuff(BuffID.Dangersense, 2);
+                    player.AddBuff(BuffID.Hunter, 2);
+                    player.AddBuff(BuffID.NightOwl, 2);
                 }
                 if (gnomedDebuff && !player.HasBuff(ModContent.BuffType<Gnomed>()))
                 {
-                    player.AddBuff(ModContent.BuffType<Gnomed>(), gnomedDebuffTicksLeft, true);
+                    player.AddBuff(ModContent.BuffType<Gnomed>(), gnomedDebuffTicksLeft);
                 }
                 if (hauntedDebuff && !player.HasBuff(ModContent.BuffType<Haunted>()))
                 {
-                    player.AddBuff(ModContent.BuffType<Haunted>(), hauntedDebuffTicksLeft, true);
+                    player.AddBuff(ModContent.BuffType<Haunted>(), hauntedDebuffTicksLeft);
                 }
             }
         }
@@ -600,7 +600,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 player.aggro -= 400;
                 player.statDefense += 4;
                 player.lifeRegen += 4;
-                player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 2, true);
+                player.AddBuff(ModContent.BuffType<SorcerousMirrorBuff>(), 2);
             }
             else
             {
@@ -622,7 +622,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     }
                     if (!player.HasBuff(BuffID.Stoned) && currentTick % 60 == 0 && random.NextBool(chanceDenominator))
                     {
-                        player.AddBuff(BuffID.Stoned, 300, true);
+                        player.AddBuff(BuffID.Stoned, 300);
                     }
                 }
             }
@@ -639,7 +639,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     lifeforceEngineTicks = 300;
                     lifeforceEngineCooldown = 5400;
                     lifeforceEngineActivated = false;
-                    player.AddBuff(ModContent.BuffType<LifeforceEngineBuff>(), 300, true);
+                    player.AddBuff(ModContent.BuffType<LifeforceEngineBuff>(), 300);
                     for (int i = 0; i < 60; i++)
                     {
                         int rMax = (int)player.width;
@@ -994,7 +994,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                     {
                         if (Main.netMode == NetmodeID.SinglePlayer)
                         {
-                            Item.NewItem(new EntitySource_SpawnNPC(), (int)target.position.X, (int)target.position.Y, target.width, target.height, ItemID.Star, 1);
+                            Item.NewItem(new EntitySource_SpawnNPC(), target.Center, ItemID.Star, 1);
                         }
                         else if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
