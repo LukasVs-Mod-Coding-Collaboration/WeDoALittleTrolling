@@ -34,7 +34,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         private static char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
         public int deathMessageChance1inX = 8;
 
-        //Initializing´these in case for some reason they aren't set when they should be
+        //Initializing these in case for some reason they aren't set when they should be
         string playername = "playername";
         string enemyname = "enemyname";
         string worldname = "worldname";
@@ -198,7 +198,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 playername + " experienced the consequences of banana overdose.",
                 playername + " didn't know what happened on July Second.",
                 playername + " ate the tasty uranium-235.",
-                playername + " tried to run Path of Exile on hitpower's PC.",
+                playername + " tried to run Path of Exile on hitpower's old laptop.",
                 playername + " took an arrow to the knee.",
                 playername + " was unfortunate enough to fall victim to our clever little trap of social teasing.",
                 playername + " is probably breaking their keyboard right now.",
@@ -301,7 +301,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "Where didst thou flee, my " + playername + "? Come out from whence you hide!",
                 "Joker, It's " + aAnPlayer + playername + ", Joker, you can't!",
                 "THERE'S NO LAWS AGAINST THE " + playername + ", BATMAN!",
-                "Noo, " + playername + ", don’t leave me here!",
+                "Noo, " + playername + ", don't leave me here!",
                 "Please no, dear me! I haven't a clue, no " + playername + "s lie with me, not a one!",
                 playername + " clearly doesn't own an air fryer.",
                 playername + " has left the game.",
@@ -430,7 +430,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                 "The " + enemyname + " didn't start the bonfire of the vanities, but it's throwing in our " + playername + "s and our humanities.",
                 playername + " has another word to sell, another story to tell, another " + enemyname + " ringing the bell.",
                 "You either die " + aAnPlayer + playername + " or live long enough to see yourself become the " + enemyname + ".",
-                "I can’t wait, when are they gonna open up that door? " + playername + " is going (yes they’re) going, really going to the " + enemyname + " store!",
+                "I can't wait, when are they gonna open up that door? " + playername + " is going (yes they're) going, really going to the " + enemyname + " store!",
                 playername + " happens to have died next to three " + enemyname + "s in a trenchoat.",
                 "What a sight, " + aAnEnemy + enemyname + " true if ever one there was! A fellow " + playername + " warrior!",
                 "If special " + playername + " then only " + enemyname + ".",
