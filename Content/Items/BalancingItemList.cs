@@ -119,6 +119,7 @@ namespace WeDoALittleTrolling.Content.Items
         }
 
         //Revert damage reduction from Spectre Hood
+        /* TAPI_1.4.5.8: DEPRECATED, See SearingHelmet.cs for new ArmorSetBonuses engine usage.
         public override void UpdateEquip(Item item, Player player)
         {
             if (!ModContent.GetInstance<WDALTServerConfig>().DisableRebalancing)
@@ -150,6 +151,7 @@ namespace WeDoALittleTrolling.Content.Items
             }
             base.UpdateEquip(item, player);
         }
+        */
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -167,6 +169,7 @@ namespace WeDoALittleTrolling.Content.Items
             base.UpdateAccessory(item, player, hideVisual);
         }
 
+/* Disabled until resolved.
         public static void ModifySetBonus(Player player)
         {
             if (!ModContent.GetInstance<WDALTServerConfig>().DisableRebalancing)
@@ -182,6 +185,7 @@ namespace WeDoALittleTrolling.Content.Items
                 }
             }
         }
+*/
 
         //Adjust Tooltips accordingly
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

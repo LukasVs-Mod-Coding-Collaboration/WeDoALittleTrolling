@@ -34,14 +34,14 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void RegisterILHooks()
         {
             IL_NPC.AI_069_DukeFishron += IL_NPC_AI_069_DukeFishron;
-            IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
+            //IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision += IL_Player_Update_NPCCollision;
         }
 
         public static void UnregisterILHooks()
         {
             IL_NPC.AI_069_DukeFishron -= IL_NPC_AI_069_DukeFishron;
-            IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
+            //IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision -= IL_Player_Update_NPCCollision;
         }
 
@@ -126,6 +126,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
         }
 
+        /* TAPI_1.4.5.8: [FAILED] Needs injection logic rework
         public static void IL_NPC_AI_037_Destroyer(ILContext intermediateLanguageContext)
         {
             bool successInjectDestroyerAIHook = true;
@@ -226,6 +227,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
             }
         }
+        */
 
         public static void IL_Player_Update_NPCCollision(ILContext intermediateLanguageContext)
         {
