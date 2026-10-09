@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria;
+using Terraria.ID;
 using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Prefixes
@@ -62,8 +63,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         {
             yield return new TooltipLine(Mod, "PrefixAccessoryConjuringDescription", AdditionalTooltip.Value)
             {
-                IsModifier/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixGood instead */ = true,
-                IsModifierBad/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixBad instead */ = false,
+                Color = Colors.PrefixGood,
             };
         }
 

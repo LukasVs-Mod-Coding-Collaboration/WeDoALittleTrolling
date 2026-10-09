@@ -57,7 +57,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
             yield return new TooltipLine(Mod, "PrefixAcessoryClamInfusionDescription", AdditionalTooltip.Value) {
-                IsModifier/* tModPorter Note: Removed. Set Color = Terraria.ID.Colors.PrefixGood instead */ = true,
+                Color = Colors.PrefixGood,
             };
         }
 
