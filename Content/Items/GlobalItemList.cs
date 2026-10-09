@@ -122,17 +122,17 @@ namespace WeDoALittleTrolling.Content.Items
 
         public static void RegisterHooks()
         {
-            On_Player.ItemCheck_CheckCanUse += toolUseBypass;
+            On_Player.ItemCheck_CanUse += toolUseBypass;
         }
 
         public static void UnregisterHooks()
         {
-            On_Player.ItemCheck_CheckCanUse -= toolUseBypass;
+            On_Player.ItemCheck_CanUse -= toolUseBypass;
         }
 
-        private static bool toolUseBypass(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item sItem)
+        private static bool toolUseBypass(On_Player.orig_ItemCheck_CanUse orig, Player self, Item sItem, bool ignoreCursed)
         {
-            bool canUse = orig(self, sItem);
+            bool canUse = orig(self, sItem, ignoreCursed);
             if (self.HeldItem.type == ModContent.ItemType<BedrockBreaker>())
             {
                 return true;
