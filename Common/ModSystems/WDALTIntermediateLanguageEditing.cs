@@ -34,14 +34,14 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public static void RegisterILHooks()
         {
             IL_NPC.AI_069_DukeFishron += IL_NPC_AI_069_DukeFishron;
-            //IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
+            IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision += IL_Player_Update_NPCCollision;
         }
 
         public static void UnregisterILHooks()
         {
             IL_NPC.AI_069_DukeFishron -= IL_NPC_AI_069_DukeFishron;
-            //IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
+            IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision -= IL_Player_Update_NPCCollision;
         }
 
@@ -126,7 +126,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
         }
 
-        /* TAPI_1.4.5.8: [FAILED] Needs injection logic rework
         public static void IL_NPC_AI_037_Destroyer(ILContext intermediateLanguageContext)
         {
             bool successInjectDestroyerAIHook = true;
@@ -177,7 +176,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     }
                 );
                 cursor.Emit(OpCodes.Stloc_S, idx2); //write maxSpeed into the local "num18" variable.
-                cursor.GotoNext(i => i.MatchStfld<Entity>(nameof(Entity.active)));
+                cursor.GotoNext(i => i.MatchStfld<NPC>(nameof(NPC.active)));
                 cursor.GotoNext(i => i.MatchLdcR4(out float dummy1));
                 cursor.Index++; //move cursor to the local "num19" variable.
                 intermediateLanguageContext.Instrs[cursor.Index].MatchStloc(out int fetchedIdx3); //fetch memory adress of local "num19" variable.
@@ -227,7 +226,6 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Destroyer AI Hook via IL Editing.");
             }
         }
-        */
 
         public static void IL_Player_Update_NPCCollision(ILContext intermediateLanguageContext)
         {
