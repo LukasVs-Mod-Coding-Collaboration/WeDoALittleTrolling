@@ -344,7 +344,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                 ModContent.ProjectileType<EmbersteelExplosion>(),
                                 (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                 (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                player.whoAmI
+                                Main.myPlayer
                             );
                         }
                         if (embersteelExplosionTicks == 54)
@@ -360,7 +360,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -377,7 +377,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -394,7 +394,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -411,7 +411,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -428,7 +428,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -445,7 +445,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -462,7 +462,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -479,7 +479,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }
@@ -496,7 +496,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
                                     (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
-                                    player.whoAmI
+                                    Main.myPlayer
                                 );
                             }
                         }

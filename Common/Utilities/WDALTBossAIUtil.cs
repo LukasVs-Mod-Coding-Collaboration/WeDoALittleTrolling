@@ -178,7 +178,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                         shootVector1,
                         ProjectileID.DeathLaser,
                         (int)Math.Round(npc.damage * (0.125 + (0.0625 * numArms))),
-                        3.5f
+                        3.5f,
+                        Main.myPlayer
                     );
                     Projectile.NewProjectileDirect
                     (
@@ -187,7 +188,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                         shootVector2,
                         ProjectileID.DeathLaser,
                         (int)Math.Round(npc.damage * (0.125 + (0.0625 * numArms))),
-                        3.5f
+                        3.5f,
+                        Main.myPlayer
                     );
                     npc.GetGlobalNPC<WDALTNPCUtil>().lastActionTick = npc.GetGlobalNPC<WDALTNPCUtil>().ticksAlive;
                 }
@@ -279,7 +281,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                     shootVector,
                     ProjectileID.BoulderStaffOfEarth,
                     dmg,
-                    5f
+                    5f,
+                    Main.myPlayer
                 );
                 proj1.hostile = true;
                 proj1.friendly = false;
@@ -294,7 +297,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                     shootVector,
                     ProjectileID.BoulderStaffOfEarth,
                     dmg,
-                    5f
+                    5f,
+                    Main.myPlayer
                 );
                 proj2.hostile = true;
                 proj2.friendly = false;
@@ -322,7 +326,8 @@ namespace WeDoALittleTrolling.Common.Utilities
                         shootVector.RotatedBy(- (rotation * (float)i)),
                         ProjectileID.BoulderStaffOfEarth,
                         (int)Math.Round(npc.damage * 0.175f),
-                        4f
+                        4f,
+                        Main.myPlayer
                     );
                     proj.hostile = true;
                     proj.friendly = false;
