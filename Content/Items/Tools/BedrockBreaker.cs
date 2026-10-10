@@ -48,7 +48,7 @@ namespace WeDoALittleTrolling.Content.Items.Tools
 
             Item.value = Item.buyPrice(gold: 25);
             Item.consumable = false;
-            Item.maxStack = 1;
+            
 
             Item.useTime = 40;
             Item.useAnimation = 40;

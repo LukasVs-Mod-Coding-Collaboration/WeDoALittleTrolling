@@ -45,7 +45,7 @@ namespace WeDoALittleTrolling.Content.Items.Tools
             Item.height = 56;
 
             Item.value = Item.buyPrice(gold: 5);
-            Item.maxStack = 1;
+            
 
             Item.autoReuse = true;
             Item.useTime = 6;

@@ -44,7 +44,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories.PowerMasks
             Item.consumable = false;
 
             Item.value = Item.buyPrice(gold: 8);
-            Item.maxStack = 1;
+            
 
             Item.rare = ItemRarityID.Yellow;
 

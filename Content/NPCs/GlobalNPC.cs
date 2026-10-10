@@ -197,7 +197,7 @@ namespace WeDoALittleTrolling.Content.NPCs
                     vectorToTarget = vectorToTarget.SafeNormalize(Vector2.Zero);
                     vectorToTarget *= 6.0f;
                     vectorToTarget = vectorToTarget.RotatedBy((MathHelper.ToRadians(30) * (double)npc.direction) * (-1.0));
-                    Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, vectorToTarget, ProjectileID.Grenade, npc.damage, 8f, Main.myPlayer);
+                    Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, vectorToTarget, ProjectileID.Grenade, (int)Math.Round(npc.damage * 0.5), 8f, Main.myPlayer);
                     proj.friendly = false;
                     proj.hostile = true;
                     proj.GetGlobalProjectile<WDALTProjectileUtil>().undeadMinerGrenade = true;

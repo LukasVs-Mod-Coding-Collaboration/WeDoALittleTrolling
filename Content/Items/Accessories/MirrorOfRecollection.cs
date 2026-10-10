@@ -48,7 +48,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.UseSound = SoundID.Item6;
 
             Item.value = 200000;
-            Item.maxStack = 1;
+            
 
             Item.rare = ItemRarityID.Cyan;
         }

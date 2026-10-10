@@ -42,7 +42,7 @@ namespace WeDoALittleTrolling.Content.Items.Ammo
             Item.height = 50;
 
             Item.value = Item.buyPrice(copper: 1);
-            Item.maxStack = 1;
+            
 
             Item.damage = 40;
             Item.knockBack = 4;
