@@ -23,6 +23,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Utilities;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -32,6 +33,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            PrefixLegacy.ItemSets.GunsBows[Type] = true;
         }
 
         public override void SetDefaults()

@@ -27,11 +27,17 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Tools
 {
     internal class CorruptedGemcutter : ModItem
     {
+
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.SwordsHammersAxesPicks[Type] = true;
+        }
 
         public override void SetDefaults()
         {
