@@ -17,6 +17,7 @@
 */
 
 using Terraria;
+using Terraria.GameContent.Prefixes;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Content.Projectiles;
@@ -30,6 +31,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             ItemID.Sets.Yoyo[Item.type] = true;
             ItemID.Sets.GamepadExtraRange[Item.type] = 21;
             ItemID.Sets.GamepadSmartQuickReach[Item.type] = true;
+            PrefixLegacy.ItemSets.BoomerangsChakrams[Type] = true;
         }
 
         public override void SetDefaults()

@@ -21,6 +21,7 @@ using Microsoft.Xna.Framework;
 using Mono.Cecil;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Prefixes;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -33,6 +34,12 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     public class CornSword : ModItem
     {
         public static UnifiedRandom rnd = new UnifiedRandom();
+
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.SwordsHammersAxesPicks[Type] = true;
+        }
+
         public override void SetDefaults()
         {
             Item.damage = 15;

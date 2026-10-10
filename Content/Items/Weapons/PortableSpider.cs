@@ -29,11 +29,17 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using WeDoALittleTrolling.Content.Items.Material;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class PortableSpider : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.Magic[Type] = true;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 50;

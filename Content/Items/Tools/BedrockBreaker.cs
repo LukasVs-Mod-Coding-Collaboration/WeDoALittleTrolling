@@ -30,11 +30,16 @@ using WeDoALittleTrolling.Content.Projectiles;
 using WeDoALittleTrolling.Content.Tiles;
 using WeDoALittleTrolling.Content.Items.Material;
 using WeDoALittleTrolling.Content.Items.Placeable;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Tools
 {
     internal class BedrockBreaker : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.SwordsHammersAxesPicks[Type] = true;
+        }
 
         public override void SetDefaults()
         {

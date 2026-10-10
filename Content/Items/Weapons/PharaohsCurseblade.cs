@@ -25,6 +25,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using System;
 using WeDoALittleTrolling.Content.Projectiles;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -39,6 +40,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+            PrefixLegacy.ItemSets.SwordsHammersAxesPicks[Type] = true;
         }
 
         public override void SetDefaults()

@@ -29,6 +29,7 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using Microsoft.CodeAnalysis;
 using WeDoALittleTrolling.Common.ModPlayers;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -39,6 +40,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
+            PrefixLegacy.ItemSets.Magic[Type] = true;
         }
 
         public override void SetDefaults()

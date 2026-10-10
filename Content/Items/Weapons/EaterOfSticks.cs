@@ -25,11 +25,17 @@ using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using System;
 using WeDoALittleTrolling.Common.ModPlayers;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
     internal class EaterOfSticks : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.SwordsHammersAxesPicks[Type] = true;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 40;

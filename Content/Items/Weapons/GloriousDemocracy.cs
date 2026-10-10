@@ -24,6 +24,7 @@ using Terraria.Utilities;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using WeDoALittleTrolling.Content.Projectiles;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -37,6 +38,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 7));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+            PrefixLegacy.ItemSets.GunsBows[Type] = true;
         }
 
         public override void SetDefaults()

@@ -24,6 +24,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using System;
 using WeDoALittleTrolling.Common.ModPlayers;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -31,6 +32,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         public static UnifiedRandom rnd = new UnifiedRandom(); //Introduce random Values
         public long lastDashTick;
+
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.SwordsHammersAxesPicks[Type] = true;
+        }
 
         public override void SetDefaults()
         {

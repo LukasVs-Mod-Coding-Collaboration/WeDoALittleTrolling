@@ -29,6 +29,7 @@ using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using Microsoft.CodeAnalysis;
 using WeDoALittleTrolling.Common.ModPlayers;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -36,6 +37,11 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
     {
         public static UnifiedRandom rnd = new UnifiedRandom(); //Introduce random Values
         int damageModifier;
+
+        public override void SetStaticDefaults()
+        {
+            PrefixLegacy.ItemSets.Magic[Type] = true;
+        }
 
         public override void SetDefaults()
         {

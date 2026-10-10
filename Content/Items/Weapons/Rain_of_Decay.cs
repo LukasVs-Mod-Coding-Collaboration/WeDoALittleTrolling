@@ -31,6 +31,7 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using System.Collections.Generic;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -45,6 +46,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = false;
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+            PrefixLegacy.ItemSets.GunsBows[Type] = true;
         }
 
         public override void SetDefaults()

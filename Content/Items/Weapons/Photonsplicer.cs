@@ -33,6 +33,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public override void SetStaticDefaults() {
             ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
             ItemID.Sets.Spears[Item.type] = true;
+            PrefixLegacy.ItemSets.SpearsMacesChainsawsDrillsPunchCannon[Item.type] = true;
         }
 
         public override void SetDefaults() {
