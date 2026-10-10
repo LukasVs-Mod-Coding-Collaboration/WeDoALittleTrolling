@@ -43,7 +43,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.consumable = false;
 
             Item.value = Item.buyPrice(gold: 10);
-            Item.maxStack = 1;
+            
 
             Item.rare = ItemRarityID.Lime;
 

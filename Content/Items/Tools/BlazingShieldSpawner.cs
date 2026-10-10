@@ -24,7 +24,7 @@ namespace WeDoALittleTrolling.Content.Items.Tools
             Item.consumable = false;
 
             Item.value = Item.sellPrice(platinum: 1);
-            Item.maxStack = 1;
+            
 
             Item.autoReuse = false;
             Item.useTime = 32;

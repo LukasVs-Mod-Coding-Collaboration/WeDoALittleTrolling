@@ -42,7 +42,7 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.noUseGraphic = true;
 
             Item.value = Item.sellPrice(gold: 8);
-            Item.maxStack = 1;
+            
 
             Item.rare = ItemRarityID.Yellow;
         }

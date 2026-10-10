@@ -54,7 +54,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(silver: 2);
-            Item.maxStack = 1;
+            
             Item.useTurn = true;
         }
 
