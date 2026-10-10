@@ -29,7 +29,7 @@ namespace WeDoALittleTrolling.Content.Prefixes
 {
     public class Overstrained : ModPrefix
     {
-        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
+        public override PrefixCategory Category => PrefixCategory.Summon;
         public override float RollChance(Item item)
         {
             return 0.5f;
@@ -52,12 +52,11 @@ namespace WeDoALittleTrolling.Content.Prefixes
             damageMult *= 1.15f;
             knockbackMult *= 1.15f;
             useTimeMult *= 0.4f;
-            manaMult *= 0.7f;
         }
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult = 1.9f;
+            valueMult = 1.75f;
         }
 
     }

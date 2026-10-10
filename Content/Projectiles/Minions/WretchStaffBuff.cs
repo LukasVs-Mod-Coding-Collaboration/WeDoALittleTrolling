@@ -17,6 +17,8 @@
 */
 
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using WeDoALittleTrolling.Common.ModPlayers;
 
@@ -28,6 +30,7 @@ namespace WeDoALittleTrolling.Content.Projectiles.Minions
         {
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
+            BuffID.Sets.BuffTextHandlers.Add(Type, new CachedProjectileCounterBuffTextHandler(ModContent.ProjectileType<WretchStaffProjectile>()));
         }
 
         public override void Update(Player player, ref int buffIndex)
