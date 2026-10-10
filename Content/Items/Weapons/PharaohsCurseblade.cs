@@ -130,7 +130,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 isCharging = false;
                 if (player.whoAmI == Main.myPlayer && chargeTicks >= (player.itemAnimationMax * 2))
                 {
-                    Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), Main.MouseWorld, Vector2.Zero, ProjectileID.SandnadoFriendly, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks));
+                    Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), Main.MouseWorld, Vector2.Zero, ProjectileID.SandnadoFriendly, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks), Main.myPlayer);
                 }
             }
         }
