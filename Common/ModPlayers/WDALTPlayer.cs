@@ -343,7 +343,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                 Vector2.Zero,
                                 ModContent.ProjectileType<EmbersteelExplosion>(),
                                 (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                player.whoAmI
                             );
                         }
                         if (embersteelExplosionTicks == 54)
@@ -358,7 +359,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -374,7 +376,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -390,7 +393,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -406,7 +410,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -422,7 +427,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -438,7 +444,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -454,7 +461,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -470,7 +478,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
@@ -486,7 +495,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
                                     Vector2.Zero,
                                     ModContent.ProjectileType<EmbersteelExplosion>(),
                                     (int)Math.Round(player.GetTotalDamage(DamageClass.Melee).ApplyTo(embersteelExplosionDamage)),
-                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback))
+                                    (int)Math.Round(player.GetTotalKnockback(DamageClass.Melee).ApplyTo(embersteelExplosionKnockback)),
+                                    player.whoAmI
                                 );
                             }
                         }
