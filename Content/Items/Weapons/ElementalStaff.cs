@@ -23,6 +23,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using WeDoALittleTrolling.Content.Projectiles.Minions;
 using WeDoALittleTrolling.Content.Items.Material;
+using Terraria.GameContent.Prefixes;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -33,6 +34,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
             ItemID.Sets.StaffMinionSlotsRequired[Type] = 1f;
+            PrefixLegacy.ItemSets.Summon[Type] = true;
         }
 
         public override void SetDefaults()
@@ -58,7 +60,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.shoot = ModContent.ProjectileType<ElementalStaffProjectile>();
 
             Item.damage = 18;
-            Item.mana = 12;
             Item.ArmorPenetration = 12;
             Item.DamageType = DamageClass.Summon; //Item damage type
             Item.knockBack = 2f;

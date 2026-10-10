@@ -128,6 +128,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTHitFreezeSystemPlayer.RegisterHooks();
             WDALTKeybindSystem.RegisterHooks();
             BalancingItemList.RegisterHooks();
+            //Overloaded.RegisterHooks();
         }
 
         public static void UnregisterHooks()
@@ -145,6 +146,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTHitFreezeSystemPlayer.UnregisterHooks();
             WDALTKeybindSystem.UnregisterHooks();
             BalancingItemList.UnregisterHooks();
+            //Overloaded.UnregisterHooks();
         }
 
         public override void PreUpdatePlayers()
