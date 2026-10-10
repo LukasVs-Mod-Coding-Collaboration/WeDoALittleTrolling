@@ -100,6 +100,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTIntermediateLanguageEditing.RegisterILHooks();
             RegisterHooks();
             SearingHelmet.AddArmorSetBonus();
+            BalancingItemList.AddArmorSetBonus();
             base.OnModLoad();
         }
 
@@ -108,6 +109,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTIntermediateLanguageEditing.UnregisterILHooks();
             UnregisterHooks();
             SearingHelmet.RemoveArmorSetBonus();
+            BalancingItemList.RemoveArmorSetBonus();
             base.OnModUnload();
         }
 

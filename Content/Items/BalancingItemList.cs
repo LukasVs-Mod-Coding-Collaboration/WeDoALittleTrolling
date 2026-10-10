@@ -25,6 +25,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.Prefixes;
@@ -81,6 +82,53 @@ namespace WeDoALittleTrolling.Content.Items
             }
         }
 
+        public static LocalizedText savedMiningSetBonusText = null;
+
+        public static void CustomMiningSetBonus(Player player)
+        {
+            ArmorSetBonuses.Benefits.Mining(player);
+            player.statDefense += 5;
+        }
+
+        public static void AddArmorSetBonus()
+        {
+            /* TAPI_1.4.5.8: Use new ArmorSetBonuses engine */
+            ArmorSetBonuses.All.ForEach((ArmorSetBonus b) => {
+                if
+                (
+                    b.Head == ItemID.MiningHelmet &&
+                    b.Body == ItemID.MiningShirt &&
+                    b.Legs == ItemID.MiningPants &&
+                    b.Description != null
+                )
+                {
+                    b.Effect = CustomMiningSetBonus;
+                    savedMiningSetBonusText = b.Description;
+                    b.Description = WeDoALittleTrolling.instance.GetLocalization("MiningArmorAdditionalSetBonusText").WithFormatArgs(savedMiningSetBonusText.Value);
+                }
+            });
+        }
+
+        public static void RemoveArmorSetBonus()
+        {
+            /* TAPI_1.4.5.8: Use new ArmorSetBonuses engine */
+            ArmorSetBonuses.All.ForEach((ArmorSetBonus b) => {
+                if
+                (
+                    b.Head == ItemID.MiningHelmet &&
+                    b.Body == ItemID.MiningShirt &&
+                    b.Legs == ItemID.MiningPants &&
+                    savedMiningSetBonusText != null &&
+                    savedMiningSetBonusText.Value != null
+                )
+                {
+                    b.Description = savedMiningSetBonusText;
+                    b.Effect = ArmorSetBonuses.Benefits.Mining;
+                    savedMiningSetBonusText = null;
+                }
+            });
+        }
+
         public static void On_Player_ItemCheck_UseTeleportRod(On_Player.orig_ItemCheck_UseTeleportRod orig, Player self, Item sItem)
         {
             bool harmony = (sItem.type == ItemID.RodOfHarmony);
@@ -118,8 +166,7 @@ namespace WeDoALittleTrolling.Content.Items
             base.OnHitNPC(item, player, target, hit, damageDone);
         }
 
-        //Revert damage reduction from Spectre Hood
-        /* TAPI_1.4.5.8: DEPRECATED, See SearingHelmet.cs for new ArmorSetBonuses engine usage.
+        //Revert mana reduction from Spectre Hood
         public override void UpdateEquip(Item item, Player player)
         {
             if (!ModContent.GetInstance<WDALTServerConfig>().DisableRebalancing)
@@ -127,15 +174,6 @@ namespace WeDoALittleTrolling.Content.Items
                 if (item.type == ItemID.SpectreHood)
                 {
                     player.statManaMax2 += 60;
-                }
-                if
-                (
-                    item.type == ItemID.MiningHelmet &&
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.MiningShirt) &&
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.MiningPants)
-                )
-                {
-                    player.statDefense += 5;
                 }
                 if
                 (
@@ -151,7 +189,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             base.UpdateEquip(item, player);
         }
-        */
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -168,24 +205,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
             base.UpdateAccessory(item, player, hideVisual);
         }
-
-/* Disabled until resolved.
-        public static void ModifySetBonus(Player player)
-        {
-            if (!ModContent.GetInstance<WDALTServerConfig>().DisableRebalancing)
-            {
-                if
-                (
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerHelmetEquipped(ItemID.MiningHelmet) &&
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerChestplateEquipped(ItemID.MiningShirt) &&
-                    player.GetModPlayer<WDALTPlayerUtil>().HasPlayerLeggingsEquipped(ItemID.MiningPants)
-                )
-                {
-                    player.setBonus += "\n5 defense";
-                }
-            }
-        }
-*/
 
         //Adjust Tooltips accordingly
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

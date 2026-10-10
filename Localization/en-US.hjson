@@ -1077,5 +1077,11 @@ Mods: {
 				}
 			}
 		}
+
+		MiningArmorAdditionalSetBonusText:
+			'''
+			{0}
+			5 defense
+			'''
 	}
 }
