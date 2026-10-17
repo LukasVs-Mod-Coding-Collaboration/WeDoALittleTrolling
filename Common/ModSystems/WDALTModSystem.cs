@@ -23,6 +23,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using WeDoALittleTrolling.Common.Configs;
+using WeDoALittleTrolling.Common.ModPlayers;
 using WeDoALittleTrolling.Content.Items;
 using WeDoALittleTrolling.Content.Items.Accessories;
 using WeDoALittleTrolling.Content.Items.Armor;
@@ -129,6 +130,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTKeybindSystem.RegisterHooks();
             BalancingItemList.RegisterHooks();
             //Overloaded.RegisterHooks();
+            WDALTPlayer.RegisterHooks();
         }
 
         public static void UnregisterHooks()
@@ -147,6 +149,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             WDALTKeybindSystem.UnregisterHooks();
             BalancingItemList.UnregisterHooks();
             //Overloaded.UnregisterHooks();
+            WDALTPlayer.UnregisterHooks();
         }
 
         public override void PreUpdatePlayers()

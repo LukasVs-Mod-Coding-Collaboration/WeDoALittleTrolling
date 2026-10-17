@@ -263,6 +263,17 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.ResetEffects();
         }
 
+        public static void RegisterHooks()
+        {
+            On_Player.QuickMana += your_detour_function_name;
+            On_Player.hook_QuickMana
+        }
+
+        public static void UnregisterHooks()
+        {
+            On_Player.QuickMana -= your_detour_function_name;
+        }
+
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (WDALTKeybindSystem.LifeforceEngineKeybind.JustPressed)
