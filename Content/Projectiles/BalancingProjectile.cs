@@ -165,11 +165,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 if
                 (
                     projectile.type == ProjectileID.FlamingJack ||
-                    projectile.type == ProjectileID.DD2BallistraProj ||
-                    projectile.type == ProjectileID.AmethystBolt ||
-                    projectile.type == ProjectileID.TopazBolt ||
-                    projectile.type == ProjectileID.SapphireBolt ||
-                    projectile.type == ProjectileID.EmeraldBolt
+                    projectile.type == ProjectileID.DD2BallistraProj
                 )
                 {
                     projectile.extraUpdates = 1;
@@ -225,9 +221,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.type == ProjectileID.LunarFlare ||
                     projectile.type == ProjectileID.Bubble ||
                     projectile.type == ProjectileID.Landmine ||
-                    projectile.type == ProjectileID.DiamondBolt ||
-                    projectile.type == ProjectileID.RubyBolt ||
-                    projectile.type == ProjectileID.AmberBolt ||
                     projectile.type == ProjectileID.ThunderStaffShot
                 )
                 {
@@ -382,9 +375,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.type == ProjectileID.UnholyTridentFriendly ||
                     projectile.type == ProjectileID.BookStaffShot ||
                     projectile.type == ProjectileID.LunarFlare ||
-                    (projectile.type == ProjectileID.DiamondBolt && projectile.penetrate >= projectile.maxPenetrate) ||
-                    (projectile.type == ProjectileID.RubyBolt && projectile.penetrate >= projectile.maxPenetrate) ||
-                    (projectile.type == ProjectileID.AmberBolt && projectile.penetrate >= projectile.maxPenetrate) ||
                     (projectile.type == ProjectileID.ThunderStaffShot && projectile.penetrate >= projectile.maxPenetrate)
                 )
                 {
@@ -398,9 +388,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                             break;
                         case ProjectileID.PoisonFang:
                         case ProjectileID.VenomFang:
-                        case ProjectileID.DiamondBolt:
-                        case ProjectileID.RubyBolt:
-                        case ProjectileID.AmberBolt:
                         case ProjectileID.ThunderStaffShot:
                             lowest_distance = 320f;
                             correction_factor = 3.5f;

@@ -263,10 +263,7 @@ namespace WeDoALittleTrolling.Content.Items
                 }
                 if
                 (
-                    item.type == ItemID.ThunderStaff ||
-                    item.type == ItemID.DiamondStaff ||
-                    item.type == ItemID.RubyStaff ||
-                    item.type == ItemID.AmberStaff
+                    item.type == ItemID.ThunderStaff
                 )
                 {
                     TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ProjectileHomingDescription", "Projectiles move towards the closest target until they pierce");
@@ -898,21 +895,6 @@ namespace WeDoALittleTrolling.Content.Items
                 if (item.type == ItemID.FireworksLauncher)
                 {
                     item.damage = 35;
-                }
-                if
-                (
-                    item.type == ItemID.AmethystStaff ||
-                    item.type == ItemID.TopazStaff ||
-                    item.type == ItemID.SapphireStaff ||
-                    item.type == ItemID.EmeraldStaff ||
-                    item.type == ItemID.RubyStaff ||
-                    item.type == ItemID.DiamondStaff ||
-                    item.type == ItemID.AmberStaff
-                )
-                {
-                    item.damage += 2;
-                    item.autoReuse = true;
-                    item.mana -= 2;
                 }
                 if
                 (
