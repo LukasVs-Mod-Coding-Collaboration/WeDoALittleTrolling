@@ -35,8 +35,8 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
     {
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 34;
+            Item.width = 32;
+            Item.height = 28;
 
             Item.consumable = false;
             Item.noUseGraphic = true;
@@ -51,9 +51,9 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
         {
             CreateRecipe()
               .AddTile(TileID.MythrilAnvil)
-              .AddIngredient(ItemID.HallowedBar, 12)
-              .AddIngredient(ItemID.HolyWater, 10)
-              .AddIngredient(ItemID.Ectoplasm, 10)
+              .AddIngredient(ItemID.HallowedBar, 6)
+              .AddIngredient(ItemID.HolyWater, 5)
+              .AddIngredient(ItemID.Ectoplasm, 6)
               .AddIngredient(ModContent.ItemType<FrozenEssence>(), 3)
               .AddCustomShimmerResult(ItemID.PlatinumCoin, 1)
               .Register();

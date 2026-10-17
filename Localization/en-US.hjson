@@ -275,10 +275,10 @@ Mods: {
 				DisplayName: Holy Charm
 				Tooltip:
 					'''
-					Keep this item in your inventory to
-					become immune to Searing Inferno
-					"It might be able to extinguish
-					 that horrid fire."
+					Grants immunity to Searing Inferno
+					while held in your inventory
+					"It might ward off the
+					 Golem's horrid flames."
 					'''
 			}
 
