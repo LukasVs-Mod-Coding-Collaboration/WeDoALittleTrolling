@@ -95,6 +95,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public Item embersteelExplosionSourceItem;
         public int embersteelExplosionDamage;
         public float embersteelExplosionKnockback;
+        public bool manaCatalyst;
         public static UnifiedRandom random = new UnifiedRandom();
 
         public override void Initialize()
@@ -150,6 +151,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             embersteelExplosionSourceItem = null;
             embersteelExplosionDamage = 0;
             embersteelExplosionKnockback = 0f;
+            manaCatalyst = false;
         }
 
         public override void UpdateDead()
@@ -232,6 +234,7 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             embersteelExplosionSourceItem = null;
             embersteelExplosionDamage = 0;
             embersteelExplosionKnockback = 0f;
+            manaCatalyst = false;
         }
 
         public override void ResetEffects()
@@ -260,18 +263,18 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             cornEmblem = false;
             heartSeekerCharm = false;
             tungstenThornNecklace = false;
+            manaCatalyst = false;
             base.ResetEffects();
         }
 
         public static void RegisterHooks()
         {
-            On_Player.QuickMana += your_detour_function_name;
-            On_Player.hook_QuickMana
+            On_Player.ApplyLifeAndOrMana += QuickManaOverride;
         }
 
         public static void UnregisterHooks()
         {
-            On_Player.QuickMana -= your_detour_function_name;
+            On_Player.ApplyLifeAndOrMana -= QuickManaOverride;
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -1174,6 +1177,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         {
             siphonStack = 0;
             base.OnConsumeMana(item, manaConsumed);
+        }
+
+        public static void QuickManaOverride(Terraria.On_Player.orig_ApplyLifeAndOrMana orig, Terraria.Player self, Terraria.Item item)
+        {          
+            orig.Invoke(self, item);
+            if (item.healMana > 0 && self.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr) && plr.manaCatalyst)
+            {
+                self.AddBuff(BuffID.ManaHeat, 120);
+            }
         }
     }
 }

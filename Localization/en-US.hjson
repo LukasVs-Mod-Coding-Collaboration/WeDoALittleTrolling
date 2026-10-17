@@ -31,13 +31,13 @@ Mods: {
 			}
 
 			ManaExtractionCatalyst: {
-				DisplayName: Mana extraction Catalyst
+				DisplayName: Surge Catalyst
 				Tooltip:
 					'''
 					"The power of unlimited magic
 					 energy at your fingertips... "
-					Grants immunity to Mana Sickness
-					Reduces maximal health points by 100
+					Grants Mana Surge instead of Mana Sickness
+					Reduces maximal health points by 50
 					Automatically use mana potions when needed
 					Incompatible with the Sorcerous Mirror
 					'''

@@ -26,6 +26,7 @@ using Terraria.GameContent.Creative;
 using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -49,9 +50,20 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += -100; //Weird but working way to set Max down (originally 125)
+            if(player.statLifeMax2 > 50)
+            {
+                player.statLifeMax2 += -50; //Weird but working way to set Max down (originally 125)
+            }
+            else
+            {
+                player.statLifeMax2 = 1;
+            }
             player.buffImmune[BuffID.ManaSickness] = true; //Immunity to Mana Sickness
             player.manaFlower = true;
+            if(player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr))
+            {
+                plr.manaCatalyst = true;
+            }
 
         }
 
