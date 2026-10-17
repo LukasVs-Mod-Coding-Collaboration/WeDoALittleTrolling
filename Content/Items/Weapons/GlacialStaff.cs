@@ -56,7 +56,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
             Item.useTime = 32;
             Item.useAnimation = 32;
-            Item.mana = 4;
+            Item.mana = 7;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item43;
 
