@@ -96,6 +96,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public int embersteelExplosionDamage;
         public float embersteelExplosionKnockback;
         public bool manaCatalyst;
+        public int cursebladeChargeTicks;
+        public bool cursebladeIsCharging;
         public static UnifiedRandom random = new UnifiedRandom();
 
         public override void Initialize()
@@ -152,6 +154,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             embersteelExplosionDamage = 0;
             embersteelExplosionKnockback = 0f;
             manaCatalyst = false;
+            cursebladeChargeTicks = 0;
+            cursebladeIsCharging = false;
         }
 
         public override void UpdateDead()
@@ -235,6 +239,8 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             embersteelExplosionDamage = 0;
             embersteelExplosionKnockback = 0f;
             manaCatalyst = false;
+            cursebladeChargeTicks = 0;
+            cursebladeIsCharging = false;
         }
 
         public override void ResetEffects()

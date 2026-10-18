@@ -76,9 +76,9 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if(Math.Abs(player.GetModPlayer<WDALTPlayer>().currentTick - lastDashTick) >= (player.itemAnimationMax * 2))
+            if(Math.Abs(player.GetModPlayer<WDALTPlayer>().currentTick - lastDashTick) >= (Item.useAnimation * 2))
             {
-                player.SetImmuneTimeForAllTypes(player.longInvince ? ((int)Math.Round(player.itemAnimationMax * 1.0)) : ((int)Math.Round(player.itemAnimationMax * 0.75)));
+                player.SetImmuneTimeForAllTypes(player.longInvince ? ((int)Math.Round(Item.useAnimation * 1.0)) : ((int)Math.Round(Item.useAnimation * 0.75)));
                 lastDashTick = player.GetModPlayer<WDALTPlayer>().currentTick;
             }
             for (int i = 0; i < 5; i++)

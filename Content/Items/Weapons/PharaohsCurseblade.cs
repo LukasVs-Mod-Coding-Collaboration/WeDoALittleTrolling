@@ -26,6 +26,7 @@ using Terraria.DataStructures;
 using System;
 using WeDoALittleTrolling.Content.Projectiles;
 using Terraria.GameContent.Prefixes;
+using WeDoALittleTrolling.Common.ModPlayers;
 
 namespace WeDoALittleTrolling.Content.Items.Weapons
 {
@@ -34,8 +35,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
         public const int chargeTicksMax = 240;
         public const float chargeTicksScalingFactor = 0.005f;
         public static UnifiedRandom rnd = new UnifiedRandom(); //rnd
-        public int chargeTicks;
-        public bool isCharging;
 
         public override void SetStaticDefaults()
         {
@@ -71,14 +70,19 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool AltFunctionUse(Player player) // Woohoo Tornado Launch! (not yet implemented)
         {
-            if (!isCharging)
+            bool fetch = player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr);
+            if (!fetch || plr == null)
             {
-                chargeTicks = 0;
-                isCharging = true;
+                return base.AltFunctionUse(player);
             }
-            if (chargeTicks < chargeTicksMax)
+            if (!plr.cursebladeIsCharging)
             {
-                chargeTicks++;
+                plr.cursebladeChargeTicks = 0;
+                plr.cursebladeIsCharging = true;
+            }
+            if (plr.cursebladeChargeTicks < chargeTicksMax)
+            {
+                plr.cursebladeChargeTicks++;
                 int rMax = (int)player.width;
                 double r = rMax * Math.Sqrt(rnd.NextDouble());
                 double angle = rnd.NextDouble() * 2 * Math.PI;
@@ -92,7 +96,7 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
                 dustVelocity *= 8f;
                 Dust newDust = Dust.NewDustPerfect(dustPosition, DustID.Sandnado, dustVelocity, 0, default);
                 newDust.noGravity = true;
-                if (chargeTicks == 1 || chargeTicks % 45 == 0)
+                if (plr.cursebladeChargeTicks == 1 || plr.cursebladeChargeTicks % 45 == 0)
                 {
                     SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, player.Center);
                 }
@@ -107,7 +111,12 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool? CanHitNPC(Player player, NPC target)
         {
-            if(isCharging)
+            bool fetch = player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr);
+            if (!fetch || plr == null)
+            {
+                return base.CanHitNPC(player, target);
+            }
+            if(plr.cursebladeIsCharging)
             {
                 return false;
             }
@@ -116,7 +125,12 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override bool CanHitPvp(Player player, Player target)
         {
-            if(isCharging)
+            bool fetch = player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr);
+            if (!fetch || plr == null)
+            {
+                return base.CanHitPvp(player, target);
+            }
+            if(plr.cursebladeIsCharging)
             {
                 return false;
             }
@@ -125,19 +139,29 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void UseAnimation(Player player)
         {
-            if (isCharging)
+            bool fetch = player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr);
+            if (!fetch || plr == null)
             {
-                isCharging = false;
-                if (player.whoAmI == Main.myPlayer && chargeTicks >= (player.itemAnimationMax * 2))
+                return;
+            }
+            if (plr.cursebladeIsCharging)
+            {
+                plr.cursebladeIsCharging = false;
+                if (player.whoAmI == Main.myPlayer && plr.cursebladeChargeTicks >= (Item.useAnimation * 2))
                 {
-                    Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), Main.MouseWorld, Vector2.Zero, ProjectileID.SandnadoFriendly, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)chargeTicks), (2f * chargeTicksScalingFactor * (float)chargeTicks), Main.myPlayer);
+                    Projectile.NewProjectileDirect(new EntitySource_ItemUse(player, Item), Main.MouseWorld, Vector2.Zero, ProjectileID.SandnadoFriendly, (int)Math.Round(Item.damage * chargeTicksScalingFactor * (float)plr.cursebladeChargeTicks), (2f * chargeTicksScalingFactor * (float)plr.cursebladeChargeTicks), Main.myPlayer);
                 }
             }
         }
 
         public override void UseItemFrame(Player player)
         {
-            if (!isCharging)
+            bool fetch = player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr);
+            if (!fetch || plr == null)
+            {
+                return;
+            }
+            if (!plr.cursebladeIsCharging)
             {
                 int rMax = (int)Item.height;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
