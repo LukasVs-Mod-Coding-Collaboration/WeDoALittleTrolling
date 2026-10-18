@@ -619,13 +619,6 @@ namespace WeDoALittleTrolling.Content.Items
                 {
                     item.damage = 50;
                 }
-                if (item.type == ItemID.ChlorophyteClaymore)
-                {
-                    item.useTime = 52;
-                    item.useAnimation = 26;
-                    item.attackSpeedOnlyAffectsWeaponAnimation = false;
-                    item.GetGlobalItem<WDALTItemUtil>().attackSpeedRoundingErrorProtection = true;
-                }
                 if (item.type == ItemID.Trimarang)
                 {
                     item.damage = 24;
