@@ -94,32 +94,6 @@ namespace WeDoALittleTrolling.Content.Items
             ItemID.EmpressBlade
         };
 
-        public override bool CanUseItem(Item item, Player player)
-        {
-            // Anti-Poo-Block-Mechanism
-            if
-            (
-                item.type == ItemID.PoopBlock ||
-                item.type == ItemID.PoopWall
-            )
-            {
-                player.chatOverhead.NewMessage(player.name + " tried to uglify the world.", 180);
-                return false;
-            }
-            //I'm sorry, hit
-            /*
-            else if
-            (
-                item.type == ItemID.LandMine
-            )
-            {
-                player.chatOverhead.NewMessage("You may not use this item.", 180);
-                return false;
-            }
-            */
-            return base.CanUseItem(item, player);
-        }
-
         public static void RegisterHooks()
         {
             On_Player.ItemCheck_CanUse += toolUseBypass;
