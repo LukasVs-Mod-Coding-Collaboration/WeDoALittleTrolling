@@ -51,7 +51,9 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            useTimeMult *= 0.9f;
+            useTimeMult *= 0.75f;
+            critBonus += 5;
+            manaMult *= 1.10f;
         }
 
         

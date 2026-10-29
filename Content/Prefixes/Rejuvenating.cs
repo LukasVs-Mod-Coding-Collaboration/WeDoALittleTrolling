@@ -48,8 +48,8 @@ namespace WeDoALittleTrolling.Content.Prefixes
 
         public override void ApplyAccessoryEffects(Player player)
         {
-            player.manaRegenDelayBonus += 4f;
-            player.manaRegenBonus += 8;
+            player.manaRegenDelayBonus += 0.5f;
+            player.manaRegenBonus += 1;
             player.lifeRegen += 1;
             player.statManaMax2 += 20;
         }
