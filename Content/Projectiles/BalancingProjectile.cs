@@ -191,7 +191,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
                 }
                 if (projectile.type == ProjectileID.BookOfSkullsSkull)
                 {
-                    projectile.penetrate = -1;
+                    projectile.penetrate += 1;
                 }
                 if
                 (

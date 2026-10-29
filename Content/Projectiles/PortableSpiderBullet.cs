@@ -36,7 +36,7 @@ namespace WeDoALittleTrolling.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 4;
             Projectile.timeLeft = 240;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
