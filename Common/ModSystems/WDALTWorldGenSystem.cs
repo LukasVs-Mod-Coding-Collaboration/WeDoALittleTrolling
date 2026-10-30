@@ -97,6 +97,10 @@ namespace WeDoALittleTrolling.Common.ModSystems
                     WorldGen.PlaceWall(posX, (posY + 2), wallID, mute: true);
                 }
                 posY++;
+                if (posY >= Main.maxTilesY) //Exit if support beam is generating out of the world
+                {
+                    break;
+                }
             }
         }
 
@@ -621,6 +625,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
                 }
+                if (x < 64 || x > (Main.maxTilesX - 64) || y < 64 || y > (Main.maxTilesY - 64))
+                {
+                    br++;
+                    if (k >= 0)
+                    {
+                        k--;
+                    }
+                    continue;
+                }
                 bool cond =
                 (
                      WorldGen.SolidTile(x, y + 1) &&
@@ -671,6 +684,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 else
                 {
                     x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
+                }
+                if (x < 64 || x > (Main.maxTilesX - 64) || y < 64 || y > (Main.maxTilesY - 64))
+                {
+                    br++;
+                    if (k >= 0)
+                    {
+                        k--;
+                    }
+                    continue;
                 }
                 bool cond =
                 (
@@ -738,6 +760,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
                 }
+                if (x < 64 || x > (Main.maxTilesX - 64) || y < 64 || y > (Main.maxTilesY - 64))
+                {
+                    br++;
+                    if (k >= 0)
+                    {
+                        k--;
+                    }
+                    continue;
+                }
                 bool cond =
                 (
                      WorldGen.SolidTile(x, y - 1) &&
@@ -778,6 +809,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 else
                 {
                     x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
+                }
+                if (x < 64 || x > (Main.maxTilesX - 64) || y < 64 || y > (Main.maxTilesY - 64))
+                {
+                    br++;
+                    if (k >= 0)
+                    {
+                        k--;
+                    }
+                    continue;
                 }
                 bool cond =
                 (
@@ -829,6 +869,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 {
                     x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
                 }
+                if (x < 64 || x > (Main.maxTilesX - 64) || y < 64 || y > (Main.maxTilesY - 64))
+                {
+                    br++;
+                    if (k >= 0)
+                    {
+                        k--;
+                    }
+                    continue;
+                }
                 bool cond = true; //Prevent Houses from spawning on top of each other
                 for (int i = 1; i >= -5; i--)
                 {
@@ -878,6 +927,12 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 else
                 {
                     x = WorldGen.genRand.Next(GenVars.snowMinX[0], GenVars.snowMaxX[0]);
+                }
+                if (x < 64 || x > (Main.maxTilesX - 64) || y < 64 || y > (Main.maxTilesY - 64))
+                {
+                    br++;
+                    success = false;
+                    continue;
                 }
                 bool cond = true; //Prevent Houses from spawning on top of each other
                 for (int i = 1; i >= -27; i--)
