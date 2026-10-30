@@ -57,12 +57,12 @@ namespace WeDoALittleTrolling.Content.NPCs
 
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
+            /*if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
             {
                 Main.npcCatchable[npc.type] = true;
                 npc.catchItem = ModContent.ItemType<Consumablebee>();
                 //revenge. REVENGE!!
-            }
+            }*/
             if (npc.type == NPCID.BoundTownSlimeOld)
             {
                 Main.npcCatchable[npc.type] = true;

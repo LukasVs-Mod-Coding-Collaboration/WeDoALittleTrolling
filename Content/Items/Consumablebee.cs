@@ -55,18 +55,10 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void AddRecipes()
         {
-            CreateRecipe()
+            CreateRecipe(1)
               .AddTile(TileID.CookingPots)
               .AddIngredient(ItemID.BeeWax, 5)
               .Register();
-
-
-
-
-
         }
-
-
-
     }
 }
