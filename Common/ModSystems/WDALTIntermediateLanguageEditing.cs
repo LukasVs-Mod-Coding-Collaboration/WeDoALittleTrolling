@@ -36,6 +36,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_NPC.AI_069_DukeFishron += IL_NPC_AI_069_DukeFishron;
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision += IL_Player_Update_NPCCollision;
+            IL_Projectile.AI_062 += IL_Projectile_AI_062;
         }
 
         public static void UnregisterILHooks()
@@ -43,6 +44,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_NPC.AI_069_DukeFishron -= IL_NPC_AI_069_DukeFishron;
             IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision -= IL_Player_Update_NPCCollision;
+            IL_Projectile.AI_062 -= IL_Projectile_AI_062;
         }
 
         public static void IL_NPC_AI_069_DukeFishron(ILContext intermediateLanguageContext)
@@ -272,6 +274,155 @@ namespace WeDoALittleTrolling.Common.ModSystems
             {
                 WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Boss Immunity Hook via IL Editing.");
             }
+        }
+
+        public static void IL_Projectile_AI_062(ILContext intermediateLanguageContext)
+        {
+            bool successInjectMinionAimHook = true;
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableRangedMinionSmartAim)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Minion Aim Hook is disabled in the server configuration, skipping injection...");
+                return;
+            }
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.Index = cursor.Instrs.Count - 1;
+                cursor.GotoPrev(i => i.MatchCall<Terraria.Projectile>("NewProjectile"));
+                cursor.GotoPrev(i => i.MatchCall<Microsoft.Xna.Framework.Vector2>("op_Multiply"));
+                cursor.Index++;
+                cursor.Emit(OpCodes.Ldarg_0);
+                cursor.EmitDelegate<Func<Microsoft.Xna.Framework.Vector2, Terraria.Projectile, Microsoft.Xna.Framework.Vector2>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (
+                        Microsoft.Xna.Framework.Vector2 shootVector,
+                        Terraria.Projectile projectile
+                    ) =>
+                    {
+                        Microsoft.Xna.Framework.Vector2 returnVector = shootVector;
+                        float projSpeed = shootVector.Length();
+                        if (projectile.type == ProjectileID.Tempest)
+                        {
+                            projSpeed = 24f;
+                        }
+                        if
+                        (
+                            WDALTIntermediateLanguageEditing.Terraria_AI_062_FindTarget(projectile, out NPC target, out Microsoft.Xna.Framework.Vector2 targetVector) &&
+                            target != null &&
+                            targetVector != Vector2.Zero
+                        )
+                        {
+                            Microsoft.Xna.Framework.Vector2 predictVelocity = target.velocity * (Vector2.Distance(projectile.Center, targetVector) / projSpeed); //Roughly Predict where the target is going to be when projectile reaches it
+                            Microsoft.Xna.Framework.Vector2 adjustedVector = (targetVector + predictVelocity) - projectile.Center;
+                            adjustedVector = adjustedVector.SafeNormalize(Microsoft.Xna.Framework.Vector2.Zero);
+                            if (adjustedVector != Microsoft.Xna.Framework.Vector2.Zero)
+                            {
+                                returnVector = adjustedVector * projSpeed;
+                            }
+                        }
+                        return returnVector;
+                    }
+                );
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Minion Aim Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectMinionAimHook = false;
+            }
+            if(successInjectMinionAimHook)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Minion Aim Hook via IL Editing.");
+            }
+        }
+
+        public static bool Terraria_AI_062_FindTarget(Terraria.Projectile projectile, out Terraria.NPC target, out Microsoft.Xna.Framework.Vector2 targetVector)
+        {
+            //Now follows targetting code to simulate vanilla terraria behavior...
+            target = null;
+            targetVector = Vector2.Zero;
+            float attackRange = (projectile.type == ProjectileID.AbigailMinion ? 700f : 2000f);
+            bool foundTarget = false;
+            if (projectile.type == ProjectileID.Tempest)
+            {
+                Vector2 ownerCenter = Main.player[projectile.owner].Center;
+                Vector2 offsetVector = new Vector2(0.5f);
+                NPC ownerMinionAttackTargetNPC = projectile.OwnerMinionAttackTargetNPC;
+                if (ownerMinionAttackTargetNPC != null && ownerMinionAttackTargetNPC.CanBeChasedBy(projectile))
+                {
+                    Vector2 offsetedTargetPosition = ownerMinionAttackTargetNPC.position + ownerMinionAttackTargetNPC.Size * offsetVector;
+                    float increasedAttackRange = attackRange * 3f;
+                    float distanceToTarget = Vector2.Distance(offsetedTargetPosition, ownerCenter);
+                    if (distanceToTarget < increasedAttackRange && !foundTarget && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, ownerMinionAttackTargetNPC.position, ownerMinionAttackTargetNPC.width, ownerMinionAttackTargetNPC.height))
+                    {
+                        attackRange = distanceToTarget;
+                        targetVector = offsetedTargetPosition;
+                        target = ownerMinionAttackTargetNPC;
+                        foundTarget = true;
+                    }
+                }
+                if (!foundTarget)
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        NPC npc = Main.npc[i];
+                        if (npc.CanBeChasedBy(projectile))
+                        {
+                            Vector2 offsetedTargetPosition = npc.position + npc.Size * offsetVector;
+                            float distanceToTarget = Vector2.Distance(offsetedTargetPosition, ownerCenter);
+                            if (!(distanceToTarget >= attackRange) && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
+                            {
+                                attackRange = distanceToTarget;
+                                targetVector = offsetedTargetPosition;
+                                target = npc;
+                                foundTarget = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                NPC ownerMinionAttackTargetNPC = projectile.OwnerMinionAttackTargetNPC;
+                if (ownerMinionAttackTargetNPC != null && ownerMinionAttackTargetNPC.CanBeChasedBy(projectile))
+                {
+                    float distanceToTarget = Vector2.Distance(ownerMinionAttackTargetNPC.Center, projectile.Center);
+                    float increasedAttackRange = attackRange * 3f;
+                    if (distanceToTarget < increasedAttackRange && !foundTarget)
+                    {
+                        if ((projectile.type != ProjectileID.AbigailMinion) ? Collision.CanHitLine(projectile.position, projectile.width, projectile.height, ownerMinionAttackTargetNPC.position, ownerMinionAttackTargetNPC.width, ownerMinionAttackTargetNPC.height) : Collision.CanHit(projectile.Center, 1, 1, ownerMinionAttackTargetNPC.Center, 1, 1))
+                        {
+                            attackRange = distanceToTarget;
+                            targetVector = ownerMinionAttackTargetNPC.Center;
+                            target = ownerMinionAttackTargetNPC;
+                            foundTarget = true;
+                        }
+                    }
+                }
+                if (!foundTarget)
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        NPC npc = Main.npc[i];
+                        if (!npc.CanBeChasedBy(projectile))
+                        {
+                            continue;
+                        }
+                        float distanceToTarget = Vector2.Distance(npc.Center, projectile.Center);
+                        if (!(distanceToTarget >= attackRange))
+                        {
+                            if ((projectile.type != ProjectileID.AbigailMinion) ? Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height) : Collision.CanHit(projectile.Center, 1, 1, npc.Center, 1, 1))
+                            {
+                                attackRange = distanceToTarget;
+                                targetVector = npc.Center;
+                                target = npc;
+                                foundTarget = true;
+                            }
+                        }
+                    }
+                }
+            }
+            return foundTarget;
         }
     }
 }

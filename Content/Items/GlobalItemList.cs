@@ -203,6 +203,20 @@ namespace WeDoALittleTrolling.Content.Items
                     });
                 }
             }
+            if (!ModContent.GetInstance<WDALTServerConfig>().DisableRangedMinionSmartAim)
+            {
+                if
+                (
+                    item.type == ItemID.ImpStaff ||
+                    item.type == ItemID.HornetStaff ||
+                    item.type == ItemID.TempestStaff ||
+                    item.type == ItemID.AbigailsFlower
+                )
+                {
+                    TooltipLine extraCritChanceLine = new TooltipLine(Mod, "ProjectileSmartAimDescription", "Minions summoned by this item will\nattempt to predict enemy movement");
+                    tooltips.Add(extraCritChanceLine);
+                }
+            }
             if (!ModContent.GetInstance<WDALTServerConfig>().DisableFishronSkipNerf && (fishronWeapons.Contains(item.type) || item.type == ItemID.FishronWings || item.type == ItemID.ShrimpyTruffle))
             {
                 float mult = 1f;

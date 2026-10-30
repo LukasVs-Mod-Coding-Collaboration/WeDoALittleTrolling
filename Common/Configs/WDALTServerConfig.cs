@@ -67,6 +67,9 @@ namespace WeDoALittleTrolling.Common.Configs
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DisableForTheWorthyDefenseEffectivenessIncrease;
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DisableRangedMinionSmartAim;
 
         [Header("CustomSeeds")]
 

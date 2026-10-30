@@ -1075,6 +1075,11 @@ Mods: {
 					Label: Enable Duke Fishron Extra AI
 					Tooltip: Grants Duke Fishron the ability to use high-precision dashing.
 				}
+
+				DisableRangedMinionSmartAim: {
+					Label: Disable Ranged Minion Smart Aim
+					Tooltip: Disables predictive shooting for Abigail's Flower, Hornet Staff, Imp Staff and Tempest Staff
+				}
 			}
 		}
 
