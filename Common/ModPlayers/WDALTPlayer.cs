@@ -276,11 +276,13 @@ namespace WeDoALittleTrolling.Common.ModPlayers
         public static void RegisterHooks()
         {
             On_Player.ApplyLifeAndOrMana += QuickManaOverride;
+            On_Player.CheckMana_int_bool_bool += On_Player_CheckMana_int_bool_bool;
         }
 
         public static void UnregisterHooks()
         {
             On_Player.ApplyLifeAndOrMana -= QuickManaOverride;
+            On_Player.CheckMana_int_bool_bool -= On_Player_CheckMana_int_bool_bool;
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -1179,10 +1181,9 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             base.ModifyManaCost(item, ref reduce, ref mult);
         }
 
-        public override void OnConsumeMana(Item item, int manaConsumed)
+        public void alt_OnConsumeMana(int amount, bool pay, bool blockQuickMana)
         {
             siphonStack = 0;
-            base.OnConsumeMana(item, manaConsumed);
         }
 
         public static void QuickManaOverride(Terraria.On_Player.orig_ApplyLifeAndOrMana orig, Terraria.Player self, Terraria.Item item)
@@ -1192,6 +1193,15 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             {
                 self.AddBuff(BuffID.ManaHeat, 120);
             }
+        }
+
+        public static bool On_Player_CheckMana_int_bool_bool(Terraria.On_Player.orig_CheckMana_int_bool_bool orig, Terraria.Player self, int amount, bool pay, bool blockQuickMana)
+        {
+            if (pay && self.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr))
+            {
+                plr.alt_OnConsumeMana(amount, pay, blockQuickMana);
+            }
+            return orig.Invoke(self, amount, pay, blockQuickMana);
         }
     }
 }
