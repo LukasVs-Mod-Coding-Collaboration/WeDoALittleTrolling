@@ -205,6 +205,11 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.tileCollide = false;
                 }
                 if
+                (projectile.type == ProjectileID.DeathLaser)
+                {
+                    projectile.timeLeft = 240;
+                }
+                if
                 (
                     projectile.type == ProjectileID.FrostBlastFriendly ||
                     projectile.type == ProjectileID.PoisonFang ||

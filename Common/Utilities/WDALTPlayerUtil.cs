@@ -120,7 +120,7 @@ namespace WeDoALittleTrolling.Common.Utilities
         {
             if (primeViceSupportedNPCIDs.Contains(npc.type) && primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceSupportedNPCIDs.Contains(primeViceThatIsGrapplingPlayer.type))
             {
-                modifiers.IncomingDamageMultiplier *= 0.25f;
+                modifiers.IncomingDamageMultiplier *= 0.05f;
             }
             base.ModifyHitByNPC(npc, ref modifiers);
         }

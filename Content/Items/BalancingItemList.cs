@@ -180,6 +180,7 @@ namespace WeDoALittleTrolling.Content.Items
                     item.type == ItemID.ChlorophyteMask ||
                     item.type == ItemID.ChlorophyteHelmet ||
                     item.type == ItemID.ChlorophyteHeadgear ||
+                    item.type == ItemID.ChlorophyteVisor ||
                     item.type == ItemID.ChlorophytePlateMail ||
                     item.type == ItemID.ChlorophyteGreaves
                 )
@@ -221,6 +222,7 @@ namespace WeDoALittleTrolling.Content.Items
                     item.type == ItemID.ChlorophyteMask ||
                     item.type == ItemID.ChlorophyteHelmet ||
                     item.type == ItemID.ChlorophyteHeadgear ||
+                    item.type == ItemID.ChlorophyteVisor ||
                     item.type == ItemID.ChlorophytePlateMail ||
                     item.type == ItemID.ChlorophyteGreaves
                 )
