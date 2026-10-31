@@ -284,14 +284,21 @@ namespace WeDoALittleTrolling.Content.NPCs
                         npc.knockBackResist = 2.5f;
                     }
                 }
+                if (npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
+                {
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.35);
+                }
                 if (npc.type == NPCID.PrimeVice)
                 {
                     npc.defense += 14;
-                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.35);
                 }
                 if (npc.type == NPCID.PrimeSaw)
                 {
                     npc.damage += 34;
+                }
+                if (npc.type == NPCID.PrimeLaser)
+                {
+                    npc.lifeMax = (int)Math.Round(npc.lifeMax * 1.5);
                 }
                 if
                 (
