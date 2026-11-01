@@ -47,6 +47,9 @@ namespace WeDoALittleTrolling.Common.ModSystems
             int npcIdx = -1;
             int freezeTicks = -1;
             int dashingPlayerIdx = -1;
+            bool primeViceIsGrappled = false;
+            int primeViceGrappleTicksRemaining = -1;
+            int primeViceGrappleImmuneTicks = -1;
             Vector2 itemSpawnPos = new Vector2(0f, 0f);
             if(type == WDALTPacketTypeID.soundBroadcastRainOfDecay || type == WDALTPacketTypeID.soundPlayRainOfDecay)
             {
@@ -83,6 +86,31 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(type == WDALTPacketTypeID.syncDash || type == WDALTPacketTypeID.broadcastDash)
             {
                 dashingPlayerIdx = reader.ReadInt32();
+            }
+            if(type == WDALTPacketTypeID.syncViceGrapple || type == WDALTPacketTypeID.broadcastViceGrapple)
+            {
+                primeViceIsGrappled = reader.ReadBoolean();
+                dashingPlayerIdx = reader.ReadInt32();
+                npcIdx = reader.ReadInt32();
+                primeViceGrappleTicksRemaining = reader.ReadInt32();
+                primeViceGrappleImmuneTicks = reader.ReadInt32();
+                if
+                (
+                    npcIdx >= -1 &&
+                    npcIdx < Main.npc.Length &&
+                    dashingPlayerIdx >= 0 &&
+                    dashingPlayerIdx < Main.player.Length &&
+                    dashingPlayerIdx != Main.myPlayer
+                )
+                {
+                    if (Main.player[dashingPlayerIdx].TryGetModPlayer<WDALTPlayerUtil>(out WDALTPlayerUtil util))
+                    {
+                        util.primeViceIsGrappled = primeViceIsGrappled;
+                        util.primeViceThatIsGrapplingPlayer = (npcIdx >= 0 ? Main.npc[npcIdx] : null);
+                        util.primeViceGrappleTicksRemaining = primeViceGrappleTicksRemaining;
+                        util.primeViceGrappleImmuneTicks = primeViceGrappleImmuneTicks;
+                    }
+                }
             }
             if(Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -140,6 +168,27 @@ namespace WeDoALittleTrolling.Common.ModSystems
             }
             if(Main.netMode == NetmodeID.Server)
             {
+                if (type == WDALTPacketTypeID.syncViceGrapple)
+                {
+                    if
+                    (
+                        npcIdx >= -1 &&
+                        npcIdx < Main.npc.Length &&
+                        dashingPlayerIdx >= 0 &&
+                        dashingPlayerIdx < Main.player.Length &&
+                        dashingPlayerIdx != Main.myPlayer
+                    )
+                    {
+                        ModPacket syncViceGrapplePacket = mod.GetPacket();
+                        syncViceGrapplePacket.Write(WDALTPacketTypeID.broadcastViceGrapple);
+                        syncViceGrapplePacket.Write((bool)primeViceIsGrappled);
+                        syncViceGrapplePacket.Write((int)dashingPlayerIdx);
+                        syncViceGrapplePacket.Write((int)npcIdx);
+                        syncViceGrapplePacket.Write((int)primeViceGrappleTicksRemaining);
+                        syncViceGrapplePacket.Write((int)primeViceGrappleImmuneTicks);
+                        syncViceGrapplePacket.Send();
+                    }
+                }
                 if(type == WDALTPacketTypeID.syncDash)
                 {
                     if(dashingPlayerIdx >= 0 && dashingPlayerIdx < Main.player.Length && dashingPlayerIdx != Main.myPlayer)

@@ -155,6 +155,54 @@ namespace WeDoALittleTrolling.Common.Utilities
             base.OnHitByNPC(npc, hurtInfo);
         }
 
+        public override void CopyClientState(ModPlayer targetCopy)
+        {
+            if (targetCopy is WDALTPlayerUtil util)
+            {
+                util.primeViceIsGrappled = primeViceIsGrappled;
+                util.primeViceThatIsGrapplingPlayer = primeViceThatIsGrapplingPlayer;
+                util.primeViceGrappleTicksRemaining = primeViceGrappleTicksRemaining;
+                util.primeViceGrappleImmuneTicks = primeViceGrappleImmuneTicks;
+            }
+            base.CopyClientState(targetCopy);
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            
+            ModPacket syncViceGrapplePacket = Mod.GetPacket();
+            syncViceGrapplePacket.Write(WDALTPacketTypeID.syncViceGrapple);
+            syncViceGrapplePacket.Write((bool)primeViceIsGrappled);
+            syncViceGrapplePacket.Write((int)player.whoAmI);
+            syncViceGrapplePacket.Write((int)(primeViceThatIsGrapplingPlayer != null ? primeViceThatIsGrapplingPlayer.whoAmI : -1));
+            syncViceGrapplePacket.Write((int)primeViceGrappleTicksRemaining);
+            syncViceGrapplePacket.Write((int)primeViceGrappleImmuneTicks);
+            syncViceGrapplePacket.Send(toWho, fromWho);
+            base.SyncPlayer(toWho, fromWho, newPlayer);
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            if
+            (
+                clientPlayer is WDALTPlayerUtil util &&
+                player.whoAmI == Main.myPlayer &&
+                util.player.whoAmI == Main.myPlayer &&
+                util.primeViceIsGrappled != primeViceIsGrappled
+            )
+            {
+                ModPacket syncViceGrapplePacket = Mod.GetPacket();
+                syncViceGrapplePacket.Write(WDALTPacketTypeID.syncViceGrapple);
+                syncViceGrapplePacket.Write((bool)primeViceIsGrappled);
+                syncViceGrapplePacket.Write((int)player.whoAmI);
+                syncViceGrapplePacket.Write((int)(primeViceThatIsGrapplingPlayer != null ? primeViceThatIsGrapplingPlayer.whoAmI : -1));
+                syncViceGrapplePacket.Write((int)primeViceGrappleTicksRemaining);
+                syncViceGrapplePacket.Write((int)primeViceGrappleImmuneTicks);
+                syncViceGrapplePacket.Send();
+            }
+            base.SendClientChanges(clientPlayer);
+        }
+
         public override void PreUpdateMovement()
         {
             if (primeViceGrappleImmuneTicks > 0 && player.whoAmI == Main.myPlayer)

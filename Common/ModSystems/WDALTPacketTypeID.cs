@@ -33,5 +33,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
         public const short broadcastHitFreeze        = 14;
         public const short syncDash                  = 15;
         public const short broadcastDash             = 16;
+        public const short syncViceGrapple           = 17;
+        public const short broadcastViceGrapple      = 18;
     }
 }
