@@ -118,9 +118,21 @@ namespace WeDoALittleTrolling.Common.Utilities
 
         public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
         {
-            if (primeViceSupportedNPCIDs.Contains(npc.type) && primeViceIsGrappled && primeViceThatIsGrapplingPlayer != null && primeViceThatIsGrapplingPlayer.active && primeViceSupportedNPCIDs.Contains(primeViceThatIsGrapplingPlayer.type))
+            if
+            (
+                primeViceSupportedNPCIDs.Contains(npc.type) &&
+                (
+                    primeViceGrappleImmuneTicks > 0 ||
+                    (
+                        primeViceIsGrappled &&
+                        primeViceThatIsGrapplingPlayer != null &&
+                        primeViceThatIsGrapplingPlayer.active &&
+                        primeViceSupportedNPCIDs.Contains(primeViceThatIsGrapplingPlayer.type)
+                    )
+                )
+            )
             {
-                modifiers.IncomingDamageMultiplier *= 0.05f;
+                modifiers.IncomingDamageMultiplier *= 0.25f;
             }
             base.ModifyHitByNPC(npc, ref modifiers);
         }
