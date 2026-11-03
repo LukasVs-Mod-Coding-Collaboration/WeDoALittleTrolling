@@ -559,6 +559,21 @@ Mods: {
 					+10% damage
 					'''
 			}
+
+			WakewoodHelmet: {
+				DisplayName: Wakewood Headband
+				Tooltip: Slightly improves life regeneration
+			}
+
+			WakewoodChestplate: {
+				DisplayName: Wakewood Chestplate
+				Tooltip: Slightly improves life regeneration
+			}
+
+			WakewoodLeggings: {
+				DisplayName: Wakewood Greaves
+				Tooltip: Slightly improves life regeneration
+			}
 		}
 
 		Projectiles: {
