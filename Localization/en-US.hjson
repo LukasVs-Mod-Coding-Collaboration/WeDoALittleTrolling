@@ -562,17 +562,33 @@ Mods: {
 
 			WakewoodHelmet: {
 				DisplayName: Wakewood Headband
-				Tooltip: Slightly improves life regeneration
+				Tooltip:
+					'''
+					Slightly improves life regeneration
+					Increases maximal number of active sentries by 1
+					Increases maximal mana by 40
+					"It smells faintly of catnip."
+					'''
 			}
 
 			WakewoodChestplate: {
 				DisplayName: Wakewood Chestplate
-				Tooltip: Slightly improves life regeneration
+				Tooltip:
+					'''
+					Slightly improves life regeneration
+					Increases maximal number of active sentries by 1
+					Increases summon damage by 5%
+					'''
 			}
 
 			WakewoodLeggings: {
 				DisplayName: Wakewood Greaves
-				Tooltip: Slightly improves life regeneration
+				Tooltip:
+					'''
+					Slightly improves life regeneration
+					Increases armor penetration by 8
+					Allows slightly faster running
+					'''
 			}
 		}
 

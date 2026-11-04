@@ -34,12 +34,14 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.Blue;
-            Item.defense = 2;
+            Item.defense = 3;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.lifeRegen += 2;
+            player.maxTurrets += 1;
+            player.GetDamage(DamageClass.Summon) += 0.05f;
         }
 
         public override void AddRecipes()

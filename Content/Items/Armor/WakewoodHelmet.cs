@@ -47,6 +47,8 @@ namespace WeDoALittleTrolling.Content.Items.Armor
         public override void UpdateEquip(Player player)
         {
             player.lifeRegen += 2;
+            player.maxTurrets += 1;
+            player.statManaMax2 += 40;
         }
         public override void AddRecipes()
         {

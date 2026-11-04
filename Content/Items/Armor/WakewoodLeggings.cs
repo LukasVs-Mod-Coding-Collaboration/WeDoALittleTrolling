@@ -34,12 +34,14 @@ namespace WeDoALittleTrolling.Content.Items.Armor
             Item.height = 16;
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.Blue;
-            Item.defense = 1;
+            Item.defense = 2;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.lifeRegen += 2;
+            player.GetArmorPenetration(DamageClass.Generic) += 8.0f;
+            player.maxRunSpeed += 0.5f;
         }
 
         public override void AddRecipes()
@@ -48,7 +50,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
               .AddTile(TileID.LivingLoom)
               .AddIngredient(ItemID.Wood, 20)
               .AddIngredient(ItemID.Acorn, 6)
-              .AddIngredient(ItemID.Daybloom, 3)
+              .AddIngredient(ItemID.Daybloom, 4)
               .Register();
         }
     }
