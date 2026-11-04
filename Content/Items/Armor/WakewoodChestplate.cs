@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.lifeRegen += 2;
+            player.lifeRegen += 1;
             player.maxTurrets += 1;
             player.GetDamage(DamageClass.Summon) += 0.05f;
         }

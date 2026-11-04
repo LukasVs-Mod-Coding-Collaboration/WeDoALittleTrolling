@@ -39,7 +39,7 @@ namespace WeDoALittleTrolling.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.lifeRegen += 2;
+            player.lifeRegen += 1;
             player.GetArmorPenetration(DamageClass.Generic) += 8.0f;
             player.maxRunSpeed += 0.5f;
         }
