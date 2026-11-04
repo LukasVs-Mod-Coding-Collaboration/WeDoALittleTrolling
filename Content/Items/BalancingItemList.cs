@@ -82,53 +82,6 @@ namespace WeDoALittleTrolling.Content.Items
             }
         }
 
-        public static LocalizedText savedMiningSetBonusText = null;
-
-        public static void CustomMiningSetBonus(Player player)
-        {
-            ArmorSetBonuses.Benefits.Mining(player);
-            player.statDefense += 5;
-        }
-
-        public static void AddArmorSetBonus()
-        {
-            /* TAPI_1.4.5.8: Use new ArmorSetBonuses engine */
-            ArmorSetBonuses.All.ForEach((ArmorSetBonus b) => {
-                if
-                (
-                    b.Head == ItemID.MiningHelmet &&
-                    b.Body == ItemID.MiningShirt &&
-                    b.Legs == ItemID.MiningPants &&
-                    b.Description != null
-                )
-                {
-                    b.Effect = CustomMiningSetBonus;
-                    savedMiningSetBonusText = b.Description;
-                    b.Description = WeDoALittleTrolling.instance.GetLocalization("MiningArmorAdditionalSetBonusText").WithFormatArgs(savedMiningSetBonusText.Value);
-                }
-            });
-        }
-
-        public static void RemoveArmorSetBonus()
-        {
-            /* TAPI_1.4.5.8: Use new ArmorSetBonuses engine */
-            ArmorSetBonuses.All.ForEach((ArmorSetBonus b) => {
-                if
-                (
-                    b.Head == ItemID.MiningHelmet &&
-                    b.Body == ItemID.MiningShirt &&
-                    b.Legs == ItemID.MiningPants &&
-                    savedMiningSetBonusText != null &&
-                    savedMiningSetBonusText.Value != null
-                )
-                {
-                    b.Description = savedMiningSetBonusText;
-                    b.Effect = ArmorSetBonuses.Benefits.Mining;
-                    savedMiningSetBonusText = null;
-                }
-            });
-        }
-
         public static void On_Player_ItemCheck_UseTeleportRod(On_Player.orig_ItemCheck_UseTeleportRod orig, Player self, Item sItem)
         {
             bool harmony = (sItem.type == ItemID.RodOfHarmony);
@@ -164,6 +117,39 @@ namespace WeDoALittleTrolling.Content.Items
                 }
             }
             base.OnHitNPC(item, player, target, hit, damageDone);
+        }
+
+        public override void UpdateArmorSet(Player player, ArmorSetBonus armorSetBonus)
+        {
+            if
+            (
+                armorSetBonus != null &&
+                armorSetBonus.Head == ItemID.MiningHelmet &&
+                armorSetBonus.Body == ItemID.MiningShirt &&
+                armorSetBonus.Legs == ItemID.MiningPants
+            )
+            {
+                player.statDefense += 5;
+            }
+        }
+
+        public override void ModifyArmorSets()
+        {
+            ArmorSetBonuses.All.ForEach((ArmorSetBonus b) =>
+            {
+                if
+                (
+                    b != null &&
+                    b.Head == ItemID.MiningHelmet &&
+                    b.Body == ItemID.MiningShirt &&
+                    b.Legs == ItemID.MiningPants &&
+                    b.Description != null
+                )
+                {
+                    LocalizedText savedMiningSetBonusText = b.Description;
+                    b.Description = WeDoALittleTrolling.instance.GetLocalization("MiningArmorAdditionalSetBonusText").WithFormatArgs(savedMiningSetBonusText.Value);
+                }
+            });
         }
 
         //Revert mana reduction from Spectre Hood
