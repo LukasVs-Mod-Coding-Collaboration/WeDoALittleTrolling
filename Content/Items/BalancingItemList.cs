@@ -522,7 +522,6 @@ namespace WeDoALittleTrolling.Content.Items
                     item.useAnimation = 8;
                     item.shootsEveryUse = true;
                     item.ArmorPenetration = 16;
-                    item.mana = 4;
                     if (item.Variant == ItemVariants.WeakerVariant)
                     {
                         item.damage = 8;
