@@ -132,11 +132,6 @@ namespace WeDoALittleTrolling.Content.Projectiles
                     projectile.velocity = normalizedVeloctiy * originalLength;
                 }
             }
-            if (projectile.type == ProjectileID.MiniSharkron && !ModContent.GetInstance<WDALTServerConfig>().DisableRangedMinionSmartAim)
-            {
-                projectile.velocity = projectile.velocity.SafeNormalize(Vector2.Zero);
-                projectile.velocity *= 24f;
-            }
             base.AI(projectile);
         }
 

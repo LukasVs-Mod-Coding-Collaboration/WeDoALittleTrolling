@@ -26,6 +26,7 @@ using Terraria.ID;
 using System.Linq;
 using WeDoALittleTrolling.Common.Configs;
 using Microsoft.Xna.Framework;
+using WeDoALittleTrolling.Content.Projectiles;
 
 namespace WeDoALittleTrolling.Common.ModSystems
 {
@@ -37,6 +38,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_NPC.AI_037_Destroyer += IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision += IL_Player_Update_NPCCollision;
             IL_Projectile.AI_062 += IL_Projectile_AI_062;
+            IL_Projectile.AI_001 += IL_Projectile_AI_001;
+            IL_Projectile.NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float_NewProjectileModifier += IL_Projectile_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float_NewProjectileModifier;
         }
 
         public static void UnregisterILHooks()
@@ -45,6 +48,8 @@ namespace WeDoALittleTrolling.Common.ModSystems
             IL_NPC.AI_037_Destroyer -= IL_NPC_AI_037_Destroyer;
             IL_Player.Update_NPCCollision -= IL_Player_Update_NPCCollision;
             IL_Projectile.AI_062 -= IL_Projectile_AI_062;
+            IL_Projectile.AI_001 -= IL_Projectile_AI_001;
+            IL_Projectile.NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float_NewProjectileModifier -= IL_Projectile_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float_NewProjectileModifier;
         }
 
         public static void IL_NPC_AI_069_DukeFishron(ILContext intermediateLanguageContext)
@@ -287,6 +292,15 @@ namespace WeDoALittleTrolling.Common.ModSystems
             try
             {
                 ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdcR4(0.96f)); //Go to the instruction where the speed for tempest reduced.
+                cursor.GotoPrev(i => i.MatchLdcR4(3f)); //Go to the instruction where the max speed for tempest is reduced.
+                cursor.Index++; //Go after it now.
+                cursor.Emit(OpCodes.Pop); //Pop 3f off the stack
+                cursor.Emit(OpCodes.Ldc_R4, 9f); //Push 9f onto the stack
+                cursor.GotoPrev(i => i.MatchLdcR4(400f)); //Go to the instruction where the tempest buffer distance is set.
+                cursor.Index++; //Go after it now.
+                cursor.Emit(OpCodes.Pop); //Pop 400f off the stack
+                cursor.Emit(OpCodes.Ldc_R4, 270f); //Push 270f onto the stack
                 cursor.Index = cursor.Instrs.Count - 1;
                 cursor.GotoPrev(i => i.MatchCall<Terraria.Projectile>("NewProjectile"));
                 cursor.GotoPrev(i => i.MatchCall<Microsoft.Xna.Framework.Vector2>("op_Multiply"));
@@ -303,7 +317,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                         float projSpeed = shootVector.Length();
                         if (projectile.type == ProjectileID.Tempest)
                         {
-                            projSpeed = 24f;
+                            projSpeed = 27f;
                         }
                         if
                         (
@@ -333,6 +347,92 @@ namespace WeDoALittleTrolling.Common.ModSystems
             if(successInjectMinionAimHook)
             {
                 WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Minion Aim Hook via IL Editing.");
+            }
+        }
+
+        public static void IL_Projectile_AI_001(ILContext intermediateLanguageContext)
+        {
+            bool successInjectMinionBulletVerticalHook = true;
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableRangedMinionSmartAim)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Ranged Minion Bullet Vertical Hook is disabled in the server configuration, skipping injection...");
+                return;
+            }
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdcR4(-16f)); //move cursor to instruction enforcing the vector length
+                cursor.GotoPrev(i => i.MatchLdcI4(1)); //now move to the control flag
+                cursor.Index++; //move after it now
+                cursor.Emit(OpCodes.Ldarg_0);
+                cursor.EmitDelegate<Func<bool, Terraria.Projectile, bool>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (
+                        bool checkLength,
+                        Terraria.Projectile projectile
+                    ) =>
+                    {
+                        bool ret = checkLength;
+                        if (projectile.type == ProjectileID.MiniSharkron)
+                        {
+                            ret = false;
+                        }
+                        return ret;
+                    }
+                );
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Ranged Minion Bullet Vertical Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectMinionBulletVerticalHook = false;
+            }
+            if(successInjectMinionBulletVerticalHook)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Ranged Minion Bullet Vertical Hook via IL Editing.");
+            }
+        }
+
+        public static void IL_Projectile_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float_NewProjectileModifier(ILContext intermediateLanguageContext)
+        {
+            bool successInjectMinionBulletSpeedupHook = true;
+            if (ModContent.GetInstance<WDALTServerConfig>().DisableRangedMinionSmartAim)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Ranged Minion Bullet Speedup Hook is disabled in the server configuration, skipping injection...");
+                return;
+            }
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdfld<Projectile>(nameof(Projectile.aiStyle))); //go to the aiStyle check
+                cursor.Index++; //move after it now
+                cursor.Emit(OpCodes.Ldloc_0);
+                cursor.Emit(OpCodes.Ldfld, typeof(Projectile).GetField(nameof(Projectile.type)));
+                cursor.EmitDelegate<Func<int, int, int>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (
+                        int style,
+                        int type
+                    ) =>
+                    {
+                        int ret = style;
+                        if (type == ProjectileID.MiniSharkron)
+                        {
+                            ret = 0;
+                        }
+                        return ret;
+                    }
+                );
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Ranged Minion Bullet Speedup Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectMinionBulletSpeedupHook = false;
+            }
+            if(successInjectMinionBulletSpeedupHook)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Ranged Minion Bullet Speedup Hook via IL Editing.");
             }
         }
 
