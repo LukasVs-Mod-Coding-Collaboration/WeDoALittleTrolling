@@ -295,7 +295,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
                 cursor.GotoNext(i => i.MatchLdcI4(45)); //Go to Xeno Staff Shoot Cooldown
                 cursor.Index++; //Go after it now.
                 cursor.Emit(OpCodes.Pop); //Pop 45 off the stack
-                cursor.Emit(OpCodes.Ldc_I4_S, (sbyte)30); //Push 30 onto the stack
+                cursor.Emit(OpCodes.Ldc_I4_S, (sbyte)36); //Push 36 onto the stack
                 cursor.GotoPrev(i => i.MatchLdcR4(0.96f)); //Go to the instruction where the speed for tempest reduced.
                 cursor.GotoPrev(i => i.MatchLdcR4(3f)); //Go to the instruction where the max speed for tempest is reduced.
                 cursor.Index++; //Go after it now.
