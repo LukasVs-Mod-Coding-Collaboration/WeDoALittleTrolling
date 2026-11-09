@@ -517,14 +517,16 @@ namespace WeDoALittleTrolling.Content.Items
                 }
                 if (item.type == ItemID.BubbleGun)
                 {
-                    item.damage = 64;
                     item.useTime = 8;
                     item.useAnimation = 8;
                     item.shootsEveryUse = true;
-                    item.ArmorPenetration = 16;
                     if (item.Variant == ItemVariants.WeakerVariant)
                     {
                         item.damage = 8;
+                    }
+                    else
+                    {
+                        item.ArmorPenetration = 20;
                     }
                 }
                 if
