@@ -43,8 +43,8 @@ namespace WeDoALittleTrolling.Content.Buffs
         {
             player.lifeRegen += 4;
             player.statDefense += 4;
-            player.manaRegenDelayBonus += 2f;
-            player.manaRegenBonus += 4;
+            player.manaRegenDelayBonus += 0.5f;
+            player.manaRegenBonus += 1;
             player.maxRunSpeed += 0.8f;
             player.moveSpeed += 0.08f;
             player.GetCritChance(DamageClass.Generic) += 4f;
