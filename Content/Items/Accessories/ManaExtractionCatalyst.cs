@@ -156,7 +156,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
                         }
                     }
                 );
-                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
             }
             catch
             {
