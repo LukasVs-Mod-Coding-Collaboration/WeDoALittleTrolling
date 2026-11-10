@@ -27,6 +27,8 @@ using static Humanizer.In;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
 using WeDoALittleTrolling.Common.ModPlayers;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
 
 namespace WeDoALittleTrolling.Content.Items.Accessories
 {
@@ -46,6 +48,126 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
             Item.rare = ItemRarityID.LightPurple;
 
             Item.accessory = true; //Item is an accessory
+        }
+
+        public static void RegisterHooks()
+        {
+            IL_Player.PickupItem += IL_Player_PickupItem;
+        }
+
+        public static void UnregisterHooks()
+        {
+            IL_Player.PickupItem -= IL_Player_PickupItem;
+        }
+
+        public static void IL_Player_PickupItem(ILContext intermediateLanguageContext)
+        {
+            bool successInjectCatalystHook = true;
+            try
+            {
+                ILCursor cursor = new ILCursor(intermediateLanguageContext);
+                cursor.GotoNext(i => i.MatchLdfld<Player>(nameof(Player.statMana))); //Go to the mana heal instruction.
+                cursor.Index += 2; //Go after it now.
+                cursor.Emit(OpCodes.Ldarg_0); //Push the current NPC index (variable i) onto the stack.
+                cursor.EmitDelegate<Func<int, Player, int>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (
+                        int amount,
+                        Player player
+                    ) =>
+                    {
+                        int ret = amount;
+                        if (player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr) && plr.manaCatalyst)
+                        {
+                            if (player.statMana <= amount)
+                            {
+                                ret = (player.statMana - 1) * (-1);
+                            }
+                            else
+                            {
+                                ret = (amount) * (-1);
+                            }
+                        }
+                        return ret;
+                    }
+                );
+                cursor.GotoNext(i => i.MatchCall<Player>(nameof(Player.ManaEffect))); //Go to the mana effect call
+                cursor.Remove(); //Remove vanilla mana effect
+                cursor.EmitDelegate<Action<Player, int>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (
+                        Player player,
+                        int manaAmount
+                    ) =>
+                    {
+                        if (player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr) && plr.manaCatalyst)
+                        {
+                            CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), Color.DarkViolet, manaAmount);
+                        }
+                        else
+                        {
+                            player.ManaEffect(manaAmount);
+                        }
+                    }
+                );
+                cursor.GotoNext(i => i.MatchLdfld<Player>(nameof(Player.statMana))); //Go to the mana check instruction.
+                cursor.Index += 2; //Go after it now.
+                cursor.GotoNext(i => i.MatchLdfld<Player>(nameof(Player.statMana))); //Go to the second mana heal instruction.
+                cursor.Index += 2; //Go after it now.
+                cursor.Emit(OpCodes.Ldarg_0); //Push the current NPC index (variable i) onto the stack.
+                cursor.EmitDelegate<Func<int, Player, int>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (
+                        int amount,
+                        Player player
+                    ) =>
+                    {
+                        int ret = amount;
+                        if (player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr) && plr.manaCatalyst)
+                        {
+                            if (player.statMana <= amount)
+                            {
+                                ret = (player.statMana - 1) * (-1);
+                            }
+                            else
+                            {
+                                ret = (amount) * (-1);
+                            }
+                        }
+                        return ret;
+                    }
+                );
+                cursor.GotoNext(i => i.MatchCall<Player>(nameof(Player.ManaEffect))); //Go to the mana effect call
+                cursor.Remove(); //Remove vanilla mana effect
+                cursor.EmitDelegate<Action<Player, int>> //Emit a function that accepts the current NPC index and returns the new value for "specialHitSetter".
+                (
+                    (
+                        Player player,
+                        int manaAmount
+                    ) =>
+                    {
+                        if (player.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr) && plr.manaCatalyst)
+                        {
+                            CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), Color.DarkViolet, manaAmount);
+                        }
+                        else
+                        {
+                            player.ManaEffect(manaAmount);
+                        }
+                    }
+                );
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+            }
+            catch
+            {
+                MonoModHooks.DumpIL(ModContent.GetInstance<WeDoALittleTrolling>(), intermediateLanguageContext);
+                WeDoALittleTrolling.logger.Fatal("WDALT: Failed to inject Catalyst Hook. Broken IL Code has been dumped to tModLoader-Logs/ILDumps/WeDoALittleTrolling.");
+                successInjectCatalystHook = false;
+            }
+            if(successInjectCatalystHook)
+            {
+                WeDoALittleTrolling.logger.Debug("WDALT: Successfully injected Catalyst Hook via IL Editing.");
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

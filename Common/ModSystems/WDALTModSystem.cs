@@ -127,6 +127,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             BalancingItemList.RegisterHooks();
             //Overloaded.RegisterHooks();
             WDALTPlayer.RegisterHooks();
+            ManaExtractionCatalyst.RegisterHooks();
         }
 
         public static void UnregisterHooks()
@@ -146,6 +147,7 @@ namespace WeDoALittleTrolling.Common.ModSystems
             BalancingItemList.UnregisterHooks();
             //Overloaded.UnregisterHooks();
             WDALTPlayer.UnregisterHooks();
+            ManaExtractionCatalyst.UnregisterHooks();
         }
 
         public override void PreUpdatePlayers()
