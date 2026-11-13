@@ -275,15 +275,13 @@ namespace WeDoALittleTrolling.Common.ModPlayers
 
         public static void RegisterHooks()
         {
-            // On_Player.ApplyLifeAndOrMana += QuickManaOverride; FIXME: tModLoader API Bug
-            On_Player.AddBuff_int_int_bool += alt_QuickManaOverride;
+            On_Player.ApplyLifeAndOrMana += QuickManaOverride;
             On_Player.CheckMana_int_bool_bool += On_Player_CheckMana_int_bool_bool;
         }
 
         public static void UnregisterHooks()
         {
-            // On_Player.ApplyLifeAndOrMana -= QuickManaOverride; FIXME: tModLoader API Bug
-            On_Player.AddBuff_int_int_bool -= alt_QuickManaOverride;
+            On_Player.ApplyLifeAndOrMana -= QuickManaOverride;
             On_Player.CheckMana_int_bool_bool -= On_Player_CheckMana_int_bool_bool;
         }
 
@@ -1184,26 +1182,12 @@ namespace WeDoALittleTrolling.Common.ModPlayers
             siphonStack = 0;
         }
 
-        /* FIXME: tModLoader API Bug
         public static void QuickManaOverride(Terraria.On_Player.orig_ApplyLifeAndOrMana orig, Terraria.Player self, Terraria.Item item, bool quick)
         {          
             orig.Invoke(self, item, quick);
             if (item.healMana > 0 && self.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr) && plr.manaCatalyst)
             {
                 plr.TryApplyManaHeat(0.2f, 2f);
-            }
-        }
-        */
-
-        public static void alt_QuickManaOverride(Terraria.On_Player.orig_AddBuff_int_int_bool orig, Terraria.Player self, int type, int time, bool fromNetPvP)
-        {          
-            if (self != null && self.whoAmI == Main.myPlayer && type == BuffID.ManaSickness && self.TryGetModPlayer<WDALTPlayer>(out WDALTPlayer plr) && plr.manaCatalyst)
-            {
-                plr.TryApplyManaHeat(0.2f, 2f);
-            }
-            else
-            {
-                orig.Invoke(self, type, time, fromNetPvP);
             }
         }
 
