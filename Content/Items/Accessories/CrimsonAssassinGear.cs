@@ -37,9 +37,6 @@ namespace WeDoALittleTrolling.Content.Items.Accessories
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 30;
-
             Item.consumable = false;
 
             Item.value = Item.buyPrice(gold: 10);

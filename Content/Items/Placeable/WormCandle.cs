@@ -35,8 +35,6 @@ namespace WeDoALittleTrolling.Content.Items.Placeable
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.ShadowCandle);
-            Item.width = 12;
-            Item.height = 24;
             Item.createTile = ModContent.TileType<WormCandleTile>();
         }
 

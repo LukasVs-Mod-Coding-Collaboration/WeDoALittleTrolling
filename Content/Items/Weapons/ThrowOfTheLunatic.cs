@@ -36,9 +36,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 24;
-            Item.height = 24;
-
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useTime = 25;
             Item.useAnimation = 25;

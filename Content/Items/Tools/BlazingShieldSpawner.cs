@@ -18,9 +18,6 @@ namespace WeDoALittleTrolling.Content.Items.Tools
 
         public override void SetDefaults()
         {
-            Item.width = 16;
-            Item.height = 16;
-
             Item.consumable = false;
 
             Item.value = Item.sellPrice(platinum: 1);

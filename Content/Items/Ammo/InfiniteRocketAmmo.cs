@@ -38,9 +38,6 @@ namespace WeDoALittleTrolling.Content.Items.Ammo
 
         public override void SetDefaults()
         {
-            Item.width = 46;
-            Item.height = 50;
-
             Item.value = Item.buyPrice(copper: 1);
             
 

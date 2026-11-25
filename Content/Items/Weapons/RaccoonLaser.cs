@@ -44,8 +44,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 56;
-            Item.height = 28;
             Item.scale = 0.875f;
             Item.rare = ItemRarityID.Expert;
 

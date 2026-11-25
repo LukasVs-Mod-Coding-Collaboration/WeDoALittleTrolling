@@ -33,9 +33,6 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void SetDefaults()
         {
-            Item.width = 12;
-            Item.height = 12;
-
             Item.consumable = true; //Makes item Consumable
 
             Item.value = Item.buyPrice(silver: 10);

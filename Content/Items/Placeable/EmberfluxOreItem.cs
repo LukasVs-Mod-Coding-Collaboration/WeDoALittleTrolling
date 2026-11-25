@@ -34,8 +34,6 @@ namespace WeDoALittleTrolling.Content.Items.Placeable
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<EmberfluxOre>());
-            Item.width = 12;
-            Item.height = 12;
             Item.value = Item.sellPrice(gold: 1);
             Item.material = true;
             Item.rare = ItemRarityID.LightRed;

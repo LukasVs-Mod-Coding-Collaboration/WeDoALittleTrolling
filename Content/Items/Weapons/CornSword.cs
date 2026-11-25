@@ -48,8 +48,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             Item.useAnimation = 24;
             Item.knockBack = 5.25f;
             Item.scale = 1.25f;
-            Item.width = 40;
-            Item.height = 40;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemRarityID.Orange;

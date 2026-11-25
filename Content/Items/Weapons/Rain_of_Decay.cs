@@ -51,8 +51,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 18;
-            Item.height = 60;
             Item.rare = ItemRarityID.Expert;
             Item.value = Item.sellPrice(gold: 8);
 

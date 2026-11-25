@@ -23,6 +23,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using System;
 using WeDoALittleTrolling.Content.Projectiles;
 using Terraria.GameContent.Prefixes;
@@ -44,9 +45,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 50;
-            Item.height = 54;
-
             Item.consumable = false;
 
             Item.value = Item.sellPrice(gold: 5);
@@ -161,9 +159,19 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
             {
                 return;
             }
-            if (!plr.cursebladeIsCharging)
+            if
+            (
+                !plr.cursebladeIsCharging &&
+                (
+                    Main.netMode == NetmodeID.SinglePlayer ||
+                    Main.netMode == NetmodeID.MultiplayerClient
+                ) &&
+                !Main.dedServ
+                && Type >= 0 &&
+                Type < TextureAssets.Item.Length
+            )
             {
-                int rMax = (int)Item.height;
+                int rMax = (int)TextureAssets.Item[Type].Size().Y;
                 double r = rMax * Math.Sqrt(Main.rand.NextDouble());
                 double angle = Main.rand.NextDouble() * 2 * Math.PI;
                 int xOffset = (int)Math.Round(r * Math.Cos(angle));

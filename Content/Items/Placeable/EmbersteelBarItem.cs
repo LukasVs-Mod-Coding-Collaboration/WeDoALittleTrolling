@@ -17,8 +17,6 @@ namespace WeDoALittleTrolling.Content.Items.Placeable
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<EmbersteelBar>());
-            Item.width = 30;
-            Item.height = 24;
             Item.value = Item.sellPrice(gold: 4);
             Item.material = true;
             Item.rare = ItemRarityID.LightRed;

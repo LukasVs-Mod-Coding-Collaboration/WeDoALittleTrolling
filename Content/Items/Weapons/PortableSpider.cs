@@ -42,8 +42,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 52;
-            Item.height = 44;
             Item.rare = ItemRarityID.Green;
             Item.consumable = false;
 

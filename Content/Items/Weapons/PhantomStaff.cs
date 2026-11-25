@@ -38,9 +38,6 @@ namespace WeDoALittleTrolling.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 36;
-            Item.height = 36;
-
             Item.consumable = false;
 
             Item.value = Item.sellPrice(gold: 20);

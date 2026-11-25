@@ -98,8 +98,6 @@ namespace WeDoALittleTrolling.Content.Items
 
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 32;
             Item.rare = ItemRarityID.Orange;
             Item.consumable = false;
 
